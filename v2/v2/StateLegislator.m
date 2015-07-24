@@ -14,6 +14,8 @@
     if(self != nil) {
 
         self.firstName = [data valueForKey:@"first_name"];
+        self.lastName = [data valueForKey:@"last_name"];
+        self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"];
         return self;
     }
     return self;

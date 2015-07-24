@@ -11,4 +11,5 @@
 
 @interface OpenStatesAPI : NSObject
 - (void)determineStateLegislators:(CLLocation*)currentLocation;
+@property (strong, nonatomic) NSMutableArray *listOfStateLegislators;
 @end
