@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LocationService.h"
+#import "SunlightFoundationAPI.h"
 @interface ViewController ()
 
 @end
@@ -18,6 +19,9 @@
     [super viewDidLoad];
 
     [[LocationService sharedInstance] startUpdatingLocation];
+    SunlightFoundationAPI *sfRequest = [[SunlightFoundationAPI alloc]init];
+    [sfRequest determineCongressmen];
+    
     
 }
 
