@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "LocationService.h"
 #import "CongressAPI.h"
+#import "OpenStatesAPI.h"
 @interface ViewController ()
 
 @end
@@ -33,8 +34,10 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        CongressAPI *congressRequest = [[CongressAPI alloc]init];
+        CongressAPI *congressRequest = [CongressAPI alloc];
+        OpenStatesAPI *openStatesRequest = [OpenStatesAPI alloc];
         [congressRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
+        [openStatesRequest determineStateLegislators:[LocationService sharedInstance].currentLocation];
     }
 }
 @end
