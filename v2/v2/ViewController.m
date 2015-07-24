@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "LocationService.h"
-#import "SunlightFoundationAPI.h"
+#import "CongressAPI.h"
 @interface ViewController ()
 
 @end
@@ -33,8 +33,8 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        SunlightFoundationAPI *sfRequest = [[SunlightFoundationAPI alloc]init];
-        [sfRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
+        CongressAPI *congressRequest = [[CongressAPI alloc]init];
+        [congressRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
     }
 }
 @end

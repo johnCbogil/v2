@@ -1,5 +1,5 @@
 //
-//  SunlightFoundationAPI.h
+//  CongressAPI.h
 //  v2
 //
 //  Created by John Bogil on 7/23/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-@interface SunlightFoundationAPI : NSObject
+@interface CongressAPI : NSObject
 - (void)determineCongressmen:(CLLocation*)currentLocation;
 
 @end
