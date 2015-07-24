@@ -1,14 +1,14 @@
 //
-//  InfluenceExplorer.m
+//  InfluenceExplorerAPI.m
 //  v2
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "InfluenceExplorer.h"
+#import "InfluenceExplorerAPI.h"
 
-@implementation InfluenceExplorer
+@implementation InfluenceExplorerAPI
 - (void)idLookup:(NSString*)bioguideID{
     // 1
     NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguideID];

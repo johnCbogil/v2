@@ -10,7 +10,7 @@
 #import "LocationService.h"
 #import "CongressAPI.h"
 #import "OpenStatesAPI.h"
-#import "InfluenceExplorer.h"
+#import "InfluenceExplorerAPI.h"
 @interface ViewController ()
 
 @end

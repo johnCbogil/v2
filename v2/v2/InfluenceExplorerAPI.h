@@ -1,5 +1,5 @@
 //
-//  InfluenceExplorer.h
+//  InfluenceExplorerAPI.h
 //  v2
 //
 //  Created by John Bogil on 7/23/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InfluenceExplorer : NSObject
+@interface InfluenceExplorerAPI : NSObject
 - (void)determineTopContributors:(NSString*)entityID;
 - (void)determineTopIndustries:(NSString*)entityID;
 - (void)idLookup:(NSString*)bioguideID;

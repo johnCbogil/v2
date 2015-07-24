@@ -16,6 +16,8 @@
         self.firstName = [data valueForKey:@"first_name"];
         self.lastName = [data valueForKey:@"last_name"];
         self.bioguide = [data valueForKey:@"bioguide_id"];
+        // Need to create IE properties
+        // Data from IE needs to come here
         return self;
     }
     return self;
