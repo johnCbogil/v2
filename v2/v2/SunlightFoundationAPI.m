@@ -20,11 +20,11 @@
     return self;
 }
 
-- (void)determineCongressmen{
-    
+- (void)determineCongressmen:(CLLocation*)currentLocation{
+
     
     // 1
-    NSString *dataUrl = @"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=40.753678&longitude=-73.682834&apikey=a0c99640cc894383975eb73b99f39d2f";
+    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", currentLocation.coordinate.latitude,  currentLocation.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     

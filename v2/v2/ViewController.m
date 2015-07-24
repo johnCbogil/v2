@@ -19,15 +19,22 @@
     [super viewDidLoad];
 
     [[LocationService sharedInstance] startUpdatingLocation];
-    SunlightFoundationAPI *sfRequest = [[SunlightFoundationAPI alloc]init];
-    [sfRequest determineCongressmen];
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        SunlightFoundationAPI *sfRequest = [[SunlightFoundationAPI alloc]init];
+        [sfRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
+    }
+}
 @end

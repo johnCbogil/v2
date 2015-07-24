@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreLocation/CoreLocation.h>
 @interface SunlightFoundationAPI : NSObject
-- (void)determineCongressmen;
+- (void)determineCongressmen:(CLLocation*)currentLocation;
 
 @end
