@@ -24,12 +24,12 @@
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               
                                               NSMutableArray *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                              NSLog(@"%@", decodedData);
+                                              //NSLog(@"%@", decodedData);
                                               for(int i = 0; i < decodedData.count; i++){
                                                   
                                                   StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:decodedData[i]];
                                                   [self.listOfStateLegislators addObject:stateLegislator];
-                                              }NSLog(@"%@", self.listOfStateLegislators);
+                                              }
                                               
                                           }];
     

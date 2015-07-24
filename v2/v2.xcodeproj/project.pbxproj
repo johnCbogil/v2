@@ -78,6 +78,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		528DC63B1B629DD800560DD6 /* API Requests */ = {
+			isa = PBXGroup;
+			children = (
+				52B51B0B1B61BAE9006DF423 /* CongressAPI.h */,
+				52B51B0C1B61BAE9006DF423 /* CongressAPI.m */,
+				52B51B0E1B61C90E006DF423 /* OpenStatesAPI.h */,
+				52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */,
+				52B51B111B61CCD7006DF423 /* InfluenceExplorerAPI.h */,
+				52B51B121B61CCD7006DF423 /* InfluenceExplorerAPI.m */,
+			);
+			name = "API Requests";
+			sourceTree = "<group>";
+		};
+		528DC63C1B629DFA00560DD6 /* Representatives */ = {
+			isa = PBXGroup;
+			children = (
+				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
+				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
+				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
+				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
+			);
+			name = Representatives;
+			sourceTree = "<group>";
+		};
 		52BB34221B6160C900BB9FFD = {
 			isa = PBXGroup;
 			children = (
@@ -105,16 +129,8 @@
 				52BB34361B6160CA00BB9FFD /* ViewController.m */,
 				52B51B081B61B789006DF423 /* LocationService.h */,
 				52B51B091B61B789006DF423 /* LocationService.m */,
-				52B51B0B1B61BAE9006DF423 /* CongressAPI.h */,
-				52B51B0C1B61BAE9006DF423 /* CongressAPI.m */,
-				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
-				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
-				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
-				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
-				52B51B0E1B61C90E006DF423 /* OpenStatesAPI.h */,
-				52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */,
-				52B51B111B61CCD7006DF423 /* InfluenceExplorerAPI.h */,
-				52B51B121B61CCD7006DF423 /* InfluenceExplorerAPI.m */,
+				528DC63C1B629DFA00560DD6 /* Representatives */,
+				528DC63B1B629DD800560DD6 /* API Requests */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,

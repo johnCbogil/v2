@@ -18,6 +18,7 @@
         self.bioguide = [data valueForKey:@"bioguide_id"];
         // Need to create IE properties
         // Data from IE needs to come here
+        // IE data should only be retrieved upon detail
         return self;
     }
     return self;

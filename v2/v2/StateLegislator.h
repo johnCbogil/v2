@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *phone;
+@property (strong, nonatomic) NSURL *photoURL;
 - (id)initWithData:(NSMutableArray*)data;
 
 @end
