@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52BB34311B6160CA00BB9FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34301B6160CA00BB9FFD /* main.m */; };
 		52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34331B6160CA00BB9FFD /* AppDelegate.m */; };
 		52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34361B6160CA00BB9FFD /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationService.h; path = ../LocationService.h; sourceTree = "<group>"; };
+		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationService.m; path = ../LocationService.m; sourceTree = "<group>"; };
 		52BB342B1B6160C900BB9FFD /* v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB342F1B6160C900BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
 				52BB34351B6160CA00BB9FFD /* ViewController.h */,
 				52BB34361B6160CA00BB9FFD /* ViewController.m */,
+				52B51B081B61B789006DF423 /* LocationService.h */,
+				52B51B091B61B789006DF423 /* LocationService.m */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
@@ -221,6 +226,7 @@
 			files = (
 				52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
+				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +424,7 @@
 				52BB34501B6160CA00BB9FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v2Tests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +433,7 @@
 				52BB34531B6160CA00BB9FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
