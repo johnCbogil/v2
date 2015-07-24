@@ -10,6 +10,7 @@
 #import "LocationService.h"
 #import "CongressAPI.h"
 #import "OpenStatesAPI.h"
+#import "InfluenceExplorer.h"
 @interface ViewController ()
 
 @end
@@ -21,7 +22,6 @@
 
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    
     
 }
 
@@ -36,6 +36,7 @@
     if([keyPath isEqualToString:@"currentLocation"]) {
         CongressAPI *congressRequest = [CongressAPI alloc];
         OpenStatesAPI *openStatesRequest = [OpenStatesAPI alloc];
+        InfluenceExplorer *influenceExplorerRequest = [InfluenceExplorer alloc];
         [congressRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
         [openStatesRequest determineStateLegislators:[LocationService sharedInstance].currentLocation];
     }

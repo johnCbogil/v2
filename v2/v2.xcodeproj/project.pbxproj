@@ -10,6 +10,7 @@
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52B51B0D1B61BAE9006DF423 /* CongressAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B0C1B61BAE9006DF423 /* CongressAPI.m */; };
 		52B51B101B61C90E006DF423 /* OpenStatesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */; };
+		52B51B131B61CCD7006DF423 /* InfluenceExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B121B61CCD7006DF423 /* InfluenceExplorer.m */; };
 		52BB34311B6160CA00BB9FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34301B6160CA00BB9FFD /* main.m */; };
 		52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34331B6160CA00BB9FFD /* AppDelegate.m */; };
 		52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34361B6160CA00BB9FFD /* ViewController.m */; };
@@ -36,6 +37,8 @@
 		52B51B0C1B61BAE9006DF423 /* CongressAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongressAPI.m; sourceTree = "<group>"; };
 		52B51B0E1B61C90E006DF423 /* OpenStatesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenStatesAPI.h; sourceTree = "<group>"; };
 		52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenStatesAPI.m; sourceTree = "<group>"; };
+		52B51B111B61CCD7006DF423 /* InfluenceExplorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfluenceExplorer.h; sourceTree = "<group>"; };
+		52B51B121B61CCD7006DF423 /* InfluenceExplorer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfluenceExplorer.m; sourceTree = "<group>"; };
 		52BB342B1B6160C900BB9FFD /* v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB342F1B6160C900BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				52B51B0C1B61BAE9006DF423 /* CongressAPI.m */,
 				52B51B0E1B61C90E006DF423 /* OpenStatesAPI.h */,
 				52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */,
+				52B51B111B61CCD7006DF423 /* InfluenceExplorer.h */,
+				52B51B121B61CCD7006DF423 /* InfluenceExplorer.m */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
@@ -238,6 +243,7 @@
 				52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				52B51B0D1B61BAE9006DF423 /* CongressAPI.m in Sources */,
+				52B51B131B61CCD7006DF423 /* InfluenceExplorer.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);
