@@ -36,9 +36,12 @@
     if([keyPath isEqualToString:@"currentLocation"]) {
         CongressAPI *congressRequest = [CongressAPI alloc];
         OpenStatesAPI *openStatesRequest = [OpenStatesAPI alloc];
-        InfluenceExplorer *influenceExplorerRequest = [InfluenceExplorer alloc];
         [congressRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
         [openStatesRequest determineStateLegislators:[LocationService sharedInstance].currentLocation];
+//        InfluenceExplorer *influenceExplorerRequest = [InfluenceExplorer alloc];
+//        [influenceExplorerRequest idLookup:@"H001034"];
+//        [influenceExplorerRequest determineTopContributors:@"640f37395b854e06857289077e8bea8a"];
+//        [influenceExplorerRequest determineTopIndustries:@"640f37395b854e06857289077e8bea8a"];
     }
 }
 @end
