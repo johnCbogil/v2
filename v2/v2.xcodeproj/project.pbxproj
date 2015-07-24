@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* Congressperson.m */; };
+		52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateLegislator.m */; };
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52B51B0D1B61BAE9006DF423 /* CongressAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B0C1B61BAE9006DF423 /* CongressAPI.m */; };
 		52B51B101B61C90E006DF423 /* OpenStatesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */; };
@@ -34,6 +35,8 @@
 /* Begin PBXFileReference section */
 		52AD2CBE1B61E7A300EAF854 /* Congressperson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Congressperson.h; path = ../Congressperson.h; sourceTree = "<group>"; };
 		52AD2CBF1B61E7A300EAF854 /* Congressperson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Congressperson.m; path = ../Congressperson.m; sourceTree = "<group>"; };
+		52AD2CC11B61F90900EAF854 /* StateLegislator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislator.h; sourceTree = "<group>"; };
+		52AD2CC21B61F90900EAF854 /* StateLegislator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateLegislator.m; sourceTree = "<group>"; };
 		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationService.h; path = ../LocationService.h; sourceTree = "<group>"; };
 		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationService.m; path = ../LocationService.m; sourceTree = "<group>"; };
 		52B51B0B1B61BAE9006DF423 /* CongressAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongressAPI.h; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				52B51B0C1B61BAE9006DF423 /* CongressAPI.m */,
 				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
 				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
+				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
+				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
 				52B51B0E1B61C90E006DF423 /* OpenStatesAPI.h */,
 				52B51B0F1B61C90E006DF423 /* OpenStatesAPI.m */,
 				52B51B111B61CCD7006DF423 /* InfluenceExplorer.h */,
@@ -250,6 +255,7 @@
 				52B51B0D1B61BAE9006DF423 /* CongressAPI.m in Sources */,
 				52B51B131B61CCD7006DF423 /* InfluenceExplorer.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
+				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);

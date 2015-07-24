@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// these may not need to be exposed in the public interface
 @interface Congressperson : NSObject
 @property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *firstName;

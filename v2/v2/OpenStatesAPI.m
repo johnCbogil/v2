@@ -23,7 +23,7 @@
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               
                                               NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                             // NSLog(@"%@", decodedData);
+                                              NSLog(@"%@", decodedData);
                                           }];
     
     // 3

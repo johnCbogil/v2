@@ -28,7 +28,7 @@
 
                                               NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                               NSMutableArray *results = [decodedData valueForKey:@"results"];
-                                              NSLog(@"%@", results);
+                                              //NSLog(@"%@", results);
                                               for(int i = 0; i < results.count; i++){
                                               
                                                   Congressperson *congressperson = [[Congressperson alloc]initWithData:results[i]];
