@@ -32,7 +32,6 @@
 - (void)determineCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
     
-   // self.listOfCongressmen = [[NSMutableArray alloc]init];
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
     
     // 1
@@ -47,11 +46,7 @@
                                               NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                               NSMutableArray *results = [decodedData valueForKey:@"results"];
                                               NSLog(@"%@", results);
-//                                              for(int i = 0; i < results.count; i++){
-//                                                  
-//                                                  Congressperson *congressperson = [[Congressperson alloc]initWithData:results[i]];
-//                                                  [self.listOfCongressmen addObject:congressperson];
-//                                              }
+
                                               if (error) {
                                                   errorBlock(error);
                                               }
@@ -65,4 +60,81 @@
     [downloadTask resume];
     
 }
+
+//- (void)determineStateLegislators:(CLLocation*)currentLocation{
+//    self.listOfStateLegislators = [[NSMutableArray alloc]init];
+//    
+//    // 1
+//    NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", currentLocation.coordinate.latitude,  currentLocation.coordinate.longitude];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    
+//    // 2
+//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                              
+//                                              NSMutableArray *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//                                              //NSLog(@"%@", decodedData);
+//                                              for(int i = 0; i < decodedData.count; i++){
+//                                                  
+//                                                  StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:decodedData[i]];
+//                                                  [self.listOfStateLegislators addObject:stateLegislator];
+//                                              }
+//                                              
+//                                          }];
+//    
+//    // 3
+//    [downloadTask resume];
+//}
+//- (void)idLookup:(NSString*)bioguideID{
+//    // 1
+//    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguideID];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    
+//    // 2
+//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                              
+//                                              NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//                                              NSLog(@"%@", decodedData);
+//                                          }];
+//    
+//    // 3
+//    [downloadTask resume];
+//}
+//- (void)determineTopContributors:(NSString*)entityID{
+//    // 1
+//    NSString *dataUrl = [NSString stringWithFormat:@"transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2012&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", entityID];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    
+//    // 2
+//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                              
+//                                              NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//                                              NSLog(@"%@", decodedData);
+//                                          }];
+//    
+//    // 3
+//    [downloadTask resume];
+//}
+//- (void)determineTopIndustries:(NSString*)entityID{
+//    // 1
+//    NSString *dataUrl = [NSString stringWithFormat:@"transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2012&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", entityID];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    
+//    // 2
+//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                              
+//                                              NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//                                              NSLog(@"%@", decodedData);
+//                                          }];
+//    
+//    // 3
+//    [downloadTask resume];
+//}
 @end

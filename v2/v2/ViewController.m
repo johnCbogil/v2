@@ -8,9 +8,6 @@
 
 #import "ViewController.h"
 #import "LocationService.h"
-#import "CongressAPI.h"
-#import "OpenStatesAPI.h"
-#import "InfluenceExplorerAPI.h"
 #import "RepManager.h"
 #import "Congressperson.h"
 @interface ViewController ()
@@ -40,9 +37,8 @@
                 [self.tableView reloadData];
             });
         } onError:^(NSError *error) {
-            
+            [error localizedDescription];
         }];
-        
     }
 }
 
