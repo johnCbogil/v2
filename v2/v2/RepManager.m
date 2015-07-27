@@ -9,6 +9,7 @@
 #import "RepManager.h"
 #import "NetworkManager.h"
 #import "Congressperson.h"
+#import "StateLegislator.h"
 
 @implementation RepManager
 
@@ -30,7 +31,7 @@
     return self;
 }
 
-- (void)determineCongressmen:(void(^)(void))successBlock
+- (void)createCongressmen:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]determineCongressmenWithCompletion:^(NSArray *results) {
@@ -46,6 +47,26 @@
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
+}
+
+- (void)createStateLegislators:(void(^)(void))successBlock
+                     onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NetworkManager sharedInstance]determineStateLegislatorsWithCompletion:^(NSArray *results) {
+        NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
+        for(NSDictionary *resultDict in results){
+            StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:resultDict];
+            [listofStateLegislators addObject:stateLegislator];
+        }
+        self.listofStateLegislators = listofStateLegislators;
+        if (successBlock) {
+            successBlock();
+        }
+    } onError:^(NSError *error){
+        errorBlock(error);
+    }];
+
+    
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "StateLegislator.h"
 
 @implementation StateLegislator
-- (id)initWithData:(NSMutableArray*)data {
+- (id)initWithData:(NSDictionary*)data {
     self = [super init];
     if(self != nil) {
 

@@ -10,6 +10,7 @@
 #import "LocationService.h"
 #import "RepManager.h"
 #import "Congressperson.h"
+#import "StateLegislator.h"
 @interface ViewController ()
 
 @end
@@ -32,7 +33,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [[RepManager sharedInstance]determineCongressmen:^{
+        [[RepManager sharedInstance]createStateLegislators:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -47,14 +48,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [RepManager sharedInstance].listOfCongressmen.count;
+    //return [RepManager sharedInstance].listOfCongressmen.count;
+    return [RepManager sharedInstance].listofStateLegislators.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     
-    Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    cell.textLabel.text = congressperson.firstName;
+//    Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+//    cell.textLabel.text = congressperson.firstName;
+
+    StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
+    cell.textLabel.text = stateLegislator.firstName;
     
     return cell;
 }

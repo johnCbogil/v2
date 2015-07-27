@@ -11,6 +11,9 @@
 @interface RepManager : NSObject
 +(RepManager *) sharedInstance;
 @property (strong, nonatomic) NSArray *listOfCongressmen;
-- (void)determineCongressmen:(void(^)(void))successBlock
+@property (strong, nonatomic) NSArray *listofStateLegislators;
+- (void)createCongressmen:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock;
+- (void)createStateLegislators:(void(^)(void))successBlock
+                       onError:(void(^)(NSError *error))errorBlock;
 @end

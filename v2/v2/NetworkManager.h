@@ -12,4 +12,6 @@
 +(NetworkManager *) sharedInstance;
 - (void)determineCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
+- (void)determineStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
+                                        onError:(void(^)(NSError *error))errorBlock;
 @end
