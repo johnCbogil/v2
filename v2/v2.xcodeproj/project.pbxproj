@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
+		52A610881B66D0FF00B041FF /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610871B66D0FF00B041FF /* PageViewController.m */; };
 		52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* Congressperson.m */; };
 		52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateLegislator.m */; };
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
@@ -36,6 +37,8 @@
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
 		52A610811B66AD0300B041FF /* RepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepManager.m; sourceTree = "<group>"; };
+		52A610861B66D0FF00B041FF /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageViewController.h; path = ../PageViewController.h; sourceTree = "<group>"; };
+		52A610871B66D0FF00B041FF /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageViewController.m; path = ../PageViewController.m; sourceTree = "<group>"; };
 		52AD2CBE1B61E7A300EAF854 /* Congressperson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Congressperson.h; path = ../Congressperson.h; sourceTree = "<group>"; };
 		52AD2CBF1B61E7A300EAF854 /* Congressperson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Congressperson.m; path = ../Congressperson.m; sourceTree = "<group>"; };
 		52AD2CC11B61F90900EAF854 /* StateLegislator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislator.h; sourceTree = "<group>"; };
@@ -109,14 +112,16 @@
 			children = (
 				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
 				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
-				52BB34351B6160CA00BB9FFD /* ViewController.h */,
-				52BB34361B6160CA00BB9FFD /* ViewController.m */,
-				52A6107D1B66ACD400B041FF /* NetworkManager.h */,
-				52A6107E1B66ACD400B041FF /* NetworkManager.m */,
-				52A610801B66AD0300B041FF /* RepManager.h */,
-				52A610811B66AD0300B041FF /* RepManager.m */,
 				52B51B081B61B789006DF423 /* LocationService.h */,
 				52B51B091B61B789006DF423 /* LocationService.m */,
+				52A6107D1B66ACD400B041FF /* NetworkManager.h */,
+				52A6107E1B66ACD400B041FF /* NetworkManager.m */,
+				52A610861B66D0FF00B041FF /* PageViewController.h */,
+				52A610871B66D0FF00B041FF /* PageViewController.m */,
+				52A610801B66AD0300B041FF /* RepManager.h */,
+				52A610811B66AD0300B041FF /* RepManager.m */,
+				52BB34351B6160CA00BB9FFD /* ViewController.h */,
+				52BB34361B6160CA00BB9FFD /* ViewController.m */,
 				528DC63C1B629DFA00560DD6 /* Representatives */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
@@ -254,6 +259,7 @@
 			files = (
 				52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
+				52A610881B66D0FF00B041FF /* PageViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
