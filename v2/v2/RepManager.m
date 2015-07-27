@@ -50,7 +50,7 @@
 }
 
 - (void)createStateLegislators:(void(^)(void))successBlock
-                     onError:(void(^)(NSError *error))errorBlock {
+                       onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];

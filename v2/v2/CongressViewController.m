@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CongressViewController.h"
 #import "LocationService.h"
 #import "RepManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
-@interface ViewController ()
+@interface CongressViewController ()
 
 @end
 
-@implementation ViewController
+@implementation CongressViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

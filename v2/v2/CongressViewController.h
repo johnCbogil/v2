@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CongressViewController.h
 //  v2
 //
 //  Created by John Bogil on 7/23/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

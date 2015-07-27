@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52747B741B66EE92009702F5 /* StateLegislatorViewController.m */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
 		52A610881B66D0FF00B041FF /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610871B66D0FF00B041FF /* PageViewController.m */; };
@@ -15,7 +16,7 @@
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52BB34311B6160CA00BB9FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34301B6160CA00BB9FFD /* main.m */; };
 		52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34331B6160CA00BB9FFD /* AppDelegate.m */; };
-		52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34361B6160CA00BB9FFD /* ViewController.m */; };
+		52BB34371B6160CA00BB9FFD /* CongressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34361B6160CA00BB9FFD /* CongressViewController.m */; };
 		52BB343A1B6160CA00BB9FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BB34381B6160CA00BB9FFD /* Main.storyboard */; };
 		52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343B1B6160CA00BB9FFD /* Images.xcassets */; };
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52747B731B66EE92009702F5 /* StateLegislatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislatorViewController.h; sourceTree = "<group>"; };
+		52747B741B66EE92009702F5 /* StateLegislatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateLegislatorViewController.m; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
@@ -50,8 +53,8 @@
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52BB34321B6160CA00BB9FFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		52BB34331B6160CA00BB9FFD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		52BB34351B6160CA00BB9FFD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		52BB34361B6160CA00BB9FFD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		52BB34351B6160CA00BB9FFD /* CongressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CongressViewController.h; sourceTree = "<group>"; };
+		52BB34361B6160CA00BB9FFD /* CongressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CongressViewController.m; sourceTree = "<group>"; };
 		52BB34391B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52BB343B1B6160CA00BB9FFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		52BB343E1B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -120,8 +123,10 @@
 				52A610871B66D0FF00B041FF /* PageViewController.m */,
 				52A610801B66AD0300B041FF /* RepManager.h */,
 				52A610811B66AD0300B041FF /* RepManager.m */,
-				52BB34351B6160CA00BB9FFD /* ViewController.h */,
-				52BB34361B6160CA00BB9FFD /* ViewController.m */,
+				52BB34351B6160CA00BB9FFD /* CongressViewController.h */,
+				52BB34361B6160CA00BB9FFD /* CongressViewController.m */,
+				52747B731B66EE92009702F5 /* StateLegislatorViewController.h */,
+				52747B741B66EE92009702F5 /* StateLegislatorViewController.m */,
 				528DC63C1B629DFA00560DD6 /* Representatives */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
@@ -257,7 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52BB34371B6160CA00BB9FFD /* ViewController.m in Sources */,
+				52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */,
+				52BB34371B6160CA00BB9FFD /* CongressViewController.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				52A610881B66D0FF00B041FF /* PageViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,

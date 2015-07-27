@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "ViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface PageViewController : ViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface PageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
