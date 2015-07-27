@@ -22,6 +22,6 @@
 @property (strong, nonatomic) NSString *entityID;
 @property (strong, nonatomic) NSMutableArray *topContributors;
 @property (strong, nonatomic) NSMutableArray *topIndustries;
-- (id)initWithData:(NSMutableArray*)data;
+- (id)initWithData:(NSDictionary *)data;
 
 @end

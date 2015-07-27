@@ -10,7 +10,7 @@
 
 @implementation Congressperson
 
-- (id)initWithData:(NSMutableArray*)data {
+- (id)initWithData:(NSDictionary *)data {
     self = [super init];
     if(self != nil) {
         self.firstName = [data valueForKey:@"first_name"];

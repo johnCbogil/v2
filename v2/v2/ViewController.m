@@ -11,6 +11,8 @@
 #import "CongressAPI.h"
 #import "OpenStatesAPI.h"
 #import "InfluenceExplorerAPI.h"
+#import "RepManager.h"
+#import "Congressperson.h"
 @interface ViewController ()
 
 @end
@@ -19,10 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    
 }
 
 
@@ -34,14 +35,14 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        CongressAPI *congressRequest = [CongressAPI alloc];
-        OpenStatesAPI *openStatesRequest = [OpenStatesAPI alloc];
-        [congressRequest determineCongressmen:[LocationService sharedInstance].currentLocation];
-        [openStatesRequest determineStateLegislators:[LocationService sharedInstance].currentLocation];
-//        InfluenceExplorer *influenceExplorerRequest = [InfluenceExplorer alloc];
-//        [influenceExplorerRequest idLookup:@"H001034"];
-//        [influenceExplorerRequest determineTopContributors:@"640f37395b854e06857289077e8bea8a"];
-//        [influenceExplorerRequest determineTopIndustries:@"640f37395b854e06857289077e8bea8a"];
+        [[RepManager sharedInstance]determineCongressmen:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } onError:^(NSError *error) {
+            
+        }];
+        
     }
 }
 
@@ -50,10 +51,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return [RepManager sharedInstance].listOfCongressmen.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    
+    Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+    cell.textLabel.text = congressperson.firstName;
+    
     return cell;
 }
 
