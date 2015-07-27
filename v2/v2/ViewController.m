@@ -33,7 +33,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [[RepManager sharedInstance]createStateLegislators:^{
+        [[RepManager sharedInstance]createCongressmen:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -48,18 +48,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return [RepManager sharedInstance].listOfCongressmen.count;
-    return [RepManager sharedInstance].listofStateLegislators.count;
+    return [RepManager sharedInstance].listOfCongressmen.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     
-//    Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-//    cell.textLabel.text = congressperson.firstName;
+    Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+    cell.textLabel.text = congressperson.firstName;
 
-    StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-    cell.textLabel.text = stateLegislator.firstName;
     
     return cell;
 }

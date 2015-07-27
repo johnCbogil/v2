@@ -29,7 +29,7 @@
 }
 
 
-- (void)determineCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
     
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
@@ -61,7 +61,7 @@
     
 }
 
-- (void)determineStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
     
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;

@@ -10,8 +10,8 @@
 
 @interface NetworkManager : NSObject
 +(NetworkManager *) sharedInstance;
-- (void)determineCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
-- (void)determineStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;
 @end

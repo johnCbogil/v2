@@ -34,7 +34,7 @@
 - (void)createCongressmen:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]determineCongressmenWithCompletion:^(NSArray *results) {
+    [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSArray *results) {
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
@@ -52,7 +52,7 @@
 - (void)createStateLegislators:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]determineStateLegislatorsWithCompletion:^(NSArray *results) {
+    [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
         for(NSDictionary *resultDict in results){
             StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:resultDict];
