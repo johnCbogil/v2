@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 // these may not need to be exposed in the public interface
 @interface Congressperson : NSObject
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSString *entityID;
+@property (strong, nonatomic) UIImage *photo;
 @property (strong, nonatomic) NSMutableArray *topContributors;
 @property (strong, nonatomic) NSMutableArray *topIndustries;
 - (id)initWithData:(NSDictionary *)data;

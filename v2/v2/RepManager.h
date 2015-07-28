@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Congressperson.h"
 
 @interface RepManager : NSObject
 +(RepManager *) sharedInstance;
@@ -16,4 +17,6 @@
                      onError:(void(^)(NSError *error))errorBlock;
 - (void)createStateLegislators:(void(^)(void))successBlock
                        onError:(void(^)(NSError *error))errorBlock;
+- (void)assignPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+             onError:(void(^)(NSError *error))errorBlock;
 @end

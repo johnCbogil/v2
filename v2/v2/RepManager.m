@@ -5,7 +5,7 @@
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
 #import "RepManager.h"
 #import "NetworkManager.h"
 #import "Congressperson.h"
@@ -53,12 +53,14 @@
                        onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
+        
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
         for(NSDictionary *resultDict in results){
             StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:resultDict];
             [listofStateLegislators addObject:stateLegislator];
         }
         self.listofStateLegislators = listofStateLegislators;
+        
         if (successBlock) {
             successBlock();
         }
@@ -67,5 +69,20 @@
     }];
 }
 
+- (void)assignPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                       onError:(void(^)(NSError *error))errorBlock {
 
+    [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(NSData *results) {
+        
+        congressperson.photo = [UIImage imageWithData:results];
+        if (successBlock) {
+            successBlock();
+        }
+    } onError:^(NSError *error) {
+        errorBlock(error);
+
+    }];
+    
+    
+}
 @end
