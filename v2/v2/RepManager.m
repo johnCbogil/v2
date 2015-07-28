@@ -38,19 +38,12 @@
     [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSArray *results) {
         
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
-        
         for (NSDictionary *resultDict in results) {
-            
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-            //
             [self assignCongressPhotos:congressperson withCompletion:^{
-                
                 if (successBlock) {
-                    
                     successBlock();
-                    
                     [listOfCongressmen addObject:congressperson];
-                    
                     self.listOfCongressmen = listOfCongressmen;
                 }
             } onError:^(NSError *error) {
@@ -71,19 +64,12 @@
     
     [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
-        
         for (NSDictionary *resultDict in results) {
-            
             StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
-            //
             [self assignStatePhotos:stateLegislator withCompletion:^{
-                
                 if (successBlock) {
-                    
                     successBlock();
-                    
                     [listofStateLegislators addObject:stateLegislator];
-                    
                     self.listofStateLegislators = listofStateLegislators;
                 }
             } onError:^(NSError *error) {
@@ -91,7 +77,6 @@
             }];
         }
         if (successBlock) {
-            
             successBlock();
         }
     } onError:^(NSError *error) {
@@ -103,7 +88,6 @@
                      onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(NSData *results) {
-        
         congressperson.photo = [UIImage imageWithData:results];
         if (successBlock) {
             successBlock();

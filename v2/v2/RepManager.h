@@ -17,6 +17,4 @@
                      onError:(void(^)(NSError *error))errorBlock;
 - (void)createStateLegislators:(void(^)(void))successBlock
                        onError:(void(^)(NSError *error))errorBlock;
-- (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-             onError:(void(^)(NSError *error))errorBlock;
 @end
