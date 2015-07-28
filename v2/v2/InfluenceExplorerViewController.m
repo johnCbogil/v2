@@ -7,6 +7,7 @@
 //
 
 #import "InfluenceExplorerViewController.h"
+#import "RepManager.h"
 
 @interface InfluenceExplorerViewController ()
 
@@ -18,6 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Influence Explorer";
+
 }
 
 - (void)didReceiveMemoryWarning {

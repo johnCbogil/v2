@@ -64,6 +64,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
+        NSLog(@"%@",[(Congressperson*)[RepManager sharedInstance].listOfCongressmen[indexPath.row]influenceExplorerID]);
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];    
 }
 
 
