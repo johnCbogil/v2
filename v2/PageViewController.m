@@ -9,10 +9,7 @@
 #import "PageViewController.h"
 
 @interface PageViewController (){
-    
-
 NSArray *viewControllers;
-
 UIViewController *firstVC;
 UIViewController *secondVC;
 }
@@ -68,11 +65,11 @@ UIViewController *secondVC;
     else if (self.pageViewController.viewControllers[0] == secondVC){
         return firstVC;
     }
-
-    
     return nil;
     
 }
+
+
 
 /*
 #pragma mark - Navigation

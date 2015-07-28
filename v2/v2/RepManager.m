@@ -33,7 +33,6 @@
 
 - (void)createCongressmen:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSArray *results) {
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
@@ -42,6 +41,7 @@
         }
         self.listOfCongressmen = listOfCongressmen;
         if (successBlock) {
+            
             successBlock();
         }
     } onError:^(NSError *error) {

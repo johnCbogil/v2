@@ -15,7 +15,7 @@
 
         self.firstName = [data valueForKey:@"first_name"];
         self.lastName = [data valueForKey:@"last_name"];
-        self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"];
+        self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];
         return self;
     }
     return self;

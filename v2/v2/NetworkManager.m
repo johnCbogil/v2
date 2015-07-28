@@ -83,12 +83,37 @@
                                               else{
                                                   successBlock(decodedData);
                                               }
-                                              
                                           }];
     
     // 3
     [downloadTask resume];
 }
+//
+//- (void)photoRequest {
+//    
+//    // 1
+//    NSString *dataUrl = [[NSString stringWithFormat:@"http://theunitedstates.io/images/congress/450x550/%@.jpg", bioGuide]];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    
+//    // 2
+//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                              
+//                                              NSMutableArray *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//                                              
+//                                              if (error) {
+//                                                  errorBlock(error);
+//                                              }
+//                                              else{
+//                                                  successBlock(decodedData);
+//                                              }
+//                                              
+//                                          }];
+//    
+//    // 3
+//    [downloadTask resume];
+//}
 //- (void)idLookup:(NSString*)bioguideID{
 //    // 1
 //    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguideID];

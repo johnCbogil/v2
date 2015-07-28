@@ -16,9 +16,22 @@
 
 @implementation StateLegislatorViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self populateStateLegislators];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)populateStateLegislators {
     [[RepManager sharedInstance]createStateLegislators:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -26,11 +39,6 @@
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -48,6 +56,10 @@
     StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
     /*

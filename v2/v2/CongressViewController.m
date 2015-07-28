@@ -12,11 +12,9 @@
 #import "Congressperson.h"
 #import "StateLegislator.h"
 @interface CongressViewController ()
-
 @end
 
 @implementation CongressViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -33,14 +31,18 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [[RepManager sharedInstance]createCongressmen:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
+        [self populateCongressmen];
     }
+}
+
+- (void)populateCongressmen{
+    [[RepManager sharedInstance]createCongressmen:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -53,12 +55,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    
     Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    cell.textLabel.text = congressperson.firstName;
-
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", congressperson.firstName, congressperson.lastName];
+    cell.detailTextLabel.text = congressperson.phone;
     
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 
