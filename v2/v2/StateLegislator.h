@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface StateLegislator : NSObject
 // these may not need to be exposed in the public interface
@@ -14,6 +15,8 @@
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSURL *photoURL;
+@property (strong, nonatomic) UIImage *photo;
+
 - (id)initWithData:(NSDictionary*)data;
 
 @end

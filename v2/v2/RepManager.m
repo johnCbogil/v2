@@ -41,8 +41,8 @@
         for (NSDictionary *resultDict in results) {
             
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-            
-            [self assignPhotos:congressperson withCompletion:^{
+            //
+            [self assignCongressPhotos:congressperson withCompletion:^{
                 
                 if (successBlock) {
                     
@@ -71,11 +71,24 @@
     [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
         
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
+        
         for(NSDictionary *resultDict in results){
+
             StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:resultDict];
-            [listofStateLegislators addObject:stateLegislator];
+            //[self assignStatePhotos:stateLegislator withCompletion:^{
+//                
+//                if (successBlock) {
+//                    
+//                    successBlock();
+                    [listofStateLegislators addObject:stateLegislator];
+                    self.listofStateLegislators = listofStateLegislators;
+//                }
+//            } onError:^(NSError *error) {
+//                errorBlock(error);
+//
+//            }];
+            
         }
-        self.listofStateLegislators = listofStateLegislators;
         
         if (successBlock) {
             successBlock();
@@ -85,9 +98,9 @@
     }];
 }
 
-- (void)assignPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                       onError:(void(^)(NSError *error))errorBlock {
-
+- (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                     onError:(void(^)(NSError *error))errorBlock {
+    
     [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(NSData *results) {
         
         congressperson.photo = [UIImage imageWithData:results];
@@ -96,7 +109,22 @@
         }
     } onError:^(NSError *error) {
         errorBlock(error);
-
+        
     }];
+}
+
+- (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
+                  onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(NSData *results) {
+        stateLegislator.photo = [UIImage imageWithData:results];
+        if (successBlock) {
+            successBlock();
+        }
+    } onError:^(NSError *error) {
+        errorBlock(error);
+        
+    }];
+    
 }
 @end

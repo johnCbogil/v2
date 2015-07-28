@@ -17,12 +17,12 @@
 @implementation StateLegislatorViewController
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self populateStateLegislators];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self populateStateLegislators];
 
 }
 
