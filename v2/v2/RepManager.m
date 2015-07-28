@@ -27,6 +27,7 @@
     self = [super init];
     if (self != nil) {
         self.listOfCongressmen = [NSArray array];
+        self.listofStateLegislators = [NSArray array];
     }
     return self;
 }
@@ -69,31 +70,31 @@
                        onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
-        
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
         
-        for(NSDictionary *resultDict in results){
-
-            StateLegislator *stateLegislator = [[StateLegislator alloc]initWithData:resultDict];
-            //[self assignStatePhotos:stateLegislator withCompletion:^{
-//                
-//                if (successBlock) {
-//                    
-//                    successBlock();
-                    [listofStateLegislators addObject:stateLegislator];
-                    self.listofStateLegislators = listofStateLegislators;
-//                }
-//            } onError:^(NSError *error) {
-//                errorBlock(error);
-//
-//            }];
+        for (NSDictionary *resultDict in results) {
             
+            StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
+            //
+            [self assignStatePhotos:stateLegislator withCompletion:^{
+                
+                if (successBlock) {
+                    
+                    successBlock();
+                    
+                    [listofStateLegislators addObject:stateLegislator];
+                    
+                    self.listofStateLegislators = listofStateLegislators;
+                }
+            } onError:^(NSError *error) {
+                errorBlock(error);
+            }];
         }
-        
         if (successBlock) {
+            
             successBlock();
         }
-    } onError:^(NSError *error){
+    } onError:^(NSError *error) {
         errorBlock(error);
     }];
 }

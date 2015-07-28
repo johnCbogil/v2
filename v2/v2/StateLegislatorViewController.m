@@ -17,12 +17,13 @@
 @implementation StateLegislatorViewController
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self populateStateLegislators];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self populateStateLegislators];
 
 }
 
@@ -52,9 +53,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-
-    StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
+    
+    if ([RepManager sharedInstance].listofStateLegislators[indexPath.row]) {
+        StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
+        if (stateLegislator.photo) {
+            cell.imageView.image = stateLegislator.photo;
+        }
+    }
     return cell;
 }
 
