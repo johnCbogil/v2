@@ -115,7 +115,11 @@
                   onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSData *results) {
-        congressperson.influenceExplorerID =  [[NSString alloc] initWithData:results encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
+        
+
+        congressperson.influenceExplorerID =  [decodedData valueForKey:@"id"];
         if (successBlock) {
             successBlock();
         }

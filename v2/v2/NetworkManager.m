@@ -75,6 +75,7 @@
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               
+                                              // Move this line to the RepManager
                                               NSMutableArray *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                               NSLog(@"%@", decodedData);
                                               if (error) {
