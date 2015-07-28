@@ -17,7 +17,7 @@
 @implementation CongressViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"Congresspersons";
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }

@@ -25,8 +25,8 @@ UIViewController *secondVC;
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
-    firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congresspersonViewController"];
-    secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateLegislatorViewController"];
+    firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congressNavigationController"];
+    secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateNavigationController"];
     
     viewControllers = @[firstVC];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
