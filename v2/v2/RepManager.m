@@ -32,25 +32,29 @@
 }
 
 - (void)createCongressmen:(void(^)(void))successBlock
-                     onError:(void(^)(NSError *error))errorBlock {
+                  onError:(void(^)(NSError *error))errorBlock {
+    
     [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSArray *results) {
+        
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
+        
         for (NSDictionary *resultDict in results) {
+            
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
             
-            
             [self assignPhotos:congressperson withCompletion:^{
+                
                 if (successBlock) {
                     
                     successBlock();
+                    
+                    [listOfCongressmen addObject:congressperson];
+                    
+                    self.listOfCongressmen = listOfCongressmen;
                 }
-                [listOfCongressmen addObject:congressperson];
-                self.listOfCongressmen = listOfCongressmen;
-
             } onError:^(NSError *error) {
-                
+                errorBlock(error);
             }];
- 
         }
         if (successBlock) {
             

@@ -76,7 +76,7 @@
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               
                                               NSMutableArray *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
+                                              NSLog(@"%@", decodedData);
                                               if (error) {
                                                   errorBlock(error);
                                               }
@@ -107,6 +107,24 @@
                                                   successBlock(data);
                                               }
                                               
+                                          }];
+    // 3
+    [downloadTask resume];
+}
+
+- (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(NSData *results))successBlock
+               onError:(void(^)(NSError *error))errorBlock {
+    
+    // 2
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+                                          dataTaskWithURL:photoURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                              
+                                              if (error) {
+                                                  errorBlock(error);
+                                              }
+                                              else{
+                                                  successBlock(data);
+                                              }
                                           }];
     // 3
     [downloadTask resume];
