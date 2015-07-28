@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSString *termEnd;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *phone;
-@property (strong, nonatomic) NSString *entityID;
+@property (strong, nonatomic) NSString *influenceExplorerID;
 @property (strong, nonatomic) UIImage *photo;
 @property (strong, nonatomic) NSMutableArray *topContributors;
 @property (strong, nonatomic) NSMutableArray *topIndustries;

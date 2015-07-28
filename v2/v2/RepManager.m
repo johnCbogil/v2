@@ -94,7 +94,6 @@
         }
     } onError:^(NSError *error) {
         errorBlock(error);
-        
     }];
 }
 
@@ -103,6 +102,20 @@
     
     [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(NSData *results) {
         stateLegislator.photo = [UIImage imageWithData:results];
+        if (successBlock) {
+            successBlock();
+        }
+    } onError:^(NSError *error) {
+        errorBlock(error);
+        
+    }];
+}
+
+- (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                  onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSData *results) {
+        congressperson.influenceExplorerID =  [[NSString alloc] initWithData:results encoding:NSUTF8StringEncoding];
         if (successBlock) {
             successBlock();
         }

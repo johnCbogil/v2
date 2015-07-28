@@ -18,4 +18,6 @@
                   onError:(void(^)(NSError *error))errorBlock;
 - (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(NSData *results))successBlock
                onError:(void(^)(NSError *error))errorBlock;
+- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSData *results))successBlock
+         onError:(void(^)(NSError *error))errorBlock;
 @end
