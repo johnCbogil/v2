@@ -14,4 +14,6 @@
                                    onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;
+- (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(NSData *results))successBlock
+                  onError:(void(^)(NSError *error))errorBlock;
 @end
