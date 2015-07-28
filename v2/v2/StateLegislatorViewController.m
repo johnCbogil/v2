@@ -48,19 +48,18 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 2;
+    return [RepManager sharedInstance].listofStateLegislators.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    if ([RepManager sharedInstance].listofStateLegislators[indexPath.row]) {
         StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
         if (stateLegislator.photo) {
             cell.imageView.image = stateLegislator.photo;
         }
-    }
+    
     return cell;
 }
 
