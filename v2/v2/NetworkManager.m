@@ -96,12 +96,9 @@
     NSString *dataUrl = [NSString stringWithFormat:@"http://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
-    
     // 2
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              
-//                                              NSMutableArray *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                               
                                               if (error) {
                                                   errorBlock(error);
@@ -111,7 +108,6 @@
                                               }
                                               
                                           }];
-    
     // 3
     [downloadTask resume];
 }

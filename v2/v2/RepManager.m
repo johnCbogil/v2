@@ -37,9 +37,21 @@
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-            [listOfCongressmen addObject:congressperson];
+            
+            
+            [self assignPhotos:congressperson withCompletion:^{
+                if (successBlock) {
+                    
+                    successBlock();
+                }
+                [listOfCongressmen addObject:congressperson];
+                self.listOfCongressmen = listOfCongressmen;
+
+            } onError:^(NSError *error) {
+                
+            }];
+ 
         }
-        self.listOfCongressmen = listOfCongressmen;
         if (successBlock) {
             
             successBlock();
@@ -82,7 +94,5 @@
         errorBlock(error);
 
     }];
-    
-    
 }
 @end
