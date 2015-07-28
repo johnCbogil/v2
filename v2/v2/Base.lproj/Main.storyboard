@@ -57,6 +57,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="s6N-yn-E0y" kind="show" id="29j-Yx-wve"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -83,6 +86,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079" y="312"/>
+        </scene>
+        <!--Influence Explorer View Controller-->
+        <scene sceneID="7H3-kF-vdy">
+            <objects>
+                <viewController storyboardIdentifier="influenceExplorerViewController" id="s6N-yn-E0y" customClass="InfluenceExplorerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4kN-Ji-VQ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="yzf-fj-87f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pJj-7F-vgy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hvG-iR-pIo">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="59D-U6-ewy">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="59D-U6-ewy" id="SVB-ai-f27">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yzf-fj-87f" firstAttribute="top" secondItem="hvG-iR-pIo" secondAttribute="bottom" id="YHG-7J-8cB"/>
+                            <constraint firstItem="hvG-iR-pIo" firstAttribute="top" secondItem="4kN-Ji-VQ9" secondAttribute="bottom" constant="-64" id="YPI-M1-xtQ"/>
+                            <constraint firstAttribute="trailing" secondItem="hvG-iR-pIo" secondAttribute="trailing" id="ma1-8T-L5a"/>
+                            <constraint firstItem="hvG-iR-pIo" firstAttribute="leading" secondItem="pJj-7F-vgy" secondAttribute="leading" id="s27-Vj-KRU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3g-2p-C0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079" y="982"/>
         </scene>
         <!--State Legislator View Controller-->
         <scene sceneID="XRD-mT-79m">
