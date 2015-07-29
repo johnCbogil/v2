@@ -68,7 +68,15 @@
         NSLog(@"%@",[(Congressperson*)[RepManager sharedInstance].listOfCongressmen[indexPath.row]influenceExplorerID]);
     } onError:^(NSError *error) {
         [error localizedDescription];
-    }];    
+    }];
+    
+    [[RepManager sharedInstance]assignTopContributors:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
+        NSLog(@"%@", [(Congressperson*)[RepManager sharedInstance].listOfCongressmen[indexPath.row] topContributors]);
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+
+    }];
+    
 }
 
 

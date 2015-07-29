@@ -117,9 +117,9 @@
     [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSData *results) {
         
         NSDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
-        
+        NSLog(@"%@", decodedData);
 
-        congressperson.influenceExplorerID =  [decodedData valueForKey:@"id"];
+        congressperson.influenceExplorerID =  [decodedData valueForKey:@"id"][0];
         if (successBlock) {
             successBlock();
         }
@@ -133,7 +133,9 @@
                       onError:(void(^)(NSError *error))errorBlock {
     
 [[NetworkManager sharedInstance]getTopContributors:congressperson.influenceExplorerID withCompletion:^(NSData *results) {
+    
     congressperson.topContributors = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
+
     if (successBlock) {
         successBlock();
     }
@@ -142,6 +144,7 @@
 }];
 }
 
+// Why not just accept the influenceexplorerID?
 - (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                       onError:(void(^)(NSError *error))errorBlock {
     
