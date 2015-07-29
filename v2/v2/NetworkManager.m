@@ -153,38 +153,50 @@
     // 3
     [downloadTask resume];
 }
-//- (void)determineTopContributors:(NSString*)entityID{
-//    // 1
-//    NSString *dataUrl = [NSString stringWithFormat:@"transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2012&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", entityID];
-//    NSURL *url = [NSURL URLWithString:dataUrl];
-//    
-//    
-//    // 2
-//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                              
-//                                              NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//                                              NSLog(@"%@", decodedData);
-//                                          }];
-//    
-//    // 3
-//    [downloadTask resume];
-//}
-//- (void)determineTopIndustries:(NSString*)entityID{
-//    // 1
-//    NSString *dataUrl = [NSString stringWithFormat:@"transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2012&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", entityID];
-//    NSURL *url = [NSURL URLWithString:dataUrl];
-//    
-//    
-//    // 2
-//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-//                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                              
-//                                              NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//                                              NSLog(@"%@", decodedData);
-//                                          }];
-//    
-//    // 3
-//    [downloadTask resume];
-//}
+
+- (void)getTopContributors:(NSString*)influenceExplorerID withCompletion:(void(^)(NSData *results))successBlock
+         onError:(void(^)(NSError *error))errorBlock {
+    // 1
+    NSString *dataUrl = [NSString stringWithFormat:@"transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2012&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    
+    
+    // 2
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                              
+                                              if (error) {
+                                                  errorBlock(error);
+                                              }
+                                              else{
+                                                  successBlock(data);
+                                              }
+                                          }];
+    
+    // 3
+    [downloadTask resume];
+}
+
+- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSData *results))successBlock
+                   onError:(void(^)(NSError *error))errorBlock {
+    // 1
+    NSString *dataUrl = [NSString stringWithFormat:@"transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2012&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    
+    
+    // 2
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                              
+                                              if (error) {
+                                                  errorBlock(error);
+                                              }
+                                              else{
+                                                  successBlock(data);
+                                              }
+                                          }];
+    
+    // 3
+    [downloadTask resume];
+}
 @end
