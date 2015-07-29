@@ -128,4 +128,31 @@
         
     }];
 }
+
+- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                      onError:(void(^)(NSError *error))errorBlock {
+    
+[[NetworkManager sharedInstance]getTopContributors:congressperson.influenceExplorerID withCompletion:^(NSData *results) {
+    congressperson.topContributors = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
+    if (successBlock) {
+        successBlock();
+    }
+} onError:^(NSError *error) {
+    errorBlock(error);
+}];
+}
+
+- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                      onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSData *results) {
+        congressperson.topIndustries = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
+        if (successBlock) {
+            successBlock();
+        }
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
 @end
