@@ -57,9 +57,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="s6N-yn-E0y" kind="show" id="29j-Yx-wve"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -110,14 +107,18 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="s6N-yn-E0y" id="xYP-bO-aMm"/>
+                                    <outlet property="delegate" destination="s6N-yn-E0y" id="gCZ-d7-vgN"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yzf-fj-87f" firstAttribute="top" secondItem="hvG-iR-pIo" secondAttribute="bottom" id="YHG-7J-8cB"/>
-                            <constraint firstItem="hvG-iR-pIo" firstAttribute="top" secondItem="4kN-Ji-VQ9" secondAttribute="bottom" constant="-64" id="YPI-M1-xtQ"/>
-                            <constraint firstAttribute="trailing" secondItem="hvG-iR-pIo" secondAttribute="trailing" id="ma1-8T-L5a"/>
-                            <constraint firstItem="hvG-iR-pIo" firstAttribute="leading" secondItem="pJj-7F-vgy" secondAttribute="leading" id="s27-Vj-KRU"/>
+                            <constraint firstItem="hvG-iR-pIo" firstAttribute="leading" secondItem="pJj-7F-vgy" secondAttribute="leading" id="3xz-WK-T3W"/>
+                            <constraint firstItem="hvG-iR-pIo" firstAttribute="bottom" secondItem="yzf-fj-87f" secondAttribute="top" id="89H-4u-djO"/>
+                            <constraint firstAttribute="trailing" secondItem="hvG-iR-pIo" secondAttribute="trailing" id="8xF-GD-alN"/>
+                            <constraint firstItem="hvG-iR-pIo" firstAttribute="top" secondItem="pJj-7F-vgy" secondAttribute="top" id="Zcq-Tn-bs5"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -19,10 +19,6 @@
                   onError:(void(^)(NSError *error))errorBlock;
 - (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                onError:(void(^)(NSError *error))errorBlock;
-- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSData *results))successBlock
+- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
          onError:(void(^)(NSError *error))errorBlock;
-- (void)getTopContributors:(NSString*)influenceExplorerID withCompletion:(void(^)(NSData *results))successBlock
-                   onError:(void(^)(NSError *error))errorBlock;
-- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSData *results))successBlock
-                 onError:(void(^)(NSError *error))errorBlock;
 @end

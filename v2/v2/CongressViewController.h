@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InfluenceExplorerViewController.h"
 
 @interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) InfluenceExplorerViewController *influenceExplorerVC;
 @end
 

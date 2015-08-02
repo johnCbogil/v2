@@ -46,7 +46,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"%@", responseObject);
+        //NSLog(@"%@", responseObject);
         successBlock([responseObject valueForKey:@"results"]);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -74,7 +74,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"%@", responseObject);
+        //NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -113,20 +113,6 @@
 - (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                onError:(void(^)(NSError *error))errorBlock {
     
-//    // 2
-//    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-//                                          dataTaskWithURL:photoURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                              
-//                                              if (error) {
-//                                                  errorBlock(error);
-//                                              }
-//                                              else{
-//                                                  successBlock(data);
-//                                              }
-//                                          }];
-//    // 3
-//    [downloadTask resume];
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -134,7 +120,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"%@", responseObject);
+        //NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -145,72 +131,27 @@
     [operation start];
 }
 
-- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSData *results))successBlock
+- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
                onError:(void(^)(NSError *error))errorBlock {
     // 1
     NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
-    
-    
-    // 2
-    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              
-                                              if (error) {
-                                                  errorBlock(error);
-                                              }
-                                              else{
-                                                  successBlock(data);
-                                              }
-                                          }];
-    
-    // 3
-    [downloadTask resume];
-}
 
-- (void)getTopContributors:(NSString*)influenceExplorerID withCompletion:(void(^)(NSData *results))successBlock
-         onError:(void(^)(NSError *error))errorBlock {
-    // 1
-    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
-    NSURL *url = [NSURL URLWithString:dataUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    // 2
-    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              if (error) {
-                                                  errorBlock(error);
-                                              }
-                                              else{
-                                                  successBlock(data);
-                                              }
-                                          }];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSLog(@"%@", responseObject);
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+    }];
     
-    // 3
-    [downloadTask resume];
-}
-
-// THIS IS THE WRONG URL
-- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSData *results))successBlock
-                   onError:(void(^)(NSError *error))errorBlock {
-    // 1
-    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    
-    
-    // 2
-    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              
-                                              if (error) {
-                                                  errorBlock(error);
-                                              }
-                                              else{
-                                                  successBlock(data);
-                                              }
-                                          }];
-    
-    // 3
-    [downloadTask resume];
+    [operation start];
 }
 @end

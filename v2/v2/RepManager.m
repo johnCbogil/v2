@@ -114,12 +114,12 @@
 - (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSData *results) {
+    [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSArray *results) {
         
-        NSDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
-        NSLog(@"%@", decodedData);
+//        NSDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
+//        NSLog(@"%@", decodedData);
 
-        congressperson.influenceExplorerID =  [decodedData valueForKey:@"id"][0];
+        congressperson.influenceExplorerID =  [results[0]valueForKey:@"id"];
         if (successBlock) {
             successBlock();
         }
@@ -129,34 +129,5 @@
     }];
 }
 
-// Why not just accept the influenceexplorerID?
-- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                      onError:(void(^)(NSError *error))errorBlock {
-    
-[[NetworkManager sharedInstance]getTopContributors:congressperson.influenceExplorerID withCompletion:^(NSData *results) {
-    
-    congressperson.topContributors = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
-
-    if (successBlock) {
-        successBlock();
-    }
-} onError:^(NSError *error) {
-    errorBlock(error);
-}];
-}
-
-// Why not just accept the influenceexplorerID?
-- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                      onError:(void(^)(NSError *error))errorBlock {
-    
-    [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSData *results) {
-        congressperson.topIndustries = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
-        if (successBlock) {
-            successBlock();
-        }
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
-}
 
 @end

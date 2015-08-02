@@ -19,8 +19,4 @@
                        onError:(void(^)(NSError *error))errorBlock;
 - (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                           onError:(void(^)(NSError *error))errorBlock;
-- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                      onError:(void(^)(NSError *error))errorBlock;
-- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                    onError:(void(^)(NSError *error))errorBlock;
 @end

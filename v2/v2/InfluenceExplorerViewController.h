@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Congressperson.h"
 
-@interface InfluenceExplorerViewController : UIViewController
-
+@interface InfluenceExplorerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) Congressperson *congressperson;
 @end
