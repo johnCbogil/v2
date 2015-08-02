@@ -13,7 +13,7 @@
 +(NetworkManager *) sharedInstance;
 - (void)getCongressmenWithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
-- (void)getStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getStateLegislatorsWithCompletion:(void(^)(NSDictionary *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;
 - (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                   onError:(void(^)(NSError *error))errorBlock;

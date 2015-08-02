@@ -38,7 +38,7 @@
     [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSDictionary *results) {
         
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
-        for (NSDictionary *resultDict in results) {
+        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
             [self assignCongressPhotos:congressperson withCompletion:^{
                 if (successBlock) {
@@ -62,7 +62,7 @@
 - (void)createStateLegislators:(void(^)(void))successBlock
                        onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSArray *results) {
+    [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSDictionary *results) {
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
             StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
@@ -119,7 +119,7 @@
 //        NSDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
 //        NSLog(@"%@", decodedData);
 
-        congressperson.influenceExplorerID =  [results[0]valueForKey:@"id"];
+        congressperson.influenceExplorerID =  [results valueForKey:@"id"][0];
         if (successBlock) {
             successBlock();
         }

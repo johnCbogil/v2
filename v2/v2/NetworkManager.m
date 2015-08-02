@@ -47,7 +47,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //NSLog(@"%@", responseObject);
-        successBlock([responseObject valueForKey:@"results"]);
+        successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -58,7 +58,7 @@
     
 }
 
-- (void)getStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getStateLegislatorsWithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
     
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
