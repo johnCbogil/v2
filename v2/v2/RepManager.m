@@ -35,7 +35,7 @@
 - (void)createCongressmen:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSArray *results) {
+    [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSDictionary *results) {
         
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
@@ -87,8 +87,8 @@
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(NSData *results) {
-        congressperson.photo = [UIImage imageWithData:results];
+    [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(UIImage *results) {
+        congressperson.photo = results;
         if (successBlock) {
             successBlock();
         }
@@ -100,8 +100,8 @@
 - (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(NSData *results) {
-        stateLegislator.photo = [UIImage imageWithData:results];
+    [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(UIImage *results) {
+        stateLegislator.photo = results;
         if (successBlock) {
             successBlock();
         }

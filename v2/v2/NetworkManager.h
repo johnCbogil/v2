@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NetworkManager : NSObject
 +(NetworkManager *) sharedInstance;
-- (void)getCongressmenWithCompletion:(void(^)(NSArray *results))successBlock
+- (void)getCongressmenWithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateLegislatorsWithCompletion:(void(^)(NSArray *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;
-- (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(NSData *results))successBlock
+- (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                   onError:(void(^)(NSError *error))errorBlock;
-- (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(NSData *results))successBlock
+- (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                onError:(void(^)(NSError *error))errorBlock;
 - (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSData *results))successBlock
          onError:(void(^)(NSError *error))errorBlock;
