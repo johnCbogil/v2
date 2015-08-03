@@ -129,5 +129,27 @@
     }];
 }
 
+- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                          onError:(void(^)(NSError *error))errorBlock {
+    
+ 
+    [[NetworkManager sharedInstance]getTopContributors:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
+        congressperson.topContributors = results;
+        successBlock();
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
 
+- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+                      onError:(void(^)(NSError *error))errorBlock {
+    
+    
+    [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
+        congressperson.topIndustries = results;
+        successBlock();
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
 @end

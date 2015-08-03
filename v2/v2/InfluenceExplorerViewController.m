@@ -32,12 +32,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.congressperson.topIndustries.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    cell.textLabel.text = self.congressperson.influenceExplorerID;
+    cell.textLabel.text = [self.congressperson.topIndustries[indexPath.row]valueForKey:@"name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@",[self.congressperson.topIndustries[indexPath.row]valueForKey:@"amount"]];
     
     return cell;
 }

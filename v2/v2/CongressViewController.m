@@ -64,18 +64,26 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    // ADD AN ERROR BLOCK TO THIS
     [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
-//        NSLog(@"%@",[(Congressperson*)[RepManager sharedInstance].listOfCongressmen[indexPath.row]influenceExplorerID]);
         
+        // ADD AN ERROR BLOCK TO THIS
+        [[RepManager sharedInstance]assignTopIndustries:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
+            
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];
+            self.influenceExplorerVC.congressperson = [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+            [self.navigationController pushViewController:self.influenceExplorerVC animated:YES];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
         
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];
-        self.influenceExplorerVC.congressperson = [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-        [self.navigationController pushViewController:self.influenceExplorerVC animated:YES];
         
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
+    
+
 }
 
 

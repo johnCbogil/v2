@@ -154,4 +154,53 @@
     
     [operation start];
 }
+
+- (void)getTopContributors:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
+         onError:(void(^)(NSError *error))errorBlock {
+ 
+    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSLog(@"%@", responseObject);
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+}
+
+- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
+                   onError:(void(^)(NSError *error))errorBlock {
+    
+    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSLog(@"%@", responseObject);
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+}
+
 @end
