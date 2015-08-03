@@ -8,7 +8,6 @@
 
 #import "NetworkManager.h"
 #import "LocationService.h"
-#import "AFNetworking.h"
 
 @implementation NetworkManager
 +(NetworkManager *) sharedInstance
@@ -24,6 +23,7 @@
 - (id)init {
     self = [super init];
     if(self != nil) {
+        self.manager = [AFHTTPRequestOperationManager manager];
 
     }
     return self;
@@ -35,26 +35,38 @@
     
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
     
-    // 1
+//    // 1
     NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", currentLocation.coordinate.latitude,  currentLocation.coordinate.longitude];
-    NSURL *url = [NSURL URLWithString:dataUrl];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        //NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSLog(@"Error: %@", error);
+//    }];
+//    
+//    [operation start];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //NSLog(@"%@", responseObject);
+    NSDictionary *parameters = @{@"format": @"json"};
+    self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self.manager GET:dataUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //success
+        //NSLog(@"JSON responseObject: %@ ",[responseObject valueForKey:@"food"]);
         successBlock(responseObject);
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"Error: %@", error);
+        //fail
+        NSLog(@"error getting food data");
     }];
-    
-    [operation start];
     
 }
 

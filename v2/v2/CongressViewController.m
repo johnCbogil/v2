@@ -68,7 +68,7 @@
     [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
         
         // ADD AN ERROR BLOCK TO THIS
-        [[RepManager sharedInstance]assignTopIndustries:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
+        [[RepManager sharedInstance]assignTopContributors:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
             
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];

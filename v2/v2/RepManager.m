@@ -115,10 +115,6 @@
                   onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSArray *results) {
-        
-//        NSDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:results options:0 error:nil];
-//        NSLog(@"%@", decodedData);
-
         congressperson.influenceExplorerID =  [results valueForKey:@"id"][0];
         if (successBlock) {
             successBlock();
@@ -143,7 +139,6 @@
 
 - (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                       onError:(void(^)(NSError *error))errorBlock {
-    
     
     [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
         congressperson.topIndustries = results;

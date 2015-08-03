@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
 
 @interface NetworkManager : NSObject
 +(NetworkManager *) sharedInstance;
@@ -25,4 +26,6 @@
                    onError:(void(^)(NSError *error))errorBlock;
 - (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
                  onError:(void(^)(NSError *error))errorBlock;
+@property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
+
 @end

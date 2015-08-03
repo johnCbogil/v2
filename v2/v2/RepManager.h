@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Congressperson.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface RepManager : NSObject
 +(RepManager *) sharedInstance;
