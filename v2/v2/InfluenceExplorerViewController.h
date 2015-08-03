@@ -11,4 +11,5 @@
 
 @interface InfluenceExplorerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) Congressperson *congressperson;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

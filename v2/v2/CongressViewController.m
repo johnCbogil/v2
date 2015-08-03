@@ -66,14 +66,16 @@
     
     [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
 //        NSLog(@"%@",[(Congressperson*)[RepManager sharedInstance].listOfCongressmen[indexPath.row]influenceExplorerID]);
+        
+        
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];
+        self.influenceExplorerVC.congressperson = [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+        [self.navigationController pushViewController:self.influenceExplorerVC animated:YES];
+        
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];
-    self.influenceExplorerVC.congressperson = [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    [self.navigationController pushViewController:self.influenceExplorerVC animated:YES];
 }
 
 
