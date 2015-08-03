@@ -24,7 +24,6 @@
     self = [super init];
     if(self != nil) {
         self.manager = [AFHTTPRequestOperationManager manager];
-
     }
     return self;
 }
@@ -35,39 +34,25 @@
     
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
     
-//    // 1
     NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", currentLocation.coordinate.latitude,  currentLocation.coordinate.longitude];
-//    NSURL *url = [NSURL URLWithString:dataUrl];
-//    
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        //NSLog(@"%@", responseObject);
-//        successBlock(responseObject);
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        NSLog(@"Error: %@", error);
-//    }];
-//    
-//    [operation start];
+    NSURL *url = [NSURL URLWithString:dataUrl];
     
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    NSDictionary *parameters = @{@"format": @"json"};
-    self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [self.manager GET:dataUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //success
-        //NSLog(@"JSON responseObject: %@ ",[responseObject valueForKey:@"food"]);
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSLog(@"%@", responseObject);
         successBlock(responseObject);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //fail
-        NSLog(@"error getting food data");
+        
+        NSLog(@"Error: %@", error);
     }];
     
+    [operation start];
 }
 
 - (void)getStateLegislatorsWithCompletion:(void(^)(NSDictionary *results))successBlock
@@ -75,7 +60,6 @@
     
     CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
     
-    // 1
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", currentLocation.coordinate.latitude,  currentLocation.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
@@ -100,7 +84,6 @@
 - (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                                   onError:(void(^)(NSError *error))errorBlock {
     
-//    // 1
     NSString *dataUrl = [NSString stringWithFormat:@"http://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
     

@@ -107,7 +107,6 @@
         }
     } onError:^(NSError *error) {
         errorBlock(error);
-        
     }];
 }
 
@@ -121,14 +120,12 @@
         }
     } onError:^(NSError *error) {
         errorBlock(error);
-        
     }];
 }
 
 - (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                           onError:(void(^)(NSError *error))errorBlock {
-    
- 
+
     [[NetworkManager sharedInstance]getTopContributors:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
         congressperson.topContributors = results;
         successBlock();
