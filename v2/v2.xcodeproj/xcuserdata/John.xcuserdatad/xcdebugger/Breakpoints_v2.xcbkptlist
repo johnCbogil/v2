@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PageViewController.m"
-            timestampString = "460347326.055148"
+            filePath = "v2/UIKit+AFNetworking/UIImageView+AFNetworking.m"
+            timestampString = "460308594.462961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-pageViewController:viewControllerBeforeViewController:"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-cachedImageForRequest:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PageViewController.m"
-            timestampString = "460347326.055148"
+            filePath = "v2/CongressViewController.m"
+            timestampString = "460410783.317828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-pageViewController:viewControllerAfterViewController:"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

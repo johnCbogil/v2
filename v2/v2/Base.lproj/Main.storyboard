@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LFR-O1-azC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Page View Controller-->
-        <scene sceneID="6mh-R5-EZ3">
-            <objects>
-                <viewController storyboardIdentifier="PageViewController" id="LFR-O1-azC" customClass="PageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pkX-zU-7XS"/>
-                        <viewControllerLayoutGuide type="bottom" id="Mxi-BE-BnS"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2nJ-de-dFA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hNS-zc-bzX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-259" y="312"/>
-        </scene>
         <!--Congress View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -67,12 +49,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="92C-Zw-ugk" secondAttribute="bottom" id="4z8-M5-72H"/>
-                            <constraint firstItem="92C-Zw-ugk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="Q8C-Ac-vSb"/>
-                            <constraint firstAttribute="trailing" secondItem="92C-Zw-ugk" secondAttribute="trailing" id="WFT-kd-XgQ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="92C-Zw-ugk" secondAttribute="bottom" id="XI4-Mn-dGQ"/>
-                            <constraint firstItem="92C-Zw-ugk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yTX-sp-Q8J"/>
-                            <constraint firstItem="92C-Zw-ugk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="zL3-kK-b3W"/>
+                            <constraint firstItem="92C-Zw-ugk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8as-J0-hIx"/>
+                            <constraint firstAttribute="trailing" secondItem="92C-Zw-ugk" secondAttribute="trailing" id="NYO-8q-lYa"/>
+                            <constraint firstItem="92C-Zw-ugk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T5i-uQ-L3e"/>
+                            <constraint firstItem="92C-Zw-ugk" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="qh0-D6-YDt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z3n-Bi-TaH"/>
@@ -82,7 +62,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="312"/>
+            <point key="canvasLocation" x="1631" y="294"/>
+        </scene>
+        <!--My Page View Controller-->
+        <scene sceneID="uVc-Za-bd9">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4qp-9N-d7b" customClass="MyPageViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Z7g-wp-Sgv"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="29y-Ps-2Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="921" y="294"/>
         </scene>
         <!--Influence Explorer View Controller-->
         <scene sceneID="7H3-kF-vdy">
@@ -141,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W3g-2p-C0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="982"/>
+            <point key="canvasLocation" x="1631" y="973"/>
         </scene>
         <!--State Legislator View Controller-->
         <scene sceneID="XRD-mT-79m">
@@ -174,10 +164,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="ArG-7c-SOQ"/>
-                            <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="Rti-FT-hfO"/>
-                            <constraint firstItem="tc0-fq-k1w" firstAttribute="top" secondItem="wE0-0A-atA" secondAttribute="bottom" id="YeT-zL-WqE"/>
-                            <constraint firstItem="wE0-0A-atA" firstAttribute="top" secondItem="86l-fy-Gvl" secondAttribute="bottom" constant="-64" id="zAH-8v-inI"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="SKy-s9-UhU"/>
+                            <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="gj0-vP-d1n"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="top" secondItem="Jy1-24-51Y" secondAttribute="top" id="gw6-GL-kRb"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="bottom" secondItem="tc0-fq-k1w" secondAttribute="top" id="wdx-m4-9aa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NUP-cz-jFb"/>
@@ -187,43 +177,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d16-aZ-4Gh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2484" y="312"/>
+            <point key="canvasLocation" x="2328" y="294"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="oWP-Db-qkq">
+        <scene sceneID="hbQ-fR-HEb">
             <objects>
-                <navigationController storyboardIdentifier="congressNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="iH4-SV-reF" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="He3-Tf-3lS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rdM-PC-IFc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="RaJ-fU-Nfl"/>
+                        <segue destination="4qp-9N-d7b" kind="relationship" relationship="rootViewController" id="chW-pg-nsC"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MRy-As-ejV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="61r-8i-wOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="312"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="JN3-Dg-fGr">
-            <objects>
-                <navigationController storyboardIdentifier="stateNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Zfp-sa-7d3" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H4t-SC-dtT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="1xd-ik-YGY" kind="relationship" relationship="rootViewController" id="vez-UK-Oru"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zd4-MA-JLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1768" y="312"/>
+            <point key="canvasLocation" x="109" y="294"/>
         </scene>
     </scenes>
 </document>

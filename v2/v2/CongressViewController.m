@@ -11,6 +11,7 @@
 #import "RepManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
+#import "MyPageViewController.h"
 @interface CongressViewController ()
 @end
 
