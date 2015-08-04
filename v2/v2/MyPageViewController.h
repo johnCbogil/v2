@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// RENAME THIS CLASS
 @interface MyPageViewController : UIPageViewController
 
 @end

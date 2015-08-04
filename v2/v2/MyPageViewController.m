@@ -9,7 +9,6 @@
 #import "MyPageViewController.h"
 
 @interface MyPageViewController ()<UIPageViewControllerDataSource>
-//@property (nonatomic, strong) NSArray *viewControllers;
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
 @end

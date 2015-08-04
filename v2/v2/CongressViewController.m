@@ -11,7 +11,6 @@
 #import "RepManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
-#import "MyPageViewController.h"
 @interface CongressViewController ()
 @end
 
@@ -21,12 +20,17 @@
     self.title = @"Congresspersons";
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLayoutSubviews{
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context

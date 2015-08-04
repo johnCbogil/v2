@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="92C-Zw-ugk">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="80m-5A-W9z" detailTextLabel="xLv-Rl-vJ9" style="IBUITableViewCellStyleSubtitle" id="Rce-WB-ZGX">
@@ -49,11 +49,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="92C-Zw-ugk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8as-J0-hIx"/>
-                            <constraint firstAttribute="trailing" secondItem="92C-Zw-ugk" secondAttribute="trailing" id="NYO-8q-lYa"/>
-                            <constraint firstItem="92C-Zw-ugk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T5i-uQ-L3e"/>
-                            <constraint firstItem="92C-Zw-ugk" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="qh0-D6-YDt"/>
+                            <constraint firstItem="92C-Zw-ugk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="5cX-XQ-Uwx"/>
+                            <constraint firstItem="92C-Zw-ugk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EiA-td-3ct"/>
+                            <constraint firstItem="92C-Zw-ugk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QTZ-MD-WeP"/>
+                            <constraint firstAttribute="trailing" secondItem="92C-Zw-ugk" secondAttribute="trailing" id="aik-rS-sNM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="92C-Zw-ugk" secondAttribute="bottom" id="rsz-l1-Wzv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5cX-XQ-Uwx"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="z3n-Bi-TaH"/>
                     <connections>
@@ -67,7 +73,7 @@
         <!--My Page View Controller-->
         <scene sceneID="uVc-Za-bd9">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4qp-9N-d7b" customClass="MyPageViewController" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4qp-9N-d7b" customClass="MyPageViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Z7g-wp-Sgv"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29y-Ps-2Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wE0-0A-atA">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="kye-YZ-miE">
@@ -164,11 +170,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="tc0-fq-k1w" firstAttribute="top" secondItem="wE0-0A-atA" secondAttribute="bottom" id="MNi-Lw-NeJ"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="top" secondItem="86l-fy-Gvl" secondAttribute="bottom" id="PGn-Wb-sMT"/>
                             <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="SKy-s9-UhU"/>
                             <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="gj0-vP-d1n"/>
-                            <constraint firstItem="wE0-0A-atA" firstAttribute="top" secondItem="Jy1-24-51Y" secondAttribute="top" id="gw6-GL-kRb"/>
-                            <constraint firstItem="wE0-0A-atA" firstAttribute="bottom" secondItem="tc0-fq-k1w" secondAttribute="top" id="wdx-m4-9aa"/>
+                            <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="jH7-Ul-a6y"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="s0F-MJ-HXK"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="SKy-s9-UhU"/>
+                                <exclude reference="gj0-vP-d1n"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="NUP-cz-jFb"/>
                     <connections>
@@ -190,12 +204,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4qp-9N-d7b" kind="relationship" relationship="rootViewController" id="chW-pg-nsC"/>
+                        <segue destination="4qp-9N-d7b" kind="relationship" relationship="rootViewController" id="OFS-yU-mfn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61r-8i-wOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="109" y="294"/>
+            <point key="canvasLocation" x="161" y="294"/>
         </scene>
     </scenes>
 </document>
