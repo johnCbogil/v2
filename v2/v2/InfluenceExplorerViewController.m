@@ -8,6 +8,7 @@
 
 #import "InfluenceExplorerViewController.h"
 #import "RepManager.h"
+#import "PageViewController.h"
 
 @interface InfluenceExplorerViewController ()
 

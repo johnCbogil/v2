@@ -10,6 +10,7 @@
 
 @interface PageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
-@property (strong, nonatomic) UIPageViewController *pageViewController;
++ (PageViewController *)sharedInstance;
 
+@property (strong, nonatomic) UIPageViewController *pageViewController;
 @end

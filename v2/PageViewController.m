@@ -17,6 +17,26 @@ UIViewController *secondVC;
 
 @implementation PageViewController
 
+static PageViewController *sharedInstance = nil;
+
++(PageViewController *) sharedInstance
+{
+    static PageViewController *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc]init];
+    });
+    return instance;
+}
+
+- (id)init {
+    self = [super init];
+    if(self != nil) {
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -24,7 +44,6 @@ UIViewController *secondVC;
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
-    
     firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congressNavigationController"];
     secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateNavigationController"];
     
