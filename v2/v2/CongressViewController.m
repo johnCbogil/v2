@@ -17,30 +17,21 @@
 @implementation CongressViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Congresspersons";
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLayoutSubviews{
-    
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
         [self populateCongressmen];
     }
 }
 
-- (void)populateCongressmen{
+- (void)populateCongressmen {
     [[RepManager sharedInstance]createCongressmen:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -50,16 +41,15 @@
     }];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [RepManager sharedInstance].listOfCongressmen.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", congressperson.firstName, congressperson.lastName];
     cell.detailTextLabel.text = congressperson.phone;
@@ -67,7 +57,7 @@
     
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // ADD AN ERROR BLOCK TO THIS
     [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
@@ -82,14 +72,8 @@
         } onError:^(NSError *error) {
             [error localizedDescription];
         }];
-        
-        
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
-    
-
 }
-
-
 @end

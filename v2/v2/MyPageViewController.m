@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.dataSource = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congresspersonViewController"];
     self.secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateLegislatorViewController"];
@@ -25,22 +25,16 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    
-    if (self.viewControllers[0] == self.secondVC)
-    {
+    if (self.viewControllers[0] == self.secondVC){
         return self.firstVC;
     }
     else if (self.viewControllers[0] == self.firstVC){
-        
         return self.secondVC;
     }
-    
     return nil;
-    
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
     if (self.viewControllers[0] == self.firstVC){
         return self.secondVC;
     }
@@ -48,7 +42,14 @@
         return self.firstVC;
     }
     return nil;
-    
 }
 
+//- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+//{
+//    if(finished)
+//    {
+//        NSString *titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
+//        pageViewController.navigationItem.title = titleOfIncomingViewController;
+//    }
+//}
 @end

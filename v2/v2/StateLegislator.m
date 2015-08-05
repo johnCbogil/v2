@@ -12,7 +12,6 @@
 - (id)initWithData:(NSDictionary*)data {
     self = [super init];
     if(self != nil) {
-
         self.firstName = [data valueForKey:@"first_name"];
         self.lastName = [data valueForKey:@"last_name"];
         self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];

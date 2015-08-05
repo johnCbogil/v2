@@ -13,8 +13,7 @@
 
 @implementation RepManager
 
-+ (RepManager *)sharedInstance
-{
++ (RepManager *)sharedInstance {
     static RepManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,9 +33,7 @@
 
 - (void)createCongressmen:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSDictionary *results) {
-        
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
@@ -51,7 +48,6 @@
             }];
         }
         if (successBlock) {
-            
             successBlock();
         }
     } onError:^(NSError *error) {
@@ -61,7 +57,6 @@
 
 - (void)createStateLegislators:(void(^)(void))successBlock
                        onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSDictionary *results) {
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
@@ -86,7 +81,6 @@
 
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(UIImage *results) {
         congressperson.photo = results;
         if (successBlock) {
@@ -99,7 +93,6 @@
 
 - (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(UIImage *results) {
         stateLegislator.photo = results;
         if (successBlock) {
@@ -112,7 +105,6 @@
 
 - (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSArray *results) {
         congressperson.influenceExplorerID =  [results valueForKey:@"id"][0];
         if (successBlock) {
@@ -125,7 +117,6 @@
 
 - (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                           onError:(void(^)(NSError *error))errorBlock {
-
     [[NetworkManager sharedInstance]getTopContributors:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
         congressperson.topContributors = results;
         successBlock();
@@ -136,7 +127,6 @@
 
 - (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                       onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
         congressperson.topIndustries = results;
         successBlock();
