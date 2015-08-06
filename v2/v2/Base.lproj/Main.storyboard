@@ -170,12 +170,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tc0-fq-k1w" firstAttribute="top" secondItem="wE0-0A-atA" secondAttribute="bottom" id="MNi-Lw-NeJ"/>
-                            <constraint firstItem="wE0-0A-atA" firstAttribute="top" secondItem="86l-fy-Gvl" secondAttribute="bottom" id="PGn-Wb-sMT"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="A90-bZ-G60"/>
+                            <constraint firstItem="tc0-fq-k1w" firstAttribute="top" secondItem="wE0-0A-atA" secondAttribute="bottom" id="AUV-jH-R7n"/>
                             <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="SKy-s9-UhU"/>
+                            <constraint firstItem="wE0-0A-atA" firstAttribute="top" secondItem="86l-fy-Gvl" secondAttribute="bottom" id="e0a-3Y-HxS"/>
                             <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="gj0-vP-d1n"/>
-                            <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="jH7-Ul-a6y"/>
-                            <constraint firstItem="wE0-0A-atA" firstAttribute="leading" secondItem="Jy1-24-51Y" secondAttribute="leading" id="s0F-MJ-HXK"/>
+                            <constraint firstAttribute="trailing" secondItem="wE0-0A-atA" secondAttribute="trailing" id="jTz-Xx-dMN"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
