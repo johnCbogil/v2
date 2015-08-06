@@ -78,7 +78,48 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29y-Ps-2Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="294"/>
+            <point key="canvasLocation" x="902" y="240"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8Rm-bo-BwP">
+            <objects>
+                <viewController id="2Z5-RF-Vdv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iw5-Jr-6md"/>
+                        <viewControllerLayoutGuide type="bottom" id="HNq-K6-6Z2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WRM-qV-4HZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <connections>
+                                    <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
+                                </connections>
+                            </containerView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="q8r-XO-Imm">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="2a9-lD-s8G"/>
+                            <constraint firstItem="q8r-XO-Imm" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="TzM-07-yNA"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="q8r-XO-Imm" secondAttribute="bottom" id="XkR-7b-RQS"/>
+                            <constraint firstAttribute="trailing" secondItem="q8r-XO-Imm" secondAttribute="trailing" id="cN9-FT-eiq"/>
+                            <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" id="eOT-Jk-8CA"/>
+                            <constraint firstItem="q8r-XO-Imm" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" id="fmH-0e-v18"/>
+                            <constraint firstItem="q8r-XO-Imm" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" id="m2w-1e-ftY"/>
+                            <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="sX9-OM-axA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="JLB-71-c5n"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265" y="294"/>
         </scene>
         <!--Influence Explorer View Controller-->
         <scene sceneID="7H3-kF-vdy">
@@ -204,12 +245,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4qp-9N-d7b" kind="relationship" relationship="rootViewController" id="OFS-yU-mfn"/>
+                        <segue destination="2Z5-RF-Vdv" kind="relationship" relationship="rootViewController" id="j7J-U9-9HT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61r-8i-wOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="161" y="294"/>
+            <point key="canvasLocation" x="-483" y="294"/>
         </scene>
     </scenes>
 </document>
