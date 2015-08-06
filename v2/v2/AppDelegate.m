@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MyPageViewController.h"
+#import "PageViewController.h"
 @interface AppDelegate ()
 
 @end

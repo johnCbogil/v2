@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1631" y="294"/>
         </scene>
-        <!--My Page View Controller-->
+        <!--Page View Controller-->
         <scene sceneID="uVc-Za-bd9">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4qp-9N-d7b" customClass="MyPageViewController" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4qp-9N-d7b" customClass="PageViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Z7g-wp-Sgv"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29y-Ps-2Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>

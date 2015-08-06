@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "MyPageViewController.h"
+#import "PageViewController.h"
 
-@interface MyPageViewController ()<UIPageViewControllerDataSource>
+@interface PageViewController ()<UIPageViewControllerDataSource>
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
 @end
 
-@implementation MyPageViewController
+@implementation PageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

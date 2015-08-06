@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521C7FF91B715C8600D6CE1F /* MyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* MyPageViewController.m */; };
+		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
 		523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523211941B68402200752D4C /* InfluenceExplorerViewController.m */; };
 		525D89FB1B6EB98800674AB7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89D61B6EB98800674AB7 /* AFHTTPRequestOperation.m */; };
 		525D89FC1B6EB98800674AB7 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89D81B6EB98800674AB7 /* AFHTTPRequestOperationManager.m */; };
@@ -52,8 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		521C7FF71B715C8600D6CE1F /* MyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageViewController.h; sourceTree = "<group>"; };
-		521C7FF81B715C8600D6CE1F /* MyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageViewController.m; sourceTree = "<group>"; };
+		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		523211931B68402200752D4C /* InfluenceExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfluenceExplorerViewController.h; sourceTree = "<group>"; };
 		523211941B68402200752D4C /* InfluenceExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfluenceExplorerViewController.m; sourceTree = "<group>"; };
 		525D89D51B6EB98800674AB7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -229,8 +229,8 @@
 				52B51B091B61B789006DF423 /* LocationService.m */,
 				52A6107D1B66ACD400B041FF /* NetworkManager.h */,
 				52A6107E1B66ACD400B041FF /* NetworkManager.m */,
-				521C7FF71B715C8600D6CE1F /* MyPageViewController.h */,
-				521C7FF81B715C8600D6CE1F /* MyPageViewController.m */,
+				521C7FF71B715C8600D6CE1F /* PageViewController.h */,
+				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
 				52A610801B66AD0300B041FF /* RepManager.h */,
 				52A610811B66AD0300B041FF /* RepManager.m */,
 				52BB34351B6160CA00BB9FFD /* CongressViewController.h */,
@@ -384,7 +384,7 @@
 				525D89FD1B6EB98800674AB7 /* AFHTTPSessionManager.m in Sources */,
 				525D89FE1B6EB98800674AB7 /* AFNetworkReachabilityManager.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
-				521C7FF91B715C8600D6CE1F /* MyPageViewController.m in Sources */,
+				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				525D8A081B6EB98800674AB7 /* UIImageView+AFNetworking.m in Sources */,
 				525D8A091B6EB98800674AB7 /* UIProgressView+AFNetworking.m in Sources */,
 				525D8A021B6EB98800674AB7 /* AFURLResponseSerialization.m in Sources */,

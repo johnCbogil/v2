@@ -1,5 +1,5 @@
 //
-//  MyPageViewController.h
+//  PageViewController.h
 //  v2
 //
 //  Created by David Weissler on 8/4/15.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 // RENAME THIS CLASS
-@interface MyPageViewController : UIPageViewController
+@interface PageViewController : UIPageViewController
 
 @end
