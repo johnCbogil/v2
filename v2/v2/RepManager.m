@@ -10,7 +10,7 @@
 #import "NetworkManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
-
+#import "LocationService.h"
 @implementation RepManager
 
 + (RepManager *)sharedInstance {
@@ -31,9 +31,11 @@
     return self;
 }
 
-- (void)createCongressmen:(void(^)(void))successBlock
+- (void)createCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getCongressmenWithCompletion:^(NSDictionary *results) {
+    
+    [[NetworkManager sharedInstance]getCongressmenFromLocation:location WithCompletion:^(NSDictionary *results) {
+        
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];

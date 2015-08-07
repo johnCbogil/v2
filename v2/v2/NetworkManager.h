@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface NetworkManager : NSObject
 +(NetworkManager *) sharedInstance;
-- (void)getCongressmenWithCompletion:(void(^)(NSDictionary *results))successBlock
-                                   onError:(void(^)(NSError *error))errorBlock;
+- (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
+onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateLegislatorsWithCompletion:(void(^)(NSDictionary *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;
 - (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
@@ -26,6 +27,8 @@
                    onError:(void(^)(NSError *error))errorBlock;
 - (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
                  onError:(void(^)(NSError *error))errorBlock;
+- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
+                               onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
 
 @end

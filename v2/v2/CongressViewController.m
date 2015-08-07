@@ -27,17 +27,20 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [self populateCongressmen];
+        [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
     }
 }
 
-- (void)populateCongressmen {
-    [[RepManager sharedInstance]createCongressmen:^{
+- (void)populateCongressmenFromLocation:(CLLocation*)location {
+    
+    
+    [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     } onError:^(NSError *error) {
         [error localizedDescription];
+
     }];
 }
 

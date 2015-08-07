@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="902" y="240"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="8Rm-bo-BwP">
             <objects>
-                <viewController id="2Z5-RF-Vdv" sceneMemberID="viewController">
+                <viewController id="2Z5-RF-Vdv" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Iw5-Jr-6md"/>
                         <viewControllerLayoutGuide type="bottom" id="HNq-K6-6Z2"/>
@@ -116,6 +116,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
+                    <connections>
+                        <outlet property="searchBar" destination="q8r-XO-Imm" id="3ov-l4-SUj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

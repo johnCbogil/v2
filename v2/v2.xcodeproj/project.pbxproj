@@ -39,6 +39,7 @@
 		52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343B1B6160CA00BB9FFD /* Images.xcassets */; };
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
 		52BB344B1B6160CA00BB9FFD /* v2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB344A1B6160CA00BB9FFD /* v2Tests.m */; };
+		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,8 @@
 		52BB34441B6160CA00BB9FFD /* v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB34491B6160CA00BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB344A1B6160CA00BB9FFD /* v2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = v2Tests.m; sourceTree = "<group>"; };
+		52C6532E1B75120900EA6FFD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		52C6532F1B75120900EA6FFD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,8 @@
 				52747B741B66EE92009702F5 /* StateLegislatorViewController.m */,
 				523211931B68402200752D4C /* InfluenceExplorerViewController.h */,
 				523211941B68402200752D4C /* InfluenceExplorerViewController.m */,
+				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
+				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
 				528DC63C1B629DFA00560DD6 /* Representatives */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
@@ -380,6 +385,7 @@
 				52BB34371B6160CA00BB9FFD /* CongressViewController.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				525D8A041B6EB98800674AB7 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				52C653301B75120900EA6FFD /* HomeViewController.m in Sources */,
 				525D8A031B6EB98800674AB7 /* AFURLSessionManager.m in Sources */,
 				525D89FD1B6EB98800674AB7 /* AFHTTPSessionManager.m in Sources */,
 				525D89FE1B6EB98800674AB7 /* AFNetworkReachabilityManager.m in Sources */,

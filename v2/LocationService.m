@@ -7,6 +7,7 @@
 //
 
 #import "LocationService.h"
+#import "NetworkManager.h"
 
 @implementation LocationService
 
@@ -45,5 +46,22 @@
     NSLog(@"Latitude %+.6f, Longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
     self.currentLocation = location;
     self.locationManager = nil;
+}
+
+- (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
+                             onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
+        
+        CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
+        CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
+
+        CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+        NSLog(@"%@", location);
+        successBlock(location);
+        
+        
+    } onError:^(NSError *error) {
+    }];
 }
 @end

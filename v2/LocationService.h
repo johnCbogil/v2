@@ -17,5 +17,7 @@
 @property (strong, nonatomic) CLLocation *currentLocation;
 
 - (void)startUpdatingLocation;
+- (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
+                             onError:(void(^)(NSError *error))errorBlock;
 
 @end

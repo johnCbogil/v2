@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "Congressperson.h"
 #import "UIImageView+AFNetworking.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface RepManager : NSObject
 +(RepManager *) sharedInstance;
 @property (strong, nonatomic) NSArray *listOfCongressmen;
 @property (strong, nonatomic) NSArray *listofStateLegislators;
-- (void)createCongressmen:(void(^)(void))successBlock
-                     onError:(void(^)(NSError *error))errorBlock;
+- (void)createCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
+                              onError:(void(^)(NSError *error))errorBlock;
 - (void)createStateLegislators:(void(^)(void))successBlock
                        onError:(void(^)(NSError *error))errorBlock;
 - (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock

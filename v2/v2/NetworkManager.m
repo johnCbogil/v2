@@ -27,12 +27,12 @@
     return self;
 }
 
-
-- (void)getCongressmenWithCompletion:(void(^)(NSDictionary *results))successBlock
+// THIS NEEDS TO ACCEPT A LOCATION
+- (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
-    CLLocation *currentLocation = [LocationService sharedInstance].currentLocation;
     
-    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", currentLocation.coordinate.latitude,  currentLocation.coordinate.longitude];
+    
+    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -190,60 +190,32 @@
     [operation start];
 }
 
-//- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
-//                 onError:(void(^)(NSError *error))errorBlock {
+- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
+                 onError:(void(^)(NSError *error))errorBlock {
 
     //AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE - googkey
     
     
+    NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", searchText];
+    NSString *cleanUrl = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:cleanUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSLog(@"%@", responseObject);
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+    }];
     
+    [operation start];
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //{
-//    
-//    
-//    NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", searchText, GOOGKEY];
-//    
-//    NSString *cleanUrl = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-//    
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    [[session dataTaskWithURL:[NSURL URLWithString:cleanUrl]
-//            completionHandler:^(NSData *data,
-//                                NSURLResponse *response,
-//                                NSError *error) {
-//                
-//                
-//                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//                
-//                NSMutableDictionary *decodedData = [NSJSONSerialization JSONObjectWithData:self.googleMapsResponseData options:0 error:nil];
-//                
-//                NSMutableDictionary *userSearchAddressData = [decodedData valueForKey:@"results"];
-//                
-//                NSString *userSearchLat = [userSearchAddressData valueForKeyPath:@"geometry.location.lat"][0];
-//                NSString *userSearchLng = [userSearchAddressData valueForKeyPath:@"geometry.location.lng"][0];
-//                
-//                
-//                CLLocationDegrees latitude = [userSearchLat doubleValue];
-//                CLLocationDegrees longitude = [userSearchLng doubleValue];
-//                
-//                
-//                [self sunlightFoundationRequest:latitude coordinates:longitude];
-//                
-//                [self googleCivRequest:latitude coordinates:longitude];
-//                
-//            }] resume];
-//}
+}
 
 @end
