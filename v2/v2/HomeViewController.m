@@ -41,11 +41,6 @@
     } onError:^(NSError *error) {
     }];
 }
-
-
-
-// THIS MIGHT BE VALUABLE IN THE CONGRESS VC
-
 /*
 #pragma mark - Navigation
 

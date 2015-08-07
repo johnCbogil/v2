@@ -100,12 +100,12 @@
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
 		52A610811B66AD0300B041FF /* RepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepManager.m; sourceTree = "<group>"; };
-		52AD2CBE1B61E7A300EAF854 /* Congressperson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Congressperson.h; path = ../Congressperson.h; sourceTree = "<group>"; };
-		52AD2CBF1B61E7A300EAF854 /* Congressperson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Congressperson.m; path = ../Congressperson.m; sourceTree = "<group>"; };
+		52AD2CBE1B61E7A300EAF854 /* Congressperson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Congressperson.h; sourceTree = "<group>"; };
+		52AD2CBF1B61E7A300EAF854 /* Congressperson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Congressperson.m; sourceTree = "<group>"; };
 		52AD2CC11B61F90900EAF854 /* StateLegislator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislator.h; sourceTree = "<group>"; };
 		52AD2CC21B61F90900EAF854 /* StateLegislator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateLegislator.m; sourceTree = "<group>"; };
-		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationService.h; path = ../LocationService.h; sourceTree = "<group>"; };
-		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationService.m; path = ../LocationService.m; sourceTree = "<group>"; };
+		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
+		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		52BB342B1B6160C900BB9FFD /* v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB342F1B6160C900BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
