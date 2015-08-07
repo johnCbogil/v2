@@ -17,8 +17,23 @@
 @implementation CongressViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadTableData)
+                                                 name:@"reloadTableView"
+                                               object:nil];
+    
+    
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)reloadTableData{
+    [self.tableView reloadData];
+}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 - (void)didReceiveMemoryWarning {
