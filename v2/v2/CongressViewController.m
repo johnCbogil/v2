@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadTableData)
                                                  name:@"reloadTableView"
@@ -46,7 +48,15 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
+        //[self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
+        [[RepManager sharedInstance]createCongressmenFromQuery:@"chuck" WithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            
+        } onError:^(NSError *error) {
+            
+        }];
     }
 }
 
