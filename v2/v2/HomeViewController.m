@@ -30,21 +30,53 @@
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
-        
-        [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
-            NSLog(@"%@", results);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
-                                                                object:nil];
-
-        } onError:^(NSError *error) {
+    
+    
+    if (searchBar.selectedScopeButtonIndex == 0) {
+        [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
             
-        }];
-        
+            [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
+                NSLog(@"%@", results);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
+                                                                    object:nil];
+                
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+  
+        } onError:^(NSError *error) {
+        }];    }
+    else{
+        [[RepManager sharedInstance]createCongressmenFromQuery:searchBar.text WithCompletion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
+                                                                    object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];    }
+}
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    searchBar.scopeButtonTitles = @[@"Address", @"Name"];
+    searchBar.showsScopeBar = YES;
+    [searchBar sizeToFit];
+    [searchBar setShowsCancelButton:YES animated:YES];
+    
+    return YES;
+}
 
-    } onError:^(NSError *error) {
-    }];
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    searchBar.showsScopeBar = NO;
+    [searchBar sizeToFit];
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+    
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
 }
 /*
 #pragma mark - Navigation
