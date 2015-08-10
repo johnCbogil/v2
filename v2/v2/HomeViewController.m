@@ -34,11 +34,14 @@
         
         [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
             NSLog(@"%@", results);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
+                                                                object:nil];
+
         } onError:^(NSError *error) {
             
         }];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
-                                                            object:nil];
+        
+
 
     } onError:^(NSError *error) {
     }];

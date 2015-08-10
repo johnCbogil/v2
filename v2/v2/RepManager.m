@@ -38,12 +38,13 @@
         
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
+            // THE CORRECT DATA IS BEING PULLED DOWN FOR SEARCHES DURING SEARCH BUG
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
             [self assignCongressPhotos:congressperson withCompletion:^{
                 if (successBlock) {
-                    successBlock();
                     [listOfCongressmen addObject:congressperson];
                     self.listOfCongressmen = listOfCongressmen;
+                    successBlock();
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);

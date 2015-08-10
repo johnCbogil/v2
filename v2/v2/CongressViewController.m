@@ -29,8 +29,12 @@
 }
 
 - (void)reloadTableData{
-    [self.tableView reloadData];
-}
+    // THIS LIST IS NOT BEING UPDATED UNTIL THE SECOND SEARCH CALL
+    NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
@@ -47,8 +51,6 @@
 }
 
 - (void)populateCongressmenFromLocation:(CLLocation*)location {
-    
-    
     [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -94,16 +96,4 @@
         [error localizedDescription];
     }];
 }
-
-
- #pragma mark - Navigation
- 
-//  In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//  Get the new view controller using [segue destinationViewController].
-//  Pass the selected object to the new view controller.
-     
-     
- }
-
 @end
