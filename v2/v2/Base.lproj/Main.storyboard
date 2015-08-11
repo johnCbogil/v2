@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Congress View Controller-->
+        <!--Congress-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="congresspersonViewController" id="BYZ-38-t0r" customClass="CongressViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="congresspersonViewController" title="Congress" id="BYZ-38-t0r" customClass="CongressViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1631" y="973"/>
         </scene>
-        <!--State Legislator View Controller-->
+        <!--State-->
         <scene sceneID="XRD-mT-79m">
             <objects>
-                <viewController storyboardIdentifier="stateLegislatorViewController" id="1xd-ik-YGY" customClass="StateLegislatorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="stateLegislatorViewController" title="State" id="1xd-ik-YGY" customClass="StateLegislatorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="86l-fy-Gvl"/>
                         <viewControllerLayoutGuide type="bottom" id="tc0-fq-k1w"/>

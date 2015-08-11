@@ -4,7 +4,7 @@
 //
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
-//
+//  AIzaSyBGpp2MpyG6zmf7gHcXqNro2bom1roCfVQ
 
 #import "NetworkManager.h"
 #import "LocationService.h"
@@ -55,9 +55,12 @@
 - (void)getCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(NSDictionary *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock {
     
-    // LOCATION IS NOT WHAT IS CAUSING THE SEARCH BUG
-    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators?query=%@&apikey=a0c99640cc894383975eb73b99f39d2f", query];
-    NSURL *url = [NSURL URLWithString:dataUrl];
+    NSString *parsedQuery = [query componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
+
+    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators?query=%@&apikey=a0c99640cc894383975eb73b99f39d2f", parsedQuery];
+    NSString *cleanUrl = [dataUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    NSURL *url = [NSURL URLWithString:cleanUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
