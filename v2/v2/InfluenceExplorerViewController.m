@@ -35,8 +35,10 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//    cell.textLabel.text = [self.congressperson.topContributors[indexPath.row]valueForKey:@"name"];
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@",[self.congressperson.topContributors[indexPath.row]valueForKey:@"total_amount"]];
+    NSDictionary *contributor = self.congressperson.topContributors[indexPath.row];
+    NSDictionary *contributorAttributes = contributor[@"@attributes"];
+    cell.textLabel.text = [contributorAttributes valueForKey:@"org_name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@",[contributorAttributes valueForKey:@"total"]];
     return cell;
 }
 

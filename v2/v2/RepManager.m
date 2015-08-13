@@ -148,7 +148,7 @@
                           onError:(void(^)(NSError *error))errorBlock {
     [[NetworkManager sharedInstance]getTopContributors:congressperson.crpID withCompletion:^(NSDictionary *results) {
         NSDictionary *response = [results valueForKey:@"response"];
-        NSDictionary *contributors = [[response valueForKey:@"contributors"]valueForKey:@"contributor"];
+        NSArray *contributors = [[response valueForKey:@"contributors"]valueForKey:@"contributor"];
         congressperson.topContributors = contributors;
         successBlock();
     } onError:^(NSError *error) {
