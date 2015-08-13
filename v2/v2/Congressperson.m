@@ -17,7 +17,7 @@
         self.lastName = [data valueForKey:@"last_name"];
         self.bioguide = [data valueForKey:@"bioguide_id"];
         self.phone = [data valueForKey:@"phone"];
-
+        self.crpID = [data valueForKey:@"crp_id"];
         return self;
     }
     return self;

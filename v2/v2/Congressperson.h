@@ -21,8 +21,9 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSString *influenceExplorerID;
+@property (strong, nonatomic) NSString *crpID;
 @property (strong, nonatomic) UIImage *photo;
-@property (strong, nonatomic) NSArray *topContributors;
+@property (strong, nonatomic) NSDictionary *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;
 - (id)initWithData:(NSDictionary *)data;
 

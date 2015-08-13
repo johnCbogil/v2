@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.searchBar.delegate = self;
+    NSLog(@"Home: %@", self.navigationController);
 }
 
 - (void)didReceiveMemoryWarning {

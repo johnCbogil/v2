@@ -171,9 +171,9 @@
     [operation start];
 }
 
-- (void)getTopContributors:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
+- (void)getTopContributors:(NSString*)crpID withCompletion:(void(^)(NSDictionary *results))successBlock
          onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/aggregates/pol/%@/contributors.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://www.opensecrets.org/api/?method=candContrib&cid=%@&cycle=2014&output=json&apikey=9cca34c3d940ed7795c8d9b1f03f90bb", crpID];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -183,7 +183,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

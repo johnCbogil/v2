@@ -23,7 +23,7 @@ onError:(void(^)(NSError *error))errorBlock;
                onError:(void(^)(NSError *error))errorBlock;
 - (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
          onError:(void(^)(NSError *error))errorBlock;
-- (void)getTopContributors:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
+- (void)getTopContributors:(NSString*)crpID withCompletion:(void(^)(NSDictionary *results))successBlock
                    onError:(void(^)(NSError *error))errorBlock;
 - (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
                  onError:(void(^)(NSError *error))errorBlock;
