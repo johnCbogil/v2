@@ -38,8 +38,21 @@
     NSDictionary *contributor = self.congressperson.topContributors[indexPath.row];
     NSDictionary *contributorAttributes = contributor[@"@attributes"];
     cell.textLabel.text = [contributorAttributes valueForKey:@"org_name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"$%@",[contributorAttributes valueForKey:@"total"]];
+    NSString *dollarAmount =  [self formatContributionTotal:[contributorAttributes objectForKey:@"total"]];
+    cell.detailTextLabel.text = dollarAmount;
     return cell;
+}
+
+- (NSString*)formatContributionTotal:(NSString *)contributionTotal {
+    
+    NSNumberFormatter *currencyStyleFormatter = [[NSNumberFormatter alloc] init];
+    [currencyStyleFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSNumberFormatter *nFromStringFormatter = [[NSNumberFormatter alloc] init];
+    nFromStringFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [nFromStringFormatter numberFromString:contributionTotal];
+    NSString *dollarAmount = [currencyStyleFormatter stringFromNumber:myNumber];
+    
+    return dollarAmount;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
