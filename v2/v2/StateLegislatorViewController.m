@@ -15,21 +15,16 @@
 
 @implementation StateLegislatorViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self populateStateLegislators];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"State Legislators";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    [self populateStateLegislators];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)populateStateLegislators {
@@ -60,8 +55,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
 @end

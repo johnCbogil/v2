@@ -22,7 +22,7 @@
     self.delegate = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congresspersonViewController"];
     self.secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateLegislatorViewController"];
-    [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {}];
+    [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {}];
     
     self.title = @"hello";
     self.navigationItem.title = @"tere";

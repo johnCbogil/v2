@@ -19,14 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.searchBar.delegate = self;
     NSLog(@"Home: %@", self.navigationController);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -40,11 +39,9 @@
                 NSLog(@"%@", results);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
                                                                     object:nil];
-                
             } onError:^(NSError *error) {
                 [error localizedDescription];
             }];
-  
         } onError:^(NSError *error) {
         }];    }
     else{
