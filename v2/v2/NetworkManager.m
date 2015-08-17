@@ -30,7 +30,6 @@
 - (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
     
-    // LOCATION IS NOT WHAT IS CAUSING THE SEARCH BUG
     NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
@@ -52,33 +51,33 @@
     [operation start];
 }
 
-- (void)getCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(NSDictionary *results))successBlock
-                           onError:(void(^)(NSError *error))errorBlock {
-    
-    NSString *parsedQuery = [query componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
-
-    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators?query=%@&apikey=a0c99640cc894383975eb73b99f39d2f", parsedQuery];
-    NSString *cleanUrl = [dataUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
-    NSURL *url = [NSURL URLWithString:cleanUrl];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        // NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-    }];
-    
-    [operation start];
-}
+//- (void)getCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(NSDictionary *results))successBlock
+//                           onError:(void(^)(NSError *error))errorBlock {
+//    
+//    NSString *parsedQuery = [query componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
+//
+//    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators?query=%@&apikey=a0c99640cc894383975eb73b99f39d2f", parsedQuery];
+//    NSString *cleanUrl = [dataUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//
+//    NSURL *url = [NSURL URLWithString:cleanUrl];
+//    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        // NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSLog(@"Error: %@", error);
+//    }];
+//    
+//    [operation start];
+//}
 
 - (void)getStateLegislatorsWithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
@@ -222,7 +221,6 @@
 
     //AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE - googkey
     
-    
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", searchText];
     NSString *cleanUrl = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:cleanUrl];
@@ -242,7 +240,6 @@
     }];
     
     [operation start];
-    
 }
 
 @end

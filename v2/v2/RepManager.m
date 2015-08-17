@@ -38,7 +38,6 @@
         
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-            // THE CORRECT DATA IS BEING PULLED DOWN FOR SEARCHES DURING SEARCH BUG
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
             [self assignCongressPhotos:congressperson withCompletion:^{
                 if (successBlock) {
@@ -58,31 +57,31 @@
     }];
 }
 
-- (void)createCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(void))successBlock
-                              onError:(void(^)(NSError *error))errorBlock {
-    
-    [[NetworkManager sharedInstance]getCongressmenFromQuery:query WithCompletion:^(NSDictionary *results) {
-        
-        NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
-        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-            Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-            [self assignCongressPhotos:congressperson withCompletion:^{
-                if (successBlock) {
-                    [listOfCongressmen addObject:congressperson];
-                    self.listOfCongressmen = listOfCongressmen;
-                    successBlock();
-                }
-            } onError:^(NSError *error) {
-                errorBlock(error);
-            }];
-        }
-        if (successBlock) {
-            successBlock();
-        }
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
-}
+//- (void)createCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(void))successBlock
+//                              onError:(void(^)(NSError *error))errorBlock {
+//    
+//    [[NetworkManager sharedInstance]getCongressmenFromQuery:query WithCompletion:^(NSDictionary *results) {
+//        
+//        NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
+//        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
+//            Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
+//            [self assignCongressPhotos:congressperson withCompletion:^{
+//                if (successBlock) {
+//                    [listOfCongressmen addObject:congressperson];
+//                    self.listOfCongressmen = listOfCongressmen;
+//                    successBlock();
+//                }
+//            } onError:^(NSError *error) {
+//                errorBlock(error);
+//            }];
+//        }
+//        if (successBlock) {
+//            successBlock();
+//        }
+//    } onError:^(NSError *error) {
+//        errorBlock(error);
+//    }];
+//}
 
 - (void)createStateLegislators:(void(^)(void))successBlock
                        onError:(void(^)(NSError *error))errorBlock {
