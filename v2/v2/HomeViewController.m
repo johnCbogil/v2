@@ -27,7 +27,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     for (id vc in self.childViewControllers) {
         if ([vc isKindOfClass:[UIPageViewController class]]) {
@@ -38,26 +37,32 @@
         if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
                 NSLog(@"%@", results);
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView"
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView"
                                                                     object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
             }];
         }
         else {
-            NSLog(@"need to implement search by name for states");
+            [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
+                [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
+                                                                        object:nil];
+
+                } onError:^(NSError *error) {
+                    [error localizedDescription];
+                }];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
         }
-        
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
-
-
 @end

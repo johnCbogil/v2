@@ -57,55 +57,43 @@
     }];
 }
 
-//- (void)createCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(void))successBlock
-//                              onError:(void(^)(NSError *error))errorBlock {
+-(void)createStateLegislatorsFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
+    
+    [[NetworkManager sharedInstance]getStateLegislatorsFromLocation:location WithCompletion:^(NSDictionary *results) {
+        NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
+                for (NSDictionary *resultDict in results) {
+                    StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
+                    [self assignStatePhotos:stateLegislator withCompletion:^{
+                        if (successBlock) {
+                            successBlock();
+                            [listofStateLegislators addObject:stateLegislator];
+                            self.listofStateLegislators = listofStateLegislators;
+                        }
+                    } onError:^(NSError *error) {
+                        errorBlock(error);
+                    }];
+                }
+
+        successBlock();
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+
+//- (void)createStateLegislators:(void(^)(void))successBlock
+//                       onError:(void(^)(NSError *error))errorBlock {
 //    
-//    [[NetworkManager sharedInstance]getCongressmenFromQuery:query WithCompletion:^(NSDictionary *results) {
-//        
-//        NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
-//        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-//            Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-//            [self assignCongressPhotos:congressperson withCompletion:^{
-//                if (successBlock) {
-//                    [listOfCongressmen addObject:congressperson];
-//                    self.listOfCongressmen = listOfCongressmen;
-//                    successBlock();
-//                }
-//            } onError:^(NSError *error) {
-//                errorBlock(error);
-//            }];
-//        }
-//        if (successBlock) {
+//    
+//    
+//    [[NetworkManager sharedInstance]getStateLegislatorsfromLocation:location WithCompletion:^(NSDictionary *results) {
+//       //        if (successBlock) {
 //            successBlock();
 //        }
 //    } onError:^(NSError *error) {
 //        errorBlock(error);
 //    }];
 //}
-
-- (void)createStateLegislators:(void(^)(void))successBlock
-                       onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getStateLegislatorsWithCompletion:^(NSDictionary *results) {
-        NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
-        for (NSDictionary *resultDict in results) {
-            StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
-            [self assignStatePhotos:stateLegislator withCompletion:^{
-                if (successBlock) {
-                    successBlock();
-                    [listofStateLegislators addObject:stateLegislator];
-                    self.listofStateLegislators = listofStateLegislators;
-                }
-            } onError:^(NSError *error) {
-                errorBlock(error);
-            }];
-        }
-        if (successBlock) {
-            successBlock();
-        }
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
-}
 
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
@@ -164,4 +152,31 @@
         errorBlock(error);
     }];
 }
+
+
+//- (void)createCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(void))successBlock
+//                              onError:(void(^)(NSError *error))errorBlock {
+//
+//    [[NetworkManager sharedInstance]getCongressmenFromQuery:query WithCompletion:^(NSDictionary *results) {
+//
+//        NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
+//        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
+//            Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
+//            [self assignCongressPhotos:congressperson withCompletion:^{
+//                if (successBlock) {
+//                    [listOfCongressmen addObject:congressperson];
+//                    self.listOfCongressmen = listOfCongressmen;
+//                    successBlock();
+//                }
+//            } onError:^(NSError *error) {
+//                errorBlock(error);
+//            }];
+//        }
+//        if (successBlock) {
+//            successBlock();
+//        }
+//    } onError:^(NSError *error) {
+//        errorBlock(error);
+//    }];
+//}
 @end

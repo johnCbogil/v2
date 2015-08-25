@@ -21,8 +21,8 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadTableData)
-                                                 name:@"reloadTableView"
+                                             selector:@selector(reloadCongressTableData)
+                                                 name:@"reloadCongressTableView"
                                                object:nil];
     
     
@@ -30,7 +30,7 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)reloadTableData{
+- (void)reloadCongressTableData{
     // THIS LIST IS NOT BEING UPDATED UNTIL THE SECOND SEARCH CALL
     NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
 

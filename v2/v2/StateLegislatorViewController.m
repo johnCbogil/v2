@@ -9,6 +9,7 @@
 #import "StateLegislatorViewController.h"
 #import "StateLegislator.h"
 #import "RepManager.h"
+#import "LocationService.h"
 @interface StateLegislatorViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -17,32 +18,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
-    
     
     self.title = @"State Legislators";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self populateStateLegislators];
+    [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadStateLegislatorTableData)
+                                                 name:@"reloadStateLegislatorTableView"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)populateStateLegislators {
-    [[RepManager sharedInstance]createStateLegislators:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+- (void)populateStateLegislatorsFromLocation:(CLLocation*)location {
+    [[RepManager sharedInstance]createStateLegislatorsFromLocation:location WithCompletion:^{
+        [self.tableView reloadData];
+        
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
 }
 
+- (void)reloadStateLegislatorTableData{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [RepManager sharedInstance].listofStateLegislators.count;
 }
