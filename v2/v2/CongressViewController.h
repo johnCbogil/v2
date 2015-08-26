@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) InfluenceExplorerViewController *influenceExplorerVC;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 

@@ -28,6 +28,10 @@
     
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reloadCongressTableData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)reloadCongressTableData{
@@ -36,7 +40,9 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-    });}
+    });
+    [self.refreshControl endRefreshing];
+}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
@@ -57,6 +63,7 @@
     [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            
         });
     } onError:^(NSError *error) {
         [error localizedDescription];
