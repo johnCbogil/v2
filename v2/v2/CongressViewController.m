@@ -54,7 +54,6 @@
 }
 
 - (void)reloadCongressTableData{
-    // THIS LIST IS NOT BEING UPDATED UNTIL THE SECOND SEARCH CALL
     NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
 
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -62,7 +61,6 @@
     });
     [self.refreshControl endRefreshing];
 }
-
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {

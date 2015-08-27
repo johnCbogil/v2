@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface StateLegislatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end

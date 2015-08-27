@@ -27,16 +27,29 @@
                                              selector:@selector(reloadStateLegislatorTableData)
                                                  name:@"reloadStateLegislatorTableView"
                                                object:nil];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)pullToRefresh {
+    [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
+}
 - (void)populateStateLegislatorsFromLocation:(CLLocation*)location {
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:location WithCompletion:^{
         [self.tableView reloadData];
-        
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
@@ -48,6 +61,7 @@
     });
 }
 
+#pragma mark - UITableView delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
