@@ -21,6 +21,7 @@
     [super viewDidLoad];
     
     self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search by address";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +60,7 @@
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
+    [searchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
