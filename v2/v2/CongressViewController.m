@@ -30,8 +30,27 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(reloadCongressTableData) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)pullToRefresh {
+    [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
 }
 
 - (void)reloadCongressTableData{
@@ -43,19 +62,11 @@
     });
     [self.refreshControl endRefreshing];
 }
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
         [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
-
     }
 }
 
@@ -63,14 +74,13 @@
     [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
-            
         });
     } onError:^(NSError *error) {
         [error localizedDescription];
-
     }];
 }
 
+#pragma mark - UITableView Delegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
