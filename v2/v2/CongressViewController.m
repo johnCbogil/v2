@@ -91,7 +91,7 @@
     Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", congressperson.firstName, congressperson.lastName];
     cell.detailTextLabel.text = congressperson.phone;
-    cell.imageView.image = congressperson.photo;
+    cell.imageView.image = [UIImage imageWithData:congressperson.photo];
     
     return cell;
 }

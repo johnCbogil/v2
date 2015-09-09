@@ -85,14 +85,44 @@
 
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(UIImage *results) {
-        congressperson.photo = results;
-        if (successBlock) {
-            successBlock();
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Congressperson" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",congressperson.firstName, congressperson.lastName];
+    [request setPredicate:pred];
+    
+    NSError *error;
+    NSArray *cachedObjects = [context executeFetchRequest:request
+                                                    error:&error];
+    if (cachedObjects.count) {
+        NSLog(@"Retrieving from cache");
+        for (Congressperson *object in cachedObjects) {
+            congressperson.photo = object.photo;
         }
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
+        successBlock();
+    }
+    else {
+        [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(UIImage *results) {
+            congressperson.photo = UIImagePNGRepresentation(results);
+            if (successBlock) {
+                successBlock();
+                
+                NSManagedObject *managedStateLegislator;
+                managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"Congressperson" inManagedObjectContext:context];
+                [managedStateLegislator setValue:congressperson.photo forKey:@"photo"];
+                [managedStateLegislator setValue:congressperson.firstName forKey:@"firstName"];
+                [managedStateLegislator setValue:congressperson.lastName forKey:@"lastName"];
+                NSError *error;
+                [context save:&error];
+                NSLog(@"Saving to cache");
+            }
+        } onError:^(NSError *error) {
+            errorBlock(error);
+        }];
+    }
 }
 
 - (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
@@ -107,11 +137,11 @@
     [request setPredicate:pred];
     
     NSError *error;
-    NSArray *objects = [context executeFetchRequest:request
+    NSArray *cachedObjects = [context executeFetchRequest:request
                                               error:&error];
-    if (objects.count) {
+    if (cachedObjects.count) {
         NSLog(@"Retrieving from cache");
-        for (StateLegislator *object in objects) {
+        for (StateLegislator *object in cachedObjects) {
             stateLegislator.photo = object.photo;
         }
         successBlock();
@@ -122,9 +152,7 @@
             stateLegislator.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
                 
-                NSManagedObjectContext *context = [appDelegate managedObjectContext];
                 NSManagedObject *managedStateLegislator;
                 managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"StateLegislator" inManagedObjectContext:context];
                 [managedStateLegislator setValue:stateLegislator.photo forKey:@"photo"];
