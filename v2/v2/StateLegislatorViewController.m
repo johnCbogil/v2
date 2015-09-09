@@ -41,7 +41,6 @@
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
         });
     } onError:^(NSError *error) {
         [error localizedDescription];
@@ -58,6 +57,7 @@
 - (void)reloadStateLegislatorTableData{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     });
 }
 

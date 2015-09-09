@@ -3,8 +3,9 @@
     <entity name="StateLegislator" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
     <elements>
-        <element name="StateLegislator" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="StateLegislator" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

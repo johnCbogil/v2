@@ -11,6 +11,7 @@
 #import "Congressperson.h"
 #import "StateLegislator.h"
 #import "LocationService.h"
+#import "AppDelegate.h"
 @implementation RepManager
 
 + (RepManager *)sharedInstance {
@@ -26,7 +27,7 @@
     self = [super init];
     if (self != nil) {
         self.listOfCongressmen = [NSArray array];
-        self.listofStateLegislators = [NSArray array];
+        self.listofStateLegislators = [NSMutableArray array];
     }
     return self;
 }
@@ -68,6 +69,8 @@
                             successBlock();
                             [listofStateLegislators addObject:stateLegislator];
                             self.listofStateLegislators = listofStateLegislators;
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
+                                                                                object:nil];
                         }
                     } onError:^(NSError *error) {
                         errorBlock(error);
@@ -79,21 +82,6 @@
         errorBlock(error);
     }];
 }
-
-
-//- (void)createStateLegislators:(void(^)(void))successBlock
-//                       onError:(void(^)(NSError *error))errorBlock {
-//    
-//    
-//    
-//    [[NetworkManager sharedInstance]getStateLegislatorsfromLocation:location WithCompletion:^(NSDictionary *results) {
-//       //        if (successBlock) {
-//            successBlock();
-//        }
-//    } onError:^(NSError *error) {
-//        errorBlock(error);
-//    }];
-//}
 
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
@@ -109,14 +97,61 @@
 
 - (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(UIImage *results) {
-        stateLegislator.photo = results;
-        if (successBlock) {
-            successBlock();
+    
+    // CHECK THE CACHE
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"StateLegislator" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",stateLegislator.firstName, stateLegislator.lastName];
+    [request setPredicate:pred];
+    
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request
+                                              error:&error];
+    // IF CACHE EXISTS
+    if (objects.count) {
+        // USE CACHE
+        for (StateLegislator *object in objects) {
+            stateLegislator.photo = [UIImage imageWithData:object.photo];
         }
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
+        successBlock();
+//        [self.listofStateLegislators addObject:stateLegislator];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
+//                                                            object:nil];
+    }
+    // ELSE
+    else {
+        // FIRE REQUEST
+        [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(UIImage *results) {
+            stateLegislator.photo = results;
+            if (successBlock) {
+                successBlock();
+                // SAVE TO CACHE
+                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                
+                NSManagedObjectContext *context = [appDelegate managedObjectContext];
+                NSManagedObject *managedStateLegislator;
+                managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"StateLegislator" inManagedObjectContext:context];
+                [managedStateLegislator setValue:UIImagePNGRepresentation(stateLegislator.photo) forKey:@"photo"];
+                //[self.name addObject:@"Vea Software"];
+                [managedStateLegislator setValue:stateLegislator.firstName forKey:@"firstName"];
+                [managedStateLegislator setValue:stateLegislator.lastName forKey:@"lastName"];
+
+                //[self.phone addObject:@"(555) 555 - 5555"];
+                NSError *error;
+                [context save:&error];
+               // [self.tableView reloadData];
+//                [self.listofStateLegislators addObject:stateLegislator];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
+//                                                                    object:nil];
+
+            }
+        } onError:^(NSError *error) {
+            errorBlock(error);
+        }];
+    }
 }
 
 - (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
