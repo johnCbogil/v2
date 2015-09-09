@@ -48,4 +48,16 @@
         return nil;
     }
 }
+
+- (void)createManagedObjectFromRep:(id)representative withEntityName:(NSString*)entityName{
+
+    
+    NSManagedObject *managedRepresentative;
+    managedRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+    [managedRepresentative setValue:representative.photo forKey:@"photo"];
+    [managedRepresentative setValue:representative.firstName forKey:@"firstName"];
+    [managedRepresentative setValue:representative.lastName forKey:@"lastName"];
+    NSError *error;
+    [self.context save:&error];
+    NSLog(@"Saving to cache");}
 @end
