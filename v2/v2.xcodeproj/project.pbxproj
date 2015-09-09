@@ -27,6 +27,7 @@
 		525D8A0A1B6EB98800674AB7 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89F81B6EB98800674AB7 /* UIRefreshControl+AFNetworking.m */; };
 		525D8A0B1B6EB98800674AB7 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89FA1B6EB98800674AB7 /* UIWebView+AFNetworking.m */; };
 		52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52747B741B66EE92009702F5 /* StateLegislatorViewController.m */; };
+		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
 		52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* Congressperson.m */; };
@@ -98,6 +99,8 @@
 		525D89FA1B6EB98800674AB7 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		52747B731B66EE92009702F5 /* StateLegislatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislatorViewController.h; sourceTree = "<group>"; };
 		52747B741B66EE92009702F5 /* StateLegislatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateLegislatorViewController.m; sourceTree = "<group>"; };
+		52877FCB1BA0EC1700B5AE02 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		52877FCC1BA0EC1700B5AE02 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
 				52A610801B66AD0300B041FF /* RepManager.h */,
 				52A610811B66AD0300B041FF /* RepManager.m */,
+				52877FCB1BA0EC1700B5AE02 /* CacheManager.h */,
+				52877FCC1BA0EC1700B5AE02 /* CacheManager.m */,
 				52BB34351B6160CA00BB9FFD /* CongressViewController.h */,
 				52BB34361B6160CA00BB9FFD /* CongressViewController.m */,
 				52747B731B66EE92009702F5 /* StateLegislatorViewController.h */,
@@ -402,6 +407,7 @@
 				525D8A091B6EB98800674AB7 /* UIProgressView+AFNetworking.m in Sources */,
 				525D8A021B6EB98800674AB7 /* AFURLResponseSerialization.m in Sources */,
 				525D8A0A1B6EB98800674AB7 /* UIRefreshControl+AFNetworking.m in Sources */,
+				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				525D8A011B6EB98800674AB7 /* AFURLRequestSerialization.m in Sources */,
 				52C392011B8F725D0034BEAB /* Model.xcdatamodeld in Sources */,
 				525D8A001B6EB98800674AB7 /* AFURLConnectionOperation.m in Sources */,

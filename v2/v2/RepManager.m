@@ -12,6 +12,7 @@
 #import "StateLegislator.h"
 #import "LocationService.h"
 #import "AppDelegate.h"
+#import "CacheManager.h"
 @implementation RepManager
 
 + (RepManager *)sharedInstance {
@@ -86,22 +87,10 @@
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Congressperson" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",congressperson.firstName, congressperson.lastName];
-    [request setPredicate:pred];
+    Congressperson *cachedCongressperson = [[CacheManager sharedInstance]fetchRepWithEntityName:@"Congressperson" withFirstName:congressperson.firstName withLastName:congressperson.lastName];
     
-    NSError *error;
-    NSArray *cachedObjects = [context executeFetchRequest:request
-                                                    error:&error];
-    if (cachedObjects.count) {
-        NSLog(@"Retrieving from cache");
-        for (Congressperson *object in cachedObjects) {
-            congressperson.photo = object.photo;
-        }
+    if (cachedCongressperson) {
+        congressperson.photo = cachedCongressperson.photo;
         successBlock();
     }
     else {
@@ -109,7 +98,8 @@
             congressperson.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                
+                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                NSManagedObjectContext *context = [appDelegate managedObjectContext];
                 NSManagedObject *managedStateLegislator;
                 managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"Congressperson" inManagedObjectContext:context];
                 [managedStateLegislator setValue:congressperson.photo forKey:@"photo"];
@@ -128,22 +118,10 @@
 - (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"StateLegislator" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",stateLegislator.firstName, stateLegislator.lastName];
-    [request setPredicate:pred];
-    
-    NSError *error;
-    NSArray *cachedObjects = [context executeFetchRequest:request
-                                              error:&error];
-    if (cachedObjects.count) {
-        NSLog(@"Retrieving from cache");
-        for (StateLegislator *object in cachedObjects) {
-            stateLegislator.photo = object.photo;
-        }
+    StateLegislator *cachedStateLegislator = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateLegislator" withFirstName:stateLegislator.firstName withLastName:stateLegislator.lastName];
+
+    if (cachedStateLegislator) {
+            stateLegislator.photo = cachedStateLegislator.photo;
         successBlock();
     }
     else {
@@ -152,7 +130,8 @@
             stateLegislator.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                
+                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                NSManagedObjectContext *context = [appDelegate managedObjectContext];
                 NSManagedObject *managedStateLegislator;
                 managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"StateLegislator" inManagedObjectContext:context];
                 [managedStateLegislator setValue:stateLegislator.photo forKey:@"photo"];
