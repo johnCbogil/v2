@@ -98,7 +98,6 @@
 - (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    // CHECK THE CACHE
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"StateLegislator" inManagedObjectContext:context];
@@ -110,43 +109,30 @@
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request
                                               error:&error];
-    // IF CACHE EXISTS
     if (objects.count) {
-        // USE CACHE
+        NSLog(@"Retrieving from cache");
         for (StateLegislator *object in objects) {
-            stateLegislator.photo = [UIImage imageWithData:object.photo];
+            stateLegislator.photo = object.photo;
         }
         successBlock();
-//        [self.listofStateLegislators addObject:stateLegislator];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
-//                                                            object:nil];
     }
-    // ELSE
     else {
-        // FIRE REQUEST
+        NSLog(@"Firing network request");
         [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(UIImage *results) {
-            stateLegislator.photo = results;
+            stateLegislator.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                // SAVE TO CACHE
                 AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
                 
                 NSManagedObjectContext *context = [appDelegate managedObjectContext];
                 NSManagedObject *managedStateLegislator;
                 managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"StateLegislator" inManagedObjectContext:context];
-                [managedStateLegislator setValue:UIImagePNGRepresentation(stateLegislator.photo) forKey:@"photo"];
-                //[self.name addObject:@"Vea Software"];
+                [managedStateLegislator setValue:stateLegislator.photo forKey:@"photo"];
                 [managedStateLegislator setValue:stateLegislator.firstName forKey:@"firstName"];
                 [managedStateLegislator setValue:stateLegislator.lastName forKey:@"lastName"];
-
-                //[self.phone addObject:@"(555) 555 - 5555"];
                 NSError *error;
                 [context save:&error];
-               // [self.tableView reloadData];
-//                [self.listofStateLegislators addObject:stateLegislator];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
-//                                                                    object:nil];
-
+                NSLog(@"Saving to cache");
             }
         } onError:^(NSError *error) {
             errorBlock(error);
@@ -187,31 +173,4 @@
         errorBlock(error);
     }];
 }
-
-
-//- (void)createCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(void))successBlock
-//                              onError:(void(^)(NSError *error))errorBlock {
-//
-//    [[NetworkManager sharedInstance]getCongressmenFromQuery:query WithCompletion:^(NSDictionary *results) {
-//
-//        NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
-//        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-//            Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-//            [self assignCongressPhotos:congressperson withCompletion:^{
-//                if (successBlock) {
-//                    [listOfCongressmen addObject:congressperson];
-//                    self.listOfCongressmen = listOfCongressmen;
-//                    successBlock();
-//                }
-//            } onError:^(NSError *error) {
-//                errorBlock(error);
-//            }];
-//        }
-//        if (successBlock) {
-//            successBlock();
-//        }
-//    } onError:^(NSError *error) {
-//        errorBlock(error);
-//    }];
-//}
 @end

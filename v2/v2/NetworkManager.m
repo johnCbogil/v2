@@ -113,6 +113,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"Error: %@", error);
+        
+        // RETURN A PLACEHOLDER IMAGE HERE
     }];
     
     [operation start];

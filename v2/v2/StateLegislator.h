@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *phone;
 @property (strong, nonatomic) NSURL *photoURL;
-@property (strong, nonatomic) UIImage *photo;
+@property (strong, nonatomic) NSData *photo;
 
 - (id)initWithData:(NSDictionary*)data;
 

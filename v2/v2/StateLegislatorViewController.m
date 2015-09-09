@@ -75,7 +75,7 @@
         StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
         if (stateLegislator.photo) {
-            cell.imageView.image = stateLegislator.photo;
+            cell.imageView.image = [UIImage imageWithData:stateLegislator.photo];
         }
     return cell;
 }
