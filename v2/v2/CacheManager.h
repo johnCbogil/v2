@@ -14,5 +14,6 @@
 @interface CacheManager : NSObject
 +(CacheManager *) sharedInstance;
 - (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName;
+- (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName;
 @property (strong, nonatomic) Congressperson *congressperson;
 @end

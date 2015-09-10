@@ -34,10 +34,9 @@
 }
 
 - (void)createCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
-                  onError:(void(^)(NSError *error))errorBlock {
+                              onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getCongressmenFromLocation:location WithCompletion:^(NSDictionary *results) {
-        
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
@@ -63,21 +62,21 @@
     
     [[NetworkManager sharedInstance]getStateLegislatorsFromLocation:location WithCompletion:^(NSDictionary *results) {
         NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
-                for (NSDictionary *resultDict in results) {
-                    StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
-                    [self assignStatePhotos:stateLegislator withCompletion:^{
-                        if (successBlock) {
-                            successBlock();
-                            [listofStateLegislators addObject:stateLegislator];
-                            self.listofStateLegislators = listofStateLegislators;
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
-                                                                                object:nil];
-                        }
-                    } onError:^(NSError *error) {
-                        errorBlock(error);
-                    }];
+        for (NSDictionary *resultDict in results) {
+            StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
+            [self assignStatePhotos:stateLegislator withCompletion:^{
+                if (successBlock) {
+                    successBlock();
+                    [listofStateLegislators addObject:stateLegislator];
+                    self.listofStateLegislators = listofStateLegislators;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
+                                                                        object:nil];
                 }
-
+            } onError:^(NSError *error) {
+                errorBlock(error);
+            }];
+        }
+        
         successBlock();
     } onError:^(NSError *error) {
         errorBlock(error);
@@ -88,7 +87,6 @@
                      onError:(void(^)(NSError *error))errorBlock {
     
     Congressperson *cachedCongressperson = [[CacheManager sharedInstance]fetchRepWithEntityName:@"Congressperson" withFirstName:congressperson.firstName withLastName:congressperson.lastName];
-    
     if (cachedCongressperson) {
         congressperson.photo = cachedCongressperson.photo;
         successBlock();
@@ -98,16 +96,7 @@
             congressperson.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-                NSManagedObjectContext *context = [appDelegate managedObjectContext];
-                NSManagedObject *managedStateLegislator;
-                managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"Congressperson" inManagedObjectContext:context];
-                [managedStateLegislator setValue:congressperson.photo forKey:@"photo"];
-                [managedStateLegislator setValue:congressperson.firstName forKey:@"firstName"];
-                [managedStateLegislator setValue:congressperson.lastName forKey:@"lastName"];
-                NSError *error;
-                [context save:&error];
-                NSLog(@"Saving to cache");
+                [[CacheManager sharedInstance]cacheRepresentative:congressperson withEntityName:@"Congressperson"];
             }
         } onError:^(NSError *error) {
             errorBlock(error);
@@ -119,9 +108,9 @@
                   onError:(void(^)(NSError *error))errorBlock {
     
     StateLegislator *cachedStateLegislator = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateLegislator" withFirstName:stateLegislator.firstName withLastName:stateLegislator.lastName];
-
+    
     if (cachedStateLegislator) {
-            stateLegislator.photo = cachedStateLegislator.photo;
+        stateLegislator.photo = cachedStateLegislator.photo;
         successBlock();
     }
     else {
@@ -130,16 +119,7 @@
             stateLegislator.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-                NSManagedObjectContext *context = [appDelegate managedObjectContext];
-                NSManagedObject *managedStateLegislator;
-                managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:@"StateLegislator" inManagedObjectContext:context];
-                [managedStateLegislator setValue:stateLegislator.photo forKey:@"photo"];
-                [managedStateLegislator setValue:stateLegislator.firstName forKey:@"firstName"];
-                [managedStateLegislator setValue:stateLegislator.lastName forKey:@"lastName"];
-                NSError *error;
-                [context save:&error];
-                NSLog(@"Saving to cache");
+                [[CacheManager sharedInstance]cacheRepresentative:stateLegislator withEntityName:@"StateLegislator"];
             }
         } onError:^(NSError *error) {
             errorBlock(error);
@@ -148,7 +128,7 @@
 }
 
 - (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                  onError:(void(^)(NSError *error))errorBlock {
+                          onError:(void(^)(NSError *error))errorBlock {
     [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSArray *results) {
         congressperson.influenceExplorerID =  [results valueForKey:@"id"][0];
         if (successBlock) {
@@ -160,7 +140,7 @@
 }
 
 - (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                          onError:(void(^)(NSError *error))errorBlock {
+                      onError:(void(^)(NSError *error))errorBlock {
     [[NetworkManager sharedInstance]getTopContributors:congressperson.crpID withCompletion:^(NSDictionary *results) {
         NSDictionary *response = [results valueForKey:@"response"];
         NSArray *contributors = [[response valueForKey:@"contributors"]valueForKey:@"contributor"];
@@ -172,7 +152,7 @@
 }
 
 - (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                      onError:(void(^)(NSError *error))errorBlock {
+                    onError:(void(^)(NSError *error))errorBlock {
     [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
         congressperson.topIndustries = results;
         successBlock();

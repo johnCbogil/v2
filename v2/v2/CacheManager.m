@@ -7,6 +7,8 @@
 //
 
 #import "CacheManager.h"
+#import "Congressperson.h"
+#import "StateLegislator.h"
 @interface CacheManager ()
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @end
@@ -31,7 +33,7 @@
 
 
 - (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName{
-    NSLog(@"Retrieving from cache");
+    NSLog(@"Searching cache");
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
@@ -42,6 +44,7 @@
     NSArray *cachedObjects = [self.context executeFetchRequest:request
                                                          error:&error];
     if (cachedObjects.count) {
+        NSLog(@"Object found in cache");
         return cachedObjects[0];
     }
     else {
@@ -49,15 +52,25 @@
     }
 }
 
-- (void)createManagedObjectFromRep:(id)representative withEntityName:(NSString*)entityName{
-
-    
-    NSManagedObject *managedRepresentative;
-    managedRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
-    [managedRepresentative setValue:representative.photo forKey:@"photo"];
-    [managedRepresentative setValue:representative.firstName forKey:@"firstName"];
-    [managedRepresentative setValue:representative.lastName forKey:@"lastName"];
-    NSError *error;
-    [self.context save:&error];
-    NSLog(@"Saving to cache");}
+- (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName {
+    if([entityName isEqualToString:@"Congressperson"]) {
+        Congressperson *congressperson = representative;
+        NSManagedObject *managedCongressperson;
+        managedCongressperson = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+        [managedCongressperson setValue:congressperson.photo forKey:@"photo"];
+        [managedCongressperson setValue:congressperson.firstName forKey:@"firstName"];
+        [managedCongressperson setValue:congressperson.lastName forKey:@"lastName"];
+    }
+    else if ([entityName isEqualToString:@"StateLegislator"]) {
+        StateLegislator *stateLegislator = representative;
+        NSManagedObject *managedStateLegislator;
+        managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+        [managedStateLegislator setValue:stateLegislator.photo forKey:@"photo"];
+        [managedStateLegislator setValue:stateLegislator.firstName forKey:@"firstName"];
+        [managedStateLegislator setValue:stateLegislator.lastName forKey:@"lastName"];
+    }
+    NSError *coreDataSaveerror;
+    [self.context save:&coreDataSaveerror];
+    NSLog(@"Saving to cache");
+}
 @end
