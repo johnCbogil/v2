@@ -63,7 +63,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -113,7 +113,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"Error: %@", error);
-        
+        successBlock([UIImage imageNamed:@"MissingRep"]);
         // RETURN A PLACEHOLDER IMAGE HERE
     }];
     
