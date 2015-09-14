@@ -36,7 +36,7 @@
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(origin.x, origin.y+15, 0, 0)];
     [self.pageControl setNumberOfPages:2];
     self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-    self.pageControl.pageIndicatorTintColor = [UIColor blackColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     [self.parentViewController.navigationController.navigationBar addSubview:self.pageControl];
     self.parentViewController.navigationItem.title = self.firstVC.title;
     [self.parentViewController.navigationController.navigationBar setTitleTextAttributes:
