@@ -8,9 +8,10 @@
 
 #import "PageViewController.h"
 
-@interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
+@property (nonatomic, strong) UIPageControl *pageControl;
 @end
 
 @implementation PageViewController
@@ -22,19 +23,29 @@
     self.delegate = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congresspersonViewController"];
     self.secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateLegislatorViewController"];
-    [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {}];
-    
-    self.title = @"hello";
-    self.navigationItem.title = @"tere";
-    self.navigationController.title = @"ok";
+    [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
+    // PAGECONTROL IS CREATED HERE BC PARENT NAVIGATIONCONTROLLER ISNT CREATED IN VDL
+    self.parentViewController.navigationController.delegate = self;
+    CGSize navBarSize = self.navigationController.navigationBar.bounds.size;
+    CGPoint origin = CGPointMake( navBarSize.width/2, navBarSize.height/2 );
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(origin.x, origin.y+15, 0, 0)];
+    [self.pageControl setNumberOfPages:2];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor blackColor];
+    [self.parentViewController.navigationController.navigationBar addSubview:self.pageControl];
     self.parentViewController.navigationItem.title = self.firstVC.title;
-    
+    [self.parentViewController.navigationController.navigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIFont fontWithName:@"Avenir" size:18],
+      NSFontAttributeName, nil]];
 }
+
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     if (self.viewControllers[0] == self.secondVC){
@@ -49,9 +60,11 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
 
     if (self.viewControllers[0] == self.firstVC){
+        //self.pageControl.currentPage = 0;
         return self.secondVC;
     }
     else if (self.viewControllers[0] == self.secondVC){
+       // self.pageControl.currentPage = 1;
         return self.firstVC;
     }
     return nil;
@@ -63,6 +76,13 @@
     {
         NSString *titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
         self.parentViewController.navigationItem.title =  titleOfIncomingViewController;
+        if ([titleOfIncomingViewController isEqualToString:@"Congress"]) {
+            self.pageControl.currentPage = 0;
+        }
+        else {
+            self.pageControl.currentPage = 1;
+        }
+
     }
 }
 @end
