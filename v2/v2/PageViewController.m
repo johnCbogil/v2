@@ -33,7 +33,7 @@
     self.parentViewController.navigationController.delegate = self;
     CGSize navBarSize = self.navigationController.navigationBar.bounds.size;
     CGPoint origin = CGPointMake( navBarSize.width/2, navBarSize.height/2 );
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(origin.x, origin.y+15, 0, 0)];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(origin.x, origin.y+70, 0, 0)];
     [self.pageControl setNumberOfPages:2];
     self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];

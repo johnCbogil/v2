@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Congress-->
@@ -98,26 +99,26 @@
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="q8r-XO-Imm">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb" customClass="CustomSearchBar">
+                                <rect key="frame" x="50" y="64" width="500" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="2a9-lD-s8G"/>
-                            <constraint firstItem="q8r-XO-Imm" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="TzM-07-yNA"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="q8r-XO-Imm" secondAttribute="bottom" id="XkR-7b-RQS"/>
-                            <constraint firstAttribute="trailing" secondItem="q8r-XO-Imm" secondAttribute="trailing" id="cN9-FT-eiq"/>
-                            <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" id="eOT-Jk-8CA"/>
-                            <constraint firstItem="q8r-XO-Imm" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" id="fmH-0e-v18"/>
-                            <constraint firstItem="q8r-XO-Imm" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" id="m2w-1e-ftY"/>
-                            <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="sX9-OM-axA"/>
+                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" constant="34" id="0KH-Rw-ieV"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="A7k-aO-rk0"/>
+                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" id="C12-Hm-Goy"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" id="Jzu-CR-sEs"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="RVU-oF-NAs"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="V2O-T0-Nav"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="108" id="V9F-7Y-aJw"/>
+                            <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="ivv-C5-A32"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
-                        <outlet property="searchBar" destination="q8r-XO-Imm" id="3ov-l4-SUj"/>
+                        <outlet property="customSearchBarView" destination="Q5v-sk-Prb" id="Lz8-tP-0g8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>

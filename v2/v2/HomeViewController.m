@@ -10,8 +10,10 @@
 #import "NetworkManager.h"
 #import "LocationService.h"
 #import "RepManager.h"
+#import "CustomSearchBar.h"
 
 @interface HomeViewController ()
+@property (strong, nonatomic) IBOutlet CustomSearchBar *customSearchBarView;
 
 @end
 
@@ -22,7 +24,6 @@
     
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by address";
-
 }
 
 - (void)didReceiveMemoryWarning {
