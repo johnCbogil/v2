@@ -11,6 +11,7 @@
 #import "RepManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
+#import "CongresspersonTableViewCell.h"
 @interface CongressViewController ()
 @end
 
@@ -32,6 +33,9 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]
+         forCellReuseIdentifier:@"CongresspersonTableViewCell"];
 }
 
 - (void)dealloc{
@@ -87,22 +91,15 @@
     return [RepManager sharedInstance].listOfCongressmen.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    CongresspersonTableViewCell *cell = (CongresspersonTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"CongresspersonTableViewCell" forIndexPath:indexPath];
     Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", congressperson.firstName, congressperson.lastName];
-    cell.detailTextLabel.text = congressperson.phone;
-    cell.imageView.image = [UIImage imageWithData:congressperson.photo];
-    
+    cell.name.text = [NSString stringWithFormat:@"%@ %@", congressperson.firstName, congressperson.lastName];
+    cell.photo.image = [UIImage imageWithData:congressperson.photo];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // ADD AN ERROR BLOCK TO THIS
     [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
-        
-        // ADD AN ERROR BLOCK TO THIS
         [[RepManager sharedInstance]assignTopContributors:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
-            
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];
             self.influenceExplorerVC.congressperson = [RepManager sharedInstance].listOfCongressmen[indexPath.row];
@@ -113,5 +110,9 @@
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
 }
 @end

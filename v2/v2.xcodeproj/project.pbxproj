@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
 		523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523211941B68402200752D4C /* InfluenceExplorerViewController.m */; };
+		5235B07E1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */; };
+		5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */; };
 		525D89FB1B6EB98800674AB7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89D61B6EB98800674AB7 /* AFHTTPRequestOperation.m */; };
 		525D89FC1B6EB98800674AB7 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89D81B6EB98800674AB7 /* AFHTTPRequestOperationManager.m */; };
 		525D89FD1B6EB98800674AB7 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 525D89DA1B6EB98800674AB7 /* AFHTTPSessionManager.m */; };
@@ -60,6 +62,9 @@
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		523211931B68402200752D4C /* InfluenceExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfluenceExplorerViewController.h; sourceTree = "<group>"; };
 		523211941B68402200752D4C /* InfluenceExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfluenceExplorerViewController.m; sourceTree = "<group>"; };
+		5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CongresspersonTableViewCell.xib; sourceTree = "<group>"; };
+		5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongresspersonTableViewCell.h; sourceTree = "<group>"; };
+		5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongresspersonTableViewCell.m; sourceTree = "<group>"; };
 		525D89D51B6EB98800674AB7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		525D89D61B6EB98800674AB7 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		525D89D71B6EB98800674AB7 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -258,6 +263,9 @@
 				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
 				528DC63C1B629DFA00560DD6 /* Representatives */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
+				5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */,
+				5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */,
+				5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
@@ -373,6 +381,7 @@
 			files = (
 				52BB343A1B6160CA00BB9FFD /* Main.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
+				5235B07E1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +422,7 @@
 				525D8A001B6EB98800674AB7 /* AFURLConnectionOperation.m in Sources */,
 				525D8A071B6EB98800674AB7 /* UIButton+AFNetworking.m in Sources */,
 				525D8A051B6EB98800674AB7 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */,
 				525D89FC1B6EB98800674AB7 /* AFHTTPRequestOperationManager.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
