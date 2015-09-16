@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>422ECDC7-1F2A-43DE-AA5F-984B609E6CDF</string>
 	<key>IDESourceControlProjectName</key>
-	<string>v2</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>AC43DF33E603FE4C5ED149C8EAB26051AF905553</key>
 		<string>https://github.com/johnCbogil/v2</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>v2/v2.xcodeproj</string>
+	<string>v2/v2.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AC43DF33E603FE4C5ED149C8EAB26051AF905553</key>

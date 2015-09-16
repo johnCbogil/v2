@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Congress-->
@@ -100,20 +99,28 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb" customClass="CustomSearchBar">
-                                <rect key="frame" x="50" y="64" width="500" height="44"/>
+                                <rect key="frame" x="200" y="28" width="200" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Nus-fR-MBa"/>
+                                    <constraint firstAttribute="width" constant="300" id="fqy-ht-hHn"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fqy-ht-hHn"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" constant="34" id="0KH-Rw-ieV"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="A7k-aO-rk0"/>
-                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" id="C12-Hm-Goy"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" id="Jzu-CR-sEs"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="RVU-oF-NAs"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="V2O-T0-Nav"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="108" id="V9F-7Y-aJw"/>
-                            <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="ivv-C5-A32"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="36" id="3To-Ey-EVZ"/>
+                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="8" id="BMJ-3Q-ZZ2"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="108" id="Czv-sb-xwj"/>
+                            <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="LUt-Lg-a8B"/>
+                            <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
@@ -241,7 +248,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hbQ-fR-HEb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="He3-Tf-3lS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
