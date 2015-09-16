@@ -76,6 +76,8 @@
     UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
     txfSearchField.layer.cornerRadius = 13;
     
+    
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
