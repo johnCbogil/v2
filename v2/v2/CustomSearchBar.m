@@ -112,8 +112,8 @@
                      }];
 }
 
-- (void)changeLabel:(NSString*)title {
-    NSLog(@"hello: %@", title);
-    self.legislatureLevel.text
+- (void)changeLabel:(NSNotification*)notification {
+    NSDictionary* userInfo = notification.object;
+    self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
 }
 @end

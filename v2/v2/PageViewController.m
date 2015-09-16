@@ -72,9 +72,11 @@
 {
     if(finished)
     {
+
         self.titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
+        NSDictionary* userInfo = @{@"currentPage": self.titleOfIncomingViewController};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLabel"
-                                                            object:nil];
+                                                            object:userInfo];
 
 
         self.parentViewController.navigationItem.title =  self.titleOfIncomingViewController;
