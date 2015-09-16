@@ -45,8 +45,6 @@
       NSFontAttributeName, nil]];
 }
 
-
-
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     if (self.viewControllers[0] == self.secondVC){
         return self.firstVC;
@@ -74,15 +72,20 @@
 {
     if(finished)
     {
-        NSString *titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
-        self.parentViewController.navigationItem.title =  titleOfIncomingViewController;
-        if ([titleOfIncomingViewController isEqualToString:@"Congress"]) {
+        self.titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLabel"
+                                                            object:nil];
+
+
+        self.parentViewController.navigationItem.title =  self.titleOfIncomingViewController;
+        if ([self.titleOfIncomingViewController isEqualToString:@"Congress"]) {
+            
             self.pageControl.currentPage = 0;
         }
         else {
             self.pageControl.currentPage = 1;
         }
-
     }
 }
+
 @end

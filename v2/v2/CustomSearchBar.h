@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomSearchBar : UIView
+@interface CustomSearchBar : UIView <UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
+@property (weak, nonatomic) IBOutlet UIButton *openSearchBarButton;
+@property (nonatomic) BOOL isSearchBarOpen;
 @end

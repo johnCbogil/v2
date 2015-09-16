@@ -65,7 +65,7 @@
     });
     [self.refreshControl endRefreshing];
 }
-
+ 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
         [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];

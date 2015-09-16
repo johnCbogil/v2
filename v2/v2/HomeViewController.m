@@ -24,6 +24,8 @@
     
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by address";
+
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +50,7 @@
         else {
             [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"                                                                object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
 
                 } onError:^(NSError *error) {
                     [error localizedDescription];
@@ -67,4 +69,6 @@
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
+
+
 @end

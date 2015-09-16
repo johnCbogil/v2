@@ -2,10 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomSearchBar">
             <connections>
+                <outlet property="legislatureLevel" destination="Kdo-9Z-g68" id="wrE-NM-FkX"/>
+                <outlet property="openSearchBarButton" destination="cDn-jh-35K" id="Aju-tN-MK0"/>
                 <outlet property="searchBar" destination="4KM-Kf-ztc" id="veb-IY-mrX"/>
             </connections>
         </placeholder>
@@ -18,15 +21,40 @@
                     <rect key="frame" x="0.0" y="0.0" width="500" height="44"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdo-9Z-g68">
+                    <rect key="frame" x="229" y="10" width="42" height="24"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDn-jh-35K">
+                    <rect key="frame" x="432" y="7" width="60" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="jCL-QP-CEQ"/>
+                    </constraints>
+                    <state key="normal" image="MagnifyingGlass">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openSearchBarButtonDidPress:" destination="-1" eventType="touchUpInside" id="TXF-et-aZX"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="4KM-Kf-ztc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BGJ-HI-3b3"/>
                 <constraint firstAttribute="trailing" secondItem="4KM-Kf-ztc" secondAttribute="trailing" id="K5p-Fp-5yu"/>
+                <constraint firstAttribute="centerX" secondItem="Kdo-9Z-g68" secondAttribute="centerX" id="MT7-9w-8ez"/>
+                <constraint firstAttribute="centerY" secondItem="Kdo-9Z-g68" secondAttribute="centerY" constant="0.5" id="VrY-v8-JKk"/>
+                <constraint firstItem="cDn-jh-35K" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="pMi-BS-Fyg"/>
+                <constraint firstItem="cDn-jh-35K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="tgA-OG-CNm"/>
                 <constraint firstItem="4KM-Kf-ztc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zXM-N5-eeN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="155" y="328"/>
         </view>
     </objects>
+    <resources>
+        <image name="MagnifyingGlass" width="33" height="33"/>
+    </resources>
 </document>
