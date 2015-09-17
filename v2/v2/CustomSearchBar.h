@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIButton *openSearchBarButton;
 @property (nonatomic) BOOL isSearchBarOpen;
+@property (weak, nonatomic) IBOutlet UIView *singleLineView;
 @end

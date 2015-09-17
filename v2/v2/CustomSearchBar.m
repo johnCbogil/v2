@@ -32,7 +32,7 @@
     [self hideSearchBar];
     
     // ROUND THE BOX
-    self.layer.cornerRadius = 13;
+    self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     
     // Set cancel button to white color
@@ -98,6 +98,7 @@
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 1.0;
+                         self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.openSearchBarButton.alpha = 0.0;
                      }];
@@ -111,6 +112,8 @@
                          self.searchBar.alpha = 0.0;
                          self.openSearchBarButton.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
+                         self.singleLineView.alpha = 1.0;
+
                      }];
 }
 

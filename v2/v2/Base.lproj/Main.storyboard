@@ -93,16 +93,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="105" width="600" height="492"/>
                                 <connections>
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb" customClass="CustomSearchBar">
-                                <rect key="frame" x="175" y="28" width="250" height="44"/>
+                                <rect key="frame" x="188" y="41" width="225" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="Nus-fR-MBa"/>
+                                    <constraint firstAttribute="width" constant="225" id="Nus-fR-MBa"/>
                                     <constraint firstAttribute="width" constant="300" id="fqy-ht-hHn"/>
                                 </constraints>
                                 <variation key="default">
@@ -114,11 +114,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="36" id="3To-Ey-EVZ"/>
-                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="8" id="BMJ-3Q-ZZ2"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="108" id="Czv-sb-xwj"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="20" id="3To-Ey-EVZ"/>
+                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="21" id="BMJ-3Q-ZZ2"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="105" id="Czv-sb-xwj"/>
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="LUt-Lg-a8B"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" constant="-3" id="LUt-Lg-a8B"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                         </constraints>
