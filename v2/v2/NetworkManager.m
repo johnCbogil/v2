@@ -53,7 +53,8 @@
 
 - (void)getStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
     
-    NSString *dataUrl = [NSString stringWithFormat:@"https://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
+    // OPEN STATES DOES NOT ALLOW FOR SECURE CONNECTIONS
+    NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
