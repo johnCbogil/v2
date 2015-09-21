@@ -30,7 +30,7 @@
 - (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                                    onError:(void(^)(NSError *error))errorBlock {
     
-    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -53,7 +53,7 @@
 
 - (void)getStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
     
-    NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -77,7 +77,7 @@
 
 - (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                                   onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"http://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -122,7 +122,7 @@
 
 - (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
                onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguide];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -168,7 +168,7 @@
 
 - (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
                    onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"http://transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
