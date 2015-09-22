@@ -17,10 +17,10 @@
                                                                   options:nil] objectAtIndex:0];
         [self addSubview:customSearchBarView];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(changeLabel:)
-                                                     name:@"changeLabel"
-                                                   object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(changeLabel:)
+//                                                     name:@"changeLabel"
+//                                                   object:nil];
     }
     return self;
 }
@@ -119,6 +119,13 @@
 
 - (void)changeLabel:(NSNotification*)notification {
     NSDictionary* userInfo = notification.object;
+//    self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    
     self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    CGSize maximumLabelSize = CGSizeMake(187,CGFLOAT_MAX);
+    CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
+    CGRect labelFrame = self.legislatureLevel.frame;
+    labelFrame.size.height = requiredSize.height;
+    self.legislatureLevel.frame = labelFrame;
 }
 @end

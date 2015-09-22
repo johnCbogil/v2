@@ -14,6 +14,7 @@
 
 @interface HomeViewController ()
 @property (strong, nonatomic) IBOutlet CustomSearchBar *customSearchBarView;
+@property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 
 @end
 
@@ -24,8 +25,23 @@
     
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by address";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeLabel:)
+                                                 name:@"changeLabel"
+                                               object:nil];
 
+}
 
+- (void)changeLabel:(NSNotification*)notification {
+    NSDictionary* userInfo = notification.object;
+    //self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    
+    self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    CGSize maximumLabelSize = CGSizeMake(187,CGFLOAT_MAX);
+    CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
+    CGRect labelFrame = self.legislatureLevel.frame;
+    labelFrame.size.width = requiredSize.width;
+    self.legislatureLevel.frame = labelFrame;
 }
 
 - (void)didReceiveMemoryWarning {
