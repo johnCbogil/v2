@@ -33,6 +33,7 @@
 }
 
 - (void)changeLabel:(NSNotification*)notification {
+    [self.view layoutIfNeeded];
     NSDictionary* userInfo = notification.object;
     //self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
     
@@ -42,6 +43,10 @@
     CGRect labelFrame = self.legislatureLevel.frame;
     labelFrame.size.width = requiredSize.width;
     self.legislatureLevel.frame = labelFrame;
+    [UIView animateWithDuration:.15
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 - (void)didReceiveMemoryWarning {

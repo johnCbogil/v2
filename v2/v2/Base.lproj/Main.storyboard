@@ -104,29 +104,39 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb">
-                                <rect key="frame" x="245" y="41" width="111" height="44"/>
+                                <rect key="frame" x="225" y="41" width="150" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tq-q4-0eV">
-                                        <rect key="frame" x="14" y="11" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tq-q4-0eV">
+                                        <rect key="frame" x="8" y="5" width="88" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-F5-Ygv">
-                                        <rect key="frame" x="68" y="10" width="23" height="23"/>
+                                        <rect key="frame" x="118" y="12.5" width="24" height="20"/>
                                         <state key="normal" image="MagnifyingGlass"/>
                                     </button>
+                                    <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bCG-p1-k8a" userLabel="singleLineView">
+                                        <rect key="frame" x="109" y="8" width="1" height="28"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="kbE-ZP-dqV"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="6tq-q4-0eV" firstAttribute="leading" secondItem="Q5v-sk-Prb" secondAttribute="leading" constant="14" id="2jP-uI-mv1"/>
+                                    <constraint firstItem="6tq-q4-0eV" firstAttribute="leading" secondItem="Q5v-sk-Prb" secondAttribute="leading" constant="8" id="2jP-uI-mv1"/>
+                                    <constraint firstAttribute="bottom" secondItem="bCG-p1-k8a" secondAttribute="bottom" constant="8" id="2jv-Oy-yor"/>
                                     <constraint firstAttribute="bottom" secondItem="Blt-F5-Ygv" secondAttribute="bottom" constant="11" id="5pG-7Z-mkR"/>
-                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="leading" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="12" id="HVG-Ft-6dZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Blt-F5-Ygv" secondAttribute="trailing" constant="20" id="WD9-JE-6ju"/>
-                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="10" id="WeZ-xI-1GC"/>
-                                    <constraint firstItem="6tq-q4-0eV" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="11" id="Wxl-Jg-2hY"/>
-                                    <constraint firstAttribute="trailing" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="55" id="ca4-9L-zKA"/>
-                                    <constraint firstAttribute="bottom" secondItem="6tq-q4-0eV" secondAttribute="bottom" constant="12" id="pOv-Nm-eex"/>
+                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="leading" secondItem="bCG-p1-k8a" secondAttribute="trailing" constant="8" id="EGI-fi-QHy"/>
+                                    <constraint firstItem="bCG-p1-k8a" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="8" id="EhY-Vh-gic"/>
+                                    <constraint firstAttribute="trailing" secondItem="Blt-F5-Ygv" secondAttribute="trailing" constant="8" id="WD9-JE-6ju"/>
+                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="12" id="WeZ-xI-1GC"/>
+                                    <constraint firstItem="6tq-q4-0eV" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="5" id="Wxl-Jg-2hY"/>
+                                    <constraint firstItem="bCG-p1-k8a" firstAttribute="leading" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="13" id="Zf5-y9-VSQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="54" id="ca4-9L-zKA"/>
+                                    <constraint firstAttribute="bottom" secondItem="6tq-q4-0eV" secondAttribute="bottom" constant="6" id="pOv-Nm-eex"/>
                                 </constraints>
                             </view>
                         </subviews>
