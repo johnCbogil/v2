@@ -12,4 +12,9 @@
 @interface HomeViewController : UIViewController <UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) PageViewController *pageVC;
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UILabel *legislature;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UIView *singleLineView;
+@property (nonatomic) BOOL isSearchBarOpen;
 @end

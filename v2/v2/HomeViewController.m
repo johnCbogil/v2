@@ -13,7 +13,6 @@
 #import "CustomSearchBar.h"
 
 @interface HomeViewController ()
-@property (strong, nonatomic) IBOutlet CustomSearchBar *customSearchBarView;
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 
 @end
@@ -29,19 +28,28 @@
                                              selector:@selector(changeLabel:)
                                                  name:@"changeLabel"
                                                object:nil];
+    [self prepareSearchBar];
 
 }
 
 - (void)changeLabel:(NSNotification*)notification {
     [self.view layoutIfNeeded];
     NSDictionary* userInfo = notification.object;
-    //self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
-    
-    self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    if ([userInfo objectForKey:@"currentPage"]) {
+            self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    }
+
     CGSize maximumLabelSize = CGSizeMake(187,CGFLOAT_MAX);
     CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
     CGRect labelFrame = self.legislatureLevel.frame;
-    labelFrame.size.width = requiredSize.width;
+    if ([userInfo valueForKey:@"width"]) {
+        labelFrame.size.width = [[userInfo valueForKey:@"width"]doubleValue];
+
+    }
+    else {
+        labelFrame.size.width = requiredSize.width;
+
+    }
     self.legislatureLevel.frame = labelFrame;
     [UIView animateWithDuration:.15
                      animations:^{
@@ -88,8 +96,107 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
+    [self hideSearchBar];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
+
+- (void)prepareSearchBar {
+    self.searchBar.delegate = self;
+    
+    [self hideSearchBar];
+    
+    // ROUND THE BOX
+    self.searchView.layer.cornerRadius = 5;
+    self.searchView.clipsToBounds = YES;
+    
+    // Set cancel button to white color
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]forState:UIControlStateNormal];
+    
+    // Set placeholder text to white
+    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil]setTextColor:[UIColor whiteColor]];
+    
+    // Set the input text font
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
+     setDefaultTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Avenir" size:15],NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    // HIDE THE MAGNYIFYING GLASS
+    [self.searchBar setImage:[UIImage new]
+            forSearchBarIcon:UISearchBarIconSearch
+                       state:UIControlStateNormal];
+    
+    // SET THE CURSOR POSITION
+    [[UISearchBar appearance] setPositionAdjustment:UIOffsetMake(-20, 0)
+                                   forSearchBarIcon:UISearchBarIconSearch];
+    
+    [self.searchBar setTintColor:[UIColor whiteColor]];
+    
+    // SET THE CURSOR COLOR
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
+     setTintColor:[UIColor colorWithRed:255.0 / 255.0
+                                  green:160.0 / 255.0
+                                   blue:5.0 / 255.0
+                                  alpha:1.0]];
+    
+    // SET THE CLEAR BUTTON FOR BOTH STATES
+    [self.searchBar setImage:[UIImage imageNamed:@"ClearButton"]
+            forSearchBarIcon:UISearchBarIconClear
+                       state:UIControlStateHighlighted];
+    [self.searchBar setImage:[UIImage imageNamed:@"ClearButton"]
+            forSearchBarIcon:UISearchBarIconClear
+                       state:UIControlStateNormal];
+    
+    // ROUND THE SEARCH BAR
+    UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
+    txfSearchField.layer.cornerRadius = 13;
+}
+
+- (IBAction)openSearchBarButtonDidPress:(id)sender {
+    [self showSearchBar];
+}
+
+- (void)showSearchBar {
+    self.searchBar.showsCancelButton = YES;
+    self.isSearchBarOpen = YES;
+    [self.searchBar becomeFirstResponder];
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.searchBar.alpha = 1.0;
+                         self.singleLineView.alpha = 0.0;
+                         self.legislatureLevel.alpha = 0.0;
+                         self.searchButton.alpha = 0.0;
+                         
+//                         CGRect newFrame = self.searchView.frame;
+//                         newFrame.size.width = 200;
+//                         [self.searchView setFrame:newFrame];
+//                         [self.view layoutIfNeeded];
+                     }];
+    
+    
+    // create dictionary
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setValue:[NSNumber numberWithInt:225] forKey:@"width"];
+    // create notification
+   // NSNotification *widthNotification = [[NSNotification alloc]initWithName:@"widthNotification" object:dict userInfo:dict];
+    // pass notification to changeLable
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLabel"
+                                                        object:dict];
+
+}
+
+- (void)hideSearchBar {
+    self.isSearchBarOpen = NO;
+    [self.searchBar resignFirstResponder];
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.searchBar.alpha = 0.0;
+                         self.searchButton.alpha = 1.0;
+                         self.legislatureLevel.alpha = 1.0;
+                         self.singleLineView.alpha = .5;
+                         
+                     }];
+}
+
 
 
 @end
