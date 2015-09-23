@@ -127,7 +127,7 @@
                                         </constraints>
                                     </view>
                                     <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="efA-Bb-9MQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="44"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
@@ -154,13 +154,18 @@
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="105" id="Czv-sb-xwj"/>
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="-0.5" id="Gmk-0R-tGC"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" constant="-3" id="LUt-Lg-a8B"/>
+                            <constraint firstItem="Q5v-sk-Prb" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" id="hHC-Dt-Ges"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hHC-Dt-Ges"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
-                        <outlet property="legislature" destination="6tq-q4-0eV" id="5pA-NW-4yj"/>
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
                         <outlet property="searchBar" destination="efA-Bb-9MQ" id="iwf-Zo-bgc"/>
                         <outlet property="searchButton" destination="Blt-F5-Ygv" id="HCQ-mA-MIT"/>

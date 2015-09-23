@@ -33,23 +33,17 @@
 }
 
 - (void)changeLabel:(NSNotification*)notification {
-    [self.view layoutIfNeeded];
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
             self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
     }
 
-    CGSize maximumLabelSize = CGSizeMake(187,CGFLOAT_MAX);
+    CGSize maximumLabelSize = CGSizeMake(225,CGFLOAT_MAX);
     CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
     CGRect labelFrame = self.legislatureLevel.frame;
-    if ([userInfo valueForKey:@"width"]) {
-        labelFrame.size.width = [[userInfo valueForKey:@"width"]doubleValue];
+    labelFrame.size.width = requiredSize.width;
 
-    }
-    else {
-        labelFrame.size.width = requiredSize.width;
-
-    }
+    
     self.legislatureLevel.frame = labelFrame;
     [UIView animateWithDuration:.15
                      animations:^{
@@ -60,6 +54,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     for (id vc in self.childViewControllers) {
@@ -165,23 +161,7 @@
                          self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
-                         
-//                         CGRect newFrame = self.searchView.frame;
-//                         newFrame.size.width = 200;
-//                         [self.searchView setFrame:newFrame];
-//                         [self.view layoutIfNeeded];
                      }];
-    
-    
-    // create dictionary
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setValue:[NSNumber numberWithInt:225] forKey:@"width"];
-    // create notification
-   // NSNotification *widthNotification = [[NSNotification alloc]initWithName:@"widthNotification" object:dict userInfo:dict];
-    // pass notification to changeLable
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeLabel"
-                                                        object:dict];
-
 }
 
 - (void)hideSearchBar {
@@ -196,7 +176,4 @@
                          
                      }];
 }
-
-
-
 @end
