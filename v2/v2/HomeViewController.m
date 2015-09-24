@@ -15,7 +15,12 @@
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
 
+@property (weak, nonatomic) NSLayoutConstraint *searchBarLeadingConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarTrailingConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
 @end
 
 @implementation HomeViewController
@@ -30,6 +35,14 @@
                                                  name:@"changeLabel"
                                                object:nil];
     [self prepareSearchBar];
+    
+
+    
+    self.searchBar.alpha = 0.0;
+    self.searchButton.alpha = 1.0;
+    self.legislatureLevel.alpha = 1.0;
+    self.singleLineView.alpha = .5;
+    
 
 }
 
@@ -100,7 +113,7 @@
 - (void)prepareSearchBar {
     self.searchBar.delegate = self;
     
-    [self hideSearchBar];
+//    [self hideSearchBar];
     
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
@@ -146,6 +159,8 @@
     // ROUND THE SEARCH BAR
     UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
     txfSearchField.layer.cornerRadius = 13;
+    
+
 }
 
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
@@ -153,43 +168,57 @@
 }
 
 - (void)showSearchBar {
+
+    // REMOVE LABEL CONSTRAINTS
+    [self.view removeConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
+    
+    // ADD SEARCH BAR CONSTRAINTS
+    
+    // CREATE SEARCH BAR CONSTRAINTS SO THAT THEY DONT NEED TO BE CREATED/DESTROYED CONSTANTLY
+    self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
+    
+    self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
+    
+    self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    
+    self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     
     
-    // GET THE SIZE OF THE LABEL
-    
-    // GET THE SIZE OF THE SEARCHBAR
-    
-    // SUBTRACT THE DIFFERENCE
-    
-    // ADD THIS DIFFERENCE TO THE LEGLEVEL CONSTRAINT
-    
-    
+    [self.view addConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
+
     
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
-                         self.legislatureLevelTrailingConstraint.constant = (self.searchBar.frame.size.width - self.legislatureLevel.frame.size.width);
                          self.searchBar.alpha = 1.0;
                          self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
-                         [self.view setNeedsDisplay];
+                         [self.view layoutIfNeeded];
                      }];
 }
 
 - (void)hideSearchBar {
+    
+    // REMOVE SEARCH BAR CONSTRAINTS
+    if (self.searchBar.constraints.count) {
+        [self.view removeConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
+    }
+    
+    // ADD LABEL CONSTRAINTS
+    [self.view addConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
+
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
-                         self.legislatureLevelTrailingConstraint.constant = 54;
                          self.searchBar.alpha = 0.0;
                          self.searchButton.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.singleLineView.alpha = .5;
-                         [self.view setNeedsDisplay];
+                         [self.view layoutIfNeeded];
                      }];
 }
 @end

@@ -10,7 +10,7 @@
 #import "PageViewController.h"
 
 @interface HomeViewController : UIViewController <UISearchBarDelegate>
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UILabel *legislature;

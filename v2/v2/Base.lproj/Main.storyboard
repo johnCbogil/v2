@@ -167,6 +167,7 @@
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
+                        <outlet property="legislatureLevelLeadingConstraint" destination="2jP-uI-mv1" id="XVI-vQ-8M4"/>
                         <outlet property="legislatureLevelTrailingConstraint" destination="ca4-9L-zKA" id="SX9-3C-cl7"/>
                         <outlet property="searchBar" destination="efA-Bb-9MQ" id="iwf-Zo-bgc"/>
                         <outlet property="searchButton" destination="Blt-F5-Ygv" id="HCQ-mA-MIT"/>
