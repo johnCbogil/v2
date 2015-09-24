@@ -14,6 +14,7 @@
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
 
 @end
 
@@ -152,15 +153,29 @@
 }
 
 - (void)showSearchBar {
+    
+    
+    // GET THE SIZE OF THE LABEL
+    
+    // GET THE SIZE OF THE SEARCHBAR
+    
+    // SUBTRACT THE DIFFERENCE
+    
+    // ADD THIS DIFFERENCE TO THE LEGLEVEL CONSTRAINT
+    
+    
+    
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
+                         self.legislatureLevelTrailingConstraint.constant = (self.searchBar.frame.size.width - self.legislatureLevel.frame.size.width);
                          self.searchBar.alpha = 1.0;
                          self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
+                         [self.view setNeedsDisplay];
                      }];
 }
 
@@ -169,11 +184,12 @@
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
+                         self.legislatureLevelTrailingConstraint.constant = 54;
                          self.searchBar.alpha = 0.0;
                          self.searchButton.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.singleLineView.alpha = .5;
-                         
+                         [self.view setNeedsDisplay];
                      }];
 }
 @end
