@@ -11,5 +11,6 @@
 @interface CongresspersonTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
 
 @end
