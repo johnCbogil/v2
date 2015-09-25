@@ -19,6 +19,7 @@
 @property (weak, nonatomic) NSLayoutConstraint *searchBarTrailingConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @end
 
 @implementation HomeViewController
@@ -29,9 +30,10 @@
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by address";
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changeLabel:)
-                                                 name:@"changeLabel"
+                                             selector:@selector(changePage:)
+                                                 name:@"changePage"
                                                object:nil];
+
     [self prepareSearchBar];
 }
 
@@ -160,6 +162,7 @@
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
                          [self.view layoutIfNeeded];
+                         [self.view setNeedsUpdateConstraints];
                      }];
 }
 
@@ -182,10 +185,11 @@
                          self.legislatureLevel.alpha = 1.0;
                          self.singleLineView.alpha = .5;
                          [self.view layoutIfNeeded];
+                         [self.view setNeedsUpdateConstraints];
                      }];
 }
 
-- (void)changeLabel:(NSNotification*)notification {
+- (void)changePage:(NSNotification*)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
@@ -202,5 +206,12 @@
                      animations:^{
                          [self.view layoutIfNeeded];
                      }];
+    
+    if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
+        self.pageControl.currentPage = 0;
+    }
+    else {
+        self.pageControl.currentPage = 1;
+    }
 }
 @end
