@@ -132,8 +132,6 @@
     self.searchButton.alpha = 1.0;
     self.legislatureLevel.alpha = 1.0;
     self.singleLineView.alpha = .5;
-    
-
 }
 
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
