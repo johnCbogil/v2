@@ -10,13 +10,11 @@
 #import "NetworkManager.h"
 #import "LocationService.h"
 #import "RepManager.h"
-#import "CustomSearchBar.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
-
 @property (weak, nonatomic) NSLayoutConstraint *searchBarLeadingConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *searchBarTrailingConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
@@ -35,40 +33,11 @@
                                                  name:@"changeLabel"
                                                object:nil];
     [self prepareSearchBar];
-    
-
-    
-    self.searchBar.alpha = 0.0;
-    self.searchButton.alpha = 1.0;
-    self.legislatureLevel.alpha = 1.0;
-    self.singleLineView.alpha = .5;
-    
-
-}
-
-- (void)changeLabel:(NSNotification*)notification {
-    NSDictionary* userInfo = notification.object;
-    if ([userInfo objectForKey:@"currentPage"]) {
-            self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
-    }
-
-    CGSize maximumLabelSize = CGSizeMake(225,CGFLOAT_MAX);
-    CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
-    CGRect labelFrame = self.legislatureLevel.frame;
-    labelFrame.size.width = requiredSize.width;
-
-    
-    self.legislatureLevel.frame = labelFrame;
-    [UIView animateWithDuration:.15
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -112,9 +81,7 @@
 
 - (void)prepareSearchBar {
     self.searchBar.delegate = self;
-    
-//    [self hideSearchBar];
-    
+        
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
     self.searchView.clipsToBounds = YES;
@@ -160,6 +127,12 @@
     UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
     txfSearchField.layer.cornerRadius = 13;
     
+    // HIDE THE SEARCH BAR FOR NOW
+    self.searchBar.alpha = 0.0;
+    self.searchButton.alpha = 1.0;
+    self.legislatureLevel.alpha = 1.0;
+    self.singleLineView.alpha = .5;
+    
 
 }
 
@@ -173,20 +146,12 @@
     [self.view removeConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
     
     // ADD SEARCH BAR CONSTRAINTS
-    
-    // CREATE SEARCH BAR CONSTRAINTS SO THAT THEY DONT NEED TO BE CREATED/DESTROYED CONSTANTLY
     self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
-    
     self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
-    
     self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    
     self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    
-    
     [self.view addConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
 
-    
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
@@ -218,6 +183,25 @@
                          self.searchButton.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.singleLineView.alpha = .5;
+                         [self.view layoutIfNeeded];
+                     }];
+}
+
+- (void)changeLabel:(NSNotification*)notification {
+    NSDictionary* userInfo = notification.object;
+    if ([userInfo objectForKey:@"currentPage"]) {
+        self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    }
+    
+    CGSize maximumLabelSize = CGSizeMake(225,CGFLOAT_MAX);
+    CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
+    CGRect labelFrame = self.legislatureLevel.frame;
+    labelFrame.size.width = requiredSize.width;
+    
+    
+    self.legislatureLevel.frame = labelFrame;
+    [UIView animateWithDuration:.15
+                     animations:^{
                          [self.view layoutIfNeeded];
                      }];
 }
