@@ -24,8 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
 @property (strong, nonatomic) FBShimmeringView *shimmeringView;
-
-
 @end
 
 @implementation HomeViewController
@@ -39,15 +37,13 @@
                                              selector:@selector(changePage:)
                                                  name:@"changePage"
                                                object:nil];
-
-
     [self prepareSearchBar];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //CONSTRAINTS HAVE NOT APPEARED IN VDL
+    
+    // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL HERE
     [self prepareVoicesLabel];
     
 }
@@ -56,70 +52,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)prepareVoicesLabel {
-    if (self.shimmeringView) {
-        return;
-    }
-    
-    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.voicesLabel.frame];
-    [self.view addSubview:self.shimmeringView];
-    self.voicesLabel.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.voicesLabel;
-    self.shimmeringView.shimmering = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setShimmer)
-                                                 name:@"setShimmer"
-                                               object:nil];
-}
-
-- (void)setShimmer {
-    if (self.shimmeringView.shimmering) {
-        self.shimmeringView.shimmering = NO;
-    }
-    else {
-        self.shimmeringView.shimmering = YES;
-    }
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    for (id vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[UIPageViewController class]]) {
-            self.pageVC = vc;
-        }
-    }
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
-        if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
-            [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
-                NSLog(@"%@", results);
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
-            } onError:^(NSError *error) {
-                [error localizedDescription];
-            }];
-        }
-        else {
-            [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
-                [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
-
-                } onError:^(NSError *error) {
-                    [error localizedDescription];
-                }];
-            } onError:^(NSError *error) {
-                [error localizedDescription];
-            }];
-        }
-    } onError:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }];
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    [self hideSearchBar];
-    [searchBar setShowsCancelButton:NO animated:YES];
-}
+#pragma mark - Search Bar Delegate Methods
 
 - (void)prepareSearchBar {
     self.searchBar.delegate = self;
@@ -176,12 +109,51 @@
     self.singleLineView.alpha = .5;
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    for (id vc in self.childViewControllers) {
+        if ([vc isKindOfClass:[UIPageViewController class]]) {
+            self.pageVC = vc;
+        }
+    }
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
+        if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
+            [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
+                NSLog(@"%@", results);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+        }
+        else {
+            [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
+                [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
+                    
+                } onError:^(NSError *error) {
+                    [error localizedDescription];
+                }];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+        }
+    } onError:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    [self hideSearchBar];
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
     [self showSearchBar];
 }
 
 - (void)showSearchBar {
-
     // REMOVE LABEL CONSTRAINTS
     [self.view removeConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
     
@@ -229,6 +201,8 @@
                      }];
 }
 
+#pragma mark - Page Control and Shimmer
+
 - (void)changePage:(NSNotification*)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
@@ -252,6 +226,29 @@
     }
     else {
         self.pageControl.currentPage = 1;
+    }
+}
+
+
+- (void)prepareVoicesLabel {
+    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.voicesLabel.frame];
+    [self.view addSubview:self.shimmeringView];
+    self.voicesLabel.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.voicesLabel;
+    self.shimmeringView.shimmering = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setShimmer)
+                                                 name:@"setShimmer"
+                                               object:nil];
+}
+
+- (void)setShimmer {
+    if (self.shimmeringView.shimmering) {
+        self.shimmeringView.shimmering = NO;
+    }
+    else {
+        self.shimmeringView.shimmering = YES;
     }
 }
 @end
