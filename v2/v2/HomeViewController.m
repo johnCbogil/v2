@@ -10,6 +10,8 @@
 #import "NetworkManager.h"
 #import "LocationService.h"
 #import "RepManager.h"
+#import "FBShimmeringView.h"
+#import "FBShimmeringLayer.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
 @end
 
 @implementation HomeViewController
@@ -35,12 +38,23 @@
                                                object:nil];
 
     [self prepareSearchBar];
+    [self prepareVoicesLabel];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)prepareVoicesLabel {
+    FBShimmeringView *shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.voicesLabel.frame];
+    shimmeringView.contentView = self.voicesLabel;
+    [self.view addSubview:self.voicesLabel];
+    shimmeringView.shimmering = YES;
+}
+
+- (void)viewDidLayoutSubviews {
+    NSLog(@"%f %f", self.voicesLabel.frame.origin.x, self.voicesLabel.frame.origin.y);
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     for (id vc in self.childViewControllers) {
