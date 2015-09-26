@@ -23,6 +23,9 @@
 @property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
+@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+
+
 @end
 
 @implementation HomeViewController
@@ -37,8 +40,16 @@
                                                  name:@"changePage"
                                                object:nil];
 
+
     [self prepareSearchBar];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //CONSTRAINTS HAVE NOT APPEARED IN VDL
     [self prepareVoicesLabel];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,14 +57,29 @@
 }
 
 - (void)prepareVoicesLabel {
-    FBShimmeringView *shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.voicesLabel.frame];
-    shimmeringView.contentView = self.voicesLabel;
-    [self.view addSubview:self.voicesLabel];
-    shimmeringView.shimmering = YES;
+    if (self.shimmeringView) {
+        return;
+    }
+    
+    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.voicesLabel.frame];
+    [self.view addSubview:self.shimmeringView];
+    self.voicesLabel.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.voicesLabel;
+    self.shimmeringView.shimmering = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setShimmer)
+                                                 name:@"setShimmer"
+                                               object:nil];
 }
 
-- (void)viewDidLayoutSubviews {
-    NSLog(@"%f %f", self.voicesLabel.frame.origin.x, self.voicesLabel.frame.origin.y);
+- (void)setShimmer {
+    if (self.shimmeringView.shimmering) {
+        self.shimmeringView.shimmering = NO;
+    }
+    else {
+        self.shimmeringView.shimmering = YES;
+    }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

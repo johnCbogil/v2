@@ -19,7 +19,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-4 forBarMetrics:UIBarMetricsDefault];
     return YES;
 }
 
