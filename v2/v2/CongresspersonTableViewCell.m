@@ -8,8 +8,7 @@
 
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
-#import <MessageUI/MFMailComposeViewController.h>
-@interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface CongresspersonTableViewCell() <UIAlertViewDelegate>
 @property (strong, nonatomic) Congressperson *congressperson;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -57,7 +56,7 @@
     confirmCallAlert.delegate = self;
 }
 
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         NSLog(@"No");
     }
@@ -74,12 +73,7 @@
     }
 }
 - (IBAction)emailButtonDidPress:(id)sender {
-    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-    mailViewController.mailComposeDelegate = self;
-    [mailViewController setSubject:@";Subject Goes Here."];
-    [mailViewController setMessageBody:@";Your message goes here." isHTML:NO];
     
-   // [self presentModalViewController:mailViewController animated:YES];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
 }
 @end

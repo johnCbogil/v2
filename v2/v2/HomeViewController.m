@@ -13,7 +13,7 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () 
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
@@ -36,6 +36,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changePage:)
                                                  name:@"changePage"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(presentEmailViewController)
+                                                 name:@"presentEmailVC"
                                                object:nil];
     [self prepareSearchBar];
 }
@@ -250,5 +254,18 @@
     else {
         self.shimmeringView.shimmering = YES;
     }
+}
+
+- (void)presentEmailViewController {
+
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+//    if (mailViewController.canSendMail == YES) {
+//        <#statements#>
+//    }
+    mailViewController.mailComposeDelegate = self;
+    [mailViewController setSubject:@";Subject Goes Here."];
+    [mailViewController setMessageBody:@";Your message goes here." isHTML:NO];
+    [self presentViewController:mailViewController animated:YES completion:nil];
+
 }
 @end

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PageViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface HomeViewController : UIViewController <UISearchBarDelegate>
+@interface HomeViewController : UIViewController <UISearchBarDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
