@@ -92,9 +92,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CongresspersonTableViewCell *cell = (CongresspersonTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"CongresspersonTableViewCell" forIndexPath:indexPath];
-    Congressperson *congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    cell.name.text = [NSString stringWithFormat:@"%@ %@", congressperson.firstName, congressperson.lastName];
-    cell.photo.image = [UIImage imageWithData:congressperson.photo];
+    [cell initFromIndexPath:indexPath];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

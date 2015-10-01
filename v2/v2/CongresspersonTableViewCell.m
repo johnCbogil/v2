@@ -7,9 +7,10 @@
 //
 
 #import "CongresspersonTableViewCell.h"
+#import "RepManager.h"
 @interface CongresspersonTableViewCell() <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
-
+@property (strong, nonatomic) Congressperson *congressperson;
 @end
 
 @implementation CongresspersonTableViewCell
@@ -31,27 +32,35 @@
     [self.shadowView addSubview:self.photo];
 }
 
+- (void)initFromIndexPath:(NSIndexPath*)indexPath {
+    self.congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+    self.name.text = [NSString stringWithFormat:@"%@ %@", self.congressperson.firstName, self.congressperson.lastName];
+    self.photo.image = [UIImage imageWithData:self.congressperson.photo];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 - (IBAction)callButtonDidPress:(id)sender {
-    
-    UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:@"Senator XYZ" message:@"You're about to call Senator XYZ, do you know what to say?" delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    NSString *confirmCallMessage;
+
+    if (![self.congressperson.nickname isEqual:[NSNull null]]) {
+        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.congressperson.nickname];
+    }
+    else {
+        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.congressperson.firstName, self.congressperson.lastName];
+    }
+    UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.congressperson.title,self.congressperson.firstName, self.congressperson.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     [confirmCallAlert show];
     confirmCallAlert.delegate = self;
-    
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
     if (buttonIndex == 0) {
-        
         NSLog(@"No");
     }
     else if (buttonIndex == 1) {
-        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:5164589308"]];
+        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.congressperson.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
         {
             [[UIApplication sharedApplication] openURL:callUrl];
@@ -62,13 +71,4 @@
         }
     }
 }
-
-//
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//
-//
-//
-//    return self;
-//}
 @end
