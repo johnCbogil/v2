@@ -37,6 +37,9 @@
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="emailButtonDidPress:" destination="0wB-F5-VrO" eventType="touchUpInside" id="vE1-mY-5ZO"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-2Z-Rgn">
                         <rect key="frame" x="106" y="57" width="59" height="38"/>
@@ -63,6 +66,7 @@
             <animations/>
             <connections>
                 <outlet property="callButton" destination="iWA-2Z-Rgn" id="l8Z-LB-6cP"/>
+                <outlet property="emailButton" destination="7LO-Le-dPC" id="ctq-MH-YaJ"/>
                 <outlet property="name" destination="RhP-zA-G0C" id="eUL-fH-y3M"/>
                 <outlet property="photo" destination="akj-fD-7QG" id="fXH-YL-hFA"/>
                 <outlet property="shadowView" destination="wvW-Vu-Ye3" id="99M-tA-yZ9"/>

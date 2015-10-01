@@ -8,9 +8,11 @@
 
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
-@interface CongresspersonTableViewCell() <UIAlertViewDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
+#import <MessageUI/MFMailComposeViewController.h>
+@interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) Congressperson *congressperson;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @end
 
 @implementation CongresspersonTableViewCell
@@ -70,5 +72,14 @@
             [alert show];
         }
     }
+}
+- (IBAction)emailButtonDidPress:(id)sender {
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    mailViewController.mailComposeDelegate = self;
+    [mailViewController setSubject:@";Subject Goes Here."];
+    [mailViewController setMessageBody:@";Your message goes here." isHTML:NO];
+    
+   // [self presentModalViewController:mailViewController animated:YES];
+    
 }
 @end
