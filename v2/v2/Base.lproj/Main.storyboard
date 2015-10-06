@@ -228,8 +228,6 @@
                         <outlet property="shimmer" destination="270-eB-bNy" id="WRn-np-XiB"/>
                         <outlet property="singleLineView" destination="bCG-p1-k8a" id="Lre-QG-4da"/>
                         <outlet property="voicesLabel" destination="a6m-D7-VQU" id="gaT-oy-ypd"/>
-                        <outlet property="voicesLabelCenterXConstraint" destination="4jC-yy-nVd" id="Bgx-gT-4X5"/>
-                        <outlet property="voicesLabelTopConstraint" destination="f0f-Uq-wvd" id="VMO-sm-yh4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
