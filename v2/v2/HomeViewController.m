@@ -24,6 +24,15 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
 @property (strong, nonatomic) FBShimmeringView *shimmeringView;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
+@property (weak, nonatomic) IBOutlet UIView *shimmer;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *voicesLabelTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *voicesLabelCenterXConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *voicesLabelLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *voicesLabelTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *voicesLabelBottomConstraint;
 @end
 
 @implementation HomeViewController
@@ -42,6 +51,9 @@
                                                  name:@"presentEmailVC"
                                                object:nil];
     [self prepareSearchBar];
+
+
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -49,6 +61,7 @@
     
     // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL HERE
     [self prepareVoicesLabel];
+
     
 }
 
@@ -235,16 +248,39 @@
 
 
 - (void)prepareVoicesLabel {
-    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.voicesLabel.frame];
+    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
     [self.view addSubview:self.shimmeringView];
-    self.voicesLabel.frame = self.shimmeringView.bounds;
+    self.voicesLabel.frame = self.shimmeringView.frame;
     self.shimmeringView.contentView = self.voicesLabel;
     self.shimmeringView.shimmering = NO;
+
+//    FBShimmeringLayer *shimmeringLayer = [[FBShimmeringLayer alloc]initWithLayer:self.voicesLabel.layer];
+//    [self.view.layer addSublayer:shimmeringLayer];
+//    self.voicesLabel.layer.frame = shimmeringLayer.bounds;
+//    shimmeringLayer.contentLayer = self.voicesLabel.layer;
+//    shimmeringLayer.shimmering = YES;
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setShimmer)
                                                  name:@"setShimmer"
                                                object:nil];
+    
+//    [self.view addConstraints:@[self.voicesLabelBottomConstraint, self.voicesLabelCenterXConstraint, self.voicesLabelLeadingConstraint, self.voicesLabelTopConstraint, self.voicesLabelTrailingConstraint ]];
+    
+//    NSLayoutConstraint *shimmeringViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.shimmeringView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.containerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+//    NSLayoutConstraint *shimmeringViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.shimmeringView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+//    NSLayoutConstraint *shimmeringViewLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.shimmeringView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
+//    NSLayoutConstraint *shimmeringViewTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.shimmeringView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
+//    
+//    [self.view addConstraints:@[shimmeringViewBottomConstraint, shimmeringViewLeadingConstraint, shimmeringViewTrailingConstraint]];
+
+
+}
+
+- (void)viewDidLayoutSubviews {
+    NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
+
 }
 
 - (void)setShimmer {
@@ -260,12 +296,38 @@
 
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
 //    if (mailViewController.canSendMail == YES) {
-//        <#statements#>
+//
 //    }
     mailViewController.mailComposeDelegate = self;
     [mailViewController setSubject:@";Subject Goes Here."];
     [mailViewController setMessageBody:@";Your message goes here." isHTML:NO];
     [self presentViewController:mailViewController animated:YES completion:nil];
-
 }
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+
+{
+    UIAlertView *alert;
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            alert = [[UIAlertView alloc] initWithTitle:@"Draft Saved" message:@"Composed Mail is saved in draft." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case MFMailComposeResultSent:
+            alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have successfully referred your friends." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case MFMailComposeResultFailed:
+            alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Sorry! Failed to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

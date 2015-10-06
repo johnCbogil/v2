@@ -8,7 +8,9 @@
 
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
-@interface CongresspersonTableViewCell() <UIAlertViewDelegate>
+#import <MessageUI/MFMailComposeViewController.h>
+
+@interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate >
 @property (strong, nonatomic) Congressperson *congressperson;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -76,4 +78,6 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
 }
+
+
 @end

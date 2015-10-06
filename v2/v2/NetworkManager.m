@@ -80,6 +80,7 @@
                                   onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
+    NSLog(@"%@", url);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -88,7 +89,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
