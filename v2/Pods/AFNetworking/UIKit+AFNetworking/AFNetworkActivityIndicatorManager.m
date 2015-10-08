@@ -155,14 +155,12 @@ static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notificat
 
 - (void)networkRequestDidStart:(NSNotification *)notification {
     if ([AFNetworkRequestFromNotification(notification) URL]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"setShimmer" object:nil];
         [self incrementActivityCount];
     }
 }
 
 - (void)networkRequestDidFinish:(NSNotification *)notification {
     if ([AFNetworkRequestFromNotification(notification) URL]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"setShimmer" object:nil];
         [self decrementActivityCount];
     }
 }

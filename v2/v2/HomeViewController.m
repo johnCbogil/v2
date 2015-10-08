@@ -13,7 +13,7 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
-@interface HomeViewController () 
+@interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
@@ -29,6 +29,10 @@
 @end
 
 @implementation HomeViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,7 +65,7 @@
 
 - (void)prepareSearchBar {
     self.searchBar.delegate = self;
-        
+    
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
     self.searchView.clipsToBounds = YES;
@@ -153,7 +157,6 @@
     [searchBar setShowsCancelButton:NO animated:YES];
 }
 
-
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
     [self showSearchBar];
 }
@@ -168,7 +171,7 @@
     self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
     self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     [self.view addConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
-
+    
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
@@ -192,7 +195,7 @@
     
     // ADD LABEL CONSTRAINTS
     [self.view addConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
-
+    
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
@@ -218,8 +221,7 @@
     CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
     CGRect labelFrame = self.legislatureLevel.frame;
     labelFrame.size.width = requiredSize.width;
-    
-    
+
     self.legislatureLevel.frame = labelFrame;
     [UIView animateWithDuration:.15
                      animations:^{
@@ -241,27 +243,27 @@
     self.shimmeringView.contentView = self.voicesLabel;
     self.shimmeringView.shimmering = NO;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setShimmer)
-                                                 name:@"setShimmer"
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
 }
 
-- (void)setShimmer {
-    if (self.shimmeringView.shimmering) {
-        self.shimmeringView.shimmering = NO;
-    }
-    else {
-        self.shimmeringView.shimmering = YES;
-    }
+- (void)toggleShimmerOn {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
+    self.shimmeringView.shimmering = YES;
+}
+
+- (void)toggleShimmerOff {
+    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:2.0];
 }
 
 - (void)presentEmailViewController {
-
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         mailViewController.mailComposeDelegate = self;
@@ -295,4 +297,5 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end
