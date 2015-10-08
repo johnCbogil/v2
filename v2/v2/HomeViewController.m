@@ -245,24 +245,24 @@
     self.shimmeringView.contentView = self.voicesLabel;
     self.shimmeringView.shimmering = NO;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingOperationDidFinishNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingTaskDidResumeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
 }
 
-- (void)toggleShimmer {
-    if (self.shimmeringView.shimmering) {
-        self.shimmeringView.shimmering = NO;
-    }
-    else {
-        self.shimmeringView.shimmering = YES;
-    }
+- (void)toggleShimmerOn {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
+    self.shimmeringView.shimmering = YES;
+}
+
+- (void)toggleShimmerOff {
+    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:2.0];
 }
 
 - (void)presentEmailViewController {
@@ -299,4 +299,5 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end
