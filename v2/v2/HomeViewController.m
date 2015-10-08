@@ -13,7 +13,7 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
-@interface HomeViewController () 
+@interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
@@ -65,7 +65,7 @@
 
 - (void)prepareSearchBar {
     self.searchBar.delegate = self;
-        
+    
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
     self.searchView.clipsToBounds = YES;
@@ -172,7 +172,7 @@
     self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
     self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     [self.view addConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
-
+    
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
@@ -196,7 +196,7 @@
     
     // ADD LABEL CONSTRAINTS
     [self.view addConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
-
+    
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
@@ -245,10 +245,11 @@
     self.shimmeringView.contentView = self.voicesLabel;
     self.shimmeringView.shimmering = NO;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(toggleShimmer)
-                                                 name:@"setShimmer"
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingOperationDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingTaskDidResumeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmer) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -265,7 +266,6 @@
 }
 
 - (void)presentEmailViewController {
-
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         mailViewController.mailComposeDelegate = self;
