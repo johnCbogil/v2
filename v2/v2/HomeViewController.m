@@ -157,7 +157,6 @@
     [searchBar setShowsCancelButton:NO animated:YES];
 }
 
-
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
     [self showSearchBar];
 }
@@ -222,8 +221,7 @@
     CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
     CGRect labelFrame = self.legislatureLevel.frame;
     labelFrame.size.width = requiredSize.width;
-    
-    
+
     self.legislatureLevel.frame = labelFrame;
     [UIView animateWithDuration:.15
                      animations:^{
