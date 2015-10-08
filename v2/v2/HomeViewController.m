@@ -242,7 +242,7 @@
     self.shimmeringView.shimmering = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setShimmer)
+                                             selector:@selector(toggleShimmer)
                                                  name:@"setShimmer"
                                                object:nil];
 }
@@ -251,7 +251,7 @@
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
 }
 
-- (void)setShimmer {
+- (void)toggleShimmer {
     if (self.shimmeringView.shimmering) {
         self.shimmeringView.shimmering = NO;
     }
