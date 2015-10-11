@@ -60,7 +60,7 @@
     [super viewDidAppear:animated];
     
     // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
-    [self prepareVoicesLabel];
+    [self prepareShimmer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -215,8 +215,6 @@
                      }];
 }
 
-#pragma mark - Page Control and Shimmer
-
 - (void)changePage:(NSNotification*)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
@@ -242,7 +240,9 @@
     }
 }
 
-- (void)prepareVoicesLabel {
+#pragma mark - Shimmer
+
+- (void)prepareShimmer {
     self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
     [self.view addSubview:self.shimmeringView];
     self.voicesLabel.frame = self.shimmeringView.frame;
@@ -266,8 +266,10 @@
 }
 
 - (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:2.0];
+    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:1.0];
 }
+
+#pragma mark - Action Presenters
 
 - (void)presentEmailViewController {
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
@@ -305,7 +307,6 @@
 }
 
 - (void)presentTweetComposer {
-    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController
