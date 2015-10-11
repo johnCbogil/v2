@@ -10,10 +10,12 @@
 #import "RepManager.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
+
 @interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate >
 @property (strong, nonatomic) Congressperson *congressperson;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @end
 
 @implementation CongresspersonTableViewCell
@@ -74,10 +76,11 @@
         }
     }
 }
+
 - (IBAction)emailButtonDidPress:(id)sender {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
 }
-
-
+- (IBAction)twitterButtonDidPress:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
+}
 @end

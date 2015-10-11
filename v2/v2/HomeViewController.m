@@ -12,6 +12,7 @@
 #import "RepManager.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import <Social/Social.h>
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -47,6 +48,11 @@
                                              selector:@selector(presentEmailViewController)
                                                  name:@"presentEmailVC"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(presentTweetComposer)
+                                                 name:@"presentTweetComposer"
+                                               object:nil];
+
     [self prepareSearchBar];
 }
 
@@ -298,4 +304,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)presentTweetComposer {
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController
+                                                  composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetSheetOBJ setInitialText:@"TurnToTech - NYC"];
+        [tweetSheetOBJ addURL:[NSURL URLWithString:@"http://turntotech.io"]];
+        [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
+    }
+}
 @end
