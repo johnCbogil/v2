@@ -35,6 +35,7 @@
     NSLog(@"Starting location updates");
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -45,7 +46,7 @@
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude %+.6f, Longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
     self.currentLocation = location;
-    self.locationManager = nil;
+    //self.locationManager = nil;
 }
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
