@@ -8,9 +8,9 @@
 
 #import "InfoViewController.h"
 #import <STPopup/STPopup.h>
-
+#import "InfoPageViewController.h"
 @interface InfoViewController ()
-
+@property (strong, nonatomic) InfoPageViewController *infoPageVC;
 @end
 
 @implementation InfoViewController
@@ -22,7 +22,6 @@
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
-        
     }
     return self;
 }
@@ -34,7 +33,12 @@
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
     self.contentSizeInPopup = CGSizeMake(300, 400);
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    
+    NSLog(@"%@", self.title);
 }
 
 - (void)didReceiveMemoryWarning {

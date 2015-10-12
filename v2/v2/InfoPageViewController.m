@@ -33,8 +33,11 @@
     if (self.viewControllers[0] == self.secondVC){
         return self.firstVC;
     }
-    else if (self.viewControllers[0] == self.firstVC){
+    else if (self.viewControllers[0] == self.thirdVC){
         return self.secondVC;
+    }
+    else if (self.viewControllers[0] == self.firstVC){
+        return self.thirdVC;
     }
     return nil;
 }
@@ -45,6 +48,9 @@
         return self.secondVC;
     }
     else if (self.viewControllers[0] == self.secondVC){
+        return self.thirdVC;
+    }
+    else if (self.viewControllers[0] == self.thirdVC){
         return self.firstVC;
     }
     return nil;
@@ -64,5 +70,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 @end
