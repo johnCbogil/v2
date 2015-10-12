@@ -104,13 +104,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
-                                <rect key="frame" x="0.0" y="105" width="600" height="350"/>
-                                <animations/>
-                                <connections>
-                                    <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb">
                                 <rect key="frame" x="225" y="28" width="150" height="44"/>
                                 <subviews>
@@ -182,6 +175,23 @@
                                 <rect key="frame" x="364" y="463" width="216" height="62"/>
                                 <animations/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xae-1n-mss">
+                                <rect key="frame" x="20" y="542" width="63" height="38"/>
+                                <animations/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="wcs-6T-QOs"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
+                                <rect key="frame" x="0.0" y="105" width="600" height="350"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -204,8 +214,10 @@
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="bottom" constant="75" id="mBa-zk-xx8"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
+                            <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="vKI-iR-RC4"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="w6O-PF-YZW"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="top" id="yLX-H2-u7I"/>
+                            <constraint firstAttribute="bottom" secondItem="xae-1n-mss" secondAttribute="bottom" constant="20" symbolic="YES" id="z9X-aA-EoT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -218,6 +230,7 @@
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
+                        <outlet property="infoButton" destination="xae-1n-mss" id="zlp-Zc-3z6"/>
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
                         <outlet property="legislatureLevelLeadingConstraint" destination="2jP-uI-mv1" id="XVI-vQ-8M4"/>
                         <outlet property="legislatureLevelTrailingConstraint" destination="ca4-9L-zKA" id="SX9-3C-cl7"/>

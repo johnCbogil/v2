@@ -27,6 +27,7 @@
 @property (strong, nonatomic) FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIView *shimmer;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @end
 
 @implementation HomeViewController
@@ -315,5 +316,8 @@
         [tweetSheetOBJ addURL:[NSURL URLWithString:@"http://turntotech.io"]];
         [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
     }
+}
+
+- (IBAction)infoButtonDidPress:(id)sender {
 }
 @end
