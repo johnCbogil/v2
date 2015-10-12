@@ -115,8 +115,9 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"Error: %@", error);
-        successBlock([UIImage imageNamed:@"MissingRep"]);
-        // RETURN A PLACEHOLDER IMAGE HERE
+        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
+        [missingRep setAccessibilityIdentifier:@"MissingRep"];
+        successBlock(missingRep);
     }];
     
     [operation start];
@@ -138,7 +139,6 @@
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
         NSLog(@"Error: %@", error);
     }];
     

@@ -35,7 +35,6 @@
     NSLog(@"Starting location updates");
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
