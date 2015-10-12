@@ -271,7 +271,7 @@
     [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:1.0];
 }
 
-#pragma mark - Action Presenters
+#pragma mark - Presentation Controllers
 
 - (void)presentEmailViewController {
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
@@ -320,8 +320,23 @@
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
+    [self presentInfoViewController];
+}
+
+- (void)presentInfoViewController {
     UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"infoViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    popupController.cornerRadius = 10;
+    if (NSClassFromString(@"UIBlurEffect")) {
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    }
+    [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:0.20 green:0.60 blue:0.86 alpha:1.0];
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
 }
 @end
