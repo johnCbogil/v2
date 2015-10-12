@@ -63,6 +63,8 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         NSLog(@"No");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
+
     }
     else if (buttonIndex == 1) {
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.congressperson.phone]];

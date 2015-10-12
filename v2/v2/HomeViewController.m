@@ -54,6 +54,10 @@
                                              selector:@selector(presentTweetComposer)
                                                  name:@"presentTweetComposer"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(presentInfoViewController)
+                                                 name:@"presentInfoViewController"
+                                               object:nil];
 
     [self prepareSearchBar];
 }
