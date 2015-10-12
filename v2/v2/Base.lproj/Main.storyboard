@@ -247,6 +247,34 @@
             </objects>
             <point key="canvasLocation" x="265" y="294"/>
         </scene>
+        <!--Info View Controller-->
+        <scene sceneID="3CI-Wa-ABh">
+            <objects>
+                <viewController storyboardIdentifier="infoViewController" id="tgC-AN-9mN" customClass="InfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sQ1-Zo-DOd"/>
+                        <viewControllerLayoutGuide type="bottom" id="8jG-Xw-6zu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Kw-4N-0Xc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjP-P9-nOv">
+                                <rect key="frame" x="20" y="289" width="29" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MbX-ge-4gt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="267" y="969"/>
+        </scene>
         <!--Influence Explorer View Controller-->
         <scene sceneID="7H3-kF-vdy">
             <objects>

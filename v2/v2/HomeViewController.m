@@ -13,6 +13,7 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import <Social/Social.h>
+#import <STPopup/STPopup.h>
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -319,5 +320,8 @@
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
+    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"infoViewController"];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    [popupController presentInViewController:self];
 }
 @end
