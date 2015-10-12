@@ -328,7 +328,7 @@
 }
 
 - (void)presentInfoViewController {
-    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"infoViewController"];
+    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoPageViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.cornerRadius = 10;
     if (NSClassFromString(@"UIBlurEffect")) {
