@@ -60,6 +60,8 @@
                                                object:nil];
 
     [self prepareSearchBar];
+    
+    self.infoButton.tag = 1;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -313,6 +315,8 @@
 }
 
 - (void)presentTweetComposer {
+    
+    // THIS NEEDS TO BE A STPOPUPCONTROLLER
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
 @property (nonatomic, strong) UIViewController *thirdVC;
+@property (nonatomic, strong) NSArray *listOfViewControllers;
 @end
 
 @implementation InfoPageViewController
@@ -27,6 +28,13 @@
     self.thirdVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoViewControllerThree"];
     [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
     self.contentSizeInPopup = CGSizeMake(300, 400);
+    self.listOfViewControllers = @[self.firstVC, self.secondVC, self.thirdVC];
+    
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+    //pageControl.currentPage = 0;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
@@ -59,6 +67,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
+    return 3;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
+    return 0;
 }
 
 /*

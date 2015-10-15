@@ -5,6 +5,33 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="smW-SJ-PxD">
+            <objects>
+                <viewController id="xOd-Th-h8u" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L5W-0y-jVK"/>
+                        <viewControllerLayoutGuide type="bottom" id="ui6-yM-b5S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e4e-MQ-IIE">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gi2-LS-dZb">
+                                <rect key="frame" x="25" y="28" width="240" height="308"/>
+                                <animations/>
+                            </containerView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cP1-xQ-ouM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-750" y="966"/>
+        </scene>
         <!--Info Page View Controller-->
         <scene sceneID="pWa-ZD-vky">
             <objects>
@@ -14,7 +41,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E86-NA-E6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-635" y="968"/>
+            <point key="canvasLocation" x="-285" y="962"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="Hio-3y-2Eh">
@@ -40,7 +67,6 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lBv-8k-nk2" firstAttribute="leading" secondItem="Ypc-Ae-Chz" secondAttribute="leading" constant="140" id="pFb-jy-iT6"/>
                             <constraint firstItem="lBv-8k-nk2" firstAttribute="top" secondItem="XK5-Pp-7Ya" secondAttribute="bottom" constant="170" id="u2y-Xd-90J"/>
