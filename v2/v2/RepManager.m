@@ -119,7 +119,9 @@
             stateLegislator.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                [[CacheManager sharedInstance]cacheRepresentative:stateLegislator withEntityName:@"StateLegislator"];
+                if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
+                    [[CacheManager sharedInstance]cacheRepresentative:stateLegislator withEntityName:@"StateLegislator"];
+                }
             }
         } onError:^(NSError *error) {
             errorBlock(error);

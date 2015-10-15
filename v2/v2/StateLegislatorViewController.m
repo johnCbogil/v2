@@ -38,6 +38,7 @@
 }
 
 - (void)pullToRefresh {
+    [[LocationService sharedInstance] startUpdatingLocation];
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];

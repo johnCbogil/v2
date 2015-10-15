@@ -47,6 +47,7 @@
 }
 
 - (void)pullToRefresh {
+    [[LocationService sharedInstance] startUpdatingLocation];
     [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
