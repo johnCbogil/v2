@@ -130,19 +130,39 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
-		528DC63C1B629DFA00560DD6 /* Representatives */ = {
+		522464101BD186DE006CFDB5 /* Congress */ = {
 			isa = PBXGroup;
 			children = (
-				5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */,
-				5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */,
+				52BB34351B6160CA00BB9FFD /* CongressViewController.h */,
+				52BB34361B6160CA00BB9FFD /* CongressViewController.m */,
 				5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */,
 				5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */,
-				5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */,
 				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
 				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
+			);
+			name = Congress;
+			sourceTree = "<group>";
+		};
+		522464111BD186F3006CFDB5 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				52747B741B66EE92009702F5 /* StateLegislatorViewController.m */,
+				52747B731B66EE92009702F5 /* StateLegislatorViewController.h */,
+				5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */,
+				5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */,
+				5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */,
 				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
 				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
+		528DC63C1B629DFA00560DD6 /* Representatives */ = {
+			isa = PBXGroup;
+			children = (
+				522464101BD186DE006CFDB5 /* Congress */,
+				522464111BD186F3006CFDB5 /* State */,
 			);
 			name = Representatives;
 			sourceTree = "<group>";
@@ -184,10 +204,6 @@
 				52A610811B66AD0300B041FF /* RepManager.m */,
 				52877FCB1BA0EC1700B5AE02 /* CacheManager.h */,
 				52877FCC1BA0EC1700B5AE02 /* CacheManager.m */,
-				52BB34351B6160CA00BB9FFD /* CongressViewController.h */,
-				52BB34361B6160CA00BB9FFD /* CongressViewController.m */,
-				52747B731B66EE92009702F5 /* StateLegislatorViewController.h */,
-				52747B741B66EE92009702F5 /* StateLegislatorViewController.m */,
 				523211931B68402200752D4C /* InfluenceExplorerViewController.h */,
 				523211941B68402200752D4C /* InfluenceExplorerViewController.m */,
 				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
