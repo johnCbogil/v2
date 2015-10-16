@@ -10,6 +10,8 @@
 		338077E2A5F515152E3EC4AA /* libPods-v2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C812695A3BE1059FDAA3F7A8 /* libPods-v2.a */; };
 		5204038E1BCC139700016768 /* InfoPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204038D1BCC139700016768 /* InfoPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
+		5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		5224640F1BD17BCA006CFDB5 /* StateRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523211941B68402200752D4C /* InfluenceExplorerViewController.m */; };
 		5235B07E1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */; };
@@ -50,6 +52,9 @@
 		5204038D1BCC139700016768 /* InfoPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPageViewController.m; sourceTree = "<group>"; };
 		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
+		5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepTableViewCell.h; sourceTree = "<group>"; };
+		5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepTableViewCell.m; sourceTree = "<group>"; };
+		5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateRepTableViewCell.xib; sourceTree = "<group>"; };
 		523211931B68402200752D4C /* InfluenceExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfluenceExplorerViewController.h; sourceTree = "<group>"; };
 		523211941B68402200752D4C /* InfluenceExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfluenceExplorerViewController.m; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CongresspersonTableViewCell.xib; sourceTree = "<group>"; };
@@ -128,6 +133,12 @@
 		528DC63C1B629DFA00560DD6 /* Representatives */ = {
 			isa = PBXGroup;
 			children = (
+				5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */,
+				5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */,
+				5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */,
+				5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */,
+				5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */,
+				5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */,
 				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
 				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
 				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
@@ -181,9 +192,6 @@
 				523211941B68402200752D4C /* InfluenceExplorerViewController.m */,
 				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
 				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
-				5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */,
-				5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */,
-				5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				5204038B1BCC137F00016768 /* Info */,
@@ -324,6 +332,7 @@
 				5235B07E1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
+				5224640F1BD17BCA006CFDB5 /* StateRepTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +396,7 @@
 				5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
+				5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,

@@ -10,6 +10,7 @@
 #import "StateLegislator.h"
 #import "RepManager.h"
 #import "LocationService.h"
+#import "StateRepTableViewCell.h"
 @interface StateLegislatorViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -31,6 +32,9 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]
+         forCellReuseIdentifier:@"StateRepTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,16 +76,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
-        if (stateLegislator.photo) {
-            cell.imageView.image = [UIImage imageWithData:stateLegislator.photo];
-        }
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//        StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
+//        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
+//        if (stateLegislator.photo) {
+//            cell.imageView.image = [UIImage imageWithData:stateLegislator.photo];
+//        }
+//    return cell;
+    
+    StateRepTableViewCell *cell = (StateRepTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"StateRepTableViewCell" forIndexPath:indexPath];
+    [cell initFromIndexPath:indexPath];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
 }
 @end
