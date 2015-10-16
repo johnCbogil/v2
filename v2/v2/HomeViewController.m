@@ -12,6 +12,7 @@
 #import "RepManager.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "InfoPageViewController.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 
@@ -68,6 +69,8 @@
     self.searchBarConstraints = [NSArray arrayWithObjects:self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint, nil];
     
     [self prepareSearchBar];
+    
+    self.infoButton.tag = 1;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -324,6 +327,8 @@
 }
 
 - (void)presentTweetComposer {
+    
+    // THIS NEEDS TO BE A STPOPUPCONTROLLER
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController
@@ -335,23 +340,27 @@
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
+    [InfoPageViewController sharedInstance].startFromScript = NO;
     [self presentInfoViewController];
 }
 
 - (void)presentInfoViewController {
-    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"infoViewController"];
+    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoPageViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.cornerRadius = 10;
     if (NSClassFromString(@"UIBlurEffect")) {
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     }
-    [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:0.20 green:0.60 blue:0.86 alpha:1.0];
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
     
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17] } forState:UIControlStateNormal];
+    
+    [InfoPageViewController sharedInstance].pageControl.currentPage = 1;
+
     [popupController presentInViewController:self];
 }
 @end

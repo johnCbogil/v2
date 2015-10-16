@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Info Page View Controller-->
+        <scene sceneID="pWa-ZD-vky">
+            <objects>
+                <pageViewController storyboardIdentifier="InfoPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="F9E-NI-lId" customClass="InfoPageViewController" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E86-NA-E6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-285" y="962"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="Hio-3y-2Eh">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewControllerOne" id="rmi-Qe-3Om" customClass="InfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XK5-Pp-7Ya"/>
+                        <viewControllerLayoutGuide type="bottom" id="dm5-ft-JqN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ypc-Ae-Chz">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBv-8k-nk2">
+                                <rect key="frame" x="140" y="190" width="12" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="X5X-h9-KNC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="lBv-8k-nk2" firstAttribute="leading" secondItem="Ypc-Ae-Chz" secondAttribute="leading" constant="140" id="pFb-jy-iT6"/>
+                            <constraint firstItem="lBv-8k-nk2" firstAttribute="top" secondItem="XK5-Pp-7Ya" secondAttribute="bottom" constant="170" id="u2y-Xd-90J"/>
+                            <constraint firstItem="lBv-8k-nk2" firstAttribute="centerY" secondItem="Ypc-Ae-Chz" secondAttribute="centerY" id="zB0-Ij-5md"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TpK-Oc-kbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="93" y="968"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="81L-dO-E6A">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewControllerTwo" id="I3E-Et-sRz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IAI-Dj-2Pd"/>
+                        <viewControllerLayoutGuide type="bottom" id="lPq-H9-FqJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Bh-8S-hnv">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYD-ke-3OK">
+                                <rect key="frame" x="145" y="189" width="11" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oYD-ke-3OK" firstAttribute="centerY" secondItem="5Bh-8S-hnv" secondAttribute="centerY" id="32C-c8-3HU"/>
+                            <constraint firstItem="oYD-ke-3OK" firstAttribute="top" secondItem="IAI-Dj-2Pd" secondAttribute="bottom" constant="169" id="GAm-ZL-wnr"/>
+                            <constraint firstItem="oYD-ke-3OK" firstAttribute="centerX" secondItem="5Bh-8S-hnv" secondAttribute="centerX" id="Lg4-RR-HeI"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BkS-gS-0rB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="465" y="968"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HDC-NY-xjv">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewControllerThree" id="oHK-7g-jcl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lBc-k3-kzQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="YGr-qa-nOj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kZ6-yE-CvL">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8c-kG-llm">
+                                <rect key="frame" x="144" y="189" width="12" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x8c-kG-llm" firstAttribute="top" secondItem="lBc-k3-kzQ" secondAttribute="bottom" constant="169" id="Czd-FF-Wsr"/>
+                            <constraint firstItem="x8c-kG-llm" firstAttribute="centerY" secondItem="kZ6-yE-CvL" secondAttribute="centerY" id="Dh8-Nm-mlB"/>
+                            <constraint firstItem="x8c-kG-llm" firstAttribute="centerX" secondItem="kZ6-yE-CvL" secondAttribute="centerX" id="eaU-b1-up4"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyd-iF-KOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="968"/>
+        </scene>
+    </scenes>
+</document>

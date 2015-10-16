@@ -8,9 +8,9 @@
 
 #import "InfoViewController.h"
 #import <STPopup/STPopup.h>
-#import "InfoPageViewController.h"
+
 @interface InfoViewController ()
-@property (strong, nonatomic) InfoPageViewController *infoPageVC;
+
 @end
 
 @implementation InfoViewController
@@ -19,8 +19,10 @@
 {
     if (self = [super init]) {
         self.title = @"View Controller";
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
+        
     }
     return self;
 }
@@ -32,10 +34,7 @@
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
     self.contentSizeInPopup = CGSizeMake(300, 400);
-}
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,4 +51,5 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 @end

@@ -19,6 +19,10 @@
 {
     if (self = [super init]) {
         self.title = @"View Controller";
+<<<<<<< HEAD
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
+=======
+>>>>>>> infoPageVC
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
