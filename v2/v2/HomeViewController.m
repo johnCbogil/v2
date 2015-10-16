@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIView *shimmer;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (strong, nonatomic) NSArray *searchBarConstraints;
 @end
 
 @implementation HomeViewController
@@ -58,7 +59,14 @@
                                              selector:@selector(presentInfoViewController)
                                                  name:@"presentInfoViewController"
                                                object:nil];
-
+    
+    // ADD SEARCH BAR CONSTRAINTS
+    self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
+    self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
+    self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    self.searchBarConstraints = [NSArray arrayWithObjects:self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint, nil];
+    
     [self prepareSearchBar];
 }
 
@@ -174,15 +182,14 @@
 }
 
 - (void)showSearchBar {
-    // REMOVE LABEL CONSTRAINTS
-    [self.view removeConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
+    // DEACTIVATE LABEL CONSTRAINTS
+    self.legislatureLevelLeadingConstraint.active = NO;
+    self.legislatureLevelTrailingConstraint.active = NO;
     
-    // ADD SEARCH BAR CONSTRAINTS
-    self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
-    self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
-    self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    [self.view addConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
+    // ACTIVATE SEARCH BAR CONSRAINTS
+    for (NSLayoutConstraint *constraint in self.searchBarConstraints) {
+        constraint.active = YES;
+    }
     
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
@@ -200,13 +207,17 @@
 
 - (void)hideSearchBar {
     
-    // REMOVE SEARCH BAR CONSTRAINTS
+    // DEACTIVATE SEARCH BAR CONSTRAINTS
     if (self.searchBar.constraints.count) {
-        [self.view removeConstraints:@[self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint]];
+        for(NSLayoutConstraint *constraint in self.searchBarConstraints) {
+            constraint.active = NO;
+        }
     }
     
-    // ADD LABEL CONSTRAINTS
-    [self.view addConstraints:@[self.legislatureLevelLeadingConstraint, self.legislatureLevelTrailingConstraint]];
+    // ACTIVATE LABEL CONSTRAINTS
+    self.legislatureLevelTrailingConstraint.active = YES;
+    self.legislatureLevelLeadingConstraint.active = YES;
+    
     
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
@@ -231,7 +242,7 @@
     CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
     CGRect labelFrame = self.legislatureLevel.frame;
     labelFrame.size.width = requiredSize.width;
-
+    
     self.legislatureLevel.frame = labelFrame;
     [UIView animateWithDuration:.15
                      animations:^{
