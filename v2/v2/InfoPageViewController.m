@@ -17,7 +17,21 @@
 @end
 
 @implementation InfoPageViewController
++ (InfoPageViewController *)sharedInstance {
+    static InfoPageViewController *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc]init];
+    });
+    return instance;
+}
 
+- (id)init {
+    self = [super init];
+    if (self != nil) {
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -26,15 +40,21 @@
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoViewControllerOne"];
     self.secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoViewControllerTwo"];
     self.thirdVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoViewControllerThree"];
-    [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
+    // THIS FEELS LIKE A HACK
+    if ([InfoPageViewController sharedInstance].startFromScript) {
+        [self setViewControllers:@[self.secondVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
+    }
+    else {
+        [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
+    }
     self.contentSizeInPopup = CGSizeMake(300, 400);
     self.listOfViewControllers = @[self.firstVC, self.secondVC, self.thirdVC];
     
-    UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
-    //pageControl.currentPage = 0;
+    self.pageControl = [UIPageControl appearance];
+    self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+    self.pageControl.backgroundColor = [UIColor whiteColor];
+    self.pageControl.currentPage = 1;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
@@ -74,7 +94,13 @@
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    return 0;
+    // THIS FEELS LIKE A HACK
+    if ([InfoPageViewController sharedInstance].startFromScript == 1) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }
 
 /*

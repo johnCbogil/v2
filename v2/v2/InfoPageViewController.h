@@ -8,4 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @interface InfoPageViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
++(InfoPageViewController *) sharedInstance;
+@property (strong, nonatomic) UIPageControl *pageControl;
+@property (nonatomic) BOOL startFromScript;
 @end

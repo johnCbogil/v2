@@ -12,6 +12,7 @@
 #import "RepManager.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "InfoPageViewController.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 
@@ -328,6 +329,7 @@
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
+    [InfoPageViewController sharedInstance].startFromScript = NO;
     [self presentInfoViewController];
 }
 
@@ -345,6 +347,9 @@
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
     
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17] } forState:UIControlStateNormal];
+    
+    [InfoPageViewController sharedInstance].pageControl.currentPage = 1;
+
     [popupController presentInViewController:self];
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
+#import "InfoPageViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 
@@ -62,7 +63,7 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        NSLog(@"No");
+        [InfoPageViewController sharedInstance].startFromScript = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
 
     }

@@ -19,7 +19,6 @@
 {
     if (self = [super init]) {
         self.title = @"View Controller";
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
@@ -37,8 +36,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    
-    NSLog(@"%@", self.title);
 }
 
 - (void)didReceiveMemoryWarning {
