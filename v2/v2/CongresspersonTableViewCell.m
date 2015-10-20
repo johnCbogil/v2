@@ -16,6 +16,7 @@
 @property (strong, nonatomic) Congressperson *congressperson;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UILabel *nextElectionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @end
 
@@ -42,6 +43,7 @@
     self.congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
     self.name.text = [NSString stringWithFormat:@"%@ %@", self.congressperson.firstName, self.congressperson.lastName];
     self.photo.image = [UIImage imageWithData:self.congressperson.photo];
+    self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.congressperson.nextElection];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -19,6 +19,7 @@
         self.bioguide = [data valueForKey:@"bioguide_id"];
         self.phone = [data valueForKey:@"phone"];
         self.crpID = [data valueForKey:@"crp_id"];
+        self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
             self.title = @"Senator";
         }
@@ -28,5 +29,15 @@
         return self;
     }
     return self;
+}
+
+- (NSString*)formatElectionDate:(NSString*)termEnd {
+    if([termEnd isEqualToString:@"2017-01-03"] || [termEnd isEqualToString:@"2019-01-03"]){
+        return @"4 Nov 2016";
+    }
+
+    else {
+        return  @"3 Nov 2020";
+    }
 }
 @end
