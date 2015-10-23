@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -192,11 +192,19 @@
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Politics is Local" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T69-qJ-3NI">
+                                <rect key="frame" x="440" y="533" width="140" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="33" id="3To-Ey-EVZ"/>
+                            <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="T69-qJ-3NI" secondAttribute="bottom" constant="46" id="3U0-ji-KX9"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="bottom" secondItem="a6m-D7-VQU" secondAttribute="bottom" id="4eM-3K-rpR"/>
                             <constraint firstItem="a6m-D7-VQU" firstAttribute="centerX" secondItem="WRM-qV-4HZ" secondAttribute="centerX" id="4jC-yy-nVd"/>
                             <constraint firstItem="a6m-D7-VQU" firstAttribute="trailing" secondItem="WRM-qV-4HZ" secondAttribute="trailingMargin" id="9N1-yC-rlF"/>
@@ -206,6 +214,7 @@
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="-0.5" id="Gmk-0R-tGC"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" constant="-145" id="LUt-Lg-a8B"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" constant="-2" id="PUX-vQ-t6s"/>
+                            <constraint firstItem="T69-qJ-3NI" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="bottom" constant="8" symbolic="YES" id="VBd-fy-Xxf"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="trailing" secondItem="a6m-D7-VQU" secondAttribute="trailing" id="ZWl-Wf-Bkv"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="leading" secondItem="a6m-D7-VQU" secondAttribute="leading" id="eIn-fJ-0yS"/>
                             <constraint firstItem="a6m-D7-VQU" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="106" id="f0f-Uq-wvd"/>
@@ -216,6 +225,7 @@
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="vKI-iR-RC4"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="w6O-PF-YZW"/>
+                            <constraint firstItem="T69-qJ-3NI" firstAttribute="trailing" secondItem="270-eB-bNy" secondAttribute="trailing" id="xtP-Fw-4Ye"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="top" id="yLX-H2-u7I"/>
                             <constraint firstAttribute="bottom" secondItem="xae-1n-mss" secondAttribute="bottom" constant="20" symbolic="YES" id="z9X-aA-EoT"/>
                         </constraints>

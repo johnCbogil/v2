@@ -34,7 +34,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"About";
     self.dataSource = self;
     self.delegate = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoViewControllerOne"];
@@ -55,6 +55,9 @@
     self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     self.pageControl.backgroundColor = [UIColor whiteColor];
     self.pageControl.currentPage = 1;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
