@@ -53,7 +53,7 @@
     self.pageControl = [UIPageControl appearance];
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-    self.pageControl.backgroundColor = [UIColor whiteColor];
+    self.pageControl.backgroundColor = [UIColor clearColor];
     self.pageControl.currentPage = 1;
 }
 
