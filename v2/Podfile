@@ -6,6 +6,7 @@ target 'v2' do
 pod "AFNetworking", "~> 2.0"
 pod “Shimmer“
 pod 'STPopup'
+pod 'Instabug'
 
 end
 

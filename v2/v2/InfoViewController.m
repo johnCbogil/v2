@@ -9,7 +9,9 @@
 #import "InfoViewController.h"
 #import <STPopup/STPopup.h>
 #import "InfoPageViewController.h"
+#import <Instabug/Instabug.h>
 @interface InfoViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *sendFeedbackButton;
 @property (strong, nonatomic) InfoPageViewController *infoPageVC;
 @end
 
@@ -18,7 +20,6 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.title = @"View Controller";
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
@@ -32,6 +33,7 @@
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
     self.contentSizeInPopup = CGSizeMake(300, 400);
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -41,6 +43,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)sendFeedbackButtonDidPress:(id)sender {
+    [Instabug invokeFeedbackSender];
 }
 
 /*

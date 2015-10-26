@@ -113,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="465" y="968"/>
         </scene>
-        <!--View Controller-->
+        <!--Info View Controller-->
         <scene sceneID="HDC-NY-xjv">
             <objects>
-                <viewController storyboardIdentifier="InfoViewControllerThree" id="oHK-7g-jcl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoViewControllerThree" id="oHK-7g-jcl" customClass="InfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lBc-k3-kzQ"/>
                         <viewControllerLayoutGuide type="bottom" id="YGr-qa-nOj"/>
@@ -132,6 +132,9 @@
                                 <state key="normal" title="Send Feedback">
                                     <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendFeedbackButtonDidPress:" destination="oHK-7g-jcl" eventType="touchUpInside" id="7D4-H7-fEj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -145,6 +148,9 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="400"/>
+                    <connections>
+                        <outlet property="sendFeedbackButton" destination="1aH-O2-2iR" id="DsG-SW-25i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyd-iF-KOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

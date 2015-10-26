@@ -1,5 +1,8 @@
+CLANG_CXX_LANGUAGE_STANDARD = c++11
+CLANG_CXX_LIBRARY = libc++
+FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Instabug/" "$(PODS_ROOT)/Instabug/"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/STPopup" "${PODS_ROOT}/Headers/Public/Shimmer"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/STPopup" -isystem "${PODS_ROOT}/Headers/Public/Shimmer"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"AFNetworking" -l"STPopup" -l"Shimmer" -framework "CoreGraphics" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Instabug" "${PODS_ROOT}/Headers/Public/STPopup" "${PODS_ROOT}/Headers/Public/Shimmer"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/Instabug" -isystem "${PODS_ROOT}/Headers/Public/STPopup" -isystem "${PODS_ROOT}/Headers/Public/Shimmer"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AFNetworking" -l"STPopup" -l"Shimmer" -l"c++" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreMotion" -framework "CoreTelephony" -framework "Foundation" -framework "GLKit" -framework "Instabug" -framework "MessageUI" -framework "MobileCoreServices" -framework "OpenGLES" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
 PODS_ROOT = ${SRCROOT}/Pods

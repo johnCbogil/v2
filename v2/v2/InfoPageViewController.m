@@ -35,6 +35,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"About";
+    
+    CGRect frame = CGRectMake(0, 0, 100, 44);
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Avenir" size:22.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.text = self.navigationItem.title;
+    self.navigationItem.titleView = label;
+    
     self.dataSource = self;
     self.delegate = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoViewControllerOne"];

@@ -20,16 +20,19 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Instabug (4.1.7)
   - Shimmer (1.0.2)
   - STPopup (1.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - Instabug
   - Shimmer
   - STPopup
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Instabug: 58f773fcefe0dec9b1bd3fcf09c6e46560353f5d
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   STPopup: 5e12539a1798514a99ffc1c6239c3db688a2d7b1
 
