@@ -73,7 +73,6 @@
     }];
     
     [operation start];
-    
 }
 
 - (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock

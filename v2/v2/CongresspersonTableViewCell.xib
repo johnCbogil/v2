@@ -47,6 +47,9 @@
                         <animations/>
                         <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="callButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="gwC-WV-jfw"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV2-uE-cnu">
                         <rect key="frame" x="206" y="65" width="46" height="30"/>
@@ -56,12 +59,18 @@
                             <constraint firstAttribute="height" constant="30" id="Xnk-MY-zFF"/>
                         </constraints>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="emailButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="ySh-je-z2z"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-nf-nal">
                         <rect key="frame" x="306" y="65" width="46" height="30"/>
                         <animations/>
                         <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="twitterButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="VRK-oF-whX"/>
+                        </connections>
                     </button>
                 </subviews>
                 <animations/>
@@ -91,10 +100,13 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
+                <outlet property="callButton" destination="R5S-a1-pTK" id="PTi-Ll-YJL"/>
+                <outlet property="emailButton" destination="BV2-uE-cnu" id="T1J-6B-fyg"/>
                 <outlet property="name" destination="cJk-NX-ZHW" id="9ba-RQ-WQ5"/>
                 <outlet property="nextElectionLabel" destination="Ft8-Ib-vtn" id="1La-GW-QoW"/>
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
                 <outlet property="shadowView" destination="nSl-S2-6uC" id="Ap5-Lo-0RA"/>
+                <outlet property="tweetButton" destination="8cF-nf-nal" id="h0r-ii-gow"/>
             </connections>
             <point key="canvasLocation" x="587" y="598"/>
         </tableViewCell>

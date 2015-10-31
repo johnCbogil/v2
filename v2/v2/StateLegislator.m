@@ -14,8 +14,10 @@
     if(self != nil) {
         self.firstName = [data valueForKey:@"first_name"];
         self.lastName = [data valueForKey:@"last_name"];
+        self.party = [data valueForKey:@"+party"];
         self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];
         self.photoURL = [NSURL URLWithString:[data valueForKey:@"photo_url"]];
+        self.email = [data valueForKey:@"email"];
         return self;
     }
     return self;

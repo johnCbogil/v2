@@ -356,7 +356,7 @@
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
-    
+    popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17] } forState:UIControlStateNormal];
     
     [InfoPageViewController sharedInstance].pageControl.currentPage = 1;

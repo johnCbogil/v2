@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UILabel *nextElectionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
 @end
 
 @implementation CongresspersonTableViewCell
@@ -49,19 +52,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-- (IBAction)callButtonDidPress:(id)sender {
-    NSString *confirmCallMessage;
 
-    if (![self.congressperson.nickname isEqual:[NSNull null]]) {
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.congressperson.nickname];
-    }
-    else {
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.congressperson.firstName, self.congressperson.lastName];
-    }
-    UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.congressperson.title,self.congressperson.firstName, self.congressperson.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    [confirmCallAlert show];
-    confirmCallAlert.delegate = self;
-}
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
@@ -80,6 +71,20 @@
             [alert show];
         }
     }
+}
+
+- (IBAction)callButtonDidPress:(id)sender {
+    NSString *confirmCallMessage;
+    
+    if (![self.congressperson.nickname isEqual:[NSNull null]]) {
+        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.congressperson.nickname];
+    }
+    else {
+        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.congressperson.firstName, self.congressperson.lastName];
+    }
+    UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.congressperson.title,self.congressperson.firstName, self.congressperson.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [confirmCallAlert show];
+    confirmCallAlert.delegate = self;
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {

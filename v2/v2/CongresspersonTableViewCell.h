@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CongresspersonTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UIImageView *photo;
-@property (weak, nonatomic) IBOutlet UIView *shadowView;
+
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;
 @end

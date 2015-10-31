@@ -61,7 +61,7 @@
     self.listOfViewControllers = @[self.firstVC, self.secondVC, self.thirdVC];
     
     self.pageControl = [UIPageControl appearance];
-    self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor groupTableViewBackgroundColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     self.pageControl.backgroundColor = [UIColor clearColor];
     self.pageControl.currentPage = 1;
