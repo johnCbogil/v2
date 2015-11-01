@@ -15,6 +15,7 @@
 #import "InfoPageViewController.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
+#import "UIFont+voicesFont.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
