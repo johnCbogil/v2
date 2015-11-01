@@ -61,7 +61,6 @@
         NSLog(@"%@", location);
         successBlock(location);
         
-        
     } onError:^(NSError *error) {
     }];
 }
