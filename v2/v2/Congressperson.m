@@ -20,6 +20,8 @@
         self.phone = [data valueForKey:@"phone"];
         self.crpID = [data valueForKey:@"crp_id"];
         self.party = [data valueForKey:@"party"];
+        self.email = [data valueForKey:@""];
+        self.twitter = [data valueForKey:@""];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
             self.title = @"Senator";

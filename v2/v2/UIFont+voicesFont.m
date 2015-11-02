@@ -10,6 +10,6 @@
 
 @implementation UIFont (voicesFont)
 + (UIFont*)voicesFontWithSize:(CGFloat)size {
-    return [UIFont fontWithName:@"Helvetica" size:size];
+    return [UIFont fontWithName:@"Avenir" size:size];
 }
 @end

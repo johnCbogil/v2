@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *shortTitle;
 @property (strong, nonatomic) NSString *phone;
+@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *twitter;
 @property (strong, nonatomic) NSString *influenceExplorerID;
 @property (strong, nonatomic) NSString *crpID;
 @property (strong, nonatomic) NSData *photo;

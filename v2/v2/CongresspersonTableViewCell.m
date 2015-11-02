@@ -72,23 +72,31 @@
 }
 
 - (IBAction)callButtonDidPress:(id)sender {
-    NSString *confirmCallMessage;
-    
-    if (![self.congressperson.nickname isEqual:[NSNull null]]) {
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.congressperson.nickname];
+    if (self.congressperson.phone) {
+        NSString *confirmCallMessage;
+        if (![self.congressperson.nickname isEqual:[NSNull null]]) {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.congressperson.nickname];
+        }
+        else {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.congressperson.firstName, self.congressperson.lastName];
+        }
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.congressperson.title,self.congressperson.firstName, self.congressperson.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        [confirmCallAlert show];
+        confirmCallAlert.delegate = self;
     }
     else {
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.congressperson.firstName, self.congressperson.lastName];
+        
     }
-    UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.congressperson.title,self.congressperson.firstName, self.congressperson.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    [confirmCallAlert show];
-    confirmCallAlert.delegate = self;
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
+    if (self.congressperson.email) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
+    }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
+    if (self.congressperson.twitter) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
+    }
 }
 @end
