@@ -10,6 +10,8 @@
 #import "RepManager.h"
 #import "StateLegislator.h"
 @interface StateRepTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonatomic) StateLegislator *stateLegislator;
 @end
 @implementation StateRepTableViewCell
@@ -33,12 +35,16 @@
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-    self.name.text = [NSString stringWithFormat:@"%@ %@", self.stateLegislator.firstName, self.stateLegislator.lastName];
+    self.name.text = [NSString stringWithFormat:@"(%@) - %@ %@", self.stateLegislator.party, self.stateLegislator.firstName, self.stateLegislator.lastName];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
+}
+- (IBAction)callButtonDidPress:(id)sender {
+}
+- (IBAction)emailButtonDidPress:(id)sender {
 }
 @end
