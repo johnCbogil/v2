@@ -18,7 +18,12 @@
         self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];
         self.photoURL = [NSURL URLWithString:[data valueForKey:@"photo_url"]];
         self.email = [data valueForKey:@"email"];
-        self.party = [[data valueForKey:@"+party"]substringToIndex: MIN(1, [[data valueForKey:@"+party"] length])].capitalizedString;
+        if ([data valueForKey:@"+party"]) {
+            self.party = [[data valueForKey:@"+party"]substringToIndex: MIN(1, [[data valueForKey:@"+party"] length])].capitalizedString;
+        }
+        else {
+            self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
+        }
 
         return self;
     }
