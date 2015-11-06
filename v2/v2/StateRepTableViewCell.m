@@ -9,6 +9,7 @@
 #import "StateRepTableViewCell.h"
 #import "RepManager.h"
 #import "StateLegislator.h"
+#import "InfoPageViewController.h"
 @interface StateRepTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -44,7 +45,46 @@
     // Configure the view for the selected state
 }
 - (IBAction)callButtonDidPress:(id)sender {
+    if (self.stateLegislator.phone) {
+        NSString *confirmCallMessage;
+        if (![self.stateLegislator.firstName isEqual:[NSNull null]]) {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.stateLegislator.firstName];
+        }
+        else {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.stateLegislator.firstName, self.stateLegislator.lastName];
+        }
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateLegislator.firstName, self.stateLegislator.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        [confirmCallAlert show];
+        confirmCallAlert.delegate = self;
+    }
+    else {
+        // PRESENT ERROR
+    }
 }
 - (IBAction)emailButtonDidPress:(id)sender {
+    if (self.stateLegislator.email) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
+    }
+    else {
+        // PRESENT ERROR
+    }
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [InfoPageViewController sharedInstance].startFromScript = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
+    }
+    else if (buttonIndex == 1) {
+        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateLegislator.phone]];
+        if([[UIApplication sharedApplication] canOpenURL:callUrl])
+        {
+            [[UIApplication sharedApplication] openURL:callUrl];
+        }
+        else {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"ALERT" message:@"This function is only available on the iPhone"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 @end

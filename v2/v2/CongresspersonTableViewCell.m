@@ -85,7 +85,7 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        
+       // PRESENT ERROR
     }
 }
 
@@ -93,10 +93,16 @@
     if (self.congressperson.email) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
     }
+    else {
+        // PRESENT ERROR
+    }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
     if (self.congressperson.twitter) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
+    }
+    else {
+        // PRESENT ERROR
     }
 }
 @end
