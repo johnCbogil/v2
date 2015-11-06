@@ -36,6 +36,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"CongresspersonTableViewCell"];
+    
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)dealloc{
@@ -99,7 +101,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    [[RepManager sharedInstance]assignInfluenceExplorerID:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
 //        [[RepManager sharedInstance]assignTopContributors:[RepManager sharedInstance].listOfCongressmen[indexPath.row] withCompletion:^{
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 //            self.influenceExplorerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"influenceExplorerViewController"];
 //            self.influenceExplorerVC.congressperson = [RepManager sharedInstance].listOfCongressmen[indexPath.row];
 //            [self.navigationController pushViewController:self.influenceExplorerVC animated:YES];

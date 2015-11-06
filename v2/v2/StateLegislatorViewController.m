@@ -34,6 +34,9 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"StateRepTableViewCell"];
+    
+    self.tableView.allowsSelection = NO;
+
 }
 
 - (void)didReceiveMemoryWarning {
