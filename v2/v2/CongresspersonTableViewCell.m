@@ -91,7 +91,7 @@
 
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.congressperson.email) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.congressperson.email];
     }
     else {
         // PRESENT ERROR

@@ -63,7 +63,7 @@
 }
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.stateLegislator.email) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.stateLegislator.email];
     }
     else {
         // PRESENT ERROR

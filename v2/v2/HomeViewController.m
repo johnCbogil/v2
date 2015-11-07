@@ -50,7 +50,7 @@
                                                  name:@"changePage"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(presentEmailViewController)
+                                             selector:@selector(presentEmailViewController:)
                                                  name:@"presentEmailVC"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -292,13 +292,14 @@
 
 #pragma mark - Presentation Controllers
 
-- (void)presentEmailViewController {
+- (void)presentEmailViewController:(NSNotification*)notification {
+    NSString *repEmail = [notification object];
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:@"Subject Goes Here."];
         [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
-        [mailViewController setToRecipients:@[@"yurt@gmail.com"]];
+        [mailViewController setToRecipients:@[repEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
 }
