@@ -11,7 +11,6 @@
 #import "RepManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
-#import "CongresspersonTableViewCell.h"
 #import <STPopup/STPopup.h>
 #import "UIFont+voicesFont.h"
 @interface CongressViewController ()
@@ -40,6 +39,8 @@
          forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     
     self.tableView.allowsSelection = NO;
+    
+    
 }
 
 - (void)dealloc{
@@ -98,6 +99,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CongresspersonTableViewCell *cell = (CongresspersonTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"CongresspersonTableViewCell" forIndexPath:indexPath];
     [cell initFromIndexPath:indexPath];
+    cell.delegate = self;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -120,7 +122,7 @@
 }
 
 - (void)presentCustomAlert {
-    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoPageViewController"];
+    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"customAlertViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.cornerRadius = 10;
     if (NSClassFromString(@"UIBlurEffect")) {

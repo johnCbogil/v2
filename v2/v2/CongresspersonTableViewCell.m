@@ -85,7 +85,7 @@
         confirmCallAlert.delegate = self;
     }
     else {
-       // PRESENT ERROR
+        [self.delegate presentCustomAlert];
     }
 }
 
@@ -94,7 +94,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.congressperson.email];
     }
     else {
-        // PRESENT ERROR
+        [self.delegate presentCustomAlert];
     }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
@@ -102,7 +102,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
     }
     else {
-        // PRESENT ERROR
+        [self.delegate presentCustomAlert];
     }
 }
 @end

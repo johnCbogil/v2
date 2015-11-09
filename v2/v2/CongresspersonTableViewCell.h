@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CongresspersonTableViewCell : UITableViewCell
+@class CongresspersonTableViewCell;
 
+@protocol CustomAlertDelegate <NSObject>
+- (void)presentCustomAlert;
+@end
+
+@interface CongresspersonTableViewCell : UITableViewCell
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;
+@property (strong, nonatomic) id <CustomAlertDelegate> delegate;
+
 @end

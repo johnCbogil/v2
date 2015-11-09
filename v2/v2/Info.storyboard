@@ -20,7 +20,7 @@
         <!--Custom Alert View Controller-->
         <scene sceneID="07g-h4-oXU">
             <objects>
-                <viewController id="rR5-eV-GBx" customClass="CustomAlertViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="customAlertViewController" id="rR5-eV-GBx" customClass="CustomAlertViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gJW-ab-png"/>
                         <viewControllerLayoutGuide type="bottom" id="dfH-g5-SEV"/>
