@@ -17,6 +17,41 @@
             </objects>
             <point key="canvasLocation" x="-285" y="962"/>
         </scene>
+        <!--Custom Alert View Controller-->
+        <scene sceneID="07g-h4-oXU">
+            <objects>
+                <viewController id="rR5-eV-GBx" customClass="CustomAlertViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gJW-ab-png"/>
+                        <viewControllerLayoutGuide type="bottom" id="dfH-g5-SEV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OQe-cl-iXb">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO4-om-bLj">
+                                <rect key="frame" x="32" y="39" width="37" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irE-x1-aO3">
+                                <rect key="frame" x="24" y="70" width="54" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Dismiss"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="100" height="100"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2R-rW-j09" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="91" y="517"/>
+        </scene>
         <!--Info View Controller-->
         <scene sceneID="Hio-3y-2Eh">
             <objects>

@@ -12,6 +12,8 @@
 #import "Congressperson.h"
 #import "StateLegislator.h"
 #import "CongresspersonTableViewCell.h"
+#import <STPopup/STPopup.h>
+#import "UIFont+voicesFont.h"
 @interface CongressViewController ()
 @end
 
@@ -115,5 +117,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
+}
+
+- (void)presentCustomAlert {
+    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoPageViewController"];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    popupController.cornerRadius = 10;
+    if (NSClassFromString(@"UIBlurEffect")) {
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    }
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    popupController.transitionStyle = STPopupTransitionStyleFade;
+    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
+        
+    [popupController presentInViewController:self];
 }
 @end
