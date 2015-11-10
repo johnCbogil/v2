@@ -8,13 +8,19 @@
 
 #import "CustomAlertViewController.h"
 #import <STPopup/STPopup.h>
+#import "UIFont+voicesFont.h"
+@interface CustomAlertViewController()
+
+@end
+
 
 @implementation CustomAlertViewController
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.contentSizeInPopup = CGSizeMake(100, 100);
-        self.landscapeContentSizeInPopup = CGSizeMake(100, 100);
+        self.contentSizeInPopup = CGSizeMake(200, 200);
+        //self.landscapeContentSizeInPopup = CGSizeMake(100, 100);
+        
     }
     return self;
 }
@@ -25,7 +31,9 @@
     // Add views here
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
-    self.contentSizeInPopup = CGSizeMake(100, 100);
+    self.contentSizeInPopup = CGSizeMake(200, 200);
+    self.messageLabel.text = self.messageText;
+    self.messageLabel.font = [UIFont voicesFontWithSize:18];
+    self.title = self.titleText;
 }
-
 @end

@@ -85,7 +85,7 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        [self.delegate presentCustomAlert];
+//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try calling instead, it's more effective"andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
     }
 }
 
@@ -94,7 +94,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.congressperson.email];
     }
     else {
-        [self.delegate presentCustomAlert];
+        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
     }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
@@ -102,7 +102,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
     }
     else {
-        [self.delegate presentCustomAlert];
+        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a Twitter acct.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
     }
 }
 @end

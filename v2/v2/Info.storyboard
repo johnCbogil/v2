@@ -26,27 +26,31 @@
                         <viewControllerLayoutGuide type="bottom" id="dfH-g5-SEV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OQe-cl-iXb">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO4-om-bLj">
-                                <rect key="frame" x="32" y="39" width="37" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO4-om-bLj">
+                                <rect key="frame" x="20" y="0.0" width="160" height="192"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irE-x1-aO3">
-                                <rect key="frame" x="24" y="70" width="54" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Dismiss"/>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mO4-om-bLj" firstAttribute="leading" secondItem="OQe-cl-iXb" secondAttribute="leadingMargin" constant="4" id="ULL-2c-EgQ"/>
+                            <constraint firstItem="mO4-om-bLj" firstAttribute="top" secondItem="OQe-cl-iXb" secondAttribute="top" id="Um9-FB-vi5"/>
+                            <constraint firstItem="mO4-om-bLj" firstAttribute="centerX" secondItem="OQe-cl-iXb" secondAttribute="centerX" id="gx8-7n-Pyx"/>
+                            <constraint firstItem="dfH-g5-SEV" firstAttribute="top" secondItem="mO4-om-bLj" secondAttribute="bottom" constant="8" symbolic="YES" id="nrk-TD-XyR"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="100" height="100"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="mO4-om-bLj" id="zZc-HX-kcr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2R-rW-j09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

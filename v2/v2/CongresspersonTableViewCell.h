@@ -11,7 +11,7 @@
 @class CongresspersonTableViewCell;
 
 @protocol CustomAlertDelegate <NSObject>
-- (void)presentCustomAlert;
+- (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title;
 @end
 
 @interface CongresspersonTableViewCell : UITableViewCell

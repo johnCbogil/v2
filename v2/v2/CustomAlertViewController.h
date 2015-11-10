@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomAlertViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (strong, nonatomic) NSString *messageText;
+@property (strong, nonatomic) NSString *titleText;
 @end

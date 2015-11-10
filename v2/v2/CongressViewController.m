@@ -121,14 +121,13 @@
     return 100;
 }
 
-- (void)presentCustomAlert {
-    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"customAlertViewController"];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+- (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title {
+    CustomAlertViewController *customAlertViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"customAlertViewController"];
+    customAlertViewController.messageText = message;
+    customAlertViewController.titleText = title;
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:customAlertViewController];
     popupController.cornerRadius = 10;
-    if (NSClassFromString(@"UIBlurEffect")) {
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    }
+
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
