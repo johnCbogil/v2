@@ -54,7 +54,7 @@
                                                  name:@"presentEmailVC"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(presentTweetComposer)
+                                             selector:@selector(presentTweetComposer:)
                                                  name:@"presentTweetComposer"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -328,15 +328,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)presentTweetComposer {
+- (void)presentTweetComposer:(NSNotification*)notification {
     
-    // THIS NEEDS TO BE A STPOPUPCONTROLLER
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController
                                                   composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweetSheetOBJ setInitialText:@"TurnToTech - NYC"];
-        [tweetSheetOBJ addURL:[NSURL URLWithString:@"http://turntotech.io"]];
+        NSString *initialText = [NSString stringWithFormat:@"@%@", [notification.userInfo objectForKey:@"accountName"]];
+        [tweetSheetOBJ setInitialText:initialText];
         [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
     }
 }

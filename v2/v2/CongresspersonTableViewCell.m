@@ -99,7 +99,8 @@
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
     if (self.congressperson.twitter) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentTweetComposer" object:nil];
+        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.congressperson.twitter, @"accountName", nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
     }
     else {
         [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a Twitter acct.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
