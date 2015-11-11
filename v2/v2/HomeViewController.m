@@ -365,4 +365,8 @@
 
     [popupController presentInViewController:self];
 }
+
+- (void)toggleZeroStateLabel:(BOOL)state {
+    self.zeroStateLabel.alpha = state;
+}
 @end
