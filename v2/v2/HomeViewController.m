@@ -297,8 +297,8 @@
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         mailViewController.mailComposeDelegate = self;
-        [mailViewController setSubject:@"Subject Goes Here."];
-        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
+//        [mailViewController setSubject:@"Subject Goes Here."];
+//        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
         [mailViewController setToRecipients:@[repEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
