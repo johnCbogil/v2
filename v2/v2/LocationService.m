@@ -11,7 +11,7 @@
 
 @implementation LocationService
 
-+(LocationService *) sharedInstance{
++ (LocationService *) sharedInstance{
     static LocationService *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -38,10 +38,12 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    // TOGGLE ZEROSTATE ON
     NSLog(@"Location service failed with error %@", error);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
+    // TOGGLE ZEROSTATE OFF
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude %+.6f, Longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
     self.currentLocation = location;

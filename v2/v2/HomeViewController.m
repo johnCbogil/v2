@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *shimmer;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) NSArray *searchBarConstraints;
+@property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @end
 
 @implementation HomeViewController
