@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "NetworkManager.h"
-#import "LocationService.h"
 #import "RepManager.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
@@ -41,6 +40,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.zeroStateLabel.alpha = 0.0;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -73,6 +75,8 @@
     [self prepareSearchBar];
     
     self.infoButton.tag = 1;
+    
+    [LocationService sharedInstance].toggleZeroStateDelegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -366,7 +370,7 @@
     [popupController presentInViewController:self];
 }
 
-- (void)toggleZeroStateLabel:(BOOL)state {
+- (void)toggleZeroState:(BOOL)state {
     self.zeroStateLabel.alpha = state;
 }
 @end

@@ -16,6 +16,7 @@
 
 @interface CongresspersonTableViewCell : UITableViewCell
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;
+// RENAME THIS DELEGATE TO BE MORE SPECIFIC
 @property (strong, nonatomic) id <CustomAlertDelegate> delegate;
 
 @end

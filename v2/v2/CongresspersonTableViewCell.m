@@ -94,6 +94,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.congressperson.email];
     }
     else {
+        // RENAME THIS DELEGATE TO BE MORE SPECIFIC
         [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
     }
 }
