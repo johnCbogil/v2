@@ -20,8 +20,11 @@
     [super viewDidLoad];
     
     self.title = @"State Legislators";
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation];
+    
+    [[LocationService sharedInstance] startUpdatingLocation];
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadStateLegislatorTableData)
@@ -36,7 +39,10 @@
          forCellReuseIdentifier:@"StateRepTableViewCell"];
     
     self.tableView.allowsSelection = NO;
+}
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +72,13 @@
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
     });
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation];
+    }
 }
 
 #pragma mark - UITableView delegate methods
@@ -98,4 +111,5 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
+
 @end

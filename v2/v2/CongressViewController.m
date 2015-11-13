@@ -20,13 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Congress";
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadCongressTableData)
                                                  name:@"reloadCongressTableView"
                                                object:nil];
-    
     
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
@@ -39,8 +40,6 @@
          forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     
     self.tableView.allowsSelection = NO;
-    
-    
 }
 
 - (void)dealloc{
@@ -63,6 +62,16 @@
     }];
 }
 
+- (void)populateCongressmenFromLocation:(CLLocation*)location {
+    [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
+}
+
 - (void)reloadCongressTableData{
     NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
 
@@ -76,16 +85,6 @@
     if([keyPath isEqualToString:@"currentLocation"]) {
         [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
     }
-}
-
-- (void)populateCongressmenFromLocation:(CLLocation*)location {
-    [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    } onError:^(NSError *error) {
-        [error localizedDescription];
-    }];
 }
 
 #pragma mark - UITableView Delegate Methods
