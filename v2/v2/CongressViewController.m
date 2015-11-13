@@ -17,6 +17,8 @@
 @end
 
 @implementation CongressViewController
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,6 +42,8 @@
          forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     
     self.tableView.allowsSelection = NO;
+    self.tableView.alpha = 0.0;
+
 }
 
 - (void)dealloc{
@@ -65,6 +69,9 @@
 - (void)populateCongressmenFromLocation:(CLLocation*)location {
     [[RepManager sharedInstance]createCongressmenFromLocation:location WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:.25 animations:^{
+                self.tableView.alpha = 1.0;
+            }];
             [self.tableView reloadData];
         });
     } onError:^(NSError *error) {
@@ -78,6 +85,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+    
     [self.refreshControl endRefreshing];
 }
  

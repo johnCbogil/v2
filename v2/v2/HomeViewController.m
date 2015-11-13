@@ -177,6 +177,7 @@
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
+    [self hideSearchBar];
     [searchBar resignFirstResponder];
 }
 

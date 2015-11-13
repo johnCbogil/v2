@@ -39,6 +39,7 @@
          forCellReuseIdentifier:@"StateRepTableViewCell"];
     
     self.tableView.allowsSelection = NO;
+    self.tableView.alpha = 0.0;
 }
 
 - (void)dealloc{
@@ -61,6 +62,9 @@
 }
 - (void)populateStateLegislatorsFromLocation:(CLLocation*)location {
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:location WithCompletion:^{
+        [UIView animateWithDuration:.25 animations:^{
+            self.tableView.alpha = 1.0;
+        }];
         [self.tableView reloadData];
     } onError:^(NSError *error) {
         [error localizedDescription];
