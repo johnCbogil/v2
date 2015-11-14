@@ -14,14 +14,11 @@
 @end
 
 @interface LocationService : NSObject <CLLocationManagerDelegate>
-
 +(LocationService *) sharedInstance;
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *currentLocation;
 @property (strong, nonatomic) id <ToggleZeroStateDelegate> toggleZeroStateDelegate;
 - (void)startUpdatingLocation;
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock;
-
 @end

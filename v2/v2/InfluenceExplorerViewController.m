@@ -10,10 +10,6 @@
 #import "RepManager.h"
 #import "PageViewController.h"
 
-@interface InfluenceExplorerViewController ()
-
-@end
-
 @implementation InfluenceExplorerViewController
 
 - (void)viewDidLoad {

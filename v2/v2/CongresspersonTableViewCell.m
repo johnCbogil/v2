@@ -11,8 +11,7 @@
 #import "InfoPageViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-
-@interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate >
+@interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) Congressperson *congressperson;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -85,7 +84,7 @@
         confirmCallAlert.delegate = self;
     }
     else {
-//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try calling instead, it's more effective"andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
+        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try tweeting instead" andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
     }
 }
 

@@ -67,9 +67,7 @@
     self.pageControl.currentPage = 1;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-}
-
+// THESE NEXT TWO METHODS NEED TO RETURN VCs DYNAMICALLY
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     if (self.viewControllers[0] == self.secondVC){
         return self.firstVC;

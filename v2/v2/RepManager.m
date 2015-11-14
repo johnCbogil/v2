@@ -76,7 +76,6 @@
                 errorBlock(error);
             }];
         }
-        
         successBlock();
     } onError:^(NSError *error) {
         errorBlock(error);

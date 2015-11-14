@@ -18,12 +18,6 @@
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarLeadingConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarTrailingConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
 @property (strong, nonatomic) FBShimmeringView *shimmeringView;
@@ -33,6 +27,13 @@
 @property (strong, nonatomic) NSArray *searchBarConstraints;
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarLeadingConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarTrailingConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
+@property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
 @end
 
 @implementation HomeViewController
@@ -47,8 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search by address";
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changePage:)
                                                  name:@"changePage"
@@ -65,17 +65,7 @@
                                              selector:@selector(presentInfoViewController)
                                                  name:@"presentInfoViewController"
                                                object:nil];
-    
-    // ADD SEARCH BAR CONSTRAINTS
-    self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
-    self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
-    self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    self.searchBarConstraints = [NSArray arrayWithObjects:self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint, nil];
-    
     [self prepareSearchBar];
-    
-    self.infoButton.tag = 1;
     
     [LocationService sharedInstance].toggleZeroStateDelegate = self;
 }
@@ -94,6 +84,16 @@
 #pragma mark - Search Bar Delegate Methods
 
 - (void)prepareSearchBar {
+    
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search by address";
+
+    // ADD SEARCH BAR CONSTRAINTS
+    self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
+    self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
+    self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    self.searchBarConstraints = [NSArray arrayWithObjects:self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint, nil];
     self.searchBar.delegate = self;
     
     // ROUND THE BOX
@@ -138,8 +138,8 @@
                        state:UIControlStateNormal];
     
     // ROUND THE SEARCH BAR
-    UITextField *txfSearchField = [self.searchBar valueForKey:@"_searchField"];
-    txfSearchField.layer.cornerRadius = 13;
+    UITextField *textSearchField = [self.searchBar valueForKey:@"_searchField"];
+    textSearchField.layer.cornerRadius = 13;
     
     // HIDE THE SEARCH BAR FOR NOW
     self.searchBar.alpha = 0.0;
@@ -297,7 +297,7 @@
 }
 
 - (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:1.0];
+    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
 }
 
 #pragma mark - Presentation Controllers
@@ -339,7 +339,6 @@
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {
-    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController

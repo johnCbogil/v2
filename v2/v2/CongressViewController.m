@@ -13,11 +13,8 @@
 #import "StateLegislator.h"
 #import <STPopup/STPopup.h>
 #import "UIFont+voicesFont.h"
-@interface CongressViewController ()
-@end
 
 @implementation CongressViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

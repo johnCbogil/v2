@@ -25,6 +25,7 @@
     [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
 }
 
+// THESE TWO METHODS NEED TO BE UPDATED TO RETURN VCs DYNAMICALLY
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     if (self.viewControllers[0] == self.secondVC){
         return self.firstVC;

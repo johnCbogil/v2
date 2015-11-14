@@ -31,7 +31,6 @@
     return self;
 }
 
-
 - (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName{
     NSLog(@"Searching cache");
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];

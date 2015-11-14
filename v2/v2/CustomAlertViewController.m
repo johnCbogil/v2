@@ -9,10 +9,6 @@
 #import "CustomAlertViewController.h"
 #import <STPopup/STPopup.h>
 #import "UIFont+voicesFont.h"
-@interface CustomAlertViewController()
-
-@end
-
 
 @implementation CustomAlertViewController
 - (instancetype)init
