@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "v2/HomeViewController.m"
-            timestampString = "469068109.763573"
+            timestampString = "469152743.948271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
             landmarkName = "@implementation HomeViewController"
             landmarkType = "3">
          </BreakpointContent>

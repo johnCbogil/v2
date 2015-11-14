@@ -132,9 +132,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-F5-Ygv">
-                                        <rect key="frame" x="120" y="11" width="22" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="151" height="44"/>
                                         <animations/>
-                                        <state key="normal" image="MagnifyingGlass"/>
+                                        <state key="normal" title="     "/>
                                         <connections>
                                             <action selector="openSearchBarButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="kQk-kH-Wzx"/>
                                         </connections>
@@ -152,20 +152,28 @@
                                             <constraint firstAttribute="width" constant="1" id="kbE-ZP-dqV"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MagnifyingGlass" translatesAutoresizingMaskIntoConstraints="NO" id="FsE-H3-ANT" userLabel="magnifyingGlass">
+                                        <rect key="frame" x="117" y="11" width="22" height="22"/>
+                                        <animations/>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="6tq-q4-0eV" firstAttribute="leading" secondItem="Q5v-sk-Prb" secondAttribute="leading" constant="8" id="2jP-uI-mv1"/>
                                     <constraint firstAttribute="bottom" secondItem="bCG-p1-k8a" secondAttribute="bottom" constant="8" id="2jv-Oy-yor"/>
-                                    <constraint firstAttribute="bottom" secondItem="Blt-F5-Ygv" secondAttribute="bottom" constant="11" id="5pG-7Z-mkR"/>
-                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="leading" secondItem="bCG-p1-k8a" secondAttribute="trailing" constant="12" id="EGI-fi-QHy"/>
+                                    <constraint firstItem="FsE-H3-ANT" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="11" id="3h3-z9-8Mh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Blt-F5-Ygv" secondAttribute="bottom" id="5pG-7Z-mkR"/>
+                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="leading" secondItem="bCG-p1-k8a" secondAttribute="trailing" constant="-108" id="EGI-fi-QHy"/>
                                     <constraint firstItem="bCG-p1-k8a" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="8" id="EhY-Vh-gic"/>
-                                    <constraint firstAttribute="trailing" secondItem="Blt-F5-Ygv" secondAttribute="trailing" constant="8" id="WD9-JE-6ju"/>
-                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="10.5" id="WeZ-xI-1GC"/>
+                                    <constraint firstAttribute="trailing" secondItem="Blt-F5-Ygv" secondAttribute="trailing" constant="-1" id="WD9-JE-6ju"/>
+                                    <constraint firstItem="Blt-F5-Ygv" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" id="WeZ-xI-1GC"/>
                                     <constraint firstItem="6tq-q4-0eV" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="5" id="Wxl-Jg-2hY"/>
                                     <constraint firstItem="bCG-p1-k8a" firstAttribute="leading" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="11" id="Zf5-y9-VSQ"/>
                                     <constraint firstAttribute="trailing" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="54" id="ca4-9L-zKA"/>
+                                    <constraint firstItem="FsE-H3-ANT" firstAttribute="leading" secondItem="bCG-p1-k8a" secondAttribute="trailing" constant="9" id="dVp-T9-1bR"/>
+                                    <constraint firstAttribute="bottom" secondItem="FsE-H3-ANT" secondAttribute="bottom" constant="11" id="kts-wv-oyG"/>
+                                    <constraint firstAttribute="trailing" secondItem="FsE-H3-ANT" secondAttribute="trailing" constant="11" id="mWg-oG-Ay6"/>
                                     <constraint firstAttribute="bottom" secondItem="6tq-q4-0eV" secondAttribute="bottom" constant="6" id="pOv-Nm-eex"/>
                                 </constraints>
                             </view>
@@ -257,6 +265,7 @@
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
                         <outlet property="legislatureLevelLeadingConstraint" destination="2jP-uI-mv1" id="XVI-vQ-8M4"/>
                         <outlet property="legislatureLevelTrailingConstraint" destination="ca4-9L-zKA" id="SX9-3C-cl7"/>
+                        <outlet property="magnifyingGlass" destination="FsE-H3-ANT" id="98K-MH-UfX"/>
                         <outlet property="pageControl" destination="baJ-84-x7R" id="LTr-mW-nOn"/>
                         <outlet property="searchBar" destination="efA-Bb-9MQ" id="iwf-Zo-bgc"/>
                         <outlet property="searchButton" destination="Blt-F5-Ygv" id="HCQ-mA-MIT"/>
@@ -269,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="265" y="294"/>
+            <point key="canvasLocation" x="278" y="312"/>
         </scene>
         <!--Influence Explorer View Controller-->
         <scene sceneID="7H3-kF-vdy">
