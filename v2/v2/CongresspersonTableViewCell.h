@@ -7,12 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class CongresspersonTableViewCell;
-
-@protocol CustomAlertDelegate <NSObject>
-- (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title;
-@end
+#import "CustomAlertDelegate.h"
 
 @interface CongresspersonTableViewCell : UITableViewCell
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;

@@ -17,6 +17,7 @@
 		5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */; };
 		5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */; };
 		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
+		525E568F1BF7B138003D4DAF /* CustomAlertDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 525E568E1BF7B138003D4DAF /* CustomAlertDelegate.m */; };
 		52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52747B741B66EE92009702F5 /* StateLegislatorViewController.m */; };
 		528110831BF15D5B007E5B13 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528110821BF15D5B007E5B13 /* CustomAlertViewController.m */; };
 		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
@@ -66,6 +67,8 @@
 		5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		5253FB4C1BCB32F1001A5328 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		525E568D1BF7B138003D4DAF /* CustomAlertDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertDelegate.h; sourceTree = "<group>"; };
+		525E568E1BF7B138003D4DAF /* CustomAlertDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertDelegate.m; sourceTree = "<group>"; };
 		52747B731B66EE92009702F5 /* StateLegislatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislatorViewController.h; sourceTree = "<group>"; };
 		52747B741B66EE92009702F5 /* StateLegislatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateLegislatorViewController.m; sourceTree = "<group>"; };
 		528110811BF15D5B007E5B13 /* CustomAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertViewController.h; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				5204038D1BCC139700016768 /* InfoPageViewController.m */,
 				528110811BF15D5B007E5B13 /* CustomAlertViewController.h */,
 				528110821BF15D5B007E5B13 /* CustomAlertViewController.m */,
+				525E568D1BF7B138003D4DAF /* CustomAlertDelegate.h */,
+				525E568E1BF7B138003D4DAF /* CustomAlertDelegate.m */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 			files = (
 				528110831BF15D5B007E5B13 /* CustomAlertViewController.m in Sources */,
 				52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */,
+				525E568F1BF7B138003D4DAF /* CustomAlertDelegate.m in Sources */,
 				523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
 				52BB34371B6160CA00BB9FFD /* CongressViewController.m in Sources */,

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface StateLegislatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+#import "CustomAlertViewController.h"
+#import "CustomAlertDelegate.h"
+#import <STPopup/STPopup.h>
+@interface StateLegislatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CustomAlertDelegate>
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end

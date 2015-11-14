@@ -58,15 +58,15 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        // PRESENT ERROR
+        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try tweeting instead" andTitle:[NSString stringWithFormat:@"%@. %@", self.stateLegislator.firstName, self.stateLegislator.lastName]];
     }
 }
 - (IBAction)emailButtonDidPress:(id)sender {
-    if (self.stateLegislator.email) {
+    if (self.stateLegislator.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.stateLegislator.email];
     }
     else {
-        // PRESENT ERROR
+        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.stateLegislator.firstName, self.stateLegislator.lastName]];
     }
 }
 

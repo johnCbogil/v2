@@ -10,6 +10,7 @@
 #import "RepManager.h"
 #import "LocationService.h"
 #import "StateRepTableViewCell.h"
+#import "UIFont+voicesFont.h"
 @interface StateLegislatorViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -105,6 +106,7 @@
     
     StateRepTableViewCell *cell = (StateRepTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"StateRepTableViewCell" forIndexPath:indexPath];
     [cell initFromIndexPath:indexPath];
+    cell.delegate = self;
     return cell;
 }
 
@@ -114,6 +116,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
+}
+
+- (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title {
+    CustomAlertViewController *customAlertViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"customAlertViewController"];
+    customAlertViewController.messageText = message;
+    customAlertViewController.titleText = title;
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:customAlertViewController];
+    popupController.cornerRadius = 10;
+    
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    popupController.transitionStyle = STPopupTransitionStyleFade;
+    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
+    
+    [popupController presentInViewController:self];
 }
 
 @end
