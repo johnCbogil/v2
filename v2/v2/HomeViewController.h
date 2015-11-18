@@ -11,7 +11,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "LocationService.h"
 
-@interface HomeViewController : UIViewController <UISearchBarDelegate, MFMailComposeViewControllerDelegate, ToggleZeroStateDelegate>
+@interface HomeViewController : UIViewController <UISearchBarDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (weak, nonatomic) IBOutlet UIView *searchView;

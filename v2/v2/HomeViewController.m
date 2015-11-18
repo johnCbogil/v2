@@ -66,8 +66,6 @@
                                                  name:@"presentInfoViewController"
                                                object:nil];
     [self prepareSearchBar];
-    
-    [LocationService sharedInstance].toggleZeroStateDelegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -372,9 +370,5 @@
     [InfoPageViewController sharedInstance].pageControl.currentPage = 1;
 
     [popupController presentInViewController:self];
-}
-
-- (void)toggleZeroState:(BOOL)state {
-    self.zeroStateLabel.alpha = state;
 }
 @end
