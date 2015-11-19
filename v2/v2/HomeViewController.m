@@ -371,4 +371,24 @@
 
     [popupController presentInViewController:self];
 }
+
+- (void)toggleZeroStateLabel {
+    // if location and reach are good
+        // zerostate = 0
+    
+    // else
+        // if data is displayed, present UIAlertView
+            // if location is bad
+                // UIALert = 1
+            // if reach is bad
+                // UIAlert = 1
+    
+        // else, display UIView
+            // if location is bad
+                // zerostate = 1
+            // if reach is bad
+                // zerostate = 1
+    
+    
+}
 @end
