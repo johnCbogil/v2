@@ -65,6 +65,15 @@
                                              selector:@selector(presentInfoViewController)
                                                  name:@"presentInfoViewController"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(toggleZeroStateLabel)
+                                                 name:AFNetworkingReachabilityDidChangeNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(toggleZeroStateLabel)
+                                                 name:@"toggleZeroStateLabel"
+                                               object:nil];
+
     [self prepareSearchBar];
 }
 

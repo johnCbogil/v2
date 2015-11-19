@@ -40,7 +40,7 @@
     
     self.tableView.allowsSelection = NO;
     self.tableView.alpha = 0.0;
-
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
 - (void)dealloc{
