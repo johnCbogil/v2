@@ -75,6 +75,8 @@
                                                object:nil];
 
     [self prepareSearchBar];
+    
+    self.containerView.alpha = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -382,22 +384,40 @@
 }
 
 - (void)toggleZeroStateLabel {
-    // if location and reach are good
-        // zerostate = 0
     
-    // else
-        // if data is displayed, present UIAlertView
-            // if location is bad
-                // UIALert = 1
-            // if reach is bad
-                // UIAlert = 1
+    // THIS LEADS TO BAD UX BC IF INTERNET/LOCATION FAILS THEN THE USER IS PRESENTED WITH A SWIPE L/R OPTION BUT CANNOT ACTUALLY SWIPE L/R
+    // Is there data already displayed?
+    if (self.containerView.alpha == 1) {
+        // do nothing
+    }
     
-        // else, display UIView
-            // if location is bad
-                // zerostate = 1
-            // if reach is bad
-                // zerostate = 1
-    
-    
+    // There is no data currently displayed
+    else {
+        
+        // If internet is good and location is good
+        if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
+            self.containerView.alpha = 1;
+            self.zeroStateLabel.alpha = 0;
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
+        else {
+            
+            // If internet is good but location is bad
+            if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 0) {
+                self.zeroStateLabel.text = @"location is bad";
+            }
+            
+            // If internet is bad but location is good
+            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
+                self.zeroStateLabel.text = @"internet is bad";
+            }
+            
+            // If internet is bad and location is bad
+            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
+                self.zeroStateLabel.text = @"both are bad";
+            }
+            self.zeroStateLabel.alpha = 1;
+        }
+    }
 }
 @end

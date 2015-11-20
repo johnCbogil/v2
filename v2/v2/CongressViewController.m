@@ -27,6 +27,7 @@
                                              selector:@selector(reloadCongressTableData)
                                                  name:@"reloadCongressTableView"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     
     [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
@@ -81,9 +82,9 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     });
     
-    [self.refreshControl endRefreshing];
 }
  
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
@@ -140,5 +141,9 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
         
     [popupController presentInViewController:self];
+}
+
+- (void)endRefreshing {
+    [self.refreshControl endRefreshing];
 }
 @end

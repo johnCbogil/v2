@@ -31,6 +31,8 @@
                                              selector:@selector(reloadStateLegislatorTableData)
                                                  name:@"reloadStateLegislatorTableView"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
@@ -135,6 +137,10 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
     
     [popupController presentInViewController:self];
+}
+
+- (void)endRefreshing {
+    [self.refreshControl endRefreshing];
 }
 
 @end
