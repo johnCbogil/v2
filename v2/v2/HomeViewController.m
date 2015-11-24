@@ -407,17 +407,17 @@
             
             // If internet is good but location is bad
             if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 0) {
-                self.zeroStateLabel.text = @"location is bad";
+                self.zeroStateLabel.text = @"Could Not Determine Location";
             }
             
             // If internet is bad but location is good
             else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-                self.zeroStateLabel.text = @"internet is bad";
+                self.zeroStateLabel.text = @"No Internet Connection";
             }
             
             // If internet is bad and location is bad
             else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-                self.zeroStateLabel.text = @"both are bad";
+                self.zeroStateLabel.text = @"Both Internet and Location Services Appear To Be Unavailable";
             }
             self.zeroStateLabel.alpha = 1;
         }
