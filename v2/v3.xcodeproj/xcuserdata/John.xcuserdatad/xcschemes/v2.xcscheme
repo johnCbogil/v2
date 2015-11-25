@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
-               BuildableName = "v2.app"
-               BlueprintName = "v2"
-               ReferencedContainer = "container:v2.xcodeproj">
+               BuildableName = "v3.app"
+               BlueprintName = "v3"
+               ReferencedContainer = "container:v3.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52BB34431B6160CA00BB9FFD"
-               BuildableName = "v2Tests.xctest"
-               BlueprintName = "v2Tests"
-               ReferencedContainer = "container:v2.xcodeproj">
+               BuildableName = "v3.xctest"
+               BlueprintName = "v3Tests"
+               ReferencedContainer = "container:v3.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52BB34431B6160CA00BB9FFD"
-               BuildableName = "v2Tests.xctest"
-               BlueprintName = "v2Tests"
-               ReferencedContainer = "container:v2.xcodeproj">
+               BuildableName = "v3.xctest"
+               BlueprintName = "v3Tests"
+               ReferencedContainer = "container:v3.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
-            BuildableName = "v2.app"
-            BlueprintName = "v2"
-            ReferencedContainer = "container:v2.xcodeproj">
+            BuildableName = "v3.app"
+            BlueprintName = "v3"
+            ReferencedContainer = "container:v3.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
-            BuildableName = "v2.app"
-            BlueprintName = "v2"
-            ReferencedContainer = "container:v2.xcodeproj">
+            BuildableName = "v3.app"
+            BlueprintName = "v3"
+            ReferencedContainer = "container:v3.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
-            BuildableName = "v2.app"
-            BlueprintName = "v2"
-            ReferencedContainer = "container:v2.xcodeproj">
+            BuildableName = "v3.app"
+            BlueprintName = "v3"
+            ReferencedContainer = "container:v3.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
