@@ -126,7 +126,6 @@
 		3520A7DF67FE59B78AD9D0D95B40DCC6 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
 		3EF1BF33BA6A129AD9D6907F113D9971 /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
 		450F00BC078823112965A7D784DA3643 /* Shimmer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Shimmer.xcconfig; sourceTree = "<group>"; };
-		490FC7D918A725CE46B852227DE8669C /* Pods-v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-v2.release.xcconfig"; sourceTree = "<group>"; };
 		4F5359A9A662D27FED73027ECB9C9FBE /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		4F85A5E15A295669F7E9186BA94EFEE6 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		504E213B249A76D31E0DB1705DD000BD /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
@@ -156,7 +155,6 @@
 		9FFF752565D924158E763D7D7E7AD8FF /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationManager.m; path = AFNetworking/AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		A9FF40C2D0243CEFAA86CE5E38A1CC91 /* STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopup.h; path = STPopup/STPopup.h; sourceTree = "<group>"; };
 		B04612A1BBB2614D00AA57A94D07B358 /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
-		BA1A2AB26B61972421CA81659B9D690F /* Pods-v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-v2.debug.xcconfig"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BD442C75165406F137A529C0EFB920BA /* Instabug.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Instabug.bundle; sourceTree = "<group>"; };
 		BDD8542BDB834FC043DB2F9E7CC39A27 /* AFNetworking-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "AFNetworking-Private.xcconfig"; sourceTree = "<group>"; };
@@ -367,8 +365,6 @@
 				66CB4A382B2FDC9EE823B80B61F807B1 /* Pods-v2-acknowledgements.plist */,
 				5A676A25E67DBDA00544C6CD2DA071FD /* Pods-v2-dummy.m */,
 				86B090F638D59201CCE6D6E3D9DD1C7D /* Pods-v2-resources.sh */,
-				BA1A2AB26B61972421CA81659B9D690F /* Pods-v2.debug.xcconfig */,
-				490FC7D918A725CE46B852227DE8669C /* Pods-v2.release.xcconfig */,
 			);
 			name = "Pods-v2";
 			path = "Target Support Files/Pods-v2";
@@ -783,7 +779,6 @@
 		};
 		6C548C074ACADF36E6080C50FC695089 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA1A2AB26B61972421CA81659B9D690F /* Pods-v2.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -815,7 +810,6 @@
 		};
 		8CB76D03A409180FE0114B52B1730C39 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 490FC7D918A725CE46B852227DE8669C /* Pods-v2.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
