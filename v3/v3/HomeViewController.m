@@ -48,6 +48,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addObservers];
+
+    [self prepareSearchBar];
+    
+    self.containerView.alpha = 0;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
+    [self prepareShimmer];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)addObservers {
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changePage:)
@@ -73,21 +92,6 @@
                                              selector:@selector(toggleZeroStateLabel)
                                                  name:@"toggleZeroStateLabel"
                                                object:nil];
-
-    [self prepareSearchBar];
-    
-    self.containerView.alpha = 0;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
-    [self prepareShimmer];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Search Bar Delegate Methods
@@ -159,15 +163,17 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
     for (id vc in self.childViewControllers) {
         if ([vc isKindOfClass:[UIPageViewController class]]) {
             self.pageVC = vc;
         }
     }
+    
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
         if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
-                NSLog(@"%@", results);
+                //NSLog(@"%@", results);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
@@ -177,7 +183,6 @@
             [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
-                    
                 } onError:^(NSError *error) {
                     [error localizedDescription];
                 }];

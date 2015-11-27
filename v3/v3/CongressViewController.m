@@ -78,7 +78,7 @@
 }
 
 - (void)reloadCongressTableData{
-    NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
+    //NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];

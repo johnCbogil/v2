@@ -31,7 +31,7 @@
                                              selector:@selector(reloadStateLegislatorTableData)
                                                  name:@"reloadStateLegislatorTableView"
                                                object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
 
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -91,6 +91,7 @@
 }
 
 #pragma mark - UITableView delegate methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
