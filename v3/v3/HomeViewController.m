@@ -99,7 +99,7 @@
 - (void)prepareSearchBar {
     
     self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search by address";
+    self.searchBar.placeholder = @"Search by location";
 
     // ADD SEARCH BAR CONSTRAINTS
     self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
