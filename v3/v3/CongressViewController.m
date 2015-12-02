@@ -123,7 +123,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 125;
+    return 115;
 }
 
 - (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title {
