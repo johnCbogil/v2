@@ -269,7 +269,6 @@
 				52BB344A1B6160CA00BB9FFD /* v3Tests.m */,
 				52BB34481B6160CA00BB9FFD /* Supporting Files */,
 			);
-			name = v3Tests;
 			path = v3Tests;
 			sourceTree = "<group>";
 		};
@@ -593,6 +592,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = v3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -607,6 +607,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = v3;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

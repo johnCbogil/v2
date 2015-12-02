@@ -43,7 +43,7 @@
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     self.congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    self.name.text = [NSString stringWithFormat:@"(%@) - %@. %@ %@", self.congressperson.party, self.congressperson.shortTitle, self.congressperson.firstName, self.congressperson.lastName];
+    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.congressperson.shortTitle, self.congressperson.firstName, self.congressperson.lastName];
     self.photo.image = [UIImage imageWithData:self.congressperson.photo];
     self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.congressperson.nextElection];
 }
