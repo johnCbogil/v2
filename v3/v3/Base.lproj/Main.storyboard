@@ -125,7 +125,7 @@
                                 <rect key="frame" x="215" y="35" width="171" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-F5-Ygv">
-                                        <rect key="frame" x="-1.5" y="2" width="171" height="44"/>
+                                        <rect key="frame" x="-2" y="2" width="171" height="44"/>
                                         <animations/>
                                         <state key="normal" title="     "/>
                                         <connections>
@@ -200,29 +200,19 @@
                                 <rect key="frame" x="364" y="463" width="216" height="62"/>
                                 <animations/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xae-1n-mss">
-                                <rect key="frame" x="20" y="547" width="63" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xae-1n-mss">
+                                <rect key="frame" x="20" y="552" width="33" height="33"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="MoreButton"/>
                                 <connections>
                                     <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="wcs-6T-QOs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Politics is Local" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T69-qJ-3NI">
-                                <rect key="frame" x="440" y="533" width="140" height="52"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="31" id="3To-Ey-EVZ"/>
-                            <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="T69-qJ-3NI" secondAttribute="bottom" constant="15" id="3U0-ji-KX9"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="bottom" secondItem="a6m-D7-VQU" secondAttribute="bottom" id="4eM-3K-rpR"/>
                             <constraint firstItem="a6m-D7-VQU" firstAttribute="centerX" secondItem="WRM-qV-4HZ" secondAttribute="centerX" id="4jC-yy-nVd"/>
                             <constraint firstItem="a6m-D7-VQU" firstAttribute="trailing" secondItem="WRM-qV-4HZ" secondAttribute="trailingMargin" id="9N1-yC-rlF"/>
@@ -232,7 +222,6 @@
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="-0.5" id="Gmk-0R-tGC"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="LUt-Lg-a8B"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" id="PUX-vQ-t6s"/>
-                            <constraint firstItem="T69-qJ-3NI" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="bottom" constant="8" symbolic="YES" id="VBd-fy-Xxf"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="2J1-we-sWf" secondAttribute="bottom" constant="237" id="Vcn-vw-A0M"/>
                             <constraint firstItem="2J1-we-sWf" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="VgU-fi-XUB"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="trailing" secondItem="a6m-D7-VQU" secondAttribute="trailing" id="ZWl-Wf-Bkv"/>
@@ -246,7 +235,6 @@
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="vKI-iR-RC4"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="w6O-PF-YZW"/>
-                            <constraint firstItem="T69-qJ-3NI" firstAttribute="trailing" secondItem="270-eB-bNy" secondAttribute="trailing" id="xtP-Fw-4Ye"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="top" id="yLX-H2-u7I"/>
                             <constraint firstAttribute="bottom" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="z9X-aA-EoT"/>
                         </constraints>
@@ -431,5 +419,6 @@
     </scenes>
     <resources>
         <image name="MagnifyingGlass" width="33" height="33"/>
+        <image name="MoreButton" width="33" height="33"/>
     </resources>
 </document>
