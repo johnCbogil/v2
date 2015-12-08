@@ -196,6 +196,7 @@
 }
 
 - (void)showSearchBar {
+#warning Don't keep this as 300. Instead make it something based on the width of self.view.
     self.searchViewWidthConstraint.constant = 300;
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
