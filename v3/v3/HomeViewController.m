@@ -241,7 +241,6 @@
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
     }
     
-    NSLog(@"%f", self.legislatureLevel.intrinsicContentSize.width);
     self.searchViewWidthConstraint.constant = [self searchViewWidth];
     [UIView animateWithDuration:.15
                      animations:^{
@@ -399,4 +398,5 @@
         }
     }
 }
+
 @end
