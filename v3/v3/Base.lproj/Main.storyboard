@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C48a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -122,7 +122,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb">
-                                <rect key="frame" x="215" y="35" width="161.5" height="48"/>
+                                <rect key="frame" x="219.5" y="35" width="161.5" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-F5-Ygv">
                                         <rect key="frame" x="-2" y="2" width="171" height="44"/>
@@ -132,8 +132,8 @@
                                             <action selector="openSearchBarButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="kQk-kH-Wzx"/>
                                         </connections>
                                     </button>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="efA-Bb-9MQ">
-                                        <rect key="frame" x="0.0" y="2" width="275" height="44"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="efA-Bb-9MQ">
+                                        <rect key="frame" x="0.0" y="2" width="159.5" height="44"/>
                                         <animations/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
@@ -149,7 +149,7 @@
                                         <rect key="frame" x="130" y="13" width="23" height="23"/>
                                         <animations/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tq-q4-0eV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congress" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tq-q4-0eV">
                                         <rect key="frame" x="8" y="8" width="105.5" height="32"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="25"/>
@@ -163,13 +163,18 @@
                                     <constraint firstItem="6tq-q4-0eV" firstAttribute="leading" secondItem="Q5v-sk-Prb" secondAttribute="leading" constant="8" id="2jP-uI-mv1"/>
                                     <constraint firstAttribute="bottom" secondItem="bCG-p1-k8a" secondAttribute="bottom" constant="10" id="2jv-Oy-yor"/>
                                     <constraint firstItem="FsE-H3-ANT" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="13" id="3h3-z9-8Mh"/>
+                                    <constraint firstItem="efA-Bb-9MQ" firstAttribute="leading" secondItem="Q5v-sk-Prb" secondAttribute="leading" id="4LT-lT-D36"/>
                                     <constraint firstAttribute="bottom" secondItem="Blt-F5-Ygv" secondAttribute="bottom" constant="2" id="5pG-7Z-mkR"/>
                                     <constraint firstItem="Blt-F5-Ygv" firstAttribute="leading" secondItem="bCG-p1-k8a" secondAttribute="trailing" constant="-124" id="EGI-fi-QHy"/>
                                     <constraint firstItem="bCG-p1-k8a" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="10" id="EhY-Vh-gic"/>
+                                    <constraint firstAttribute="bottom" secondItem="efA-Bb-9MQ" secondAttribute="bottom" constant="2" id="Lpq-3Y-oG9"/>
+                                    <constraint firstAttribute="trailing" secondItem="efA-Bb-9MQ" secondAttribute="trailing" constant="2" id="OSu-UE-NN0"/>
+                                    <constraint firstAttribute="width" constant="161.5" id="QRk-ky-U91"/>
                                     <constraint firstAttribute="trailing" secondItem="Blt-F5-Ygv" secondAttribute="trailing" constant="-8" id="WD9-JE-6ju"/>
                                     <constraint firstItem="Blt-F5-Ygv" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="2" id="WeZ-xI-1GC"/>
                                     <constraint firstItem="6tq-q4-0eV" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="8" id="Wxl-Jg-2hY"/>
                                     <constraint firstItem="bCG-p1-k8a" firstAttribute="leading" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="8" id="Zf5-y9-VSQ"/>
+                                    <constraint firstItem="efA-Bb-9MQ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="top" constant="2" id="aHc-VE-mn4"/>
                                     <constraint firstAttribute="trailing" secondItem="6tq-q4-0eV" secondAttribute="trailing" constant="48" id="ca4-9L-zKA"/>
                                     <constraint firstItem="FsE-H3-ANT" firstAttribute="leading" secondItem="bCG-p1-k8a" secondAttribute="trailing" constant="8" id="dVp-T9-1bR"/>
                                     <constraint firstAttribute="bottom" secondItem="FsE-H3-ANT" secondAttribute="bottom" constant="12" id="kts-wv-oyG"/>
@@ -219,7 +224,7 @@
                             <constraint firstItem="a6m-D7-VQU" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="-137" id="AT1-JO-8wW"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="BMJ-3Q-ZZ2"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="116" id="Czv-sb-xwj"/>
-                            <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="4.5" id="Gmk-0R-tGC"/>
+                            <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="LUt-Lg-a8B"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" id="PUX-vQ-t6s"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="2J1-we-sWf" secondAttribute="bottom" constant="237" id="Vcn-vw-A0M"/>
@@ -234,7 +239,7 @@
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="vKI-iR-RC4"/>
-                            <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="5" id="w6O-PF-YZW"/>
+                            <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="w6O-PF-YZW"/>
                             <constraint firstItem="270-eB-bNy" firstAttribute="top" secondItem="a6m-D7-VQU" secondAttribute="top" id="yLX-H2-u7I"/>
                             <constraint firstAttribute="bottom" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="z9X-aA-EoT"/>
                         </constraints>
@@ -251,13 +256,12 @@
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
                         <outlet property="infoButton" destination="xae-1n-mss" id="zlp-Zc-3z6"/>
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
-                        <outlet property="legislatureLevelLeadingConstraint" destination="2jP-uI-mv1" id="XVI-vQ-8M4"/>
-                        <outlet property="legislatureLevelTrailingConstraint" destination="ca4-9L-zKA" id="SX9-3C-cl7"/>
                         <outlet property="magnifyingGlass" destination="FsE-H3-ANT" id="98K-MH-UfX"/>
                         <outlet property="pageControl" destination="baJ-84-x7R" id="LTr-mW-nOn"/>
                         <outlet property="searchBar" destination="efA-Bb-9MQ" id="iwf-Zo-bgc"/>
                         <outlet property="searchButton" destination="Blt-F5-Ygv" id="HCQ-mA-MIT"/>
                         <outlet property="searchView" destination="Q5v-sk-Prb" id="gZq-jV-PdK"/>
+                        <outlet property="searchViewWidthConstraint" destination="QRk-ky-U91" id="6cb-6t-jZp"/>
                         <outlet property="shimmer" destination="270-eB-bNy" id="WRn-np-XiB"/>
                         <outlet property="singleLineView" destination="bCG-p1-k8a" id="Lre-QG-4da"/>
                         <outlet property="voicesLabel" destination="a6m-D7-VQU" id="gaT-oy-ypd"/>

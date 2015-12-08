@@ -24,16 +24,11 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIView *shimmer;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) NSArray *searchBarConstraints;
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
+@property (assign, nonatomic) CGFloat searchViewDefaultWidth;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelTrailingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *legislatureLevelLeadingConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarLeadingConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarTrailingConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarTopConstraint;
-@property (weak, nonatomic) NSLayoutConstraint *searchBarBottomConstraint;
 @end
 
 @implementation HomeViewController
@@ -48,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
     [self addObservers];
 
     [self prepareSearchBar];
@@ -100,14 +96,6 @@
     
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by location";
-
-    // ADD SEARCH BAR CONSTRAINTS
-    self.searchBarLeadingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
-    self.searchBarTrailingConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
-    self.searchBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    self.searchBarBottomConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.searchView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    self.searchBarConstraints = [NSArray arrayWithObjects:self.searchBarLeadingConstraint, self.searchBarTrailingConstraint, self.searchBarTopConstraint, self.searchBarBottomConstraint, nil];
-    self.searchBar.delegate = self;
     
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
@@ -208,15 +196,7 @@
 }
 
 - (void)showSearchBar {
-    // DEACTIVATE LABEL CONSTRAINTS
-    self.legislatureLevelLeadingConstraint.active = NO;
-    self.legislatureLevelTrailingConstraint.active = NO;
-    
-    // ACTIVATE SEARCH BAR CONSRAINTS
-    for (NSLayoutConstraint *constraint in self.searchBarConstraints) {
-        constraint.active = YES;
-    }
-    
+    self.searchViewWidthConstraint.constant = 300;
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
@@ -234,17 +214,7 @@
 
 - (void)hideSearchBar {
     
-    // DEACTIVATE SEARCH BAR CONSTRAINTS
-    if (self.searchBar.constraints.count) {
-        for(NSLayoutConstraint *constraint in self.searchBarConstraints) {
-            constraint.active = NO;
-        }
-    }
-    
-    // ACTIVATE LABEL CONSTRAINTS
-    self.legislatureLevelTrailingConstraint.active = YES;
-    self.legislatureLevelLeadingConstraint.active = YES;
-    
+    self.searchViewWidthConstraint.constant = [self searchViewWidth];
     
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
@@ -260,18 +230,18 @@
                      }];
 }
 
+- (CGFloat)searchViewWidth {
+    return self.legislatureLevel.intrinsicContentSize.width + 60;
+}
+
 - (void)changePage:(NSNotification*)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
     }
     
-    CGSize maximumLabelSize = CGSizeMake(225,CGFLOAT_MAX);
-    CGSize requiredSize = [self.legislatureLevel sizeThatFits:maximumLabelSize];
-    CGRect labelFrame = self.legislatureLevel.frame;
-    labelFrame.size.width = requiredSize.width;
-    
-    self.legislatureLevel.frame = labelFrame;
+    NSLog(@"%f", self.legislatureLevel.intrinsicContentSize.width);
+    self.searchViewWidthConstraint.constant = [self searchViewWidth];
     [UIView animateWithDuration:.15
                      animations:^{
                          [self.view layoutIfNeeded];
