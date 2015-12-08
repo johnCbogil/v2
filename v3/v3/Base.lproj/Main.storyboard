@@ -133,7 +133,7 @@
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="efA-Bb-9MQ">
-                                        <rect key="frame" x="0.0" y="2" width="225" height="44"/>
+                                        <rect key="frame" x="0.0" y="2" width="275" height="44"/>
                                         <animations/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
