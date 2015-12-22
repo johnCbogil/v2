@@ -260,7 +260,7 @@
     self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
     [self.view addSubview:self.shimmeringView];
     self.voicesLabel.frame = self.shimmeringView.frame;
-    self.shimmeringView.contentView = self.voicesLabel;
+    //self.shimmeringView.contentView = self.voicesLabel;
     self.shimmeringView.shimmering = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
