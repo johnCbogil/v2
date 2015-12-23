@@ -246,8 +246,8 @@
 				52BB34361B6160CA00BB9FFD /* CongressViewController.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
-				5204038B1BCC137F00016768 /* Info */,
 				528DC63C1B629DFA00560DD6 /* Representatives */,
+				5204038B1BCC137F00016768 /* Info */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
 			);
