@@ -24,7 +24,6 @@
         else {
             self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
         }
-
         return self;
     }
     return self;

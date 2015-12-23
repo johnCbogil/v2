@@ -9,8 +9,8 @@
 #import "HomeViewController.h"
 #import "NetworkManager.h"
 #import "RepManager.h"
-#import "FBShimmeringView.h"
-#import "FBShimmeringLayer.h"
+//#import "FBShimmeringView.h"
+//#import "FBShimmeringLayer.h"
 #import "InfoPageViewController.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
@@ -19,10 +19,10 @@
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
-@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+//@property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
+//@property (strong, nonatomic) FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UIView *shimmer;
+//@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
@@ -55,7 +55,7 @@
     [super viewDidAppear:animated];
     
     // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
-    [self prepareShimmer];
+ //   [self prepareShimmer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -254,34 +254,34 @@
     }
 }
 
-#pragma mark - Shimmer
-
-- (void)prepareShimmer {
-    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
-    [self.view addSubview:self.shimmeringView];
-    self.voicesLabel.frame = self.shimmeringView.frame;
-    //self.shimmeringView.contentView = self.voicesLabel;
-    self.shimmeringView.shimmering = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
-}
+//#pragma mark - Shimmer
+//
+//- (void)prepareShimmer {
+//    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
+//    [self.view addSubview:self.shimmeringView];
+//    self.voicesLabel.frame = self.shimmeringView.frame;
+//    //self.shimmeringView.contentView = self.voicesLabel;
+//    self.shimmeringView.shimmering = NO;
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+//}
 
 - (void)viewDidLayoutSubviews {
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
 }
 
-- (void)toggleShimmerOn {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
-    self.shimmeringView.shimmering = YES;
-}
-
-- (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
-}
+////- (void)toggleShimmerOn {
+////    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
+////    self.shimmeringView.shimmering = YES;
+////}
+//
+//- (void)toggleShimmerOff {
+//    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
+//}
 
 #pragma mark - Presentation Controllers
 

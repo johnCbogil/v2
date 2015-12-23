@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSString *twitter;
 @property (strong, nonatomic) NSString *influenceExplorerID;
 @property (strong, nonatomic) NSString *crpID;
+@property (strong, nonatomic) NSString *district;
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSArray *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;
