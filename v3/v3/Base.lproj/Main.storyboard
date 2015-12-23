@@ -183,12 +183,6 @@
                                     <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="wcs-6T-QOs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26j-9p-luK">
-                                <rect key="frame" x="61" y="559" width="519" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -220,7 +214,6 @@
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
                         <outlet property="infoButton" destination="xae-1n-mss" id="zlp-Zc-3z6"/>
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
-                        <outlet property="locationInfoLabel" destination="26j-9p-luK" id="5CO-WW-Owi"/>
                         <outlet property="magnifyingGlass" destination="FsE-H3-ANT" id="98K-MH-UfX"/>
                         <outlet property="pageControl" destination="baJ-84-x7R" id="LTr-mW-nOn"/>
                         <outlet property="searchBar" destination="efA-Bb-9MQ" id="iwf-Zo-bgc"/>
