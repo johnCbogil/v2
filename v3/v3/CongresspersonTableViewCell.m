@@ -27,10 +27,10 @@
 - (void)awakeFromNib {
     // Initialization code
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
-//    self.photo.layer.cornerRadius = self.photo.frame.size.width / 2;
-//    
-//    self.photo.clipsToBounds = YES;
-//    
+    self.photo.layer.cornerRadius = self.photo.frame.size.width / 2;
+    
+    self.photo.clipsToBounds = YES;
+//
 //    // ADD SHADOW
 //    self.shadowView.backgroundColor = [UIColor clearColor];
 //    self.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
