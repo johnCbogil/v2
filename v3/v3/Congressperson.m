@@ -23,6 +23,8 @@
         self.email = [data valueForKey:@"oc_email"];
         self.twitter = [data valueForKey:@"twitter_id"];
         self.district = [data valueForKey:@"district"];
+        self.state = [data valueForKey:@"state"];
+        [self prepareDistrictInformation:self.district state:self.state legislatureLevel:@"Congress"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
             self.title = @"Senator";
@@ -45,5 +47,12 @@
     else {
         return  @"3 Nov 2020";
     }
+}
+
+- (void)prepareDistrictInformation:(NSString*)districtNumber state:(NSString*)stateCode legislatureLevel:(NSString*)level{
+    NSDictionary *districtInfoDictionary = @{@"districtNumber" : districtNumber, @"stateCode" : stateCode, @"legislatureLevel" : level};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil userInfo:districtInfoDictionary];
+    
+    
 }
 @end

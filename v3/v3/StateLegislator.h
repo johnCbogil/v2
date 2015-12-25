@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSURL *photoURL;
 @property (strong, nonatomic) NSData *photo;
+@property (strong, nonatomic) NSString *stateCode;
+@property (strong, nonatomic) NSString *districtInfo;
 
 - (id)initWithData:(NSDictionary*)data;
 

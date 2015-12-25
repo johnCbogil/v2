@@ -89,6 +89,11 @@
                                              selector:@selector(toggleZeroStateLabel)
                                                  name:@"toggleZeroStateLabel"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateInformationLabel:)
+                                                 name:@"updateInformationLabel"
+                                               object:nil];
+
 }
 
 #pragma mark - Search Bar Delegate Methods
@@ -396,6 +401,15 @@
             }
             self.zeroStateLabel.alpha = 1;
         }
+    }
+}
+
+- (void)updateInformationLabel:(NSNotification*)notification {
+    NSString *districtNumber = [notification.userInfo valueForKey:@"districtNumber"];
+    NSString *stateCode = [notification.userInfo valueForKey:@"stateCode"];
+    NSString *informationLabel = [NSString stringWithFormat:@"%@ Congressional District %@", stateCode, districtNumber];
+        if (![informationLabel isEqualToString:[NSString stringWithFormat:@"%@ Congressional District <null>", stateCode]]) {
+            self.informationLabel.text = informationLabel;
     }
 }
 
