@@ -30,6 +30,7 @@
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
+
 @end
 
 @implementation HomeViewController
@@ -405,11 +406,14 @@
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {
-    NSString *districtNumber = [notification.userInfo valueForKey:@"districtNumber"];
+    NSString *legislatureLevel = [notification.userInfo valueForKey:@"legislatureLevel"];
     NSString *stateCode = [notification.userInfo valueForKey:@"stateCode"];
-    NSString *informationLabel = [NSString stringWithFormat:@"%@ Congressional District %@", stateCode, districtNumber];
-        if (![informationLabel isEqualToString:[NSString stringWithFormat:@"%@ Congressional District <null>", stateCode]]) {
+    if ([legislatureLevel isEqualToString:@"Congress"]) {
+        NSString *districtNumber = [notification.userInfo valueForKey:@"districtNumber"];
+        NSString *informationLabel = [NSString stringWithFormat:@"Congressional District: %@-%@", stateCode, districtNumber];
+        if (![informationLabel isEqualToString:[NSString stringWithFormat:@"Congressional District: %@-<null>", stateCode]]) {
             self.informationLabel.text = informationLabel;
+        }
     }
 }
 

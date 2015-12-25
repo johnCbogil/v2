@@ -20,6 +20,7 @@
         self.email = [data valueForKey:@"email"];
         self.districtInfo = [data valueForKey:@"+district"];
         self.stateCode = [data valueForKey:@"state"];
+        self.chamber = [data valueForKey:@"chamber"];
         if ([data valueForKey:@"+party"]) {
             self.party = [[data valueForKey:@"+party"]substringToIndex: MIN(1, [[data valueForKey:@"+party"] length])].capitalizedString;
         }
@@ -29,10 +30,5 @@
         return self;
     }
     return self;
-}
-
-- (void)prepareDistrictInformation:(NSString*)districtNumber state:(NSString*)stateCode legislatureLevel:(NSString*)level{
-    NSDictionary *districtInfoDictionary = @{@"districtNumber" : districtNumber, @"stateCode" : stateCode, @"legislatureLevel", level};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil userInfo:districtInfoDictionary];
 }
 @end
