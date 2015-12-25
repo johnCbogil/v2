@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
+@property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
 @end
 
