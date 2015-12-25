@@ -18,9 +18,10 @@
         self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];
         self.photoURL = [NSURL URLWithString:[data valueForKey:@"photo_url"]];
         self.email = [data valueForKey:@"email"];
-        self.districtInfo = [data valueForKey:@"+district"];
+        self.districtInfo = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         self.chamber = [data valueForKey:@"chamber"];
+        [self prepareDistrictInformationLabel:self.stateCode chamber:self.chamber district:self.districtInfo];
         if ([data valueForKey:@"+party"]) {
             self.party = [[data valueForKey:@"+party"]substringToIndex: MIN(1, [[data valueForKey:@"+party"] length])].capitalizedString;
         }
@@ -30,5 +31,10 @@
         return self;
     }
     return self;
+}
+
+- (void)prepareDistrictInformationLabel:(NSString*)stateCode chamber:(NSString*)chamberName district:(NSString*)districtNumber{
+    NSDictionary *districtInfoDictionary = @{@"stateCode" : stateCode, @"chamber" : chamberName, @"districtNumber" : districtNumber, @"legislatureLevel" : @"State"};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil userInfo:districtInfoDictionary];
 }
 @end

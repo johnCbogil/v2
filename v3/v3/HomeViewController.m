@@ -29,7 +29,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
-
+@property (strong, nonatomic) NSString *stateLowerDistrictNumber;
+@property (strong, nonatomic) NSString *stateUpperDistrictNumber;
 
 @end
 
@@ -408,12 +409,27 @@
 - (void)updateInformationLabel:(NSNotification*)notification {
     NSString *legislatureLevel = [notification.userInfo valueForKey:@"legislatureLevel"];
     NSString *stateCode = [notification.userInfo valueForKey:@"stateCode"];
+    // IF THE LEVEL IS FEDERAL
     if ([legislatureLevel isEqualToString:@"Congress"]) {
         NSString *districtNumber = [notification.userInfo valueForKey:@"districtNumber"];
         NSString *informationLabel = [NSString stringWithFormat:@"Congressional District: %@-%@", stateCode, districtNumber];
+        // SENATORS DON'T HAVE DISTRICTS SO WE MUST ACCOUNT FOR NULL
         if (![informationLabel isEqualToString:[NSString stringWithFormat:@"Congressional District: %@-<null>", stateCode]]) {
             self.informationLabel.text = informationLabel;
         }
+    }
+    // IF THE LEVEL IS STATE
+    else {
+        // IF CHAMBER IS UPPER
+        if ([[notification.userInfo valueForKey:@"chamber"]isEqualToString:@"upper"]) {
+            self.stateUpperDistrictNumber = [notification.userInfo valueForKey:@"districtNumber"];
+        }
+        else {
+            self.stateLowerDistrictNumber = [notification.userInfo valueForKey:@"districtNumber"];
+        }
+        NSString *informationLabel = [NSString stringWithFormat:@"State House District %@, State Senate District %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+        NSLog(@"%@", informationLabel);
+        self.informationLabel.text = informationLabel;
     }
 }
 
