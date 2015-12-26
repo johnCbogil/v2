@@ -178,6 +178,9 @@
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xae-1n-mss">
                                 <rect key="frame" x="20" y="552" width="33" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33" id="V9A-tz-ZV7"/>
+                                </constraints>
                                 <state key="normal" image="InfoButton"/>
                                 <connections>
                                     <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="wcs-6T-QOs"/>
@@ -185,10 +188,6 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ze-v4-afn">
                                 <rect key="frame" x="61" y="559" width="519" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="519" id="9R4-9F-h0i"/>
-                                    <constraint firstAttribute="height" constant="21" id="OOb-FY-bec"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -197,24 +196,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="33" id="3To-Ey-EVZ"/>
-                            <constraint firstAttribute="bottom" secondItem="4Ze-v4-afn" secondAttribute="bottom" constant="20" symbolic="YES" id="6kj-1t-8Me"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="BMJ-3Q-ZZ2"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="116" id="Czv-sb-xwj"/>
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
+                            <constraint firstItem="4Ze-v4-afn" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="14" id="Gxk-gB-zVj"/>
+                            <constraint firstItem="xae-1n-mss" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="7" id="NWh-HG-jem"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" id="PUX-vQ-t6s"/>
-                            <constraint firstItem="4Ze-v4-afn" firstAttribute="leading" secondItem="xae-1n-mss" secondAttribute="trailing" constant="8" symbolic="YES" id="SOK-Ro-itM"/>
+                            <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="Pl3-Xz-oQp"/>
+                            <constraint firstItem="4Ze-v4-afn" firstAttribute="leading" secondItem="xae-1n-mss" secondAttribute="trailing" constant="8" symbolic="YES" id="QIz-Mt-buk"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="2J1-we-sWf" secondAttribute="bottom" constant="237" id="Vcn-vw-A0M"/>
                             <constraint firstItem="2J1-we-sWf" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="VgU-fi-XUB"/>
+                            <constraint firstAttribute="bottom" secondItem="4Ze-v4-afn" secondAttribute="bottom" constant="20" symbolic="YES" id="W6m-dD-yiH"/>
+                            <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="f9B-Vh-NbD"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="-4" id="gXE-CK-0AJ"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" id="hHC-Dt-Ges"/>
                             <constraint firstItem="2J1-we-sWf" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" constant="0.5" id="jkW-iv-b1v"/>
-                            <constraint firstItem="4Ze-v4-afn" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="14" id="oXi-UO-Pjf"/>
-                            <constraint firstAttribute="trailing" secondItem="4Ze-v4-afn" secondAttribute="trailing" constant="20" id="rEd-sw-qJD"/>
+                            <constraint firstItem="4Ze-v4-afn" firstAttribute="trailing" secondItem="WRM-qV-4HZ" secondAttribute="trailingMargin" id="npa-h3-VLf"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
-                            <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="vKI-iR-RC4"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="0.5" id="w6O-PF-YZW"/>
-                            <constraint firstAttribute="bottom" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="z9X-aA-EoT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
