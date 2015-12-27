@@ -20,10 +20,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i04-Gh-fbL">
-                        <rect key="frame" x="8" y="9" width="110" height="110"/>
+                        <rect key="frame" x="8" y="9" width="89" height="110"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="110" id="KCj-gj-55O"/>
+                            <constraint firstAttribute="width" constant="89" id="KCj-gj-55O"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-NX-ZHW">
@@ -68,7 +68,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Election:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pc-pS-6xH">
                         <rect key="frame" x="126" y="48" width="229" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -77,7 +77,7 @@
                     <constraint firstItem="R5S-a1-pTK" firstAttribute="top" secondItem="6pc-pS-6xH" secondAttribute="bottom" constant="13" id="CWo-y3-Iuo"/>
                     <constraint firstAttribute="trailingMargin" secondItem="6pc-pS-6xH" secondAttribute="trailing" constant="-3" id="DdP-Nh-fTu"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="top" secondItem="nSl-S2-6uC" secondAttribute="top" constant="4" id="E2y-5X-R3B"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="8" id="EP3-0E-xIT"/>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="29" id="EP3-0E-xIT"/>
                     <constraint firstItem="BV2-uE-cnu" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="42" id="Fuq-bz-0gJ"/>
                     <constraint firstItem="cJk-NX-ZHW" firstAttribute="trailing" secondItem="9uY-lc-yzz" secondAttribute="trailingMargin" constant="4" id="Kdg-4n-pP9"/>
                     <constraint firstItem="nSl-S2-6uC" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="leading" id="L1n-G4-oL4"/>
@@ -93,7 +93,7 @@
                     <constraint firstAttribute="bottom" secondItem="BV2-uE-cnu" secondAttribute="bottom" constant="15.5" id="ucu-DI-FdO"/>
                     <constraint firstItem="6pc-pS-6xH" firstAttribute="leading" secondItem="cJk-NX-ZHW" secondAttribute="leading" id="y3I-Av-r0N"/>
                     <constraint firstItem="8cF-nf-nal" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="42" id="zcT-tz-qgT"/>
-                    <constraint firstItem="R5S-a1-pTK" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="8" id="zdL-aA-4sq"/>
+                    <constraint firstItem="R5S-a1-pTK" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="29" id="zdL-aA-4sq"/>
                     <constraint firstItem="nSl-S2-6uC" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" constant="-3" id="zkg-lQ-oMS"/>
                 </constraints>
                 <variation key="default">
