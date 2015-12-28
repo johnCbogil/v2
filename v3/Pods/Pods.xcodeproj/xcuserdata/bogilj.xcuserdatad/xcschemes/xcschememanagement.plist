@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-v3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>STPopup.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,16 @@
 			<true/>
 		</dict>
 		<key>5F1B91C967699D055FE8914725A5554F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>81F9521674EF481E2B2FA77D5CCC8B92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4311D6CC86D4B8F9C2B0D527575E3C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

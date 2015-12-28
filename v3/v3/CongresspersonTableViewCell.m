@@ -27,7 +27,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
-    self.photo.layer.cornerRadius = 3;
+    self.photo.layer.cornerRadius = 5;
     
     self.photo.clipsToBounds = YES;
 //

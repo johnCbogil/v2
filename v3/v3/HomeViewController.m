@@ -275,7 +275,7 @@
             }
             if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
                 // THE STATE CODE PROPERTY DOES NOT MATCH THE CONGRESSPERSON STATE PROPERTY
-                self.informationLabel.text = [NSString stringWithFormat:@"%@ House District %@, %@ Senate District %@", stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber,stateLegislator.stateCode.uppercaseString, self.stateUpperDistrictNumber];
+                self.informationLabel.text = [NSString stringWithFormat:@"%@: House-%@, Senate-%@",stateLegislator.stateCode, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
             }
             
         }
