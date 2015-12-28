@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "NetworkManager.h"
 #import "RepManager.h"
+#import "StateLegislator.h"
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
 #import "InfoPageViewController.h"
@@ -253,12 +254,31 @@
                      animations:^{
                          [self.view layoutIfNeeded];
                      }];
-    
     if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
         self.pageControl.currentPage = 0;
+        for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
+            NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.district];
+            if (![districtNumber isEqualToString:@"<null>"]) {
+                self.informationLabel.text = [NSString stringWithFormat:@"Congressional District %@-%@", congressperson.state.uppercaseString, districtNumber];
+            }
+        }
     }
     else {
         self.pageControl.currentPage = 1;
+        for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
+            if ([stateLegislator.chamber isEqualToString:@"upper"]) {
+                // THIS DISTRI T INFO PROPERTY DOESNT MATCH THE CONGRESSPERSON DISTRICT PROOPERTY NAME
+                self.stateUpperDistrictNumber = stateLegislator.districtInfo;
+            }
+            else {
+                self.stateLowerDistrictNumber = stateLegislator.districtInfo;
+            }
+            if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
+                // THE STATE CODE PROPERTY DOES NOT MATCH THE CONGRESSPERSON STATE PROPERTY
+                self.informationLabel.text = [NSString stringWithFormat:@"%@ House District %@, %@ Senate District %@", stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber,stateLegislator.stateCode.uppercaseString, self.stateUpperDistrictNumber];
+            }
+            
+        }
     }
 }
 
@@ -407,30 +427,30 @@
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {
-    NSString *legislatureLevel = [notification.userInfo valueForKey:@"legislatureLevel"];
-    NSString *stateCode = [notification.userInfo valueForKey:@"stateCode"];
-    // IF THE LEVEL IS FEDERAL
-    if ([legislatureLevel isEqualToString:@"Congress"]) {
-        NSString *districtNumber = [notification.userInfo valueForKey:@"districtNumber"];
-        NSString *informationLabel = [NSString stringWithFormat:@"Congressional District: %@-%@", stateCode, districtNumber];
-        // SENATORS DON'T HAVE DISTRICTS SO WE MUST ACCOUNT FOR NULL
-        if (![informationLabel isEqualToString:[NSString stringWithFormat:@"Congressional District: %@-<null>", stateCode]]) {
-            self.informationLabel.text = informationLabel;
-        }
-    }
-    // IF THE LEVEL IS STATE
-    else {
-        // IF CHAMBER IS UPPER
-        if ([[notification.userInfo valueForKey:@"chamber"]isEqualToString:@"upper"]) {
-            self.stateUpperDistrictNumber = [notification.userInfo valueForKey:@"districtNumber"];
-        }
-        else {
-            self.stateLowerDistrictNumber = [notification.userInfo valueForKey:@"districtNumber"];
-        }
-        NSString *informationLabel = [NSString stringWithFormat:@"State House District %@, State Senate District %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
-        NSLog(@"%@", informationLabel);
-        self.informationLabel.text = informationLabel;
-    }
+//    NSString *legislatureLevel = [notification.userInfo valueForKey:@"legislatureLevel"];
+//    NSString *stateCode = [notification.userInfo valueForKey:@"stateCode"];
+//    // IF THE LEVEL IS FEDERAL
+//    if ([legislatureLevel isEqualToString:@"Congress"]) {
+//        NSString *districtNumber = [notification.userInfo valueForKey:@"districtNumber"];
+//        NSString *informationLabel = [NSString stringWithFormat:@"Congressional District: %@-%@", stateCode, districtNumber];
+//        // SENATORS DON'T HAVE DISTRICTS SO WE MUST ACCOUNT FOR NULL
+//        if (![informationLabel isEqualToString:[NSString stringWithFormat:@"Congressional District: %@-<null>", stateCode]]) {
+//            self.informationLabel.text = informationLabel;
+//        }
+//    }
+//    // IF THE LEVEL IS STATE
+//    else {
+//        // IF CHAMBER IS UPPER
+//        if ([[notification.userInfo valueForKey:@"chamber"]isEqualToString:@"upper"]) {
+//            self.stateUpperDistrictNumber = [notification.userInfo valueForKey:@"districtNumber"];
+//        }
+//        else {
+//            self.stateLowerDistrictNumber = [notification.userInfo valueForKey:@"districtNumber"];
+//        }
+//        NSString *informationLabel = [NSString stringWithFormat:@"State House District %@, State Senate District %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+//        NSLog(@"%@", informationLabel);
+//        self.informationLabel.text = informationLabel;
+//    }
 }
 
 @end
