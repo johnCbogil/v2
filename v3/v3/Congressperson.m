@@ -22,9 +22,9 @@
         self.party = [data valueForKey:@"party"];
         self.email = [data valueForKey:@"oc_email"];
         self.twitter = [data valueForKey:@"twitter_id"];
-        self.district = [data valueForKey:@"district"];
-        self.state = [data valueForKey:@"state"];
-        [self prepareDistrictInformation:self.district state:self.state legislatureLevel:@"Congress"];
+        self.districtNumber = [data valueForKey:@"district"];
+        self.stateCode = [data valueForKey:@"state"];
+        [self prepareDistrictInformation:self.districtNumber state:self.stateCode legislatureLevel:@"Congress"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
             self.title = @"Senator";

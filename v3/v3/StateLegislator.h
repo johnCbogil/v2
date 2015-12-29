@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSURL *photoURL;
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSString *stateCode;
-@property (strong, nonatomic) NSString *districtInfo;
+@property (strong, nonatomic) NSString *districtNumber;
 @property (strong, nonatomic) NSString *chamber;
 @property (strong, nonatomic) NSString *upperChamber;
 @property (strong, nonatomic) NSString *lowerChamber;

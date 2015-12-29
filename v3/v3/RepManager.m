@@ -44,6 +44,7 @@
                 if (successBlock) {
                     [listOfCongressmen addObject:congressperson];
                     self.listOfCongressmen = listOfCongressmen;
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
             } onError:^(NSError *error) {
@@ -66,11 +67,13 @@
             StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
             [self assignStatePhotos:stateLegislator withCompletion:^{
                 if (successBlock) {
-                    successBlock();
                     [listofStateLegislators addObject:stateLegislator];
                     self.listofStateLegislators = listofStateLegislators;
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
                                                                         object:nil];
+                    successBlock();
+
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);

@@ -49,7 +49,7 @@
     
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
     [self addObservers];
-
+    
     [self prepareSearchBar];
     
     self.containerView.alpha = 0;
@@ -59,7 +59,7 @@
     [super viewDidAppear:animated];
     
     // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
- //   [self prepareShimmer];
+    //   [self prepareShimmer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,7 +96,7 @@
                                              selector:@selector(updateInformationLabel:)
                                                  name:@"updateInformationLabel"
                                                object:nil];
-
+    
 }
 
 #pragma mark - Search Bar Delegate Methods
@@ -256,36 +256,11 @@
                      }];
     if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
         self.pageControl.currentPage = 0;
-        for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
-            NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.district];
-            if (![districtNumber isEqualToString:@"<null>"]) {
-                self.informationLabel.text = [NSString stringWithFormat:@"Congressional District %@-%@", congressperson.state.uppercaseString, districtNumber];
-            }
-        }
     }
     else {
         self.pageControl.currentPage = 1;
-        for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
-            if ([stateLegislator.chamber isEqualToString:@"upper"]) {
-                // THIS DISTRI T INFO PROPERTY DOESNT MATCH THE CONGRESSPERSON DISTRICT PROOPERTY NAME
-                self.stateUpperDistrictNumber = stateLegislator.districtInfo;
-            }
-            else {
-                self.stateLowerDistrictNumber = stateLegislator.districtInfo;
-            }
-            if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
-                // THE STATE CODE PROPERTY DOES NOT MATCH THE CONGRESSPERSON STATE PROPERTY
-                if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
-                    self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
-                }
-                else {
-                    self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
-
-                }
-            }
-            
-        }
     }
+    [self updateInformationLabel:nil];
 }
 
 //#pragma mark - Shimmer
@@ -296,7 +271,7 @@
 //    self.voicesLabel.frame = self.shimmeringView.frame;
 //    //self.shimmeringView.contentView = self.voicesLabel;
 //    self.shimmeringView.shimmering = NO;
-//    
+//
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
@@ -324,8 +299,8 @@
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         mailViewController.mailComposeDelegate = self;
-//        [mailViewController setSubject:@"Subject Goes Here."];
-//        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
+        //        [mailViewController setSubject:@"Subject Goes Here."];
+        //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
         [mailViewController setToRecipients:@[repEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
@@ -387,7 +362,7 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
     
     [InfoPageViewController sharedInstance].pageControl.currentPage = 1;
-
+    
     [popupController presentInViewController:self];
 }
 
@@ -404,7 +379,7 @@
     
     // There is no data currently displayed
     else {
-        
+    
         // If internet is good and location is good
         if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
             self.containerView.alpha = 1;
@@ -433,7 +408,32 @@
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {
-
+    if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
+        for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
+            NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.districtNumber];
+            if (![districtNumber isEqualToString:@"<null>"]) {
+                self.informationLabel.text = [NSString stringWithFormat:@"Congressional District %@-%@", congressperson.stateCode.uppercaseString, districtNumber];
+            }
+        }
+    }
+    else {
+        for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
+            if ([stateLegislator.chamber isEqualToString:@"upper"]) {
+                self.stateUpperDistrictNumber = stateLegislator.districtNumber;
+            }
+            else {
+                self.stateLowerDistrictNumber = stateLegislator.districtNumber;
+            }
+            if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
+                if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
+                    self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                }
+                else {
+                    self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                }
+            }
+        }
+    }
 }
 
 @end

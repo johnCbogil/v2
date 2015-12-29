@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *party;
-@property (strong, nonatomic) NSString *state;
+@property (strong, nonatomic) NSString *stateCode;
 @property (strong, nonatomic) NSString *stateName;
 @property (strong, nonatomic) NSString *termEnd;
 @property (strong, nonatomic) NSString *nextElection;
@@ -27,7 +27,7 @@
 @property (strong, nonatomic) NSString *twitter;
 @property (strong, nonatomic) NSString *influenceExplorerID;
 @property (strong, nonatomic) NSString *crpID;
-@property (strong, nonatomic) NSString *district;
+@property (strong, nonatomic) NSString *districtNumber;
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSArray *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;
