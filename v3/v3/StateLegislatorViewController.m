@@ -51,6 +51,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    @try{
+        [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
+    }@catch(id anException){
+        //do nothing, obviously it wasn't attached because an exception was thrown
+    }}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
