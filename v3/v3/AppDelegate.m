@@ -17,7 +17,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
