@@ -19,20 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:@"savedArray"];
-    if (dataRepresentingSavedArray != nil)
-    {
-        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray];
-        if (oldSavedArray != nil)
-            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldSavedArray];
-        self.tableView.alpha = 1.0;
-        [self reloadCongressTableData];
-    }
-    else {
-        [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
-        [[LocationService sharedInstance] startUpdatingLocation];
-    }
+    [self checkCache];
     
     self.title = @"Congress";
     
@@ -56,6 +43,22 @@
     self.tableView.allowsSelection = NO;
     //self.tableView.alpha = 0.0;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
+}
+
+- (void)checkCache {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:@"savedArray"];
+    if (dataRepresentingSavedArray != nil) {
+        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray];
+        if (oldSavedArray != nil)
+            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldSavedArray];
+        self.tableView.alpha = 1.0;
+        [self reloadCongressTableData];
+    }
+    else {
+        [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
+        [[LocationService sharedInstance] startUpdatingLocation];
+    }
 }
 
 - (void)dealloc{
@@ -102,7 +105,6 @@
 
 - (void)reloadCongressTableData{
     //NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
-
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];

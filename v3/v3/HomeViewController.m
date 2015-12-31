@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 @property (strong, nonatomic) NSString *stateLowerDistrictNumber;
 @property (strong, nonatomic) NSString *stateUpperDistrictNumber;
+@property (strong, nonatomic) UITapGestureRecognizer *tap;
 
 @end
 
@@ -97,6 +98,21 @@
                                                  name:@"updateInformationLabel"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+}
+
+- (void)keyboardDidShow:(NSNotification *)note
+{
+    self.tap = [[UITapGestureRecognizer alloc]
+                initWithTarget:self
+                action:@selector(dismissKeyboard)];
+    [self.containerView addGestureRecognizer:self.tap];
+}
+
+- (void)dismissKeyboard {
+    [self hideSearchBar];
+    [self.searchBar resignFirstResponder];
+    [self.containerView removeGestureRecognizer:self.tap];
 }
 
 #pragma mark - Search Bar Delegate Methods

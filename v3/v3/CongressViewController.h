@@ -12,7 +12,7 @@
 #import "CongresspersonTableViewCell.h"
 
 @interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CustomAlertDelegate>
-
+@property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) InfluenceExplorerViewController *influenceExplorerVC;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
