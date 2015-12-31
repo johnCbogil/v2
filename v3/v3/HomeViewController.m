@@ -384,7 +384,7 @@
         if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
             self.containerView.alpha = 1;
             self.zeroStateLabel.alpha = 0;
-            [[LocationService sharedInstance]startUpdatingLocation];
+            //[[LocationService sharedInstance]startUpdatingLocation];
         }
         else {
             

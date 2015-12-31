@@ -19,6 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:@"savedArray"];
+    if (dataRepresentingSavedArray != nil)
+    {
+        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray];
+        if (oldSavedArray != nil)
+            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldSavedArray];
+        self.tableView.alpha = 1.0;
+        [self reloadCongressTableData];
+    }
+    else {
+        [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
+        [[LocationService sharedInstance] startUpdatingLocation];
+    }
+    
     self.title = @"Congress";
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -29,7 +44,6 @@
                                                object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     
-    [[LocationService sharedInstance] startUpdatingLocation];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -40,7 +54,7 @@
          forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     
     self.tableView.allowsSelection = NO;
-    self.tableView.alpha = 0.0;
+    //self.tableView.alpha = 0.0;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
@@ -108,6 +122,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfCongressmen] forKey:@"savedArray"];
     return [RepManager sharedInstance].listOfCongressmen.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

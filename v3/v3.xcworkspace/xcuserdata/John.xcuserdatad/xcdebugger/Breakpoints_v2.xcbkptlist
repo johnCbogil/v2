@@ -10,11 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "v3/Congressperson.m"
-            timestampString = "473279044.070141"
+            timestampString = "473283256.785805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82">
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "@implementation Congressperson"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "v3/Congressperson.m"
-            timestampString = "473278779.852829"
+            timestampString = "473283256.785805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60">
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "@implementation Congressperson"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
