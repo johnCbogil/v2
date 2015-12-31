@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 // these may not need to be exposed in the public interface
-@interface Congressperson : NSObject
+@interface Congressperson : NSObject <NSCoding>
 @property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
