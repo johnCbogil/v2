@@ -99,6 +99,8 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
+
 }
 
 - (void)keyboardDidShow:(NSNotification *)note
@@ -424,6 +426,11 @@
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {
+    if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
+        self.informationLabel.text = @"loading...";
+    }
+    else {
+        
     if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
         for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
             NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.districtNumber];
@@ -449,6 +456,7 @@
                 }
             }
         }
+    }
     }
 }
 
