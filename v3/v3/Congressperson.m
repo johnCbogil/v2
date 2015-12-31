@@ -68,6 +68,7 @@
         self.nextElection = [decoder decodeObjectForKey:@"nextElection"];
         self.title = [decoder decodeObjectForKey:@"title"];
         self.shortTitle = [decoder decodeObjectForKey:@"shortTitle"];
+        self.photo = [decoder decodeObjectForKey:@"photo"];
     }
     return self;
 }
@@ -87,6 +88,7 @@
     [coder encodeObject:self.nextElection forKey:@"nextElection"];
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.shortTitle forKey:@"shortTitle"];
+    [coder encodeObject:self.photo forKey:@"photo"];
 }
 
 @end
