@@ -56,14 +56,20 @@
                              onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
-        
-        CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
-        CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
+        if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
+            NSLog(@"theres beena mistake!");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            [alert show];
 
-        CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
-        NSLog(@"%@", location);
-        successBlock(location);
-        
+        }
+        else {
+            CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
+            CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
+            
+            CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+            NSLog(@"%@", location);
+            successBlock(location);
+        }
     } onError:^(NSError *error) {
     }];
 }
