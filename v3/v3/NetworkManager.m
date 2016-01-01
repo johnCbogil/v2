@@ -70,7 +70,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"There's been a server error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Theres been a server error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
 
     }];
