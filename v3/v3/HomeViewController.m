@@ -102,7 +102,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidFinishNotification object:nil];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
@@ -400,7 +400,7 @@
     
     // There is no data currently displayed
     else {
-    
+        
         // If internet is good and location is good
         if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
             self.containerView.alpha = 1;
@@ -433,33 +433,32 @@
         self.informationLabel.text = @"loading...";
     }
     else {
-        
-    if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
-        for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
-            NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.districtNumber];
-            if (![districtNumber isEqualToString:@"<null>"]) {
-                self.informationLabel.text = [NSString stringWithFormat:@"Congressional District %@-%@", congressperson.stateCode.uppercaseString, districtNumber];
+        if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
+            for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
+                NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.districtNumber];
+                if (![districtNumber isEqualToString:@"<null>"]) {
+                    self.informationLabel.text = [NSString stringWithFormat:@"Congressional District %@-%@", congressperson.stateCode.uppercaseString, districtNumber];
+                }
             }
         }
-    }
-    else {
-        for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
-            if ([stateLegislator.chamber isEqualToString:@"upper"]) {
-                self.stateUpperDistrictNumber = stateLegislator.districtNumber;
-            }
-            else {
-                self.stateLowerDistrictNumber = stateLegislator.districtNumber;
-            }
-            if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
-                if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
-                    self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+        else {
+            for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
+                if ([stateLegislator.chamber isEqualToString:@"upper"]) {
+                    self.stateUpperDistrictNumber = stateLegislator.districtNumber;
                 }
                 else {
-                    self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                    self.stateLowerDistrictNumber = stateLegislator.districtNumber;
+                }
+                if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
+                    if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
+                        self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                    }
+                    else {
+                        self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                    }
                 }
             }
         }
-    }
     }
 }
 
