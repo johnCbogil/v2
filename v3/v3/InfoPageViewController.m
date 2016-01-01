@@ -57,7 +57,7 @@
     else {
         [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
     }
-    self.contentSizeInPopup = CGSizeMake(300, 400);
+    self.contentSizeInPopup = CGSizeMake(300, 300);
     self.listOfViewControllers = @[self.firstVC, self.secondVC, self.thirdVC];
     
     self.pageControl = [UIPageControl appearance];

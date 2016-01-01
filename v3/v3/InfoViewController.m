@@ -20,8 +20,8 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.contentSizeInPopup = CGSizeMake(300, 400);
-        self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
+        self.contentSizeInPopup = CGSizeMake(300, 300);
+        //self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
     return self;
 }
@@ -32,7 +32,7 @@
     // Add views here
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
-    self.contentSizeInPopup = CGSizeMake(300, 400);
+    self.contentSizeInPopup = CGSizeMake(300, 300);
     
 }
 
