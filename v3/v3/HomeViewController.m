@@ -442,21 +442,26 @@
             }
         }
         else {
-            for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
-                if ([stateLegislator.chamber isEqualToString:@"upper"]) {
-                    self.stateUpperDistrictNumber = stateLegislator.districtNumber;
-                }
-                else {
-                    self.stateLowerDistrictNumber = stateLegislator.districtNumber;
-                }
-                if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
-                    if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
-                        self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+            if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
+                for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
+                    if ([stateLegislator.chamber isEqualToString:@"upper"]) {
+                        self.stateUpperDistrictNumber = stateLegislator.districtNumber;
                     }
                     else {
-                        self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                        self.stateLowerDistrictNumber = stateLegislator.districtNumber;
+                    }
+                    if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
+                        if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
+                            self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                        }
+                        else {
+                            self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
+                        }
                     }
                 }
+            }
+            else {
+                self.informationLabel.text = @"";
             }
         }
     }
