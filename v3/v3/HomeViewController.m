@@ -53,7 +53,7 @@
     
     [self prepareSearchBar];
     
-    self.containerView.alpha = 0;
+    //self.containerView.alpha = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -389,43 +389,43 @@
 
 - (void)toggleZeroStateLabel {
     
-    // THIS LEADS TO BAD UX BC IF INTERNET/LOCATION FAILS THEN THE USER IS PRESENTED WITH A SWIPE L/R OPTION BUT CANNOT ACTUALLY SWIPE L/R
-    // ALSO BAD UX BC IF CONGRESS LOADS FINE AND THEN INTERNET DROPS, THERE IS NO ZEROSTATE FOR STATELEG
-    // ALSO ALSO BAD UX BC INFOVIEW HIDES THE ZEROSTATE LABEL
-    
-    // Is there data already displayed?
-    if (self.containerView.alpha == 1) {
-        // do nothing
-    }
-    
-    // There is no data currently displayed
-    else {
-        
-        // If internet is good and location is good
-        if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-            self.containerView.alpha = 1;
-            self.zeroStateLabel.alpha = 0;
-            //[[LocationService sharedInstance]startUpdatingLocation];
-        }
-        else {
-            
-            // If internet is good but location is bad
-            if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 0) {
-                self.zeroStateLabel.text = @"Could Not Determine Location";
-            }
-            
-            // If internet is bad but location is good
-            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-                self.zeroStateLabel.text = @"No Internet Connection";
-            }
-            
-            // If internet is bad and location is bad
-            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-                self.zeroStateLabel.text = @"Both Internet and Location Services Appear To Be Unavailable";
-            }
-            self.zeroStateLabel.alpha = 1;
-        }
-    }
+//    // THIS LEADS TO BAD UX BC IF INTERNET/LOCATION FAILS THEN THE USER IS PRESENTED WITH A SWIPE L/R OPTION BUT CANNOT ACTUALLY SWIPE L/R
+//    // ALSO BAD UX BC IF CONGRESS LOADS FINE AND THEN INTERNET DROPS, THERE IS NO ZEROSTATE FOR STATELEG
+//    // ALSO ALSO BAD UX BC INFOVIEW HIDES THE ZEROSTATE LABEL
+//    
+//    // Is there data already displayed?
+//    if (self.containerView.alpha == 1) {
+//        // do nothing
+//    }
+//    
+//    // There is no data currently displayed
+//    else {
+//        
+//        // If internet is good and location is good
+//        if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
+//            self.containerView.alpha = 1;
+//            self.zeroStateLabel.alpha = 0;
+//            //[[LocationService sharedInstance]startUpdatingLocation];
+//        }
+//        else {
+//            
+//            // If internet is good but location is bad
+//            if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 0) {
+//                //self.zeroStateLabel.text = @"Could Not Determine Location";
+//            }
+//            
+//            // If internet is bad but location is good
+//            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
+//                self.zeroStateLabel.text = @"No Internet Connection";
+//            }
+//            
+//            // If internet is bad and location is bad
+//            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
+//                self.zeroStateLabel.text = @"Both Internet and Location Services Appear To Be Unavailable";
+//            }
+//            self.zeroStateLabel.alpha = 1;
+//        }
+//    }
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {

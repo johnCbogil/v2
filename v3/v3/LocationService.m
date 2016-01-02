@@ -42,6 +42,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location service failed with error %@", error);
+    // THERE NEEDS TO BE AN ALERT HERE    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {

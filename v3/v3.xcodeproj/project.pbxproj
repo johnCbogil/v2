@@ -146,39 +146,6 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
-		522464101BD186DE006CFDB5 /* Congress */ = {
-			isa = PBXGroup;
-			children = (
-				5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */,
-				5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */,
-				5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */,
-				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
-				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
-			);
-			name = Congress;
-			sourceTree = "<group>";
-		};
-		522464111BD186F3006CFDB5 /* State */ = {
-			isa = PBXGroup;
-			children = (
-				5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */,
-				5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */,
-				5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */,
-				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
-				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
-			);
-			name = State;
-			sourceTree = "<group>";
-		};
-		528DC63C1B629DFA00560DD6 /* Representatives */ = {
-			isa = PBXGroup;
-			children = (
-				522464101BD186DE006CFDB5 /* Congress */,
-				522464111BD186F3006CFDB5 /* State */,
-			);
-			name = Representatives;
-			sourceTree = "<group>";
-		};
 		52AD33961BE5CA2B00EC0468 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +160,8 @@
 		52AD33971BE5CAA000EC0468 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
+				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
 				52A6107D1B66ACD400B041FF /* NetworkManager.h */,
 				52A6107E1B66ACD400B041FF /* NetworkManager.m */,
 				52B51B081B61B789006DF423 /* LocationService.h */,
@@ -231,8 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				52C391FF1B8F725D0034BEAB /* Model.xcdatamodeld */,
-				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
-				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
 				52AD33971BE5CAA000EC0468 /* Managers */,
 				521C7FF71B715C8600D6CE1F /* PageViewController.h */,
 				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
@@ -244,9 +211,18 @@
 				52747B741B66EE92009702F5 /* StateLegislatorViewController.m */,
 				52BB34351B6160CA00BB9FFD /* CongressViewController.h */,
 				52BB34361B6160CA00BB9FFD /* CongressViewController.m */,
+				5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */,
+				5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */,
+				5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */,
+				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
+				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
+				5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */,
+				5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */,
+				5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */,
+				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
+				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
-				528DC63C1B629DFA00560DD6 /* Representatives */,
 				5204038B1BCC137F00016768 /* Info */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
