@@ -461,7 +461,7 @@
                 }
             }
             else {
-                self.informationLabel.text = @"";
+                self.informationLabel.text = @"Serve error, try again";
             }
         }
     }
