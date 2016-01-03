@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OnboardingPageViewController : UIPageViewController  <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
-+(OnboardingPageViewController *) sharedInstance;
-
+@property (nonatomic, strong) UIViewController *firstVC;
+@property (nonatomic, strong) UIViewController *secondVC;
 @end

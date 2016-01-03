@@ -10,6 +10,7 @@
 #import "PageViewController.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
+#import "OnboardingPageViewController.h"
 #import <Instabug/Instabug.h>
 @interface AppDelegate ()
 
@@ -25,6 +26,13 @@
         NSLog(@"First launch");
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+        
+        OnboardingPageViewController *onboardingPageViewController = (OnboardingPageViewController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingPageViewController"];
+        self.window.rootViewController = onboardingPageViewController;
+
+        [self.window makeKeyAndVisible];
     }
     
     // Override point for customization after application launch.
