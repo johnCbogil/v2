@@ -23,7 +23,6 @@
     self.secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Onboarding2ViewController"];
     self.listOfViewControllers = [NSArray arrayWithObjects:self.firstVC,self.secondVC, nil];
     [self setViewControllers:@[self.firstVC] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
-
 }
 
 // THESE NEXT TWO METHODS NEED TO RETURN VCs DYNAMICALLY
@@ -34,7 +33,6 @@
     else if (self.viewControllers[0] == self.firstVC){
         return self.secondVC;
     }
-
     return nil;
 }
 

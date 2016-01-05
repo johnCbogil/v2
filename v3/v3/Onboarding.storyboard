@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="deO-bb-7rI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="deO-bb-7rI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -9,7 +9,7 @@
         <!--Onboarding Page View Controller-->
         <scene sceneID="bXW-dU-VJx">
             <objects>
-                <pageViewController storyboardIdentifier="OnboardingPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="deO-bb-7rI" customClass="OnboardingPageViewController" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="OnboardingPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="deO-bb-7rI" customClass="OnboardingPageViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6BF-yc-GBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-54" y="329"/>
@@ -26,21 +26,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt3-jQ-CX2">
-                                <rect key="frame" x="20" y="289" width="68" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is your first civic tool" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
+                                <rect key="frame" x="20" y="28" width="560" height="121"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="68" id="lSW-8Q-cbp"/>
+                                    <constraint firstAttribute="height" constant="121" id="fAZ-t3-UTr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We make it easy for you to join your community's civic process" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxT-xG-BmW">
+                                <rect key="frame" x="20" y="368" width="560" height="212"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
+                                <rect key="frame" x="200" y="160" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="mQx-C6-Ef5"/>
+                                    <constraint firstAttribute="height" constant="200" id="z74-aj-s2J"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Mt3-jQ-CX2" firstAttribute="leading" secondItem="0hX-ZG-Zh9" secondAttribute="leadingMargin" id="5Kd-eS-1xN"/>
-                            <constraint firstItem="Mt3-jQ-CX2" firstAttribute="centerY" secondItem="0hX-ZG-Zh9" secondAttribute="centerY" id="ZZJ-KV-8f9"/>
-                            <constraint firstItem="Mt3-jQ-CX2" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="269" id="iky-H6-iBI"/>
+                            <constraint firstItem="oxT-xG-BmW" firstAttribute="top" secondItem="DT0-Pw-P0G" secondAttribute="bottom" constant="8" id="OJU-jd-uZh"/>
+                            <constraint firstAttribute="trailing" secondItem="oxT-xG-BmW" secondAttribute="trailing" constant="20" id="al4-Da-w0Y"/>
+                            <constraint firstItem="s6n-tv-dL9" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="8" symbolic="YES" id="hqR-YG-8w8"/>
+                            <constraint firstAttribute="bottom" secondItem="oxT-xG-BmW" secondAttribute="bottom" constant="20" symbolic="YES" id="iAr-nU-8oY"/>
+                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="11" id="iPX-5y-D1f"/>
+                            <constraint firstItem="s6n-tv-dL9" firstAttribute="leading" secondItem="oxT-xG-BmW" secondAttribute="leading" id="j1A-Ou-fNH"/>
+                            <constraint firstItem="oxT-xG-BmW" firstAttribute="leading" secondItem="0hX-ZG-Zh9" secondAttribute="leadingMargin" id="k9O-un-aAB"/>
+                            <constraint firstItem="s6n-tv-dL9" firstAttribute="trailing" secondItem="oxT-xG-BmW" secondAttribute="trailing" id="mH9-be-Pgt"/>
+                            <constraint firstItem="s6n-tv-dL9" firstAttribute="centerX" secondItem="DT0-Pw-P0G" secondAttribute="centerX" id="pwI-lr-9yo"/>
                         </constraints>
                     </view>
                 </viewController>
