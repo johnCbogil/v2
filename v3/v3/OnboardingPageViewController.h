@@ -11,4 +11,5 @@
 @interface OnboardingPageViewController : UIPageViewController  <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
+@property (strong, nonatomic) UIPageControl *pageControl;
 @end

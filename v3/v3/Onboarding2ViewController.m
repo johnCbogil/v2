@@ -9,6 +9,9 @@
 #import "Onboarding2ViewController.h"
 
 @interface Onboarding2ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *permitLocationUse;
+@property (weak, nonatomic) IBOutlet UIButton *deferLocationUSe;
+@property (weak, nonatomic) IBOutlet UIView *buttonContainerView;
 
 @end
 
@@ -22,6 +25,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)permitLocationUseButtonDidPress:(id)sender {
+}
+- (IBAction)deferLocationUseButtonDidPress:(id)sender {
 }
 
 /*

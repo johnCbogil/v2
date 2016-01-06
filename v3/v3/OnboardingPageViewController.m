@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.pageControl = [UIPageControl appearance];
+    self.pageControl.pageIndicatorTintColor = [UIColor groupTableViewBackgroundColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+    self.pageControl.backgroundColor = [UIColor whiteColor];
+    self.pageControl.currentPage = 1;
+    
     self.dataSource = self;
     self.delegate = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OnboardingViewController"];
@@ -52,6 +58,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
+    return 2;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
+    if (self.listOfViewControllers[0] == self.secondVC){
+        return 0;
+    }
+    else {
+        return 1;
+}
+}
 /*
 #pragma mark - Navigation
 
