@@ -9,6 +9,9 @@
 #import "OnboardingViewController.h"
 
 @interface OnboardingViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *voicesIcon;
+@property (weak, nonatomic) IBOutlet UILabel *firstCivicToolLabel;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
 
 @end
 
@@ -17,11 +20,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.startButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.startButton.layer.cornerRadius = 5;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)startButtonDidPress:(id)sender {
 }
 
 /*
