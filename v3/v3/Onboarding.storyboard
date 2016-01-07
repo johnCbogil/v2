@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is your first civic tool" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
-                                <rect key="frame" x="20" y="275.5" width="560" height="48"/>
+                                <rect key="frame" x="20" y="276" width="560" height="48"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="35"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -33,8 +33,8 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bPg-AL-k8o">
-                                <rect key="frame" x="26" y="369" width="548" height="45"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <rect key="frame" x="20" y="369" width="560" height="104"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <state key="normal" title="Start seeing your values reflected in the community"/>
                                 <connections>
                                     <segue destination="zfO-9H-wcq" kind="show" id="J1N-U5-h9P"/>
@@ -43,12 +43,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bPg-AL-k8o" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="45.5" id="JbB-cS-1Ph"/>
+                            <constraint firstItem="G6I-Ka-J2W" firstAttribute="top" secondItem="bPg-AL-k8o" secondAttribute="bottom" constant="127" id="5fc-VY-10n"/>
                             <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="8" id="Mbe-Ad-pAS"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="centerY" secondItem="0hX-ZG-Zh9" secondAttribute="centerY" id="Orj-ID-zvV"/>
-                            <constraint firstItem="s6n-tv-dL9" firstAttribute="centerX" secondItem="bPg-AL-k8o" secondAttribute="centerX" id="bJl-WX-JDA"/>
+                            <constraint firstItem="bPg-AL-k8o" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="45" id="aUA-GA-P3m"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="leading" secondItem="0hX-ZG-Zh9" secondAttribute="leadingMargin" id="cHc-QW-peM"/>
-                            <constraint firstItem="bPg-AL-k8o" firstAttribute="centerX" secondItem="0hX-ZG-Zh9" secondAttribute="centerX" id="wRc-iK-Tsa"/>
+                            <constraint firstItem="bPg-AL-k8o" firstAttribute="leading" secondItem="s6n-tv-dL9" secondAttribute="leading" id="fyt-L3-rmK"/>
+                            <constraint firstItem="bPg-AL-k8o" firstAttribute="centerX" secondItem="DT0-Pw-P0G" secondAttribute="centerX" id="nLQ-1D-q9b"/>
+                            <constraint firstItem="bPg-AL-k8o" firstAttribute="trailing" secondItem="s6n-tv-dL9" secondAttribute="trailing" id="zcc-BU-Mw2"/>
                             <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerX" secondItem="0hX-ZG-Zh9" secondAttribute="centerX" id="zrg-En-2nr"/>
                         </constraints>
                     </view>
