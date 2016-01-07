@@ -25,11 +25,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
-                                <rect key="frame" x="200" y="111" width="200" height="200"/>
+                                <rect key="frame" x="187" y="86" width="225" height="225"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ciX-5D-TKi"/>
-                                    <constraint firstAttribute="width" constant="200" id="sVD-5G-fgQ"/>
+                                    <constraint firstAttribute="height" constant="225" id="ciX-5D-TKi"/>
+                                    <constraint firstAttribute="width" constant="225" id="sVD-5G-fgQ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bPg-AL-k8o">
@@ -54,7 +54,8 @@
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="leading" secondItem="0hX-ZG-Zh9" secondAttribute="leadingMargin" id="9AR-pV-AeH"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="top" secondItem="DT0-Pw-P0G" secondAttribute="bottom" constant="8" symbolic="YES" id="9SV-zf-BCP"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="trailing" secondItem="bPg-AL-k8o" secondAttribute="trailing" id="XDh-PG-xnn"/>
-                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="91" id="dP7-1z-fJf"/>
+                            <constraint firstItem="bPg-AL-k8o" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="162" id="XcJ-l6-iOW"/>
+                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="66" id="dP7-1z-fJf"/>
                             <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerX" secondItem="s6n-tv-dL9" secondAttribute="centerX" id="fdN-DB-EpR"/>
                             <constraint firstItem="bPg-AL-k8o" firstAttribute="leading" secondItem="s6n-tv-dL9" secondAttribute="leading" id="u6B-md-jej"/>
                             <constraint firstItem="G6I-Ka-J2W" firstAttribute="top" secondItem="bPg-AL-k8o" secondAttribute="bottom" constant="21" id="zLv-Js-nXI"/>
@@ -83,48 +84,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uG-Iv-9OB">
-                                <rect key="frame" x="25" y="236" width="555" height="128"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-5f-JQc">
-                                        <rect key="frame" x="149" y="44" width="124" height="41"/>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="yeah, of course">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="t4D-5c-L5j"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-Zt-HNP">
-                                        <rect key="frame" x="281" y="44" width="124" height="41"/>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="not right now">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="deferLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="p1T-bC-jIL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can we use your location to show you who the decision makers are in your community?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
-                                <rect key="frame" x="20" y="28" width="560" height="123"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-5f-JQc">
+                                <rect key="frame" x="150" y="275" width="300" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="0IP-ZF-N42"/>
+                                    <constraint firstAttribute="height" constant="60" id="ADz-2o-aoC"/>
+                                </constraints>
+                                <state key="normal" title="Turn On Location Services">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="t4D-5c-L5j"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on location services so Voices can show you who represents your community." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
+                                <rect key="frame" x="20" y="28" width="560" height="137"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-Zt-HNP">
+                                <rect key="frame" x="238" y="343" width="124" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="c1A-XR-YwM"/>
+                                    <constraint firstAttribute="width" constant="124" id="dbz-I8-iUp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="not right now.">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deferLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="p1T-bC-jIL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1uG-Iv-9OB" firstAttribute="centerY" secondItem="yBD-6J-s09" secondAttribute="centerY" id="HOC-st-aiS"/>
-                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="top" secondItem="EcH-7M-6ZW" secondAttribute="bottom" constant="8" symbolic="YES" id="J3W-A1-mmj"/>
-                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="trailing" secondItem="yBD-6J-s09" secondAttribute="trailingMargin" id="S5S-74-g44"/>
-                            <constraint firstItem="1uG-Iv-9OB" firstAttribute="leading" secondItem="yBD-6J-s09" secondAttribute="leadingMargin" constant="5" id="ddd-3H-EPt"/>
-                            <constraint firstItem="1uG-Iv-9OB" firstAttribute="trailing" secondItem="xjZ-mU-GOF" secondAttribute="trailing" id="f1F-LC-frG"/>
-                            <constraint firstItem="1uG-Iv-9OB" firstAttribute="top" secondItem="xjZ-mU-GOF" secondAttribute="bottom" constant="85" id="vhZ-tx-7MB"/>
-                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="leading" secondItem="yBD-6J-s09" secondAttribute="leadingMargin" id="zjh-pr-Vme"/>
+                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="leading" secondItem="yBD-6J-s09" secondAttribute="leadingMargin" id="4jb-Rp-v9T"/>
+                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="centerX" secondItem="hgP-5f-JQc" secondAttribute="centerX" id="GK2-59-SeC"/>
+                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="top" secondItem="EcH-7M-6ZW" secondAttribute="bottom" constant="8" symbolic="YES" id="LKz-pQ-HW5"/>
+                            <constraint firstItem="dg4-Zt-HNP" firstAttribute="top" secondItem="hgP-5f-JQc" secondAttribute="bottom" constant="8" symbolic="YES" id="Y3b-yv-NAS"/>
+                            <constraint firstItem="5dJ-rd-3UR" firstAttribute="top" secondItem="dg4-Zt-HNP" secondAttribute="bottom" constant="216" id="auh-nj-7nA"/>
+                            <constraint firstItem="dg4-Zt-HNP" firstAttribute="centerX" secondItem="hgP-5f-JQc" secondAttribute="centerX" id="mRM-8d-PUV"/>
+                            <constraint firstItem="xjZ-mU-GOF" firstAttribute="trailing" secondItem="yBD-6J-s09" secondAttribute="trailingMargin" id="oFQ-Cg-39d"/>
+                            <constraint firstItem="hgP-5f-JQc" firstAttribute="top" secondItem="xjZ-mU-GOF" secondAttribute="bottom" constant="110" id="zWt-MV-wij"/>
                         </constraints>
                     </view>
                     <connections>
@@ -134,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEe-DZ-bdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="324"/>
+            <point key="canvasLocation" x="2130" y="329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Zz-qY-LqM">

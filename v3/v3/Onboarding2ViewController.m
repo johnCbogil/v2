@@ -21,7 +21,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.permitLocationUseButton.layer.cornerRadius = 5;
-    self.deferLocationUseButton.layer.cornerRadius = 5;
 }
 
 - (void)didReceiveMemoryWarning {
