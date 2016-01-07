@@ -38,8 +38,8 @@
 		52C391FE1B8F71C90034BEAB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C391FD1B8F71C90034BEAB /* CoreData.framework */; };
 		52C392011B8F725D0034BEAB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52C391FF1B8F725D0034BEAB /* Model.xcdatamodeld */; };
 		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
+		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
-		52FC68F81C37653F00E29B7A /* OnboardingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68F71C37653F00E29B7A /* OnboardingPageViewController.m */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
 /* End PBXBuildFile section */
@@ -110,9 +110,9 @@
 		52C392001B8F725D0034BEAB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		52C6532E1B75120900EA6FFD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		52C6532F1B75120900EA6FFD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
+		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		52FC68F61C37653F00E29B7A /* OnboardingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingPageViewController.h; sourceTree = "<group>"; };
-		52FC68F71C37653F00E29B7A /* OnboardingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingPageViewController.m; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		52FC68FC1C3765A400E29B7A /* Onboarding2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onboarding2ViewController.h; sourceTree = "<group>"; };
@@ -276,8 +276,8 @@
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
 				52FC68FC1C3765A400E29B7A /* Onboarding2ViewController.h */,
 				52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */,
-				52FC68F61C37653F00E29B7A /* OnboardingPageViewController.h */,
-				52FC68F71C37653F00E29B7A /* OnboardingPageViewController.m */,
+				52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */,
+				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -442,11 +442,11 @@
 				52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */,
 				525E568F1BF7B138003D4DAF /* CustomAlertDelegate.m in Sources */,
 				523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */,
+				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
 				52BB34371B6160CA00BB9FFD /* CongressViewController.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				52C653301B75120900EA6FFD /* HomeViewController.m in Sources */,
-				52FC68F81C37653F00E29B7A /* OnboardingPageViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,

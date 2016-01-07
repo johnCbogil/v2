@@ -10,7 +10,7 @@
 #import "PageViewController.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
-#import "OnboardingPageViewController.h"
+#import "OnboardingNavigationController.h"
 #import <Instabug/Instabug.h>
 @interface AppDelegate ()
 
@@ -29,7 +29,7 @@
         
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
         
-        OnboardingPageViewController *onboardingPageViewController = (OnboardingPageViewController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingPageViewController"];
+        OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
 
         [self.window makeKeyAndVisible];

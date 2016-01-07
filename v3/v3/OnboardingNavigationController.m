@@ -1,36 +1,30 @@
 //
-//  Onboarding2ViewController.m
+//  OnboardingNavigationController.m
 //  v3
 //
-//  Created by John Bogil on 1/1/16.
+//  Created by John Bogil on 1/6/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "Onboarding2ViewController.h"
+#import "OnboardingNavigationController.h"
 
-@interface Onboarding2ViewController ()
-@property (weak, nonatomic) IBOutlet UIView *buttonContainerView;
-@property (weak, nonatomic) IBOutlet UIButton *deferLocationUseButton;
-@property (weak, nonatomic) IBOutlet UIButton *permitLocationUseButton;
+@interface OnboardingNavigationController ()
 
 @end
 
-@implementation Onboarding2ViewController
+@implementation OnboardingNavigationController
 
+- (void)viewWillAppear:(BOOL)animated {
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.permitLocationUseButton.layer.cornerRadius = 5;
-    self.deferLocationUseButton.layer.cornerRadius = 5;
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)permitLocationUseButtonDidPress:(id)sender {
-}
-- (IBAction)deferLocationUseButtonDidPress:(id)sender {
 }
 
 /*
