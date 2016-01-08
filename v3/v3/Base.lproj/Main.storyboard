@@ -186,12 +186,6 @@
                                     <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="wcs-6T-QOs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ze-v4-afn">
-                                <rect key="frame" x="61" y="549" width="539" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -199,19 +193,15 @@
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="BMJ-3Q-ZZ2"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="116" id="Czv-sb-xwj"/>
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
-                            <constraint firstItem="4Ze-v4-afn" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="4" id="Gxk-gB-zVj"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="7" id="NWh-HG-jem"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" id="PUX-vQ-t6s"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="Pl3-Xz-oQp"/>
-                            <constraint firstItem="4Ze-v4-afn" firstAttribute="leading" secondItem="xae-1n-mss" secondAttribute="trailing" constant="8" symbolic="YES" id="QIz-Mt-buk"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="2J1-we-sWf" secondAttribute="bottom" constant="237" id="Vcn-vw-A0M"/>
                             <constraint firstItem="2J1-we-sWf" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="VgU-fi-XUB"/>
-                            <constraint firstAttribute="bottom" secondItem="4Ze-v4-afn" secondAttribute="bottom" constant="12" id="W6m-dD-yiH"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="f9B-Vh-NbD"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="-4" id="gXE-CK-0AJ"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" id="hHC-Dt-Ges"/>
                             <constraint firstItem="2J1-we-sWf" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" constant="0.5" id="jkW-iv-b1v"/>
-                            <constraint firstItem="4Ze-v4-afn" firstAttribute="trailing" secondItem="WRM-qV-4HZ" secondAttribute="trailingMargin" constant="20" id="npa-h3-VLf"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="0.5" id="w6O-PF-YZW"/>
@@ -226,7 +216,6 @@
                     <connections>
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
                         <outlet property="infoButton" destination="xae-1n-mss" id="zlp-Zc-3z6"/>
-                        <outlet property="informationLabel" destination="4Ze-v4-afn" id="8KT-3c-1af"/>
                         <outlet property="legislatureLevel" destination="6tq-q4-0eV" id="NEt-m3-qbc"/>
                         <outlet property="magnifyingGlass" destination="FsE-H3-ANT" id="98K-MH-UfX"/>
                         <outlet property="pageControl" destination="baJ-84-x7R" id="LTr-mW-nOn"/>

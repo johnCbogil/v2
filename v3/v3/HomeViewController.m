@@ -60,9 +60,6 @@
     [self addObservers];
     
     [self prepareSearchBar];
-    
-    //self.containerView.alpha = 0;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -470,7 +467,7 @@
                 }
             }
             else {
-                self.informationLabel.text = @"Serve error, try again";
+                self.informationLabel.text = @"Server error, try again";
             }
         }
     }

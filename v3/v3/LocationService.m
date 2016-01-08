@@ -23,7 +23,7 @@
 - (id)init {
     self = [super init];
     if(self != nil) {
-
+        
     }
     return self;
 }
@@ -33,14 +33,12 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100; // meters
     self.locationManager.delegate = self;
-    
     [self.locationManager requestWhenInUseAuthorization];
-    //[self.locationManager requestLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location service failed with error %@", error);
-    // THERE NEEDS TO BE AN ALERT HERE    
+    // THERE NEEDS TO BE AN ALERT HERE
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
@@ -59,7 +57,6 @@
             NSLog(@"theres beena mistake!");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
             [alert show];
-
         }
         else {
             CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
@@ -80,7 +77,6 @@
     }
     else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         NSLog(@"Starting location updates");
-
         [self.locationManager startUpdatingLocation];
     }
 }
