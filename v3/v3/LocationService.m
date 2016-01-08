@@ -34,9 +34,7 @@
     self.locationManager.distanceFilter = 100; // meters
     self.locationManager.delegate = self;
     
-    NSLog(@"Starting location updates");
     [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager startUpdatingLocation];
     //[self.locationManager requestLocation];
 }
 
@@ -73,5 +71,17 @@
         }
     } onError:^(NSError *error) {
     }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        NSLog(@"location authorization denied");
+    }
+    else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
+        NSLog(@"Starting location updates");
+
+        [self.locationManager startUpdatingLocation];
+    }
 }
 @end

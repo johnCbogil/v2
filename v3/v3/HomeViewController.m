@@ -43,8 +43,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.zeroStateLabel.alpha = 0.0;
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        self.zeroStateLabel.alpha = 1;
+    }
+    else {
+        self.zeroStateLabel.alpha = 0;
+        [[LocationService sharedInstance]startUpdatingLocation];
+    }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -55,6 +62,7 @@
     [self prepareSearchBar];
     
     //self.containerView.alpha = 0;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,10 +94,10 @@
                                              selector:@selector(presentInfoViewController)
                                                  name:@"presentInfoViewController"
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(toggleZeroStateLabel)
-                                                 name:AFNetworkingReachabilityDidChangeNotification
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(toggleZeroStateLabel)
+//                                                 name:AFNetworkingReachabilityDidChangeNotification
+//                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(toggleZeroStateLabel)
                                                  name:@"toggleZeroStateLabel"
