@@ -57,7 +57,7 @@
     }
     else {
         [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
-        [[LocationService sharedInstance] startUpdatingLocation];
+        //[[LocationService sharedInstance] startUpdatingLocation];
     }
 }
 

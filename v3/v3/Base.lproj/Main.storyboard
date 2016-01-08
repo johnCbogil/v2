@@ -89,7 +89,7 @@
         <!--Home View Controller-->
         <scene sceneID="8Rm-bo-BwP">
             <objects>
-                <viewController id="2Z5-RF-Vdv" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="2Z5-RF-Vdv" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Iw5-Jr-6md"/>
                         <viewControllerLayoutGuide type="bottom" id="HNq-K6-6Z2"/>
@@ -364,7 +364,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hbQ-fR-HEb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -377,7 +377,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61r-8i-wOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-483" y="294"/>
+            <point key="canvasLocation" x="-484" y="312"/>
         </scene>
     </scenes>
     <resources>

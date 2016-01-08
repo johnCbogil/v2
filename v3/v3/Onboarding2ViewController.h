@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocationService.h"
 
-@interface Onboarding2ViewController : UIViewController
+@interface Onboarding2ViewController : UIViewController <CLLocationManagerDelegate>
 
 @end

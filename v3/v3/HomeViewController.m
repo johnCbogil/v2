@@ -49,6 +49,7 @@
     [super viewDidLoad];
     
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
+    
     [self addObservers];
     
     [self prepareSearchBar];
