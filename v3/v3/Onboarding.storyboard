@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" secondItem="DT0-Pw-P0G" secondAttribute="height" multiplier="1:1" id="oOy-gC-ole"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is your first civic tool. It's the smart way to make your voice heard" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is your first civic tool. It's the smart way to make your voice heard." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
                                 <rect key="frame" x="20" y="311" width="560" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="hDT-A7-8Em"/>

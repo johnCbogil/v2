@@ -40,12 +40,15 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        //NSLog(@"%@", responseObject);
+        NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Theres been a network error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
+
     }];
     
     [operation start];

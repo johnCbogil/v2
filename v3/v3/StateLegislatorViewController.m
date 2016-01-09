@@ -1,6 +1,6 @@
 //
 //  StateLegislatorViewController.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -19,35 +19,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self checkCache];
     self.title = @"State Legislators";
-    
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    [self addObservers];
+    [self createRefreshControl];
     [[LocationService sharedInstance] startUpdatingLocation];
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadStateLegislatorTableData)
-                                                 name:@"reloadStateLegislatorTableView"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
-
-    
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]
-         forCellReuseIdentifier:@"StateRepTableViewCell"];
-    
-    self.tableView.allowsSelection = NO;
-    self.tableView.alpha = 0.0;
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
-- (void)dealloc{
+- (void)checkCache {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *dataRepresentingCachedStateLegislators = [currentDefaults objectForKey:@"cachedStateLegislators"];
+    if (dataRepresentingCachedStateLegislators != nil) {
+        NSArray *oldCachedStateLegislators = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedStateLegislators];
+        if (oldCachedStateLegislators != nil)
+            [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] initWithArray:oldCachedStateLegislators];
+        self.tableView.alpha = 1.0;
+        [self reloadStateLegislatorTableData];
+    }
+    else {
+        [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
+    }
+}
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -61,6 +56,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)createRefreshControl {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)pullToRefresh {
@@ -105,21 +106,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listofStateLegislators] forKey:@"cachedStateLegislators"];
     return [RepManager sharedInstance].listofStateLegislators.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//        StateLegislator *stateLegislator = [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-//        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", stateLegislator.firstName, stateLegislator.lastName];
-//        if (stateLegislator.photo) {
-//            cell.imageView.image = [UIImage imageWithData:stateLegislator.photo];
-//        }
-//    return cell;
-    
     StateRepTableViewCell *cell = (StateRepTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"StateRepTableViewCell" forIndexPath:indexPath];
     [cell initFromIndexPath:indexPath];
-    cell.delegate = self;
     return cell;
 }
 
@@ -131,25 +124,17 @@
     return 100;
 }
 
-- (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title {
-    CustomAlertViewController *customAlertViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"customAlertViewController"];
-    customAlertViewController.messageText = message;
-    customAlertViewController.titleText = title;
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:customAlertViewController];
-    popupController.cornerRadius = 10;
-    
-    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
-    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
-    popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
-    
-    [popupController presentInViewController:self];
-}
-
 - (void)endRefreshing {
     [self.refreshControl endRefreshing];
+}
+
+- (void)addObservers {
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadStateLegislatorTableData)
+                                                 name:@"reloadStateLegislatorTableView"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
 }
 
 @end

@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InfluenceExplorerViewController.h"
 #import "CustomAlertViewController.h"
 #import "CongresspersonTableViewCell.h"
 
-@interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CustomAlertDelegate>
+@interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) InfluenceExplorerViewController *influenceExplorerVC;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
