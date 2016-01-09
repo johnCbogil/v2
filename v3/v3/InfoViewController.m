@@ -33,6 +33,7 @@
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
     self.contentSizeInPopup = CGSizeMake(300, 300);
+    self.sendFeedbackButton.layer.cornerRadius = 5;
     
 }
 
