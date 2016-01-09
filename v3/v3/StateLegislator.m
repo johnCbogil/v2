@@ -44,7 +44,7 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
         self.firstName = [decoder decodeObjectForKey:@"first_name"];
-        self.lastName = [decoder decodeObjectForKey:@"last_Name"];
+        self.lastName = [decoder decodeObjectForKey:@"last_name"];
         //self.nickname = [decoder decodeObjectForKey:@"nickname"];
         //self.bioguide = [decoder decodeObjectForKey:@"bioguide_id"];
         self.phone = [decoder decodeObjectForKey:@"phone"];
@@ -57,14 +57,14 @@
         //self.title = [decoder decodeObjectForKey:@"title"];
         //self.shortTitle = [decoder decodeObjectForKey:@"shortTitle"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
-        self.chamber = [decoder decodeObjectForKey:@"chamber"];
+//        self.chamber = [decoder decodeObjectForKey:@"chamber"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.firstName forKey:@"first_Name"];
-    [coder encodeObject:self.lastName forKey:@"last_Name"];
+    [coder encodeObject:self.firstName forKey:@"first_name"];
+    [coder encodeObject:self.lastName forKey:@"last_name"];
     //[coder encodeObject:self.nickname forKey:@"nickname"];
     //[coder encodeObject:self.bioguide forKey:@"bioguide_id"];
     [coder encodeObject:self.phone forKey:@"phone"];

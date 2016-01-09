@@ -95,7 +95,12 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation];
+        if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
+            // do nothing
+        }
+        else {
+            [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation]; 
+        }
     }
 }
 

@@ -100,7 +100,12 @@
  
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
+        if ([RepManager sharedInstance].listOfCongressmen.count > 0) {
+            // do nothing
+        }
+        else {
+            [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
+        }
     }
 }
 
