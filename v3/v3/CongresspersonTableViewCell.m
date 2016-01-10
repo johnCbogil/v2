@@ -9,6 +9,7 @@
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
 #import "InfoPageViewController.h"
+#import "UIFont+voicesFont.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
@@ -28,8 +29,9 @@
     // Initialization code
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = 5;
-    
     self.photo.clipsToBounds = YES;
+    
+    [self setFont];
 //
 //    // ADD SHADOW
 //    self.shadowView.backgroundColor = [UIColor clearColor];
@@ -39,6 +41,11 @@
 //    self.shadowView.layer.shadowRadius = 3.0;
 //    self.shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.shadowView.bounds cornerRadius:100.0].CGPath;
 //    [self.shadowView addSubview:self.photo];
+}
+
+- (void)setFont {
+    self.name.font = [UIFont voicesFontWithSize:24];
+    self.nextElectionLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
