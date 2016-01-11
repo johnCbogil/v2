@@ -48,9 +48,24 @@
     }
     else {
         self.zeroStateLabel.alpha = 0;
-        [[LocationService sharedInstance]startUpdatingLocation];
+        
+        NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+        NSData *dataRepresentingCachedCongresspersons = [currentDefaults objectForKey:@"cachedCongresspersons"];
+        if (dataRepresentingCachedCongresspersons != nil) {
+            NSArray *oldCachedCongresspersons = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedCongresspersons];
+            if (oldCachedCongresspersons != nil)
+                [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedCongresspersons];
+        }
+        else {
+            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
     }
-}
+        
+    }
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
