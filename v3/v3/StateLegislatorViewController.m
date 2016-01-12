@@ -40,7 +40,6 @@
     }
     else {
         [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
-        [[LocationService sharedInstance] startUpdatingLocation];
     }
 }
 - (void)dealloc {
@@ -53,7 +52,8 @@
         [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
     }@catch(id anException){
         //do nothing, obviously it wasn't attached because an exception was thrown
-    }}
+ }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -66,7 +66,7 @@
 }
 
 - (void)pullToRefresh {
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+    if ([CLLocationManager authorizationStatus] < 2) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Turn on location services to see who represents your current location" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
         [self.refreshControl endRefreshing];

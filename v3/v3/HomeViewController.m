@@ -43,7 +43,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+    if ([CLLocationManager authorizationStatus] < 2) {
         self.zeroStateLabel.alpha = 1;
     }
     else {
@@ -63,7 +63,7 @@
                 [[LocationService sharedInstance]startUpdatingLocation];
             }
         }
-    }    
+    }
 }
 
 - (void)viewDidLoad {
@@ -226,6 +226,7 @@
         if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
                 //NSLog(@"%@", results);
+                self.zeroStateLabel.alpha = 0;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
@@ -234,6 +235,7 @@
         else {
             [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
+                    self.zeroStateLabel.alpha = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];

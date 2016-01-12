@@ -66,7 +66,7 @@
 }
 
 - (void)pullToRefresh {
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+    if ([CLLocationManager authorizationStatus] < 2) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Turn on location services to see who represents your current location" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
         [self.refreshControl endRefreshing];
