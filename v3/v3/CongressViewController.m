@@ -26,7 +26,7 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
-// TODO: THIS CODE REPEATS 3 TIMES
+// TODO: THIS CODE IS NOT DRY
 - (void)checkCache {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedCongresspersons = [currentDefaults objectForKey:@"cachedCongresspersons"];

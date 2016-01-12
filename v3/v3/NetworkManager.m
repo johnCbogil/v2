@@ -48,7 +48,7 @@
         NSLog(@"Error: %@", error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Theres been a network error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
-
+        
     }];
     
     [operation start];
@@ -75,7 +75,7 @@
         NSLog(@"Error: %@", error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Theres been a server error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
-
+        
     }];
     
     [operation start];
@@ -98,8 +98,10 @@
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
         NSLog(@"Error: %@", error);
+        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
+        [missingRep setAccessibilityIdentifier:@"MissingRep"];
+        successBlock(missingRep);
     }];
     
     [operation start];
@@ -177,22 +179,15 @@
                  onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
     NSURL *url = [NSURL URLWithString:dataUrl];
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         //NSLog(@"%@", responseObject);
         successBlock(responseObject);
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
         NSLog(@"Error: %@", error);
     }];
-    
     [operation start];
 }
 
@@ -221,34 +216,4 @@
     
     [operation start];
 }
-
-
-//- (void)getCongressmenFromQuery:(NSString*)query WithCompletion:(void(^)(NSDictionary *results))successBlock
-//                           onError:(void(^)(NSError *error))errorBlock {
-//
-//    NSString *parsedQuery = [query componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]][0];
-//
-//    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators?query=%@&apikey=a0c99640cc894383975eb73b99f39d2f", parsedQuery];
-//    NSString *cleanUrl = [dataUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSURL *url = [NSURL URLWithString:cleanUrl];
-//
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-//
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//
-//        // NSLog(@"%@", responseObject);
-//        successBlock(responseObject);
-//
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//
-//        NSLog(@"Error: %@", error);
-//    }];
-//
-//    [operation start];
-//}
-
 @end

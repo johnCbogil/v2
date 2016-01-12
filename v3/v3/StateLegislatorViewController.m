@@ -23,11 +23,11 @@
     self.title = @"State Legislators";
     [self addObservers];
     [self createRefreshControl];
-    [[LocationService sharedInstance] startUpdatingLocation];
     [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
+// TODO: THIS CODE IS NOT DRY
 - (void)checkCache {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedStateLegislators = [currentDefaults objectForKey:@"cachedStateLegislators"];
@@ -40,6 +40,7 @@
     }
     else {
         [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
+        [[LocationService sharedInstance] startUpdatingLocation];
     }
 }
 - (void)dealloc {
