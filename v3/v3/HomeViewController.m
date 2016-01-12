@@ -59,7 +59,9 @@
         }
         else {
             [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
-            [[LocationService sharedInstance]startUpdatingLocation];
+            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+                [[LocationService sharedInstance]startUpdatingLocation];
+            }
         }
     }    
 }
@@ -72,6 +74,15 @@
     [self addObservers];
     [self setFont];
     [self prepareSearchBar];
+    
+    // IF LOCATION SERVICE DENIED, DISPLAY ZEROSTATE
+    if ([CLLocationManager authorizationStatus] < 2) {
+        self.zeroStateLabel.alpha = 1;
+        self.zeroStateLabel.text = @"Turn on location services, or try searching by location above.";
+    }
+    else {
+        self.zeroStateLabel.alpha = 0;
+    }
 }
 
 - (void)setFont {

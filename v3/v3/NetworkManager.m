@@ -46,11 +46,15 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Theres been a network error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        if (error.code == -1009) {
+            alert.message = @"The internet connection appears to be offline";
+        }
+        else {
+            alert.message = @"It appears there was a server error";
+        }
         [alert show];
-        
     }];
-    
     [operation start];
 }
 
@@ -73,11 +77,15 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Theres been a server error, sorry." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        if (error.code == -1009) {
+            alert.message = @"The internet connection appears to be offline";
+        }
+        else {
+            alert.message = @"It appears there was a server error";
+        }
         [alert show];
-        
     }];
-    
     [operation start];
 }
 

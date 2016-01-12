@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="He3-Tf-3lS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -98,15 +98,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="zerostate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2J1-we-sWf">
-                                <rect key="frame" x="87" y="238" width="426" height="125"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="426" id="znA-xp-pxZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb">
                                 <rect key="frame" x="215" y="35" width="169" height="48"/>
                                 <subviews>
@@ -196,6 +187,12 @@
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="zerostate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2J1-we-sWf">
+                                <rect key="frame" x="20" y="194" width="560" height="169"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -208,15 +205,16 @@
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" constant="-13" id="PUX-vQ-t6s"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="Pl3-Xz-oQp"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="2J1-we-sWf" secondAttribute="bottom" constant="237" id="Vcn-vw-A0M"/>
-                            <constraint firstItem="2J1-we-sWf" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="VgU-fi-XUB"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="f9B-Vh-NbD"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="-4" id="gXE-CK-0AJ"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" id="hHC-Dt-Ges"/>
-                            <constraint firstItem="2J1-we-sWf" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" constant="0.5" id="jkW-iv-b1v"/>
+                            <constraint firstItem="2J1-we-sWf" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" constant="-21.5" id="jkW-iv-b1v"/>
+                            <constraint firstItem="2J1-we-sWf" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" constant="20" id="kmA-UH-XqU"/>
                             <constraint firstItem="DMq-M1-ppt" firstAttribute="leading" secondItem="xae-1n-mss" secondAttribute="trailing" constant="8" symbolic="YES" id="qGi-BI-3ng"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="0.5" id="w6O-PF-YZW"/>
+                            <constraint firstAttribute="trailing" secondItem="2J1-we-sWf" secondAttribute="trailing" constant="20" id="yL5-wm-fao"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

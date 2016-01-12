@@ -66,14 +66,21 @@
 }
 
 - (void)pullToRefresh {
-    [[LocationService sharedInstance] startUpdatingLocation];
-    [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    } onError:^(NSError *error) {
-        [error localizedDescription];
-    }];
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Turn on location services to see who represents your current location" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.refreshControl endRefreshing];
+    }
+    else {
+        [[LocationService sharedInstance] startUpdatingLocation];
+        [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+    }
 }
 - (void)populateStateLegislatorsFromLocation:(CLLocation*)location {
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:location WithCompletion:^{

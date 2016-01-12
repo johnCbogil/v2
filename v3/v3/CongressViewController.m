@@ -66,15 +66,22 @@
 }
 
 - (void)pullToRefresh {
-    [[LocationService sharedInstance] startUpdatingLocation];
-    [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        });
-    } onError:^(NSError *error) {
-        [error localizedDescription];
-    }];
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Turn on location services to see who represents your current location" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.refreshControl endRefreshing];
+    }
+    else {
+        [[LocationService sharedInstance] startUpdatingLocation];
+        [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            });
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+    }
 }
 
 - (void)populateCongressmenFromLocation:(CLLocation*)location {
