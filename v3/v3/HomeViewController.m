@@ -33,6 +33,8 @@
 @property (strong, nonatomic) NSString *stateUpperDistrictNumber;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
+@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
+@property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageView;
 
 @end
 
@@ -44,10 +46,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     if ([CLLocationManager authorizationStatus] < 2) {
-        self.zeroStateLabel.alpha = 1;
+        self.zeroStateContainer.alpha = 1;
     }
     else {
-        self.zeroStateLabel.alpha = 0;
+        self.zeroStateContainer.alpha = 0;
         
         // TODO: THIS CODE IS NOT DRY
         NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
@@ -77,11 +79,11 @@
     
     // IF LOCATION SERVICE DENIED, DISPLAY ZEROSTATE
     if ([CLLocationManager authorizationStatus] < 2) {
-        self.zeroStateLabel.alpha = 1;
+        self.zeroStateContainer.alpha = 1;
         self.zeroStateLabel.text = @"Turn on location services, or try searching by location above.";
     }
     else {
-        self.zeroStateLabel.alpha = 0;
+        self.zeroStateContainer.alpha = 0;
     }
 }
 
@@ -226,7 +228,7 @@
         if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
                 //NSLog(@"%@", results);
-                self.zeroStateLabel.alpha = 0;
+                self.zeroStateContainer.alpha = 0;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
@@ -235,7 +237,7 @@
         else {
             [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
-                    self.zeroStateLabel.alpha = 0;
+                    self.zeroStateContainer.alpha = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];
