@@ -8,7 +8,6 @@
 
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
-#import "InfoPageViewController.h"
 #import "UIFont+voicesFont.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
@@ -61,7 +60,6 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        [InfoPageViewController sharedInstance].startFromScript = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {

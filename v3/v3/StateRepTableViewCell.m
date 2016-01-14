@@ -9,7 +9,6 @@
 #import "StateRepTableViewCell.h"
 #import "RepManager.h"
 #import "StateLegislator.h"
-#import "InfoPageViewController.h"
 @interface StateRepTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -72,7 +71,6 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        [InfoPageViewController sharedInstance].startFromScript = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {

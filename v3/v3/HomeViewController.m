@@ -9,13 +9,12 @@
 #import "HomeViewController.h"
 #import "NetworkManager.h"
 #import "RepManager.h"
+#import "UIFont+voicesFont.h"
 #import "StateLegislator.h"
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
-#import "InfoPageViewController.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
-#import "UIFont+voicesFont.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -35,7 +34,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageView;
-
 @end
 
 @implementation HomeViewController
@@ -46,8 +44,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     if ([CLLocationManager authorizationStatus] <= 2) {
+        [self turnZeroStateOn];
     }
     else {
+        
         // TODO: THIS CODE IS NOT DRY
         NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
         NSData *dataRepresentingCachedCongresspersons = [currentDefaults objectForKey:@"cachedCongresspersons"];
@@ -65,11 +65,19 @@
     }
 }
 
+- (void)turnZeroStateOn {
+    self.zeroStateContainer.alpha = 1;
+}
+
+- (void)turnZeroStateOff {
+    self.zeroStateContainer.alpha = 0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
-    
+    [self turnZeroStateOff];
     [self addObservers];
     [self setFont];
     [self prepareSearchBar];
@@ -120,6 +128,10 @@
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+
 }
 
 - (void)keyboardDidShow:(NSNotification *)note
@@ -368,10 +380,8 @@
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
-        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController
-                                                  composeViewControllerForServiceType:SLServiceTypeTwitter];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         NSString *initialText = [NSString stringWithFormat:@"@%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
         [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
@@ -379,12 +389,11 @@
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
-    [InfoPageViewController sharedInstance].startFromScript = NO;
     [self presentInfoViewController];
 }
 
 - (void)presentInfoViewController {
-    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoPageViewController"];
+    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.cornerRadius = 10;
     if (NSClassFromString(@"UIBlurEffect")) {
@@ -397,8 +406,6 @@
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
-    
-    [InfoPageViewController sharedInstance].pageControl.currentPage = 1;
     
     [popupController presentInViewController:self];
 }

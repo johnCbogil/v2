@@ -8,11 +8,9 @@
 
 #import "InfoViewController.h"
 #import <STPopup/STPopup.h>
-#import "InfoPageViewController.h"
 #import <Instabug/Instabug.h>
 @interface InfoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *sendFeedbackButton;
-@property (strong, nonatomic) InfoPageViewController *infoPageVC;
 @end
 
 @implementation InfoViewController
@@ -20,7 +18,8 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.contentSizeInPopup = CGSizeMake(300, 300);
+        self.title = @"Here's what to say";
+        self.contentSizeInPopup = CGSizeMake(300, 315);
         //self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
     return self;
@@ -32,7 +31,8 @@
     // Add views here
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
-    self.contentSizeInPopup = CGSizeMake(300, 300);
+    self.title = @"Here's what to say";
+    self.contentSizeInPopup = CGSizeMake(300, 315);
     self.sendFeedbackButton.layer.cornerRadius = 5;
     
 }

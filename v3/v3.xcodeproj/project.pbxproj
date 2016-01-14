@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		338077E2A5F515152E3EC4AA /* libPods-v3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C812695A3BE1059FDAA3F7A8 /* libPods-v3.a */; };
-		5204038E1BCC139700016768 /* InfoPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204038D1BCC139700016768 /* InfoPageViewController.m */; };
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
 		5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */; };
 		5224640F1BD17BCA006CFDB5 /* StateRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */; };
@@ -56,8 +55,6 @@
 
 /* Begin PBXFileReference section */
 		28086C148D4D5BEF3E6AADB8 /* Pods-v3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-v3.release.xcconfig"; path = "Pods/Target Support Files/Pods-v3/Pods-v3.release.xcconfig"; sourceTree = "<group>"; };
-		5204038C1BCC139700016768 /* InfoPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPageViewController.h; sourceTree = "<group>"; };
-		5204038D1BCC139700016768 /* InfoPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPageViewController.m; sourceTree = "<group>"; };
 		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepTableViewCell.h; sourceTree = "<group>"; };
@@ -147,8 +144,6 @@
 				5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */,
 				5253FB4C1BCB32F1001A5328 /* InfoViewController.h */,
 				5253FB4D1BCB32F1001A5328 /* InfoViewController.m */,
-				5204038C1BCC139700016768 /* InfoPageViewController.h */,
-				5204038D1BCC139700016768 /* InfoPageViewController.m */,
 				528110811BF15D5B007E5B13 /* CustomAlertViewController.h */,
 				528110821BF15D5B007E5B13 /* CustomAlertViewController.m */,
 				525E568D1BF7B138003D4DAF /* CustomAlertDelegate.h */,
@@ -450,7 +445,6 @@
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
-				5204038E1BCC139700016768 /* InfoPageViewController.m in Sources */,
 				52C392011B8F725D0034BEAB /* Model.xcdatamodeld in Sources */,
 				5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,

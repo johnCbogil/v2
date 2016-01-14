@@ -40,6 +40,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"%@", responseObject);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOff" object:nil];
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -70,6 +71,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"%@", responseObject);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOff" object:nil];
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
