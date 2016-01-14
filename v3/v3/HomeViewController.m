@@ -11,6 +11,7 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "StateLegislator.h"
+#import "CacheManager.h"
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
 #import <Social/Social.h>
@@ -47,30 +48,23 @@
         [self turnZeroStateOn];
     }
     else {
-        
-        // TODO: THIS CODE IS NOT DRY
-        NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-        NSData *dataRepresentingCachedCongresspersons = [currentDefaults objectForKey:@"cachedCongresspersons"];
-        if (dataRepresentingCachedCongresspersons != nil) {
-            NSArray *oldCachedCongresspersons = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedCongresspersons];
-            if (oldCachedCongresspersons != nil)
-                [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedCongresspersons];
+         [[CacheManager sharedInstance] checkCacheForRepresentative:@"Congressperson"];
         }
-        else {
-            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
-            if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-                [[LocationService sharedInstance]startUpdatingLocation];
-            }
-        }
-    }
 }
+
+// TODO: THIS CODE IS NOT DRY
+
 
 - (void)turnZeroStateOn {
-    self.zeroStateContainer.alpha = 1;
-}
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];}
 
 - (void)turnZeroStateOff {
-    self.zeroStateContainer.alpha = 0;
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
+
 }
 
 - (void)viewDidLoad {
@@ -357,8 +351,7 @@
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     UIAlertView *alert;
-    switch (result)
-    {
+    switch (result) {
         case MFMailComposeResultCancelled:
             break;
         case MFMailComposeResultSaved:
@@ -411,42 +404,12 @@
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {
-    //    if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
-    //        self.informationLabel.text = @"loading...";
-    //    }
-    //    else {
-    //        if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
-    //            for(Congressperson *congressperson in [RepManager sharedInstance].listOfCongressmen) {
-    //                NSString *districtNumber = [NSString stringWithFormat:@"%@",congressperson.districtNumber];
-    //                if (![districtNumber isEqualToString:@"<null>"]) {
-    //                    self.informationLabel.text = [NSString stringWithFormat:@"Congressional District %@-%@", congressperson.stateCode.uppercaseString, districtNumber];
-    //                }
-    //            }
-    //        }
-    //        else {
-    //            if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
-    //                for(StateLegislator *stateLegislator in [RepManager sharedInstance].listofStateLegislators){
-    //                    if ([stateLegislator.chamber isEqualToString:@"upper"]) {
-    //                        self.stateUpperDistrictNumber = stateLegislator.districtNumber;
-    //                    }
-    //                    else {
-    //                        self.stateLowerDistrictNumber = stateLegislator.districtNumber;
-    //                    }
-    //                    if (self.stateLowerDistrictNumber && self.stateUpperDistrictNumber) {
-    //                        if ([stateLegislator.stateCode.uppercaseString isEqualToString:@"CA"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NY"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"WI"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NV"] || [stateLegislator.stateCode.uppercaseString isEqualToString:@"NJ"]) {
-    //                            self.informationLabel.text = [NSString stringWithFormat:@"Assembly District: %@, Senate District: %@", self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
-    //                        }
-    //                        else {
-    //                            self.informationLabel.text = [NSString stringWithFormat:@"%@ House District: %@, Senate District: %@",stateLegislator.stateCode.uppercaseString, self.stateLowerDistrictNumber, self.stateUpperDistrictNumber];
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //            else {
-    //                self.informationLabel.text = @"Server error, try again";
-    //            }
-    //        }
-    //    }
+        if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
+           self.callToActionLabel.text = @"loading...";
+        }
+        else {
+            self.callToActionLabel.text = @"Make your voice heard";
+        }
 }
 
 @end

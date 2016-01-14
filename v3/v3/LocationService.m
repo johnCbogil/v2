@@ -38,7 +38,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location service failed with error %@", error);
-    // THERE NEEDS TO BE AN ALERT HERE
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+    [alert show];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {

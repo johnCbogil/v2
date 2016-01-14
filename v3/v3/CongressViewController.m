@@ -11,34 +11,19 @@
 #import "RepManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
-#import <STPopup/STPopup.h>
+#import "CacheManager.h"
 #import "UIFont+voicesFont.h"
+#import <STPopup/STPopup.h>
 
 @implementation CongressViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self checkCache];
+    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedCongresspersons"];
     self.title = @"Congress";
     [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
-}
-
-// TODO: THIS CODE IS NOT DRY
-- (void)checkCache {
-    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *dataRepresentingCachedCongresspersons = [currentDefaults objectForKey:@"cachedCongresspersons"];
-    if (dataRepresentingCachedCongresspersons != nil) {
-        NSArray *oldCachedCongresspersons = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedCongresspersons];
-        if (oldCachedCongresspersons != nil)
-            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedCongresspersons];
-        self.tableView.alpha = 1.0;
-        [self reloadCongressTableData];
-    }
-    else {
-        [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
-    }
 }
 
 - (void)dealloc{
@@ -107,10 +92,7 @@
  
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        if ([RepManager sharedInstance].listOfCongressmen.count > 0) {
-            // do nothing
-        }
-        else {
+        if (![RepManager sharedInstance].listOfCongressmen.count > 0) {
             [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
         }
     }
@@ -141,10 +123,7 @@
 
 - (void)addObservers {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadCongressTableData)
-                                                 name:@"reloadCongressTableView"
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCongressTableData) name:@"reloadCongressTableView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }

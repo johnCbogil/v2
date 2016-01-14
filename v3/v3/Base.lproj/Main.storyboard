@@ -172,10 +172,10 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make your voice heard." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMq-M1-ppt">
-                                <rect key="frame" x="61" y="557" width="259" height="21"/>
+                                <rect key="frame" x="61" y="554" width="259" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="P20-ZV-wjH"/>
-                                    <constraint firstAttribute="height" constant="21" id="Tba-fp-Vzj"/>
+                                    <constraint firstAttribute="height" constant="28" id="Tba-fp-Vzj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -222,7 +222,7 @@
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="28" id="3To-Ey-EVZ"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="BMJ-3Q-ZZ2"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="111" id="Czv-sb-xwj"/>
-                            <constraint firstItem="DMq-M1-ppt" firstAttribute="centerY" secondItem="xae-1n-mss" secondAttribute="centerY" constant="-1" id="EQN-0M-lim"/>
+                            <constraint firstItem="DMq-M1-ppt" firstAttribute="centerY" secondItem="xae-1n-mss" secondAttribute="centerY" constant="-0.5" id="EQN-0M-lim"/>
                             <constraint firstAttribute="bottom" secondItem="uTg-FP-0Ll" secondAttribute="bottom" constant="227" id="Fz7-AM-Ez2"/>
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="8" id="NWh-HG-jem"/>

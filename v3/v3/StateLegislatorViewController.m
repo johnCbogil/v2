@@ -11,6 +11,8 @@
 #import "LocationService.h"
 #import "StateRepTableViewCell.h"
 #import "UIFont+voicesFont.h"
+#import "CacheManager.h"
+
 @interface StateLegislatorViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -19,29 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self checkCache];
+    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
     self.title = @"State Legislators";
     [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
 }
 
-// TODO: THIS CODE IS NOT DRY
-- (void)checkCache {
-    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *dataRepresentingCachedStateLegislators = [currentDefaults objectForKey:@"cachedStateLegislators"];
-    if (dataRepresentingCachedStateLegislators != nil) {
-        NSArray *oldCachedStateLegislators = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedStateLegislators];
-        if (oldCachedStateLegislators != nil)
-            [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] initWithArray:oldCachedStateLegislators];
-        self.tableView.alpha = 1.0;
-        [self reloadStateLegislatorTableData];
-    }
-    else {
-        [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
-        [[LocationService sharedInstance]startUpdatingLocation];
-    }
-}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -144,10 +130,7 @@
 
 - (void)addObservers {
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadStateLegislatorTableData)
-                                                 name:@"reloadStateLegislatorTableView"
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStateLegislatorTableData)name:@"reloadStateLegislatorTableView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
 }
 

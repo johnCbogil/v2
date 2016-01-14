@@ -1,4 +1,4 @@
-//
+
 //  CacheManager.m
 //  v2
 //
@@ -9,6 +9,9 @@
 #import "CacheManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
+#import "RepManager.h"
+#import "LocationService.h"
+
 @interface CacheManager ()
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @end
@@ -71,5 +74,32 @@
     NSError *coreDataSaveerror;
     [self.context save:&coreDataSaveerror];
     NSLog(@"Saving to cache");
+}
+
+- (void)checkCacheForRepresentative:(NSString*)representativeType {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
+    if (dataRepresentingCachedRepresentatives != nil) {
+        NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
+        if (dataRepresentingCachedRepresentatives != nil) {
+            if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
+                [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
+            }
+            else {
+                [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+            }
+        }
+    }
+    else {
+        if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
+            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
+        }
+        else {
+            [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
+        }
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
+    }
 }
 @end
