@@ -24,7 +24,6 @@
     [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
 // TODO: THIS CODE IS NOT DRY
@@ -40,6 +39,7 @@
     }
     else {
         [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
+        [[LocationService sharedInstance]startUpdatingLocation];
     }
 }
 - (void)dealloc {
@@ -66,7 +66,7 @@
 }
 
 - (void)pullToRefresh {
-    if ([CLLocationManager authorizationStatus] < 2) {
+    if ([CLLocationManager authorizationStatus] <= 2) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Turn on location services to see who represents your current location" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
         [self.refreshControl endRefreshing];
@@ -76,6 +76,7 @@
         [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
             });
         } onError:^(NSError *error) {
             [error localizedDescription];

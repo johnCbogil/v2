@@ -23,7 +23,6 @@
     [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
 }
 
 // TODO: THIS CODE IS NOT DRY
@@ -66,7 +65,7 @@
 }
 
 - (void)pullToRefresh {
-    if ([CLLocationManager authorizationStatus] < 2) {
+    if ([CLLocationManager authorizationStatus] <= 2) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Turn on location services to see who represents your current location" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
         [self.refreshControl endRefreshing];
@@ -141,12 +140,12 @@
 }
 
 - (void)addObservers {
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadCongressTableData)
                                                  name:@"reloadCongressTableView"
                                                object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
-    
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 @end

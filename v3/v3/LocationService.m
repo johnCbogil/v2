@@ -51,7 +51,6 @@
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock {
-    
     [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
             NSLog(@"theres beena mistake!");
@@ -61,7 +60,6 @@
         else {
             CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
             CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
-            
             CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             NSLog(@"%@", location);
             successBlock(location);
@@ -70,6 +68,7 @@
     }];
 }
 
+// POST A NOTIFICATION WHEN THIS CHANGES
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         NSLog(@"location authorization denied");

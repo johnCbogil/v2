@@ -45,12 +45,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if ([CLLocationManager authorizationStatus] < 2) {
-        self.zeroStateContainer.alpha = 1;
+    if ([CLLocationManager authorizationStatus] <= 2) {
     }
     else {
-        self.zeroStateContainer.alpha = 0;
-        
         // TODO: THIS CODE IS NOT DRY
         NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
         NSData *dataRepresentingCachedCongresspersons = [currentDefaults objectForKey:@"cachedCongresspersons"];
@@ -76,15 +73,6 @@
     [self addObservers];
     [self setFont];
     [self prepareSearchBar];
-    
-    // IF LOCATION SERVICE DENIED, DISPLAY ZEROSTATE
-    if ([CLLocationManager authorizationStatus] < 2) {
-        self.zeroStateContainer.alpha = 1;
-        self.zeroStateLabel.text = @"Turn on location services, or try searching by location above.";
-    }
-    else {
-        self.zeroStateContainer.alpha = 0;
-    }
 }
 
 - (void)setFont {
@@ -120,14 +108,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(presentInfoViewController)
                                                  name:@"presentInfoViewController"
-                                               object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(toggleZeroStateLabel)
-    //                                                 name:AFNetworkingReachabilityDidChangeNotification
-    //                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(toggleZeroStateLabel)
-                                                 name:@"toggleZeroStateLabel"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateInformationLabel:)
@@ -228,7 +208,6 @@
         if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
                 //NSLog(@"%@", results);
-                self.zeroStateContainer.alpha = 0;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
@@ -237,7 +216,6 @@
         else {
             [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
-                    self.zeroStateContainer.alpha = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];
@@ -423,47 +401,6 @@
     [InfoPageViewController sharedInstance].pageControl.currentPage = 1;
     
     [popupController presentInViewController:self];
-}
-
-- (void)toggleZeroStateLabel {
-    
-    //    // THIS LEADS TO BAD UX BC IF INTERNET/LOCATION FAILS THEN THE USER IS PRESENTED WITH A SWIPE L/R OPTION BUT CANNOT ACTUALLY SWIPE L/R
-    //    // ALSO BAD UX BC IF CONGRESS LOADS FINE AND THEN INTERNET DROPS, THERE IS NO ZEROSTATE FOR STATELEG
-    //    // ALSO ALSO BAD UX BC INFOVIEW HIDES THE ZEROSTATE LABEL
-    //
-    //    // Is there data already displayed?
-    //    if (self.containerView.alpha == 1) {
-    //        // do nothing
-    //    }
-    //
-    //    // There is no data currently displayed
-    //    else {
-    //
-    //        // If internet is good and location is good
-    //        if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-    //            self.containerView.alpha = 1;
-    //            self.zeroStateLabel.alpha = 0;
-    //            //[[LocationService sharedInstance]startUpdatingLocation];
-    //        }
-    //        else {
-    //
-    //            // If internet is good but location is bad
-    //            if ([AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 0) {
-    //                //self.zeroStateLabel.text = @"Could Not Determine Location";
-    //            }
-    //
-    //            // If internet is bad but location is good
-    //            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-    //                self.zeroStateLabel.text = @"No Internet Connection";
-    //            }
-    //
-    //            // If internet is bad and location is bad
-    //            else if (![AFNetworkReachabilityManager sharedManager].isReachable && [CLLocationManager authorizationStatus]== 4) {
-    //                self.zeroStateLabel.text = @"Both Internet and Location Services Appear To Be Unavailable";
-    //            }
-    //            self.zeroStateLabel.alpha = 1;
-    //        }
-    //    }
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {

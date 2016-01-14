@@ -29,7 +29,6 @@
 
 - (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
     
@@ -59,7 +58,6 @@
 }
 
 - (void)getStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"toggleZeroStateLabel" object:nil];
     // OPEN STATES DOES NOT ALLOW FOR SECURE CONNECTIONS
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
