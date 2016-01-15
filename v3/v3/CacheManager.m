@@ -79,9 +79,10 @@
 - (void)checkCacheForRepresentative:(NSString*)representativeType {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
+    // If there is a cache
     if (dataRepresentingCachedRepresentatives != nil) {
         NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
-        if (dataRepresentingCachedRepresentatives != nil) {
+        if (oldCachedRepresentatives != nil) {
             if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
                 [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
@@ -90,6 +91,7 @@
             }
         }
     }
+    // If there is no cache
     else {
         if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
             [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];

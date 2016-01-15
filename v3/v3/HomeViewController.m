@@ -48,7 +48,7 @@
         [self turnZeroStateOn];
     }
     else {
-         [[CacheManager sharedInstance] checkCacheForRepresentative:@"Congressperson"];
+         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
         }
 }
 
