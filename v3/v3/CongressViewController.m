@@ -87,7 +87,6 @@
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
     });
-    
 }
  
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
@@ -122,7 +121,6 @@
 }
 
 - (void)addObservers {
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCongressTableData) name:@"reloadCongressTableView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
