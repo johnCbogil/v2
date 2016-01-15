@@ -37,7 +37,6 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-
     if (self.viewControllers[0] == self.firstVC){
         return self.secondVC;
     }
@@ -47,14 +46,11 @@
     return nil;
 }
 
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-{
-    if(finished)
-    {
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
+    if(finished) {
         self.titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
         NSDictionary* userInfo = @{@"currentPage": self.titleOfIncomingViewController};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"changePage"
-                                                            object:userInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changePage" object:userInfo];
     }
 }
 @end
