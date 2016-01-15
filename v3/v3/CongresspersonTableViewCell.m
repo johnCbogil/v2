@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
-@property (weak, nonatomic) IBOutlet UIView *shadowView;
 @end
 
 @implementation CongresspersonTableViewCell
