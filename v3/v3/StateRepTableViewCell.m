@@ -25,7 +25,7 @@
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
+    self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];
 }
 

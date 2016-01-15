@@ -408,7 +408,7 @@
            self.callToActionLabel.text = @"loading...";
         }
         else {
-            self.callToActionLabel.text = @"Make your voice heard";
+            self.callToActionLabel.text = @"Make your voice heard.";
         }
 }
 
