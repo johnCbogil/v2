@@ -396,9 +396,9 @@
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:18], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:17] } forState:UIControlStateNormal];
+    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     
     [popupController presentInViewController:self];
 }

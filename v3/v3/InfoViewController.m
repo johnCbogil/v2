@@ -9,6 +9,7 @@
 #import "InfoViewController.h"
 #import <STPopup/STPopup.h>
 #import <Instabug/Instabug.h>
+
 @interface InfoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *sendFeedbackButton;
 @end
