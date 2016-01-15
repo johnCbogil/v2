@@ -23,7 +23,6 @@
         self.twitter = [data valueForKey:@"twitter_id"];
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
-        [self prepareDistrictInformation:self.districtNumber state:self.stateCode legislatureLevel:@"Congress"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
             self.title = @"Senator";
@@ -46,11 +45,6 @@
     else {
         return  @"3 Nov 2020";
     }
-}
-
-- (void)prepareDistrictInformation:(NSString*)districtNumber state:(NSString*)stateCode legislatureLevel:(NSString*)level{
-    NSDictionary *districtInfoDictionary = @{@"districtNumber" : districtNumber, @"stateCode" : stateCode, @"legislatureLevel" : level};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil userInfo:districtInfoDictionary];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -84,7 +78,6 @@
     [coder encodeObject:self.twitter forKey:@"twitter_id"];
     [coder encodeObject:self.districtNumber forKey:@"district"];
     [coder encodeObject:self.stateCode forKey:@"state"];
-    [self prepareDistrictInformation:self.districtNumber state:self.stateCode legislatureLevel:@"Congress"];
     [coder encodeObject:self.nextElection forKey:@"nextElection"];
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.shortTitle forKey:@"shortTitle"];

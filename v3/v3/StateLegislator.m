@@ -21,7 +21,6 @@
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         self.chamber = [data valueForKey:@"chamber"];
-        [self prepareDistrictInformationLabel:self.stateCode.uppercaseString chamber:self.chamber district:self.districtNumber];
         
         // DONT REMEMBER WHAT THIS WAS FOR
         
@@ -36,10 +35,6 @@
     return self;
 }
 
-- (void)prepareDistrictInformationLabel:(NSString*)stateCode chamber:(NSString*)chamberName district:(NSString*)districtNumber{
-    NSDictionary *districtInfoDictionary = @{@"stateCode" : stateCode, @"chamber" : chamberName, @"districtNumber" : districtNumber, @"legislatureLevel" : @"State"};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil userInfo:districtInfoDictionary];
-}
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
@@ -57,7 +52,7 @@
         //self.title = [decoder decodeObjectForKey:@"title"];
         //self.shortTitle = [decoder decodeObjectForKey:@"shortTitle"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
-//        self.chamber = [decoder decodeObjectForKey:@"chamber"];
+        self.chamber = [decoder decodeObjectForKey:@"chamber"];
     }
     return self;
 }
@@ -73,7 +68,6 @@
     //[coder encodeObject:self.twitter forKey:@"twitter_id"];
     [coder encodeObject:self.districtNumber forKey:@"district"];
     [coder encodeObject:self.stateCode forKey:@"state"];
-    //[self prepareDistrictInformation:self.districtNumber state:self.stateCode legislatureLevel:@"Congress"];
 //    [coder encodeObject:self.nextElection forKey:@"nextElection"];
 //    [coder encodeObject:self.title forKey:@"title"];
 //    [coder encodeObject:self.shortTitle forKey:@"shortTitle"];
