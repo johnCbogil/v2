@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
-                                <rect key="frame" x="163" y="28" width="275" height="275"/>
+                                <rect key="frame" x="174" y="53" width="250" height="250"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DT0-Pw-P0G" secondAttribute="height" multiplier="1:1" id="oOy-gC-ole"/>
@@ -48,7 +48,7 @@
                                     <constraint firstAttribute="height" constant="50" id="CMS-MD-sXe"/>
                                     <constraint firstAttribute="width" constant="225" id="GWq-fG-YCS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
                                 <state key="normal" title="Get Started">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -63,10 +63,10 @@
                             <constraint firstItem="G6I-Ka-J2W" firstAttribute="top" secondItem="bPg-AL-k8o" secondAttribute="bottom" constant="57" id="6Lb-Hi-TBB"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="top" secondItem="DT0-Pw-P0G" secondAttribute="bottom" constant="8" id="EKo-U9-ydi"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="centerX" secondItem="bPg-AL-k8o" secondAttribute="centerX" id="PaF-Hi-8CE"/>
-                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="8" symbolic="YES" id="QiM-qi-Bo4"/>
+                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="33" id="QiM-qi-Bo4"/>
                             <constraint firstItem="bPg-AL-k8o" firstAttribute="centerX" secondItem="0hX-ZG-Zh9" secondAttribute="centerX" id="e0z-UQ-uUH"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="leading" secondItem="0hX-ZG-Zh9" secondAttribute="leadingMargin" id="ly9-Fg-U6f"/>
-                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerX" secondItem="s6n-tv-dL9" secondAttribute="centerX" id="tXt-eO-KaY"/>
+                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerX" secondItem="s6n-tv-dL9" secondAttribute="centerX" constant="-1" id="tXt-eO-KaY"/>
                             <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerY" secondItem="0hX-ZG-Zh9" secondAttribute="centerY" id="vMu-Ux-kx2"/>
                             <constraint firstItem="bPg-AL-k8o" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="70" id="wUM-S5-00c"/>
                         </constraints>

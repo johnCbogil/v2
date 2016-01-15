@@ -19,23 +19,13 @@
 - (void)awakeFromNib {
     // Initialization code
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
-    self.photo.layer.cornerRadius = self.photo.frame.size.width / 2;
-    
+    self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
-    
-    // ADD SHADOW
-    self.shadowView.backgroundColor = [UIColor clearColor];
-    self.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.shadowView.layer.shadowOffset = CGSizeMake(0,2.5);
-    self.shadowView.layer.shadowOpacity = 0.5;
-    self.shadowView.layer.shadowRadius = 3.0;
-    self.shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.shadowView.bounds cornerRadius:100.0].CGPath;
-    [self.shadowView addSubview:self.photo];
 }
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
-    self.name.text = [NSString stringWithFormat:@"(%@) - %@ %@", self.stateLegislator.party, self.stateLegislator.firstName, self.stateLegislator.lastName];
+    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];
 }
 

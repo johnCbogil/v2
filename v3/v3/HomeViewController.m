@@ -394,7 +394,7 @@
         popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     }
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
-    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+                        [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
