@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-5f-JQc">
-                                <rect key="frame" x="187" y="493" width="225" height="50"/>
+                                <rect key="frame" x="188" y="493" width="225" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="KKJ-ex-Zmy"/>
@@ -110,24 +110,21 @@
                                 <state key="normal" title="Turn On Location Services">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="T9X-6T-j7a"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="t4D-5c-L5j"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on location services so Voices can show you who represents your community." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
-                                <rect key="frame" x="20" y="28" width="560" height="137"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
+                                <rect key="frame" x="20" y="28" width="560" height="100"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
-                                <rect key="frame" x="175" y="189" width="250" height="250"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="HXF-GG-va7"/>
-                                    <constraint firstAttribute="height" constant="250" id="zyE-wB-HG3"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-Zt-HNP">
                                 <rect key="frame" x="238" y="551" width="124" height="41"/>
                                 <constraints>
@@ -142,20 +139,58 @@
                                     <action selector="deferLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="p1T-bC-jIL"/>
                                 </connections>
                             </button>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3U-sj-t8K" userLabel="SingleLineView">
+                                <rect key="frame" x="151" y="463" width="300" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="rGb-zU-LSP"/>
+                                    <constraint firstAttribute="width" constant="300" id="yyi-2n-aF2"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnboardingPage2" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
+                                <rect key="frame" x="166" y="144" width="269" height="311"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="2rb-Ke-YcW"/>
+                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="CHU-9l-KGy"/>
+                                    <constraint firstAttribute="width" constant="269" id="HXF-GG-va7"/>
+                                    <constraint firstAttribute="height" constant="311" id="PgE-pN-eXP"/>
+                                    <constraint firstAttribute="height" constant="311" id="zyE-wB-HG3"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2rb-Ke-YcW"/>
+                                        <exclude reference="CHU-9l-KGy"/>
+                                        <exclude reference="zyE-wB-HG3"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dg4-Zt-HNP" firstAttribute="top" secondItem="hgP-5f-JQc" secondAttribute="bottom" constant="8" symbolic="YES" id="4Ue-hp-NI1"/>
                             <constraint firstItem="xjZ-mU-GOF" firstAttribute="trailing" secondItem="yBD-6J-s09" secondAttribute="trailingMargin" id="DkW-Ib-tEL"/>
                             <constraint firstItem="Yqw-4L-8Su" firstAttribute="centerX" secondItem="xjZ-mU-GOF" secondAttribute="centerX" id="EyS-X2-pe0"/>
+                            <constraint firstItem="X3U-sj-t8K" firstAttribute="leading" secondItem="yBD-6J-s09" secondAttribute="leading" constant="151" id="Gjf-aZ-pEH"/>
                             <constraint firstItem="dg4-Zt-HNP" firstAttribute="centerX" secondItem="hgP-5f-JQc" secondAttribute="centerX" id="IwM-g9-R48"/>
-                            <constraint firstItem="Yqw-4L-8Su" firstAttribute="top" secondItem="xjZ-mU-GOF" secondAttribute="bottom" constant="24" id="Jla-PD-glV"/>
-                            <constraint firstItem="Yqw-4L-8Su" firstAttribute="centerY" secondItem="yBD-6J-s09" secondAttribute="centerY" constant="14" id="UVr-D3-nIP"/>
+                            <constraint firstItem="Yqw-4L-8Su" firstAttribute="top" secondItem="xjZ-mU-GOF" secondAttribute="bottom" constant="16" id="Jla-PD-glV"/>
+                            <constraint firstItem="X3U-sj-t8K" firstAttribute="centerX" secondItem="yBD-6J-s09" secondAttribute="centerX" constant="1" id="PDM-yJ-VhV"/>
+                            <constraint firstItem="Yqw-4L-8Su" firstAttribute="centerY" secondItem="yBD-6J-s09" secondAttribute="centerY" constant="-0.5" id="UVr-D3-nIP"/>
                             <constraint firstItem="xjZ-mU-GOF" firstAttribute="top" secondItem="EcH-7M-6ZW" secondAttribute="bottom" constant="8" symbolic="YES" id="Uwr-PU-8eZ"/>
                             <constraint firstItem="xjZ-mU-GOF" firstAttribute="leading" secondItem="yBD-6J-s09" secondAttribute="leadingMargin" id="XaJ-k1-Jnm"/>
+                            <constraint firstItem="hgP-5f-JQc" firstAttribute="top" secondItem="X3U-sj-t8K" secondAttribute="bottom" constant="29" id="d1u-a2-Pgo"/>
                             <constraint firstItem="Yqw-4L-8Su" firstAttribute="centerX" secondItem="hgP-5f-JQc" secondAttribute="centerX" id="nfH-K2-o0n"/>
                             <constraint firstAttribute="bottom" secondItem="dg4-Zt-HNP" secondAttribute="bottom" constant="8" id="oCj-uv-uIC"/>
+                            <constraint firstAttribute="trailing" secondItem="X3U-sj-t8K" secondAttribute="trailing" constant="149" id="oDt-qU-PQZ"/>
+                            <constraint firstItem="X3U-sj-t8K" firstAttribute="top" secondItem="Yqw-4L-8Su" secondAttribute="bottom" constant="8" id="t3k-Td-Esd"/>
+                            <constraint firstItem="X3U-sj-t8K" firstAttribute="top" secondItem="xjZ-mU-GOF" secondAttribute="bottom" constant="335" id="w80-II-4Ec"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Gjf-aZ-pEH"/>
+                                <exclude reference="oDt-qU-PQZ"/>
+                                <exclude reference="w80-II-4Ec"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="deferLocationUseButton" destination="dg4-Zt-HNP" id="2EE-Fr-9kY"/>
@@ -186,6 +221,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="OnboardingPage2" width="780" height="952"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>

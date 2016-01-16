@@ -61,8 +61,8 @@
                             <action selector="twitterButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="VRK-oF-whX"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Election:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="6pc-pS-6xH">
-                        <rect key="frame" x="123" y="48" width="229" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Election:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="6pc-pS-6xH">
+                        <rect key="frame" x="123" y="42" width="229" height="21"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="BV2-uE-cnu" firstAttribute="leading" secondItem="R5S-a1-pTK" secondAttribute="trailing" constant="21" id="AkK-6J-549"/>
-                    <constraint firstItem="R5S-a1-pTK" firstAttribute="top" secondItem="6pc-pS-6xH" secondAttribute="bottom" constant="13" id="CWo-y3-Iuo"/>
+                    <constraint firstItem="R5S-a1-pTK" firstAttribute="top" secondItem="6pc-pS-6xH" secondAttribute="bottom" constant="19" id="CWo-y3-Iuo"/>
                     <constraint firstAttribute="trailingMargin" secondItem="6pc-pS-6xH" secondAttribute="trailing" id="DdP-Nh-fTu"/>
                     <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="15" id="EP3-0E-xIT"/>
                     <constraint firstItem="BV2-uE-cnu" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="48" id="Fuq-bz-0gJ"/>
@@ -79,7 +79,7 @@
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="leading" secondItem="9uY-lc-yzz" secondAttribute="leadingMargin" id="VZg-kR-Koy"/>
                     <constraint firstAttribute="trailing" secondItem="8cF-nf-nal" secondAttribute="trailing" constant="23" id="ZNi-47-elq"/>
                     <constraint firstItem="BV2-uE-cnu" firstAttribute="centerX" secondItem="cJk-NX-ZHW" secondAttribute="centerX" constant="-11.5" id="aHN-Rg-5rg"/>
-                    <constraint firstItem="6pc-pS-6xH" firstAttribute="centerY" secondItem="i04-Gh-fbL" secondAttribute="centerY" constant="-11" id="eRy-IO-jAM"/>
+                    <constraint firstItem="6pc-pS-6xH" firstAttribute="centerY" secondItem="i04-Gh-fbL" secondAttribute="centerY" constant="-17" id="eRy-IO-jAM"/>
                     <constraint firstItem="cJk-NX-ZHW" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="gfx-kp-sw6"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="nBo-XU-rZw"/>
                     <constraint firstItem="R5S-a1-pTK" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="48" id="qwb-BG-ekd"/>
