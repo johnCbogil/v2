@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-  //  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         // The app is launching for the first time
         NSLog(@"First launch");
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
@@ -30,7 +30,7 @@
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
- //   }
+    }
     
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
