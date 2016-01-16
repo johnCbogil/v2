@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -106,8 +106,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Message Filled" width="100" height="100"/>
+        <image name="Message Filled" width="33" height="33"/>
         <image name="Phone Filled" width="33" height="33"/>
-        <image name="Twitter Filled" width="100" height="100"/>
+        <image name="Twitter Filled" width="33" height="33"/>
     </resources>
 </document>

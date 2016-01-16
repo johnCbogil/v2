@@ -7,6 +7,7 @@
 //
 
 #import "InfoViewController.h"
+#import "UIColor+voicesOrange.h"
 #import <STPopup/STPopup.h>
 #import <Instabug/Instabug.h>
 
@@ -35,6 +36,7 @@
     self.title = @"Here's what to say";
     self.contentSizeInPopup = CGSizeMake(300, 315);
     self.sendFeedbackButton.layer.cornerRadius = 5;
+    self.sendFeedbackButton.backgroundColor = [UIColor voicesOrange];
     
 }
 

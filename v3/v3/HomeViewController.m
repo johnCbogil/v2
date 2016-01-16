@@ -12,6 +12,7 @@
 #import "UIFont+voicesFont.h"
 #import "StateLegislator.h"
 #import "CacheManager.h"
+#import "UIColor+voicesOrange.h"
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
 #import <Social/Social.h>
@@ -52,21 +53,6 @@
         }
 }
 
-// TODO: THIS CODE IS NOT DRY
-
-
-- (void)turnZeroStateOn {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 1;
-    }];}
-
-- (void)turnZeroStateOff {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 0;
-    }];
-
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -74,9 +60,13 @@
     [self turnZeroStateOff];
     [self addObservers];
     [self setFont];
+    [self setColors];
     [self prepareSearchBar];
 }
 
+- (void)setColors {
+    self.searchView.backgroundColor = [UIColor voicesOrange];
+}
 - (void)setFont {
     self.callToActionLabel.font = [UIFont voicesFontWithSize:24];
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
@@ -393,13 +383,12 @@
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     }
-    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor];
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    
     [popupController presentInViewController:self];
 }
 
@@ -410,6 +399,17 @@
         else {
             self.callToActionLabel.text = @"Make your voice heard.";
         }
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
 }
 
 @end

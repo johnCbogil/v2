@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomAlertViewController.h"
 #import "CustomAlertDelegate.h"
 #import <STPopup/STPopup.h>
 @interface StateLegislatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

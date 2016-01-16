@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomAlertViewController.h"
 #import "CongresspersonTableViewCell.h"
 
 @interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

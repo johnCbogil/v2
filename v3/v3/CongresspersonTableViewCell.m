@@ -9,6 +9,7 @@
 #import "CongresspersonTableViewCell.h"
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
+#import "UIColor+voicesOrange.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+
 @end
 
 @implementation CongresspersonTableViewCell
@@ -51,6 +53,10 @@
     self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.congressperson.shortTitle, self.congressperson.firstName, self.congressperson.lastName];
     self.photo.image = [UIImage imageWithData:self.congressperson.photo];
     self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.congressperson.nextElection];
+    self.tweetButton.imageView.tintColor = [UIColor voicesOrange];
+    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
+    self.callButton.imageView.tintColor = [UIColor voicesOrange];
+    
 }
 
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
