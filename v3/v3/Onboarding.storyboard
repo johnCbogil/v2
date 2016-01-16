@@ -99,8 +99,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on location services so Voices can show you who represents your community." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
+                                <rect key="frame" x="20" y="28" width="560" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="vLi-tc-xHC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vLi-tc-xHC"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnboardingPage2" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
+                                <rect key="frame" x="166" y="144" width="269" height="311"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="2rb-Ke-YcW"/>
+                                    <constraint firstAttribute="width" constant="269" id="B5Z-gS-PEB"/>
+                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="CHU-9l-KGy"/>
+                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="fQ7-b6-lfM"/>
+                                    <constraint firstAttribute="height" constant="311" id="zyE-wB-HG3"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2rb-Ke-YcW"/>
+                                        <exclude reference="CHU-9l-KGy"/>
+                                        <exclude reference="zyE-wB-HG3"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3U-sj-t8K" userLabel="SingleLineView">
+                                <rect key="frame" x="25" y="464" width="550" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="B7b-Md-a47"/>
+                                    <constraint firstAttribute="width" constant="300" id="laR-QA-RKt"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="laR-QA-RKt"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-5f-JQc">
-                                <rect key="frame" x="188" y="481" width="225" height="50"/>
+                                <rect key="frame" x="188" y="493" width="225" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9gN-kI-PGe"/>
@@ -124,22 +168,8 @@
                                     <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="t4D-5c-L5j"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on location services so Voices can show you who represents your community." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
-                                <rect key="frame" x="20" y="28" width="560" height="99"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="vLi-tc-xHC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="vLi-tc-xHC"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-Zt-HNP">
-                                <rect key="frame" x="238" y="539" width="124" height="41"/>
+                                <rect key="frame" x="238" y="551" width="124" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="Ddl-c4-YtZ"/>
                                     <constraint firstAttribute="height" constant="41" id="QSs-aZ-V0U"/>
@@ -152,36 +182,6 @@
                                     <action selector="deferLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="p1T-bC-jIL"/>
                                 </connections>
                             </button>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3U-sj-t8K" userLabel="SingleLineView">
-                                <rect key="frame" x="25" y="464" width="550" height="1"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="B7b-Md-a47"/>
-                                    <constraint firstAttribute="width" constant="300" id="laR-QA-RKt"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="laR-QA-RKt"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnboardingPage2" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
-                                <rect key="frame" x="166" y="144" width="269" height="311"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="2rb-Ke-YcW"/>
-                                    <constraint firstAttribute="width" constant="269" id="B5Z-gS-PEB"/>
-                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="CHU-9l-KGy"/>
-                                    <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="fQ7-b6-lfM"/>
-                                    <constraint firstAttribute="height" constant="311" id="zyE-wB-HG3"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2rb-Ke-YcW"/>
-                                        <exclude reference="CHU-9l-KGy"/>
-                                        <exclude reference="zyE-wB-HG3"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -193,7 +193,7 @@
                             <constraint firstItem="X3U-sj-t8K" firstAttribute="leading" secondItem="yBD-6J-s09" secondAttribute="leading" constant="151" id="Gjf-aZ-pEH"/>
                             <constraint firstItem="dg4-Zt-HNP" firstAttribute="centerX" secondItem="hgP-5f-JQc" secondAttribute="centerX" id="IwM-g9-R48"/>
                             <constraint firstItem="Yqw-4L-8Su" firstAttribute="centerY" secondItem="yBD-6J-s09" secondAttribute="centerY" id="URA-sQ-wF2"/>
-                            <constraint firstItem="5dJ-rd-3UR" firstAttribute="top" secondItem="dg4-Zt-HNP" secondAttribute="bottom" constant="20" id="Zxg-og-1MQ"/>
+                            <constraint firstItem="5dJ-rd-3UR" firstAttribute="top" secondItem="dg4-Zt-HNP" secondAttribute="bottom" constant="8" id="Zxg-og-1MQ"/>
                             <constraint firstItem="hgP-5f-JQc" firstAttribute="centerX" secondItem="dg4-Zt-HNP" secondAttribute="centerX" id="c8M-OS-LqS"/>
                             <constraint firstItem="xjZ-mU-GOF" firstAttribute="top" secondItem="EcH-7M-6ZW" secondAttribute="bottom" constant="8" symbolic="YES" id="eGe-oX-C7E"/>
                             <constraint firstItem="Yqw-4L-8Su" firstAttribute="centerX" secondItem="hgP-5f-JQc" secondAttribute="centerX" id="nfH-K2-o0n"/>
