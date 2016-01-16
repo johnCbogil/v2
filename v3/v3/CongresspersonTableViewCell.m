@@ -53,10 +53,9 @@
     self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.congressperson.shortTitle, self.congressperson.firstName, self.congressperson.lastName];
     self.photo.image = [UIImage imageWithData:self.congressperson.photo];
     self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.congressperson.nextElection];
-    self.tweetButton.imageView.tintColor = [UIColor voicesOrange];
-    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
-    self.callButton.imageView.tintColor = [UIColor voicesOrange];
-    
+    self.tweetButton.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.callButton.tintColor = [UIColor voicesOrange];
 }
 
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {

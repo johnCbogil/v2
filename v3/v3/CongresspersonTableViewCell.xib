@@ -34,7 +34,7 @@
                             <constraint firstAttribute="width" constant="37" id="3YJ-Lt-KpZ"/>
                             <constraint firstAttribute="height" constant="37" id="FRP-Uf-5IX"/>
                         </constraints>
-                        <state key="normal" image="Phone Filled"/>
+                        <state key="normal" backgroundImage="Phone Filled"/>
                         <connections>
                             <action selector="callButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="gwC-WV-jfw"/>
                         </connections>
@@ -45,7 +45,7 @@
                             <constraint firstAttribute="width" constant="37" id="Rcf-Em-PtI"/>
                             <constraint firstAttribute="height" constant="37" id="Xnk-MY-zFF"/>
                         </constraints>
-                        <state key="normal" image="Message Filled"/>
+                        <state key="normal" backgroundImage="Message Filled"/>
                         <connections>
                             <action selector="emailButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="ySh-je-z2z"/>
                         </connections>
@@ -56,7 +56,7 @@
                             <constraint firstAttribute="width" constant="37" id="TEO-3y-w8u"/>
                             <constraint firstAttribute="height" constant="37" id="ozp-dc-lxm"/>
                         </constraints>
-                        <state key="normal" image="Twitter Filled"/>
+                        <state key="normal" backgroundImage="Twitter Filled"/>
                         <connections>
                             <action selector="twitterButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="VRK-oF-whX"/>
                         </connections>
