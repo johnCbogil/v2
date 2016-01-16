@@ -9,6 +9,8 @@
 #import "StateRepTableViewCell.h"
 #import "RepManager.h"
 #import "StateLegislator.h"
+#import "UIColor+voicesOrange.h"
+
 @interface StateRepTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -27,6 +29,9 @@
     self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];
+    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.callButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

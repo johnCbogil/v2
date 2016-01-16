@@ -21,10 +21,10 @@
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         if ([[data valueForKey:@"chamber"] isEqualToString:@"upper"]) {
-            self.chamber = @"Sen";
+            self.chamber = @"Sen.";
         }
         else {
-            self.chamber = @"Rep";
+            self.chamber = @"Rep.";
         }
         self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
         return self;

@@ -3,8 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,70 +16,70 @@
                 <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsh-hy-rtk" userLabel="shadowView">
-                        <rect key="frame" x="8" y="5" width="97" height="90"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-zI-HQX">
                         <rect key="frame" x="8" y="8" width="100" height="123"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="llp-iR-T53"/>
+                            <constraint firstAttribute="width" secondItem="OiI-zI-HQX" secondAttribute="height" multiplier="100:123" id="Mgz-Ja-ibP"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="ksZ-6H-Pwf">
-                        <rect key="frame" x="123" y="8" width="229" height="24"/>
+                        <rect key="frame" x="123" y="8" width="229" height="43"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="6ej-1j-2rw"/>
+                            <constraint firstAttribute="height" constant="43" id="iUl-S9-ahW"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu">
-                        <rect key="frame" x="123" y="57" width="59" height="38"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu">
+                        <rect key="frame" x="153" y="62" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="59" id="SBe-Z6-0FN"/>
+                            <constraint firstAttribute="width" secondItem="8EL-J2-byu" secondAttribute="height" multiplier="1:1" id="Shr-Da-7C2"/>
+                            <constraint firstAttribute="width" constant="35" id="f5Q-Iz-L2F"/>
                         </constraints>
-                        <state key="normal" title="Button">
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <state key="normal" backgroundImage="Message Filled">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="f5Q-Iz-L2F"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <action selector="emailButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="EBT-ni-v4o"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Tweet Button">
-                        <rect key="frame" x="293" y="57" width="59" height="38"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Tweet Button">
+                        <rect key="frame" x="268" y="59" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="59" id="ctk-mf-76p"/>
+                            <constraint firstAttribute="width" constant="35" id="AyF-jM-xYu"/>
+                            <constraint firstAttribute="width" secondItem="Vmf-Ub-0WH" secondAttribute="height" multiplier="1:1" id="dj2-hQ-Qo8"/>
                         </constraints>
-                        <state key="normal" title="Button">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
+                        <state key="normal" backgroundImage="Phone Filled"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AyF-jM-xYu"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <action selector="callButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="VVh-zR-ybl"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="trailing" secondItem="FXl-oV-8jG" secondAttribute="trailingMargin" id="3HF-yO-FeY"/>
-                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="leading" secondItem="8EL-J2-byu" secondAttribute="leading" id="521-r1-n2u"/>
-                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="trailing" secondItem="Vmf-Ub-0WH" secondAttribute="trailing" id="8qr-OQ-6cJ"/>
-                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="baseline" secondItem="8EL-J2-byu" secondAttribute="firstBaseline" id="GcM-JE-GPt"/>
-                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="Hhr-B5-cSi"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="vsh-hy-rtk" secondAttribute="bottom" constant="36.5" id="K8x-vF-EMD"/>
-                    <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="vsh-hy-rtk" secondAttribute="leading" id="L01-J7-ZrD"/>
-                    <constraint firstItem="vsh-hy-rtk" firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" id="UA5-bt-hcf"/>
-                    <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="bSy-Ih-w1n"/>
-                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="vsh-hy-rtk" secondAttribute="trailing" constant="18" id="fWP-ps-Fdj"/>
-                    <constraint firstItem="OiI-zI-HQX" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="top" id="fzk-W1-BdC"/>
-                    <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="FXl-oV-8jG" secondAttribute="leadingMargin" id="hvS-1f-16b"/>
-                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="8EL-J2-byu" secondAttribute="top" id="iNZ-YE-AWf"/>
-                    <constraint firstItem="vsh-hy-rtk" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="topMargin" constant="-3" id="jmC-qf-2OW"/>
-                    <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="25" id="obS-fc-OzG"/>
-                    <constraint firstItem="OiI-zI-HQX" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="topMargin" id="pdE-A0-RsL"/>
-                    <constraint firstItem="8EL-J2-byu" firstAttribute="baseline" secondItem="Vmf-Ub-0WH" secondAttribute="firstBaseline" id="ppr-NG-alN"/>
+                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="OiI-zI-HQX" secondAttribute="top" id="D5l-kb-3Ak"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="leading" secondItem="8EL-J2-byu" secondAttribute="trailing" constant="80" id="Qdp-Xn-RDc"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="Zec-CW-OiP"/>
+                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="trailing" secondItem="FXl-oV-8jG" secondAttribute="trailingMargin" id="fe9-Em-6Th"/>
+                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="hh9-G0-KoI"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="Vmf-Ub-0WH" secondAttribute="top" constant="3" id="iGb-3x-5yg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Vmf-Ub-0WH" secondAttribute="trailing" constant="49" id="kmE-GF-lZI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="34.5" id="pGP-z2-iJI"/>
+                    <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="qRH-wW-nRr"/>
+                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="topMargin" id="qtG-ZU-g6T"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="11" id="tgj-5E-MbD"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="-3" id="xQ1-bh-bNg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -88,9 +87,12 @@
                 <outlet property="emailButton" destination="8EL-J2-byu" id="IoI-PD-r9y"/>
                 <outlet property="name" destination="ksZ-6H-Pwf" id="F1Z-ip-bbd"/>
                 <outlet property="photo" destination="OiI-zI-HQX" id="e1o-Ux-gGu"/>
-                <outlet property="shadowView" destination="vsh-hy-rtk" id="HcF-kl-d6J"/>
             </connections>
             <point key="canvasLocation" x="583" y="282"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Message Filled" width="33" height="33"/>
+        <image name="Phone Filled" width="33" height="33"/>
+    </resources>
 </document>

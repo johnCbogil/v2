@@ -13,6 +13,6 @@
 //rgb(252,146,37)
 + (UIColor*)voicesOrange {
    // return [UIColor colorWithRed:252.0/255.0 green:146.0/255.0 blue:37.0/255.0 alpha:1];
-    return [[UIColor orangeColor]colorWithAlphaComponent:.9];
+    return [[UIColor orangeColor]colorWithAlphaComponent:.95];
 }
 @end
