@@ -19,9 +19,13 @@
 
 @implementation StateLegislatorViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
     self.title = @"State Legislators";
     [self addObservers];
     [self createRefreshControl];

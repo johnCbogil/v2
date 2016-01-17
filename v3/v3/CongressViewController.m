@@ -17,16 +17,20 @@
 
 @implementation CongressViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedCongresspersons"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedCongresspersons"];
     self.title = @"Congress";
     [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
 }
 
-- (void)dealloc{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

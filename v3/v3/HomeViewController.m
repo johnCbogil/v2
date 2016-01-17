@@ -45,17 +45,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if ([CLLocationManager authorizationStatus] <= 2) {
-        [self turnZeroStateOn];
-    }
-    else {
-         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
-        }
+    [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
     [self turnZeroStateOff];
     [self addObservers];
@@ -115,7 +109,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
-
+    
 }
 
 - (void)keyboardDidShow:(NSNotification *)note
@@ -393,12 +387,12 @@
 }
 
 - (void)updateInformationLabel:(NSNotification*)notification {
-        if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
-           self.callToActionLabel.text = @"loading...";
-        }
-        else {
-            self.callToActionLabel.text = @"Make your voice heard.";
-        }
+    if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
+        self.callToActionLabel.text = @"loading...";
+    }
+    else {
+        self.callToActionLabel.text = @"Make your voice heard.";
+    }
 }
 
 - (void)turnZeroStateOn {

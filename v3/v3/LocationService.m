@@ -67,15 +67,12 @@
     }];
 }
 
-// POST A NOTIFICATION WHEN THIS CHANGES
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         NSLog(@"location authorization denied");
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOn" object:nil];
     }
     else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         NSLog(@"Starting location updates");
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOff" object:nil];
         [self.locationManager startUpdatingLocation];
     }
 }

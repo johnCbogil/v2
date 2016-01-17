@@ -11,7 +11,6 @@
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
 		5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */; };
 		5224640F1BD17BCA006CFDB5 /* StateRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */; };
-		523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523211941B68402200752D4C /* InfluenceExplorerViewController.m */; };
 		5235B07E1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* CongresspersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */; };
 		5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */; };
@@ -59,8 +58,6 @@
 		5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepTableViewCell.h; sourceTree = "<group>"; };
 		5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepTableViewCell.m; sourceTree = "<group>"; };
 		5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateRepTableViewCell.xib; sourceTree = "<group>"; };
-		523211931B68402200752D4C /* InfluenceExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfluenceExplorerViewController.h; sourceTree = "<group>"; };
-		523211941B68402200752D4C /* InfluenceExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfluenceExplorerViewController.m; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* CongresspersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CongresspersonTableViewCell.xib; sourceTree = "<group>"; };
 		5235B07F1BA735A500CF43F9 /* CongresspersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongresspersonTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* CongresspersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongresspersonTableViewCell.m; sourceTree = "<group>"; };
@@ -204,8 +201,6 @@
 				52AD33971BE5CAA000EC0468 /* Managers */,
 				521C7FF71B715C8600D6CE1F /* PageViewController.h */,
 				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
-				523211931B68402200752D4C /* InfluenceExplorerViewController.h */,
-				523211941B68402200752D4C /* InfluenceExplorerViewController.m */,
 				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
 				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
 				52747B731B66EE92009702F5 /* StateLegislatorViewController.h */,
@@ -340,6 +335,7 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 4Y3GGL46D2;
 					};
 					52BB34431B6160CA00BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
@@ -430,7 +426,6 @@
 			files = (
 				52747B751B66EE92009702F5 /* StateLegislatorViewController.m in Sources */,
 				525E568F1BF7B138003D4DAF /* CustomAlertDelegate.m in Sources */,
-				523211951B68402200752D4C /* InfluenceExplorerViewController.m in Sources */,
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
 				52BB34371B6160CA00BB9FFD /* CongressViewController.m in Sources */,
@@ -581,11 +576,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = v3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = v3;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -596,11 +594,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = v3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = v3;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -79,8 +79,15 @@
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="qRH-wW-nRr"/>
                     <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="topMargin" id="qtG-ZU-g6T"/>
                     <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="11" id="tgj-5E-MbD"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="uNU-D7-t2S"/>
+                    <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="FXl-oV-8jG" secondAttribute="leading" constant="8" id="unE-5A-385"/>
                     <constraint firstItem="Vmf-Ub-0WH" firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="-3" id="xQ1-bh-bNg"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Zec-CW-OiP"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="callButton" destination="Vmf-Ub-0WH" id="j4M-tv-M4q"/>
