@@ -14,6 +14,7 @@
 #import "CacheManager.h"
 
 @interface StateLegislatorViewController ()
+@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -21,11 +22,22 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
     [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
+    if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
+        [self turnZeroStateOff];
+    }
+    else {
+        [self turnZeroStateOn];
+    }
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+
     self.title = @"State Legislators";
     [self addObservers];
     [self createRefreshControl];
@@ -76,6 +88,7 @@
 - (void)populateStateLegislatorsFromLocation:(CLLocation*)location {
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:location WithCompletion:^{
         [UIView animateWithDuration:.25 animations:^{
+            [self turnZeroStateOff];
             self.tableView.alpha = 1.0;
         }];
         [self.tableView reloadData];
@@ -136,6 +149,18 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStateLegislatorTableData)name:@"reloadStateLegislatorTableView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];
+}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
 }
 
 @end

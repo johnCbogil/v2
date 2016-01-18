@@ -19,7 +19,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+
     [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedCongresspersons"];
+    if ([RepManager sharedInstance].listOfCongressmen.count > 0) {
+        [self turnZeroStateOff];
+    }
+    else {
+        [self turnZeroStateOn];
+    }
 }
 
 - (void)viewDidLoad {
@@ -128,5 +138,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCongressTableData) name:@"reloadCongressTableView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];
+}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
 }
 @end

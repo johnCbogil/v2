@@ -51,7 +51,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
-    [self turnZeroStateOff];
     [self addObservers];
     [self setFont];
     [self setColors];
@@ -107,8 +106,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     
 }
 
@@ -395,15 +394,5 @@
     }
 }
 
-- (void)turnZeroStateOn {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 1;
-    }];}
-
-- (void)turnZeroStateOff {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 0;
-    }];
-}
 
 @end
