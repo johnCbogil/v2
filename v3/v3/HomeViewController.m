@@ -13,13 +13,13 @@
 #import "StateLegislator.h"
 #import "CacheManager.h"
 #import "UIColor+voicesOrange.h"
-//#import "FBShimmeringView.h"
-//#import "FBShimmeringLayer.h"
 #import "PageViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "LocationService.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
+//#import "FBShimmeringView.h"
+//#import "FBShimmeringLayer.h"
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -40,12 +40,9 @@
 
 @implementation HomeViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
     [self addObservers];
     [self setFont];
     [self setColors];

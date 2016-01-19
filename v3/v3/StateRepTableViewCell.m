@@ -1,6 +1,6 @@
 //
 //  StateRepTableViewCell.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 10/16/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
@@ -9,20 +9,24 @@
 #import "StateRepTableViewCell.h"
 #import "RepManager.h"
 #import "StateLegislator.h"
+#import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 
 @interface StateRepTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonatomic) StateLegislator *stateLegislator;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
+
 @end
 @implementation StateRepTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
+    [self setFont];
 }
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
@@ -34,10 +38,10 @@
     self.callButton.tintColor = [UIColor voicesOrange];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
+- (void)setFont {
+    self.name.font = [UIFont voicesFontWithSize:24];
 }
+
 - (IBAction)callButtonDidPress:(id)sender {
     if (self.stateLegislator.phone) {
         NSString *confirmCallMessage;

@@ -1,6 +1,6 @@
 //
 //  Congressperson.h
-//  v2
+//  v3
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-// these may not need to be exposed in the public interface
 @interface Congressperson : NSObject <NSCoding>
 @property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *firstName;
@@ -32,5 +31,4 @@
 @property (strong, nonatomic) NSArray *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;
 - (id)initWithData:(NSDictionary *)data;
-
 @end

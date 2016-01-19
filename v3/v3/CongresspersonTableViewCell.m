@@ -1,6 +1,6 @@
 //
 //  CongresspersonTableViewCell.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 9/14/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -20,27 +20,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
-
 @end
 
 @implementation CongresspersonTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
-    
     [self setFont];
-//
-//    // ADD SHADOW
-//    self.shadowView.backgroundColor = [UIColor clearColor];
-//    self.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
-//    self.shadowView.layer.shadowOffset = CGSizeMake(0,2.5);
-//    self.shadowView.layer.shadowOpacity = 0.5;
-//    self.shadowView.layer.shadowRadius = 3.0;
-//    self.shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.shadowView.bounds cornerRadius:100.0].CGPath;
-//    [self.shadowView addSubview:self.photo];
 }
 
 - (void)setFont {
@@ -57,10 +45,6 @@
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
 }
-
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    [super setSelected:selected animated:animated];
-//}
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
@@ -93,10 +77,8 @@
         confirmCallAlert.delegate = self;
     }
     else {
-//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try tweeting instead" andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number, try tweeting at them instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
-
     }
 }
 
@@ -106,10 +88,8 @@
     }
     else {
         // RENAME THIS DELEGATE TO BE MORE SPECIFIC
-//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
-
     }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
@@ -118,10 +98,8 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
     }
     else {
-//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a Twitter acct.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.congressperson.shortTitle, self.congressperson.lastName]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
-
     }
 }
 @end

@@ -77,63 +77,29 @@
 }
 
 - (void)checkCacheForRepresentative:(NSString*)representativeType {
-            NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-            NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
-            if (dataRepresentingCachedRepresentatives != nil) {
-                NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
-                if (oldCachedRepresentatives != nil){
-                    if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
-                        [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
-                    }
-                    else {
-                        [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
-                    }
-                }
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
+    if (dataRepresentingCachedRepresentatives != nil) {
+        NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
+        if (oldCachedRepresentatives != nil){
+            if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
+                [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
             else {
-                if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
-                    [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc]init];
-                }
-                else {
-                    [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]init];
-                }
-                if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-                    [[LocationService sharedInstance]startUpdatingLocation];
-                }
+                [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
             }
         }
-    
-
-    
-    
-//    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-//    NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
-//    // If there is a cache
-//    if (dataRepresentingCachedRepresentatives != nil) {
-//        NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
-//        if (oldCachedRepresentatives != nil) {
-//            if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
-//                [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
-//            }
-//            else {
-//                [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
-//            }
-//        }
-//    }
-//    // If there is no cache
-//    else {
-//        if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
-//            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] init];
-//        }
-//        else {
-//            [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc] init];
-//        }
-//        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-//            [[LocationService sharedInstance]startUpdatingLocation];
-//        }
-//    }
-
-
-        // TODO: THIS CODE IS NOT DRY
-
+    }
+    else {
+        if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
+            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc]init];
+        }
+        else {
+            [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]init];
+        }
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
+    }
+}
 @end
