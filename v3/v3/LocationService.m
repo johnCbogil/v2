@@ -38,6 +38,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location service failed with error %@", error);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOn" object:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
