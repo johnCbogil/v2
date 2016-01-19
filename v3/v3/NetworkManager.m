@@ -217,7 +217,8 @@
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"There was a problem with Goolge Maps. Please try again" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil,nil];
+        [alert show];
         NSLog(@"Error: %@", error);
     }];
     
