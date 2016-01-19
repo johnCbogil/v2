@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aHE-mT-4XI" id="FXl-oV-8jG">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-zI-HQX">
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu">
-                        <rect key="frame" x="153" y="64" width="33" height="33"/>
+                        <rect key="frame" x="153" y="76" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="f5Q-Iz-L2F"/>
                         </constraints>
@@ -51,7 +51,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Tweet Button">
-                        <rect key="frame" x="270" y="61" width="33" height="33"/>
+                        <rect key="frame" x="270" y="73" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="AyF-jM-xYu"/>
                         </constraints>
@@ -65,19 +65,29 @@
                             <action selector="callButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="VVh-zR-ybl"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-xQ-nFh">
+                        <rect key="frame" x="123" y="44" width="229" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="42.5" id="1mi-1Y-jaf"/>
+                    <constraint firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="30.5" id="1mi-1Y-jaf"/>
                     <constraint firstItem="ksZ-6H-Pwf" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="6jo-Ri-ZzW"/>
+                    <constraint firstItem="IOz-xQ-nFh" firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" id="8VZ-Th-b34"/>
+                    <constraint firstItem="IOz-xQ-nFh" firstAttribute="leading" secondItem="ksZ-6H-Pwf" secondAttribute="leading" id="HxS-hW-wkc"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="JeA-Fq-gGt"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="FXl-oV-8jG" secondAttribute="leading" constant="8" id="Ktm-i1-HkL"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="SRT-8R-u25"/>
                     <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="SWR-Kf-VhV"/>
-                    <constraint firstAttribute="bottom" secondItem="Vmf-Ub-0WH" secondAttribute="bottom" constant="45.5" id="XKe-FA-okp"/>
-                    <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="28" id="Yb2-Eo-4Go"/>
+                    <constraint firstAttribute="bottom" secondItem="Vmf-Ub-0WH" secondAttribute="bottom" constant="33.5" id="XKe-FA-okp"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="40" id="Yb2-Eo-4Go"/>
                     <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="Zec-CW-OiP"/>
+                    <constraint firstItem="IOz-xQ-nFh" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="8" symbolic="YES" id="hxS-tI-Il3"/>
                     <constraint firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" constant="8" id="jMb-9Q-ld0"/>
-                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="25" id="nNa-jG-wce"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="IOz-xQ-nFh" secondAttribute="bottom" constant="8" symbolic="YES" id="l6k-O7-tXg"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="37" id="nNa-jG-wce"/>
                     <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="uBb-x2-2zw"/>
                     <constraint firstAttribute="trailing" secondItem="Vmf-Ub-0WH" secondAttribute="trailing" constant="57" id="wbC-i9-fJw"/>
                 </constraints>
@@ -89,6 +99,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="callButton" destination="Vmf-Ub-0WH" id="j4M-tv-M4q"/>
+                <outlet property="districtNumberLabel" destination="IOz-xQ-nFh" id="fNE-KV-duG"/>
                 <outlet property="emailButton" destination="8EL-J2-byu" id="IoI-PD-r9y"/>
                 <outlet property="name" destination="ksZ-6H-Pwf" id="F1Z-ip-bbd"/>
                 <outlet property="photo" destination="OiI-zI-HQX" id="e1o-Ux-gGu"/>

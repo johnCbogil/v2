@@ -18,6 +18,7 @@
 @property (strong, nonatomic) StateLegislator *stateLegislator;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
 
 @end
 @implementation StateRepTableViewCell
@@ -32,6 +33,7 @@
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
+    self.districtNumberLabel.text = [NSString stringWithFormat:@"District %@", self.stateLegislator.districtNumber];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];
     self.emailButton.imageView.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
@@ -40,6 +42,7 @@
 
 - (void)setFont {
     self.name.font = [UIFont voicesFontWithSize:24];
+    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (IBAction)callButtonDidPress:(id)sender {
