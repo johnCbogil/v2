@@ -5,7 +5,6 @@
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
-
 #import "CongressViewController.h"
 #import "LocationService.h"
 #import "RepManager.h"
@@ -13,41 +12,23 @@
 #import "StateLegislator.h"
 #import "CacheManager.h"
 #import "UIFont+voicesFont.h"
+#import "CongresspersonTableViewCell.h"
 #import <STPopup/STPopup.h>
 
 @implementation CongressViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
-
-    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedCongresspersons"];
-
+    [self addObservers];
+    [self checkLocationAuthorizationStatus];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedCongresspersons"];
     self.title = @"Congress";
-    [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
-    if ([CLLocationManager authorizationStatus] <= 2) {
-        [self turnZeroStateOn];
-    }
-    else {
-        [self turnZeroStateOff];
-    }
-//    if ([RepManager sharedInstance].listOfCongressmen.count > 0) {
-//        [self turnZeroStateOff];
-//    }
-//    else {
-//        [self turnZeroStateOn];
-//    }
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -59,15 +40,58 @@
     }
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - UI Controls
 
 - (void)createRefreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
+
+- (void)checkLocationAuthorizationStatus {
+    if ([CLLocationManager authorizationStatus] <= 2) {
+        [self turnZeroStateOn];
+    }
+    else {
+        [self turnZeroStateOff];
+    }
+}
+
+
+- (void)endRefreshing {
+    [self.refreshControl endRefreshing];
+}
+
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCongressTableData) name:@"reloadCongressTableView" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];
+}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
+}
+
+
+#pragma mark - Request Data Methods
 
 - (void)pullToRefresh {
     if ([CLLocationManager authorizationStatus] <= 2) {
@@ -102,7 +126,6 @@
 }
 
 - (void)reloadCongressTableData{
-    //NSLog(@"%@", [[[RepManager sharedInstance].listOfCongressmen objectAtIndex:0]firstName]);
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
@@ -134,27 +157,5 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
-}
-
-- (void)endRefreshing {
-    [self.refreshControl endRefreshing];
-}
-
-- (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCongressTableData) name:@"reloadCongressTableView" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)turnZeroStateOn {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 1;
-    }];
-}
-
-- (void)turnZeroStateOff {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 0;
-    }];
 }
 @end

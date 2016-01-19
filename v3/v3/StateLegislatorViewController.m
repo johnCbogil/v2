@@ -12,46 +12,23 @@
 #import "StateRepTableViewCell.h"
 #import "UIFont+voicesFont.h"
 #import "CacheManager.h"
-
-@interface StateLegislatorViewController ()
-@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@end
+#import "CustomAlertDelegate.h"
+#import <STPopup/STPopup.h>
 
 @implementation StateLegislatorViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    
-    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
-    if ([CLLocationManager authorizationStatus] <= 2) {
-        [self turnZeroStateOn];
-    }
-    else {
-        [self turnZeroStateOff];
-    }
-//    if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
-//        [self turnZeroStateOff];
-//    }
-//    else {
-//        [self turnZeroStateOn];
-//    }
-
+    [self addObservers];
+    [self checkLocationAuthorizationStatus];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
-
+    [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
     self.title = @"State Legislators";
-    [self addObservers];
     [self createRefreshControl];
     [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -63,15 +40,58 @@
  }
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
+- (void)checkLocationAuthorizationStatus {
+    if ([CLLocationManager authorizationStatus] <= 2) {
+        [self turnZeroStateOn];
+    }
+    else {
+        [self turnZeroStateOff];
+    }
+}
+
+#pragma mark - UI Controls
 
 - (void)createRefreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
+
+- (void)endRefreshing {
+    [self.refreshControl endRefreshing];
+}
+
+- (void)addObservers {
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStateLegislatorTableData)name:@"reloadStateLegislatorTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];
+}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
+}
+
+#pragma mark - Request Data methods
 
 - (void)pullToRefresh {
     if ([CLLocationManager authorizationStatus] <= 2) {
@@ -146,27 +166,4 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
 }
-
-- (void)endRefreshing {
-    [self.refreshControl endRefreshing];
-}
-
-- (void)addObservers {
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStateLegislatorTableData)name:@"reloadStateLegislatorTableView" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
-}
-
-- (void)turnZeroStateOn {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 1;
-    }];
-}
-
-- (void)turnZeroStateOff {
-    [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 0;
-    }];
-}
-
 @end
