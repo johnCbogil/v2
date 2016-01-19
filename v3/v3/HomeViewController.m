@@ -1,6 +1,6 @@
 //
 //  HomeViewController.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 8/7/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -15,18 +15,17 @@
 #import "UIColor+voicesOrange.h"
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
+#import "PageViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import "LocationService.h"
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 
-@interface HomeViewController ()
+@interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-//@property (weak, nonatomic) IBOutlet UILabel *voicesLabel;
-//@property (strong, nonatomic) FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-//@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-//@property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
@@ -34,15 +33,12 @@
 @property (strong, nonatomic) NSString *stateUpperDistrictNumber;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
-//@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
-//@property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageView;
+@property (strong, nonatomic) PageViewController *pageVC;
+//@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+//@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @end
 
 @implementation HomeViewController
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
@@ -50,11 +46,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
     [self addObservers];
     [self setFont];
     [self setColors];
     [self prepareSearchBar];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void)setColors {
@@ -65,57 +68,20 @@
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
-    //   [self prepareShimmer];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)addObservers {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changePage:)
-                                                 name:@"changePage"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(presentEmailViewController:)
-                                                 name:@"presentEmailVC"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(presentTweetComposer:)
-                                                 name:@"presentTweetComposer"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(presentInfoViewController)
-                                                 name:@"presentInfoViewController"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateInformationLabel:)
-                                                 name:@"updateInformationLabel"
-                                               object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"changePage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:)name:@"updateInformationLabel" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidFinishNotification object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
-    
 }
 
-- (void)keyboardDidShow:(NSNotification *)note
-{
-    self.tap = [[UITapGestureRecognizer alloc]
-                initWithTarget:self
-                action:@selector(dismissKeyboard)];
+- (void)keyboardDidShow:(NSNotification *)note {
+    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.containerView addGestureRecognizer:self.tap];
 }
 
@@ -132,6 +98,8 @@
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by location";
     
+    self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
+
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
     self.searchView.clipsToBounds = YES;
@@ -248,11 +216,10 @@
 }
 
 - (void)hideSearchBar {
-    
     self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
+    dispatch_async(dispatch_get_main_queue(), ^{
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 0.0;
@@ -263,6 +230,7 @@
                          [self.view layoutIfNeeded];
                          [self.view setNeedsUpdateConstraints];
                      }];
+    });
 }
 
 - (CGFloat)searchViewWidth {
@@ -289,34 +257,6 @@
     [self updateInformationLabel:nil];
 }
 
-//#pragma mark - Shimmer
-//
-//- (void)prepareShimmer {
-//    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
-//    [self.view addSubview:self.shimmeringView];
-//    self.voicesLabel.frame = self.shimmeringView.frame;
-//    //self.shimmeringView.contentView = self.voicesLabel;
-//    self.shimmeringView.shimmering = NO;
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
-//}
-
-- (void)viewDidLayoutSubviews {
-    //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
-}
-
-////- (void)toggleShimmerOn {
-////    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
-////    self.shimmeringView.shimmering = YES;
-////}
-//
-//- (void)toggleShimmerOff {
-//    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
-//}
 
 #pragma mark - Presentation Controllers
 
@@ -394,5 +334,41 @@
     }
 }
 
+#pragma mark - FB Shimmer methods
+// Save for later
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
+    //   [self prepareShimmer];
+}
+
+//
+//- (void)prepareShimmer {
+//    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
+//    [self.view addSubview:self.shimmeringView];
+//    self.voicesLabel.frame = self.shimmeringView.frame;
+//    //self.shimmeringView.contentView = self.voicesLabel;
+//    self.shimmeringView.shimmering = NO;
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+//}
+
+- (void)viewDidLayoutSubviews {
+    //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
+}
+
+////- (void)toggleShimmerOn {
+////    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
+////    self.shimmeringView.shimmering = YES;
+////}
+//
+//- (void)toggleShimmerOff {
+//    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
+//}
 
 @end

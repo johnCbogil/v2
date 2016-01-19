@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PageViewController.h"
-#import <MessageUI/MFMailComposeViewController.h>
-#import "LocationService.h"
 
-@interface HomeViewController : UIViewController <UISearchBarDelegate, MFMailComposeViewControllerDelegate>
+
+@interface HomeViewController : UIViewController <UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) PageViewController *pageVC;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIView *singleLineView;
