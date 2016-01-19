@@ -24,12 +24,18 @@
     [super viewWillAppear:YES];
     
     [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedStateLegislators"];
-    if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
-        [self turnZeroStateOff];
-    }
-    else {
+    if ([CLLocationManager authorizationStatus] <= 2) {
         [self turnZeroStateOn];
     }
+    else {
+        [self turnZeroStateOff];
+    }
+//    if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
+//        [self turnZeroStateOff];
+//    }
+//    else {
+//        [self turnZeroStateOn];
+//    }
 
 }
 - (void)viewDidLoad {

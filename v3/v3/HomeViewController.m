@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 //@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
@@ -34,8 +34,8 @@
 @property (strong, nonatomic) NSString *stateUpperDistrictNumber;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
-@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
-@property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageView;
+//@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
+//@property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageView;
 @end
 
 @implementation HomeViewController
