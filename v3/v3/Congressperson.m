@@ -38,12 +38,21 @@
 }
 
 - (NSString*)formatElectionDate:(NSString*)termEnd {
-    if([termEnd isEqualToString:@"2017-01-03"] || [termEnd isEqualToString:@"2019-01-03"]){
-        return @"4 Nov 2016";
+    //    if([termEnd isEqualToString:@"2017-01-03"] || [termEnd isEqualToString:@"2019-01-03"]){
+    //        return @"4 Nov 2016";
+    //    }
+    //
+    //    else {
+    //        return  @"3 Nov 2020";
+    //    }
+    if ([termEnd isEqualToString:@"2019-01-03"]) {
+        return @"6 Nov 2018";
     }
-    
+    else if ([termEnd isEqualToString:@"2021-01-03"]) {
+        return @"3 Nov 2020";
+    }
     else {
-        return  @"3 Nov 2020";
+        return @"4 Nov 2016";
     }
 }
 
