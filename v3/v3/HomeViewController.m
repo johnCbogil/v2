@@ -295,7 +295,7 @@
 - (void)presentTweetComposer:(NSNotification*)notification {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *initialText = [NSString stringWithFormat:@"@%@", [notification.userInfo objectForKey:@"accountName"]];
+        NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
         [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
     }
