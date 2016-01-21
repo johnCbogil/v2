@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
-
+@property (strong, nonatomic) NSArray *listOfStatesWithAssembly;
 @end
 @implementation StateRepTableViewCell
 
@@ -28,16 +28,35 @@
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
     [self setFont];
+    [self setColor];
+    self.listOfStatesWithAssembly = [NSArray arrayWithObjects:@"CA", @"NV", @"NJ", @"NY", @"WI", nil];
 }
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
-    self.districtNumberLabel.text = [NSString stringWithFormat:@"District %@", self.stateLegislator.districtNumber];
+    [self createDistrictNumberLabel];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];
+}
+
+- (void)setColor {
     self.emailButton.imageView.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
+}
+
+- (void)createDistrictNumberLabel {
+    if ([self.stateLegislator.chamber isEqualToString:@"Rep."]) {
+        if ([self.listOfStatesWithAssembly containsObject:self.stateLegislator.stateCode.uppercaseString]) {
+            self.districtNumberLabel.text = [NSString stringWithFormat:@"Assembly District %@", self.stateLegislator.districtNumber];
+        }
+        else {
+            self.districtNumberLabel.text = [NSString stringWithFormat:@"House District %@", self.stateLegislator.districtNumber];
+        }
+    }
+    else {
+        self.districtNumberLabel.text = [NSString stringWithFormat:@"Senate District %@", self.stateLegislator.districtNumber];
+    }
 }
 
 - (void)setFont {

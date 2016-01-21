@@ -217,7 +217,6 @@
     self.searchViewWidthConstraint.constant = [self searchViewWidth];
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
-    dispatch_async(dispatch_get_main_queue(), ^{
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 0.0;
@@ -228,7 +227,6 @@
                          [self.view layoutIfNeeded];
                          [self.view setNeedsUpdateConstraints];
                      }];
-    });
 }
 
 - (CGFloat)searchViewWidth {
