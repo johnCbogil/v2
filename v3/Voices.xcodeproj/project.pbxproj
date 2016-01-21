@@ -84,7 +84,7 @@
 		52AD33941BE5C8FD00EC0468 /* UIColor+voicesOrange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesOrange.m"; sourceTree = "<group>"; };
 		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
-		52BB342B1B6160C900BB9FFD /* v3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = v3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BB342B1B6160C900BB9FFD /* Voices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB342F1B6160C900BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52BB34321B6160CA00BB9FFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		52BB34391B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52BB343B1B6160CA00BB9FFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = v3/Images.xcassets; sourceTree = "<group>"; };
 		52BB343E1B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		52BB34441B6160CA00BB9FFD /* v3.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = v3.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52BB34441B6160CA00BB9FFD /* Voices.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Voices.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB34491B6160CA00BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB344A1B6160CA00BB9FFD /* v3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = v3Tests.m; sourceTree = "<group>"; };
 		52C391FD1B8F71C90034BEAB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -188,8 +188,8 @@
 		52BB342C1B6160C900BB9FFD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52BB342B1B6160C900BB9FFD /* v3.app */,
-				52BB34441B6160CA00BB9FFD /* v3.xctest */,
+				52BB342B1B6160C900BB9FFD /* Voices.app */,
+				52BB34441B6160CA00BB9FFD /* Voices.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,9 +287,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		52BB342A1B6160C900BB9FFD /* v3 */ = {
+		52BB342A1B6160C900BB9FFD /* Voices */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3" */;
+			buildConfigurationList = 52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "Voices" */;
 			buildPhases = (
 				53ECD74479AB7F003C7FD7F6 /* Check Pods Manifest.lock */,
 				52BB34271B6160C900BB9FFD /* Sources */,
@@ -301,14 +301,14 @@
 			);
 			dependencies = (
 			);
-			name = v3;
+			name = Voices;
 			productName = v3;
-			productReference = 52BB342B1B6160C900BB9FFD /* v3.app */;
+			productReference = 52BB342B1B6160C900BB9FFD /* Voices.app */;
 			productType = "com.apple.product-type.application";
 		};
-		52BB34431B6160CA00BB9FFD /* v3Tests */ = {
+		52BB34431B6160CA00BB9FFD /* VoicesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3Tests" */;
+			buildConfigurationList = 52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "VoicesTests" */;
 			buildPhases = (
 				52BB34401B6160CA00BB9FFD /* Sources */,
 				52BB34411B6160CA00BB9FFD /* Frameworks */,
@@ -319,9 +319,9 @@
 			dependencies = (
 				52BB34461B6160CA00BB9FFD /* PBXTargetDependency */,
 			);
-			name = v3Tests;
+			name = VoicesTests;
 			productName = v3Tests;
-			productReference = 52BB34441B6160CA00BB9FFD /* v3.xctest */;
+			productReference = 52BB34441B6160CA00BB9FFD /* Voices.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -343,7 +343,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52BB34261B6160C900BB9FFD /* Build configuration list for PBXProject "v3" */;
+			buildConfigurationList = 52BB34261B6160C900BB9FFD /* Build configuration list for PBXProject "Voices" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -356,8 +356,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52BB342A1B6160C900BB9FFD /* v3 */,
-				52BB34431B6160CA00BB9FFD /* v3Tests */,
+				52BB342A1B6160C900BB9FFD /* Voices */,
+				52BB34431B6160CA00BB9FFD /* VoicesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -462,7 +462,7 @@
 /* Begin PBXTargetDependency section */
 		52BB34461B6160CA00BB9FFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52BB342A1B6160C900BB9FFD /* v3 */;
+			target = 52BB342A1B6160C900BB9FFD /* Voices */;
 			targetProxy = 52BB34451B6160CA00BB9FFD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -581,8 +581,8 @@
 				INFOPLIST_FILE = v3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = v3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -599,8 +599,8 @@
 				INFOPLIST_FILE = v3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = v3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -618,8 +618,8 @@
 				INFOPLIST_FILE = v3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = v3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/v3.app/v3";
+				PRODUCT_NAME = Voices;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voices.app/Voices";
 			};
 			name = Debug;
 		};
@@ -631,15 +631,15 @@
 				INFOPLIST_FILE = v3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "johnbogil.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = v3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/v3.app/v3";
+				PRODUCT_NAME = Voices;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voices.app/Voices";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52BB34261B6160C900BB9FFD /* Build configuration list for PBXProject "v3" */ = {
+		52BB34261B6160C900BB9FFD /* Build configuration list for PBXProject "Voices" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BB344C1B6160CA00BB9FFD /* Debug */,
@@ -648,7 +648,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3" */ = {
+		52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "Voices" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BB344F1B6160CA00BB9FFD /* Debug */,
@@ -657,7 +657,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3Tests" */ = {
+		52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "VoicesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BB34521B6160CA00BB9FFD /* Debug */,
