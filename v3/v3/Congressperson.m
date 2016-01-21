@@ -24,15 +24,8 @@
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
-        // MOVE THIS TO ITS OWN METHOD
-        if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
-            self.title = @"Senator";
-            self.shortTitle = @"Sen";
-        }
-        else {
-            self.title = @"Representative";
-            self.shortTitle = @"Rep";
-        }
+        [self formatTitle:[data valueForKey:@"title"]];
+        
         return self;
     }
     return self;
@@ -47,6 +40,17 @@
     }
     else {
         return @"3 Nov 2020";
+    }
+}
+
+- (void)formatTitle:(NSString*)data {
+    if ([data isEqualToString:@"Sen"]) {
+        self.title = @"Senator";
+        self.shortTitle = @"Sen";
+    }
+    else {
+        self.title = @"Representative";
+        self.shortTitle = @"Rep";
     }
 }
 
