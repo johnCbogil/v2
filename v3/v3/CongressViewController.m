@@ -101,14 +101,14 @@
     }
     else {
         [[LocationService sharedInstance] startUpdatingLocation];
-        [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self.refreshControl endRefreshing];
-            });
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
+        //        [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        //                [self.tableView reloadData];
+        //                [self.refreshControl endRefreshing];
+        //            });
+        //        } onError:^(NSError *error) {
+        //            [error localizedDescription];
+        //        }];
     }
 }
 
@@ -131,12 +131,15 @@
         [self.refreshControl endRefreshing];
     });
 }
- 
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        if (![RepManager sharedInstance].listOfCongressmen.count > 0) {
-            [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
-        }
+        //        if (![RepManager sharedInstance].listOfCongressmen.count > 0) {
+        [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+        
+        //    }
     }
 }
 

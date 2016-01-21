@@ -62,7 +62,7 @@
     // OPEN STATES DOES NOT ALLOW FOR SECURE CONNECTIONS
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
-    
+    NSLog(@"%@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
