@@ -1,6 +1,6 @@
 
 //  CacheManager.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 9/9/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -15,6 +15,7 @@
 @interface CacheManager ()
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @end
+
 @implementation CacheManager
 + (CacheManager *)sharedInstance {
     static CacheManager *instance = nil;
@@ -34,7 +35,7 @@
     return self;
 }
 
-- (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName{
+- (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName {
     NSLog(@"Searching cache");
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

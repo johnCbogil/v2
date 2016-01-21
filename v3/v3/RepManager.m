@@ -1,6 +1,6 @@
 //
 //  RepManager.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -13,6 +13,7 @@
 #import "LocationService.h"
 #import "AppDelegate.h"
 #import "CacheManager.h"
+
 @implementation RepManager
 
 + (RepManager *)sharedInstance {
@@ -73,7 +74,7 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
                                                                         object:nil];
                     successBlock();
-
+                    
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);

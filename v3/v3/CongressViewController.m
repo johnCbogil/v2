@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  CongressViewController.m
 //  v3
 //
 //  Created by John Bogil on 7/23/15.
@@ -65,7 +65,6 @@
     }
 }
 
-
 - (void)endRefreshing {
     [self.refreshControl endRefreshing];
 }
@@ -90,7 +89,6 @@
     }];
 }
 
-
 #pragma mark - Request Data Methods
 
 - (void)pullToRefresh {
@@ -101,14 +99,6 @@
     }
     else {
         [[LocationService sharedInstance] startUpdatingLocation];
-        //        [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                [self.tableView reloadData];
-        //                [self.refreshControl endRefreshing];
-        //            });
-        //        } onError:^(NSError *error) {
-        //            [error localizedDescription];
-        //        }];
     }
 }
 
@@ -134,12 +124,9 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-        //        if (![RepManager sharedInstance].listOfCongressmen.count > 0) {
         [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
-        
-        //    }
     }
 }
 

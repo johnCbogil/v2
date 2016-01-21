@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Congressperson : NSObject <NSCoding>
+
 @property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
@@ -31,4 +32,5 @@
 @property (strong, nonatomic) NSArray *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;
 - (id)initWithData:(NSDictionary *)data;
+
 @end

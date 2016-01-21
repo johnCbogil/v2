@@ -24,6 +24,7 @@
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
+        // MOVE THIS TO ITS OWN METHOD
         if ([[data valueForKey:@"title"]isEqualToString:@"Sen"]) {
             self.title = @"Senator";
             self.shortTitle = @"Sen";
@@ -38,13 +39,6 @@
 }
 
 - (NSString*)formatElectionDate:(NSString*)termEnd {
-//    if([termEnd isEqualToString:@"2017-01-03"] || [termEnd isEqualToString:@"2019-01-03"]){
-//        return @"4 Nov 2016";
-//    }
-//    
-//    else {
-//        return  @"3 Nov 2020";
-//    }
     if ([termEnd isEqualToString:@"2019-01-03"]) {
         return @"6 Nov 2018";
     }

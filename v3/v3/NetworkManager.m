@@ -1,6 +1,6 @@
 //
 //  NetworkManager.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -10,6 +10,7 @@
 #import "LocationService.h"
 
 @implementation NetworkManager
+
 +(NetworkManager *) sharedInstance {
     static NetworkManager *instance = nil;
     static dispatch_once_t onceToken;
@@ -200,9 +201,7 @@
 
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock {
-    
-    //AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE - googkey
-    
+        
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", searchText];
     NSString *cleanUrl = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:cleanUrl];

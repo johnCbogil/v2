@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  v2
+//  v3
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -12,8 +12,8 @@
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
 #import <Instabug/Instabug.h>
-@interface AppDelegate ()
 
+@interface AppDelegate ()
 @end
 
 @implementation AppDelegate
@@ -108,7 +108,6 @@
     }
     return _persistentStoreCoordinator;
 }
-
 
 - (NSManagedObjectContext *)managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)

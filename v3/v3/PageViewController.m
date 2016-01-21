@@ -1,6 +1,6 @@
 //
 //  MyPageViewController.m
-//  v2
+//  v3
 //
 //  Created by David Weissler on 8/4/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.dataSource = self;
     self.delegate = self;
     self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congresspersonViewController"];

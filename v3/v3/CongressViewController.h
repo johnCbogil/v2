@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CongressViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
+
 @end

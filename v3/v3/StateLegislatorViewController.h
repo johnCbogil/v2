@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface StateLegislatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end

@@ -13,6 +13,7 @@
 #import "UIColor+voicesOrange.h"
 
 @interface StateRepTableViewCell ()
+
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonatomic) StateLegislator *stateLegislator;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
 @property (strong, nonatomic) NSArray *listOfStatesWithAssembly;
 @end
+
 @implementation StateRepTableViewCell
 
 - (void)awakeFromNib {
@@ -90,7 +92,7 @@
     }
 }
 
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }

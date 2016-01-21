@@ -101,14 +101,6 @@
     }
     else {
         [[LocationService sharedInstance] startUpdatingLocation];
-        //        [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                [self.tableView reloadData];
-        //                [self.refreshControl endRefreshing];
-        //            });
-        //        } onError:^(NSError *error) {
-        //            [error localizedDescription];
-        //        }];
     }
 }
 - (void)populateStateLegislatorsFromLocation:(CLLocation*)location {
@@ -130,18 +122,11 @@
     });
 }
 
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
-       // if ([RepManager sharedInstance].listofStateLegislators.count > 0) {
-            // do nothing
-       // }
-        //else {
-            [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation];
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-            
-    //    }
+        [self populateStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     }
 }
 

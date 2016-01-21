@@ -97,7 +97,7 @@
     self.searchBar.placeholder = @"Search by location";
     
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
-
+    
     // ROUND THE BOX
     self.searchView.layer.cornerRadius = 5;
     self.searchView.clipsToBounds = YES;
