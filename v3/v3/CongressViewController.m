@@ -74,7 +74,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCongressTableData) name:@"reloadCongressTableView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+   // [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)turnZeroStateOn {
@@ -122,13 +122,13 @@
     });
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
-    if([keyPath isEqualToString:@"currentLocation"]) {
-        [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
-        [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
-    }
-}
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
+//    if([keyPath isEqualToString:@"currentLocation"]) {
+//        [self populateCongressmenFromLocation:[LocationService sharedInstance].currentLocation];
+//        [self.tableView reloadData];
+//        [self.refreshControl endRefreshing];
+//    }
+//}
 
 #pragma mark - UITableView Delegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
