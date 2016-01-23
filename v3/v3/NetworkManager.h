@@ -28,6 +28,7 @@
                  onError:(void(^)(NSError *error))errorBlock;
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock;
+- (void)getNYCCouncilMemberFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
 
 @end

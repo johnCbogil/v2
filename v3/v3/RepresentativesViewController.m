@@ -12,6 +12,7 @@
 #import "RepManager.h"
 #import "LocationService.h"
 #import "CacheManager.h"
+#import "NetworkManager.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
