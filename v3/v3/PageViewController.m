@@ -20,8 +20,6 @@
     [super viewDidLoad];
     self.dataSource = self;
     self.delegate = self;
-    self.firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congresspersonViewController"];
-    self.secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stateLegislatorViewController"];
     
     RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
@@ -50,7 +48,7 @@
     
    self.index++;
     
-    if (self.index == 5) {
+    if (self.index == 2) {
         return nil;
     }
     
@@ -58,20 +56,17 @@
     
 }
 
-//- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
-//    if(finished) {
-//        self.titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
-//        NSDictionary* userInfo = @{@"currentPage": self.titleOfIncomingViewController};
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"changePage" object:userInfo];
-//    }
-//}
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
+    if(finished) {
+        self.titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
+        NSDictionary* userInfo = @{@"currentPage": self.titleOfIncomingViewController};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changePage" object:userInfo];
+    }
+}
 
 - (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
-    
-    RepresentativesViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
-    childViewController.index =self.index;
-    
-    return childViewController;
-    
+    RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
+    representativesViewController.index =self.index;
+    return representativesViewController;
 }
 @end

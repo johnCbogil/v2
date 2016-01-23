@@ -14,7 +14,6 @@
 #import "CacheManager.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *screenNumberLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
@@ -24,21 +23,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addObservers];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
     if (self.index == 0) {
+        self.title = @"Congress";
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
         [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     }
     else {
+        self.title = @"State Legislators";
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedStateLegislators"];
         [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
 
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.screenNumberLabel.text = [NSString stringWithFormat:@"%lu", self.index];
 }
 
 - (void)addObservers {
@@ -47,7 +48,11 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
+}
 
+- (void)dealloc {
+    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - UI Methods
@@ -70,11 +75,6 @@
 
 - (void)reloadTableView {
     [self.tableView reloadData];
-}
-
-- (void)dealloc {
-    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

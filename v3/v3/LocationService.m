@@ -73,6 +73,8 @@
         NSLog(@"location authorization denied");
         [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOn" object:nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
     }
     else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         NSLog(@"Starting location updates");
