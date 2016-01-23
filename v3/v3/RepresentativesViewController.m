@@ -23,10 +23,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addObservers];
+    [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
+}
+
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)dealloc {
+    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI Methods
+
+- (void)createTableView {
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     if (self.index == 0) {
         self.title = @"Congress";
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
@@ -36,27 +60,12 @@
         self.title = @"State Legislators";
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedStateLegislators"];
         [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
-
+        
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+
 }
-
-- (void)addObservers {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
-}
-
-- (void)dealloc {
-    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
-#pragma mark - UI Methods
-
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
         self.zeroStateContainer.alpha = 1;
@@ -75,11 +84,6 @@
 
 - (void)reloadTableView {
     [self.tableView reloadData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)createRefreshControl {
