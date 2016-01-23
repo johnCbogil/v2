@@ -50,14 +50,7 @@
 
 }
 
-- (void)checkLocationAuthorizationStatus {
-    if ([CLLocationManager authorizationStatus] <= 2) {
-        [self turnZeroStateOn];
-    }
-    else {
-        [self turnZeroStateOff];
-    }
-}
+#pragma mark - UI Methods
 
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
@@ -73,10 +66,6 @@
 
 - (void)endRefreshing {
     [self.refreshControl endRefreshing];
-}
-
-- (void)updateCurrentLocation {
-    [[LocationService sharedInstance]startUpdatingLocation];
 }
 
 - (void)reloadTableView {
@@ -98,6 +87,8 @@
     [self.refreshControl addTarget:self action:@selector(updateCurrentLocation) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
+
+#pragma mark - UITableView Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.index == 0) {
@@ -133,6 +124,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
+}
+
+#pragma mark - LocationServices Methods
+
+- (void)updateCurrentLocation {
+    [[LocationService sharedInstance]startUpdatingLocation];
+}
+
+- (void)checkLocationAuthorizationStatus {
+    if ([CLLocationManager authorizationStatus] <= 2) {
+        [self turnZeroStateOn];
+    }
+    else {
+        [self turnZeroStateOff];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
