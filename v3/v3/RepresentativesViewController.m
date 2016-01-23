@@ -16,16 +16,19 @@
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *screenNumberLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @end
 
 @implementation RepresentativesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addObservers];
+    [self checkLocationAuthorizationStatus];
+    [self createRefreshControl];
     if (self.index == 0) {
-        // check if theres congressmen in the cache
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
-
         [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     }
     else {
@@ -36,17 +39,64 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.screenNumberLabel.text = [NSString stringWithFormat:@"%lu", self.index];
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+}
 
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
+    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
+
+}
+
+- (void)checkLocationAuthorizationStatus {
+    if ([CLLocationManager authorizationStatus] <= 2) {
+        [self turnZeroStateOn];
+    }
+    else {
+        [self turnZeroStateOff];
+    }
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 1;
+    }];
+}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.zeroStateContainer.alpha = 0;
+    }];
+}
+
+- (void)endRefreshing {
+    [self.refreshControl endRefreshing];
+}
+
+- (void)updateCurrentLocation {
+    [[LocationService sharedInstance]startUpdatingLocation];
+}
+
+- (void)reloadTableView {
+    [self.tableView reloadData];
 }
 
 - (void)dealloc {
     [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)createRefreshControl {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(updateCurrentLocation) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,33 +138,37 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
         if (self.index == 0) {
-            [self getCongresspersonForCurrentLocation];
+            [self getRepresentativesForCurrentLocation];
         }
         else {
-            [self getStateLegislatorsForCurrentLocation];
+            [self getRepresentativesForCurrentLocation];
         }
-//        [self.refreshControl endRefreshing];
+        [self.refreshControl endRefreshing];
     }
 }
 
-- (void)getCongresspersonForCurrentLocation {
-    [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    } onError:^(NSError *error) {
-        NSLog(@"error");
-    }];
-}
-
-- (void)getStateLegislatorsForCurrentLocation {
-    [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-        
-    } onError:^(NSError *error) {
-        NSLog(@"error");
-    }];
+- (void)getRepresentativesForCurrentLocation {
+    if (self.index == 0) {
+        [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } onError:^(NSError *error) {
+            NSLog(@"error");
+        }];
+    }
+    else {
+        [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            
+        } onError:^(NSError *error) {
+            NSLog(@"error");
+        }];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.refreshControl endRefreshing];
+    });
 }
 @end

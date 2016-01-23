@@ -10,5 +10,4 @@
 
 @interface RepresentativesViewController : UIViewController
 @property (assign, nonatomic) NSInteger index;
-
 @end

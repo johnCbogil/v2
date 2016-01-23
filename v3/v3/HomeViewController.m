@@ -160,10 +160,10 @@
     }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
-        if ([[self.pageVC.viewControllers[0]title] isEqualToString: @"Congress"]) {
+        if (self.pageVC.index == 0) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
-                //NSLog(@"%@", results);
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCongressTableView" object:nil];
+                NSLog(@"%@", results);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
             }];
@@ -171,7 +171,7 @@
         else {
             [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];
                 }];

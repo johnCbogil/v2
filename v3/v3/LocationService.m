@@ -72,6 +72,7 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         NSLog(@"location authorization denied");
         [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOn" object:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
     }
     else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         NSLog(@"Starting location updates");

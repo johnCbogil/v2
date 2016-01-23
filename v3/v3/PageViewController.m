@@ -31,30 +31,30 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    NSUInteger index = [(RepresentativesViewController *)viewController index];
+    self.index = [(RepresentativesViewController *)viewController index];
     
-    if (index == 0) {
+    if (self.index == 0) {
         return nil;
     }
     
-    // Decrease the index by 1 to return
-    index--;
+    // Decrease theself.index by 1 to return
+   self.index--;
     
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerAtIndex:self.index];
     
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
-    NSUInteger index = [(RepresentativesViewController *)viewController index];
+    self.index = [(RepresentativesViewController *)viewController index];
     
-    index++;
+   self.index++;
     
-    if (index == 5) {
+    if (self.index == 5) {
         return nil;
     }
     
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerAtIndex:self.index];
     
 }
 
@@ -69,7 +69,7 @@
 - (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
     
     RepresentativesViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
-    childViewController.index = index;
+    childViewController.index =self.index;
     
     return childViewController;
     

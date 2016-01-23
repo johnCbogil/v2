@@ -11,4 +11,5 @@
 // RENAME THIS CLASS
 @interface PageViewController : UIPageViewController
 @property (strong, nonatomic) NSString *titleOfIncomingViewController;
+@property (assign, nonatomic) NSInteger index;
 @end
