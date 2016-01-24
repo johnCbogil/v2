@@ -26,5 +26,5 @@
                       onError:(void(^)(NSError *error))errorBlock;
 - (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                     onError:(void(^)(NSError *error))errorBlock;
-
+- (void)createLocalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock;
 @end

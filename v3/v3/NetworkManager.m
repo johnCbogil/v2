@@ -225,31 +225,13 @@
 }
 
 - (void)getNYCCouncilMemberFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock {
-//    NSURL *url = [NSURL URLWithString:@"https://www.googleapis.com/civicinfo/v2/representatives?address=%f,-73.9187887&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", location];
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/civicinfo/v2/representatives?address=%f,%f&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", location.coordinate.latitude, location.coordinate.longitude]];
-    
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *officials = [responseObject valueForKey:@"officials"];
-        NSArray *offices = [responseObject valueForKey:@"offices"];
-        for (id office in offices) {
-            if ([[office valueForKey:@"name"]containsString:@"Council"]){
-                NSArray *officialIndex = [office valueForKey:@"officialIndices"];
-                NSLog(@"%@", officialIndex[0]);
-                NSInteger index = [officialIndex[0] integerValue];
-                NSLog(@"%@", officials[index]);
-            }
-        }
         successBlock(responseObject);
-        
-        
-        
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];

@@ -28,6 +28,7 @@
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
+
 }
 
 - (void)addObservers {
@@ -147,6 +148,13 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
+    
+    [[RepManager sharedInstance]createLocalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+        
+    } onError:^(NSError *error) {
+        
+    }];
+    
     if([keyPath isEqualToString:@"currentLocation"]) {
         if (self.index == 0) {
             [self getRepresentativesForCurrentLocation];

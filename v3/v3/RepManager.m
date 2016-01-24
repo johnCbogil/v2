@@ -86,6 +86,24 @@
     }];
 }
 
+- (void)createLocalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock {
+    [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
+        NSArray *officials = [results valueForKey:@"officials"];
+        NSArray *offices = [results valueForKey:@"offices"];
+        for (id office in offices) {
+            if ([[office valueForKey:@"name"]containsString:@"Council"]){
+                NSArray *officialIndices = [office valueForKey:@"officialIndices"];
+                NSLog(@"%@", officialIndices[0]);
+                NSInteger index = [officialIndices[0] integerValue];
+                NSLog(@"%@", officials[index]);
+                successBlock();
+            }
+        }
+    } onError:^(NSError *error) {
+        NSLog(@"ERROR");
+    }];
+}
+
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
