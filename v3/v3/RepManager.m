@@ -93,9 +93,7 @@
             for (id office in offices) {
                 if ([[office valueForKey:@"name"]containsString:@"Council"]){
                     NSArray *officialIndices = [office valueForKey:@"officialIndices"];
-                    NSLog(@"%@", officialIndices[0]);
                     NSInteger index = [officialIndices[0] integerValue];
-                    NSLog(@"%@", councilMembers[index]);
                     NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:councilMembers[index]];
                     [listOfNYCRepresentatives addObject:nycRepresentative];
                     self.listOfNYCRepresentatives = listOfNYCRepresentatives;

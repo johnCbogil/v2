@@ -9,6 +9,7 @@
 #import "RepresentativesViewController.h"
 #import "CongresspersonTableViewCell.h"
 #import "StateRepTableViewCell.h"
+#import "NYCRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
 #import "CacheManager.h"
@@ -28,7 +29,6 @@
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
-
 }
 
 - (void)addObservers {
@@ -58,15 +58,18 @@
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
         [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
     }
-    else {
+    else if (self.index == 1) {
         self.title = @"State Legislators";
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedStateLegislators"];
         [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
-        
+    }
+    else {
+        self.title = @"NYC Council";
+        //[[CacheManager sharedInstance]checkCacheForRepresentative:@"NYCRepresentatives"];
+        //[self.tableView registerNib:[UINib nibWithNibName:@"NYCRepresentativesCell" bundle:nil]forCellReuseIdentifier:@"NYCRepresentativesCell"];
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-
 }
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
@@ -100,8 +103,11 @@
     if (self.index == 0) {
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfCongressmen] forKey:@"cachedCongresspersons"];
     }
-    else {
+    else if (self.index == 1){
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedStateLegislators"];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedNYCRepresentatives"];
     }
     return 1;
 }
@@ -110,8 +116,11 @@
     if (self.index == 0) {
         return [RepManager sharedInstance].listOfCongressmen.count;
     }
-    else {
+    else if (self.index == 1) {
         return [RepManager sharedInstance].listOfStateLegislators.count;
+    }
+    else {
+        return [RepManager sharedInstance].listOfNYCRepresentatives.count;
     }
 }
 
@@ -121,8 +130,13 @@
         [cell initFromIndexPath:indexPath];
         return cell;
     }
-    else {
+    else if (self.index == 1) {
         StateRepTableViewCell *cell = (StateRepTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"StateRepTableViewCell" forIndexPath:indexPath];
+        [cell initFromIndexPath:indexPath];
+        return cell;
+    }
+    else {
+        NYCRepresentativeTableViewCell *cell = (NYCRepresentativeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NYCRepresentativeTableViewCell" forIndexPath:indexPath];
         [cell initFromIndexPath:indexPath];
         return cell;
     }

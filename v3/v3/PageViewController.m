@@ -48,7 +48,7 @@
     
    self.index++;
     
-    if (self.index == 2) {
+    if (self.index == 3) {
         return nil;
     }
     
