@@ -10,6 +10,7 @@
 #import "NetworkManager.h"
 #import "Congressperson.h"
 #import "StateLegislator.h"
+#import "NYCRepresentative.h"
 #import "LocationService.h"
 #import "AppDelegate.h"
 #import "CacheManager.h"
@@ -87,17 +88,17 @@
     [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
         if (successBlock) {
             NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-            // NYCRepresentative = [[NYCRepresentative alloc]initWithData:results];
-            NSArray *councilMember = [results valueForKey:@"officials"];
+            NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:results];
+            NSArray *councilMembers = [results valueForKey:@"officials"];
             NSArray *offices = [results valueForKey:@"offices"];
             for (id office in offices) {
                 if ([[office valueForKey:@"name"]containsString:@"Council"]){
                     NSArray *officialIndices = [office valueForKey:@"officialIndices"];
                     NSLog(@"%@", officialIndices[0]);
                     NSInteger index = [officialIndices[0] integerValue];
-                    NSLog(@"%@", councilMember[index]);
+                    NSLog(@"%@", councilMembers[index]);
                     
-                    [listOfNYCRepresentatives addObject:councilMember];
+                    [listOfNYCRepresentatives addObject:nycRepresentative];
                     self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                     successBlock();
                 }

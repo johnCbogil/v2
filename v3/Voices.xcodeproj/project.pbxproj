@@ -30,6 +30,7 @@
 		52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343B1B6160CA00BB9FFD /* Images.xcassets */; };
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
 		52BB344B1B6160CA00BB9FFD /* v3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB344A1B6160CA00BB9FFD /* v3Tests.m */; };
+		52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */; };
 		52C391FE1B8F71C90034BEAB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C391FD1B8F71C90034BEAB /* CoreData.framework */; };
 		52C392011B8F725D0034BEAB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52C391FF1B8F725D0034BEAB /* Model.xcdatamodeld */; };
 		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
@@ -92,6 +93,8 @@
 		52BB34441B6160CA00BB9FFD /* Voices.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Voices.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB34491B6160CA00BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB344A1B6160CA00BB9FFD /* v3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = v3Tests.m; sourceTree = "<group>"; };
+		52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYCRepresentative.h; sourceTree = "<group>"; };
+		52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYCRepresentative.m; sourceTree = "<group>"; };
 		52C391FD1B8F71C90034BEAB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		52C392001B8F725D0034BEAB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		52C6532E1B75120900EA6FFD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */,
 				7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */,
+				52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */,
+				52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				5204038B1BCC137F00016768 /* Info */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
@@ -434,6 +439,7 @@
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
 				52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
+				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
