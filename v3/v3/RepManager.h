@@ -15,7 +15,8 @@
 
 +(RepManager *) sharedInstance;
 @property (strong, nonatomic) NSArray *listOfCongressmen;
-@property (strong, nonatomic) NSMutableArray *listofStateLegislators;
+@property (strong, nonatomic) NSMutableArray *listOfStateLegislators;
+@property (strong, nonatomic) NSMutableArray *listOfNYCRepresentatives;
 - (void)createCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock;
 - (void)createStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
@@ -26,5 +27,5 @@
                       onError:(void(^)(NSError *error))errorBlock;
 - (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                     onError:(void(^)(NSError *error))errorBlock;
-- (void)createLocalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock;
+- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock;
 @end

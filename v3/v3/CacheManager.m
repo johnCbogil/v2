@@ -87,7 +87,7 @@
                 [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
             else {
-                [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+                [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
             }
         }
     }
@@ -96,7 +96,7 @@
             [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc]init];
         }
         else {
-            [RepManager sharedInstance].listofStateLegislators = [[NSMutableArray alloc]init];
+            [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]init];
         }
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
             [[LocationService sharedInstance]startUpdatingLocation];

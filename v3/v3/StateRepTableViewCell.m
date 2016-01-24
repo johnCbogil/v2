@@ -35,7 +35,7 @@
 }
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
-    self.stateLegislator =  [RepManager sharedInstance].listofStateLegislators[indexPath.row];
+    self.stateLegislator =  [RepManager sharedInstance].listOfStateLegislators[indexPath.row];
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateLegislator.chamber, self.stateLegislator.firstName, self.stateLegislator.lastName];
     [self createDistrictNumberLabel];
     self.photo.image = [UIImage imageWithData:self.stateLegislator.photo];

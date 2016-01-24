@@ -101,7 +101,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfCongressmen] forKey:@"cachedCongresspersons"];
     }
     else {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listofStateLegislators] forKey:@"cachedStateLegislators"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedStateLegislators"];
     }
     return 1;
 }
@@ -111,7 +111,7 @@
         return [RepManager sharedInstance].listOfCongressmen.count;
     }
     else {
-        return [RepManager sharedInstance].listofStateLegislators.count;
+        return [RepManager sharedInstance].listOfStateLegislators.count;
     }
 }
 
@@ -149,7 +149,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     
-    [[RepManager sharedInstance]createLocalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+    [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         
     } onError:^(NSError *error) {
         

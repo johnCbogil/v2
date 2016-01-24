@@ -29,7 +29,7 @@
     self = [super init];
     if (self != nil) {
         self.listOfCongressmen = [NSArray array];
-        self.listofStateLegislators = [NSMutableArray array];
+        self.listOfStateLegislators = [NSMutableArray array];
     }
     return self;
 }
@@ -63,18 +63,15 @@
 -(void)createStateLegislatorsFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
     
     [[NetworkManager sharedInstance]getStateLegislatorsFromLocation:location WithCompletion:^(NSDictionary *results) {
-        NSMutableArray *listofStateLegislators = [[NSMutableArray alloc]init];
+        NSMutableArray *listOfStateLegislators = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
             StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
             [self assignStatePhotos:stateLegislator withCompletion:^{
                 if (successBlock) {
-                    [listofStateLegislators addObject:stateLegislator];
-                    self.listofStateLegislators = listofStateLegislators;
+                    [listOfStateLegislators addObject:stateLegislator];
+                    self.listOfStateLegislators = listOfStateLegislators;
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadStateLegislatorTableView"
-                                                                        object:nil];
                     successBlock();
-                    
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);
@@ -86,17 +83,24 @@
     }];
 }
 
-- (void)createLocalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock {
+- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock {
     [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
-        NSArray *officials = [results valueForKey:@"officials"];
-        NSArray *offices = [results valueForKey:@"offices"];
-        for (id office in offices) {
-            if ([[office valueForKey:@"name"]containsString:@"Council"]){
-                NSArray *officialIndices = [office valueForKey:@"officialIndices"];
-                NSLog(@"%@", officialIndices[0]);
-                NSInteger index = [officialIndices[0] integerValue];
-                NSLog(@"%@", officials[index]);
-                successBlock();
+        if (successBlock) {
+            NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
+            // NYCRepresentative = [[NYCRepresentative alloc]initWithData:results];
+            NSArray *councilMember = [results valueForKey:@"officials"];
+            NSArray *offices = [results valueForKey:@"offices"];
+            for (id office in offices) {
+                if ([[office valueForKey:@"name"]containsString:@"Council"]){
+                    NSArray *officialIndices = [office valueForKey:@"officialIndices"];
+                    NSLog(@"%@", officialIndices[0]);
+                    NSInteger index = [officialIndices[0] integerValue];
+                    NSLog(@"%@", councilMember[index]);
+                    
+                    [listOfNYCRepresentatives addObject:councilMember];
+                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
+                    successBlock();
+                }
             }
         }
     } onError:^(NSError *error) {
