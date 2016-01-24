@@ -13,7 +13,12 @@
 - (id)initWithData:(NSArray*)data {
     self = [super init];
     if (self != nil) {
-        NSLog(@"%@",data);
+        self.name = [data valueForKey:@"name"];
+        self.address = [data valueForKey:@"address"];
+        self.email = [data valueForKey:@"emails"];
+        self.party = [data valueForKey:@"party"];
+        self.photoURL = [NSURL URLWithString:[data valueForKey:@"photoUrl"]];
+        self.phone = [data valueForKey:@"phones"][0];
     }
     return self;
 }

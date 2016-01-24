@@ -88,7 +88,6 @@
     [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
         if (successBlock) {
             NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-            NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:results];
             NSArray *councilMembers = [results valueForKey:@"officials"];
             NSArray *offices = [results valueForKey:@"offices"];
             for (id office in offices) {
@@ -97,7 +96,7 @@
                     NSLog(@"%@", officialIndices[0]);
                     NSInteger index = [officialIndices[0] integerValue];
                     NSLog(@"%@", councilMembers[index]);
-                    
+                    NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:councilMembers[index]];
                     [listOfNYCRepresentatives addObject:nycRepresentative];
                     self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                     successBlock();
