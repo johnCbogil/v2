@@ -48,7 +48,7 @@
     
    self.index++;
     
-    if (self.index == 2) {
+    if (self.index == 3) {
         return nil;
     }
     
@@ -66,7 +66,7 @@
 
 - (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
     RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
-    representativesViewController.index =self.index;
+    representativesViewController.index = self.index;
     return representativesViewController;
 }
 @end

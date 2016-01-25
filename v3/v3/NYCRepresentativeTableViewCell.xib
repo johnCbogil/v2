@@ -3,14 +3,82 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-        </view>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NYCRepresentativeTableViewCell" rowHeight="140" id="djN-Qt-uYh" customClass="NYCRepresentativeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="djN-Qt-uYh" id="Ppf-wt-voJ">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nL0-K7-Mob">
+                        <rect key="frame" x="8" y="8" width="100" height="123"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="uD8-GH-u3I"/>
+                            <constraint firstAttribute="height" constant="123" id="uX5-7Y-aNQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uX5-7Y-aNQ"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.85000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="oSA-xD-vVq">
+                        <rect key="frame" x="123" y="8" width="229" height="26"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-4H-vGt">
+                        <rect key="frame" x="123" y="82" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="9ey-B7-sUf"/>
+                            <constraint firstAttribute="width" constant="31" id="bUN-fi-sej"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="Phone Filled"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-4E-BhZ">
+                        <rect key="frame" x="300" y="82" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="K6x-Fs-wC1"/>
+                            <constraint firstAttribute="height" constant="35" id="SoK-LL-gfM"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="Twitter Filled"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Next Election:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="yHu-lU-JUL">
+                        <rect key="frame" x="123" y="42" width="229" height="21"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nL0-K7-Mob" firstAttribute="top" secondItem="Ppf-wt-voJ" secondAttribute="topMargin" id="2gY-Dd-b29"/>
+                    <constraint firstItem="oSA-xD-vVq" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="7u7-ih-iLK"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="yHu-lU-JUL" secondAttribute="trailing" id="7xB-Xg-eFb"/>
+                    <constraint firstItem="nL0-K7-Mob" firstAttribute="leading" secondItem="Ppf-wt-voJ" secondAttribute="leadingMargin" id="ANn-U9-zEV"/>
+                    <constraint firstAttribute="trailing" secondItem="AiC-4E-BhZ" secondAttribute="trailing" constant="25" id="DEn-6B-5gL"/>
+                    <constraint firstItem="yHu-lU-JUL" firstAttribute="centerY" secondItem="nL0-K7-Mob" secondAttribute="centerY" constant="-17" id="IVN-C4-L2b"/>
+                    <constraint firstItem="yHu-lU-JUL" firstAttribute="leading" secondItem="oSA-xD-vVq" secondAttribute="leading" id="J3d-S5-TXc"/>
+                    <constraint firstItem="nL0-K7-Mob" firstAttribute="centerY" secondItem="Ppf-wt-voJ" secondAttribute="centerY" constant="-0.75" id="Sc8-lM-uey"/>
+                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="yHu-lU-JUL" secondAttribute="bottom" constant="19" id="esd-xl-WyP"/>
+                    <constraint firstItem="cDK-4H-vGt" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="iHF-y1-VX2"/>
+                    <constraint firstItem="oSA-xD-vVq" firstAttribute="top" secondItem="Ppf-wt-voJ" secondAttribute="topMargin" id="pgm-Ef-emw"/>
+                    <constraint firstItem="oSA-xD-vVq" firstAttribute="trailing" secondItem="Ppf-wt-voJ" secondAttribute="trailingMargin" id="qXQ-jx-8de"/>
+                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="48" id="uvK-bG-Ddv"/>
+                    <constraint firstItem="AiC-4E-BhZ" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="48" id="zTM-IH-pDy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="587" y="598"/>
+        </tableViewCell>
     </objects>
+    <resources>
+        <image name="Phone Filled" width="33" height="33"/>
+        <image name="Twitter Filled" width="33" height="33"/>
+    </resources>
 </document>

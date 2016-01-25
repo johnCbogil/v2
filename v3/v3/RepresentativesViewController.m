@@ -23,6 +23,10 @@
 
 @implementation RepresentativesViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self addObservers];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"RVC INDEX = %lu", self.index);
@@ -31,27 +35,22 @@
     [self createRefreshControl];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self addObservers];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-- (void)dealloc {
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UI Methods
@@ -68,10 +67,10 @@
         [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedStateLegislators"];
         [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
     }
-    else {
+    else if (self.index == 2) {
         self.title = @"NYC Council";
-        //[[CacheManager sharedInstance]checkCacheForRepresentative:@"NYCRepresentatives"];
-        //[self.tableView registerNib:[UINib nibWithNibName:@"NYCRepresentativesCell" bundle:nil]forCellReuseIdentifier:@"NYCRepresentativesCell"];
+        [[CacheManager sharedInstance]checkCacheForRepresentative:@"NYCRepresentatives"];
+        [self.tableView registerNib:[UINib nibWithNibName:@"NYCRepresentativeTableViewCell" bundle:nil]forCellReuseIdentifier:@"NYCRepresentativeTableViewCell"];
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -111,7 +110,7 @@
     else if (self.index == 1){
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedStateLegislators"];
     }
-    else {
+    else if (self.index == 2){
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedNYCRepresentatives"];
     }
     return 1;
