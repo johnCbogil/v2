@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addObservers];
+    NSLog(@"RVC INDEX = %lu", self.index);
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
@@ -39,9 +39,14 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)dealloc {
+- (void)viewWillAppear:(BOOL)animated {
+    [self addObservers];
+}
+- (void)viewWillDisappear:(BOOL)animated {
     [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+- (void)dealloc {
 }
 
 - (void)didReceiveMemoryWarning {

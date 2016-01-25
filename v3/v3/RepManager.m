@@ -31,6 +31,7 @@
     if (self != nil) {
         self.listOfCongressmen = [NSArray array];
         self.listOfStateLegislators = [NSMutableArray array];
+        self.index = 0;
     }
     return self;
 }

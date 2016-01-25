@@ -14,6 +14,7 @@
 @interface RepManager : NSObject
 
 +(RepManager *) sharedInstance;
+@property (nonatomic) NSInteger index;
 @property (strong, nonatomic) NSArray *listOfCongressmen;
 @property (strong, nonatomic) NSMutableArray *listOfStateLegislators;
 @property (strong, nonatomic) NSMutableArray *listOfNYCRepresentatives;
