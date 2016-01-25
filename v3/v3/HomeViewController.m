@@ -160,7 +160,7 @@
     }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
-        if (self.pageVC.index == 0) {
+        if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
             [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
                 NSLog(@"%@", results);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
@@ -168,19 +168,22 @@
                 [error localizedDescription];
             }];
         }
-        else {
-            [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
+        else if ([self.legislatureLevel.text isEqualToString:@"State Legislators"]){
                 [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];
                 }];
+        }
+        else if ([self.legislatureLevel.text isEqualToString:@"NYC Council"]){
+            [[RepManager sharedInstance]createNYCRepresentativesFromLocation:results WithCompletion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
             }];
         }
-    } onError:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+    } onError:^(NSError *googleMapsError) {
+        NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
     [self hideSearchBar];
     [searchBar resignFirstResponder];

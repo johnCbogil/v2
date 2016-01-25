@@ -75,6 +75,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
+
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
         self.zeroStateContainer.alpha = 1;
@@ -167,19 +168,14 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     
-    [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        
-    } onError:^(NSError *error) {
-        
-    }];
+//    [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+//        
+//    } onError:^(NSError *error) {
+//        
+//    }];
     
     if([keyPath isEqualToString:@"currentLocation"]) {
-        if (self.index == 0) {
-            [self getRepresentativesForCurrentLocation];
-        }
-        else {
-            [self getRepresentativesForCurrentLocation];
-        }
+        [self getRepresentativesForCurrentLocation];
         [self.refreshControl endRefreshing];
     }
 }
@@ -194,7 +190,7 @@
             NSLog(@"error");
         }];
     }
-    else {
+    else if (self.index == 1) {
         [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
@@ -202,6 +198,15 @@
             
         } onError:^(NSError *error) {
             NSLog(@"error");
+        }];
+    }
+    else {
+        [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } onError:^(NSError *error) {
+            
         }];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
