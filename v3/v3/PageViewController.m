@@ -12,6 +12,7 @@
 @interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
+@property (nonatomic, strong) NSArray *actualViewControllers;
 @end
 
 @implementation PageViewController
@@ -22,38 +23,63 @@
     self.delegate = self;
     
     RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
+    RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
+
+
+    NSArray *viewControllers = @[initialViewController];
+    self.actualViewControllers = @[initialViewController,secondViewController,thirdViewController];
 
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    self.index = [(RepresentativesViewController *)viewController index];
+    RepresentativesViewController *thisViewController = (RepresentativesViewController *)viewController;
     
-    if (self.index == 0) {
+//    self.index = [(RepresentativesViewController *)viewController index];
+    
+//    if (self.index == 0) {
+//        return nil;
+//    }
+//    if (thisViewController.index == 0) {
+//        return nil;
+//    }
+//    
+//    NSLog(@"before, %ld", thisViewController.index- 1);
+
+    // Decrease theself.index by 1 to return
+//   self.index--;
+    NSInteger indexOfThisViewController = [self.actualViewControllers indexOfObject:viewController];
+    if (indexOfThisViewController == 0) {
         return nil;
     }
     
-    // Decrease theself.index by 1 to return
-   self.index--;
+    NSLog(@"before, %ld", indexOfThisViewController - 1);
+
     
-    return [self viewControllerAtIndex:self.index];
-    
+    return self.actualViewControllers[indexOfThisViewController - 1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
-    self.index = [(RepresentativesViewController *)viewController index];
+//   self.index = [(RepresentativesViewController *)viewController index];
+
+//   self.index++;
+
+    RepresentativesViewController *thisViewController = (RepresentativesViewController *)viewController;
+
+//    NSLog(@"after, %ld", thisViewController.index + 1);
     
-   self.index++;
-    
-    if (self.index == 3) {
+    NSInteger indexOfThisViewController = [self.actualViewControllers indexOfObject:viewController];
+
+    if (indexOfThisViewController == 2) {
         return nil;
     }
+    NSLog(@"after, %ld", indexOfThisViewController + 1);
+
     
-    return [self viewControllerAtIndex:self.index];
-    
+    return self.actualViewControllers[indexOfThisViewController + 1];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
@@ -66,7 +92,7 @@
 
 - (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
     RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
-    representativesViewController.index = self.index;
+    representativesViewController.index = index;
     return representativesViewController;
 }
 @end

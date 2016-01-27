@@ -69,7 +69,7 @@
     }
     else if (self.index == 2) {
         self.title = @"NYC Council";
-        [[CacheManager sharedInstance]checkCacheForRepresentative:@"NYCRepresentatives"];
+        [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedNYCRepresentatives"];
         [self.tableView registerNib:[UINib nibWithNibName:@"NYCRepresentativeTableViewCell" bundle:nil]forCellReuseIdentifier:@"NYCRepresentativeTableViewCell"];
     }
     self.tableView.dataSource = self;
@@ -200,7 +200,7 @@
             NSLog(@"error");
         }];
     }
-    else {
+    else if (self.index == 2){
         [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
