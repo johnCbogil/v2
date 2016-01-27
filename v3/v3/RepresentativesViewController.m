@@ -29,7 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"RVC INDEX = %lu", self.index);
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
@@ -140,10 +139,13 @@
         [cell initFromIndexPath:indexPath];
         return cell;
     }
-    else {
+    else if (self.index == 2){
         NYCRepresentativeTableViewCell *cell = (NYCRepresentativeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NYCRepresentativeTableViewCell" forIndexPath:indexPath];
         [cell initFromIndexPath:indexPath];
         return cell;
+    }
+    else {
+        return nil;
     }
 }
 
@@ -206,7 +208,7 @@
                 [self.tableView reloadData];
             });
         } onError:^(NSError *error) {
-            
+            NSLog(@"%@",error);
         }];
     }
     dispatch_async(dispatch_get_main_queue(), ^{

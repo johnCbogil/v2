@@ -11,6 +11,7 @@
 @implementation NYCRepresentative
 
 - (id)initWithData:(NSArray*)data {
+    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
         self.name = [data valueForKey:@"name"];

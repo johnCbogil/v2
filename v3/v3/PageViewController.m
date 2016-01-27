@@ -12,7 +12,7 @@
 @interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIViewController *firstVC;
 @property (nonatomic, strong) UIViewController *secondVC;
-@property (nonatomic, strong) NSArray *actualViewControllers;
+@property (nonatomic, strong) NSArray *listOfViewControllers;
 @end
 
 @implementation PageViewController
@@ -26,16 +26,14 @@
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
     RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
 
-
     NSArray *viewControllers = @[initialViewController];
-    self.actualViewControllers = @[initialViewController,secondViewController,thirdViewController];
+    self.listOfViewControllers = @[initialViewController,secondViewController,thirdViewController];
 
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    RepresentativesViewController *thisViewController = (RepresentativesViewController *)viewController;
     
 //    self.index = [(RepresentativesViewController *)viewController index];
     
@@ -50,15 +48,16 @@
 
     // Decrease theself.index by 1 to return
 //   self.index--;
-    NSInteger indexOfThisViewController = [self.actualViewControllers indexOfObject:viewController];
-    if (indexOfThisViewController == 0) {
+    NSInteger indexOfCurrentViewController = [self.listOfViewControllers indexOfObject:viewController];
+    
+    if (indexOfCurrentViewController == 0) {
         return nil;
     }
     
-    NSLog(@"before, %ld", indexOfThisViewController - 1);
+    NSLog(@"after, %ld ", indexOfCurrentViewController - 1);
 
     
-    return self.actualViewControllers[indexOfThisViewController - 1];
+    return self.listOfViewControllers[indexOfCurrentViewController - 1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -67,19 +66,18 @@
 
 //   self.index++;
 
-    RepresentativesViewController *thisViewController = (RepresentativesViewController *)viewController;
 
 //    NSLog(@"after, %ld", thisViewController.index + 1);
     
-    NSInteger indexOfThisViewController = [self.actualViewControllers indexOfObject:viewController];
+    NSInteger indexOfCurrentViewController = [self.listOfViewControllers indexOfObject:viewController];
 
-    if (indexOfThisViewController == 2) {
+    if (indexOfCurrentViewController == 2) {
         return nil;
     }
-    NSLog(@"after, %ld", indexOfThisViewController + 1);
-
     
-    return self.actualViewControllers[indexOfThisViewController + 1];
+    NSLog(@"after, %ld ", indexOfCurrentViewController + 1);
+    
+    return self.listOfViewControllers[indexOfCurrentViewController + 1];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
