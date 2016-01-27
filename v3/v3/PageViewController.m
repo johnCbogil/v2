@@ -29,7 +29,6 @@
     RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
     thirdViewController.title = @"NYC Council";
     
-    
     NSArray *viewControllers = @[initialViewController];
     self.listOfViewControllers = @[initialViewController,secondViewController,thirdViewController];
     
@@ -37,8 +36,6 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    //NSInteger indexOfCurrentViewController = [self.listOfViewControllers indexOfObject:viewController];
-    
     if ([viewController.title isEqualToString:@"Congress"]) {
         return nil;
     }
@@ -60,7 +57,6 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
     if ([viewController.title isEqualToString:@"Congress"]) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
             if ([vc.title isEqualToString:@"State Legislators"]) {
@@ -89,15 +85,6 @@
 - (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
     RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
     representativesViewController.index = index;
-    //    if (representativesViewController.index == 0) {
-    //        representativesViewController.title = @"Congress";
-    //    }
-    //    else if (representativesViewController.index == 1) {
-    //        representativesViewController.title = @"State Legislators";
-    //    }
-    //    else if (representativesViewController.index == 2) {
-    //        representativesViewController.title = @"NYC Council";
-    //    }
     return representativesViewController;
 }
 @end
