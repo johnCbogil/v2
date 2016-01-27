@@ -23,61 +23,59 @@
     self.delegate = self;
     
     RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
+    initialViewController.title = @"Congress";
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
+    secondViewController.title = @"State Legislators";
     RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
-
+    thirdViewController.title = @"NYC Council";
+    
+    
     NSArray *viewControllers = @[initialViewController];
     self.listOfViewControllers = @[initialViewController,secondViewController,thirdViewController];
-
+    
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    //NSInteger indexOfCurrentViewController = [self.listOfViewControllers indexOfObject:viewController];
     
-    
-//    self.index = [(RepresentativesViewController *)viewController index];
-    
-//    if (self.index == 0) {
-//        return nil;
-//    }
-//    if (thisViewController.index == 0) {
-//        return nil;
-//    }
-//    
-//    NSLog(@"before, %ld", thisViewController.index- 1);
-
-    // Decrease theself.index by 1 to return
-//   self.index--;
-    NSInteger indexOfCurrentViewController = [self.listOfViewControllers indexOfObject:viewController];
-    
-    if (indexOfCurrentViewController == 0) {
+    if ([viewController.title isEqualToString:@"Congress"]) {
         return nil;
     }
-    
-    NSLog(@"after, %ld ", indexOfCurrentViewController - 1);
-
-    
-    return self.listOfViewControllers[indexOfCurrentViewController - 1];
+    else if ([viewController.title isEqualToString:@"State Legislators"]) {
+        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+            if ([vc.title isEqualToString:@"Congress"]) {
+                return vc;
+            }
+        }
+    }
+    else if ([viewController.title isEqualToString:@"NYC Council"]) {
+        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+            if ([vc.title isEqualToString:@"State Legislators"]) {
+                return vc;
+            }
+        }
+    }
+    return nil;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
-//   self.index = [(RepresentativesViewController *)viewController index];
-
-//   self.index++;
-
-
-//    NSLog(@"after, %ld", thisViewController.index + 1);
-    
-    NSInteger indexOfCurrentViewController = [self.listOfViewControllers indexOfObject:viewController];
-
-    if (indexOfCurrentViewController == 2) {
-        return nil;
+    if ([viewController.title isEqualToString:@"Congress"]) {
+        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+            if ([vc.title isEqualToString:@"State Legislators"]) {
+                return vc;
+            }
+        }
     }
-    
-    NSLog(@"after, %ld ", indexOfCurrentViewController + 1);
-    
-    return self.listOfViewControllers[indexOfCurrentViewController + 1];
+    else if ([viewController.title isEqualToString:@"State Legislators"]) {
+        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+            if ([vc.title isEqualToString:@"NYC Council"]) {
+                return vc;
+            }
+        }
+    }
+    return nil;
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
@@ -91,6 +89,15 @@
 - (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
     RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
     representativesViewController.index = index;
+    //    if (representativesViewController.index == 0) {
+    //        representativesViewController.title = @"Congress";
+    //    }
+    //    else if (representativesViewController.index == 1) {
+    //        representativesViewController.title = @"State Legislators";
+    //    }
+    //    else if (representativesViewController.index == 2) {
+    //        representativesViewController.title = @"NYC Council";
+    //    }
     return representativesViewController;
 }
 @end

@@ -86,8 +86,12 @@
             if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
                 [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
-            else {
+            else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
                 [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+            }
+            else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
+                [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+
             }
         }
     }
@@ -95,9 +99,13 @@
         if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
             [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc]init];
         }
-        else {
+        else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
             [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]init];
         }
+        else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
+            [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]init];
+        }
+
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
             [[LocationService sharedInstance]startUpdatingLocation];
         }
