@@ -19,20 +19,22 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
+@property (strong, nonatomic) NSString *tableViewCellName;
+@property (strong, nonatomic) NSString *cachedRepresentatives;
+@property (strong, nonatomic) NSArray *tableViewDataSource;
 @end
 
 @implementation RepresentativesViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self setDataSources];
     [self addObservers];
     [self checkCache];
-    NSLog(@"Congress: %ld", [RepManager sharedInstance].listOfCongressmen.count);
-    NSLog(@"State: %ld", [RepManager sharedInstance].listOfStateLegislators.count);
-    NSLog(@"NYC: %ld", [RepManager sharedInstance].listOfNYCRepresentatives.count);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setDataSources];
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
@@ -40,7 +42,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-   // NSLog(@"%@", self.title);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,7 +51,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)addObservers {
@@ -61,33 +61,51 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+- (void)setDataSources {
+    if (self.index == 0) {
+        self.tableViewCellName = @"CongresspersonTableViewCell";
+        self.cachedRepresentatives = @"cachedCongresspersons";
+        self.tableViewDataSource = [RepManager sharedInstance].listOfCongressmen;
+    }
+    else if (self.index == 1) {
+        self.tableViewCellName = @"StateRepTableViewCell";
+        self.cachedRepresentatives = @"cachedStateLegislators";
+        self.tableViewDataSource = [RepManager sharedInstance].listOfStateLegislators;
+    }
+    else if (self.index == 2) {
+        self.tableViewCellName = @"NYCRepresentativeTableViewCell";
+        self.cachedRepresentatives = @"cachedNYCRepresentatives";
+        self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
+    }
+}
+
 #pragma mark - UI Methods
 
 - (void)createTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    if (self.index == 0) {
-        [self.tableView registerNib:[UINib nibWithNibName:@"CongresspersonTableViewCell" bundle:nil]forCellReuseIdentifier:@"CongresspersonTableViewCell"];
-    }
-    else if (self.index == 1) {
-        [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
-    }
-    else if ([self.title isEqualToString:@"NYC Council"]) {
-        [self.tableView registerNib:[UINib nibWithNibName:@"NYCRepresentativeTableViewCell" bundle:nil]forCellReuseIdentifier:@"NYCRepresentativeTableViewCell"];
-    }
+//    if (self.index == 0) {
+        [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil]forCellReuseIdentifier:self.tableViewCellName];
+//    }
+//    else if (self.index == 1) {
+//        [self.tableView registerNib:[UINib nibWithNibName:@"StateRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"StateRepTableViewCell"];
+//    }
+//    else if ([self.title isEqualToString:@"NYC Council"]) {
+//        [self.tableView registerNib:[UINib nibWithNibName:@"NYCRepresentativeTableViewCell" bundle:nil]forCellReuseIdentifier:@"NYCRepresentativeTableViewCell"];
+//    }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
 
 - (void)checkCache {
-    if (self.index == 0) {
-        [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
-    }
-    else if (self.index == 1) {
-        [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedStateLegislators"];
-    }
-    else if (self.index == 2) {
-        [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedNYCRepresentatives"];
-    }
+//    if (self.index == 0) {
+        [[CacheManager sharedInstance] checkCacheForRepresentative:self.cachedRepresentatives];
+//    }
+//    else if (self.index == 1) {
+//        [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedStateLegislators"];
+//    }
+//    else if (self.index == 2) {
+//        [[CacheManager sharedInstance]checkCacheForRepresentative:@"cachedNYCRepresentatives"];
+//    }
 }
 
 - (void)turnZeroStateOn {
@@ -124,6 +142,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.index == 0) {
+        if ([RepManager sharedInstance].listOfCongressmen.count > 0) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfCongressmen] forKey:@"cachedCongresspersons"];
+        }
         return [RepManager sharedInstance].listOfCongressmen.count;
     }
     else if (self.index == 1) {
@@ -133,6 +154,9 @@
         return [RepManager sharedInstance].listOfStateLegislators.count;
     }
     else if (self.index == 2) {
+        if ([RepManager sharedInstance].listOfNYCRepresentatives) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfNYCRepresentatives] forKey:@"cachedNYCRepresentatives"];
+        }
         return [RepManager sharedInstance].listOfNYCRepresentatives.count;
     }
     else {
@@ -192,7 +216,6 @@
         [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfCongressmen] forKey:@"cachedCongresspersons"];
             });
         } onError:^(NSError *error) {
             NSLog(@"error");
@@ -212,7 +235,6 @@
         [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfNYCRepresentatives] forKey:@"cachedNYCRepresentatives"];
             });
         } onError:^(NSError *error) {
             NSLog(@"%@",error);
