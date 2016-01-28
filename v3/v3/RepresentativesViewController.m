@@ -26,6 +26,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
     [self checkCache];
+    NSLog(@"Congress: %ld", [RepManager sharedInstance].listOfCongressmen.count);
+    NSLog(@"State: %ld", [RepManager sharedInstance].listOfStateLegislators.count);
+    NSLog(@"NYC: %ld", [RepManager sharedInstance].listOfNYCRepresentatives.count);
 }
 
 - (void)viewDidLoad {
@@ -37,7 +40,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    NSLog(@"%@", self.title);
+   // NSLog(@"%@", self.title);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -124,6 +127,9 @@
         return [RepManager sharedInstance].listOfCongressmen.count;
     }
     else if (self.index == 1) {
+        if ([RepManager sharedInstance].listOfStateLegislators.count > 0) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedStateLegislators"];
+        }
         return [RepManager sharedInstance].listOfStateLegislators.count;
     }
     else if (self.index == 2) {
@@ -196,7 +202,6 @@
         [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[RepManager sharedInstance].listOfStateLegislators] forKey:@"cachedStateLegislators"];
             });
             
         } onError:^(NSError *error) {
