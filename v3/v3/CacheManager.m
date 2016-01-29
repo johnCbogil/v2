@@ -91,7 +91,6 @@
             }
             else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
                 [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
-
             }
         }
     }
