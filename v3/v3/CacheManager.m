@@ -105,7 +105,6 @@
         else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
             [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]init];
         }
-
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
             [[LocationService sharedInstance]startUpdatingLocation];
         }

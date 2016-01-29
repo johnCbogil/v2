@@ -77,6 +77,8 @@
         self.cachedRepresentatives = @"cachedNYCRepresentatives";
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
     }
+    
+    [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil] forCellReuseIdentifier:self.tableViewCellName];
 }
 
 #pragma mark - UI Methods
@@ -165,24 +167,29 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.index == 0) {
-        CongresspersonTableViewCell *cell = (CongresspersonTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"CongresspersonTableViewCell" forIndexPath:indexPath];
-        [cell initFromIndexPath:indexPath];
-        return cell;
-    }
-    else if (self.index == 1) {
-        StateRepTableViewCell *cell = (StateRepTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"StateRepTableViewCell" forIndexPath:indexPath];
-        [cell initFromIndexPath:indexPath];
-        return cell;
-    }
-    else if (self.index == 2){
-        NYCRepresentativeTableViewCell *cell = (NYCRepresentativeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NYCRepresentativeTableViewCell" forIndexPath:indexPath];
-        [cell initFromIndexPath:indexPath];
-        return cell;
-    }
-    else {
-        return nil;
-    }
+    id cell = [tableView dequeueReusableCellWithIdentifier:self.tableViewCellName];
+    [cell initFromIndexPath:indexPath];
+    return cell;
+//    if (self.index == 0) {
+//        CongresspersonTableViewCell *cell = (CongresspersonTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"CongresspersonTableViewCell" forIndexPath:indexPath];
+//        [cell initFromIndexPath:indexPath];
+//        return cell;
+//    }
+//    else if (self.index == 1) {
+//        StateRepTableViewCell *cell = (StateRepTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"StateRepTableViewCell" forIndexPath:indexPath];
+//        [cell initFromIndexPath:indexPath];
+//        return cell;
+//    }
+//    else if (self.index == 2){
+//        NYCRepresentativeTableViewCell *cell = (NYCRepresentativeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NYCRepresentativeTableViewCell" forIndexPath:indexPath];
+//        [cell initFromIndexPath:indexPath];
+//        return cell;
+//    }
+//    else {
+//        return nil;
+//    }
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
