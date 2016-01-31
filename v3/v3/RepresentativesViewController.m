@@ -28,9 +28,8 @@
 @implementation RepresentativesViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    //[self setDataSources];
     [self addObservers];
-    [self checkCache];
+    [[CacheManager sharedInstance] checkCacheForRepresentative:self.cachedRepresentatives];
 }
 
 - (void)viewDidLoad {
@@ -81,7 +80,6 @@
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
         self.getRepresentativesMethod = @"createNYCRepresentatives";
     }
-    
     [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil] forCellReuseIdentifier:self.tableViewCellName];
 }
 
@@ -89,14 +87,9 @@
 
 - (void)createTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-        [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil]forCellReuseIdentifier:self.tableViewCellName];
+    [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil]forCellReuseIdentifier:self.tableViewCellName];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-}
-
-- (void)checkCache {
-    [[CacheManager sharedInstance] checkCacheForRepresentative:self.cachedRepresentatives];
 }
 
 - (void)turnZeroStateOn {
@@ -116,7 +109,7 @@
 }
 
 - (void)reloadTableView {
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)createRefreshControl {
@@ -184,7 +177,7 @@
 - (void)createCongressmen {
     [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     } onError:^(NSError *error) {
         NSLog(@"error");
@@ -194,7 +187,7 @@
 - (void)createStateLegislators {
     [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     } onError:^(NSError *error) {
         NSLog(@"error");
@@ -204,7 +197,7 @@
 - (void)createNYCRepresentatives {
     [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
     } onError:^(NSError *error) {
         NSLog(@"%@",error);

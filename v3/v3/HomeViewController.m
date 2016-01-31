@@ -250,8 +250,11 @@
     if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
         self.pageControl.currentPage = 0;
     }
-    else {
+    else if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"State Legislators"]) {
         self.pageControl.currentPage = 1;
+    }
+    else {
+        self.pageControl.currentPage = 2;
     }
     [self updateInformationLabel:nil];
 }

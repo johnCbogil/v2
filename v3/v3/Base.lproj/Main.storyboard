@@ -159,7 +159,7 @@
                                     <constraint firstAttribute="bottom" secondItem="6tq-q4-0eV" secondAttribute="bottom" constant="8" id="pOv-Nm-eex"/>
                                 </constraints>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-84-x7R">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-84-x7R">
                                 <rect key="frame" x="281" y="79" width="39" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="39" id="Ky8-X3-qa7"/>
