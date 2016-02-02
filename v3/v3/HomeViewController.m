@@ -60,6 +60,7 @@
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
     self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.5];
+    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
 - (void)setFont {
     self.callToActionLabel.font = [UIFont voicesFontWithSize:24];
