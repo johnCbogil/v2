@@ -40,6 +40,7 @@
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
+		7806AF18A0764052BFF1AF74 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F5F33B2BC320E83BB44705 /* libPods-Voices.a */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02F5F33B2BC320E83BB44705 /* libPods-Voices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28086C148D4D5BEF3E6AADB8 /* Pods-v3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-v3.release.xcconfig"; path = "Pods/Target Support Files/Pods-v3/Pods-v3.release.xcconfig"; sourceTree = "<group>"; };
 		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
@@ -111,10 +113,12 @@
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		52FC68FC1C3765A400E29B7A /* Onboarding2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onboarding2ViewController.h; sourceTree = "<group>"; };
 		52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Onboarding2ViewController.m; sourceTree = "<group>"; };
+		554D9937109CF71F1E601883 /* Pods-Voices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.release.xcconfig"; sourceTree = "<group>"; };
 		6788BDB69200F1F5B496E34F /* Pods-v3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-v3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-v3/Pods-v3.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
 		C812695A3BE1059FDAA3F7A8 /* libPods-v3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-v3.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A26E0C6F354F7C08CD4832 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 			files = (
 				52C391FE1B8F71C90034BEAB /* CoreData.framework in Frameworks */,
 				338077E2A5F515152E3EC4AA /* libPods-v3.a in Frameworks */,
+				7806AF18A0764052BFF1AF74 /* libPods-Voices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +285,8 @@
 			children = (
 				6788BDB69200F1F5B496E34F /* Pods-v3.debug.xcconfig */,
 				28086C148D4D5BEF3E6AADB8 /* Pods-v3.release.xcconfig */,
+				D0A26E0C6F354F7C08CD4832 /* Pods-Voices.debug.xcconfig */,
+				554D9937109CF71F1E601883 /* Pods-Voices.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -288,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				C812695A3BE1059FDAA3F7A8 /* libPods-v3.a */,
+				02F5F33B2BC320E83BB44705 /* libPods-Voices.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -408,7 +416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-v3/Pods-v3-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voices/Pods-Voices-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		53ECD74479AB7F003C7FD7F6 /* Check Pods Manifest.lock */ = {
@@ -582,7 +590,7 @@
 		};
 		52BB344F1B6160CA00BB9FFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6788BDB69200F1F5B496E34F /* Pods-v3.debug.xcconfig */;
+			baseConfigurationReference = D0A26E0C6F354F7C08CD4832 /* Pods-Voices.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
@@ -600,7 +608,7 @@
 		};
 		52BB34501B6160CA00BB9FFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28086C148D4D5BEF3E6AADB8 /* Pods-v3.release.xcconfig */;
+			baseConfigurationReference = 554D9937109CF71F1E601883 /* Pods-Voices.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
