@@ -177,11 +177,11 @@
                 }];
         }
         else if ([self.legislatureLevel.text isEqualToString:@"NYC Council"]){
-            [[RepManager sharedInstance]createNYCRepresentativesFromLocation:results WithCompletion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-            } onError:^(NSError *error) {
-                [error localizedDescription];
-            }];
+//            [[RepManager sharedInstance]createNYCRepresentativesFromLocation:results WithCompletion:^{
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+//            } onError:^(NSError *error) {
+//                [error localizedDescription];
+//            }];
         }
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);

@@ -11,15 +11,19 @@
 @implementation NYCRepresentative
 
 - (id)initWithData:(NSArray*)data {
-    NSLog(@"%@", data);
+    //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
-        self.name = [data valueForKey:@"name"];
-        self.address = [data valueForKey:@"address"];
-        self.email = [data valueForKey:@"emails"];
-        self.party = [data valueForKey:@"party"];
-        self.photoURL = [NSURL URLWithString:[data valueForKey:@"photoUrl"]];
-        self.phone = [data valueForKey:@"phones"][0];
+        self.name = data[0];
+        self.districtNumber = data[1];
+        self.borough = data[2];
+        self.party = data[3];
+        self.districtAddress = data[4];
+        self.districtPhone = data[5];
+        self.legAddress = data[6];
+        self.legPhone = data[7];
+        self.email = data[8];
+        self.photoURL = [NSURL URLWithString:data[9]];
     }
     return self;
 }
@@ -27,21 +31,31 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
         self.name = [decoder decodeObjectForKey:@"name"];
-        self.phone = [decoder decodeObjectForKey:@"phones"];
+        self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
+        self.borough = [decoder decodeObjectForKey:@"borough"];
         self.party = [decoder decodeObjectForKey:@"party"];
-        self.email = [decoder decodeObjectForKey:@"emails"];
-        self.photoURL = [decoder decodeObjectForKey:@"photoUrl"];
-        self.address = [decoder decodeObjectForKey:@"address"];
+        self.districtAddress = [decoder decodeObjectForKey:@"districtAddress"];
+        self.districtPhone = [decoder decodeObjectForKey:@"districtPhone"];
+        self.legAddress = [decoder decodeObjectForKey:@"legAddress"];
+        self.legPhone = [decoder decodeObjectForKey:@"legPhone"];
+        self.email = [decoder decodeObjectForKey:@"email"];
+        self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
+        self.photo = [decoder decodeObjectForKey:@"photo"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.name forKey:@"name"];
-    [coder encodeObject:self.phone forKey:@"phones"];
+    [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
+    [coder encodeObject:self.borough forKey:@"borough"];
     [coder encodeObject:self.party forKey:@"party"];
-    [coder encodeObject:self.email forKey:@"emails"];
-    [coder encodeObject:self.photoURL forKey:@"photoUrl"];
-    [coder encodeObject:self.address forKey:@"address"];
+    [coder encodeObject:self.districtAddress forKey:@"districtAddress"];
+    [coder encodeObject:self.districtPhone forKey:@"districtPhone"];
+    [coder encodeObject:self.legAddress forKey:@"legAddress"];
+    [coder encodeObject:self.legPhone forKey:@"legPhone"];
+    [coder encodeObject:self.email forKey:@"email"];
+    [coder encodeObject:self.photoURL forKey:@"photoURL"];
+    [coder encodeObject:self.photo forKey:@"photo"];
 }
 @end

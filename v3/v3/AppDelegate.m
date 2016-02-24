@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -11,7 +11,9 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
+#import "SSZipArchive.h"
 #import <Instabug/Instabug.h>
+#import <Google/Analytics.h>
 
 @interface AppDelegate ()
 @end
@@ -20,22 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        // The app is launching for the first time
-        NSLog(@"First launch");
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-        OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
-        self.window.rootViewController = onboardingPageViewController;
-        [self.window makeKeyAndVisible];
-    }
+    [self checkForFirstLaunch];
+    [self enableFeedbackAndReporting];
+    [self unzipNYCDataSet];
     
-    // Override point for customization after application launch.
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
-    [Instabug startWithToken:@"e8119e915901595a5e28cb35a4880b25" captureSource:IBGCaptureSourceUIKit invocationEvent:IBGInvocationEventNone];
     return YES;
 }
 
@@ -59,6 +49,57 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+# pragma mark - AppDidFinishLaunchingCongigs
+
+- (void)checkForFirstLaunch {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        // The app is launching for the first time
+        NSLog(@"First launch");
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+        OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
+        self.window.rootViewController = onboardingPageViewController;
+        [self.window makeKeyAndVisible];
+    }
+}
+
+- (void)enableFeedbackAndReporting {
+    // Override point for customization after application launch.
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
+    
+    // Instabug
+    [Instabug startWithToken:@"e8119e915901595a5e28cb35a4880b25" invocationEvent:IBGInvocationEventNone];
+    
+    // Configure tracker from GoogleService-Info.plist.
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    // Optional: configure GAI options.
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
+}
+
+- (void)unzipNYCDataSet {
+    // Get the file path for the zip
+    NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:@"CityCouncilDistricts" ofType:@"zip"];
+    // Get the file path for the destination
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    // Specify that we want the council data set
+    self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:@"City Council Districts.geojson"];
+    // Check if the file exists at the path
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.dataSetPathWithComponent];
+    // If the file does not already exist, unzip it
+    if (!fileExists) {
+        // Unzip the archive and send it to destination
+        [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
+    }
 }
 
 #pragma mark - Core Data stack

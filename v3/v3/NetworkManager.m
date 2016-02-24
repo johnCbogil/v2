@@ -24,6 +24,8 @@
     self = [super init];
     if(self != nil) {
         self.manager = [AFHTTPRequestOperationManager manager];
+        self.missingRepresentativePhoto = [UIImage imageNamed:@"MissingRep"];
+        [self.missingRepresentativePhoto setAccessibilityIdentifier:@"MissingRep"];
     }
     return self;
 }
@@ -138,66 +140,66 @@
     [operation start];
 }
 
-- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
-         onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguide];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
-    [operation start];
-}
+//- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
+//         onError:(void(^)(NSError *error))errorBlock {
+//    NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/entities/id_lookup.json?bioguide_id=%@&apikey=a0c99640cc894383975eb73b99f39d2f", bioguide];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        //NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+//    
+//    [operation start];
+//}
 
-- (void)getTopContributors:(NSString*)crpID withCompletion:(void(^)(NSDictionary *results))successBlock
-                   onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"https://www.opensecrets.org/api/?method=candContrib&cid=%@&cycle=2014&output=json&apikey=9cca34c3d940ed7795c8d9b1f03f90bb", crpID];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-       // NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-    }];
-    
-    [operation start];
-}
-
-- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
-                 onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    [operation start];
-}
+//- (void)getTopContributors:(NSString*)crpID withCompletion:(void(^)(NSDictionary *results))successBlock
+//                   onError:(void(^)(NSError *error))errorBlock {
+//    NSString *dataUrl = [NSString stringWithFormat:@"https://www.opensecrets.org/api/?method=candContrib&cid=%@&cycle=2014&output=json&apikey=9cca34c3d940ed7795c8d9b1f03f90bb", crpID];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//       // NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSLog(@"Error: %@", error);
+//    }];
+//    
+//    [operation start];
+//}
+//
+//- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
+//                 onError:(void(^)(NSError *error))errorBlock {
+//    NSString *dataUrl = [NSString stringWithFormat:@"https://transparencydata.com/api/1.0/aggregates/pol/%@/contributors/industries.json?cycle=2014&limit=10&apikey=a0c99640cc894383975eb73b99f39d2f", influenceExplorerID];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        //NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+//    [operation start];
+//}
 
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock {
@@ -224,19 +226,40 @@
     [operation start];
 }
 
-- (void)getNYCCouncilMemberFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock {
+- (void)getNYCRepresentativePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
+                           onError:(void(^)(NSError *error))errorBlock {
+    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/civicinfo/v2/representatives?address=%f,%f&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", location.coordinate.latitude, location.coordinate.longitude]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFImageResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
+        
+        //NSLog(@"%@", responseObject);
         successBlock(responseObject);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        
+        NSLog(@"Error: %@", error);
+        successBlock(self.missingRepresentativePhoto);
     }];
     
     [operation start];
 }
+
+
+//- (void)getNYCCouncilMemberFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock {
+//    
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.googleapis.com/civicinfo/v2/representatives?address=%f,%f&key=AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE", location.coordinate.latitude, location.coordinate.longitude]];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+//    
+//    [operation start];
+//}
 @end

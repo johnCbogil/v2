@@ -85,27 +85,27 @@
     }];
 }
 
-- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
-        if (successBlock) {
-            NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-            NSArray *councilMembers = [results valueForKey:@"officials"];
-            NSArray *offices = [results valueForKey:@"offices"];
-            for (id office in offices) {
-                if ([[office valueForKey:@"name"]containsString:@"Council"]){
-                    NSArray *officialIndices = [office valueForKey:@"officialIndices"];
-                    NSInteger index = [officialIndices[0] integerValue];
-                    NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:councilMembers[index]];
-                    [listOfNYCRepresentatives addObject:nycRepresentative];
-                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
-                    successBlock();
-                }
-            }
-        }
-    } onError:^(NSError *error) {
-        NSLog(@"ERROR");
-    }];
-}
+//- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock {
+//    [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
+//        if (successBlock) {
+//            NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
+//            NSArray *councilMembers = [results valueForKey:@"officials"];
+//            NSArray *offices = [results valueForKey:@"offices"];
+//            for (id office in offices) {
+//                if ([[office valueForKey:@"name"]containsString:@"Council"]){
+//                    NSArray *officialIndices = [office valueForKey:@"officialIndices"];
+//                    NSInteger index = [officialIndices[0] integerValue];
+//                    NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:councilMembers[index]];
+//                    [listOfNYCRepresentatives addObject:nycRepresentative];
+//                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
+//                    successBlock();
+//                }
+//            }
+//        }
+//    } onError:^(NSError *error) {
+//        NSLog(@"ERROR");
+//    }];
+//}
 
 - (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
@@ -153,37 +153,127 @@
     }
 }
 
-- (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                          onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]idLookup:congressperson.bioguide withCompletion:^(NSArray *results) {
-        congressperson.influenceExplorerID =  [results valueForKey:@"id"][0];
-        if (successBlock) {
-            successBlock();
+// THIS NEEDS TO BE OPTIMIZED, A LOT
+- (void)createNYCRepsFromLocation:(CLLocation*)location {
+    BOOL isLocationWithinPath = false;
+    
+    // Parse the csv file into json
+    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
+    NSError *error =  nil;
+    NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    
+    // Parse out the districts from the rest of the data
+    NSArray *districts = [jsonDataDict valueForKey:@"features"];
+    for (NSDictionary *district in districts) {
+        CGMutablePathRef path = [self drawNYCDistrictPathFromDictionary:district];
+        isLocationWithinPath = [self isLocation:location withinPath:path];
+        if (isLocationWithinPath) {
+            break;
         }
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
+    }
 }
 
-- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                      onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getTopContributors:congressperson.crpID withCompletion:^(NSDictionary *results) {
-        NSDictionary *response = [results valueForKey:@"response"];
-        NSArray *contributors = [[response valueForKey:@"contributors"]valueForKey:@"contributor"];
-        congressperson.topContributors = contributors;
-        successBlock();
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
+- (CGMutablePathRef)drawNYCDistrictPathFromDictionary: (NSDictionary *)district {
+    
+    // Create a path
+    CGMutablePathRef path = CGPathCreateMutable();
+    // Parse out the council district from the data
+    self.currentCouncilDistrict = [[district valueForKey:@"properties"]valueForKey:@"coundist"];
+    NSLog(@"%@", self.currentCouncilDistrict);
+    // Parse out the geometry
+    NSDictionary *geometry = [district valueForKey:@"geometry"];
+    // Parse the polygons from the data
+    NSArray *coordinateObjects = [geometry valueForKey:@"coordinates"];
+    
+    // For each polygon
+    for (NSArray *array in coordinateObjects) {
+        // The counter is here to check if its the initial point or not
+        int counter = 0;
+        // idk
+        for (NSArray *subArray in array) {
+            // idk
+            for (NSArray *subSubArray in subArray) {
+                
+                double latitude = [subSubArray[1]doubleValue];
+                double longitude = [subSubArray[0]doubleValue];
+                if (counter == 0) {
+                    CGPathMoveToPoint(path, nil, latitude, longitude);
+                } else {
+                    CGPathAddLineToPoint(path, nil, latitude, longitude);
+                }
+                counter++;
+            }
+        }
+    }
+    CGPathCloseSubpath(path);
+    return path;
 }
 
-- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                    onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getTopIndustries:congressperson.influenceExplorerID withCompletion:^(NSArray *results) {
-        congressperson.topIndustries = results;
-        successBlock();
-    } onError:^(NSError *error) {
-        errorBlock(error);
-    }];
+- (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
+    BOOL isLocationWithinPath;
+    
+    // Grab the latitude and longitude
+    double currentLatitude = location.coordinate.latitude;
+    double currentLongitude = location.coordinate.longitude;
+    
+    if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"NYCCouncilMembers" ofType:@"csv"];
+        NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
+        NSArray* rows = [fileContents componentsSeparatedByString:@"\n"];
+        
+        for (NSString *member in rows) {
+            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]-1) {
+                isLocationWithinPath = YES;
+                NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
+                NSArray *memberData = [member componentsSeparatedByString:@","];
+                NSLog(@"%@", memberData);
+                NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
+                // Assign NYC photos here
+                [self assignNYCRepresentativePhotos:nycRepresentative withCompletion:^{
+                    if (nycRepresentative.photo) {
+                        NSLog(@"there is a photo");
+                    }
+                    else {
+                        NSLog(@"There is no photo");
+                    }
+                    
+                    [listOfNYCRepresentatives addObject:nycRepresentative];
+                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+                    
+                } onError:^(NSError *error) {
+                    NSLog(@"nyc photo error");
+                }];
+                return isLocationWithinPath;
+            }
+        }
+    }
+    return isLocationWithinPath;
 }
+
+- (void)assignNYCRepresentativePhotos:(NYCRepresentative *)nycRepresentative withCompletion:(void(^)(void))successBlock
+                              onError:(void(^)(NSError *error))errorBlock {
+    
+    NYCRepresentative *cachedNYCRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"NYCRepresentative" withFirstName:nycRepresentative.name withLastName:@""];
+    if (cachedNYCRepresentative) {
+        nycRepresentative.photo = cachedNYCRepresentative.photo;
+        successBlock();
+    }
+    else {
+        NSLog(@"Firing nyc photo request");
+        [[NetworkManager sharedInstance]getNYCRepresentativePhotos:nycRepresentative.photoURL withCompletion:^(UIImage *results) {
+            nycRepresentative.photo = UIImagePNGRepresentation(results);
+            successBlock();
+            if (successBlock) {
+                if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
+                    [[CacheManager sharedInstance]cacheRepresentative:nycRepresentative withEntityName:@"NYCRepresentative"];
+                }
+            }
+        } onError:^(NSError *error) {
+            errorBlock(error);
+        }];
+    }
+}
+
+
 @end

@@ -18,15 +18,17 @@
 @property (strong, nonatomic) NSArray *listOfCongressmen;
 @property (strong, nonatomic) NSMutableArray *listOfStateLegislators;
 @property (strong, nonatomic) NSMutableArray *listOfNYCRepresentatives;
+@property (strong, nonatomic) NSString *currentCouncilDistrict;
 - (void)createCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock;
 - (void)createStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
-- (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                          onError:(void(^)(NSError *error))errorBlock;
-- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                      onError:(void(^)(NSError *error))errorBlock;
-- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-                    onError:(void(^)(NSError *error))errorBlock;
-- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock;
+- (void)createNYCRepsFromLocation:(CLLocation*)location;
+//- (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+//                          onError:(void(^)(NSError *error))errorBlock;
+//- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+//                      onError:(void(^)(NSError *error))errorBlock;
+//- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+//                    onError:(void(^)(NSError *error))errorBlock;
+//- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock;
 @end

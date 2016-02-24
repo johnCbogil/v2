@@ -49,7 +49,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)sendFeedbackButtonDidPress:(id)sender {
-    [Instabug invokeFeedbackSender];
+    [Instabug invoke];
 }
 
 /*

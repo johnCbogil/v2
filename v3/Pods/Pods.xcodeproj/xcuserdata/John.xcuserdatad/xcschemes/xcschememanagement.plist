@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SSZipArchive.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>STPopup.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,6 +32,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2AFFD18274DE25C0B4D63F0A947B0C70</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54EC44A16027F26112F3634721786520</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5C66DF613C7835C7C877A86FD000BDD6</key>
 		<dict>
 			<key>primary</key>
@@ -37,12 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C412E218C26C5F3DBFFFABDD88ADDF49</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D65C11B3ADE0377276E063ED4D5C76E9</key>
+		<key>F8FCE5AB1A6C3F344CC491CADE485868</key>
 		<dict>
 			<key>primary</key>
 			<true/>
