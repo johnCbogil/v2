@@ -160,17 +160,17 @@
         }
     }
     
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *results) {
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
         if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
-            [[RepManager sharedInstance]createCongressmenFromLocation:results WithCompletion:^{
-                NSLog(@"%@", results);
+            [[RepManager sharedInstance]createCongressmenFromLocation:locationResults WithCompletion:^{
+                NSLog(@"%@", locationResults);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
             } onError:^(NSError *error) {
                 [error localizedDescription];
             }];
         }
         else if ([self.legislatureLevel.text isEqualToString:@"State Legislators"]){
-                [[RepManager sharedInstance]createStateLegislatorsFromLocation:results WithCompletion:^{
+                [[RepManager sharedInstance]createStateLegislatorsFromLocation:locationResults WithCompletion:^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];
@@ -182,6 +182,8 @@
 //            } onError:^(NSError *error) {
 //                [error localizedDescription];
 //            }];
+            [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         }
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);

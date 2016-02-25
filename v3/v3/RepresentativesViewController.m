@@ -202,6 +202,8 @@
 //    } onError:^(NSError *error) {
 //        NSLog(@"%@",error);
 //    }];
+    [[RepManager sharedInstance]createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "StateLegislator.h"
 #import "RepManager.h"
 #import "LocationService.h"
+#import "NYCRepresentative.h"
 
 @interface CacheManager ()
 @property (strong, nonatomic) NSManagedObjectContext *context;
@@ -40,8 +41,14 @@
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",firstName, lastName];
-    [request setPredicate:pred];
+    NSPredicate *predicate;
+    if ([entityName isEqualToString:@"NYCRepresentative"]) {
+        predicate =[NSPredicate predicateWithFormat:@"(name = %@)", firstName];
+    }
+    else {
+        predicate =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",firstName, lastName];
+    }
+    [request setPredicate:predicate];
     
     NSError *error;
     NSArray *cachedObjects = [self.context executeFetchRequest:request
@@ -57,20 +64,27 @@
 
 - (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName {
     if([entityName isEqualToString:@"Congressperson"]) {
-        Congressperson *congressperson = representative;
-        NSManagedObject *managedCongressperson;
-        managedCongressperson = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
-        [managedCongressperson setValue:congressperson.photo forKey:@"photo"];
-        [managedCongressperson setValue:congressperson.firstName forKey:@"firstName"];
-        [managedCongressperson setValue:congressperson.lastName forKey:@"lastName"];
+        Congressperson *federalRepresentative = representative;
+        NSManagedObject *managedFederalRepresentative;
+        managedFederalRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+        [managedFederalRepresentative setValue:federalRepresentative.photo forKey:@"photo"];
+        [managedFederalRepresentative setValue:federalRepresentative.firstName forKey:@"firstName"];
+        [managedFederalRepresentative setValue:federalRepresentative.lastName forKey:@"lastName"];
     }
     else if ([entityName isEqualToString:@"StateLegislator"]) {
-        StateLegislator *stateLegislator = representative;
-        NSManagedObject *managedStateLegislator;
-        managedStateLegislator = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
-        [managedStateLegislator setValue:stateLegislator.photo forKey:@"photo"];
-        [managedStateLegislator setValue:stateLegislator.firstName forKey:@"firstName"];
-        [managedStateLegislator setValue:stateLegislator.lastName forKey:@"lastName"];
+        StateLegislator *stateRepresentative = representative;
+        NSManagedObject *managedStateRepresentative;
+        managedStateRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+        [managedStateRepresentative setValue:stateRepresentative.photo forKey:@"photo"];
+        [managedStateRepresentative setValue:stateRepresentative.firstName forKey:@"firstName"];
+        [managedStateRepresentative setValue:stateRepresentative.lastName forKey:@"lastName"];
+    }
+    else if ([entityName isEqualToString:@"NYCRepresentative"]) {
+        NYCRepresentative *nycRepresentative = representative;
+        NSManagedObject *managedNYCRepresentative;
+        managedNYCRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+        [managedNYCRepresentative setValue:nycRepresentative.photo forKey:@"photo"];
+        [managedNYCRepresentative setValue:nycRepresentative.name forKey:@"name"];
     }
     NSError *coreDataSaveerror;
     [self.context save:&coreDataSaveerror];
