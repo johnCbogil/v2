@@ -1,6 +1,6 @@
 //
 //  main.m
-//  v2
+//  Voices
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.

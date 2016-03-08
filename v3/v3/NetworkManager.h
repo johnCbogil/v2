@@ -15,22 +15,16 @@
 
 +(NetworkManager *) sharedInstance;
 - (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
-- (void)getStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                   onError:(void(^)(NSError *error))errorBlock;
-- (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
+- (void)getStateRepresentativePhoto:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                onError:(void(^)(NSError *error))errorBlock;
 - (void)getNYCRepresentativePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock;
-//- (void)idLookup:(NSString*)bioguide withCompletion:(void(^)(NSArray *results))successBlock
-//         onError:(void(^)(NSError *error))errorBlock;
-//- (void)getTopContributors:(NSString*)crpID withCompletion:(void(^)(NSDictionary *results))successBlock
-//                   onError:(void(^)(NSError *error))errorBlock;
-//- (void)getTopIndustries:(NSString*)influenceExplorerID withCompletion:(void(^)(NSArray *results))successBlock
-//                 onError:(void(^)(NSError *error))errorBlock;
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock;
-//- (void)getNYCCouncilMemberFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong)UIImage *missingRepresentativePhoto;
+
 @end

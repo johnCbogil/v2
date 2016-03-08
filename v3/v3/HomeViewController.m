@@ -171,7 +171,7 @@
             }];
         }
         else if ([self.legislatureLevel.text isEqualToString:@"State Legislators"]){
-                [[RepManager sharedInstance]createStateLegislatorsFromLocation:locationResults WithCompletion:^{
+                [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
                 } onError:^(NSError *error) {
                     [error localizedDescription];

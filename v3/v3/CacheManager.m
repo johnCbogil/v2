@@ -102,8 +102,8 @@
             if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
                 [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
-            else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
-                [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+            else if ([representativeType isEqualToString:@"cachedStateRepresentatives"]) {
+                [RepManager sharedInstance].listOfStateRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
             }
             else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
                 [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
@@ -116,8 +116,8 @@
         if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
             [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         }
-        else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
-            [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]init];
+        else if ([representativeType isEqualToString:@"cachedStateRepresentatives"]) {
+            [RepManager sharedInstance].listOfStateRepresentatives = [[NSMutableArray alloc]init];
         }
         else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
             [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]init];

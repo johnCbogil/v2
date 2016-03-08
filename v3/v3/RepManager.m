@@ -30,7 +30,7 @@
     self = [super init];
     if (self != nil) {
         self.listOfFederalRepresentatives = [NSArray array];
-        self.listOfStateLegislators = [NSMutableArray array];
+        self.listOfStateRepresentatives = [NSMutableArray array];
         self.index = 0;
     }
     return self;
@@ -63,16 +63,16 @@
     }];
 }
 
--(void)createStateLegislatorsFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
+-(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
     
-    [[NetworkManager sharedInstance]getStateLegislatorsFromLocation:location WithCompletion:^(NSDictionary *results) {
-        NSMutableArray *listOfStateLegislators = [[NSMutableArray alloc]init];
+    [[NetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+        NSMutableArray *listOfStateRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
             StateRepresentative *stateLegislator = [[StateRepresentative alloc] initWithData:resultDict];
             [self assignStatePhotos:stateLegislator withCompletion:^{
                 if (successBlock) {
-                    [listOfStateLegislators addObject:stateLegislator];
-                    self.listOfStateLegislators = listOfStateLegislators;
+                    [listOfStateRepresentatives addObject:stateLegislator];
+                    self.listOfStateRepresentatives = listOfStateRepresentatives;
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
@@ -110,15 +110,15 @@
 - (void)assignStatePhotos:(StateRepresentative *)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    StateRepresentative *cachedStateLegislator = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateLegislator" withFirstName:stateLegislator.firstName withLastName:stateLegislator.lastName];
+    StateRepresentative *cachedStateRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateLegislator" withFirstName:stateLegislator.firstName withLastName:stateLegislator.lastName];
     
-    if (cachedStateLegislator) {
-        stateLegislator.photo = cachedStateLegislator.photo;
+    if (cachedStateRepresentative) {
+        stateLegislator.photo = cachedStateRepresentative.photo;
         successBlock();
     }
     else {
         NSLog(@"Firing network request");
-        [[NetworkManager sharedInstance]getStatePhotos:stateLegislator.photoURL withCompletion:^(UIImage *results) {
+        [[NetworkManager sharedInstance]getStateRepresentativePhoto:stateLegislator.photoURL withCompletion:^(UIImage *results) {
             stateLegislator.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();

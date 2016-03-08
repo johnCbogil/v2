@@ -72,9 +72,9 @@
     }
     else if (self.index == 1) {
         self.tableViewCellName = @"StateRepresentativeTableViewCell";
-        self.cachedRepresentatives = @"cachedStateLegislators";
-        self.tableViewDataSource = [RepManager sharedInstance].listOfStateLegislators;
-        self.getRepresentativesMethod = @"createStateLegislators";
+        self.cachedRepresentatives = @"cachedStateRepresentatives";
+        self.tableViewDataSource = [RepManager sharedInstance].listOfStateRepresentatives;
+        self.getRepresentativesMethod = @"createStateRepresentatives";
     }
     else if (self.index == 2) {
         self.tableViewCellName = @"NYCRepresentativeTableViewCell";
@@ -186,8 +186,8 @@
     }];
 }
 
-- (void)createStateLegislators {
-    [[RepManager sharedInstance]createStateLegislatorsFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+- (void)createStateRepresentatives {
+    [[RepManager sharedInstance]createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });
@@ -197,13 +197,6 @@
 }
 
 - (void)createNYCRepresentatives {
-//    [[RepManager sharedInstance]createNYCRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-//        });
-//    } onError:^(NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
     [[RepManager sharedInstance]createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }

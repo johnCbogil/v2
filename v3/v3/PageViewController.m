@@ -22,6 +22,7 @@
     self.dataSource = self;
     self.delegate = self;
     
+    // THESE TITLE VALUES SHOULD BE CONSTANTS
     RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
     initialViewController.title = @"Congress";
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
