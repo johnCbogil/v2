@@ -1,5 +1,5 @@
 //
-//  CongresspersonTableViewCell.h
+//  FederalRepresentativeTableViewCell.h
 //  v3
 //
 //  Created by John Bogil on 9/14/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomAlertDelegate.h"
 
-@interface CongresspersonTableViewCell : UITableViewCell
+@interface FederalRepresentativeTableViewCell : UITableViewCell
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;
 @property (strong, nonatomic) id <CustomAlertDelegate> delegate;

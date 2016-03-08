@@ -1,18 +1,18 @@
 //
-//  CongresspersonTableViewCell.m
-//  v3
+//  FederalRepresentativeTableViewCell.m
+//  Voices
 //
 //  Created by John Bogil on 9/14/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "CongresspersonTableViewCell.h"
+#import "FederalRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface CongresspersonTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) Congressperson *congressperson;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @end
 
-@implementation CongresspersonTableViewCell
+@implementation FederalRepresentativeTableViewCell
 
 - (void)awakeFromNib {
     self.photo.contentMode = UIViewContentModeScaleAspectFill;

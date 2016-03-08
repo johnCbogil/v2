@@ -7,7 +7,7 @@
 //
 
 #import "RepresentativesViewController.h"
-#import "CongresspersonTableViewCell.h"
+#import "FederalRepresentativeTableViewCell.h"
 #import "StateRepTableViewCell.h"
 #import "NYCRepresentativeTableViewCell.h"
 #import "RepManager.h"
@@ -63,7 +63,7 @@
 
 - (void)setDataSources {
     if (self.index == 0) {
-        self.tableViewCellName = @"CongresspersonTableViewCell";
+        self.tableViewCellName = @"FederalRepresentativeTableViewCell";
         self.cachedRepresentatives = @"cachedCongresspersons";
         self.tableViewDataSource = [RepManager sharedInstance].listOfCongressmen;
         self.getRepresentativesMethod = @"createCongressmen";
