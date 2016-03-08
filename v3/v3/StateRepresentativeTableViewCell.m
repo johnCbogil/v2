@@ -1,18 +1,18 @@
 //
-//  StateRepTableViewCell.m
-//  v3
+//  StateRepresentativeTableViewCell.m
+//  Voices
 //
 //  Created by John Bogil on 10/16/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
 //
 
-#import "StateRepTableViewCell.h"
+#import "StateRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "StateLegislator.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 
-@interface StateRepTableViewCell ()
+@interface StateRepresentativeTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -23,7 +23,7 @@
 @property (strong, nonatomic) NSArray *listOfStatesWithAssembly;
 @end
 
-@implementation StateRepTableViewCell
+@implementation StateRepresentativeTableViewCell
 
 - (void)awakeFromNib {
     self.photo.contentMode = UIViewContentModeScaleAspectFill;

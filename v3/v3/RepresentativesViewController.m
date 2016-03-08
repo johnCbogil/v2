@@ -8,7 +8,7 @@
 
 #import "RepresentativesViewController.h"
 #import "FederalRepresentativeTableViewCell.h"
-#import "StateRepTableViewCell.h"
+#import "StateRepresentativeTableViewCell.h"
 #import "NYCRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
@@ -69,7 +69,7 @@
         self.getRepresentativesMethod = @"createCongressmen";
     }
     else if (self.index == 1) {
-        self.tableViewCellName = @"StateRepTableViewCell";
+        self.tableViewCellName = @"StateRepresentativeTableViewCell";
         self.cachedRepresentatives = @"cachedStateLegislators";
         self.tableViewDataSource = [RepManager sharedInstance].listOfStateLegislators;
         self.getRepresentativesMethod = @"createStateLegislators";

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
-		5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */; };
-		5224640F1BD17BCA006CFDB5 /* StateRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */; };
+		5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */; };
+		5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */; };
 		5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */; };
 		524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */; };
@@ -61,9 +61,9 @@
 		28086C148D4D5BEF3E6AADB8 /* Pods-v3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-v3.release.xcconfig"; path = "Pods/Target Support Files/Pods-v3/Pods-v3.release.xcconfig"; sourceTree = "<group>"; };
 		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
-		5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepTableViewCell.h; sourceTree = "<group>"; };
-		5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepTableViewCell.m; sourceTree = "<group>"; };
-		5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateRepTableViewCell.xib; sourceTree = "<group>"; };
+		5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepresentativeTableViewCell.h; sourceTree = "<group>"; };
+		5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepresentativeTableViewCell.m; sourceTree = "<group>"; };
+		5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateRepresentativeTableViewCell.xib; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FederalRepresentativeTableViewCell.xib; sourceTree = "<group>"; };
 		5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalRepresentativeTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentativeTableViewCell.m; sourceTree = "<group>"; };
@@ -222,9 +222,9 @@
 				5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */,
 				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
 				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
-				5224640B1BD17A68006CFDB5 /* StateRepTableViewCell.h */,
-				5224640C1BD17A68006CFDB5 /* StateRepTableViewCell.m */,
-				5224640E1BD17BCA006CFDB5 /* StateRepTableViewCell.xib */,
+				5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */,
+				5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */,
+				5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */,
 				52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */,
 				52B89B6D1C555735005950BB /* NYCRepresentativeTableViewCell.h */,
 				52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */,
@@ -400,7 +400,7 @@
 				52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */,
 				524B15B41C7E78C7003B4372 /* NYCCouncilMembers.csv in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
-				5224640F1BD17BCA006CFDB5 /* StateRepTableViewCell.xib in Resources */,
+				5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +468,7 @@
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
-				5224640D1BD17A68006CFDB5 /* StateRepTableViewCell.m in Sources */,
+				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */,
