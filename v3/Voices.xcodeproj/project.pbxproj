@@ -21,8 +21,8 @@
 		52A156C41C7E183400B566ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52A156C31C7E183400B566ED /* GoogleService-Info.plist */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
-		52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* Congressperson.m */; };
-		52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateLegislator.m */; };
+		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
+		52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateRepresentative.m */; };
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
 		52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33941BE5C8FD00EC0468 /* UIColor+voicesOrange.m */; };
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
@@ -81,10 +81,10 @@
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
 		52A610811B66AD0300B041FF /* RepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepManager.m; sourceTree = "<group>"; };
-		52AD2CBE1B61E7A300EAF854 /* Congressperson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Congressperson.h; sourceTree = "<group>"; };
-		52AD2CBF1B61E7A300EAF854 /* Congressperson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Congressperson.m; sourceTree = "<group>"; };
-		52AD2CC11B61F90900EAF854 /* StateLegislator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateLegislator.h; sourceTree = "<group>"; };
-		52AD2CC21B61F90900EAF854 /* StateLegislator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateLegislator.m; sourceTree = "<group>"; };
+		52AD2CBE1B61E7A300EAF854 /* FederalRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalRepresentative.h; sourceTree = "<group>"; };
+		52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentative.m; sourceTree = "<group>"; };
+		52AD2CC11B61F90900EAF854 /* StateRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepresentative.h; sourceTree = "<group>"; };
+		52AD2CC21B61F90900EAF854 /* StateRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepresentative.m; sourceTree = "<group>"; };
 		52AD33901BE5C73D00EC0468 /* UIFont+voicesFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+voicesFont.h"; sourceTree = "<group>"; };
 		52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+voicesFont.m"; sourceTree = "<group>"; };
 		52AD33931BE5C8FD00EC0468 /* UIColor+voicesOrange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+voicesOrange.h"; sourceTree = "<group>"; };
@@ -220,16 +220,16 @@
 				5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */,
 				5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */,
-				52AD2CBE1B61E7A300EAF854 /* Congressperson.h */,
-				52AD2CBF1B61E7A300EAF854 /* Congressperson.m */,
+				52AD2CBE1B61E7A300EAF854 /* FederalRepresentative.h */,
+				52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */,
 				5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */,
 				5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */,
+				52AD2CC11B61F90900EAF854 /* StateRepresentative.h */,
+				52AD2CC21B61F90900EAF854 /* StateRepresentative.m */,
 				5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */,
 				52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */,
 				52B89B6D1C555735005950BB /* NYCRepresentativeTableViewCell.h */,
 				52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */,
-				52AD2CC11B61F90900EAF854 /* StateLegislator.h */,
-				52AD2CC21B61F90900EAF854 /* StateLegislator.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
 				7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */,
@@ -470,8 +470,8 @@
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
-				52AD2CC31B61F90900EAF854 /* StateLegislator.m in Sources */,
-				52AD2CC01B61E7A300EAF854 /* Congressperson.m in Sources */,
+				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
+				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);

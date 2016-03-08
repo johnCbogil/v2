@@ -10,7 +10,7 @@
 #import "NetworkManager.h"
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
-#import "StateLegislator.h"
+#import "StateRepresentative.h"
 #import "CacheManager.h"
 #import "UIColor+voicesOrange.h"
 #import "PageViewController.h"
@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedCongresspersons"];
+    [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedFederalRepresentatives"];
     [self addObservers];
     [self setFont];
     [self setColors];

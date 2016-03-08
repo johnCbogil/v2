@@ -8,8 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "RepManager.h"
 #import "NetworkManager.h"
-#import "Congressperson.h"
-#import "StateLegislator.h"
+#import "FederalRepresentative.h"
+#import "StateRepresentative.h"
 #import "NYCRepresentative.h"
 #import "LocationService.h"
 #import "AppDelegate.h"
@@ -42,10 +42,10 @@
     [[NetworkManager sharedInstance]getCongressmenFromLocation:location WithCompletion:^(NSDictionary *results) {
         NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-            Congressperson *congressperson = [[Congressperson alloc] initWithData:resultDict];
-            [self assignCongressPhotos:congressperson withCompletion:^{
+            FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
+            [self assignCongressPhotos:federalRepresentative withCompletion:^{
                 if (successBlock) {
-                    [listOfCongressmen addObject:congressperson];
+                    [listOfCongressmen addObject:federalRepresentative];
                     self.listOfCongressmen = listOfCongressmen;
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
@@ -67,7 +67,7 @@
     [[NetworkManager sharedInstance]getStateLegislatorsFromLocation:location WithCompletion:^(NSDictionary *results) {
         NSMutableArray *listOfStateLegislators = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
-            StateLegislator *stateLegislator = [[StateLegislator alloc] initWithData:resultDict];
+            StateRepresentative *stateLegislator = [[StateRepresentative alloc] initWithData:resultDict];
             [self assignStatePhotos:stateLegislator withCompletion:^{
                 if (successBlock) {
                     [listOfStateLegislators addObject:stateLegislator];
@@ -85,42 +85,20 @@
     }];
 }
 
-//- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock {
-//    [[NetworkManager sharedInstance]getNYCCouncilMemberFromLocation:location WithCompletion:^(NSArray *results) {
-//        if (successBlock) {
-//            NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-//            NSArray *councilMembers = [results valueForKey:@"officials"];
-//            NSArray *offices = [results valueForKey:@"offices"];
-//            for (id office in offices) {
-//                if ([[office valueForKey:@"name"]containsString:@"Council"]){
-//                    NSArray *officialIndices = [office valueForKey:@"officialIndices"];
-//                    NSInteger index = [officialIndices[0] integerValue];
-//                    NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:councilMembers[index]];
-//                    [listOfNYCRepresentatives addObject:nycRepresentative];
-//                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
-//                    successBlock();
-//                }
-//            }
-//        }
-//    } onError:^(NSError *error) {
-//        NSLog(@"ERROR");
-//    }];
-//}
-
-- (void)assignCongressPhotos:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
+- (void)assignCongressPhotos:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
-    Congressperson *cachedCongressperson = [[CacheManager sharedInstance]fetchRepWithEntityName:@"Congressperson" withFirstName:congressperson.firstName withLastName:congressperson.lastName];
-    if (cachedCongressperson) {
-        congressperson.photo = cachedCongressperson.photo;
+    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"FederalRepresentative" withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
+    if (cachedFederalRepresentative) {
+        federalRepresentative.photo = cachedFederalRepresentative.photo;
         successBlock();
     }
     else {
-        [[NetworkManager sharedInstance]getCongressPhotos:congressperson.bioguide withCompletion:^(UIImage *results) {
-            congressperson.photo = UIImagePNGRepresentation(results);
+        [[NetworkManager sharedInstance]getCongressPhotos:federalRepresentative.bioguide withCompletion:^(UIImage *results) {
+            federalRepresentative.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                [[CacheManager sharedInstance]cacheRepresentative:congressperson withEntityName:@"Congressperson"];
+                [[CacheManager sharedInstance]cacheRepresentative:federalRepresentative withEntityName:@"FederalRepresentative"];
             }
         } onError:^(NSError *error) {
             errorBlock(error);
@@ -128,10 +106,10 @@
     }
 }
 
-- (void)assignStatePhotos:(StateLegislator*)stateLegislator withCompletion:(void(^)(void))successBlock
+- (void)assignStatePhotos:(StateRepresentative *)stateLegislator withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    StateLegislator *cachedStateLegislator = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateLegislator" withFirstName:stateLegislator.firstName withLastName:stateLegislator.lastName];
+    StateRepresentative *cachedStateLegislator = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateLegislator" withFirstName:stateLegislator.firstName withLastName:stateLegislator.lastName];
     
     if (cachedStateLegislator) {
         stateLegislator.photo = cachedStateLegislator.photo;

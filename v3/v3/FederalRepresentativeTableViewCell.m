@@ -13,7 +13,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
-@property (strong, nonatomic) Congressperson *congressperson;
+@property (strong, nonatomic) FederalRepresentative *federalRepresentative;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UILabel *nextElectionLabel;
@@ -37,10 +37,11 @@
 }
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
-    self.congressperson =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
-    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.congressperson.shortTitle, self.congressperson.firstName, self.congressperson.lastName];
-    self.photo.image = [UIImage imageWithData:self.congressperson.photo];
-    self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.congressperson.nextElection];
+    // THIS IS A BREACH OF MVC
+    self.federalRepresentative =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.federalRepresentative.shortTitle, self.federalRepresentative.firstName, self.federalRepresentative.lastName];
+    self.photo.image = [UIImage imageWithData:self.federalRepresentative.photo];
+    self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.federalRepresentative.nextElection];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
@@ -51,7 +52,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
-        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.congressperson.phone]];
+        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
         {
             [[UIApplication sharedApplication] openURL:callUrl];
@@ -64,15 +65,15 @@
 }
 
 - (IBAction)callButtonDidPress:(id)sender {
-    if (self.congressperson.phone) {
+    if (self.federalRepresentative.phone) {
         NSString *confirmCallMessage;
-        if (![self.congressperson.nickname isEqual:[NSNull null]]) {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.congressperson.nickname];
+        if (![self.federalRepresentative.nickname isEqual:[NSNull null]]) {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.federalRepresentative.nickname];
         }
         else {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.congressperson.firstName, self.congressperson.lastName];
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.federalRepresentative.firstName, self.federalRepresentative.lastName];
         }
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.congressperson.title,self.congressperson.firstName, self.congressperson.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.federalRepresentative.title,self.federalRepresentative.firstName, self.federalRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }
@@ -83,18 +84,17 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
-    if (self.congressperson.email) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.congressperson.email];
+    if (self.federalRepresentative.email) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.federalRepresentative.email];
     }
     else {
-        // RENAME THIS DELEGATE TO BE MORE SPECIFIC
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
-    if (self.congressperson.twitter) {
-        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.congressperson.twitter, @"accountName", nil];
+    if (self.federalRepresentative.twitter) {
+        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.federalRepresentative.twitter, @"accountName", nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
     }
     else {

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
-#import "Congressperson.h"
+#import "FederalRepresentative.h"
 #import <CoreData/CoreData.h>
 
 @interface CacheManager : NSObject
@@ -17,6 +17,5 @@
 - (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName;
 - (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName;
 - (void)checkCacheForRepresentative:(NSString*)representativeType;
-@property (strong, nonatomic) Congressperson *congressperson;
 
 @end

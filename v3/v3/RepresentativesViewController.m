@@ -61,10 +61,12 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+
+// THESE VALUES SHOULD BE CONSTANTS
 - (void)setDataSources {
     if (self.index == 0) {
         self.tableViewCellName = @"FederalRepresentativeTableViewCell";
-        self.cachedRepresentatives = @"cachedCongresspersons";
+        self.cachedRepresentatives = @"cachedFederalRepresentatives";
         self.tableViewDataSource = [RepManager sharedInstance].listOfCongressmen;
         self.getRepresentativesMethod = @"createCongressmen";
     }

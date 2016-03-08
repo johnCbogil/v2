@@ -7,8 +7,8 @@
 //
 
 #import "CacheManager.h"
-#import "Congressperson.h"
-#import "StateLegislator.h"
+#import "FederalRepresentative.h"
+#import "StateRepresentative.h"
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NYCRepresentative.h"
@@ -63,8 +63,8 @@
 }
 
 - (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName {
-    if([entityName isEqualToString:@"Congressperson"]) {
-        Congressperson *federalRepresentative = representative;
+    if([entityName isEqualToString:@"FederalRepresentative"]) {
+        FederalRepresentative *federalRepresentative = representative;
         NSManagedObject *managedFederalRepresentative;
         managedFederalRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
         [managedFederalRepresentative setValue:federalRepresentative.photo forKey:@"photo"];
@@ -72,7 +72,7 @@
         [managedFederalRepresentative setValue:federalRepresentative.lastName forKey:@"lastName"];
     }
     else if ([entityName isEqualToString:@"StateLegislator"]) {
-        StateLegislator *stateRepresentative = representative;
+        StateRepresentative *stateRepresentative = representative;
         NSManagedObject *managedStateRepresentative;
         managedStateRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
         [managedStateRepresentative setValue:stateRepresentative.photo forKey:@"photo"];
@@ -97,7 +97,9 @@
     if (dataRepresentingCachedRepresentatives != nil) {
         NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
         if (oldCachedRepresentatives != nil){
-            if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
+            
+            // THESE VALUES SHOULD BE COSNTANTS
+            if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
                 [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
             else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
@@ -108,8 +110,10 @@
             }
         }
     }
+    
+    // NOT SURE I NEED THIS ELSE BLOCK
     else {
-        if ([representativeType isEqualToString:@"cachedCongresspersons"]) {
+        if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
             [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc]init];
         }
         else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Congressperson.h"
+#import "FederalRepresentative.h"
 #import "UIImageView+AFNetworking.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -24,11 +24,5 @@
 - (void)createStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
 - (void)createNYCRepsFromLocation:(CLLocation*)location;
-//- (void)assignInfluenceExplorerID:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-//                          onError:(void(^)(NSError *error))errorBlock;
-//- (void)assignTopContributors:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-//                      onError:(void(^)(NSError *error))errorBlock;
-//- (void)assignTopIndustries:(Congressperson*)congressperson withCompletion:(void(^)(void))successBlock
-//                    onError:(void(^)(NSError *error))errorBlock;
-//- (void)createNYCRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *error))errorBlock;
+
 @end

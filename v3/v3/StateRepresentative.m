@@ -1,14 +1,15 @@
 //
-//  StateLegislator.m
-//  v3
+//  StateRepresentative.m
+//  Voices
 //
 //  Created by John Bogil on 7/24/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "StateLegislator.h"
+#import "StateRepresentative.h"
 
-@implementation StateLegislator
+@implementation StateRepresentative
+
 - (id)initWithData:(NSDictionary*)data {
     self = [super init];
     if(self != nil) {

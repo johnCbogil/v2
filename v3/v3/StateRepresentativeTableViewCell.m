@@ -8,7 +8,7 @@
 
 #import "StateRepresentativeTableViewCell.h"
 #import "RepManager.h"
-#import "StateLegislator.h"
+#import "StateRepresentative.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 
@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
-@property (strong, nonatomic) StateLegislator *stateLegislator;
+@property (strong, nonatomic) StateRepresentative *stateLegislator;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
