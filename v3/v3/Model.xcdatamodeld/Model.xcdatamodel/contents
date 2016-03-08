@@ -9,7 +9,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
-    <entity name="StateLegislator" syncable="YES">
+    <entity name="StateRepresentative" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -17,6 +17,6 @@
     <elements>
         <element name="FederalRepresentative" positionX="-63" positionY="9" width="128" height="90"/>
         <element name="NYCRepresentative" positionX="-63" positionY="18" width="128" height="75"/>
-        <element name="StateLegislator" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="StateRepresentative" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

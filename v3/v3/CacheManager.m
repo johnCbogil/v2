@@ -71,7 +71,7 @@
         [managedFederalRepresentative setValue:federalRepresentative.firstName forKey:@"firstName"];
         [managedFederalRepresentative setValue:federalRepresentative.lastName forKey:@"lastName"];
     }
-    else if ([entityName isEqualToString:@"StateLegislator"]) {
+    else if ([entityName isEqualToString:@"StateRepresentative"]) {
         StateRepresentative *stateRepresentative = representative;
         NSManagedObject *managedStateRepresentative;
         managedStateRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];

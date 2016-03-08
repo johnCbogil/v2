@@ -1,5 +1,5 @@
 //
-//  StateLegislator.h
+//  StateRepresentative.h
 //  Voices
 //
 //  Created by John Bogil on 7/24/15.
