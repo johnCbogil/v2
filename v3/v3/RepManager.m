@@ -29,24 +29,25 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        self.listOfCongressmen = [NSArray array];
+        self.listOfFederalRepresentatives = [NSArray array];
         self.listOfStateLegislators = [NSMutableArray array];
         self.index = 0;
     }
     return self;
 }
 
-- (void)createCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
+- (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]getCongressmenFromLocation:location WithCompletion:^(NSDictionary *results) {
-        NSMutableArray *listOfCongressmen = [[NSMutableArray alloc]init];
+    [[NetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+        NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
-            [self assignCongressPhotos:federalRepresentative withCompletion:^{
+            [self assignFederalRepresentativePhoto:federalRepresentative withCompletion:^{
                 if (successBlock) {
-                    [listOfCongressmen addObject:federalRepresentative];
-                    self.listOfCongressmen = listOfCongressmen;
+                    [listOfFederalRepresentatives addObject:federalRepresentative];
+                    // THIS PROBABLY DOESNT NEED TO BE HERE
+                    self.listOfFederalRepresentatives = listOfFederalRepresentatives;
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
@@ -85,7 +86,7 @@
     }];
 }
 
-- (void)assignCongressPhotos:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
+- (void)assignFederalRepresentativePhoto:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
     FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"FederalRepresentative" withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
@@ -94,7 +95,7 @@
         successBlock();
     }
     else {
-        [[NetworkManager sharedInstance]getCongressPhotos:federalRepresentative.bioguide withCompletion:^(UIImage *results) {
+        [[NetworkManager sharedInstance]getFederalRepresentativePhoto:federalRepresentative.bioguide withCompletion:^(UIImage *results) {
             federalRepresentative.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();

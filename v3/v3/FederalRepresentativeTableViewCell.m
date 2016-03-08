@@ -38,7 +38,7 @@
 
 - (void)initFromIndexPath:(NSIndexPath*)indexPath {
     // THIS IS A BREACH OF MVC
-    self.federalRepresentative =  [RepManager sharedInstance].listOfCongressmen[indexPath.row];
+    self.federalRepresentative =  [RepManager sharedInstance].listOfFederalRepresentatives[indexPath.row];
     self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.federalRepresentative.shortTitle, self.federalRepresentative.firstName, self.federalRepresentative.lastName];
     self.photo.image = [UIImage imageWithData:self.federalRepresentative.photo];
     self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.federalRepresentative.nextElection];

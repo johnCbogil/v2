@@ -67,8 +67,8 @@
     if (self.index == 0) {
         self.tableViewCellName = @"FederalRepresentativeTableViewCell";
         self.cachedRepresentatives = @"cachedFederalRepresentatives";
-        self.tableViewDataSource = [RepManager sharedInstance].listOfCongressmen;
-        self.getRepresentativesMethod = @"createCongressmen";
+        self.tableViewDataSource = [RepManager sharedInstance].listOfFederalRepresentatives;
+        self.getRepresentativesMethod = @"createFederalRepresentatives";
     }
     else if (self.index == 1) {
         self.tableViewCellName = @"StateRepresentativeTableViewCell";
@@ -176,8 +176,8 @@
     });
 }
 
-- (void)createCongressmen {
-    [[RepManager sharedInstance]createCongressmenFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+- (void)createFederalRepresentatives {
+    [[RepManager sharedInstance]createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         });

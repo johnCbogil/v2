@@ -160,9 +160,10 @@
         }
     }
     
+    // THESE LEVELS SHOULD BE CONSTANTS
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
         if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
-            [[RepManager sharedInstance]createCongressmenFromLocation:locationResults WithCompletion:^{
+            [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
                 NSLog(@"%@", locationResults);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
             } onError:^(NSError *error) {
@@ -177,11 +178,6 @@
                 }];
         }
         else if ([self.legislatureLevel.text isEqualToString:@"NYC Council"]){
-//            [[RepManager sharedInstance]createNYCRepresentativesFromLocation:results WithCompletion:^{
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-//            } onError:^(NSError *error) {
-//                [error localizedDescription];
-//            }];
             [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         }

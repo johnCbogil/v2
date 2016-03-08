@@ -14,9 +14,9 @@
 @interface NetworkManager : NSObject
 
 +(NetworkManager *) sharedInstance;
-- (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateLegislatorsFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
-- (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
+- (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                   onError:(void(^)(NSError *error))errorBlock;
 - (void)getStatePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                onError:(void(^)(NSError *error))errorBlock;

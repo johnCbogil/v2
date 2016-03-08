@@ -100,7 +100,7 @@
             
             // THESE VALUES SHOULD BE COSNTANTS
             if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
-                [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
+                [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
             else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
                 [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
@@ -114,7 +114,7 @@
     // NOT SURE I NEED THIS ELSE BLOCK
     else {
         if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
-            [RepManager sharedInstance].listOfCongressmen = [[NSMutableArray alloc]init];
+            [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         }
         else if ([representativeType isEqualToString:@"cachedStateLegislators"]) {
             [RepManager sharedInstance].listOfStateLegislators = [[NSMutableArray alloc]init];

@@ -30,7 +30,7 @@
     return self;
 }
 
-- (void)getCongressmenFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
+- (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=a0c99640cc894383975eb73b99f39d2f", location.coordinate.latitude,  location.coordinate.longitude];
     NSURL *url = [NSURL URLWithString:dataUrl];
@@ -91,7 +91,9 @@
     [operation start];
 }
 
-- (void)getCongressPhotos:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
+
+// THESE PHOTO SIZES NEED TO BE UPDATED
+- (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
