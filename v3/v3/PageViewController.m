@@ -22,7 +22,6 @@
     self.dataSource = self;
     self.delegate = self;
     
-    // THESE TITLE VALUES SHOULD BE CONSTANTS
     RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
     initialViewController.title = @"Congress";
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
@@ -37,19 +36,19 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    if ([viewController.title isEqualToString:@"Congress"]) {
-        return nil;
-    }
-    else if ([viewController.title isEqualToString:@"State Legislators"]) {
+   
+    RepresentativesViewController *repVC = (RepresentativesViewController *)viewController;
+    
+     if (repVC.index == 1) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
-            if ([vc.title isEqualToString:@"Congress"]) {
+            if (vc.index == 0) {
                 return vc;
             }
         }
     }
-    else if ([viewController.title isEqualToString:@"NYC Council"]) {
+    else if (repVC.index == 2) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
-            if ([vc.title isEqualToString:@"State Legislators"]) {
+            if (vc.index == 1) {
                 return vc;
             }
         }
@@ -58,16 +57,19 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    if ([viewController.title isEqualToString:@"Congress"]) {
+
+    RepresentativesViewController *repVC = (RepresentativesViewController *)viewController;
+
+    if (repVC.index == 0) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
-            if ([vc.title isEqualToString:@"State Legislators"]) {
+            if (vc.index == 1) {
                 return vc;
             }
         }
     }
-    else if ([viewController.title isEqualToString:@"State Legislators"]) {
+    else if (repVC.index == 1) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
-            if ([vc.title isEqualToString:@"NYC Council"]) {
+            if (vc.index == 2) {
                 return vc;
             }
         }

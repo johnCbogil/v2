@@ -12,6 +12,7 @@
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NYCRepresentative.h"
+#import "VoicesConstants.h"
 
 @interface CacheManager ()
 @property (strong, nonatomic) NSManagedObjectContext *context;
@@ -42,7 +43,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     NSPredicate *predicate;
-    if ([entityName isEqualToString:@"NYCRepresentative"]) {
+    if ([entityName isEqualToString:kNYCRepresentative]) {
         predicate =[NSPredicate predicateWithFormat:@"(name = %@)", firstName];
     }
     else {
@@ -63,7 +64,7 @@
 }
 
 - (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName {
-    if([entityName isEqualToString:@"FederalRepresentative"]) {
+    if([entityName isEqualToString:kFederalRepresentative]) {
         FederalRepresentative *federalRepresentative = representative;
         NSManagedObject *managedFederalRepresentative;
         managedFederalRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
@@ -71,7 +72,7 @@
         [managedFederalRepresentative setValue:federalRepresentative.firstName forKey:@"firstName"];
         [managedFederalRepresentative setValue:federalRepresentative.lastName forKey:@"lastName"];
     }
-    else if ([entityName isEqualToString:@"StateRepresentative"]) {
+    else if ([entityName isEqualToString:kStateRepresentative]) {
         StateRepresentative *stateRepresentative = representative;
         NSManagedObject *managedStateRepresentative;
         managedStateRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
@@ -79,7 +80,7 @@
         [managedStateRepresentative setValue:stateRepresentative.firstName forKey:@"firstName"];
         [managedStateRepresentative setValue:stateRepresentative.lastName forKey:@"lastName"];
     }
-    else if ([entityName isEqualToString:@"NYCRepresentative"]) {
+    else if ([entityName isEqualToString:kNYCRepresentative]) {
         NYCRepresentative *nycRepresentative = representative;
         NSManagedObject *managedNYCRepresentative;
         managedNYCRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
@@ -99,13 +100,13 @@
         if (oldCachedRepresentatives != nil){
             
             // THESE VALUES SHOULD BE COSNTANTS
-            if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
+            if ([representativeType isEqualToString:kCachedFederalRepresentatives]) {
                 [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
-            else if ([representativeType isEqualToString:@"cachedStateRepresentatives"]) {
+            else if ([representativeType isEqualToString:kCachedStateRepresentatives]) {
                 [RepManager sharedInstance].listOfStateRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
             }
-            else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
+            else if ([representativeType isEqualToString:kCachedNYCRepresentatives]){
                 [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
             }
         }
@@ -113,13 +114,13 @@
     
     // NOT SURE I NEED THIS ELSE BLOCK
     else {
-        if ([representativeType isEqualToString:@"cachedFederalRepresentatives"]) {
+        if ([representativeType isEqualToString:kCachedFederalRepresentatives]) {
             [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         }
-        else if ([representativeType isEqualToString:@"cachedStateRepresentatives"]) {
+        else if ([representativeType isEqualToString:kCachedStateRepresentatives]) {
             [RepManager sharedInstance].listOfStateRepresentatives = [[NSMutableArray alloc]init];
         }
-        else if ([representativeType isEqualToString:@"cachedNYCRepresentatives"]){
+        else if ([representativeType isEqualToString:kCachedNYCRepresentatives]){
             [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]init];
         }
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {

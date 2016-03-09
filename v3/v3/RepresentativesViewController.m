@@ -68,21 +68,21 @@
 - (void)setDataSources {
     if (self.index == 0) {
         self.tableViewCellName = kFederalRepresentativeTableViewCell;
-        self.cachedRepresentatives = @"cachedFederalRepresentatives";
+        self.cachedRepresentatives = kCachedFederalRepresentatives;
         self.tableViewDataSource = [RepManager sharedInstance].listOfFederalRepresentatives;
-        self.getRepresentativesMethod = @"createFederalRepresentatives";
+        self.getRepresentativesMethod = kCreateFederalRepresentatives;
     }
     else if (self.index == 1) {
         self.tableViewCellName = kStateRepresentativeTableViewCell;
-        self.cachedRepresentatives = @"cachedStateRepresentatives";
+        self.cachedRepresentatives = kCachedStateRepresentatives;
         self.tableViewDataSource = [RepManager sharedInstance].listOfStateRepresentatives;
-        self.getRepresentativesMethod = @"createStateRepresentatives";
+        self.getRepresentativesMethod = kCreateStateRepresentatives;
     }
     else if (self.index == 2) {
         self.tableViewCellName = kNYCRepresentativeTableViewCell;
-        self.cachedRepresentatives = @"cachedNYCRepresentatives";
+        self.cachedRepresentatives = kCachedNYCRepresentatives;
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
-        self.getRepresentativesMethod = @"createNYCRepresentatives";
+        self.getRepresentativesMethod = kCreateNYCRepresentatives;
     }
     [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil] forCellReuseIdentifier:self.tableViewCellName];
 }

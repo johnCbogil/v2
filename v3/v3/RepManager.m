@@ -14,6 +14,7 @@
 #import "LocationService.h"
 #import "AppDelegate.h"
 #import "CacheManager.h"
+#import "VoicesConstants.h"
 
 @implementation RepManager
 
@@ -94,7 +95,7 @@
 - (void)assignFederalRepresentativePhoto:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
                      onError:(void(^)(NSError *error))errorBlock {
     
-    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"FederalRepresentative" withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
+    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kFederalRepresentative withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
     if (cachedFederalRepresentative) {
         federalRepresentative.photo = cachedFederalRepresentative.photo;
         successBlock();
@@ -104,7 +105,7 @@
             federalRepresentative.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                [[CacheManager sharedInstance]cacheRepresentative:federalRepresentative withEntityName:@"FederalRepresentative"];
+                [[CacheManager sharedInstance]cacheRepresentative:federalRepresentative withEntityName:kFederalRepresentative];
             }
         } onError:^(NSError *error) {
             errorBlock(error);
@@ -115,7 +116,7 @@
 - (void)assignStatePhotos:(StateRepresentative *)stateRepresentative withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    StateRepresentative *cachedStateRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"StateRepresentative" withFirstName:stateRepresentative.firstName withLastName:stateRepresentative.lastName];
+    StateRepresentative *cachedStateRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kStateRepresentative withFirstName:stateRepresentative.firstName withLastName:stateRepresentative.lastName];
     
     if (cachedStateRepresentative) {
         stateRepresentative.photo = cachedStateRepresentative.photo;
@@ -128,7 +129,7 @@
             if (successBlock) {
                 successBlock();
                 if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
-                    [[CacheManager sharedInstance]cacheRepresentative:stateRepresentative withEntityName:@"StateRepresentative"];
+                    [[CacheManager sharedInstance]cacheRepresentative:stateRepresentative withEntityName:kStateRepresentative];
                 }
             }
         } onError:^(NSError *error) {
@@ -238,7 +239,7 @@
 - (void)assignNYCRepresentativePhotos:(NYCRepresentative *)nycRepresentative withCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock {
     
-    NYCRepresentative *cachedNYCRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"NYCRepresentative" withFirstName:nycRepresentative.name withLastName:@""];
+    NYCRepresentative *cachedNYCRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kNYCRepresentative withFirstName:nycRepresentative.name withLastName:@""];
     if (cachedNYCRepresentative) {
         nycRepresentative.photo = cachedNYCRepresentative.photo;
         successBlock();
@@ -250,7 +251,7 @@
             successBlock();
             if (successBlock) {
                 if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
-                    [[CacheManager sharedInstance]cacheRepresentative:nycRepresentative withEntityName:@"NYCRepresentative"];
+                    [[CacheManager sharedInstance]cacheRepresentative:nycRepresentative withEntityName:kNYCRepresentative];
                 }
             }
         } onError:^(NSError *error) {
@@ -258,6 +259,5 @@
         }];
     }
 }
-
 
 @end

@@ -9,15 +9,8 @@
 
 
 //city council districts
-//API keys
-//zero state
-//URLs(?)
-//entity names
-//missingRep
-//cachedNames
 //VC titles
 //notifications
-//getRepresentativeMethod
 //currentLocationKeypath
 //supporting files paths
 
@@ -34,5 +27,18 @@ extern NSString *const kAvenirNextRegular;
 
 extern NSString *const kSFCongress;
 extern NSString *const kSFState;
+extern NSString *const kGoogMaps;
+
+extern NSString *const kFederalRepresentative;
+extern NSString *const kStateRepresentative;
+extern NSString *const kNYCRepresentative;
+
+extern NSString *const kCachedFederalRepresentatives;
+extern NSString *const kCachedStateRepresentatives;
+extern NSString *const kCachedNYCRepresentatives;
+
+extern NSString *const kCreateFederalRepresentatives;
+extern NSString *const kCreateStateRepresentatives;
+extern NSString *const kCreateNYCRepresentatives;
 
 @end
