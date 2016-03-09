@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *listOfStateRepresentatives;
 @property (strong, nonatomic) NSMutableArray *listOfNYCRepresentatives;
 @property (strong, nonatomic) NSString *currentCouncilDistrict;
+@property (strong, nonatomic) NSArray *nycDistricts;
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock;
 - (void)createStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock

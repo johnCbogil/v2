@@ -13,6 +13,7 @@
 #import "OnboardingNavigationController.h"
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
+#import "RepManager.h"
 #import <Instabug/Instabug.h>
 #import <Google/Analytics.h>
 
@@ -101,6 +102,18 @@
         // Unzip the archive and send it to destination
         [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
     }
+    
+    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
+    
+    NSError *error =  nil;
+    
+    NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    
+    
+    
+    // Parse out the districts from the rest of the data
+    
+    [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
 }
 
 #pragma mark - Core Data stack
