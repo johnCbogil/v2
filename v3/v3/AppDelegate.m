@@ -108,11 +108,7 @@
     NSError *error =  nil;
     
     NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-    
-    
-    
-    // Parse out the districts from the rest of the data
-    
+        
     [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
 }
 

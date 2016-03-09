@@ -14,8 +14,9 @@
 #import "CacheManager.h"
 #import "UIColor+voicesOrange.h"
 #import "PageViewController.h"
-#import <MessageUI/MFMailComposeViewController.h>
 #import "LocationService.h"
+#import "VoicesConstants.h"
+#import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 //#import "FBShimmeringView.h"
@@ -42,7 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[CacheManager sharedInstance] checkCacheForRepresentative:@"cachedFederalRepresentatives"];
+    [[CacheManager sharedInstance] checkCacheForRepresentative:kCachedFederalRepresentatives];
     [self addObservers];
     [self setFont];
     [self setColors];
@@ -160,7 +161,6 @@
         }
     }
     
-    // THESE LEVELS SHOULD BE CONSTANTS
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
         if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
             [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{

@@ -31,6 +31,8 @@
     return self;
 }
 
+#pragma mark - Get Federal Representatives
+
 - (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
@@ -62,6 +64,34 @@
     [operation start];
 }
 
+- (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
+                              onError:(void(^)(NSError *error))errorBlock {
+    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/225x275/%@.jpg", bioguide];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    NSLog(@"%@", url);
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFImageResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // NSLog(@"%@", responseObject);
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
+        [missingRep setAccessibilityIdentifier:@"MissingRep"];
+        successBlock(missingRep);
+    }];
+    
+    [operation start];
+}
+
+#pragma mark - Get State Representatives Methods
+
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
 
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFState];
@@ -92,34 +122,6 @@
     [operation start];
 }
 
-
-// THESE PHOTO SIZES NEED TO BE UPDATED
-- (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
-                  onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/225x275/%@.jpg", bioguide];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    NSLog(@"%@", url);
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-       // NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
-        [missingRep setAccessibilityIdentifier:@"MissingRep"];
-        successBlock(missingRep);
-    }];
-    
-    [operation start];
-}
-
 - (void)getStateRepresentativePhoto:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
                onError:(void(^)(NSError *error))errorBlock {
     NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
@@ -143,9 +145,33 @@
     [operation start];
 }
 
+#pragma mark - Get NYC Representative Photo Method
+
+- (void)getNYCRepresentativePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
+                           onError:(void(^)(NSError *error))errorBlock {
+    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFImageResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSLog(@"%@", responseObject);
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+        successBlock(self.missingRepresentativePhoto);
+    }];
+    
+    [operation start];
+}
+
+#pragma mark - Get Street Address Method
+
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock {
-        
+    
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", searchText, kGoogMaps];
     NSString *encodedURL = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:encodedURL];
@@ -168,24 +194,5 @@
     [operation start];
 }
 
-- (void)getNYCRepresentativePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
-                           onError:(void(^)(NSError *error))errorBlock {
-    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-        successBlock(self.missingRepresentativePhoto);
-    }];
-    
-    [operation start];
-}
 
 @end

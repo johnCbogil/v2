@@ -1,6 +1,6 @@
 
 //  CacheManager.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 9/9/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -38,7 +38,7 @@
 }
 
 - (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName {
-    NSLog(@"Searching cache");
+    NSLog(@"Searching photo cache");
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
@@ -55,7 +55,7 @@
     NSArray *cachedObjects = [self.context executeFetchRequest:request
                                                          error:&error];
     if (cachedObjects.count) {
-        NSLog(@"Object found in cache");
+        NSLog(@"photo found in cache");
         return cachedObjects[0];
     }
     else {
@@ -89,7 +89,7 @@
     }
     NSError *coreDataSaveerror;
     [self.context save:&coreDataSaveerror];
-    NSLog(@"Saving to cache");
+    NSLog(@"Saving photo to cache");
 }
 
 - (void)checkCacheForRepresentative:(NSString*)representativeType {
@@ -111,21 +111,8 @@
             }
         }
     }
-    
-    // NOT SURE I NEED THIS ELSE BLOCK
-    else {
-        if ([representativeType isEqualToString:kCachedFederalRepresentatives]) {
-            [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc]init];
-        }
-        else if ([representativeType isEqualToString:kCachedStateRepresentatives]) {
-            [RepManager sharedInstance].listOfStateRepresentatives = [[NSMutableArray alloc]init];
-        }
-        else if ([representativeType isEqualToString:kCachedNYCRepresentatives]){
-            [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-        }
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
             [[LocationService sharedInstance]startUpdatingLocation];
         }
-    }
 }
 @end

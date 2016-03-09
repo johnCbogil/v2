@@ -30,14 +30,12 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        // NOT SURE IF I NEED THIS... NYC(?)
-        self.listOfFederalRepresentatives = [NSArray array];
-        self.listOfStateRepresentatives = [NSMutableArray array];
-        // NOT SURE IF I NEED THIS
-        self.index = 0;
+
     }
     return self;
 }
+
+#pragma mark - Create Federal Representatives
 
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock {
@@ -67,6 +65,29 @@
     }];
 }
 
+- (void)assignFederalRepresentativePhoto:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
+                                 onError:(void(^)(NSError *error))errorBlock {
+    
+    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kFederalRepresentative withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
+    if (cachedFederalRepresentative) {
+        federalRepresentative.photo = cachedFederalRepresentative.photo;
+        successBlock();
+    }
+    else {
+        [[NetworkManager sharedInstance]getFederalRepresentativePhoto:federalRepresentative.bioguide withCompletion:^(UIImage *results) {
+            federalRepresentative.photo = UIImagePNGRepresentation(results);
+            if (successBlock) {
+                successBlock();
+                [[CacheManager sharedInstance]cacheRepresentative:federalRepresentative withEntityName:kFederalRepresentative];
+            }
+        } onError:^(NSError *error) {
+            errorBlock(error);
+        }];
+    }
+}
+
+#pragma mark - Create State Representatives
+
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
     
     [[NetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
@@ -90,27 +111,6 @@
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
-}
-
-- (void)assignFederalRepresentativePhoto:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
-                     onError:(void(^)(NSError *error))errorBlock {
-    
-    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kFederalRepresentative withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
-    if (cachedFederalRepresentative) {
-        federalRepresentative.photo = cachedFederalRepresentative.photo;
-        successBlock();
-    }
-    else {
-        [[NetworkManager sharedInstance]getFederalRepresentativePhoto:federalRepresentative.bioguide withCompletion:^(UIImage *results) {
-            federalRepresentative.photo = UIImagePNGRepresentation(results);
-            if (successBlock) {
-                successBlock();
-                [[CacheManager sharedInstance]cacheRepresentative:federalRepresentative withEntityName:kFederalRepresentative];
-            }
-        } onError:^(NSError *error) {
-            errorBlock(error);
-        }];
-    }
 }
 
 - (void)assignStatePhotos:(StateRepresentative *)stateRepresentative withCompletion:(void(^)(void))successBlock
@@ -137,6 +137,8 @@
         }];
     }
 }
+
+#pragma mark - Create NYC Representatives
 
 - (void)createNYCRepsFromLocation:(CLLocation*)location {
     
