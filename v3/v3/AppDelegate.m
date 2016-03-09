@@ -12,6 +12,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
 #import "SSZipArchive.h"
+#import "VoicesConstants.h"
 #import <Instabug/Instabug.h>
 #import <Google/Analytics.h>
 
@@ -88,11 +89,11 @@
 
 - (void)unzipNYCDataSet {
     // Get the file path for the zip
-    NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:@"CityCouncilDistricts" ofType:@"zip"];
+    NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
     // Get the file path for the destination
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     // Specify that we want the council data set
-    self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:@"City Council Districts.geojson"];
+    self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:kCityCouncilJSON];
     // Check if the file exists at the path
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.dataSetPathWithComponent];
     // If the file does not already exist, unzip it

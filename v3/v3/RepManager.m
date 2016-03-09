@@ -202,7 +202,7 @@
     double currentLongitude = location.coordinate.longitude;
     
     if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"NYCCouncilMembers" ofType:@"csv"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCityCouncilCSV ofType:@"csv"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
         NSArray* rows = [fileContents componentsSeparatedByString:@"\n"];
         

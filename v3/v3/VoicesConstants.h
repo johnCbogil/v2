@@ -6,15 +6,6 @@
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-
-
-//city council districts
-//VC titles
-//notifications
-//currentLocationKeypath
-//supporting files paths
-
-
 #import <Foundation/Foundation.h>
 
 @interface VoicesConstants : NSObject
@@ -40,5 +31,9 @@ extern NSString *const kCachedNYCRepresentatives;
 extern NSString *const kCreateFederalRepresentatives;
 extern NSString *const kCreateStateRepresentatives;
 extern NSString *const kCreateNYCRepresentatives;
+
+extern NSString *const kCityCouncilZip;
+extern NSString *const kCityCouncilJSON;
+extern NSString *const kCityCouncilCSV;
 
 @end
