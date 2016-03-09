@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+// DONT HTINK I NEED THIS CLASS
 @protocol CustomAlertDelegate <NSObject>
 - (void)presentCustomAlertWithMessage:(NSString *)message andTitle:(NSString*)title;
 @end

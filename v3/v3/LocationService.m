@@ -1,6 +1,6 @@
 
 //  LocationService.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -53,7 +53,7 @@
                              onError:(void(^)(NSError *error))errorBlock {
     [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
-            NSLog(@"theres beena mistake!");
+            NSLog(@"theres beena google maps mistake!");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
             [alert show];
         }

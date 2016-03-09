@@ -1,6 +1,6 @@
 //
 //  RepManager.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -29,8 +29,10 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
+        // NOT SURE IF I NEED THIS... NYC(?)
         self.listOfFederalRepresentatives = [NSArray array];
         self.listOfStateRepresentatives = [NSMutableArray array];
+        // NOT SURE IF I NEED THIS
         self.index = 0;
     }
     return self;
@@ -48,6 +50,7 @@
                     [listOfFederalRepresentatives addObject:federalRepresentative];
                     // THIS PROBABLY DOESNT NEED TO BE HERE
                     self.listOfFederalRepresentatives = listOfFederalRepresentatives;
+                    // NOT SURE IF I NEED THIS
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
@@ -72,7 +75,9 @@
             [self assignStatePhotos:stateRepresentative withCompletion:^{
                 if (successBlock) {
                     [listOfStateRepresentatives addObject:stateRepresentative];
+                    // THIS PROBABLY SHOULDNT BE HERE
                     self.listOfStateRepresentatives = listOfStateRepresentatives;
+                    // NOT SURE IF I NEED THIS
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
@@ -133,11 +138,11 @@
 }
 
 // THIS NEEDS TO BE OPTIMIZED, A LOT
-- (void)createNYCRepsFromLocation:(CLLocation*)location {
+- (void)createNYCRepsFromLocation:(CLLocation *)location {
     BOOL isLocationWithinPath = false;
     
     // Parse the csv file into json
-    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
+    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate *)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
     NSError *error =  nil;
     NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     

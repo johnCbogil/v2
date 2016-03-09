@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-// RENAME THIS CLASS
 @interface PageViewController : UIPageViewController
 @property (strong, nonatomic) NSString *titleOfIncomingViewController;
+// NOT SURE IF I NEED THIS
 @property (assign, nonatomic) NSInteger index;
 @end

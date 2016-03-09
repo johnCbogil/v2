@@ -11,7 +11,9 @@
 
 @interface FederalRepresentativeTableViewCell : UITableViewCell
 
+// THIS SHOULD BE INITWITHREP
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;
+// DONT THINK I NEED THIS
 @property (strong, nonatomic) id <CustomAlertDelegate> delegate;
 
 @end

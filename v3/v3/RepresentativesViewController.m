@@ -29,6 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
+    // THIS SHOULD HAPPEN VIA THE RM
     [[CacheManager sharedInstance] checkCacheForRepresentative:self.cachedRepresentatives];
 }
 

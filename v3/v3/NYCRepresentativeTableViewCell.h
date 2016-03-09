@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NYCRepresentativeTableViewCell : UITableViewCell
+
+// THIS SHOULD BE INITWITHREP
 - (void)initFromIndexPath:(NSIndexPath*)indexPath;
 @end
