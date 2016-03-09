@@ -63,7 +63,7 @@
 }
 
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
-    // OPEN STATES DOES NOT ALLOW FOR SECURE CONNECTIONS
+
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFState];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSLog(@"%@", url);
@@ -96,7 +96,7 @@
 // THESE PHOTO SIZES NEED TO BE UPDATED
 - (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/450x550/%@.jpg", bioguide];
+    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/225x275/%@.jpg", bioguide];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSLog(@"%@", url);
     

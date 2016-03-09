@@ -215,36 +215,18 @@
 				52C391FF1B8F725D0034BEAB /* Model.xcdatamodeld */,
 				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
 				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
-				52AD33971BE5CAA000EC0468 /* Managers */,
-				521C7FF71B715C8600D6CE1F /* PageViewController.h */,
-				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
-				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
-				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
-				5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */,
-				5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */,
-				5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */,
-				52AD2CBE1B61E7A300EAF854 /* FederalRepresentative.h */,
-				52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */,
-				5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */,
-				5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */,
-				52AD2CC11B61F90900EAF854 /* StateRepresentative.h */,
-				52AD2CC21B61F90900EAF854 /* StateRepresentative.m */,
-				5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */,
-				52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */,
-				52B89B6D1C555735005950BB /* NYCRepresentativeTableViewCell.h */,
-				52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
 				52BB34381B6160CA00BB9FFD /* Main.storyboard */,
-				7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */,
-				7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */,
-				52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */,
-				52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */,
+				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
+				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
+				52AD33971BE5CAA000EC0468 /* Managers */,
+				7E5CC8261C909034005E8F45 /* Controller */,
+				7E5CC8281C909065005E8F45 /* View */,
+				7E5CC8271C909043005E8F45 /* Model */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				5204038B1BCC137F00016768 /* Info */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
-				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
-				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
 			);
 			path = v3;
 			sourceTree = "<group>";
@@ -290,6 +272,48 @@
 				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		7E5CC8261C909034005E8F45 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				521C7FF71B715C8600D6CE1F /* PageViewController.h */,
+				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
+				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
+				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
+				7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */,
+				7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7E5CC8271C909043005E8F45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52AD2CBE1B61E7A300EAF854 /* FederalRepresentative.h */,
+				52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */,
+				52AD2CC11B61F90900EAF854 /* StateRepresentative.h */,
+				52AD2CC21B61F90900EAF854 /* StateRepresentative.m */,
+				52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */,
+				52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7E5CC8281C909065005E8F45 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */,
+				5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */,
+				5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */,
+				5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */,
+				5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */,
+				5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */,
+				52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */,
+				52B89B6D1C555735005950BB /* NYCRepresentativeTableViewCell.h */,
+				52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		9F94FD7FB9C026EB0A4E747A /* Pods */ = {
