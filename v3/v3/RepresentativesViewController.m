@@ -14,6 +14,7 @@
 #import "LocationService.h"
 #import "CacheManager.h"
 #import "NetworkManager.h"
+#import "VoicesConstants.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -66,19 +67,19 @@
 // THESE VALUES SHOULD BE CONSTANTS
 - (void)setDataSources {
     if (self.index == 0) {
-        self.tableViewCellName = @"FederalRepresentativeTableViewCell";
+        self.tableViewCellName = kFederalRepresentativeTableViewCell;
         self.cachedRepresentatives = @"cachedFederalRepresentatives";
         self.tableViewDataSource = [RepManager sharedInstance].listOfFederalRepresentatives;
         self.getRepresentativesMethod = @"createFederalRepresentatives";
     }
     else if (self.index == 1) {
-        self.tableViewCellName = @"StateRepresentativeTableViewCell";
+        self.tableViewCellName = kStateRepresentativeTableViewCell;
         self.cachedRepresentatives = @"cachedStateRepresentatives";
         self.tableViewDataSource = [RepManager sharedInstance].listOfStateRepresentatives;
         self.getRepresentativesMethod = @"createStateRepresentatives";
     }
     else if (self.index == 2) {
-        self.tableViewCellName = @"NYCRepresentativeTableViewCell";
+        self.tableViewCellName = kNYCRepresentativeTableViewCell;
         self.cachedRepresentatives = @"cachedNYCRepresentatives";
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
         self.getRepresentativesMethod = @"createNYCRepresentatives";

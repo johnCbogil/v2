@@ -1,0 +1,22 @@
+//
+//  VoicesConstants.m
+//  Voices
+//
+//  Created by John Bogil on 3/8/16.
+//  Copyright © 2016 John Bogil. All rights reserved.
+//
+
+
+#import "VoicesConstants.h"
+
+@implementation VoicesConstants
+
+NSString *const kFederalRepresentativeTableViewCell = @"FederalRepresentativeTableViewCell";
+NSString *const kStateRepresentativeTableViewCell = @"StateRepresentativeTableViewCell";
+NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCell";
+
+NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
+
+NSString *const kSFCongress = @"a0c99640cc894383975eb73b99f39d2f";
+NSString *const kSFState = @"a0c99640cc894383975eb73b99f39d2f";
+@end
