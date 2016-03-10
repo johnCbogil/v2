@@ -34,9 +34,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self fetchDataForIndex:self.index];
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
+}
+
+- (void)fetchDataForIndex:(NSInteger)index {
+    self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -57,14 +62,17 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
-    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+//    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - UI Methods
 
 - (void)createTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil]forCellReuseIdentifier:self.tableViewCellName];
+    [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kNYCRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kNYCRepresentativeTableViewCell];
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
@@ -106,7 +114,17 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell = [tableView dequeueReusableCellWithIdentifier:self.tableViewCellName];
+    id cell;
+    if (self.index == 0) {
+         cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
+    }
+    if (self.index == 1) {
+         cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
+    }
+    if (self.index == 2) {
+         cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
+    }
+
     [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     return cell;
 }
@@ -129,6 +147,7 @@
         [self turnZeroStateOff];
     }
 }
+
 
 
 

@@ -30,15 +30,42 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
+            [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 
     }
     return self;
 }
 
+- (NSArray *)createRepsForIndex:(NSInteger)index {
+    if (index == 0) {
+        self.listOfFederalRepresentatives = [self checkCacheForRepresentatives:kCachedFederalRepresentatives];
+        if (!self.listOfFederalRepresentatives.count > 0) {
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
+        else return self.listOfFederalRepresentatives;
+    }
+    else if (index == 1) {
+        self.listOfStateRepresentatives = [self checkCacheForRepresentatives:kCachedStateRepresentatives];
+    }
+    else if (index == 2) {
+        self.listOfNYCRepresentatives = [self checkCacheForRepresentatives:kCachedNYCRepresentatives];
+    }
+    return nil;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        } onError:nil];
+    }
+}
+
+
 #pragma mark - Check Cache For Representatives
 
-- (void)checkCacheForRepresentatives:(NSString *)representativeType {
-    [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:representativeType];
+- (NSArray *)checkCacheForRepresentatives:(NSString *)representativeType {
+    return [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:representativeType];
 }
 
 #pragma mark - Create Federal Representatives
@@ -60,6 +87,7 @@
             }];
         }
         self.listOfFederalRepresentatives = listOfFederalRepresentatives;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
         if (successBlock) {
             successBlock();
         }

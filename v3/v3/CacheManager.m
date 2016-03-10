@@ -92,7 +92,7 @@
     NSLog(@"Saving photo to cache");
 }
 
-- (void)checkUserDefaultsForRepresentative:(NSString*)representativeType {
+- (NSArray *)checkUserDefaultsForRepresentative:(NSString*)representativeType {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
     if (dataRepresentingCachedRepresentatives != nil) {
@@ -100,18 +100,19 @@
         if (oldCachedRepresentatives != nil){
             
             if ([representativeType isEqualToString:kCachedFederalRepresentatives]) {
-                [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
+                return  oldCachedRepresentatives;
             }
             else if ([representativeType isEqualToString:kCachedStateRepresentatives]) {
-                [RepManager sharedInstance].listOfStateRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+               return   oldCachedRepresentatives;
             }
             else if ([representativeType isEqualToString:kCachedNYCRepresentatives]){
-                [RepManager sharedInstance].listOfNYCRepresentatives = [[NSMutableArray alloc]initWithArray:oldCachedRepresentatives];
+               return  oldCachedRepresentatives;
             }
         }
     }
-    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-            [[LocationService sharedInstance]startUpdatingLocation];
-        }
+    return nil;
+//    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+//            [[LocationService sharedInstance]startUpdatingLocation];
+//        }
 }
 @end
