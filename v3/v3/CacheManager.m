@@ -37,7 +37,7 @@
     return self;
 }
 
-- (id)fetchRepWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName {
+- (id)fetchRepPhotoWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName {
     NSLog(@"Searching photo cache");
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -63,7 +63,7 @@
     }
 }
 
-- (void)cacheRepresentative:(id)representative withEntityName:(NSString*)entityName {
+- (void)cacheRepresentativePhoto:(id)representative withEntityName:(NSString*)entityName {
     if([entityName isEqualToString:kFederalRepresentative]) {
         FederalRepresentative *federalRepresentative = representative;
         NSManagedObject *managedFederalRepresentative;
@@ -92,7 +92,7 @@
     NSLog(@"Saving photo to cache");
 }
 
-- (void)checkCacheForRepresentative:(NSString*)representativeType {
+- (void)checkUserDefaultsForRepresentative:(NSString*)representativeType {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
     if (dataRepresentingCachedRepresentatives != nil) {

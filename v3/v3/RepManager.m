@@ -38,7 +38,7 @@
 #pragma mark - Check Cache For Representatives
 
 - (void)checkCacheForRepresentatives:(NSString *)representativeType {
-    [[CacheManager sharedInstance] checkCacheForRepresentative:representativeType];
+    [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:representativeType];
 }
 
 #pragma mark - Create Federal Representatives
@@ -71,7 +71,7 @@
 - (void)assignFederalRepresentativePhoto:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
                                  onError:(void(^)(NSError *error))errorBlock {
     
-    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kFederalRepresentative withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
+    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepPhotoWithEntityName:kFederalRepresentative withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
     if (cachedFederalRepresentative) {
         federalRepresentative.photo = cachedFederalRepresentative.photo;
         successBlock();
@@ -81,7 +81,7 @@
             federalRepresentative.photo = UIImagePNGRepresentation(results);
             if (successBlock) {
                 successBlock();
-                [[CacheManager sharedInstance]cacheRepresentative:federalRepresentative withEntityName:kFederalRepresentative];
+                [[CacheManager sharedInstance]cacheRepresentativePhoto:federalRepresentative withEntityName:kFederalRepresentative];
             }
         } onError:^(NSError *error) {
             errorBlock(error);
@@ -116,7 +116,7 @@
 - (void)assignStatePhotos:(StateRepresentative *)stateRepresentative withCompletion:(void(^)(void))successBlock
                   onError:(void(^)(NSError *error))errorBlock {
     
-    StateRepresentative *cachedStateRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:kStateRepresentative withFirstName:stateRepresentative.firstName withLastName:stateRepresentative.lastName];
+    StateRepresentative *cachedStateRepresentative = [[CacheManager sharedInstance]fetchRepPhotoWithEntityName:kStateRepresentative withFirstName:stateRepresentative.firstName withLastName:stateRepresentative.lastName];
     
     if (cachedStateRepresentative) {
         stateRepresentative.photo = cachedStateRepresentative.photo;
@@ -129,7 +129,7 @@
             if (successBlock) {
                 successBlock();
                 if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
-                    [[CacheManager sharedInstance]cacheRepresentative:stateRepresentative withEntityName:kStateRepresentative];
+                    [[CacheManager sharedInstance]cacheRepresentativePhoto:stateRepresentative withEntityName:kStateRepresentative];
                 }
             }
         } onError:^(NSError *error) {
@@ -236,7 +236,7 @@
 - (void)assignNYCRepresentativePhotos:(NYCRepresentative *)nycRepresentative withCompletion:(void(^)(void))successBlock
                               onError:(void(^)(NSError *error))errorBlock {
 
-    NYCRepresentative *cachedNYCRepresentative = [[CacheManager sharedInstance]fetchRepWithEntityName:@"NYCRepresentative" withFirstName:nycRepresentative.name withLastName:@""];
+    NYCRepresentative *cachedNYCRepresentative = [[CacheManager sharedInstance]fetchRepPhotoWithEntityName:kNYCRepresentative withFirstName:nycRepresentative.name withLastName:@""];
     if (cachedNYCRepresentative) {
         nycRepresentative.photo = cachedNYCRepresentative.photo;
         successBlock();
@@ -248,7 +248,7 @@
             successBlock();
             if (successBlock) {
                 if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
-                    [[CacheManager sharedInstance]cacheRepresentative:nycRepresentative withEntityName:@"NYCRepresentative"];
+                    [[CacheManager sharedInstance]cacheRepresentativePhoto:nycRepresentative withEntityName:kNYCRepresentative];
                 }
             }
         } onError:^(NSError *error) {
