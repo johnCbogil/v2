@@ -10,6 +10,5 @@
 
 @interface NYCRepresentativeTableViewCell : UITableViewCell
 
-// THIS SHOULD BE INITWITHREP
 - (void)initWithRep:(id)rep;
 @end

@@ -9,6 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface OnboardingViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-
 @end
