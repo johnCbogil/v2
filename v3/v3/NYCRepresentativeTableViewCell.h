@@ -11,5 +11,5 @@
 @interface NYCRepresentativeTableViewCell : UITableViewCell
 
 // THIS SHOULD BE INITWITHREP
-- (void)initFromIndexPath:(NSIndexPath*)indexPath;
+- (void)initWithRep:(id)rep;
 @end

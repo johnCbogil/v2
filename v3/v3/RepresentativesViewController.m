@@ -63,8 +63,6 @@
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-
-// THESE VALUES SHOULD BE CONSTANTS
 - (void)setDataSources {
     if (self.index == 0) {
         self.tableViewCellName = kFederalRepresentativeTableViewCell;
@@ -138,7 +136,7 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell = [tableView dequeueReusableCellWithIdentifier:self.tableViewCellName];
-    [cell initFromIndexPath:indexPath];
+    [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     return cell;
 }
 

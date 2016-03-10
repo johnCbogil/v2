@@ -12,8 +12,7 @@
 @interface StateRepresentativeTableViewCell : UITableViewCell
 
 // DONT THINK I NEED THIS
-@property (strong, nonatomic) id <CustomAlertDelegate> delegate;
 // THIS SHOULD BE INITWITHREP
-- (void)initFromIndexPath:(NSIndexPath*)indexPath;
+- (void)initWithRep:(id)rep;
 
 @end

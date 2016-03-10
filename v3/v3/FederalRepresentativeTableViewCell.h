@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomAlertDelegate.h"
 
 @interface FederalRepresentativeTableViewCell : UITableViewCell
 
-// THIS SHOULD BE INITWITHREP
-- (void)initFromIndexPath:(NSIndexPath*)indexPath;
-// DONT THINK I NEED THIS
-@property (strong, nonatomic) id <CustomAlertDelegate> delegate;
+- (void)initWithRep:(id)rep;
 
 @end

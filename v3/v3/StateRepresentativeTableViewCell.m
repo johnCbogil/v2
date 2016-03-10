@@ -35,8 +35,8 @@
 }
 
 // THIS IS A BREACH OF MVC
-- (void)initFromIndexPath:(NSIndexPath*)indexPath {
-    self.stateRepresentative =  [RepManager sharedInstance].listOfStateRepresentatives[indexPath.row];
+- (void)initWithRep:(id)rep {
+    self.stateRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
     [self createDistrictNumberLabel];
     self.photo.image = [UIImage imageWithData:self.stateRepresentative.photo];
@@ -81,7 +81,9 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try tweeting instead" andTitle:[NSString stringWithFormat:@"%@. %@", self.stateRepresentative.firstName, self.stateRepresentative.lastName]];
+        // THIS NEEDS TO BE A UIALERTVIEW
+        
+//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try tweeting instead" andTitle:[NSString stringWithFormat:@"%@. %@", self.stateRepresentative.firstName, self.stateRepresentative.lastName]];
     }
 }
 - (IBAction)emailButtonDidPress:(id)sender {
@@ -89,7 +91,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.stateRepresentative.email];
     }
     else {
-        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.stateRepresentative.firstName, self.stateRepresentative.lastName]];
+        // THIS NEEDS TO BE A UIALERTVIEW
+        
+//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.stateRepresentative.firstName, self.stateRepresentative.lastName]];
     }
 }
 

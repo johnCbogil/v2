@@ -45,12 +45,10 @@
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
-- (void)initFromIndexPath:(NSIndexPath*)indexPath {
-    self.nycRepresentative =  [RepManager sharedInstance].listOfNYCRepresentatives[indexPath.row];
+- (void)initWithRep:(id)rep {
+    self.nycRepresentative = rep;
     self.nameLabel.text = self.nycRepresentative.name;
     self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
     self.photo.image = [UIImage imageWithData:self.nycRepresentative.photo];
