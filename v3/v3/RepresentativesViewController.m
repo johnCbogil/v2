@@ -30,8 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
-    // THIS SHOULD HAPPEN VIA THE RM
-    [[CacheManager sharedInstance] checkCacheForRepresentative:self.cachedRepresentatives];
+    [[RepManager sharedInstance]checkCacheForRepresentatives:self.cachedRepresentatives];
 }
 
 - (void)viewDidLoad {
@@ -82,7 +81,6 @@
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
         self.getRepresentativesMethod = kCreateNYCRepresentatives;
     }
-    [self.tableView registerNib:[UINib nibWithNibName:self.tableViewCellName bundle:nil] forCellReuseIdentifier:self.tableViewCellName];
 }
 
 #pragma mark - UI Methods

@@ -25,5 +25,5 @@
 - (void)createStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                    onError:(void(^)(NSError *error))errorBlock;
 - (void)createNYCRepsFromLocation:(CLLocation*)location;
-
+- (void)checkCacheForRepresentatives:(NSString *)representativeType;
 @end

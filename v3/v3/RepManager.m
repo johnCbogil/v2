@@ -35,6 +35,12 @@
     return self;
 }
 
+#pragma mark - Check Cache For Representatives
+
+- (void)checkCacheForRepresentatives:(NSString *)representativeType {
+    [[CacheManager sharedInstance] checkCacheForRepresentative:representativeType];
+}
+
 #pragma mark - Create Federal Representatives
 
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
@@ -47,16 +53,13 @@
             [self assignFederalRepresentativePhoto:federalRepresentative withCompletion:^{
                 if (successBlock) {
                     [listOfFederalRepresentatives addObject:federalRepresentative];
-                    // THIS PROBABLY DOESNT NEED TO BE HERE
-                    self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-                    // NOT SURE IF I NEED THIS
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);
             }];
         }
+        self.listOfFederalRepresentatives = listOfFederalRepresentatives;
         if (successBlock) {
             successBlock();
         }
@@ -97,16 +100,13 @@
             [self assignStatePhotos:stateRepresentative withCompletion:^{
                 if (successBlock) {
                     [listOfStateRepresentatives addObject:stateRepresentative];
-                    // THIS PROBABLY SHOULDNT BE HERE
-                    self.listOfStateRepresentatives = listOfStateRepresentatives;
-                    // NOT SURE IF I NEED THIS
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateInformationLabel" object:nil];
                     successBlock();
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);
             }];
         }
+        self.listOfStateRepresentatives = listOfStateRepresentatives;
         successBlock();
     } onError:^(NSError *error) {
         errorBlock(error);
@@ -221,11 +221,11 @@
                         NSLog(@"There is no photo");
                     }
                     [listOfNYCRepresentatives addObject:nycRepresentative];
-                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 } onError:^(NSError *error) {
                     NSLog(@"nyc photo error");
                 }];
+                self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                 return isLocationWithinPath;
             }
         }

@@ -11,8 +11,6 @@
 
 @interface StateRepresentativeTableViewCell : UITableViewCell
 
-// DONT THINK I NEED THIS
-// THIS SHOULD BE INITWITHREP
 - (void)initWithRep:(id)rep;
 
 @end

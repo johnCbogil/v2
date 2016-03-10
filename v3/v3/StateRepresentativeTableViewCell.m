@@ -34,7 +34,6 @@
     self.listOfStatesWithAssembly = [NSArray arrayWithObjects:@"CA", @"NV", @"NJ", @"NY", @"WI", nil];
 }
 
-// THIS IS A BREACH OF MVC
 - (void)initWithRep:(id)rep {
     self.stateRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
@@ -81,9 +80,9 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        // THIS NEEDS TO BE A UIALERTVIEW
-        
-//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have a phone number listed.\n\n Try tweeting instead" andTitle:[NSString stringWithFormat:@"%@. %@", self.stateRepresentative.firstName, self.stateRepresentative.lastName]];
+        UIAlertView *phoneAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their phone number listed" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+        [phoneAlert show];
+
     }
 }
 - (IBAction)emailButtonDidPress:(id)sender {
@@ -91,9 +90,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.stateRepresentative.email];
     }
     else {
-        // THIS NEEDS TO BE A UIALERTVIEW
         
-//        [self.delegate presentCustomAlertWithMessage:@"This legislator does not have an email listed.\n\n Try calling instead, it's more effective."andTitle:[NSString stringWithFormat:@"%@. %@", self.stateRepresentative.firstName, self.stateRepresentative.lastName]];
+        UIAlertView *emailAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their email listed" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+        [emailAlert show];
     }
 }
 

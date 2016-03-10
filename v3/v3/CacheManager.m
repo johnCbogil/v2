@@ -99,7 +99,6 @@
         NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
         if (oldCachedRepresentatives != nil){
             
-            // THESE VALUES SHOULD BE COSNTANTS
             if ([representativeType isEqualToString:kCachedFederalRepresentatives]) {
                 [RepManager sharedInstance].listOfFederalRepresentatives = [[NSMutableArray alloc] initWithArray:oldCachedRepresentatives];
             }
