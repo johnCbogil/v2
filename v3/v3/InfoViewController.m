@@ -9,16 +9,16 @@
 #import "InfoViewController.h"
 #import "UIColor+voicesOrange.h"
 #import <STPopup/STPopup.h>
-#import <Instabug/Instabug.h>
 
 @interface InfoViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *sendFeedbackButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *closeWindowButton;
+
 @end
 
 @implementation InfoViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Here's what to say";
         self.contentSizeInPopup = CGSizeMake(300, 315);
@@ -27,17 +27,15 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Add views here
     // self.view.frame.size == self.contentSizeInPopup in portrait
     // self.view.frame.size == self.landscapeContentSizeInPopup in landscape
     self.title = @"Here's what to say";
     self.contentSizeInPopup = CGSizeMake(300, 315);
-    self.sendFeedbackButton.layer.cornerRadius = 5;
-    self.sendFeedbackButton.backgroundColor = [UIColor voicesOrange];
-    
+    self.closeWindowButton.layer.cornerRadius = 5;
+    self.closeWindowButton.backgroundColor = [UIColor voicesOrange];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -48,9 +46,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)sendFeedbackButtonDidPress:(id)sender {
-    [Instabug invoke];
+
+- (IBAction)closeWindowButtonDidPress:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 /*
 #pragma mark - Navigation

@@ -6,7 +6,6 @@ target 'Voices' do
     pod "AFNetworking", "~> 2.0"
     pod “Shimmer“
     pod 'STPopup'
-    pod 'Instabug', "~> 5.0"
     pod 'SSZipArchive'
     pod 'Google/Analytics'
     

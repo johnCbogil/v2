@@ -14,7 +14,6 @@
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
-#import <Instabug/Instabug.h>
 #import <Google/Analytics.h>
 
 @interface AppDelegate ()
@@ -73,10 +72,7 @@
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
-    
-    // Instabug
-    [Instabug startWithToken:@"e8119e915901595a5e28cb35a4880b25" invocationEvent:IBGInvocationEventNone];
-    
+        
     // Configure tracker from GoogleService-Info.plist.
     NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];

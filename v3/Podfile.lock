@@ -36,7 +36,6 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
-  - Instabug (5.1.0)
   - Shimmer (1.0.2)
   - SSZipArchive (1.1)
   - STPopup (1.3.0)
@@ -44,7 +43,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Google/Analytics
-  - Instabug (~> 5.0)
   - Shimmer
   - SSZipArchive
   - STPopup
@@ -57,7 +55,6 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
-  Instabug: 19604e58b970de072933800c3cd92ad2f3a019f8
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
   STPopup: 5e12539a1798514a99ffc1c6239c3db688a2d7b1
