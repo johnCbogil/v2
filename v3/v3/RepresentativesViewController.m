@@ -30,12 +30,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
-    [[RepManager sharedInstance]checkCacheForRepresentatives:self.cachedRepresentatives];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setDataSources];
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
@@ -60,27 +58,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
     [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)setDataSources {
-    if (self.index == 0) {
-        self.tableViewCellName = kFederalRepresentativeTableViewCell;
-        self.cachedRepresentatives = kCachedFederalRepresentatives;
-        self.tableViewDataSource = [RepManager sharedInstance].listOfFederalRepresentatives;
-        self.getRepresentativesMethod = kCreateFederalRepresentatives;
-    }
-    else if (self.index == 1) {
-        self.tableViewCellName = kStateRepresentativeTableViewCell;
-        self.cachedRepresentatives = kCachedStateRepresentatives;
-        self.tableViewDataSource = [RepManager sharedInstance].listOfStateRepresentatives;
-        self.getRepresentativesMethod = kCreateStateRepresentatives;
-    }
-    else if (self.index == 2) {
-        self.tableViewCellName = kNYCRepresentativeTableViewCell;
-        self.cachedRepresentatives = kCachedNYCRepresentatives;
-        self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
-        self.getRepresentativesMethod = kCreateNYCRepresentatives;
-    }
 }
 
 #pragma mark - UI Methods
@@ -125,10 +102,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    [self setDataSources];
-    if (self.tableViewDataSource.count > 0) {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.tableViewDataSource] forKey:self.cachedRepresentatives];
-    }
     return self.tableViewDataSource.count;
 }
 
@@ -157,46 +130,6 @@
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
-    if([keyPath isEqualToString:@"currentLocation"]) {
-        [self getRepresentativesForCurrentLocation];
-        [self.refreshControl endRefreshing];
-    }
-}
 
-- (void)getRepresentativesForCurrentLocation {
-    SEL selector = NSSelectorFromString(self.getRepresentativesMethod);
-    IMP imp = [self methodForSelector:selector];
-    void (*func)(id, SEL) = (void *)imp;
-    func(self, selector);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.refreshControl endRefreshing];
-    });
-}
-
-- (void)createFederalRepresentatives {
-    [[RepManager sharedInstance]createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-        });
-    } onError:^(NSError *error) {
-        NSLog(@"error");
-    }];
-}
-
-- (void)createStateRepresentatives {
-    [[RepManager sharedInstance]createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-        });
-    } onError:^(NSError *error) {
-        NSLog(@"error");
-    }];
-}
-
-- (void)createNYCRepresentatives {
-    [[RepManager sharedInstance]createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-}
 
 @end
