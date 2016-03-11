@@ -93,8 +93,6 @@
 }
 
 - (NSArray *)checkUserDefaultsForRepresentative:(NSString*)representativeType {
-    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] stringForKey:kCachedFederalRepresentatives]);
-
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
     if (dataRepresentingCachedRepresentatives != nil) {

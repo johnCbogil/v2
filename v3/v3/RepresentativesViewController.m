@@ -42,7 +42,6 @@
 
 - (void)fetchDataForIndex:(NSInteger)index {
     self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
-//    [self.tableView reloadData];
 }
 
 - (void)fetchDataAgain:(NSInteger)index {
@@ -55,6 +54,7 @@
     else if (self.index == 2) {
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
     }
+    [self.refreshControl endRefreshing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,7 +62,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [[LocationService sharedInstance]removeObserver:self forKeyPath:@"currentLocation" context:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
@@ -75,7 +74,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
-//    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - UI Methods
@@ -107,10 +105,8 @@
 }
 
 - (void)reloadTableView {
-//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    NSLog(@"TableViewDataSource Count: %ld", self.tableViewDataSource.count);
     [self fetchDataAgain:self.index];
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)createRefreshControl {

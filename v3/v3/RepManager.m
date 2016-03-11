@@ -41,27 +41,48 @@
         self.listOfFederalRepresentatives = [self checkCacheForRepresentatives:kCachedFederalRepresentatives];
 
         if (!self.listOfFederalRepresentatives.count > 0) {
-            // MAKE NETWORK REQUEST
             [[LocationService sharedInstance]startUpdatingLocation];
         }
         else return self.listOfFederalRepresentatives;
     }
     else if (index == 1) {
         self.listOfStateRepresentatives = [self checkCacheForRepresentatives:kCachedStateRepresentatives];
+        
+        if (!self.listOfStateRepresentatives.count > 0) {
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
+        else return self.listOfStateRepresentatives;
     }
     else if (index == 2) {
         self.listOfNYCRepresentatives = [self checkCacheForRepresentatives:kCachedNYCRepresentatives];
+        
+        if (!self.listOfNYCRepresentatives.count > 0) {
+            [[LocationService sharedInstance]startUpdatingLocation];
+        }
+        else return self.listOfNYCRepresentatives;
     }
     return nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
+        // NEED TO HANDLE ERROR
         [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-            NSLog(@"Federal Reps: %ld",self.listOfFederalRepresentatives.count);
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
-        } onError:nil];
+        } onError:^(NSError *error){
+            NSLog(@"%@",[error localizedDescription]);
+        }];
         
+        // NEED TO HANDLE ERROR
+        [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            NSLog(@"%@",[error localizedDescription]);
+        }];
+        
+        // NEED TO ADD COMPLETION BLOCK
+        [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
     }
 }
 
@@ -79,6 +100,7 @@
     
     [[NetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
         
+        // REPLACE THIS NEW ARRAY WITH THE PROPERTY
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
@@ -88,7 +110,6 @@
                     self.listOfFederalRepresentatives = listOfFederalRepresentatives;
                     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
                     [[NSUserDefaults standardUserDefaults]synchronize];
-                    NSLog(@"%@",[[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]allKeys]);
 
                     successBlock();
                 }
@@ -96,11 +117,9 @@
                 errorBlock(error);
             }];
         }
-//        self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-
-        if (successBlock) {
-            successBlock();
-        }
+//        if (successBlock) {
+//            successBlock();
+//        }
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
@@ -138,14 +157,16 @@
             [self assignStatePhotos:stateRepresentative withCompletion:^{
                 if (successBlock) {
                     [listOfStateRepresentatives addObject:stateRepresentative];
+                    self.listOfStateRepresentatives = listOfStateRepresentatives;
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfStateRepresentatives] forKey:kCachedStateRepresentatives];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
                     successBlock();
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);
             }];
         }
-        self.listOfStateRepresentatives = listOfStateRepresentatives;
-        successBlock();
+//        successBlock();
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
@@ -259,11 +280,14 @@
                         NSLog(@"There is no photo");
                     }
                     [listOfNYCRepresentatives addObject:nycRepresentative];
+                    self.listOfNYCRepresentatives = listOfNYCRepresentatives;
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfNYCRepresentatives] forKey:kCachedNYCRepresentatives];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 } onError:^(NSError *error) {
                     NSLog(@"nyc photo error");
                 }];
-                self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                 return isLocationWithinPath;
             }
         }
