@@ -42,6 +42,19 @@
 
 - (void)fetchDataForIndex:(NSInteger)index {
     self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
+//    [self.tableView reloadData];
+}
+
+- (void)fetchDataAgain:(NSInteger)index {
+    if (self.index == 0) {
+        self.tableViewDataSource = [RepManager sharedInstance].listOfFederalRepresentatives;
+    }
+    else if (self.index == 1) {
+        self.tableViewDataSource = [RepManager sharedInstance].listOfStateRepresentatives;
+    }
+    else if (self.index == 2) {
+        self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -94,7 +107,10 @@
 }
 
 - (void)reloadTableView {
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    NSLog(@"TableViewDataSource Count: %ld", self.tableViewDataSource.count);
+    [self fetchDataAgain:self.index];
+    [self.tableView reloadData];
 }
 
 - (void)createRefreshControl {

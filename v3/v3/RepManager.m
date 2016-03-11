@@ -40,6 +40,7 @@
     if (index == 0) {
         self.listOfFederalRepresentatives = [self checkCacheForRepresentatives:kCachedFederalRepresentatives];
         if (!self.listOfFederalRepresentatives.count > 0) {
+            // MAKE NETWORK REQUEST
             [[LocationService sharedInstance]startUpdatingLocation];
         }
         else return self.listOfFederalRepresentatives;
@@ -56,8 +57,10 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object  change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
         [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            NSLog(@"Federal Reps: %ld",self.listOfFederalRepresentatives.count);
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:nil];
+        
     }
 }
 
@@ -74,19 +77,22 @@
                               onError:(void(^)(NSError *error))errorBlock {
     
     [[NetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+        
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [self assignFederalRepresentativePhoto:federalRepresentative withCompletion:^{
                 if (successBlock) {
                     [listOfFederalRepresentatives addObject:federalRepresentative];
+                    self.listOfFederalRepresentatives = listOfFederalRepresentatives;
+                    
                     successBlock();
                 }
             } onError:^(NSError *error) {
                 errorBlock(error);
             }];
         }
-        self.listOfFederalRepresentatives = listOfFederalRepresentatives;
+//        self.listOfFederalRepresentatives = listOfFederalRepresentatives;
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
         if (successBlock) {
             successBlock();
