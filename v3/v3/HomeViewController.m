@@ -43,7 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:kCachedFederalRepresentatives];
+   // [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:kCachedFederalRepresentatives];
     [self addObservers];
     [self setFont];
     [self setColors];

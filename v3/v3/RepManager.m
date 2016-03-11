@@ -39,6 +39,7 @@
 - (NSArray *)createRepsForIndex:(NSInteger)index {
     if (index == 0) {
         self.listOfFederalRepresentatives = [self checkCacheForRepresentatives:kCachedFederalRepresentatives];
+
         if (!self.listOfFederalRepresentatives.count > 0) {
             // MAKE NETWORK REQUEST
             [[LocationService sharedInstance]startUpdatingLocation];
@@ -85,7 +86,10 @@
                 if (successBlock) {
                     [listOfFederalRepresentatives addObject:federalRepresentative];
                     self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-                    
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
+                    [[NSUserDefaults standardUserDefaults]synchronize];
+                    NSLog(@"%@",[[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]allKeys]);
+
                     successBlock();
                 }
             } onError:^(NSError *error) {
@@ -93,7 +97,7 @@
             }];
         }
 //        self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
+
         if (successBlock) {
             successBlock();
         }
