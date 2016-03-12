@@ -104,18 +104,18 @@
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
-            [self assignFederalRepresentativePhoto:federalRepresentative withCompletion:^{
-                if (successBlock) {
+     //       [self assignFederalRepresentativePhoto:federalRepresentative withCompletion:^{
+       //         if (successBlock) {
                     [listOfFederalRepresentatives addObject:federalRepresentative];
                     self.listOfFederalRepresentatives = listOfFederalRepresentatives;
                     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
                     [[NSUserDefaults standardUserDefaults]synchronize];
 
                     successBlock();
-                }
-            } onError:^(NSError *error) {
-                errorBlock(error);
-            }];
+         //       }
+         //   } onError:^(NSError *error) {
+         //       errorBlock(error);
+         //   }];
         }
 //        if (successBlock) {
 //            successBlock();

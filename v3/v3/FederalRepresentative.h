@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSArray *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;
+@property (strong, nonatomic) NSURL *photoURL;
 - (id)initWithData:(NSDictionary *)data;
 
 @end

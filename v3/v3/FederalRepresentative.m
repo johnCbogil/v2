@@ -25,10 +25,16 @@
         self.stateCode = [data valueForKey:@"state"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         [self formatTitle:[data valueForKey:@"title"]];
-        
+        self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
         return self;
     }
     return self;
+}
+
+- (NSURL *)createPhotoURLFromBioguide:(NSString *)bioguide {
+    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/225x275/%@.jpg", bioguide];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    return url;
 }
 
 - (NSString*)formatElectionDate:(NSString*)termEnd {
@@ -70,6 +76,8 @@
         self.title = [decoder decodeObjectForKey:@"title"];
         self.shortTitle = [decoder decodeObjectForKey:@"shortTitle"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
+        // THIS MAY FAIL
+        self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
     }
     return self;
 }
@@ -89,5 +97,7 @@
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.shortTitle forKey:@"shortTitle"];
     [coder encodeObject:self.photo forKey:@"photo"];
+    // THIS MAY FAIL
+    [coder encodeObject:self.photoURL forKey:@"photoURL"];
 }
 @end
