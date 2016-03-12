@@ -10,7 +10,7 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-
+#import "UIImageView+AFNetworking.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
@@ -55,6 +55,8 @@
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Federal image success");
         self.photo.image = image;
+        
+        
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
     }];

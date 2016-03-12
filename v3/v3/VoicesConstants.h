@@ -15,6 +15,7 @@ extern NSString *const kStateRepresentativeTableViewCell;
 extern NSString *const kNYCRepresentativeTableViewCell;
 
 extern NSString *const kAvenirNextRegular;
+extern NSString *const kMontserratLight;
 
 extern NSString *const kSFCongress;
 extern NSString *const kSFState;

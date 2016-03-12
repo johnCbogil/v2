@@ -1,14 +1,16 @@
 //
 //  OnboardingViewController.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 1/1/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
 #import "OnboardingViewController.h"
+#import "UIFont+voicesFont.h"
 
 @interface OnboardingViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *voicesIcon;
 @property (weak, nonatomic) IBOutlet UILabel *firstCivicToolLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
@@ -22,6 +24,8 @@
 
     self.startButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.startButton.layer.cornerRadius = 5;
+    self.firstCivicToolLabel.font = [UIFont voicesFontWithSize:23.0];
+    self.startButton.titleLabel.font = [UIFont voicesFontWithSize:25.0];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationService.h"
+#import "UIFont+voicesFont.h"
 
 @interface Onboarding2ViewController : UIViewController <CLLocationManagerDelegate>
 

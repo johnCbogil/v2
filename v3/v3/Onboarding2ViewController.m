@@ -1,6 +1,6 @@
 //
 //  Onboarding2ViewController.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 1/1/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
@@ -8,10 +8,13 @@
 
 #import "Onboarding2ViewController.h"
 #import "HomeViewController.h"
+#import "UIFont+voicesFont.h"
 
 @interface Onboarding2ViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *deferLocationUseButton;
 @property (weak, nonatomic) IBOutlet UIButton *permitLocationUseButton;
+@property (weak, nonatomic) IBOutlet UILabel *turnOnLocationLabel;
 
 @end
 
@@ -21,6 +24,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.permitLocationUseButton.layer.cornerRadius = 5;
+    self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
+    self.permitLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:18];
+    self.deferLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:11];
 }
 
 - (void)didReceiveMemoryWarning {
