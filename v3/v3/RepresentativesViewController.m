@@ -44,7 +44,7 @@
     self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
 }
 
-- (void)fetchDataAgain:(NSInteger)index {
+- (void)reloadDataSource:(NSInteger)index {
     if (self.index == 0) {
         self.tableViewDataSource = [RepManager sharedInstance].listOfFederalRepresentatives;
     }
@@ -105,7 +105,7 @@
 }
 
 - (void)reloadTableView {
-    [self fetchDataAgain:self.index];
+    [self reloadDataSource:self.index];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 

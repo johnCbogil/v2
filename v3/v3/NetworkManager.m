@@ -1,6 +1,6 @@
 //
 //  NetworkManager.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 7/27/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -37,7 +37,7 @@
                            onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
     NSURL *url = [NSURL URLWithString:dataUrl];
-    
+    NSLog(@"%@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];

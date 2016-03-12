@@ -31,7 +31,6 @@
     self = [super init];
     if (self != nil) {
             [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
-
     }
     return self;
 }
@@ -49,7 +48,7 @@
         self.listOfStateRepresentatives = [self checkCacheForRepresentatives:kCachedStateRepresentatives];
         
         if (!self.listOfStateRepresentatives.count > 0) {
-            [[LocationService sharedInstance]startUpdatingLocation];
+//            [[LocationService sharedInstance]startUpdatingLocation];
         }
         else return self.listOfStateRepresentatives;
     }
@@ -57,7 +56,7 @@
         self.listOfNYCRepresentatives = [self checkCacheForRepresentatives:kCachedNYCRepresentatives];
         
         if (!self.listOfNYCRepresentatives.count > 0) {
-            [[LocationService sharedInstance]startUpdatingLocation];
+//            [[LocationService sharedInstance]startUpdatingLocation];
         }
         else return self.listOfNYCRepresentatives;
     }
