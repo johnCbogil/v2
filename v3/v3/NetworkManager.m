@@ -64,32 +64,6 @@
     [operation start];
 }
 
-- (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
-                              onError:(void(^)(NSError *error))errorBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"https://theunitedstates.io/images/congress/225x275/%@.jpg", bioguide];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    NSLog(@"%@", url);
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        // NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
-        [missingRep setAccessibilityIdentifier:@"MissingRep"];
-        successBlock(missingRep);
-    }];
-    
-    [operation start];
-}
-
 #pragma mark - Get State Representatives Methods
 
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
@@ -122,28 +96,28 @@
     [operation start];
 }
 
-- (void)getStateRepresentativePhoto:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
-               onError:(void(^)(NSError *error))errorBlock {
-    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
-        [missingRep setAccessibilityIdentifier:@"MissingRep"];
-        successBlock(missingRep);
-    }];
-    
-    [operation start];
-}
+//- (void)getStateRepresentativePhoto:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
+//               onError:(void(^)(NSError *error))errorBlock {
+//    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFImageResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        //NSLog(@"%@", responseObject);
+//        successBlock(responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSLog(@"Error: %@", error);
+//        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
+//        [missingRep setAccessibilityIdentifier:@"MissingRep"];
+//        successBlock(missingRep);
+//    }];
+//    
+//    [operation start];
+//}
 
 #pragma mark - Get NYC Representative Photo Method
 

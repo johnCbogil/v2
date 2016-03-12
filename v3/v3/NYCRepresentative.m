@@ -41,6 +41,7 @@
         self.email = [decoder decodeObjectForKey:@"email"];
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
+        self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
     }
     return self;
 }
@@ -57,5 +58,6 @@
     [coder encodeObject:self.email forKey:@"email"];
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
     [coder encodeObject:self.photo forKey:@"photo"];
+    [coder encodeObject:self.photoURL forKey:@"photoURL"];
 }
 @end

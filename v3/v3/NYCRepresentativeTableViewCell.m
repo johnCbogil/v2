@@ -51,7 +51,7 @@
     self.nycRepresentative = rep;
     self.nameLabel.text = self.nycRepresentative.name;
     self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
-    self.photo.image = [UIImage imageWithData:self.nycRepresentative.photo];
+    [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];//[UIImage imageWithData:self.nycRepresentative.photo];
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {

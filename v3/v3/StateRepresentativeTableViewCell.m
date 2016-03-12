@@ -11,6 +11,7 @@
 #import "StateRepresentative.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface StateRepresentativeTableViewCell ()
 
@@ -38,7 +39,7 @@
     self.stateRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
     [self createDistrictNumberLabel];
-    self.photo.image = [UIImage imageWithData:self.stateRepresentative.photo];
+    [self.photo setImageWithURL:self.stateRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
 }
 
 - (void)setColor {

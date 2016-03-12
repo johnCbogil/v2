@@ -44,6 +44,7 @@
         self.stateCode = [decoder decodeObjectForKey:@"state"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
         self.chamber = [decoder decodeObjectForKey:@"chamber"];
+        self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
     }
     return self;
 }
@@ -58,5 +59,6 @@
     [coder encodeObject:self.stateCode forKey:@"state"];
     [coder encodeObject:self.photo forKey:@"photo"];
     [coder encodeObject:self.chamber forKey:@"chamber"];
+    [coder encodeObject:self.photoURL forKey:@"photoURL"];
 }
 @end

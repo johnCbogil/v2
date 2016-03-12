@@ -16,12 +16,6 @@
 +(NetworkManager *) sharedInstance;
 - (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
-- (void)getFederalRepresentativePhoto:(NSString*)bioguide withCompletion:(void(^)(UIImage *results))successBlock
-                  onError:(void(^)(NSError *error))errorBlock;
-- (void)getStateRepresentativePhoto:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
-               onError:(void(^)(NSError *error))errorBlock;
-- (void)getNYCRepresentativePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
-                           onError:(void(^)(NSError *error))errorBlock;
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
