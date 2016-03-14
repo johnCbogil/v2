@@ -11,7 +11,7 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+//#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
@@ -41,12 +41,10 @@
 - (void)initWithRep:(id)rep {
     self.federalRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.federalRepresentative.shortTitle, self.federalRepresentative.firstName, self.federalRepresentative.lastName];
-//    self.photo.image =    //[UIImage imageWithData:self.federalRepresentative.photo];
     self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.federalRepresentative.nextElection];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
-//    [self.photo setImageWithURL:self.federalRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.federalRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
