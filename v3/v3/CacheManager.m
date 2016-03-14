@@ -31,66 +31,66 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        self.context = [appDelegate managedObjectContext];
+//        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//        self.context = [appDelegate managedObjectContext];
     }
     return self;
 }
 
-- (id)fetchRepPhotoWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName {
-    NSLog(@"Searching photo cache");
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *predicate;
-    if ([entityName isEqualToString:kNYCRepresentative]) {
-        predicate =[NSPredicate predicateWithFormat:@"(name = %@)", firstName];
-    }
-    else {
-        predicate =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",firstName, lastName];
-    }
-    [request setPredicate:predicate];
-    
-    NSError *error;
-    NSArray *cachedObjects = [self.context executeFetchRequest:request
-                                                         error:&error];
-    if (cachedObjects.count) {
-        NSLog(@"photo found in cache");
-        return cachedObjects[0];
-    }
-    else {
-        return nil;
-    }
-}
-
-- (void)cacheRepresentativePhoto:(id)representative withEntityName:(NSString*)entityName {
-    if([entityName isEqualToString:kFederalRepresentative]) {
-        FederalRepresentative *federalRepresentative = representative;
-        NSManagedObject *managedFederalRepresentative;
-        managedFederalRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
-        [managedFederalRepresentative setValue:federalRepresentative.photo forKey:@"photo"];
-        [managedFederalRepresentative setValue:federalRepresentative.firstName forKey:@"firstName"];
-        [managedFederalRepresentative setValue:federalRepresentative.lastName forKey:@"lastName"];
-    }
-    else if ([entityName isEqualToString:kStateRepresentative]) {
-        StateRepresentative *stateRepresentative = representative;
-        NSManagedObject *managedStateRepresentative;
-        managedStateRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
-        [managedStateRepresentative setValue:stateRepresentative.photo forKey:@"photo"];
-        [managedStateRepresentative setValue:stateRepresentative.firstName forKey:@"firstName"];
-        [managedStateRepresentative setValue:stateRepresentative.lastName forKey:@"lastName"];
-    }
-    else if ([entityName isEqualToString:kNYCRepresentative]) {
-        NYCRepresentative *nycRepresentative = representative;
-        NSManagedObject *managedNYCRepresentative;
-        managedNYCRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
-        [managedNYCRepresentative setValue:nycRepresentative.photo forKey:@"photo"];
-        [managedNYCRepresentative setValue:nycRepresentative.name forKey:@"name"];
-    }
-    NSError *coreDataSaveerror;
-    [self.context save:&coreDataSaveerror];
-    NSLog(@"Saving photo to cache");
-}
+//- (id)fetchRepPhotoWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName {
+//    NSLog(@"Searching photo cache");
+//    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:entityDesc];
+//    NSPredicate *predicate;
+//    if ([entityName isEqualToString:kNYCRepresentative]) {
+//        predicate =[NSPredicate predicateWithFormat:@"(name = %@)", firstName];
+//    }
+//    else {
+//        predicate =[NSPredicate predicateWithFormat:@"(firstName = %@ && lastName = %@)",firstName, lastName];
+//    }
+//    [request setPredicate:predicate];
+//    
+//    NSError *error;
+//    NSArray *cachedObjects = [self.context executeFetchRequest:request
+//                                                         error:&error];
+//    if (cachedObjects.count) {
+//        NSLog(@"photo found in cache");
+//        return cachedObjects[0];
+//    }
+//    else {
+//        return nil;
+//    }
+//}
+//
+//- (void)cacheRepresentativePhoto:(id)representative withEntityName:(NSString*)entityName {
+//    if([entityName isEqualToString:kFederalRepresentative]) {
+//        FederalRepresentative *federalRepresentative = representative;
+//        NSManagedObject *managedFederalRepresentative;
+//        managedFederalRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+//        [managedFederalRepresentative setValue:federalRepresentative.photo forKey:@"photo"];
+//        [managedFederalRepresentative setValue:federalRepresentative.firstName forKey:@"firstName"];
+//        [managedFederalRepresentative setValue:federalRepresentative.lastName forKey:@"lastName"];
+//    }
+//    else if ([entityName isEqualToString:kStateRepresentative]) {
+//        StateRepresentative *stateRepresentative = representative;
+//        NSManagedObject *managedStateRepresentative;
+//        managedStateRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+//        [managedStateRepresentative setValue:stateRepresentative.photo forKey:@"photo"];
+//        [managedStateRepresentative setValue:stateRepresentative.firstName forKey:@"firstName"];
+//        [managedStateRepresentative setValue:stateRepresentative.lastName forKey:@"lastName"];
+//    }
+//    else if ([entityName isEqualToString:kNYCRepresentative]) {
+//        NYCRepresentative *nycRepresentative = representative;
+//        NSManagedObject *managedNYCRepresentative;
+//        managedNYCRepresentative = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+//        [managedNYCRepresentative setValue:nycRepresentative.photo forKey:@"photo"];
+//        [managedNYCRepresentative setValue:nycRepresentative.name forKey:@"name"];
+//    }
+//    NSError *coreDataSaveerror;
+//    [self.context save:&coreDataSaveerror];
+//    NSLog(@"Saving photo to cache");
+//}
 
 - (NSArray *)checkUserDefaultsForRepresentative:(NSString*)representativeType {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];

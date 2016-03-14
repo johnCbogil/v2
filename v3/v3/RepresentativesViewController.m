@@ -40,6 +40,14 @@
     [self addObservers];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 - (void)fetchDataForIndex:(NSInteger)index {
     self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
 }
@@ -55,14 +63,6 @@
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
     }
     [self.refreshControl endRefreshing];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
