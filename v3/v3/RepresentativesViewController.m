@@ -28,16 +28,16 @@
 
 @implementation RepresentativesViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self addObservers];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchDataForIndex:self.index];
     [self createTableView];
     [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self addObservers];
 }
 
 - (void)fetchDataForIndex:(NSInteger)index {
@@ -159,8 +159,5 @@
         [self turnZeroStateOff];
     }
 }
-
-
-
 
 @end

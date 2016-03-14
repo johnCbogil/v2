@@ -39,7 +39,20 @@
     self.stateRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
     [self createDistrictNumberLabel];
-    [self.photo setImageWithURL:self.stateRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
+    [self setImage];
+}
+
+- (void)setImage{
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.stateRepresentative.photoURL
+                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                              timeoutInterval:60];
+    
+    [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+        self.photo.image = image;
+        
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
+        NSLog(@"State image failure");
+    }];
 }
 
 - (void)setColor {

@@ -103,47 +103,17 @@
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
-     //       [self assignFederalRepresentativePhoto:federalRepresentative withCompletion:^{
-       //         if (successBlock) {
                     [listOfFederalRepresentatives addObject:federalRepresentative];
                     self.listOfFederalRepresentatives = listOfFederalRepresentatives;
                     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
                     [[NSUserDefaults standardUserDefaults]synchronize];
-
                     successBlock();
-         //       }
-         //   } onError:^(NSError *error) {
-         //       errorBlock(error);
-         //   }];
         }
-//        if (successBlock) {
-//            successBlock();
-//        }
+
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
 }
-
-//- (void)assignFederalRepresentativePhoto:(FederalRepresentative *)federalRepresentative withCompletion:(void(^)(void))successBlock
-//                                 onError:(void(^)(NSError *error))errorBlock {
-//    
-//    FederalRepresentative *cachedFederalRepresentative = [[CacheManager sharedInstance]fetchRepPhotoWithEntityName:kFederalRepresentative withFirstName:federalRepresentative.firstName withLastName:federalRepresentative.lastName];
-//    if (cachedFederalRepresentative) {
-//        federalRepresentative.photo = cachedFederalRepresentative.photo;
-//        successBlock();
-//    }
-//    else {
-//        [[NetworkManager sharedInstance]getFederalRepresentativePhoto:federalRepresentative.bioguide withCompletion:^(UIImage *results) {
-//            federalRepresentative.photo = UIImagePNGRepresentation(results);
-//            if (successBlock) {
-//                successBlock();
-//                [[CacheManager sharedInstance]cacheRepresentativePhoto:federalRepresentative withEntityName:kFederalRepresentative];
-//            }
-//        } onError:^(NSError *error) {
-//            errorBlock(error);
-//        }];
-//    }
-//}
 
 #pragma mark - Create State Representatives
 
@@ -153,7 +123,6 @@
         NSMutableArray *listOfStateRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in results) {
             StateRepresentative *stateRepresentative = [[StateRepresentative alloc] initWithData:resultDict];
-//            [self assignStatePhotos:stateRepresentative withCompletion:^{
                 if (successBlock) {
                     [listOfStateRepresentatives addObject:stateRepresentative];
                     self.listOfStateRepresentatives = listOfStateRepresentatives;
@@ -162,40 +131,11 @@
                     successBlock();
                 }
         }
-//            } onError:^(NSError *error) {
-//                errorBlock(error);
-//            }];
-//        }
-//        successBlock();
+
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
 }
-
-//- (void)assignStatePhotos:(StateRepresentative *)stateRepresentative withCompletion:(void(^)(void))successBlock
-//                  onError:(void(^)(NSError *error))errorBlock {
-//    
-//    StateRepresentative *cachedStateRepresentative = [[CacheManager sharedInstance]fetchRepPhotoWithEntityName:kStateRepresentative withFirstName:stateRepresentative.firstName withLastName:stateRepresentative.lastName];
-//    
-//    if (cachedStateRepresentative) {
-//        stateRepresentative.photo = cachedStateRepresentative.photo;
-//        successBlock();
-//    }
-//    else {
-//        NSLog(@"Firing network request");
-//        [[NetworkManager sharedInstance]getStateRepresentativePhoto:stateRepresentative.photoURL withCompletion:^(UIImage *results) {
-//            stateRepresentative.photo = UIImagePNGRepresentation(results);
-//            if (successBlock) {
-//                successBlock();
-//                if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
-//                    [[CacheManager sharedInstance]cacheRepresentativePhoto:stateRepresentative withEntityName:kStateRepresentative];
-//                }
-//            }
-//        } onError:^(NSError *error) {
-//            errorBlock(error);
-//        }];
-//    }
-//}
 
 #pragma mark - Create NYC Representatives
 
@@ -271,52 +211,18 @@
                 NSArray *memberData = [member componentsSeparatedByString:@","];
                 NSLog(@"%@", memberData);
                 NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
-                // Assign NYC photos here
-//                [self assignNYCRepresentativePhotos:nycRepresentative withCompletion:^{
-//                    if (nycRepresentative.photo) {
-//                        NSLog(@"there is a photo");
-//                    }
-//                    else {
-//                        NSLog(@"There is no photo");
-//                    }
                     [listOfNYCRepresentatives addObject:nycRepresentative];
                     self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfNYCRepresentatives] forKey:kCachedNYCRepresentatives];
                     [[NSUserDefaults standardUserDefaults]synchronize];
 
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
-//                } onError:^(NSError *error) {
-//                    NSLog(@"nyc photo error");
-//                }];
+
                 return isLocationWithinPath;
             }
         }
     }
     return isLocationWithinPath;
 }
-
-//- (void)assignNYCRepresentativePhotos:(NYCRepresentative *)nycRepresentative withCompletion:(void(^)(void))successBlock
-//                              onError:(void(^)(NSError *error))errorBlock {
-//
-//    NYCRepresentative *cachedNYCRepresentative = [[CacheManager sharedInstance]fetchRepPhotoWithEntityName:kNYCRepresentative withFirstName:nycRepresentative.name withLastName:@""];
-//    if (cachedNYCRepresentative) {
-//        nycRepresentative.photo = cachedNYCRepresentative.photo;
-//        successBlock();
-//    }
-//    else {
-//        NSLog(@"Firing nyc photo request");
-//        [[NetworkManager sharedInstance]getNYCRepresentativePhotos:nycRepresentative.photoURL withCompletion:^(UIImage *results) {
-//            nycRepresentative.photo = UIImagePNGRepresentation(results);
-//            successBlock();
-//            if (successBlock) {
-//                if (![[results accessibilityIdentifier] isEqualToString:@"MissingRep"]) {
-//                    [[CacheManager sharedInstance]cacheRepresentativePhoto:nycRepresentative withEntityName:kNYCRepresentative];
-//                }
-//            }
-//        } onError:^(NSError *error) {
-//            errorBlock(error);
-//        }];
-//    }
-//}
 
 @end

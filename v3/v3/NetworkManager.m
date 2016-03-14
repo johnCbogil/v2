@@ -96,51 +96,6 @@
     [operation start];
 }
 
-//- (void)getStateRepresentativePhoto:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
-//               onError:(void(^)(NSError *error))errorBlock {
-//    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
-//    
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    operation.responseSerializer = [AFImageResponseSerializer serializer];
-//    
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        //NSLog(@"%@", responseObject);
-//        successBlock(responseObject);
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        NSLog(@"Error: %@", error);
-//        UIImage *missingRep = [UIImage imageNamed:@"MissingRep"];
-//        [missingRep setAccessibilityIdentifier:@"MissingRep"];
-//        successBlock(missingRep);
-//    }];
-//    
-//    [operation start];
-//}
-
-#pragma mark - Get NYC Representative Photo Method
-
-- (void)getNYCRepresentativePhotos:(NSURL*)photoURL withCompletion:(void(^)(UIImage *results))successBlock
-                           onError:(void(^)(NSError *error))errorBlock {
-    NSURLRequest *request = [NSURLRequest requestWithURL:photoURL];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //NSLog(@"%@", responseObject);
-        successBlock(responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-        successBlock(self.missingRepresentativePhoto);
-    }];
-    
-    [operation start];
-}
-
 #pragma mark - Get Street Address Method
 
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock

@@ -45,15 +45,16 @@
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
-    
+    [self setImage];
+}
+
+- (void)setImage{
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.federalRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
-
+    
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        NSLog(@"Federal image success");
         self.photo.image = image;
-        
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
