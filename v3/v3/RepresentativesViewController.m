@@ -15,6 +15,7 @@
 #import "CacheManager.h"
 #import "NetworkManager.h"
 #import "VoicesConstants.h"
+#import "UIFont+voicesFont.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) NSString *cachedRepresentatives;
 @property (strong, nonatomic) NSArray *tableViewDataSource;
 @property (strong, nonatomic) NSString *getRepresentativesMethod;
+@property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @end
 
 @implementation RepresentativesViewController
@@ -32,12 +34,13 @@
     [super viewDidLoad];
     [self fetchDataForIndex:self.index];
     [self createTableView];
-    [self checkLocationAuthorizationStatus];
     [self createRefreshControl];
+    self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
+        [self toggleZeroState];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,11 +65,23 @@
     else if (self.index == 2) {
         self.tableViewDataSource = [RepManager sharedInstance].listOfNYCRepresentatives;
     }
+    
+    [self toggleZeroState];
+    
     [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)toggleZeroState {
+    if (self.tableViewDataSource.count == 0) {
+        [self turnZeroStateOn];
+    }
+    else {
+        [self turnZeroStateOff];
+    }
 }
 
 - (void)addObservers {
@@ -145,19 +160,10 @@
     return 140;
 }
 
-#pragma mark - LocationServices Methods
+#pragma mark - Location & Connection Service Methods
 
 - (void)updateCurrentLocation {
     [[LocationService sharedInstance]startUpdatingLocation];
-}
-
-- (void)checkLocationAuthorizationStatus {
-    if ([CLLocationManager authorizationStatus] <= 2) {
-        [self turnZeroStateOn];
-    }
-    else {
-        [self turnZeroStateOff];
-    }
 }
 
 @end
