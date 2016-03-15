@@ -85,6 +85,10 @@
     }
 }
 
+- (void)startUpdatingLocation {
+    [[LocationService sharedInstance]startUpdatingLocation];
+}
+
 
 #pragma mark - Check Cache For Representatives
 

@@ -27,4 +27,6 @@
 - (void)createNYCRepsFromLocation:(CLLocation*)location;
 - (NSArray *)checkCacheForRepresentatives:(NSString *)representativeType;
 - (NSArray *)createRepsForIndex:(NSInteger)index;
+- (void)startUpdatingLocation;
+
 @end

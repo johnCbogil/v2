@@ -84,6 +84,10 @@
     }
 }
 
+- (void)pullToRefresh {
+    [[RepManager sharedInstance]startUpdatingLocation];
+}
+
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
@@ -126,7 +130,7 @@
 
 - (void)createRefreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(updateCurrentLocation) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
 
@@ -158,12 +162,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
-}
-
-#pragma mark - Location & Connection Service Methods
-
-- (void)updateCurrentLocation {
-    [[LocationService sharedInstance]startUpdatingLocation];
 }
 
 @end
