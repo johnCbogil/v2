@@ -35,10 +35,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-4H-vGt">
-                        <rect key="frame" x="123" y="89" width="31" height="31"/>
+                        <rect key="frame" x="200" y="83" width="31" height="31"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="31" id="9ey-B7-sUf"/>
-                            <constraint firstAttribute="width" constant="31" id="bUN-fi-sej"/>
+                            <constraint firstAttribute="width" constant="31" id="Hvh-O3-Ger"/>
+                            <constraint firstAttribute="height" constant="31" id="o0C-Fh-heH"/>
                         </constraints>
                         <state key="normal" backgroundImage="Phone Filled"/>
                         <connections>
@@ -46,10 +46,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-4E-BhZ">
-                        <rect key="frame" x="220" y="89" width="35" height="35"/>
+                        <rect key="frame" x="123" y="83" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="K6x-Fs-wC1"/>
-                            <constraint firstAttribute="height" constant="35" id="SoK-LL-gfM"/>
+                            <constraint firstAttribute="width" constant="35" id="6Aq-c2-BWE"/>
+                            <constraint firstAttribute="height" constant="35" id="UfB-Ma-Hpy"/>
                         </constraints>
                         <state key="normal" backgroundImage="Message Filled"/>
                         <connections>
@@ -68,16 +68,17 @@
                     <constraint firstItem="oSA-xD-vVq" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="7u7-ih-iLK"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yHu-lU-JUL" secondAttribute="trailing" id="7xB-Xg-eFb"/>
                     <constraint firstItem="nL0-K7-Mob" firstAttribute="leading" secondItem="Ppf-wt-voJ" secondAttribute="leadingMargin" id="ANn-U9-zEV"/>
-                    <constraint firstAttribute="trailing" secondItem="AiC-4E-BhZ" secondAttribute="trailing" constant="105" id="DEn-6B-5gL"/>
+                    <constraint firstAttribute="trailing" secondItem="cDK-4H-vGt" secondAttribute="trailing" constant="129" id="AQz-bX-eTz"/>
+                    <constraint firstAttribute="bottom" secondItem="AiC-4E-BhZ" secondAttribute="bottom" constant="21.5" id="EfT-HJ-am8"/>
                     <constraint firstItem="yHu-lU-JUL" firstAttribute="centerY" secondItem="nL0-K7-Mob" secondAttribute="centerY" constant="-17" id="IVN-C4-L2b"/>
                     <constraint firstItem="yHu-lU-JUL" firstAttribute="leading" secondItem="oSA-xD-vVq" secondAttribute="leading" id="J3d-S5-TXc"/>
+                    <constraint firstAttribute="bottom" secondItem="cDK-4H-vGt" secondAttribute="bottom" constant="25.5" id="Jpv-Em-P18"/>
                     <constraint firstItem="nL0-K7-Mob" firstAttribute="centerY" secondItem="Ppf-wt-voJ" secondAttribute="centerY" constant="-0.75" id="Sc8-lM-uey"/>
-                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="yHu-lU-JUL" secondAttribute="bottom" constant="19" id="esd-xl-WyP"/>
-                    <constraint firstItem="cDK-4H-vGt" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="iHF-y1-VX2"/>
+                    <constraint firstItem="AiC-4E-BhZ" firstAttribute="top" secondItem="yHu-lU-JUL" secondAttribute="bottom" constant="13" id="cqn-rx-F3H"/>
+                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="42" id="oXo-dA-bTH"/>
                     <constraint firstItem="oSA-xD-vVq" firstAttribute="top" secondItem="Ppf-wt-voJ" secondAttribute="topMargin" id="pgm-Ef-emw"/>
                     <constraint firstItem="oSA-xD-vVq" firstAttribute="trailing" secondItem="Ppf-wt-voJ" secondAttribute="trailingMargin" id="qXQ-jx-8de"/>
-                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="48" id="uvK-bG-Ddv"/>
-                    <constraint firstItem="AiC-4E-BhZ" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="48" id="zTM-IH-pDy"/>
+                    <constraint firstItem="AiC-4E-BhZ" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="y8i-ED-oXu"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

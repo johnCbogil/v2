@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu">
-                        <rect key="frame" x="153" y="83" width="33" height="33"/>
+                        <rect key="frame" x="123" y="83" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="33" id="AHQ-03-tIE"/>
                             <constraint firstAttribute="width" constant="33" id="dc1-vu-A7r"/>
@@ -53,7 +53,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Tweet Button">
-                        <rect key="frame" x="270" y="83" width="33" height="33"/>
+                        <rect key="frame" x="200" y="83" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="AyF-jM-xYu"/>
                             <constraint firstAttribute="height" constant="33" id="eUl-Td-5t3"/>
@@ -85,15 +85,14 @@
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="JeA-Fq-gGt"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="FXl-oV-8jG" secondAttribute="leading" constant="8" id="Ktm-i1-HkL"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="SRT-8R-u25"/>
-                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="SWR-Kf-VhV"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="SWR-Kf-VhV"/>
                     <constraint firstAttribute="bottom" secondItem="Vmf-Ub-0WH" secondAttribute="bottom" constant="23.5" id="XKe-FA-okp"/>
                     <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="Zec-CW-OiP"/>
                     <constraint firstItem="IOz-xQ-nFh" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="8" symbolic="YES" id="hxS-tI-Il3"/>
                     <constraint firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" constant="8" id="jMb-9Q-ld0"/>
-                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="IOz-xQ-nFh" secondAttribute="bottom" constant="16" id="l6k-O7-tXg"/>
                     <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="45" id="nNa-jG-wce"/>
                     <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="uBb-x2-2zw"/>
-                    <constraint firstAttribute="trailing" secondItem="Vmf-Ub-0WH" secondAttribute="trailing" constant="57" id="wbC-i9-fJw"/>
+                    <constraint firstAttribute="trailing" secondItem="Vmf-Ub-0WH" secondAttribute="trailing" constant="127" id="wbC-i9-fJw"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
