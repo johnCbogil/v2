@@ -107,12 +107,20 @@
     }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
-    if (self.federalRepresentative.twitter) {
-        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.federalRepresentative.twitter, @"accountName", nil];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
+    
+    NSURL *tURL = [NSURL URLWithString:@"twitter://"];
+    if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
+        if (self.federalRepresentative.twitter) {
+            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.federalRepresentative.twitter, @"accountName", nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
