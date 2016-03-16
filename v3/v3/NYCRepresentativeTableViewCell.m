@@ -16,10 +16,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
 @property (strong, nonatomic) NYCRepresentative *nycRepresentative;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
 @end
 
@@ -68,7 +68,6 @@
     self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
     [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];//[UIImage imageWithData:self.nycRepresentative.photo];
 }
-
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.nycRepresentative.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.nycRepresentative.email];
@@ -85,8 +84,7 @@
         [alert show];
     }
 }
-
-- (IBAction)callButtonDidPress:(id)sender {
+- (IBAction)phoneButtonDidPress:(id)sender {
     if (![self.nycRepresentative.districtPhone isEqualToString:@""]) {
         NSString *confirmCallMessage;
         confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.nycRepresentative.name];

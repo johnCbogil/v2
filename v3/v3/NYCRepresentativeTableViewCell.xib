@@ -34,26 +34,26 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-4H-vGt">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-4H-vGt" userLabel="Email Button">
                         <rect key="frame" x="200" y="83" width="31" height="31"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="31" id="Hvh-O3-Ger"/>
                             <constraint firstAttribute="height" constant="31" id="o0C-Fh-heH"/>
                         </constraints>
-                        <state key="normal" backgroundImage="Phone Filled"/>
+                        <state key="normal" backgroundImage="Message Filled"/>
                         <connections>
-                            <action selector="callButtonDidPress:" destination="djN-Qt-uYh" eventType="touchUpInside" id="2aB-61-RuZ"/>
+                            <action selector="emailButtonDidPress:" destination="djN-Qt-uYh" eventType="touchUpInside" id="WFl-R4-hVt"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-4E-BhZ">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-4E-BhZ" userLabel="Phone Button">
                         <rect key="frame" x="123" y="83" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="6Aq-c2-BWE"/>
                             <constraint firstAttribute="height" constant="35" id="UfB-Ma-Hpy"/>
                         </constraints>
-                        <state key="normal" backgroundImage="Message Filled"/>
+                        <state key="normal" backgroundImage="Phone Filled"/>
                         <connections>
-                            <action selector="emailButtonDidPress:" destination="djN-Qt-uYh" eventType="touchUpInside" id="k06-mk-P8A"/>
+                            <action selector="phoneButtonDidPress:" destination="djN-Qt-uYh" eventType="touchUpInside" id="3cx-jh-XxP"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Election:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="yHu-lU-JUL">
@@ -82,9 +82,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="callButton" destination="cDK-4H-vGt" id="hCN-2n-TMu"/>
+                <outlet property="callButton" destination="AiC-4E-BhZ" id="SVY-BZ-qSu"/>
                 <outlet property="districtNumberLabel" destination="yHu-lU-JUL" id="Tkt-Vj-sXM"/>
-                <outlet property="emailButton" destination="AiC-4E-BhZ" id="SNu-KX-Vwt"/>
+                <outlet property="emailButton" destination="cDK-4H-vGt" id="JkF-8r-0Ud"/>
                 <outlet property="nameLabel" destination="oSA-xD-vVq" id="6a7-WB-6SQ"/>
                 <outlet property="photo" destination="nL0-K7-Mob" id="DW4-Js-PGy"/>
             </connections>

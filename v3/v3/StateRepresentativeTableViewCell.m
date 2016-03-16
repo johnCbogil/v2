@@ -15,13 +15,13 @@
 
 @interface StateRepresentativeTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonatomic) StateRepresentative *stateRepresentative;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
 @property (strong, nonatomic) NSArray *listOfStatesWithAssembly;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @end
 
 @implementation StateRepresentativeTableViewCell
@@ -96,9 +96,9 @@
     else {
         UIAlertView *phoneAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their phone number listed" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
         [phoneAlert show];
-
     }
 }
+
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.stateRepresentative.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.stateRepresentative.email];

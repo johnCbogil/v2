@@ -32,7 +32,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu" userLabel="Phone Button">
                         <rect key="frame" x="123" y="83" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="33" id="AHQ-03-tIE"/>
@@ -40,7 +40,7 @@
                             <constraint firstAttribute="width" constant="35" id="f5Q-Iz-L2F"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                        <state key="normal" backgroundImage="Message Filled">
+                        <state key="normal" backgroundImage="Phone Filled">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <variation key="default">
@@ -49,24 +49,24 @@
                             </mask>
                         </variation>
                         <connections>
-                            <action selector="emailButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="EBT-ni-v4o"/>
+                            <action selector="callButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="LRA-2E-JiV"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Tweet Button">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Email Button">
                         <rect key="frame" x="200" y="83" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="AyF-jM-xYu"/>
                             <constraint firstAttribute="height" constant="33" id="eUl-Td-5t3"/>
                             <constraint firstAttribute="width" constant="33" id="xhe-fW-YB5"/>
                         </constraints>
-                        <state key="normal" backgroundImage="Phone Filled"/>
+                        <state key="normal" backgroundImage="Message Filled"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="AyF-jM-xYu"/>
                             </mask>
                         </variation>
                         <connections>
-                            <action selector="callButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="VVh-zR-ybl"/>
+                            <action selector="emailButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="WdJ-GJ-DHj"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-xQ-nFh">
@@ -101,9 +101,9 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="callButton" destination="Vmf-Ub-0WH" id="j4M-tv-M4q"/>
+                <outlet property="callButton" destination="8EL-J2-byu" id="JRf-eH-hdJ"/>
                 <outlet property="districtNumberLabel" destination="IOz-xQ-nFh" id="fNE-KV-duG"/>
-                <outlet property="emailButton" destination="8EL-J2-byu" id="IoI-PD-r9y"/>
+                <outlet property="emailButton" destination="Vmf-Ub-0WH" id="JZe-7M-vXG"/>
                 <outlet property="name" destination="ksZ-6H-Pwf" id="F1Z-ip-bbd"/>
                 <outlet property="photo" destination="OiI-zI-HQX" id="e1o-Ux-gGu"/>
             </connections>
