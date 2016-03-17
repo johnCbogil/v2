@@ -11,7 +11,7 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
-//#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <Google/Analytics.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
@@ -78,6 +78,8 @@
     }
 }
 
+#pragma mark - User Actions
+
 - (IBAction)callButtonDidPress:(id)sender {
     if (self.federalRepresentative.phone) {
         NSString *confirmCallMessage;
@@ -90,6 +92,13 @@
         UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.federalRepresentative.title,self.federalRepresentative.firstName, self.federalRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+                                                              action:@"federal_call"  // Event action (required)
+                                                               label:self.federalRepresentative.fullName           // Event label
+                                                               value:@1] build]];    // Event value
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number, try tweeting at them instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];

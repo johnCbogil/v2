@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Xcode 4.3">
-    <entity name="FederalRepresentative" syncable="YES">
-        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
-    </entity>
-    <entity name="NYCRepresentative" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
-    </entity>
-    <entity name="StateRepresentative" syncable="YES">
-        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
-    </entity>
-    <elements>
-        <element name="FederalRepresentative" positionX="-63" positionY="9" width="128" height="90"/>
-        <element name="NYCRepresentative" positionX="-63" positionY="18" width="128" height="75"/>
-        <element name="StateRepresentative" positionX="-63" positionY="-18" width="128" height="90"/>
-    </elements>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 4.3">
+    <elements/>
 </model>

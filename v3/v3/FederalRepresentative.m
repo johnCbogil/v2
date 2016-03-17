@@ -15,6 +15,7 @@
     if(self != nil) {
         self.firstName = [data valueForKey:@"first_name"];
         self.lastName = [data valueForKey:@"last_name"];
+        self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.nickname = [data valueForKey:@"nickname"];
         self.bioguide = [data valueForKey:@"bioguide_id"];
         self.phone = [data valueForKey:@"phone"];
