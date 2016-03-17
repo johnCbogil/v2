@@ -24,6 +24,7 @@
         self.legPhone = data[7];
         self.email = data[8];
         self.photoURL = [NSURL URLWithString:data[9]];
+        self.twitter = data[10];
     }
     return self;
 }
@@ -42,6 +43,7 @@
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
+        self.twitter = [decoder decodeObjectForKey:@"twitter"];
     }
     return self;
 }
@@ -59,5 +61,6 @@
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
     [coder encodeObject:self.photo forKey:@"photo"];
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
+    [coder encodeObject:self.twitter forKey:@"twitter"];
 }
 @end

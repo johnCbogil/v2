@@ -22,4 +22,5 @@
 @property (strong, nonatomic) NSString *districtNumber;
 @property (strong, nonatomic) NSString *borough;
 @property (strong, nonatomic) NSData *photo;
+@property (strong, nonatomic) NSString *twitter;
 @end

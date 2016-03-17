@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NYCRepresentative *nycRepresentative;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 
 @end
 
@@ -57,6 +58,7 @@
     self.emailButton.imageView.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -68,6 +70,29 @@
     self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
     [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];//[UIImage imageWithData:self.nycRepresentative.photo];
 }
+
+#pragma mark - User actions
+
+- (IBAction)tweetButtonDidPress:(id)sender {
+    
+    NSURL *tURL = [NSURL URLWithString:@"twitter://"];
+    if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
+        if (self.nycRepresentative.twitter) {
+            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.nycRepresentative.twitter, @"accountName", nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.nycRepresentative.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.nycRepresentative.email];

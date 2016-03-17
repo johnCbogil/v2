@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -35,21 +35,32 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDK-4H-vGt" userLabel="Email Button">
-                        <rect key="frame" x="200" y="83" width="31" height="31"/>
+                        <rect key="frame" x="207" y="82" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="31" id="Hvh-O3-Ger"/>
-                            <constraint firstAttribute="height" constant="31" id="o0C-Fh-heH"/>
+                            <constraint firstAttribute="width" constant="35" id="Hvh-O3-Ger"/>
+                            <constraint firstAttribute="height" constant="35" id="o0C-Fh-heH"/>
                         </constraints>
                         <state key="normal" backgroundImage="Message Filled"/>
                         <connections>
                             <action selector="emailButtonDidPress:" destination="djN-Qt-uYh" eventType="touchUpInside" id="WFl-R4-hVt"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-4E-BhZ" userLabel="Phone Button">
-                        <rect key="frame" x="123" y="83" width="35" height="35"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhW-xu-AP5">
+                        <rect key="frame" x="300" y="82" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="6Aq-c2-BWE"/>
-                            <constraint firstAttribute="height" constant="35" id="UfB-Ma-Hpy"/>
+                            <constraint firstAttribute="width" constant="35" id="W6j-ES-2Rk"/>
+                            <constraint firstAttribute="height" constant="35" id="qqM-ga-F69"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="Twitter Filled"/>
+                        <connections>
+                            <action selector="tweetButtonDidPress:" destination="djN-Qt-uYh" eventType="touchUpInside" id="wNj-Ez-xqX"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-4E-BhZ" userLabel="Phone Button">
+                        <rect key="frame" x="123" y="82" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="31" id="6Aq-c2-BWE"/>
+                            <constraint firstAttribute="height" constant="31" id="UfB-Ma-Hpy"/>
                         </constraints>
                         <state key="normal" backgroundImage="Phone Filled"/>
                         <connections>
@@ -64,18 +75,20 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="rhW-xu-AP5" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="41" id="0ec-dl-pbA"/>
                     <constraint firstItem="nL0-K7-Mob" firstAttribute="top" secondItem="Ppf-wt-voJ" secondAttribute="topMargin" id="2gY-Dd-b29"/>
                     <constraint firstItem="oSA-xD-vVq" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="7u7-ih-iLK"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yHu-lU-JUL" secondAttribute="trailing" id="7xB-Xg-eFb"/>
                     <constraint firstItem="nL0-K7-Mob" firstAttribute="leading" secondItem="Ppf-wt-voJ" secondAttribute="leadingMargin" id="ANn-U9-zEV"/>
-                    <constraint firstAttribute="trailing" secondItem="cDK-4H-vGt" secondAttribute="trailing" constant="129" id="AQz-bX-eTz"/>
-                    <constraint firstAttribute="bottom" secondItem="AiC-4E-BhZ" secondAttribute="bottom" constant="21.5" id="EfT-HJ-am8"/>
+                    <constraint firstAttribute="trailing" secondItem="cDK-4H-vGt" secondAttribute="trailing" constant="118" id="AQz-bX-eTz"/>
+                    <constraint firstAttribute="bottom" secondItem="AiC-4E-BhZ" secondAttribute="bottom" constant="26.5" id="EfT-HJ-am8"/>
+                    <constraint firstAttribute="trailing" secondItem="rhW-xu-AP5" secondAttribute="trailing" constant="25" id="FZJ-mE-xC4"/>
                     <constraint firstItem="yHu-lU-JUL" firstAttribute="centerY" secondItem="nL0-K7-Mob" secondAttribute="centerY" constant="-17" id="IVN-C4-L2b"/>
                     <constraint firstItem="yHu-lU-JUL" firstAttribute="leading" secondItem="oSA-xD-vVq" secondAttribute="leading" id="J3d-S5-TXc"/>
-                    <constraint firstAttribute="bottom" secondItem="cDK-4H-vGt" secondAttribute="bottom" constant="25.5" id="Jpv-Em-P18"/>
+                    <constraint firstAttribute="bottom" secondItem="cDK-4H-vGt" secondAttribute="bottom" constant="22.5" id="Jpv-Em-P18"/>
                     <constraint firstItem="nL0-K7-Mob" firstAttribute="centerY" secondItem="Ppf-wt-voJ" secondAttribute="centerY" constant="-0.75" id="Sc8-lM-uey"/>
-                    <constraint firstItem="AiC-4E-BhZ" firstAttribute="top" secondItem="yHu-lU-JUL" secondAttribute="bottom" constant="13" id="cqn-rx-F3H"/>
-                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="42" id="oXo-dA-bTH"/>
+                    <constraint firstItem="AiC-4E-BhZ" firstAttribute="top" secondItem="yHu-lU-JUL" secondAttribute="bottom" constant="12" id="cqn-rx-F3H"/>
+                    <constraint firstItem="cDK-4H-vGt" firstAttribute="top" secondItem="oSA-xD-vVq" secondAttribute="bottom" constant="41" id="oXo-dA-bTH"/>
                     <constraint firstItem="oSA-xD-vVq" firstAttribute="top" secondItem="Ppf-wt-voJ" secondAttribute="topMargin" id="pgm-Ef-emw"/>
                     <constraint firstItem="oSA-xD-vVq" firstAttribute="trailing" secondItem="Ppf-wt-voJ" secondAttribute="trailingMargin" id="qXQ-jx-8de"/>
                     <constraint firstItem="AiC-4E-BhZ" firstAttribute="leading" secondItem="nL0-K7-Mob" secondAttribute="trailing" constant="15" id="y8i-ED-oXu"/>
@@ -87,6 +100,7 @@
                 <outlet property="emailButton" destination="cDK-4H-vGt" id="JkF-8r-0Ud"/>
                 <outlet property="nameLabel" destination="oSA-xD-vVq" id="6a7-WB-6SQ"/>
                 <outlet property="photo" destination="nL0-K7-Mob" id="DW4-Js-PGy"/>
+                <outlet property="tweetButton" destination="rhW-xu-AP5" id="Uik-Ky-FiC"/>
             </connections>
             <point key="canvasLocation" x="587" y="598"/>
         </tableViewCell>
@@ -94,5 +108,6 @@
     <resources>
         <image name="Message Filled" width="33" height="33"/>
         <image name="Phone Filled" width="33" height="33"/>
+        <image name="Twitter Filled" width="33" height="33"/>
     </resources>
 </document>
