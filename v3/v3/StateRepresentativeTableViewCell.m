@@ -120,7 +120,7 @@
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         
         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
-                                                              action:@"federal_call"  // Event action (required)
+                                                              action:@"state_call"  // Event action (required)
                                                                label:self.stateRepresentative.fullName           // Event label
                                                                value:@1] build]];    // Event value
 
