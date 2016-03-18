@@ -11,6 +11,7 @@
 #import "StateRepresentative.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
+#import <Google/Analytics.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface StateRepresentativeTableViewCell ()
@@ -110,11 +111,20 @@
     }
 }
 
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+                                                              action:@"federal_call"  // Event action (required)
+                                                               label:self.stateRepresentative.fullName           // Event label
+                                                               value:@1] build]];    // Event value
+
+        
         NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
         {
