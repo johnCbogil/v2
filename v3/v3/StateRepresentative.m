@@ -15,6 +15,7 @@
     if(self != nil) {
         self.firstName = [data valueForKey:@"first_name"];
         self.lastName = [data valueForKey:@"last_name"];
+        self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.party = [data valueForKey:@"party"];
         self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];
         self.photoURL = [NSURL URLWithString:[data valueForKey:@"photo_url"]];
@@ -37,6 +38,7 @@
     if (self = [super init]) {
         self.firstName = [decoder decodeObjectForKey:@"first_name"];
         self.lastName = [decoder decodeObjectForKey:@"last_name"];
+        self.fullName = [decoder decodeObjectForKey:@"fullName"];
         self.phone = [decoder decodeObjectForKey:@"phone"];
         self.party = [decoder decodeObjectForKey:@"party"];
         self.email = [decoder decodeObjectForKey:@"email"];
@@ -52,6 +54,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.firstName forKey:@"first_name"];
     [coder encodeObject:self.lastName forKey:@"last_name"];
+    [coder encodeObject:self.fullName forKey:@"fullName"];
     [coder encodeObject:self.phone forKey:@"phone"];
     [coder encodeObject:self.party forKey:@"party"];
     [coder encodeObject:self.email forKey:@"email"];
