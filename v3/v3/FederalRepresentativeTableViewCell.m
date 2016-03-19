@@ -61,7 +61,7 @@
     }];
 }
 
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
@@ -94,7 +94,7 @@
         confirmCallAlert.delegate = self;
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        
+        NSLog(@"%@", self.federalRepresentative.fullName);
         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
                                                               action:@"federal_call"  // Event action (required)
                                                                label:self.federalRepresentative.fullName           // Event label
