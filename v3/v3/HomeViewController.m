@@ -277,6 +277,9 @@
     UIAlertView *alert;
     switch (result) {
         case MFMailComposeResultCancelled:
+            
+            // TRACK EMAIL CANCELS HERE
+            
             break;
         case MFMailComposeResultSaved:
             alert = [[UIAlertView alloc] initWithTitle:@"Draft Saved" message:@"Composed Mail is saved in draft." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -285,6 +288,9 @@
         case MFMailComposeResultSent:
             alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
+            
+            // TRACK EMAILS SENT HERE
+            
             break;
         case MFMailComposeResultFailed:
             alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Sorry! Failed to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -301,9 +307,26 @@
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
+        [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    NSLog(@"Twitter Post Canceled");
+                    // TRACK TWITTER CANCELS HERE
+                    break;
+                case SLComposeViewControllerResultDone:
+                    NSLog(@"Twitter Post Sucessful");
+                    // TRACK TWITTER POSTS HERE
+                    break;
+                    
+                default:
+                    break;
+            }
+        }];
         [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
     }
 }
+
+
 
 - (IBAction)infoButtonDidPress:(id)sender {
     [self presentInfoViewController];

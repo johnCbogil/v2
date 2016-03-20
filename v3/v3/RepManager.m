@@ -35,7 +35,6 @@
     return self;
 }
 
-// FIX THE LOGIC IN HERE
 - (NSArray *)createRepsForIndex:(NSInteger)index {
     if (index == 0) {
         self.listOfFederalRepresentatives = [self fetchRepsFromCache:kCachedFederalRepresentatives];
@@ -53,7 +52,6 @@
         if (self.listOfStateRepresentatives.count > 0) {
             return self.listOfStateRepresentatives;
         }
-        
     }
     else if (index == 2) {
         self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
