@@ -19,6 +19,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
+#import <Google/Analytics.h>
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
 
@@ -30,11 +31,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
-@property (strong, nonatomic) NSString *stateLowerDistrictNumber;
-@property (strong, nonatomic) NSString *stateUpperDistrictNumber;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
 @property (strong, nonatomic) PageViewController *pageVC;
+@property (strong, nonatomic) NSString *representativeEmail;
 //@property (strong, nonatomic) FBShimmeringView *shimmeringView;
 //@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @end
@@ -262,13 +262,13 @@
 #pragma mark - Presentation Controllers
 
 - (void)presentEmailViewController:(NSNotification*)notification {
-    NSString *repEmail = [notification object];
+    self.representativeEmail = [notification object];
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         mailViewController.mailComposeDelegate = self;
         //        [mailViewController setSubject:@"Subject Goes Here."];
         //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
-        [mailViewController setToRecipients:@[repEmail]];
+        [mailViewController setToRecipients:@[self.representativeEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
 }
@@ -277,21 +277,30 @@
     UIAlertView *alert;
     switch (result) {
         case MFMailComposeResultCancelled:
-            
-            // TRACK EMAIL CANCELS HERE
-            
+        {
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+                                                                  action:@"email_cancelled"
+                                                                   label:self.representativeEmail
+                                                                   value:@1] build]];
             break;
+        }
         case MFMailComposeResultSaved:
             alert = [[UIAlertView alloc] initWithTitle:@"Draft Saved" message:@"Composed Mail is saved in draft." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             break;
         case MFMailComposeResultSent:
+        {
             alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             
-            // TRACK EMAILS SENT HERE
-            
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+                                                                  action:@"email_sent"
+                                                                   label:self.representativeEmail
+                                                                   value:@1] build]];
             break;
+        }
         case MFMailComposeResultFailed:
             alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Sorry! Failed to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
