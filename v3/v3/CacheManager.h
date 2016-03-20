@@ -14,8 +14,7 @@
 @interface CacheManager : NSObject
 
 +(CacheManager *) sharedInstance;
-//- (id)fetchRepPhotoWithEntityName:(NSString*)entityName withFirstName:(NSString*)firstName withLastName:(NSString*)lastName;
-//- (void)cacheRepresentativePhoto:(id)representative withEntityName:(NSString*)entityName;
+- (void)saveRepsToCache:(NSArray *)representatives forKey:(NSString *)key;
 - (NSArray *)checkUserDefaultsForRepresentative:(NSString*)representativeType;
 
 @end

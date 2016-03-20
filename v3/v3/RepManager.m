@@ -109,8 +109,8 @@
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [listOfFederalRepresentatives addObject:federalRepresentative];
             self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfFederalRepresentatives] forKey:kCachedFederalRepresentatives];
-            [[NSUserDefaults standardUserDefaults]synchronize];
+                            // MOVE THIS INTO THE CACHE MANAGER
+            [[CacheManager sharedInstance]saveRepsToCache:self.listOfFederalRepresentatives forKey:kCachedFederalRepresentatives];
             successBlock();
         }
         
@@ -130,8 +130,8 @@
             if (successBlock) {
                 [listOfStateRepresentatives addObject:stateRepresentative];
                 self.listOfStateRepresentatives = listOfStateRepresentatives;
-                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfStateRepresentatives] forKey:kCachedStateRepresentatives];
-                [[NSUserDefaults standardUserDefaults]synchronize];
+                                // MOVE THIS INTO THE CACHE MANAGER
+                [[CacheManager sharedInstance]saveRepsToCache:self.listOfStateRepresentatives forKey:kCachedStateRepresentatives];
                 successBlock();
             }
         }
@@ -217,9 +217,9 @@
                 NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
                 [listOfNYCRepresentatives addObject:nycRepresentative];
                 self.listOfNYCRepresentatives = listOfNYCRepresentatives;
-                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.listOfNYCRepresentatives] forKey:kCachedNYCRepresentatives];
-                [[NSUserDefaults standardUserDefaults]synchronize];
                 
+                // MOVE THIS INTO THE CACHE MANAGER
+                [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 
                 return isLocationWithinPath;
