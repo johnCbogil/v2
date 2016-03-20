@@ -15,6 +15,5 @@
 
 +(CacheManager *) sharedInstance;
 - (void)saveRepsToCache:(NSArray *)representatives forKey:(NSString *)key;
-- (NSArray *)checkUserDefaultsForRepresentative:(NSString*)representativeType;
-
+- (NSArray *)fetchRepsFromCache:(NSString *)representativeType;
 @end

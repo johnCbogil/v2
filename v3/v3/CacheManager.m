@@ -37,22 +37,13 @@
 
 
 // RENAME THIS TO FETCH (?)
-- (NSArray *)checkUserDefaultsForRepresentative:(NSString*)representativeType {
+- (NSArray *)fetchRepsFromCache:(NSString *)representativeType {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];
     if (dataRepresentingCachedRepresentatives != nil) {
         NSArray *oldCachedRepresentatives = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingCachedRepresentatives];
         if (oldCachedRepresentatives != nil){
-            
-            if ([representativeType isEqualToString:kCachedFederalRepresentatives]) {
-                return  oldCachedRepresentatives;
-            }
-            else if ([representativeType isEqualToString:kCachedStateRepresentatives]) {
-               return   oldCachedRepresentatives;
-            }
-            else if ([representativeType isEqualToString:kCachedNYCRepresentatives]){
-               return  oldCachedRepresentatives;
-            }
+            return oldCachedRepresentatives;
         }
     }
     return nil;

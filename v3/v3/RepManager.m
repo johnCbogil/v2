@@ -35,30 +35,32 @@
     return self;
 }
 
+// FIX THE LOGIC IN HERE
 - (NSArray *)createRepsForIndex:(NSInteger)index {
     if (index == 0) {
-        self.listOfFederalRepresentatives = [self checkCacheForRepresentatives:kCachedFederalRepresentatives];
+        self.listOfFederalRepresentatives = [self fetchRepsFromCache:kCachedFederalRepresentatives];
         
-        if (!self.listOfFederalRepresentatives.count > 0) {
+        if (self.listOfFederalRepresentatives.count > 0) {
+            return self.listOfFederalRepresentatives;
+        }
+        else {
             [[LocationService sharedInstance]startUpdatingLocation];
         }
-        else return self.listOfFederalRepresentatives;
     }
     else if (index == 1) {
-        self.listOfStateRepresentatives = [self checkCacheForRepresentatives:kCachedStateRepresentatives];
+        self.listOfStateRepresentatives = [self fetchRepsFromCache:kCachedStateRepresentatives];
         
-        if (!self.listOfStateRepresentatives.count > 0) {
-            //            [[LocationService sharedInstance]startUpdatingLocation];
+        if (self.listOfStateRepresentatives.count > 0) {
+            return self.listOfStateRepresentatives;
         }
-        else return self.listOfStateRepresentatives;
+        
     }
     else if (index == 2) {
-        self.listOfNYCRepresentatives = [self checkCacheForRepresentatives:kCachedNYCRepresentatives];
+        self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
         
-        if (!self.listOfNYCRepresentatives.count > 0) {
-            //            [[LocationService sharedInstance]startUpdatingLocation];
+        if (self.listOfNYCRepresentatives.count > 0) {
+            return self.listOfNYCRepresentatives;
         }
-        else return self.listOfNYCRepresentatives;
     }
     return nil;
 }
@@ -92,8 +94,8 @@
 
 #pragma mark - Check Cache For Representatives
 
-- (NSArray *)checkCacheForRepresentatives:(NSString *)representativeType {
-    return [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:representativeType];
+- (NSArray *)fetchRepsFromCache:(NSString *)representativeType {
+    return [[CacheManager sharedInstance] fetchRepsFromCache:representativeType];
 }
 
 #pragma mark - Create Federal Representatives
