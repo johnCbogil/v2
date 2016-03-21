@@ -316,17 +316,23 @@
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
             switch (result) {
                 case SLComposeViewControllerResultCancelled:
                     NSLog(@"Twitter Post Canceled");
-                    // TRACK TWITTER CANCELS HERE
+                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+                                                                          action:@"tweet_cancelled"
+                                                                           label:initialText
+                                                                           value:@1] build]];
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
-                    // TRACK TWITTER POSTS HERE
+                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+                                                                          action:@"tweet_sent"
+                                                                           label:initialText
+                                                                           value:@1] build]];
                     break;
-                    
                 default:
                     break;
             }

@@ -133,11 +133,10 @@
         
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
-                                                              action:@"nyc_call"  // Event action (required)
-                                                               label:self.nycRepresentative.name           // Event label
-                                                               value:@1] build]];    // Event value
-
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+                                                              action:@"nyc_call"
+                                                               label:self.nycRepresentative.name
+                                                               value:@1] build]];
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.districtPhone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
