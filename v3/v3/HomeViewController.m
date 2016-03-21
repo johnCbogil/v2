@@ -323,14 +323,14 @@
                     NSLog(@"Twitter Post Canceled");
                     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                                           action:@"tweet_cancelled"
-                                                                           label:initialText
+                                                                           label:[notification.userInfo objectForKey:@"accountName"]
                                                                            value:@1] build]];
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
                     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                                           action:@"tweet_sent"
-                                                                           label:initialText
+                                                                           label:[notification.userInfo objectForKey:@"accountName"]
                                                                            value:@1] build]];
                     break;
                 default:
@@ -340,8 +340,6 @@
         [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
     }
 }
-
-
 
 - (IBAction)infoButtonDidPress:(id)sender {
     [self presentInfoViewController];
