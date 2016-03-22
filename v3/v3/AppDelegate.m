@@ -11,6 +11,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
+#import "Onboarding2ViewController.h"
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
@@ -23,7 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self checkForFirstLaunch];
+    [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
@@ -55,7 +56,7 @@
 
 # pragma mark - AppDidFinishLaunchingConfigs
 
-- (void)checkForFirstLaunch {
+- (void)setInitialViewController {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         // The app is launching for the first time
         NSLog(@"First launch");
@@ -66,6 +67,22 @@
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
+    }
+    else if (![self isOnboardingCompleted]) {
+        // User did not complete onboarding
+        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+        Onboarding2ViewController *onboardingPageViewController = (Onboarding2ViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"Onboarding2ViewController"];
+        self.window.rootViewController = onboardingPageViewController;
+        [self.window makeKeyAndVisible];
+    }
+}
+
+- (BOOL)isOnboardingCompleted {
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isOnboardingCompleted"]) {
+        return YES;
+    }
+    else {
+        return NO;
     }
 }
 

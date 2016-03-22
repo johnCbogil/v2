@@ -34,11 +34,13 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)permitLocationUseButtonDidPress:(id)sender {
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];
     [[LocationService sharedInstance] startUpdatingLocation];
     [LocationService sharedInstance].locationManager.delegate = self;
 
 }
 - (IBAction)deferLocationUseButtonDidPress:(id)sender {
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     HomeViewController *homeViewController = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
     // TODO: EVENTUALLY THIS SHOULD DISMISS/POP INSTEAD OF PRESENT OVER
