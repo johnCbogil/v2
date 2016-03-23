@@ -20,6 +20,9 @@
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 #import <Google/Analytics.h>
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
+
 //#import "FBShimmeringView.h"
 //#import "FBShimmeringLayer.h"
 
@@ -35,19 +38,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
+@property (nonatomic, strong) CTCallCenter *callCenter;
+
 //@property (strong, nonatomic) FBShimmeringView *shimmeringView;
 //@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @end
 
 @implementation HomeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // [[CacheManager sharedInstance] checkUserDefaultsForRepresentative:kCachedFederalRepresentatives];
     [self addObservers];
     [self setFont];
     [self setColors];
     [self prepareSearchBar];
+    [self setupCallCenter];
 }
 
 - (void)dealloc {
@@ -91,6 +97,15 @@
     [self.containerView removeGestureRecognizer:self.tap];
 }
 
+- (void)setupCallCenter {
+    self.callCenter = [[CTCallCenter alloc] init];
+    [self.callCenter setCallEventHandler:^(CTCall *call) {
+        if ([[call callState] isEqual:CTCallStateDisconnected]) {
+            NSLog(@"CALLS DISCONNECTING");
+        }
+    }];
+}
+
 #pragma mark - Search Bar Delegate Methods
 
 - (void)prepareSearchBar {
@@ -100,7 +115,7 @@
     
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
     
-    // ROUND THE BOX
+    // Round the box
     self.searchView.layer.cornerRadius = 5;
     self.searchView.clipsToBounds = YES;
     
@@ -115,25 +130,25 @@
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
      setDefaultTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:15],NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    // HIDE THE MAGNYIFYING GLASS
+    // Hide the magnifying glass
     [self.searchBar setImage:[UIImage new]
             forSearchBarIcon:UISearchBarIconSearch
                        state:UIControlStateNormal];
     
-    // SET THE CURSOR POSITION
+    // Set the cursor position
     [[UISearchBar appearance] setPositionAdjustment:UIOffsetMake(-20, 0)
                                    forSearchBarIcon:UISearchBarIconSearch];
     
     [self.searchBar setTintColor:[UIColor whiteColor]];
     
-    // SET THE CURSOR COLOR
+    // Set the cursor color
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
      setTintColor:[UIColor colorWithRed:255.0 / 255.0
                                   green:160.0 / 255.0
                                    blue:5.0 / 255.0
                                   alpha:1.0]];
     
-    // SET THE CLEAR BUTTON FOR BOTH STATES
+    // Set the clear button for both states
     [self.searchBar setImage:[UIImage imageNamed:@"ClearButton"]
             forSearchBarIcon:UISearchBarIconClear
                        state:UIControlStateHighlighted];
@@ -141,11 +156,11 @@
             forSearchBarIcon:UISearchBarIconClear
                        state:UIControlStateNormal];
     
-    // ROUND THE SEARCH BAR
+    // Round the search bar
     UITextField *textSearchField = [self.searchBar valueForKey:@"_searchField"];
     textSearchField.layer.cornerRadius = 13;
     
-    // HIDE THE SEARCH BAR FOR NOW
+    // Hide the search bar
     self.searchBar.alpha = 0.0;
     self.searchButton.alpha = 1.0;
     self.magnifyingGlass.alpha = 1.0;
