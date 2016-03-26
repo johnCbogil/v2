@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomAlertDelegate.h"
 
 @interface StateRepresentativeTableViewCell : UITableViewCell
 

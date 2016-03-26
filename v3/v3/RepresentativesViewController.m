@@ -26,6 +26,8 @@
 @property (strong, nonatomic) NSArray *tableViewDataSource;
 @property (strong, nonatomic) NSString *getRepresentativesMethod;
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageOne;
+@property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageTwo;
 @end
 
 @implementation RepresentativesViewController
