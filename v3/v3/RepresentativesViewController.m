@@ -19,7 +19,6 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
-
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -42,13 +41,13 @@
     [self fetchDataForIndex:self.index];
     [self createTableView];
     [self createRefreshControl];
+    [self createShimmer];
     self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
-    [self shimmerrrr];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
-        [self toggleZeroState];
+    [self toggleZeroState];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -85,7 +84,7 @@
 
 - (void)toggleZeroState {
     if (self.tableViewDataSource.count == 0) {
-        [self turnZeroStateOn];
+        [self turnZeroStateOnWithMessage];
     }
     else {
         [self turnZeroStateOff];
@@ -97,10 +96,15 @@
 }
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOn) name:@"turnZeroStateOn" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOnWithMessage) name:@"turnZeroStateOn" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 #pragma mark - UI Methods
@@ -110,12 +114,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kNYCRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kNYCRepresentativeTableViewCell];
-
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
 
-- (void)turnZeroStateOn {
+- (void)turnZeroStateOnWithMessage {
     [UIView animateWithDuration:.25 animations:^{
         self.zeroStateContainer.alpha = 1;
     }];
@@ -142,6 +146,25 @@
     [self.tableView addSubview:self.refreshControl];
 }
 
+#pragma mark - Shimmer
+
+- (void)createShimmer {
+    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.zeroStateImageOne;
+    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
+    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
+}
+
+- (void)toggleShimmerOn {
+    self.shimmeringView.shimmering = YES;
+    self.shimmeringViewTwo.shimmering = YES;
+}
+
+- (void)toggleShimmerOff {
+    self.shimmeringView.shimmering = NO;
+    self.shimmeringViewTwo.shimmering = NO;
+}
+
 #pragma mark - UITableView Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -155,33 +178,21 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell;
     if (self.index == 0) {
-         cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
+        cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
     }
     if (self.index == 1) {
-         cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
+        cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
     }
     if (self.index == 2) {
-         cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
+        cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
     }
-
+    
     [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
-}
-
-#pragma mark - Shimmer
-
-- (void)shimmerrrr {    
-    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.zeroStateImageOne;
-    self.shimmeringView.shimmering = YES;
-    
-    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
-    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
-    self.shimmeringViewTwo.shimmering = YES;
 }
 
 @end
