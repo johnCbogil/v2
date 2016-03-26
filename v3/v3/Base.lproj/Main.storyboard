@@ -34,9 +34,16 @@
                                     <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ZeroStateImage" translatesAutoresizingMaskIntoConstraints="NO" id="RTX-8n-373" userLabel="Zero State Image">
                                         <rect key="frame" x="8" y="68" width="300" height="120"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-DP-8st" customClass="FBShimmeringView">
+                                        <rect key="frame" x="8" y="68" width="300" height="120"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ZeroStateImage" translatesAutoresizingMaskIntoConstraints="NO" id="ov8-7t-aM7" userLabel="Zero State Image">
                                         <rect key="frame" x="8" y="203" width="300" height="120"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fz5-Gd-pUp" customClass="FBShimmeringView">
+                                        <rect key="frame" x="8" y="203" width="300" height="120"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find your representatives." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yde-ga-hOL">
                                         <rect key="frame" x="8" y="0.0" width="584" height="70"/>
                                         <constraints>
@@ -72,6 +79,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="shimmeringView" destination="Tex-DP-8st" id="Iw5-Uc-UWE"/>
+                        <outlet property="shimmeringViewTwo" destination="Fz5-Gd-pUp" id="5V6-6g-I62"/>
                         <outlet property="tableView" destination="eAc-xW-YCi" id="HMD-fd-bhO"/>
                         <outlet property="zeroStateContainer" destination="r1E-eO-bfm" id="c7k-wr-N9F"/>
                         <outlet property="zeroStateImageOne" destination="RTX-8n-373" id="pjy-YJ-sXc"/>

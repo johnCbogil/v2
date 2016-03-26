@@ -16,6 +16,9 @@
 #import "NetworkManager.h"
 #import "VoicesConstants.h"
 #import "UIFont+voicesFont.h"
+#import "FBShimmeringView.h"
+#import "FBShimmeringLayer.h"
+
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageOne;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageTwo;
+@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
 @end
 
 @implementation RepresentativesViewController
@@ -38,6 +43,7 @@
     [self createTableView];
     [self createRefreshControl];
     self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
+    [self shimmerrrr];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -164,6 +170,18 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
+}
+
+#pragma mark - Shimmer
+
+- (void)shimmerrrr {    
+    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.zeroStateImageOne;
+    self.shimmeringView.shimmering = YES;
+    
+    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
+    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
+    self.shimmeringViewTwo.shimmering = YES;
 }
 
 @end
