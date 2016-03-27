@@ -230,6 +230,7 @@
                                 <exclude reference="3Q5-Dz-1ZV"/>
                                 <exclude reference="e9l-VL-Iha"/>
                                 <exclude reference="fdd-ld-Asd"/>
+                                <exclude reference="lta-zW-KRD"/>
                                 <exclude reference="hHC-Dt-Ges"/>
                             </mask>
                         </variation>
@@ -247,6 +248,7 @@
                         <outlet property="searchView" destination="Q5v-sk-Prb" id="gZq-jV-PdK"/>
                         <outlet property="searchViewWidthConstraint" destination="QRk-ky-U91" id="6cb-6t-jZp"/>
                         <outlet property="shimmerViewWidthConstraint" destination="Qll-F1-LOs" id="hYq-fW-aHy"/>
+                        <outlet property="shimmeringView" destination="5eP-n4-6US" id="0A0-Ng-jsi"/>
                         <outlet property="singleLineView" destination="bCG-p1-k8a" id="Lre-QG-4da"/>
                     </connections>
                 </viewController>

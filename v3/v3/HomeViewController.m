@@ -42,8 +42,9 @@
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (nonatomic, strong) CTCallCenter *callCenter;
+@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 
-@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+//@property (strong, nonatomic) FBShimmeringView *shimmeringView;
 //@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @end
 
@@ -411,36 +412,29 @@
 
 - (void)prepareShimmer {
     
-    //self.searchView.frame = self.shimmeringView.bounds;
-    //self.shimmeringView.contentView = self.searchView;
+    self.searchView.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.searchView;
     self.shimmeringView.shimmering = YES;
 
-    
-    
-//    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.searchView.frame];
-//    [self.view addSubview:self.shimmeringView];
-//    self.searchView.frame = self.shimmeringView.frame;
-//    self.shimmeringView.contentView = self.searchView;
-//    self.shimmeringView.shimmering = YES;
-//
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
 }
 
-////- (void)toggleShimmerOn {
-////    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
-////    self.shimmeringView.shimmering = YES;
-////}
-//
-//- (void)toggleShimmerOff {
-//    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
-//}
+- (void)toggleShimmerOn {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
+    self.shimmeringView.shimmering = YES;
+}
+
+- (void)toggleShimmerOff {
+    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
+}
 
 @end
