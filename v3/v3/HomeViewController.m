@@ -25,8 +25,6 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
-
-
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
@@ -43,21 +41,18 @@
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (nonatomic, strong) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
-
-//@property (strong, nonatomic) FBShimmeringView *shimmeringView;
-//@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @end
 
 @implementation HomeViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addObservers];
     [self setFont];
     [self setColors];
-    [self prepareSearchBar];
-    [self setupCallCenter];
+    [self setSearchBar];
+    [self setCallCenter];
+    [self setShimmer];
 }
 
 - (void)dealloc {
@@ -85,9 +80,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:)name:@"updateInformationLabel" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    
+    // THERE ARE REDUNDANT OBSERVERS HERE
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
@@ -101,7 +103,7 @@
     [self.containerView removeGestureRecognizer:self.tap];
 }
 
-- (void)setupCallCenter {
+- (void)setCallCenter {
     self.callCenter = [[CTCallCenter alloc] init];
     [self.callCenter setCallEventHandler:^(CTCall *call) {
         if ([[call callState] isEqual:CTCallStateDisconnected]) {
@@ -112,7 +114,7 @@
 
 #pragma mark - Search Bar Delegate Methods
 
-- (void)prepareSearchBar {
+- (void)setSearchBar {
     
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by location";
@@ -262,7 +264,7 @@
     return self.legislatureLevel.intrinsicContentSize.width + 60;
 }
 
-- (void)changePage:(NSNotification*)notification {
+- (void)changePage:(NSNotification *)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
@@ -287,6 +289,22 @@
     [self updateInformationLabel:nil];
 }
 
+#pragma mark - FB Shimmer methods
+
+- (void)setShimmer {
+    self.searchView.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.searchView;
+    self.shimmeringView.shimmering = YES;
+}
+
+- (void)toggleShimmerOn {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
+    self.shimmeringView.shimmering = YES;
+}
+
+- (void)toggleShimmerOff {
+    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
+}
 
 #pragma mark - Presentation Controllers
 
@@ -398,43 +416,6 @@
     else {
         self.callToActionLabel.text = @"Make your voice heard.";
     }
-}
-
-#pragma mark - FB Shimmer methods
-// Save for later
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
-       [self prepareShimmer];
-}
-
-
-- (void)prepareShimmer {
-    
-    self.searchView.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.searchView;
-    self.shimmeringView.shimmering = YES;
-
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
-}
-
-- (void)viewDidLayoutSubviews {
-    //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
-}
-
-- (void)toggleShimmerOn {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
-    self.shimmeringView.shimmering = YES;
-}
-
-- (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
 }
 
 @end
