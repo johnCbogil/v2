@@ -22,9 +22,10 @@
 #import <Google/Analytics.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
+#import "FBShimmeringView.h"
+#import "FBShimmeringLayer.h"
 
-//#import "FBShimmeringView.h"
-//#import "FBShimmeringLayer.h"
+
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -40,7 +41,7 @@
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (nonatomic, strong) CTCallCenter *callCenter;
 
-//@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+@property (strong, nonatomic) FBShimmeringView *shimmeringView;
 //@property (weak, nonatomic) IBOutlet UIView *shimmer;
 @end
 
@@ -392,23 +393,23 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // THIS NEEDS TO HAPPEN HERE BC CONSTRAINTS HAVE NOT APPEARED UNTIL VDA
-    //   [self prepareShimmer];
+       [self prepareShimmer];
 }
 
-//
-//- (void)prepareShimmer {
-//    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.shimmer.frame];
-//    [self.view addSubview:self.shimmeringView];
-//    self.voicesLabel.frame = self.shimmeringView.frame;
-//    //self.shimmeringView.contentView = self.voicesLabel;
-//    self.shimmeringView.shimmering = NO;
+
+- (void)prepareShimmer {
+    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.searchView.frame];
+    [self.view addSubview:self.shimmeringView];
+    self.searchView.frame = self.shimmeringView.frame;
+    self.shimmeringView.contentView = self.searchView;
+    self.shimmeringView.shimmering = YES;
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
-//}
+}
 
 - (void)viewDidLayoutSubviews {
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(self.voicesLabel.frame));
