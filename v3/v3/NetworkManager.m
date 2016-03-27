@@ -45,7 +45,6 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOff" object:nil];
         //NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
@@ -77,7 +76,6 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"turnZeroStateOff" object:nil];
        // NSLog(@"%@", responseObject);
         successBlock(responseObject);
         

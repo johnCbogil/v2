@@ -96,8 +96,6 @@
 }
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOnWithMessage) name:@"turnZeroStateOn" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(turnZeroStateOff) name:@"turnZeroStateOff" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
@@ -123,6 +121,9 @@
     [UIView animateWithDuration:.25 animations:^{
         self.zeroStateContainer.alpha = 1;
     }];
+    if (self.index == 2) {
+        self.zeroStateLabel.text = @"Looks like you're not in NYC. Try searching instead.";
+    }
 }
 
 - (void)turnZeroStateOff {
