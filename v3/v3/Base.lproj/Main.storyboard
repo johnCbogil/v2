@@ -104,7 +104,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb" customClass="FBShimmeringView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-sk-Prb">
                                 <rect key="frame" x="215" y="35" width="169" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-F5-Ygv">
@@ -159,6 +159,12 @@
                                     <constraint firstAttribute="bottom" secondItem="6tq-q4-0eV" secondAttribute="bottom" constant="8" id="pOv-Nm-eex"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eP-n4-6US" customClass="FBShimmeringView">
+                                <rect key="frame" x="216" y="35" width="169" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="169" id="Qll-F1-LOs"/>
+                                </constraints>
+                            </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-84-x7R">
                                 <rect key="frame" x="281" y="79" width="39" height="45"/>
                                 <constraints>
@@ -195,24 +201,35 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5eP-n4-6US" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="3Q5-Dz-1ZV"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="28" id="3To-Ey-EVZ"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="BMJ-3Q-ZZ2"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="111" id="Czv-sb-xwj"/>
                             <constraint firstItem="DMq-M1-ppt" firstAttribute="centerY" secondItem="xae-1n-mss" secondAttribute="centerY" constant="-0.5" id="EQN-0M-lim"/>
                             <constraint firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" id="Gmk-0R-tGC"/>
+                            <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="5eP-n4-6US" secondAttribute="bottom" constant="-4" id="NPa-pD-vAa"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="top" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="8" id="NWh-HG-jem"/>
+                            <constraint firstItem="5eP-n4-6US" firstAttribute="centerX" secondItem="WRM-qV-4HZ" secondAttribute="centerX" id="OyY-UD-EJ1"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" constant="-13" id="PUX-vQ-t6s"/>
                             <constraint firstItem="xae-1n-mss" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="Pl3-Xz-oQp"/>
+                            <constraint firstItem="5eP-n4-6US" firstAttribute="bottom" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="28" id="e9l-VL-Iha"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="xae-1n-mss" secondAttribute="bottom" constant="15" id="f9B-Vh-NbD"/>
+                            <constraint firstItem="5eP-n4-6US" firstAttribute="bottom" secondItem="baJ-84-x7R" secondAttribute="bottom" id="fdd-ld-Asd"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="Q5v-sk-Prb" secondAttribute="bottom" constant="-4" id="gXE-CK-0AJ"/>
                             <constraint firstItem="Q5v-sk-Prb" firstAttribute="centerY" secondItem="WRM-qV-4HZ" secondAttribute="centerY" id="hHC-Dt-Ges"/>
+                            <constraint firstItem="5eP-n4-6US" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="lta-zW-KRD"/>
                             <constraint firstItem="DMq-M1-ppt" firstAttribute="leading" secondItem="xae-1n-mss" secondAttribute="trailing" constant="8" symbolic="YES" id="qGi-BI-3ng"/>
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="s1t-Jz-36n"/>
+                            <constraint firstItem="5eP-n4-6US" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="tyu-Ak-bGi"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="uH1-CP-oKh"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="centerX" secondItem="Q5v-sk-Prb" secondAttribute="centerX" constant="0.5" id="w6O-PF-YZW"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="5eP-n4-6US" secondAttribute="bottom" constant="28" id="zTz-Jh-hHf"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="3Q5-Dz-1ZV"/>
+                                <exclude reference="e9l-VL-Iha"/>
+                                <exclude reference="fdd-ld-Asd"/>
                                 <exclude reference="hHC-Dt-Ges"/>
                             </mask>
                         </variation>
@@ -229,6 +246,7 @@
                         <outlet property="searchButton" destination="Blt-F5-Ygv" id="HCQ-mA-MIT"/>
                         <outlet property="searchView" destination="Q5v-sk-Prb" id="gZq-jV-PdK"/>
                         <outlet property="searchViewWidthConstraint" destination="QRk-ky-U91" id="6cb-6t-jZp"/>
+                        <outlet property="shimmerViewWidthConstraint" destination="Qll-F1-LOs" id="hYq-fW-aHy"/>
                         <outlet property="singleLineView" destination="bCG-p1-k8a" id="Lre-QG-4da"/>
                     </connections>
                 </viewController>

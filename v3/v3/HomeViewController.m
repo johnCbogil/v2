@@ -34,7 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shimmerViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
+@property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
 @property (strong, nonatomic) PageViewController *pageVC;
@@ -115,6 +117,7 @@
     self.searchBar.placeholder = @"Search by location";
     
     self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
+    self.shimmerViewDefaultWidth = self.shimmerViewWidthConstraint.constant;
     
     // Round the box
     self.searchView.layer.cornerRadius = 5;
@@ -216,6 +219,8 @@
 
 - (void)showSearchBar {
     self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
+    self.shimmerViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
+    
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
@@ -233,6 +238,7 @@
 
 - (void)hideSearchBar {
     self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
@@ -251,6 +257,10 @@
     return self.legislatureLevel.intrinsicContentSize.width + 60;
 }
 
+- (CGFloat)shimmerViewWidth {
+    return self.legislatureLevel.intrinsicContentSize.width + 60;
+}
+
 - (void)changePage:(NSNotification*)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
@@ -258,6 +268,8 @@
     }
     
     self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+    
     [UIView animateWithDuration:.15
                      animations:^{
                          [self.view layoutIfNeeded];
@@ -398,11 +410,18 @@
 
 
 - (void)prepareShimmer {
-    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.searchView.frame];
-    [self.view addSubview:self.shimmeringView];
-    self.searchView.frame = self.shimmeringView.frame;
-    self.shimmeringView.contentView = self.searchView;
+    
+    //self.searchView.frame = self.shimmeringView.bounds;
+    //self.shimmeringView.contentView = self.searchView;
     self.shimmeringView.shimmering = YES;
+
+    
+    
+//    self.shimmeringView = [[FBShimmeringView alloc]initWithFrame:self.searchView.frame];
+//    [self.view addSubview:self.shimmeringView];
+//    self.searchView.frame = self.shimmeringView.frame;
+//    self.shimmeringView.contentView = self.searchView;
+//    self.shimmeringView.shimmering = YES;
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
