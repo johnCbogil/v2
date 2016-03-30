@@ -75,6 +75,7 @@
         // NEED TO HANDLE ERROR
         [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
         } onError:^(NSError *error) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
             NSLog(@"%@",[error localizedDescription]);
         }];
         
@@ -87,7 +88,6 @@
 - (void)startUpdatingLocation {
     [[LocationService sharedInstance]startUpdatingLocation];
 }
-
 
 #pragma mark - Check Cache For Representatives
 
@@ -108,7 +108,6 @@
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [listOfFederalRepresentatives addObject:federalRepresentative];
             self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-                            // MOVE THIS INTO THE CACHE MANAGER
             [[CacheManager sharedInstance]saveRepsToCache:self.listOfFederalRepresentatives forKey:kCachedFederalRepresentatives];
             successBlock();
         }
@@ -129,7 +128,6 @@
             if (successBlock) {
                 [listOfStateRepresentatives addObject:stateRepresentative];
                 self.listOfStateRepresentatives = listOfStateRepresentatives;
-                                // MOVE THIS INTO THE CACHE MANAGER
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfStateRepresentatives forKey:kCachedStateRepresentatives];
                 successBlock();
             }
@@ -216,8 +214,6 @@
                 NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
                 [listOfNYCRepresentatives addObject:nycRepresentative];
                 self.listOfNYCRepresentatives = listOfNYCRepresentatives;
-                
-                // MOVE THIS INTO THE CACHE MANAGER
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 
