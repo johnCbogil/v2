@@ -74,15 +74,14 @@
         
         // NEED TO HANDLE ERROR
         [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             NSLog(@"%@",[error localizedDescription]);
         }];
         
         // NEED TO ADD COMPLETION BLOCK
         [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
     }
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
 }
 
 - (void)startUpdatingLocation {

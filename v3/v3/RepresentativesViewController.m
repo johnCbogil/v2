@@ -48,6 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self addObservers];
     [self toggleZeroState];
+    [self reloadTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,7 +75,6 @@
     }
     
     [self toggleZeroState];
-    
     [self.refreshControl endRefreshing];
 }
 
