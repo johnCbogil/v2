@@ -44,7 +44,7 @@
                                         <rect key="frame" x="8" y="203" width="300" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find your representatives." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yde-ga-hOL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yde-ga-hOL">
                                         <rect key="frame" x="8" y="0.0" width="584" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="8Is-Dd-6Rx"/>
@@ -227,11 +227,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="hHC-Dt-Ges"/>
                                 <exclude reference="3Q5-Dz-1ZV"/>
                                 <exclude reference="e9l-VL-Iha"/>
                                 <exclude reference="fdd-ld-Asd"/>
                                 <exclude reference="lta-zW-KRD"/>
-                                <exclude reference="hHC-Dt-Ges"/>
                             </mask>
                         </variation>
                     </view>
