@@ -74,15 +74,15 @@
         
         // NEED TO HANDLE ERROR
         [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
-        } onError:^(NSError *error) {
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
             NSLog(@"%@",[error localizedDescription]);
         }];
         
         // NEED TO ADD COMPLETION BLOCK
         [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
     }
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+    //[[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
 }
 
 - (void)startUpdatingLocation {
@@ -215,7 +215,7 @@
                 [listOfNYCRepresentatives addObject:nycRepresentative];
                 self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+                //[[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 
                 return isLocationWithinPath;
             }
