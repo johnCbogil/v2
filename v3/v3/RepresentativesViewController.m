@@ -115,7 +115,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-}q
+}
 
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
