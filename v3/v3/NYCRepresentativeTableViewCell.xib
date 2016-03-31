@@ -24,6 +24,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="uD8-GH-u3I"/>
                                 <exclude reference="uX5-7Y-aNQ"/>
                             </mask>
                         </variation>
