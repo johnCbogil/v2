@@ -10,6 +10,7 @@
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
 		5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */; };
 		5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */; };
+		522D3B2C1CADE3E400E3CC4E /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 522D3B2B1CADE3E400E3CC4E /* OpenSans-Regular.ttf */; };
 		5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */; };
 		524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */; };
@@ -65,6 +66,7 @@
 		5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepresentativeTableViewCell.h; sourceTree = "<group>"; };
 		5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepresentativeTableViewCell.m; sourceTree = "<group>"; };
 		5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateRepresentativeTableViewCell.xib; sourceTree = "<group>"; };
+		522D3B2B1CADE3E400E3CC4E /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FederalRepresentativeTableViewCell.xib; sourceTree = "<group>"; };
 		5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalRepresentativeTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentativeTableViewCell.m; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				526F8E6B1C947BFE0037FB06 /* Montserrat-Light.ttf */,
+				522D3B2B1CADE3E400E3CC4E /* OpenSans-Regular.ttf */,
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
 				52F4B3CB1C9A4BD200B6986F /* NYCCouncilMembers.csv */,
 				52A156C31C7E183400B566ED /* GoogleService-Info.plist */,
@@ -428,6 +431,7 @@
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
+				522D3B2C1CADE3E400E3CC4E /* OpenSans-Regular.ttf in Resources */,
 				5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
