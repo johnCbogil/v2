@@ -38,6 +38,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Location service failed with error %@", error);
+    [[NSNotificationCenter defaultCenter]postNotificationName:AFNetworkingTaskDidSuspendNotification object:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
@@ -64,6 +65,7 @@
             successBlock(location);
         }
     } onError:^(NSError *error) {
+        NSLog(@"%@",[error localizedDescription]);
     }];
 }
 

@@ -36,7 +36,7 @@
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
 @property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
-@property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (nonatomic, strong) CTCallCenter *callCenter;
@@ -65,11 +65,11 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.5];
+    self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.75];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
 - (void)setFont {
-    self.callToActionLabel.font = [UIFont voicesFontWithSize:24];
+//    self.callToActionLabel.font = [UIFont voicesFontWithSize:24];
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
 }
 
@@ -78,13 +78,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:)name:@"updateInformationLabel" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:)name:@"updateInformationLabel" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
     // THERE ARE REDUNDANT OBSERVERS HERE
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidFinishNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
@@ -287,7 +287,7 @@
     else {
         self.pageControl.currentPage = 2;
     }
-    [self updateInformationLabel:nil];
+//    [self updateInformationLabel:nil];
 }
 
 #pragma mark - FB Shimmer methods
@@ -410,13 +410,13 @@
     [popupController presentInViewController:self];
 }
 
-- (void)updateInformationLabel:(NSNotification*)notification {
-    if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
-        self.callToActionLabel.text = @"loading...";
-    }
-    else {
-        self.callToActionLabel.text = @"Make your voice heard.";
-    }
-}
+//- (void)updateInformationLabel:(NSNotification*)notification {
+//    if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
+//        self.callToActionLabel.text = @"loading...";
+//    }
+//    else {
+//        self.callToActionLabel.text = @"Make your voice heard.";
+//    }
+//}
 
 @end

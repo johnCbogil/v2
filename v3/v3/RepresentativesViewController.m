@@ -84,7 +84,7 @@
 
 - (void)toggleZeroState {
     if (self.tableViewDataSource.count == 0) {
-        [self turnZeroStateOnWithMessage];
+        [self turnZeroStateOn];
     }
     else {
         [self turnZeroStateOff];
@@ -115,14 +115,17 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-}
+}q
 
-- (void)turnZeroStateOnWithMessage {
+- (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
         self.zeroStateContainer.alpha = 1;
     }];
     if (self.index == 2) {
         self.zeroStateLabel.text = @"Looks like you're not in NYC. Try searching instead.";
+    }
+    else {
+        self.zeroStateLabel.text = @"Finding your representatives...";
     }
 }
 
