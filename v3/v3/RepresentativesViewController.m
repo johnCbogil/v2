@@ -99,10 +99,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff:) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff:) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff:) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 #pragma mark - UI Methods
@@ -123,9 +123,6 @@
     }];
     if (self.index == 2) {
         self.zeroStateLabel.text = @"Looks like you're not in NYC. Try searching instead.";
-    }
-    else {
-        self.zeroStateLabel.text = @"Finding your representatives...";
     }
 }
 
@@ -162,9 +159,11 @@
 - (void)toggleShimmerOn {
     self.shimmeringView.shimmering = YES;
     self.shimmeringViewTwo.shimmering = YES;
+
+    
 }
 
-- (void)toggleShimmerOff {
+- (void)toggleShimmerOff:(NSNotification *)notification {
     self.shimmeringView.shimmering = NO;
     self.shimmeringViewTwo.shimmering = NO;
 }
