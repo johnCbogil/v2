@@ -37,6 +37,6 @@ NSString *const kCreateNYCRepresentatives = @"createNYCRepresentatives";
 
 NSString *const kCityCouncilZip = @"CityCouncilDistricts";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
-NSString *const kCityCouncilCSV = @"NYCCouncilMembers";
+NSString *const kCityCouncilCSV = @"NYCCouncil";
 
 @end

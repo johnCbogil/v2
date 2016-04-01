@@ -202,11 +202,13 @@
     double currentLatitude = location.coordinate.latitude;
     double currentLongitude = location.coordinate.longitude;
     if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"NYCCouncilMembers" ofType:@"csv"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCityCouncilCSV ofType:@"csv"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
-        NSArray* rows = [fileContents componentsSeparatedByString:@"\n"];
+        
+        //
+        NSArray* rows = [fileContents componentsSeparatedByString:@"/n"];
         for (NSString *member in rows) {
-            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]-1) {
+            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
                 isLocationWithinPath = YES;
                 NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
                 NSArray *memberData = [member componentsSeparatedByString:@","];

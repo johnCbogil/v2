@@ -68,9 +68,9 @@
 
 - (void)initWithRep:(id)rep {
     self.nycRepresentative = rep;
-    self.nameLabel.text = self.nycRepresentative.name;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
     self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
-    [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];//[UIImage imageWithData:self.nycRepresentative.photo];
+    [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
 }
 
 #pragma mark - User actions
@@ -101,7 +101,7 @@
     }
     else {
         NSString *alertMessage;
-        if (![self.nycRepresentative.name isEqualToString:@"Vacant"]) {
+        if (![self.nycRepresentative.firstName isEqualToString:@"Vacant"]) {
             alertMessage = @"This legislator hasn't given us their email address, try calling them instead.";
         }
         else {
@@ -112,10 +112,10 @@
     }
 }
 - (IBAction)phoneButtonDidPress:(id)sender {
-    if (![self.nycRepresentative.districtPhone isEqualToString:@""]) {
+    if (![self.nycRepresentative.phone isEqualToString:@""]) {
         NSString *confirmCallMessage;
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.nycRepresentative.name];
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Council Member %@",self.nycRepresentative.name]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Council Member %@",self.nycRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }
@@ -135,10 +135,10 @@
         
         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                               action:@"nyc_call"
-                                                               label:self.nycRepresentative.name
+                                                               label:[NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName]
                                                                value:@1] build]];
         
-        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.districtPhone]];
+        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
         {
             [[UIApplication sharedApplication] openURL:callUrl];

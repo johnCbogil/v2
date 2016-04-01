@@ -40,12 +40,12 @@
 		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52F4B3CC1C9A4BD200B6986F /* NYCCouncilMembers.csv in Resources */ = {isa = PBXBuildFile; fileRef = 52F4B3CB1C9A4BD200B6986F /* NYCCouncilMembers.csv */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
 		7806AF18A0764052BFF1AF74 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F5F33B2BC320E83BB44705 /* libPods-Voices.a */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
+		7EF613DB1CAED1D9009EBB03 /* NYCCouncil.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +116,6 @@
 		52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesConstants.m; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
-		52F4B3CB1C9A4BD200B6986F /* NYCCouncilMembers.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NYCCouncilMembers.csv; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		6788BDB69200F1F5B496E34F /* Pods-v3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-v3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-v3/Pods-v3.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
+		7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NYCCouncil.csv; sourceTree = "<group>"; };
 		C812695A3BE1059FDAA3F7A8 /* libPods-v3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-v3.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A26E0C6F354F7C08CD4832 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -236,7 +236,7 @@
 				526F8E6B1C947BFE0037FB06 /* Montserrat-Light.ttf */,
 				522D3B2B1CADE3E400E3CC4E /* OpenSans-Regular.ttf */,
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
-				52F4B3CB1C9A4BD200B6986F /* NYCCouncilMembers.csv */,
+				7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */,
 				52A156C31C7E183400B566ED /* GoogleService-Info.plist */,
 				52BB342F1B6160C900BB9FFD /* Info.plist */,
 				52BB34301B6160CA00BB9FFD /* main.m */,
@@ -424,8 +424,8 @@
 				52BB343A1B6160CA00BB9FFD /* Main.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
+				7EF613DB1CAED1D9009EBB03 /* NYCCouncil.csv in Resources */,
 				52A156C41C7E183400B566ED /* GoogleService-Info.plist in Resources */,
-				52F4B3CC1C9A4BD200B6986F /* NYCCouncilMembers.csv in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,

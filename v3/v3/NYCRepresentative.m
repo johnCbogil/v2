@@ -14,31 +14,25 @@
     //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
-        self.name = data[0];
-        self.districtNumber = data[1];
-        self.borough = data[2];
-        self.party = data[3];
-        self.districtAddress = data[4];
-        self.districtPhone = data[5];
-        self.legAddress = data[6];
-        self.legPhone = data[7];
-        self.email = data[8];
-        self.photoURL = [NSURL URLWithString:data[9]];
-        self.twitter = data[10];
+        self.districtNumber = data[0];
+        self.firstName = data[1];
+        self.lastName = data[2];
+        self.phone = data[8];
+        self.party = data[12];
+        self.email = data[10];
+        self.photoURL = [NSURL URLWithString:data[13]];
+        self.twitter = data[14];
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
-        self.name = [decoder decodeObjectForKey:@"name"];
         self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
-        self.borough = [decoder decodeObjectForKey:@"borough"];
+        self.firstName = [decoder decodeObjectForKey:@"firstName"];
+        self.lastName = [decoder decodeObjectForKey:@"lastName"];
+        self.phone = [decoder decodeObjectForKey:@"phone"];
         self.party = [decoder decodeObjectForKey:@"party"];
-        self.districtAddress = [decoder decodeObjectForKey:@"districtAddress"];
-        self.districtPhone = [decoder decodeObjectForKey:@"districtPhone"];
-        self.legAddress = [decoder decodeObjectForKey:@"legAddress"];
-        self.legPhone = [decoder decodeObjectForKey:@"legPhone"];
         self.email = [decoder decodeObjectForKey:@"email"];
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
@@ -48,14 +42,10 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.name forKey:@"name"];
     [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
-    [coder encodeObject:self.borough forKey:@"borough"];
+    [coder encodeObject:self.firstName forKey:@"firstName"];
+    [coder encodeObject:self.lastName forKey:@"lastName"];
     [coder encodeObject:self.party forKey:@"party"];
-    [coder encodeObject:self.districtAddress forKey:@"districtAddress"];
-    [coder encodeObject:self.districtPhone forKey:@"districtPhone"];
-    [coder encodeObject:self.legAddress forKey:@"legAddress"];
-    [coder encodeObject:self.legPhone forKey:@"legPhone"];
     [coder encodeObject:self.email forKey:@"email"];
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
     [coder encodeObject:self.photo forKey:@"photo"];

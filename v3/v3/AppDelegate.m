@@ -24,7 +24,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //[self printFontFamilies];
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
