@@ -24,15 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
-    for (NSString *familyName in [UIFont familyNames]){
-        NSLog(@"Family name: %@", familyName);
-        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
-            NSLog(@"--Font name: %@", fontName);
-        }
-    }
-    
-    
+    //[self printFontFamilies];
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
@@ -142,6 +134,15 @@
     NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
         
     [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+}
+
+- (void)printFontFamilies {
+    for (NSString *familyName in [UIFont familyNames]){
+        NSLog(@"Family name: %@", familyName);
+        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
+            NSLog(@"--Font name: %@", fontName);
+        }
+    }
 }
 
 @end
