@@ -14,7 +14,7 @@
     //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
-        self.districtNumber = data[0];
+        self.districtNumber = [data[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         self.firstName = data[1];
         self.lastName = data[2];
         self.phone = data[8];
