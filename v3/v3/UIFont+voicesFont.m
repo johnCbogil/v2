@@ -11,6 +11,6 @@
 
 @implementation UIFont (voicesFont)
 + (UIFont*)voicesFontWithSize:(CGFloat)size {
-    return [UIFont fontWithName:kOpenSans size:size];
+    return [UIFont fontWithName:kAvenirNextRegular size:size];
 }
 @end
