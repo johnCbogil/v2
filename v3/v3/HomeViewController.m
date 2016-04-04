@@ -20,8 +20,6 @@
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 #import <Google/Analytics.h>
-#import <CoreTelephony/CTCallCenter.h>
-#import <CoreTelephony/CTCall.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
@@ -36,10 +34,8 @@
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
 @property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
-//@property (weak, nonatomic) IBOutlet UILabel *callToActionLabel;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
-@property (nonatomic, strong) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @end
 
@@ -51,7 +47,6 @@
     [self setFont];
     [self setColors];
     [self setSearchBar];
-    [self setCallCenter];
     [self setShimmer];
 }
 
@@ -101,15 +96,6 @@
     [self hideSearchBar];
     [self.searchBar resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-}
-
-- (void)setCallCenter {
-    self.callCenter = [[CTCallCenter alloc] init];
-    [self.callCenter setCallEventHandler:^(CTCall *call) {
-        if ([[call callState] isEqual:CTCallStateDisconnected]) {
-            NSLog(@"CALLS DISCONNECTING");
-        }
-    }];
 }
 
 #pragma mark - Search Bar Delegate Methods
@@ -182,7 +168,6 @@
             self.pageVC = vc;
         }
     }
-    
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
 //        if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
@@ -329,7 +314,7 @@
             id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
             [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                                   action:@"email_cancelled"
-                                                                   label:self.representativeEmail
+                                                                   label:[NSString stringWithFormat:@"%@, cancel",self.representativeEmail]
                                                                    value:@1] build]];
             break;
         }
@@ -371,7 +356,7 @@
                     NSLog(@"Twitter Post Canceled");
                     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                                           action:@"tweet_cancelled"
-                                                                           label:[notification.userInfo objectForKey:@"accountName"]
+                                                                           label:[NSString stringWithFormat:@"%@, cancel",[notification.userInfo objectForKey:@"accountName"]]
                                                                            value:@1] build]];
                     break;
                 case SLComposeViewControllerResultDone:
@@ -409,14 +394,5 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
 }
-
-//- (void)updateInformationLabel:(NSNotification*)notification {
-//    if ([notification.name isEqualToString:@"com.alamofire.networking.operation.start"]) {
-//        self.callToActionLabel.text = @"loading...";
-//    }
-//    else {
-//        self.callToActionLabel.text = @"Make your voice heard.";
-//    }
-//}
 
 @end

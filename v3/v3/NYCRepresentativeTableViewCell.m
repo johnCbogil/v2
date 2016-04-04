@@ -12,7 +12,8 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import <Google/Analytics.h>
-
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @interface NYCRepresentativeTableViewCell ()
 
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+@property (strong, nonnull) CTCallCenter *callCenter;
 
 @end
 
@@ -34,6 +36,7 @@
     self.photo.clipsToBounds = YES;
     [self setFont];
     [self setColor];
+    [self trackConnectedCalls];
     [self setImage];
 }
 
@@ -148,6 +151,20 @@
             [alert show];
         }
     }
+}
+
+- (void)trackConnectedCalls {
+    self.callCenter = [[CTCallCenter alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.callCenter setCallEventHandler:^(CTCall *call) {
+        if ([[call callState] isEqual:CTCallStateConnected]) {
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+                                                                  action:@"nyc_call"  // Event action (required)
+                                                                   label:[NSString stringWithFormat:@"%@ %@", weakSelf.nycRepresentative.firstName, weakSelf.nycRepresentative.lastName]           // Event label
+                                                                   value:@1] build]];    // Event value
+        }
+    }];
 }
 
 @end

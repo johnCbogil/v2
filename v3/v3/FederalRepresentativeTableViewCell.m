@@ -13,8 +13,11 @@
 #import "UIImageView+AFNetworking.h"
 #import <Google/Analytics.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+
 @property (strong, nonatomic) FederalRepresentative *federalRepresentative;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -22,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (strong, nonnull) CTCallCenter *callCenter;
 
 @end
 
@@ -32,6 +36,7 @@
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
     [self setFont];
+    [self trackConnectedCalls];
 }
 
 - (void)setFont {
@@ -70,9 +75,9 @@
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
         {
-
+            
             [[UIApplication sharedApplication] openURL:callUrl];
-
+            
         }
         else {
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -95,13 +100,6 @@
         UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.federalRepresentative.title,self.federalRepresentative.firstName, self.federalRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
-        
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        NSLog(@"%@", self.federalRepresentative.fullName);
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
-                                                              action:@"federal_call"  // Event action (required)
-                                                               label:self.federalRepresentative.fullName           // Event label
-                                                               value:@1] build]];    // Event value
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number, try tweeting at them instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
@@ -135,5 +133,19 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+- (void)trackConnectedCalls {
+    self.callCenter = [[CTCallCenter alloc] init];
+    __weak typeof(self) weakSelf = self;
+    [self.callCenter setCallEventHandler:^(CTCall *call) {
+        if ([[call callState] isEqual:CTCallStateConnected]) {
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+                                                                  action:@"federal_call"  // Event action (required)
+                                                                   label:weakSelf.federalRepresentative.fullName           // Event label
+                                                                   value:@1] build]];    // Event value
+        }
+    }];
 }
 @end

@@ -208,7 +208,7 @@
         //
         NSArray* rows = [fileContents componentsSeparatedByString:@"/n"];
         for (NSString *member in rows) {
-            //if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
+            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
                 isLocationWithinPath = YES;
                 NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
                 NSArray *memberData = [member componentsSeparatedByString:@","];
@@ -217,10 +217,10 @@
                 [listOfNYCRepresentatives addObject:nycRepresentative];
                 self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
-                //[[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 
-              //  return isLocationWithinPath;
-            //}
+                return isLocationWithinPath;
+            }
         }
     }
     return isLocationWithinPath;
