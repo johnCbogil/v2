@@ -144,4 +144,13 @@
     }
 }
 
+// Remove Apple bug error warning that occurs when phone call occurs
+- (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame {
+    for(UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        if([window.class.description isEqual:@"UITextEffectsWindow"]) {
+            [window removeConstraints:window.constraints];
+        }
+    }
+}
+
 @end
