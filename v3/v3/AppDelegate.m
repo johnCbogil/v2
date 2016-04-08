@@ -109,30 +109,35 @@
     [NSURLCache setSharedURLCache:sharedCache];
 }
 
-
-// CACHE THIS
 - (void)unzipNYCDataSet {
-    // Get the file path for the zip
-    NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
-    // Get the file path for the destination
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    // Specify that we want the council data set
-    self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:kCityCouncilJSON];
-    // Check if the file exists at the path
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.dataSetPathWithComponent];
-    // If the file does not already exist, unzip it
-    if (!fileExists) {
-        // Unzip the archive and send it to destination
-        [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
+    
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
+        [RepManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
     }
-    
-    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
-    
-    NSError *error =  nil;
-    
-    NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    else {
+        // Get the file path for the zip
+        NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
+        // Get the file path for the destination
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        // Specify that we want the council data set
+        self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:kCityCouncilJSON];
+        // Check if the file exists at the path
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.dataSetPathWithComponent];
+        // If the file does not already exist, unzip it
+        if (!fileExists) {
+            // Unzip the archive and send it to destination
+            [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
+        }
         
-    [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+        NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
+        NSError *error =  nil;
+        NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        
+        [[NSUserDefaults standardUserDefaults]setObject:jsonDataDict forKey:kCityCouncilZip];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+    }
 }
 
 - (void)printFontFamilies {
