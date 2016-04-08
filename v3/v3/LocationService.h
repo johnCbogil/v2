@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-// NOT SURE IF I NEED THIS
-@protocol LocationObserver <NSObject>
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations;
-@end
-
 @interface LocationService : NSObject <CLLocationManagerDelegate>
 
 +(LocationService *) sharedInstance;
