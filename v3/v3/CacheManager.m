@@ -35,8 +35,6 @@
     return self;
 }
 
-
-// RENAME THIS TO FETCH (?)
 - (NSArray *)fetchRepsFromCache:(NSString *)representativeType {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *dataRepresentingCachedRepresentatives = [currentDefaults objectForKey:representativeType];

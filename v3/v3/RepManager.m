@@ -99,7 +99,7 @@
     
     [[NetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
         
-        // REPLACE THIS NEW ARRAY WITH THE PROPERTY
+        // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
@@ -153,8 +153,8 @@
     
     if (!isLocationWithinPath) {
         
-        //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert"  message:@"error" delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-        //        [alert show];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"We couldn't find this location in NYC." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+        [alert show];
         
     }
 }
@@ -214,7 +214,7 @@
                 [listOfNYCRepresentatives addObject:nycRepresentative];
                 self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
-//                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+                //                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 
                 return isLocationWithinPath;
             }
