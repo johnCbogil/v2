@@ -1,6 +1,6 @@
 //
 //  HomeViewController.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 8/7/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
@@ -64,7 +64,6 @@
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
 - (void)setFont {
-//    self.callToActionLabel.font = [UIFont voicesFontWithSize:24];
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
 }
 
@@ -73,13 +72,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:)name:@"updateInformationLabel" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
-    // THERE ARE REDUNDANT OBSERVERS HERE
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidStartNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingOperationDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInformationLabel:) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
@@ -170,28 +164,26 @@
     }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
-//        if ([self.legislatureLevel.text isEqualToString:@"Congress"]) {
-            [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-                NSLog(@"%@", locationResults);
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-            } onError:^(NSError *error) {
-                [error localizedDescription];
-            }];
-  //      }
-//        else if ([self.legislatureLevel.text isEqualToString:@"State Legislators"]){
-                [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-                } onError:^(NSError *error) {
-                    [error localizedDescription];
-                }];
-      //  }
-//        else if ([self.legislatureLevel.text isEqualToString:@"NYC Council"]){
-            [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-   //     }
+        
+        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+            NSLog(@"%@", locationResults);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
+    
     [self hideSearchBar];
     [searchBar resignFirstResponder];
 }
@@ -272,7 +264,6 @@
     else {
         self.pageControl.currentPage = 2;
     }
-//    [self updateInformationLabel:nil];
 }
 
 #pragma mark - FB Shimmer methods

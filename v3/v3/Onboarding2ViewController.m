@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.permitLocationUseButton.layer.cornerRadius = 5;
     self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
     self.permitLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:18];
@@ -31,7 +31,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 - (IBAction)permitLocationUseButtonDidPress:(id)sender {
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];

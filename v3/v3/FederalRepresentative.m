@@ -77,7 +77,6 @@
         self.title = [decoder decodeObjectForKey:@"title"];
         self.shortTitle = [decoder decodeObjectForKey:@"shortTitle"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
-        // THIS MAY FAIL
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
     }
     return self;
@@ -98,7 +97,6 @@
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.shortTitle forKey:@"shortTitle"];
     [coder encodeObject:self.photo forKey:@"photo"];
-    // THIS MAY FAIL
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
 }
 @end

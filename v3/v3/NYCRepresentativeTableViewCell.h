@@ -11,4 +11,5 @@
 @interface NYCRepresentativeTableViewCell : UITableViewCell
 
 - (void)initWithRep:(id)rep;
+
 @end
