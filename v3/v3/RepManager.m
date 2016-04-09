@@ -152,10 +152,10 @@
     }
     
     if (!isLocationWithinPath) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"We couldn't find this location in NYC." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
-        [alert show];
-        
+        if (self.listOfNYCRepresentatives.count > 0) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"We couldn't find this location in NYC." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
@@ -202,7 +202,6 @@
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kCityCouncilCSV ofType:@"csv"];
         NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
         
-        //
         NSArray* rows = [fileContents componentsSeparatedByString:@"/n"];
         for (NSString *member in rows) {
             if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
@@ -214,7 +213,6 @@
                 [listOfNYCRepresentatives addObject:nycRepresentative];
                 self.listOfNYCRepresentatives = listOfNYCRepresentatives;
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
-                //                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 
                 return isLocationWithinPath;
             }

@@ -79,8 +79,8 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if(finished) {
-        self.titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
-        NSDictionary* userInfo = @{@"currentPage": self.titleOfIncomingViewController};
+        NSString *titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
+        NSDictionary* userInfo = @{@"currentPage": titleOfIncomingViewController};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"changePage" object:userInfo];
     }
 }

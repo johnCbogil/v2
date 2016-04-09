@@ -122,7 +122,7 @@
         self.zeroStateContainer.alpha = 1;
     }];
     if (self.index == 2) {
-        self.zeroStateLabel.text = @"Looks like you're not in NYC. Try searching instead.";
+        self.zeroStateLabel.text = @"We couldn't find this location in NYC.";
     }
 }
 
