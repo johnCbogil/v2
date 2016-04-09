@@ -6,11 +6,6 @@
 	<array>
 		<string>twitter</string>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Montserrat-Light.ttf</string>
-		<string>OpenSans-Regular.ttf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
