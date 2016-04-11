@@ -113,6 +113,7 @@
     
     if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
         [RepManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
+
     }
     else {
         // Get the file path for the zip

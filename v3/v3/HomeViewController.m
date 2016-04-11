@@ -275,12 +275,12 @@
 }
 
 - (void)toggleShimmerOn {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self.shimmeringView selector:@selector(setShimmering:) object:@NO];
     self.shimmeringView.shimmering = YES;
 }
 
 - (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:) withObject:@NO afterDelay:0.5];
+    [self.shimmeringView performSelector:@selector(setShimmering:)];
+    self.shimmeringView.shimmering = NO;
 }
 
 #pragma mark - Presentation Controllers

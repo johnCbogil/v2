@@ -193,7 +193,7 @@
 
 - (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
     
-    BOOL isLocationWithinPath;
+    BOOL isLocationWithinPath = NO;
     
     // Grab the latitude and longitude
     double currentLatitude = location.coordinate.latitude;
