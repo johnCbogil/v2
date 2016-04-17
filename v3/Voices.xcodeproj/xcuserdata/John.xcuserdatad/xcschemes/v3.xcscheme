@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
                BuildableName = "Voices.app"
-               BlueprintName = "v3"
+               BlueprintName = "Voices"
                ReferencedContainer = "container:Voices.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,7 +30,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52BB34431B6160CA00BB9FFD"
                BuildableName = "Voices.xctest"
-               BlueprintName = "v3Tests"
+               BlueprintName = "VoicesTests"
                ReferencedContainer = "container:Voices.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,7 +48,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52BB34431B6160CA00BB9FFD"
                BuildableName = "Voices.xctest"
-               BlueprintName = "v3Tests"
+               BlueprintName = "VoicesTests"
                ReferencedContainer = "container:Voices.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,7 +58,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
             BuildableName = "Voices.app"
-            BlueprintName = "v3"
+            BlueprintName = "Voices"
             ReferencedContainer = "container:Voices.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
             BuildableName = "Voices.app"
-            BlueprintName = "v3"
+            BlueprintName = "Voices"
             ReferencedContainer = "container:Voices.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -100,7 +100,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52BB342A1B6160C900BB9FFD"
             BuildableName = "Voices.app"
-            BlueprintName = "v3"
+            BlueprintName = "Voices"
             ReferencedContainer = "container:Voices.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

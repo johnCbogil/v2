@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Bolts/Tasks (1.7.0)
   - Google/Analytics (1.3.2):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -36,6 +37,8 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
   - Shimmer (1.0.2)
   - SSZipArchive (1.1)
   - STPopup (1.3.0)
@@ -43,18 +46,21 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Google/Analytics
+  - Parse
   - Shimmer
   - SSZipArchive
   - STPopup
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Google: 97618e118111b998cce1d8dd1bd98b82301d72db
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
   STPopup: 5e12539a1798514a99ffc1c6239c3db688a2d7b1
