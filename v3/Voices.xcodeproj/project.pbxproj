@@ -33,7 +33,6 @@
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
 		52BB344B1B6160CA00BB9FFD /* v3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB344A1B6160CA00BB9FFD /* v3Tests.m */; };
 		52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */; };
-		52C391FE1B8F71C90034BEAB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C391FD1B8F71C90034BEAB /* CoreData.framework */; };
 		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
@@ -103,7 +102,6 @@
 		52BB344A1B6160CA00BB9FFD /* v3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = v3Tests.m; sourceTree = "<group>"; };
 		52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYCRepresentative.h; sourceTree = "<group>"; };
 		52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYCRepresentative.m; sourceTree = "<group>"; };
-		52C391FD1B8F71C90034BEAB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		52C6532E1B75120900EA6FFD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		52C6532F1B75120900EA6FFD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicesConstants.h; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52C391FE1B8F71C90034BEAB /* CoreData.framework in Frameworks */,
 				7806AF18A0764052BFF1AF74 /* libPods-Voices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,7 +180,6 @@
 		52BB34221B6160C900BB9FFD = {
 			isa = PBXGroup;
 			children = (
-				52C391FD1B8F71C90034BEAB /* CoreData.framework */,
 				52BB342D1B6160C900BB9FFD /* v3 */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB34471B6160CA00BB9FFD /* v3Tests */,
