@@ -115,14 +115,22 @@
 }
 
 - (void)exampleUserSignUp {
-    PFUser *user = [PFUser user];
-    user.username = @"ExampleUser";
-    user.password = @"password";
-    user.email = @"email@example.com";
+//    PFUser *user = [PFUser user];
+//    user.username = @"ExampleUser";
+//    user.password = @"password";
+//    user.email = @"email@example.com";
+//    
+//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            NSLog(@"user creation success");
+//        }
+//    }];
     
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            NSLog(@"user creation success");
+    [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        if (error) {
+            NSLog(@"Anonymous login failed.");
+        } else {
+            NSLog(@"Anonymous user logged in.");
         }
     }];
 }
