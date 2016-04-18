@@ -43,6 +43,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Actions";
     [self addObservers];
     [self setFont];
     [self setColors];
