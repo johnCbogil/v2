@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Interest Groups View Controller-->
+        <!--Advocacy Groups View Controller-->
         <scene sceneID="SMQ-F2-XmO">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="InterestGroupsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="AdvocacyGroupsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cez-2e-cd4"/>
                         <viewControllerLayoutGuide type="bottom" id="WFz-Rb-9DG"/>

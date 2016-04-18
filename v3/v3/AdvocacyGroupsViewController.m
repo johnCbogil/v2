@@ -1,23 +1,22 @@
 //
-//  InterestGroupsViewController.m
+//  AdvocacyGroupsViewController.m
 //  Voices
 //
 //  Created by John Bogil on 12/19/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
 //
 
-#import "InterestGroupsViewController.h"
+#import "AdvocacyGroupsViewController.h"
 #import <Parse/Parse.h>
 
-@interface InterestGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *listOfInterestGroups;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
 @property (strong, nonatomic) NSMutableArray *tableViewData;
 @end
 
-@implementation InterestGroupsViewController
+@implementation AdvocacyGroupsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +28,7 @@
     self.tableView.dataSource = self;
     
     [self exampleUserSignUp];
-    [self retrieveInterestGroups];
+    [self retrieveAdovacyGroups];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +51,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.selectedSegment == 0) {
-        [self followInterestGroup:[self.tableViewData objectAtIndex:indexPath.row]];
+        [self followAdovacyGroup:[self.tableViewData objectAtIndex:indexPath.row]];
     }
 }
 
@@ -77,16 +76,16 @@
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
     
     if (self.selectedSegment == 0) {
-        [self retrieveInterestGroups];
+        [self retrieveAdovacyGroups];
     }
     else{
-        [self retrieveFollowedInterestGroups];
+        [self retrieveFollowedAdovacyGroups];
     }
 }
 
 #pragma mark - Parse Methods
 
-- (void)retrieveFollowedInterestGroups {
+- (void)retrieveFollowedAdovacyGroups {
     PFQuery *query = [PFQuery queryWithClassName:@"InterestGroups"];
     [query whereKey:@"followers" equalTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -101,7 +100,7 @@
     }];
 }
 
-- (void)retrieveInterestGroups {
+- (void)retrieveAdovacyGroups {
     PFQuery *query = [PFQuery queryWithClassName:@"InterestGroups"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
@@ -125,7 +124,7 @@
     }];
 }
 
-- (void)followInterestGroup:(PFObject*)object {
+- (void)followAdovacyGroup:(PFObject*)object {
     [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
     [[PFInstallation currentInstallation]saveInBackground];
     [object addUniqueObject:[PFUser currentUser].objectId forKey:@"followers"];

@@ -1,5 +1,5 @@
 //
-//  InterestGroupsViewController.h
+//  AdvocacyGroupsViewController.h
 //  Voices
 //
 //  Created by John Bogil on 4/17/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InterestGroupsViewController : UIViewController
+@interface AdvocacyGroupsViewController : UIViewController
 
 @end
