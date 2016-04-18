@@ -86,30 +86,30 @@
 #pragma mark - Parse Methods
 
 - (void)retrieveFollowedAdovacyGroups {
-    PFQuery *query = [PFQuery queryWithClassName:@"InterestGroups"];
+    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
     [query whereKey:@"followers" equalTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve Selected Interest Groups Success");
+            NSLog(@"Retrieve Selected AdvocacyGroups Success");
             self.tableViewData = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
-            NSLog(@"Retrieve Selected Interest Groups Error: %@", error);
+            NSLog(@"Retrieve Selected AdvocacyGroups Error: %@", error);
         }
     }];
 }
 
 - (void)retrieveAdovacyGroups {
-    PFQuery *query = [PFQuery queryWithClassName:@"InterestGroups"];
+    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve Interest Groups Success");
+            NSLog(@"Retrieve AdvocacyGroup Success");
             self.tableViewData = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
-            NSLog(@"Retrieve Interest Group Error: %@", error);
+            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
         }
     }];
 }
