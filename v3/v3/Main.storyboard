@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Action-->
+        <!--Navigation Controller-->
         <scene sceneID="hbQ-fR-HEb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Action" id="LwQ-q7-DUF"/>
+                    <tabBarItem key="tabBarItem" title="" image="Action" id="LwQ-q7-DUF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -24,11 +24,11 @@
             </objects>
             <point key="canvasLocation" x="-55" y="302"/>
         </scene>
-        <!--Interest Groups-->
+        <!--Navigation Controller-->
         <scene sceneID="hAN-M3-E03">
             <objects>
                 <navigationController id="SCJ-h6-y9k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Interest Groups" id="k4q-ih-gxp"/>
+                    <tabBarItem key="tabBarItem" title="" image="AdvocacyGroups" id="k4q-ih-gxp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CcN-tr-qS3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-55" y="1143"/>
         </scene>
-        <!--InterestGroup Placeholder-->
+        <!--AdvocacyGroups Placeholder-->
         <scene sceneID="imB-0i-P6k">
             <objects>
-                <viewController storyboardIdentifier="InterestGroups" title="InterestGroup Placeholder" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PJ8-aa-SY4" customClass="StoryboardPlaceHolderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdvocacyGroups" title="AdvocacyGroups Placeholder" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PJ8-aa-SY4" customClass="StoryboardPlaceHolderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="q9T-W1-nmM"/>
                         <viewControllerLayoutGuide type="bottom" id="Y7V-LH-taf"/>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="677" y="1143"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="sfS-j1-USn">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="L2I-f2-EzW" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="L2I-f2-EzW" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Pku-3i-57E">
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,4 +98,8 @@
             <point key="canvasLocation" x="677" y="302"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Action" width="33" height="33"/>
+        <image name="AdvocacyGroups" width="33" height="33"/>
+    </resources>
 </document>

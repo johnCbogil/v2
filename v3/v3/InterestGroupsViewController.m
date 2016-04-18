@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
 @property (strong, nonatomic) NSMutableArray *tableViewData;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
 @implementation InterestGroupsViewController
@@ -46,7 +45,6 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = [(NSString*)[self.tableViewData objectAtIndex:indexPath.row]valueForKey:@"Name"];
-    cell.imageView.image = [UIImage imageNamed:@"eff"];
     return cell;
 }
 

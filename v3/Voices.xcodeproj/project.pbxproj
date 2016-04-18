@@ -37,8 +37,11 @@
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
 		52D892931CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892921CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
-		52D892991CC463C2004FBEA3 /* InterestGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* InterestGroups.storyboard */; };
+		52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */; };
 		52D8929C1CC463D9004FBEA3 /* InterestGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* InterestGroupsViewController.m */; };
+		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
+		52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */; };
+		52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
@@ -113,9 +116,14 @@
 		52D892911CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardPlaceHolderViewController.h; sourceTree = "<group>"; };
 		52D892921CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardPlaceHolderViewController.m; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		52D892981CC463C2004FBEA3 /* InterestGroups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InterestGroups.storyboard; sourceTree = "<group>"; };
+		52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AdvocacyGroups.storyboard; sourceTree = "<group>"; };
 		52D8929A1CC463D9004FBEA3 /* InterestGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestGroupsViewController.h; sourceTree = "<group>"; };
 		52D8929B1CC463D9004FBEA3 /* InterestGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestGroupsViewController.m; sourceTree = "<group>"; };
+		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvocacyGroupTableViewCell.h; sourceTree = "<group>"; };
+		52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvocacyGroupTableViewCell.m; sourceTree = "<group>"; };
+		52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvocacyGroupTableViewCell.xib; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -214,17 +222,18 @@
 				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
 				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
-				52BB34381B6160CA00BB9FFD /* Actions.storyboard */,
 				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
 				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
-				52D892901CC45CC1004FBEA3 /* Actions */,
-				52FC68FF1C3765AB00E29B7A /* Onboarding */,
-				52AD33961BE5CA2B00EC0468 /* Categories */,
-				52BB342E1B6160C900BB9FFD /* Supporting Files */,
 				52D892911CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.h */,
 				52D892921CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52D8929D1CC471AA004FBEA3 /* Interest Groups */,
+				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
+				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
+				52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */,
+				52D892901CC45CC1004FBEA3 /* ActionPage */,
+				52FC68FF1C3765AB00E29B7A /* Onboarding */,
+				52AD33961BE5CA2B00EC0468 /* Categories */,
+				52BB342E1B6160C900BB9FFD /* Supporting Files */,
 			);
 			path = v3;
 			sourceTree = "<group>";
@@ -258,7 +267,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		52D892901CC45CC1004FBEA3 /* Actions */ = {
+		52D892901CC45CC1004FBEA3 /* ActionPage */ = {
 			isa = PBXGroup;
 			children = (
 				52AD33971BE5CAA000EC0468 /* Managers */,
@@ -267,17 +276,20 @@
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
 			);
-			name = Actions;
+			name = ActionPage;
 			sourceTree = "<group>";
 		};
-		52D8929D1CC471AA004FBEA3 /* Interest Groups */ = {
+		52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */ = {
 			isa = PBXGroup;
 			children = (
-				52D892981CC463C2004FBEA3 /* InterestGroups.storyboard */,
+				52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */,
 				52D8929A1CC463D9004FBEA3 /* InterestGroupsViewController.h */,
 				52D8929B1CC463D9004FBEA3 /* InterestGroupsViewController.m */,
+				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
+				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
+				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
 			);
-			name = "Interest Groups";
+			name = AdvocacyGroupsPage;
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {
@@ -323,6 +335,7 @@
 		7E5CC8281C909065005E8F45 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52BB34381B6160CA00BB9FFD /* Actions.storyboard */,
 				5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */,
 				5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */,
@@ -439,11 +452,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
-				52D892991CC463C2004FBEA3 /* InterestGroups.storyboard in Resources */,
+				52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */,
 				7EF613DB1CAED1D9009EBB03 /* NYCCouncil.csv in Resources */,
 				52A156C41C7E183400B566ED /* GoogleService-Info.plist in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
@@ -522,6 +536,8 @@
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
+				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
+				52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,
