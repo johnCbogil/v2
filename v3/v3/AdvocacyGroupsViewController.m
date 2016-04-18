@@ -7,6 +7,7 @@
 //
 
 #import "AdvocacyGroupsViewController.h"
+#import "AdvocacyGroupTableViewCell.h"
 #import <Parse/Parse.h>
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -26,6 +27,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self exampleUserSignUp];
     [self retrieveAdovacyGroups];
@@ -42,9 +45,10 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = [(NSString*)[self.tableViewData objectAtIndex:indexPath.row]valueForKey:@"Name"];
+    AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
+    [cell initWithData:[self.tableViewData objectAtIndex:indexPath.row]];
     return cell;
+
 }
 
 
@@ -69,6 +73,10 @@
         [self removeFollower:self.tableViewData[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 115;
 }
 
 - (IBAction)segmentControlDidChange:(id)sender {

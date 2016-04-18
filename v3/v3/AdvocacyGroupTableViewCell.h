@@ -10,4 +10,6 @@
 
 @interface AdvocacyGroupTableViewCell : UITableViewCell
 
+- (void)initWithData:(id) data;
+
 @end
