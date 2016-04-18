@@ -224,9 +224,7 @@
 				52D892911CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.h */,
 				52D892921CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52D892981CC463C2004FBEA3 /* InterestGroups.storyboard */,
-				52D8929A1CC463D9004FBEA3 /* InterestGroupsViewController.h */,
-				52D8929B1CC463D9004FBEA3 /* InterestGroupsViewController.m */,
+				52D8929D1CC471AA004FBEA3 /* Interest Groups */,
 			);
 			path = v3;
 			sourceTree = "<group>";
@@ -270,6 +268,16 @@
 				5204038B1BCC137F00016768 /* Info */,
 			);
 			name = Actions;
+			sourceTree = "<group>";
+		};
+		52D8929D1CC471AA004FBEA3 /* Interest Groups */ = {
+			isa = PBXGroup;
+			children = (
+				52D892981CC463C2004FBEA3 /* InterestGroups.storyboard */,
+				52D8929A1CC463D9004FBEA3 /* InterestGroupsViewController.h */,
+				52D8929B1CC463D9004FBEA3 /* InterestGroupsViewController.m */,
+			);
+			name = "Interest Groups";
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {

@@ -1,6 +1,6 @@
 //
 //  InterestGroupsViewController.m
-//  v3
+//  Voices
 //
 //  Created by John Bogil on 12/19/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
@@ -22,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // FIND OUT WHERE THIS NAVIGATION CONTROLLER IS COMING FROM. I SHOULDN'T HAVE TO HIDE IT
+    self.navigationController.navigationBar.hidden = YES;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -115,17 +118,6 @@
 }
 
 - (void)exampleUserSignUp {
-//    PFUser *user = [PFUser user];
-//    user.username = @"ExampleUser";
-//    user.password = @"password";
-//    user.email = @"email@example.com";
-//    
-//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            NSLog(@"user creation success");
-//        }
-//    }];
-    
     [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
         if (error) {
             NSLog(@"Anonymous login failed.");
