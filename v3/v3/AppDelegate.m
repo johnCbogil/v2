@@ -16,6 +16,8 @@
 #import "VoicesConstants.h"
 #import "RepManager.h"
 #import <Google/Analytics.h>
+#import <Parse.h>
+
 
 @interface AppDelegate ()
 @end
@@ -24,6 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self initializeParse];
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
@@ -55,6 +58,16 @@
 }
 
 # pragma mark - AppDidFinishLaunchingConfigs
+
+- (void)initializeParse {
+    // Initialize Parse.
+    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
+                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
+    
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    [testObject saveInBackground];
+}
 
 - (void)setInitialViewController {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
