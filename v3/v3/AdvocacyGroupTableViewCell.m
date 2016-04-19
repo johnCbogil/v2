@@ -26,7 +26,6 @@
     self.advocacyGroupLogo.layer.cornerRadius = 5;
     self.advocacyGroupLogo.clipsToBounds = YES;
 //    [self setFont];
-
 }
 
 - (void)initWithData:(id) data {
