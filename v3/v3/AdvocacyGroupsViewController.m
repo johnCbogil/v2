@@ -8,6 +8,7 @@
 
 #import "AdvocacyGroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
+#import "UIColor+voicesOrange.h"
 #import <Parse/Parse.h>
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -31,6 +32,8 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.segmentControl.tintColor = [UIColor voicesOrange];
     
     [self userAuth];
     [self retrieveAdovacyGroups];

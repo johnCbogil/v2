@@ -44,12 +44,12 @@
             // MAX SIZE IS 2 - 4KB !
         
         
-        NSString *title = [[[notificationPayload valueForKey:@"aps"]valueForKey:@"alert"]valueForKey:@"title"];
+   //     NSString *title = [[[notificationPayload valueForKey:@"aps"]valueForKey:@"alert"]valueForKey:@"title"];
         //NSString *body = [[[notificationPayload valueForKey:@"aps"]valueForKey:@"alert"]valueForKey:@"body"];
-        NSString *fullMessage = [notificationPayload valueForKey:@"fullMessage"];
-        NSArray *talkingPointsArray = [notificationPayload valueForKey:@"talkingPoints"];
-        
-        NSString *alertViewText = [NSString stringWithFormat:@"%@\n\n● %@\n\n● %@\n\n● %@\n", fullMessage, talkingPointsArray[0], talkingPointsArray[1], talkingPointsArray[2]];
+//        NSString *fullMessage = [notificationPayload valueForKey:@"fullMessage"];
+//        NSArray *talkingPointsArray = [notificationPayload valueForKey:@"talkingPoints"];
+//        
+//        NSString *alertViewText = [NSString stringWithFormat:@"%@\n\n● %@\n\n● %@\n\n● %@\n", fullMessage, talkingPointsArray[0], talkingPointsArray[1], talkingPointsArray[2]];
         
        // UIAlertView *alert=[[UIAlertView alloc]initWithTitle:title message:alertViewText  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
        // [alert show];

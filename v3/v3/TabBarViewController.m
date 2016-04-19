@@ -7,6 +7,7 @@
 //
 
 #import "TabBarViewController.h"
+#import "UIColor+voicesOrange.h"
 
 @interface TabBarViewController ()
 
@@ -22,6 +23,8 @@
 //        tabBarItem.title = @"";
 //        tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 //    }
+    
+    [UITabBar appearance].tintColor = [UIColor voicesOrange];
 }
 
 - (void)didReceiveMemoryWarning {
