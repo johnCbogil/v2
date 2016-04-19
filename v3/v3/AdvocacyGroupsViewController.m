@@ -14,7 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray *tableViewData;
+@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray *listOfFollowedAdvocacyGroups;
+
 @end
 
 @implementation AdvocacyGroupsViewController
@@ -41,12 +43,23 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tableViewData.count;
-}
+    if (self.selectedSegment == 0) {
+        return self.listOfAdvocacyGroups.count;
+    }
+    else {
+        return self.listOfFollowedAdvocacyGroups.count;
+    }}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
-    [cell initWithData:[self.tableViewData objectAtIndex:indexPath.row]];
+    
+    if (self.selectedSegment == 0) {
+        [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+    }
+    else {
+        [cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
+    }
+    
     return cell;
 
 }
@@ -55,7 +68,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.selectedSegment == 0) {
-        [self followAdovacyGroup:[self.tableViewData objectAtIndex:indexPath.row]];
+        [self followAdovacyGroup:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
     }
 }
 
@@ -70,7 +83,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self removeFollower:self.tableViewData[indexPath.row]];
+        [self removeFollower:self.listOfFollowedAdvocacyGroups[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -79,27 +92,30 @@
     return 100;
 }
 
+#pragma mark - Segment Control
+
 - (IBAction)segmentControlDidChange:(id)sender {
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
-    
-    if (self.selectedSegment == 0) {
-        [self retrieveAdovacyGroups];
-    }
-    else{
+
+    if (self.selectedSegment) {
         [self retrieveFollowedAdovacyGroups];
     }
+    
+    [self.tableView reloadData];
+
+    
 }
 
 #pragma mark - Parse Methods
 
 - (void)retrieveFollowedAdovacyGroups {
     PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
-    [query whereKey:@"followers" equalTo:[PFUser currentUser].objectId];
+    [query whereKey:@"followers" equalTo:[PFUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Retrieve Selected AdvocacyGroups Success");
-            self.tableViewData = [[NSMutableArray alloc]initWithArray:objects];
+            self.listOfFollowedAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
@@ -113,7 +129,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Retrieve AdvocacyGroup Success");
-            self.tableViewData = [[NSMutableArray alloc]initWithArray:objects];
+            self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
@@ -127,7 +143,7 @@
         if (error) {
             NSLog(@"Anonymous login failed.");
         } else {
-            NSLog(@"Anonymous user logged in.");
+            NSLog(@"Anonymous user logged in: %@", user);
         }
     }];
 }
@@ -135,7 +151,7 @@
 - (void)followAdovacyGroup:(PFObject*)object {
     [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
     [[PFInstallation currentInstallation]saveInBackground];
-    [object addUniqueObject:[PFUser currentUser].objectId forKey:@"followers"];
+    [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Followed!");
@@ -149,7 +165,7 @@
 - (void)removeFollower:(PFObject*)object {
     [[PFInstallation currentInstallation]removeObject:object.objectId forKey:@"channels"];
     [[PFInstallation currentInstallation]saveInBackground];
-    [self.tableViewData removeObject:object];
+    [self.listOfFollowedAdvocacyGroups removeObject:object];
     [object removeObjectForKey:@"followers"];
     [object save];
 }

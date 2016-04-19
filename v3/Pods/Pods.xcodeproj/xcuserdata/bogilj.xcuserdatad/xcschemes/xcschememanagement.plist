@@ -9,10 +9,30 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Parse.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-Voices.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>14480C8DC6E7CE4633308DFE02BB6BF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1CB4E8DAD527F07C14EBB78C216AB9EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -28,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>2AFFD18274DE25C0B4D63F0A947B0C70</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E63C97D288D3FD97365B5986D303CE5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,12 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BCB5D124E7B0BB3BE6B5131B77DCC367</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C412E218C26C5F3DBFFFABDD88ADDF49</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D4311D6CC86D4B8F9C2B0D527575E3C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F365F0F94008E7E57BE8BBE3F801C815</key>
 		<dict>
 			<key>primary</key>
 			<true/>
