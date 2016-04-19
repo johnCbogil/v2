@@ -34,6 +34,8 @@
     
     [self exampleUserSignUp];
     [self retrieveAdovacyGroups];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,7 +116,7 @@
     [query whereKey:@"followers" equalTo:[PFUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve Selected AdvocacyGroups Success");
+            NSLog(@"Retrieve Selected AdvocacyGroups Success, %@", objects);
             self.listOfFollowedAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
@@ -139,17 +141,29 @@
 }
 
 - (void)exampleUserSignUp {
-    [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
-        if (error) {
-            NSLog(@"Anonymous login failed.");
-        } else {
-            NSLog(@"Anonymous user logged in: %@", user);
-        }
-    }];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        // do stuff with the user
+    } else {
+        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
+            if (error) {
+                NSLog(@"Anonymous login failed.");
+            } else {
+                NSLog(@"Anonymous user logged in: %@", user);
+                [[NSUserDefaults standardUserDefaults]setObject:user forKey:@"user"];
+            }
+        }];
+    }
+    
+    
+    
+
 }
 
 - (void)followAdovacyGroup:(PFObject*)object {
     [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
+    NSLog(@"AdGroup: %@", object);
     [[PFInstallation currentInstallation]saveInBackground];
     [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -168,6 +182,10 @@
     [self.listOfFollowedAdvocacyGroups removeObject:object];
     [object removeObjectForKey:@"followers"];
     [object save];
+}
+
+- (void)logFollowers {
+    
 }
 
 @end
