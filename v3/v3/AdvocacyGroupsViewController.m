@@ -32,10 +32,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    [self exampleUserSignUp];
+    [self userAuth];
     [self retrieveAdovacyGroups];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,16 +52,13 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
-    
     if (self.selectedSegment == 0) {
         [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
     }
     else {
         [cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
     }
-    
     return cell;
-
 }
 
 
@@ -105,8 +100,6 @@
     }
     
     [self.tableView reloadData];
-
-    
 }
 
 #pragma mark - Parse Methods
@@ -140,25 +133,17 @@
     }];
 }
 
-- (void)exampleUserSignUp {
-    
+- (void)userAuth {
     PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        // do stuff with the user
-    } else {
+    if (!currentUser) {
         [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
             if (error) {
                 NSLog(@"Anonymous login failed.");
             } else {
                 NSLog(@"Anonymous user logged in: %@", user);
-                [[NSUserDefaults standardUserDefaults]setObject:user forKey:@"user"];
             }
         }];
     }
-    
-    
-    
-
 }
 
 - (void)followAdovacyGroup:(PFObject*)object {
@@ -182,10 +167,6 @@
     [self.listOfFollowedAdvocacyGroups removeObject:object];
     [object removeObjectForKey:@"followers"];
     [object save];
-}
-
-- (void)logFollowers {
-    
 }
 
 @end

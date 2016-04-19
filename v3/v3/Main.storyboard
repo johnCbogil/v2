@@ -63,7 +63,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="sfS-j1-USn">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="L2I-f2-EzW" customClass="TabBarViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="L2I-f2-EzW" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Pku-3i-57E">
                         <autoresizingMask key="autoresizingMask"/>

@@ -53,8 +53,8 @@
         NSLog(@"location authorization denied");
     }
     else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Actions" bundle: nil];
-        HomeViewController *homeViewController = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        HomeViewController *homeViewController = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
         // TODO: EVENTUALLY THIS SHOULD DISMISS/POP INSTEAD OF PRESENT OVER
         [self presentViewController:homeViewController animated:YES completion:nil];
     }
