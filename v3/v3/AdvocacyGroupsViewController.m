@@ -76,7 +76,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 115;
+    return 100;
 }
 
 - (IBAction)segmentControlDidChange:(id)sender {

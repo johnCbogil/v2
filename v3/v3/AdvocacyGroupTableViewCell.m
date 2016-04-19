@@ -8,6 +8,7 @@
 
 #import "AdvocacyGroupTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIFont+voicesFont.h"
 
 @interface AdvocacyGroupTableViewCell()
 
@@ -25,7 +26,7 @@
     self.advocacyGroupLogo.contentMode = UIViewContentModeScaleToFill;
     self.advocacyGroupLogo.layer.cornerRadius = 5;
     self.advocacyGroupLogo.clipsToBounds = YES;
-//    [self setFont];
+    [self setFont];
 }
 
 - (void)initWithData:(id) data {
@@ -48,10 +49,12 @@
     }];
 }
 
-//- (void)setFont {
-//    self.advocacyGroupName.font = [UIFont voicesFontWithSize:24];
-//    self.advocacyGroupType.font = [UIFont voicesFontWithSize:20];
-//}
+- (void)setFont {
+    self.advocacyGroupName.font = [UIFont voicesFontWithSize:24];
+    [self.advocacyGroupName sizeToFit];
+    self.advocacyGroupType.font = [UIFont voicesFontWithSize:18];
+    self.advocacyGroupDescription.font = [UIFont voicesFontWithSize:15];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
