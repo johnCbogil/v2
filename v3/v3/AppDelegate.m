@@ -36,7 +36,7 @@
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (notificationPayload) {
-        [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:notificationPayload];
+        [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[notificationPayload valueForKey:@"aps"]valueForKey:@"alert"]];
     }
 
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];

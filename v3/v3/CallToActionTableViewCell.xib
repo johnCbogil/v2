@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdvocacyGroupTableViewCell" rowHeight="140" id="0NS-vx-xEm" customClass="AdvocacyGroupTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0NS-vx-xEm" id="y5l-rm-C94">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.85000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="Dbi-7o-npl">
+                        <rect key="frame" x="123" y="8" width="229" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="c8t-V9-7DR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="w04-49-8vw" userLabel="Advocacy Group Type">
+                        <rect key="frame" x="123" y="34" width="229" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="acC-cS-aEI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nDl-lL-rQ1">
+                        <rect key="frame" x="8" y="8" width="100" height="100"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="123" id="Zoz-73-cFu"/>
+                            <constraint firstAttribute="width" constant="100" id="t3Z-cg-jcG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Zoz-73-cFu"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nDl-lL-rQ1" firstAttribute="top" secondItem="Dbi-7o-npl" secondAttribute="top" id="5i2-ya-3Gk"/>
+                    <constraint firstItem="Dbi-7o-npl" firstAttribute="trailing" secondItem="w04-49-8vw" secondAttribute="trailing" id="FDW-HG-614"/>
+                    <constraint firstItem="nDl-lL-rQ1" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="VJb-dd-8hW"/>
+                    <constraint firstItem="Dbi-7o-npl" firstAttribute="trailing" secondItem="y5l-rm-C94" secondAttribute="trailingMargin" id="bQz-7c-qba"/>
+                    <constraint firstItem="Dbi-7o-npl" firstAttribute="leading" secondItem="w04-49-8vw" secondAttribute="leading" id="jWh-0f-YKZ"/>
+                    <constraint firstItem="w04-49-8vw" firstAttribute="top" secondItem="Dbi-7o-npl" secondAttribute="bottom" id="mBr-Ij-BhF"/>
+                    <constraint firstItem="Dbi-7o-npl" firstAttribute="leading" secondItem="nDl-lL-rQ1" secondAttribute="trailing" constant="15" id="mky-BB-9be"/>
+                    <constraint firstItem="nDl-lL-rQ1" firstAttribute="centerY" secondItem="y5l-rm-C94" secondAttribute="centerY" constant="-12" id="uaX-Uq-5L5"/>
+                    <constraint firstItem="nDl-lL-rQ1" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="xJb-IT-MXB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="587" y="598"/>
+        </tableViewCell>
+    </objects>
+</document>

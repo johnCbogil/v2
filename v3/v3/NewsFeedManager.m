@@ -10,8 +10,7 @@
 
 @implementation NewsFeedManager
 
-
-+(NewsFeedManager *) sharedInstance {
++ (NewsFeedManager *) sharedInstance {
     static NewsFeedManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -29,15 +28,30 @@
 }
 
 - (void)createCallToActionFromNotificationPayload:(NSDictionary *)notificationPayload {
-    NSDictionary *callToActionDict = @{@"advocacyGroupName":[notificationPayload valueForKey:@""],
-                                   @"advocacyGroupLogoURL" : [notificationPayload valueForKey:@""],
-                                   @"ctaTimestamp" : [notificationPayload valueForKey:@""],
-                                   @"ctaTitle" : [notificationPayload valueForKey:@""],
-                                   @"ctaBody" : [notificationPayload valueForKey:@""]
-                                   };
     
-    [self.newsFeedObjects addObject:callToActionDict];
+    // THIS IS CRASHING ON LINE 35
+//    NSLog(@"%@", notificationPayload);
+//    NSString *name = [notificationPayload objectForKey:@"advocacyGroupName"];
+//    NSDictionary *callToActionDict = @{@"advocacyGroupName": name,
+//                                   @"advocacyGroupLogoURL" : [notificationPayload objectForKey:@"advocacyGroupLogoURL"],
+//                                   @"ctaTimestamp" : [NSDate date], // NEED TO FORMAT THIS PROPERLY
+//                                   @"body" : [notificationPayload objectForKey:@"body"]
+//                                   };
+    
+
+    
+    [self.newsFeedObjects addObject:notificationPayload];
 }
+
+
+
+
+
+
+
+
+
+
 // WHAT OBJECTS WILL THE CTA OBJECT NEED TO CONTAIN?
 // Name of advocacy group
 // Logo of advocacy group
