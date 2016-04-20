@@ -22,7 +22,12 @@
 - (id)init {
     self = [super init];
     if(self != nil) {
-        self.newsFeedObjects = [[NSMutableArray alloc]init];
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"newsFeedObjects"]) {
+            self.newsFeedObjects = [[[NSUserDefaults standardUserDefaults]objectForKey:@"newsFeedObjects"]mutableCopy];
+        }
+        else {
+            self.newsFeedObjects = [[NSMutableArray alloc]init];
+        }
     }
     return self;
 }
@@ -41,6 +46,9 @@
 
     
     [self.newsFeedObjects addObject:notificationPayload];
+    [[NSUserDefaults standardUserDefaults]setObject:self.newsFeedObjects forKey:@"newsFeedObjects"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
 }
 
 
