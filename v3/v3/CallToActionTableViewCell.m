@@ -8,11 +8,23 @@
 
 #import "CallToActionTableViewCell.h"
 
+@interface CallToActionTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *ctaGroupName;
+@property (weak, nonatomic) IBOutlet UILabel *ctaDescription;
+
+@end
+
 @implementation CallToActionTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+
+- (void)initWithData:(NSDictionary *)data {
+    self.ctaGroupName.text = [data valueForKey:@"advocacyGroupName"];
+    self.ctaDescription.text = [data valueForKey:@"body"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -10,4 +10,6 @@
 
 @interface CallToActionTableViewCell : UITableViewCell
 
+- (void)initWithData:(NSDictionary *)data;
+
 @end
