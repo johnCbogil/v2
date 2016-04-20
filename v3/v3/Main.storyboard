@@ -9,7 +9,7 @@
         <scene sceneID="hbQ-fR-HEb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Action" id="LwQ-q7-DUF"/>
+                    <tabBarItem key="tabBarItem" title="" image="Fist" id="LwQ-q7-DUF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -99,7 +99,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Action" width="33" height="33"/>
         <image name="AdvocacyGroups" width="42" height="42"/>
+        <image name="Fist" width="33" height="33"/>
     </resources>
 </document>
