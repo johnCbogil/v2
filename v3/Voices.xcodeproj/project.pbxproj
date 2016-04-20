@@ -35,6 +35,7 @@
 		52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */; };
 		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
+		52C7D4AF1CC7133000F85902 /* NewsFeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */; };
 		52D892931CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892921CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
 		52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */; };
@@ -113,6 +114,8 @@
 		52C6532F1B75120900EA6FFD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicesConstants.h; sourceTree = "<group>"; };
 		52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesConstants.m; sourceTree = "<group>"; };
+		52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedManager.h; sourceTree = "<group>"; };
+		52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedManager.m; sourceTree = "<group>"; };
 		52D892911CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardPlaceHolderViewController.h; sourceTree = "<group>"; };
 		52D892921CC45D11004FBEA3 /* StoryboardPlaceHolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardPlaceHolderViewController.m; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
 				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
+				52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */,
+				52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */,
 			);
 			name = AdvocacyGroupsPage;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
+				52C7D4AF1CC7133000F85902 /* NewsFeedManager.m in Sources */,
 				7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
