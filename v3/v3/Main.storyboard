@@ -100,6 +100,6 @@
     </scenes>
     <resources>
         <image name="AdvocacyGroups" width="42" height="42"/>
-        <image name="Fist" width="33" height="33"/>
+        <image name="Fist" width="34" height="34"/>
     </resources>
 </document>

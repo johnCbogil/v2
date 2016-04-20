@@ -12,37 +12,38 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0NS-vx-xEm" id="y5l-rm-C94">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="199.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGT-Td-XTR">
                         <rect key="frame" x="8" y="8" width="344" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="Efi-QU-tJu"/>
+                            <constraint firstAttribute="height" constant="40" id="orH-eg-9JG"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="JeW-sy-mvF" userLabel="Advocacy Group Type">
-                        <rect key="frame" x="8" y="56" width="344" height="135.5"/>
-                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-bg-TiE">
+                        <rect key="frame" x="8" y="56" width="344" height="136"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="JeW-sy-mvF" secondAttribute="leading" id="DYZ-Dj-5jl"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="JeW-sy-mvF" secondAttribute="trailing" id="J9K-T8-9cK"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="JeW-sy-mvF" secondAttribute="bottom" id="Xuo-S4-GDI"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="dKd-RP-YoH"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="hlM-xZ-38P"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="y5l-rm-C94" secondAttribute="trailingMargin" id="nSD-PD-UHl"/>
-                    <constraint firstItem="JeW-sy-mvF" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" constant="8" symbolic="YES" id="oGp-UI-qTP"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="2W8-ER-MFH"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="y5l-rm-C94" secondAttribute="trailingMargin" id="O04-ah-BHR"/>
+                    <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" constant="8" symbolic="YES" id="a8b-1l-o8U"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="fEk-0Y-mCt"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="PKl-bg-TiE" secondAttribute="leading" id="nv8-pf-xvs"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="sa4-5A-bMd"/>
+                    <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="8" id="w2A-Yy-gWP"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="ctaDescription" destination="JeW-sy-mvF" id="HKE-AA-Syu"/>
+                <outlet property="ctaDescription" destination="PKl-bg-TiE" id="neb-4D-7yB"/>
                 <outlet property="ctaGroupName" destination="IGT-Td-XTR" id="zEd-Cg-JRk"/>
             </connections>
             <point key="canvasLocation" x="587" y="652"/>
