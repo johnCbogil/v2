@@ -9,14 +9,18 @@
 #import "AdvocacyGroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
+#import "NewsFeedManager.h"
+#import "CallToActionTableViewCell.h"
 #import <Parse/Parse.h>
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
+//@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 
 @end
 
@@ -39,6 +43,8 @@
     
     [self userAuth];
     [self retrieveAdovacyGroups];
+    
+    self.listofCallsToAction = [NewsFeedManager sharedInstance].newsFeedObjects;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,28 +55,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.selectedSegment == 0) {
-        return self.listOfAdvocacyGroups.count;
+        return self.listofCallsToAction.count;
     }
     else {
         return self.listOfFollowedAdvocacyGroups.count;
     }}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
     if (self.selectedSegment == 0) {
-        [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+        CallToActionTableViewCell  *cell = (CallToActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CallToActionTableViewCell" forIndexPath:indexPath];
+        [cell initWithData:[self.listofCallsToAction objectAtIndex:indexPath.row]];
+        return cell;
     }
     else {
+        AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
         [cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
+        return cell;
     }
-    return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.selectedSegment == 0) {
-        [self followAdovacyGroup:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+        //[self followAdovacyGroup:[self.listofCallsToAction objectAtIndex:indexPath.row]];
     }
 }
 
@@ -91,8 +99,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
-}
+    if (self.selectedSegment == 0) {
+        return 200;
+    }
+    else {
+        return 100;
+    }}
 
 #pragma mark - Segment Control
 
@@ -129,7 +141,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
             NSLog(@"Retrieve AdvocacyGroup Success");
-            self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+            //self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
