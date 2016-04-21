@@ -11,9 +11,10 @@
 #import "UIColor+voicesOrange.h"
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
+#import "ListOfAdvocacyGroupsViewController.h"
 #import <Parse/Parse.h>
 
-@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -46,10 +47,14 @@
     [self retrieveAdovacyGroups];
     
     self.listofCallsToAction = [NewsFeedManager sharedInstance].newsFeedObjects;
+    
+    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] init];
+    viewControllerB.delegate = self;
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
+    NSLog(@"This was returned from ViewControllerB %@",item);
 }
 
 #pragma mark - TableView delegate methods
@@ -105,7 +110,8 @@
     }
     else {
         return 100;
-    }}
+    }
+}
 
 #pragma mark - Segment Control
 
