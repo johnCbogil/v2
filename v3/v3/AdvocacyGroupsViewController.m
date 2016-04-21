@@ -22,6 +22,7 @@
 //@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
 @end
 
@@ -30,8 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // FIND OUT WHERE THIS NAVIGATION CONTROLLER IS COMING FROM. I SHOULDN'T HAVE TO HIDE IT
-   // self.navigationController.navigationBar.hidden = YES;
     self.navigationItem.hidesBackButton = YES;
     
     self.tableView.delegate = self;
@@ -44,17 +43,27 @@
     self.segmentControl.tintColor = [UIColor voicesOrange];
     
     [self userAuth];
-    [self retrieveAdovacyGroups];
+    //[self retrieveAdovacyGroups];
     
     self.listofCallsToAction = [NewsFeedManager sharedInstance].newsFeedObjects;
     
-    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] init];
-    viewControllerB.delegate = self;
 
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:NO];
+    if (self.selectedSegment) {
+        [self retrieveFollowedAdovacyGroups];
+    }
 }
 
 - (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
     NSLog(@"This was returned from ViewControllerB %@",item);
+}
+- (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
+    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] init];
+    viewControllerB.delegate = self;
+    [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
 #pragma mark - TableView delegate methods

@@ -65,11 +65,12 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XHg-m8-Z67">
                             <connections>
-                                <segue destination="x7N-it-xRH" kind="show" id="ru2-zv-JfE"/>
+                                <action selector="listOfAdvocacyGroupsButtonDidPress:" destination="eRD-AU-WhC" id="aZk-KO-CLK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addAdvocacyGroupButton" destination="XHg-m8-Z67" id="NPo-P0-G59"/>
                         <outlet property="segmentControl" destination="wkW-V5-Dv1" id="I1S-Zq-CZn"/>
                         <outlet property="tableView" destination="fUB-rf-To8" id="RFB-5c-y8Y"/>
                     </connections>
@@ -97,10 +98,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mod-FK-t7E" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" id="2Db-nB-sCN"/>
-                            <constraint firstAttribute="trailing" secondItem="mod-FK-t7E" secondAttribute="trailing" id="Od6-av-qaE"/>
-                            <constraint firstItem="mod-FK-t7E" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" id="Smz-rS-eCt"/>
-                            <constraint firstItem="mod-FK-t7E" firstAttribute="bottom" secondItem="nHf-ya-AJ2" secondAttribute="top" id="kOV-Pw-354"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" id="Cpu-PY-RxS"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" constant="44" id="TMa-tG-bwg"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="bottom" secondItem="nHf-ya-AJ2" secondAttribute="top" id="YOB-yC-veo"/>
+                            <constraint firstAttribute="trailing" secondItem="mod-FK-t7E" secondAttribute="trailing" id="gw0-8j-qOh"/>
                         </constraints>
                     </view>
                     <connections>

@@ -53,7 +53,7 @@
     [[PFInstallation currentInstallation]saveInBackground];
     [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
     
-    
+  // I DONT THINK I NEED THIS DELEGATE ACTUALLY
     // I NEED TO ADD TO SUPER'S "FOLLOWEDADGROUPS" ARRAY HERE SOMEHOW
     [self.delegate addItemViewController:self didFinishEnteringItem:object];
     
