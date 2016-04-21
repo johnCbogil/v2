@@ -61,7 +61,7 @@
     NSLog(@"This was returned from ViewControllerB %@",item);
 }
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
-    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] init];
+    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] initWithNibName:@"ListOfAdvocacyGroupsViewController" bundle:nil];
     viewControllerB.delegate = self;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }

@@ -82,7 +82,7 @@
         <!--List Of Advocacy Groups View Controller-->
         <scene sceneID="qMa-UE-C3g">
             <objects>
-                <viewController id="x7N-it-xRH" customClass="ListOfAdvocacyGroupsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListOfAdvocacyGroupsViewController" id="x7N-it-xRH" customClass="ListOfAdvocacyGroupsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fur-lE-ZOf"/>
                         <viewControllerLayoutGuide type="bottom" id="nHf-ya-AJ2"/>
