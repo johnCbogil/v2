@@ -57,11 +57,17 @@
     {
         NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
         
-        if(index != NSNotFound)
-        {
+        if(index != NSNotFound) {
             NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
             [viewControllers replaceObjectAtIndex:index withObject:self.storyboardViewController];
+            if ([viewControllers[0]isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *nav = viewControllers[0];
+                (void)[self.navigationController initWithRootViewController:nav.viewControllers[0]];
+            }
+            else {
             [self.navigationController setViewControllers:viewControllers animated:NO];
+            }
+            
         }
     }
 }

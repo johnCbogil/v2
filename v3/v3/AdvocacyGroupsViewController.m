@@ -30,7 +30,8 @@
     [super viewDidLoad];
     
     // FIND OUT WHERE THIS NAVIGATION CONTROLLER IS COMING FROM. I SHOULDN'T HAVE TO HIDE IT
-    self.navigationController.navigationBar.hidden = YES;
+   // self.navigationController.navigationBar.hidden = YES;
+    self.navigationItem.hidesBackButton = YES;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
