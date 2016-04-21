@@ -19,10 +19,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    for(UITabBarItem * tabBarItem in self.tabBar.items){
-//        tabBarItem.title = @"";
-//        tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-//    }
+    for(UITabBarItem * tabBarItem in self.tabBar.items){
+        tabBarItem.title = @"";
+        tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    }
     
     [UITabBar appearance].tintColor = [UIColor voicesOrange];
 }

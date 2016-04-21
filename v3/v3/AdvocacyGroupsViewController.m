@@ -56,6 +56,8 @@
     }
 }
 
+
+// NOT SURE IF I NEED THIS
 - (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
     NSLog(@"This was returned from ViewControllerB %@",item);
 }
