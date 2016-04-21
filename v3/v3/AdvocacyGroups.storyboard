@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="1257" y="313"/>
         </scene>
-        <!--View Controller-->
+        <!--List Of Advocacy Groups View Controller-->
         <scene sceneID="qMa-UE-C3g">
             <objects>
-                <viewController id="x7N-it-xRH" sceneMemberID="viewController">
+                <viewController id="x7N-it-xRH" customClass="ListOfAdvocacyGroupsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fur-lE-ZOf"/>
                         <viewControllerLayoutGuide type="bottom" id="nHf-ya-AJ2"/>
@@ -89,8 +89,23 @@
                     <view key="view" contentMode="scaleToFill" id="5qS-BV-pJM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mod-FK-t7E">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" id="2Db-nB-sCN"/>
+                            <constraint firstAttribute="trailing" secondItem="mod-FK-t7E" secondAttribute="trailing" id="Od6-av-qaE"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" id="Smz-rS-eCt"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="bottom" secondItem="nHf-ya-AJ2" secondAttribute="top" id="kOV-Pw-354"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="mod-FK-t7E" id="XKQ-ys-dEF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DKR-iB-aCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
