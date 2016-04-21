@@ -78,10 +78,6 @@
     [self.refreshControl endRefreshing];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)toggleZeroState {
     if (self.tableViewDataSource.count == 0) {
         [self turnZeroStateOn];

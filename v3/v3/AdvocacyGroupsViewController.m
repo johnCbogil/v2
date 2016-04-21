@@ -46,7 +46,6 @@
     //[self retrieveAdovacyGroups];
     
     self.listofCallsToAction = [NewsFeedManager sharedInstance].newsFeedObjects;
-    
 
 }
 
@@ -61,7 +60,13 @@
     NSLog(@"This was returned from ViewControllerB %@",item);
 }
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
-    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] initWithNibName:@"ListOfAdvocacyGroupsViewController" bundle:nil];
+    
+    UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
+    ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
+
+    
+    
+//    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] initWithNibName:@"ListOfAdvocacyGroupsViewController" bundle:nil];
     viewControllerB.delegate = self;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
@@ -116,7 +121,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedSegment == 0) {
-        return 200;
+        return 150;
     }
     else {
         return 100;

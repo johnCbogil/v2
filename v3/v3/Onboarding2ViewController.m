@@ -29,10 +29,6 @@
     self.deferLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:11];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-}
 - (IBAction)permitLocationUseButtonDidPress:(id)sender {
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];
     [[LocationService sharedInstance] startUpdatingLocation];

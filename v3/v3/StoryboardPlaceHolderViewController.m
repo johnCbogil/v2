@@ -21,11 +21,6 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (UIViewController *)storyboardViewController {
     if(_storyboardViewController == nil)
     {

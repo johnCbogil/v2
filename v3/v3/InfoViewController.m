@@ -39,11 +39,6 @@
     [super viewDidAppear:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-}
-
 - (IBAction)closeWindowButtonDidPress:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

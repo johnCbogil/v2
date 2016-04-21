@@ -55,10 +55,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
     self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.75];
