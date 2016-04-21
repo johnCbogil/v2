@@ -77,6 +77,7 @@
     }}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (self.selectedSegment == 0) {
         CallToActionTableViewCell  *cell = (CallToActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CallToActionTableViewCell" forIndexPath:indexPath];
         [cell initWithData:[self.listofCallsToAction objectAtIndex:indexPath.row]];
