@@ -60,7 +60,7 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.75];
+    self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.5];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
 - (void)setFont {
@@ -271,7 +271,6 @@
 - (void)setShimmer {
     self.searchView.frame = self.shimmeringView.bounds;
     self.shimmeringView.contentView = self.searchView;
-    self.shimmeringView.shimmering = YES;
 }
 
 - (void)toggleShimmerOn {
