@@ -301,11 +301,6 @@
     switch (result) {
         case MFMailComposeResultCancelled:
         {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                                  action:@"email_cancelled"
-                                                                   label:[NSString stringWithFormat:@"%@, cancel",self.representativeEmail]
-                                                                   value:@1] build]];
             break;
         }
         case MFMailComposeResultSaved:
@@ -344,10 +339,7 @@
             switch (result) {
                 case SLComposeViewControllerResultCancelled:
                     NSLog(@"Twitter Post Canceled");
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                                          action:@"tweet_cancelled"
-                                                                           label:[NSString stringWithFormat:@"%@, cancel",[notification.userInfo objectForKey:@"accountName"]]
-                                                                           value:@1] build]];
+
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
