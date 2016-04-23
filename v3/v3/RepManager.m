@@ -153,7 +153,7 @@
     
     if (!isLocationWithinPath) {
         if (self.listOfNYCRepresentatives.count > 0) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"We couldn't find this location in NYC." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"Local officials are only available in New York right now." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
             [alert show];
         }
     }

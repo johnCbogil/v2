@@ -27,7 +27,7 @@
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
     secondViewController.title = @"State Legislators";
     RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
-    thirdViewController.title = @"NYC Council";
+    thirdViewController.title = @"Local";
     
     NSArray *viewControllers = @[initialViewController];
     self.listOfViewControllers = @[initialViewController,secondViewController,thirdViewController];

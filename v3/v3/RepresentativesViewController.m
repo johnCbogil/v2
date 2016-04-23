@@ -128,8 +128,7 @@
         self.zeroStateContainer.alpha = 1;
     }];
     if (self.index == 2) {
-        self.zeroStateLabel.text = @"We couldn't find this location in NYC.";
-    }
+        self.zeroStateLabel.text = @"Local officials are only available in New York right now.";    }
 }
 
 - (void)turnZeroStateOff {
