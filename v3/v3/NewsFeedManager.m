@@ -34,26 +34,14 @@
 
 - (void)createCallToActionFromNotificationPayload:(NSDictionary *)notificationPayload {
     
-    // THIS IS CRASHING ON LINE 35
-//    NSLog(@"%@", notificationPayload);
-//    NSString *name = [notificationPayload objectForKey:@"advocacyGroupName"];
-//    NSDictionary *callToActionDict = @{@"advocacyGroupName": name,
-//                                   @"advocacyGroupLogoURL" : [notificationPayload objectForKey:@"advocacyGroupLogoURL"],
-//                                   @"ctaTimestamp" : [NSDate date], // NEED TO FORMAT THIS PROPERLY
-//                                   @"body" : [notificationPayload objectForKey:@"body"]
-//                                   };
     
-
-    
-    [self.newsFeedObjects addObject:notificationPayload];
-    [[NSUserDefaults standardUserDefaults]setObject:self.newsFeedObjects forKey:@"newsFeedObjects"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
+    // These checks are to make sure the payload is formatted properly. There is probably a better way to check for this.
+    if ([notificationPayload isKindOfClass:[NSDictionary class]] && [notificationPayload objectForKey:@"advocacyGroupName"] && [notificationPayload objectForKey:@"body"]) {
+        [self.newsFeedObjects addObject:notificationPayload];
+        [[NSUserDefaults standardUserDefaults]setObject:self.newsFeedObjects forKey:@"newsFeedObjects"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
 }
-
-
-
-
 
 
 

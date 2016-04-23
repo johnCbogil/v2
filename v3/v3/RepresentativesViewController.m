@@ -38,7 +38,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchDataForIndex:self.index];
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self fetchDataForIndex:self.index];
+    }
+    else if (self.index == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     [self createTableView];
     [self createRefreshControl];
     [self createShimmer];
