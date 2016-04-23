@@ -91,7 +91,10 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // Not sure what this is.
     [PFPush handlePush:userInfo];
+    [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[userInfo valueForKey:@"aps"]valueForKey:@"alert"]];
+
 }
 
 - (void)setInitialViewController {
