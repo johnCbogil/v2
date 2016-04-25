@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="StateRepresentativeTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="StateRepresentativeTableViewCell" rowHeight="140" id="aHE-mT-4XI" customClass="StateRepresentativeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aHE-mT-4XI" id="FXl-oV-8jG">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-zI-HQX">
+                        <rect key="frame" x="8" y="8" width="100" height="123"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="123" id="Jnq-TA-OYH"/>
+                            <constraint firstAttribute="width" constant="100" id="SAk-o9-qE5"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jnq-TA-OYH"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="ksZ-6H-Pwf">
+                        <rect key="frame" x="123" y="8" width="229" height="30"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EL-J2-byu">
+                        <rect key="frame" x="153" y="83" width="33" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="AHQ-03-tIE"/>
+                            <constraint firstAttribute="width" constant="33" id="dc1-vu-A7r"/>
+                            <constraint firstAttribute="width" constant="35" id="f5Q-Iz-L2F"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <state key="normal" backgroundImage="Message Filled">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="f5Q-Iz-L2F"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <action selector="emailButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="EBT-ni-v4o"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Tweet Button">
+                        <rect key="frame" x="270" y="83" width="33" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="AyF-jM-xYu"/>
+                            <constraint firstAttribute="height" constant="33" id="eUl-Td-5t3"/>
+                            <constraint firstAttribute="width" constant="33" id="xhe-fW-YB5"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="Phone Filled"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AyF-jM-xYu"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <action selector="callButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="VVh-zR-ybl"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-xQ-nFh">
+                        <rect key="frame" x="123" y="46" width="229" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="23.5" id="1mi-1Y-jaf"/>
+                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="6jo-Ri-ZzW"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="top" secondItem="IOz-xQ-nFh" secondAttribute="bottom" constant="16" id="8L6-iH-uhe"/>
+                    <constraint firstItem="IOz-xQ-nFh" firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" id="8VZ-Th-b34"/>
+                    <constraint firstItem="IOz-xQ-nFh" firstAttribute="leading" secondItem="ksZ-6H-Pwf" secondAttribute="leading" id="HxS-hW-wkc"/>
+                    <constraint firstItem="OiI-zI-HQX" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="JeA-Fq-gGt"/>
+                    <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="FXl-oV-8jG" secondAttribute="leading" constant="8" id="Ktm-i1-HkL"/>
+                    <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="SRT-8R-u25"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="SWR-Kf-VhV"/>
+                    <constraint firstAttribute="bottom" secondItem="Vmf-Ub-0WH" secondAttribute="bottom" constant="23.5" id="XKe-FA-okp"/>
+                    <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="Zec-CW-OiP"/>
+                    <constraint firstItem="IOz-xQ-nFh" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="8" symbolic="YES" id="hxS-tI-Il3"/>
+                    <constraint firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" constant="8" id="jMb-9Q-ld0"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="IOz-xQ-nFh" secondAttribute="bottom" constant="16" id="l6k-O7-tXg"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="45" id="nNa-jG-wce"/>
+                    <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="uBb-x2-2zw"/>
+                    <constraint firstAttribute="trailing" secondItem="Vmf-Ub-0WH" secondAttribute="trailing" constant="57" id="wbC-i9-fJw"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Zec-CW-OiP"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="callButton" destination="Vmf-Ub-0WH" id="j4M-tv-M4q"/>
+                <outlet property="districtNumberLabel" destination="IOz-xQ-nFh" id="fNE-KV-duG"/>
+                <outlet property="emailButton" destination="8EL-J2-byu" id="IoI-PD-r9y"/>
+                <outlet property="name" destination="ksZ-6H-Pwf" id="F1Z-ip-bbd"/>
+                <outlet property="photo" destination="OiI-zI-HQX" id="e1o-Ux-gGu"/>
+            </connections>
+            <point key="canvasLocation" x="583" y="282"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Message Filled" width="33" height="33"/>
+        <image name="Phone Filled" width="33" height="33"/>
+    </resources>
+</document>
