@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonnull) CTCallCenter *callCenter;
+@property (strong, nonatomic) id<GAITracker> tracker;
+
 
 @end
 
@@ -39,6 +41,7 @@
     [self setColor];
     [self trackConnectedCalls];
     self.listOfStatesWithAssembly = [NSArray arrayWithObjects:@"CA", @"NV", @"NJ", @"NY", @"WI", nil];
+    self.tracker = [[GAI sharedInstance] defaultTracker];
 }
 
 - (void)initWithRep:(id)rep {
@@ -122,9 +125,7 @@
     }
     else if (buttonIndex == 1) {
         
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+        [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
                                                               action:@"state_call"  // Event action (required)
                                                                label:self.stateRepresentative.fullName           // Event label
                                                                value:@1] build]];    // Event value
@@ -147,8 +148,7 @@
     __weak typeof(self) weakSelf = self;
     [self.callCenter setCallEventHandler:^(CTCall *call) {
         if ([[call callState] isEqual:CTCallStateConnected]) {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+            [weakSelf.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
                                                                   action:@"state_call"  // Event action (required)
                                                                    label:weakSelf.stateRepresentative.fullName           // Event label
                                                                    value:@1] build]];    // Event value

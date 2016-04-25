@@ -1,0 +1,17 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '8.0'
+
+target 'Voices' do
+    
+    pod "AFNetworking", "~> 2.0"
+    pod “Shimmer“
+    pod 'STPopup'
+    pod 'SSZipArchive'
+    pod 'Google/Analytics'
+    
+end
+
+target 'VoicesTests' do
+    
+end
+

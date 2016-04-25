@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (strong, nonnull) CTCallCenter *callCenter;
+@property (strong, nonatomic) id<GAITracker> tracker;
+
 
 @end
 
@@ -38,6 +40,7 @@
     [self setColor];
     [self trackConnectedCalls];
     [self setImage];
+    self.tracker = [[GAI sharedInstance] defaultTracker];
 }
 
 - (void)setImage{
@@ -134,9 +137,7 @@
     }
     else if (buttonIndex == 1) {
         
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+        [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                               action:@"nyc_call"
                                                                label:[NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName]
                                                                value:@1] build]];
@@ -158,8 +159,7 @@
     __weak typeof(self) weakSelf = self;
     [self.callCenter setCallEventHandler:^(CTCall *call) {
         if ([[call callState] isEqual:CTCallStateConnected]) {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
+            [weakSelf.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
                                                                   action:@"nyc_call"  // Event action (required)
                                                                    label:[NSString stringWithFormat:@"%@ %@", weakSelf.nycRepresentative.firstName, weakSelf.nycRepresentative.lastName]           // Event label
                                                                    value:@1] build]];    // Event value

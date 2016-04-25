@@ -37,6 +37,8 @@
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+@property (strong, nonatomic) id<GAITracker> tracker;
+
 @end
 
 @implementation HomeViewController
@@ -48,6 +50,7 @@
     [self setColors];
     [self setSearchBar];
     [self setShimmer];
+    self.tracker = [[GAI sharedInstance] defaultTracker];
 }
 
 - (void)dealloc {
@@ -312,8 +315,7 @@
             alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+            [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                                   action:@"email_sent"
                                                                    label:self.representativeEmail
                                                                    value:@1] build]];
@@ -334,7 +336,6 @@
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
             switch (result) {
                 case SLComposeViewControllerResultCancelled:
@@ -343,7 +344,7 @@
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
+                    [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
                                                                           action:@"tweet_sent"
                                                                            label:[notification.userInfo objectForKey:@"accountName"]
                                                                            value:@1] build]];
