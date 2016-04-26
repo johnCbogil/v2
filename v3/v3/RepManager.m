@@ -199,19 +199,25 @@
     double currentLatitude = location.coordinate.latitude;
     double currentLongitude = location.coordinate.longitude;
     if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCityCouncilCSV ofType:@"csv"];
-        NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
-        
-        NSArray* rows = [fileContents componentsSeparatedByString:@"/n"];
-        for (NSString *member in rows) {
-            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
+        NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+        NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
+
+        NSArray *districts = [nycCouncilMemberDataDictionary objectForKey:@"district"];
+        for (NSNumber *district in districts) {
+            int districtInt = [district intValue];
+            int index = districtInt - 1;
+            if (districtInt == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
-                NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-                NSArray *memberData = [member componentsSeparatedByString:@","];
-                NSLog(@"%@", memberData);
-                NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
-                [listOfNYCRepresentatives addObject:nycRepresentative];
-                self.listOfNYCRepresentatives = listOfNYCRepresentatives;
+                
+                NSMutableArray *memberData = [NSMutableArray new];
+                NSArray *keys = @[@"district", @"firstName", @"lastName", @"phoneNumbers", @"emails", @"party", @"photos", @"twitter"];
+                for (NSString *key in keys) {
+                    NSArray *dataArray = [nycCouncilMemberDataDictionary objectForKey:key];
+                    [memberData addObject:[dataArray objectAtIndex:index]];
+                }
+                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:memberData];
+                self.listOfNYCRepresentatives = @[nycRep];
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 
                 return isLocationWithinPath;

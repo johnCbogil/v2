@@ -14,14 +14,14 @@
     //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
-        self.districtNumber = [data[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        self.districtNumber = [(NSNumber*)data[0] stringValue];
         self.firstName = data[1];
         self.lastName = data[2];
-        self.phone = data[8];
-        self.party = data[12];
-        self.email = data[10];
-        self.photoURL = [NSURL URLWithString:data[13]];
-        self.twitter = data[14];
+        self.phone = data[3];
+        self.email = data[4];
+        self.party = data[5];
+        self.photoURL = [NSURL URLWithString:data[6]];
+        self.twitter = data[7];
     }
     return self;
 }
