@@ -16,7 +16,6 @@
 		5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */; };
 		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
 		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
-		52A156C41C7E183400B566ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52A156C31C7E183400B566ED /* GoogleService-Info.plist */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
 		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
@@ -42,7 +41,6 @@
 		7806AF18A0764052BFF1AF74 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F5F33B2BC320E83BB44705 /* libPods-Voices.a */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
 		7EF613DB1CAED1D9009EBB03 /* NYCCouncil.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */; };
-		9C06C34A1CD03BC7006A75D0 /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C06C3491CD03BC7006A75D0 /* CouncilMemberData.json */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +70,6 @@
 		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		52877FCB1BA0EC1700B5AE02 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		52877FCC1BA0EC1700B5AE02 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
-		52A156C31C7E183400B566ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
@@ -119,7 +116,6 @@
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
 		7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NYCCouncil.csv; sourceTree = "<group>"; };
-		9C06C3491CD03BC7006A75D0 /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		C812695A3BE1059FDAA3F7A8 /* libPods-v3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-v3.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A26E0C6F354F7C08CD4832 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,9 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
-				9C06C3491CD03BC7006A75D0 /* CouncilMemberData.json */,
 				7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */,
-				52A156C31C7E183400B566ED /* GoogleService-Info.plist */,
 				52BB342F1B6160C900BB9FFD /* Info.plist */,
 				52BB34301B6160CA00BB9FFD /* main.m */,
 			);
@@ -330,9 +324,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		52BB342A1B6160C900BB9FFD /* v3 */ = {
+		52BB342A1B6160C900BB9FFD /* Voices */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3" */;
+			buildConfigurationList = 52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "Voices" */;
 			buildPhases = (
 				53ECD74479AB7F003C7FD7F6 /* Check Pods Manifest.lock */,
 				52BB34271B6160C900BB9FFD /* Sources */,
@@ -344,14 +338,14 @@
 			);
 			dependencies = (
 			);
-			name = v3;
+			name = Voices;
 			productName = v3;
 			productReference = 52BB342B1B6160C900BB9FFD /* Voices.app */;
 			productType = "com.apple.product-type.application";
 		};
-		52BB34431B6160CA00BB9FFD /* v3Tests */ = {
+		52BB34431B6160CA00BB9FFD /* VoicesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3Tests" */;
+			buildConfigurationList = 52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "VoicesTests" */;
 			buildPhases = (
 				52BB34401B6160CA00BB9FFD /* Sources */,
 				52BB34411B6160CA00BB9FFD /* Frameworks */,
@@ -362,7 +356,7 @@
 			dependencies = (
 				52BB34461B6160CA00BB9FFD /* PBXTargetDependency */,
 			);
-			name = v3Tests;
+			name = VoicesTests;
 			productName = v3Tests;
 			productReference = 52BB34441B6160CA00BB9FFD /* Voices.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -399,8 +393,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52BB342A1B6160C900BB9FFD /* v3 */,
-				52BB34431B6160CA00BB9FFD /* v3Tests */,
+				52BB342A1B6160C900BB9FFD /* Voices */,
+				52BB34431B6160CA00BB9FFD /* VoicesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -414,8 +408,6 @@
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
 				7EF613DB1CAED1D9009EBB03 /* NYCCouncil.csv in Resources */,
-				52A156C41C7E183400B566ED /* GoogleService-Info.plist in Resources */,
-				9C06C34A1CD03BC7006A75D0 /* CouncilMemberData.json in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
@@ -510,7 +502,7 @@
 /* Begin PBXTargetDependency section */
 		52BB34461B6160CA00BB9FFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52BB342A1B6160C900BB9FFD /* v3 */;
+			target = 52BB342A1B6160C900BB9FFD /* Voices */;
 			targetProxy = 52BB34451B6160CA00BB9FFD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -699,7 +691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3" */ = {
+		52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "Voices" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BB344F1B6160CA00BB9FFD /* Debug */,
@@ -708,7 +700,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "v3Tests" */ = {
+		52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "VoicesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52BB34521B6160CA00BB9FFD /* Debug */,

@@ -7,7 +7,6 @@ target 'Voices' do
     pod “Shimmer“
     pod 'STPopup'
     pod 'SSZipArchive'
-    pod 'Google/Analytics'
     
 end
 
