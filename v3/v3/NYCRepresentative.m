@@ -31,7 +31,7 @@
         self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
         self.firstName = [decoder decodeObjectForKey:@"firstName"];
         self.lastName = [decoder decodeObjectForKey:@"lastName"];
-        self.phone = [decoder decodeObjectForKey:@"phone"];
+        self.phone = [decoder decodeObjectForKey:@"phoneNumber"];
         self.party = [decoder decodeObjectForKey:@"party"];
         self.email = [decoder decodeObjectForKey:@"email"];
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
@@ -45,6 +45,7 @@
     [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
     [coder encodeObject:self.firstName forKey:@"firstName"];
     [coder encodeObject:self.lastName forKey:@"lastName"];
+    [coder encodeObject:self.phone forKey:@"phoneNumber"];
     [coder encodeObject:self.party forKey:@"party"];
     [coder encodeObject:self.email forKey:@"email"];
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
