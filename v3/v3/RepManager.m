@@ -199,21 +199,18 @@
     double currentLatitude = location.coordinate.latitude;
     double currentLongitude = location.coordinate.longitude;
     if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCityCouncilCSV ofType:@"csv"];
-        NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
+        NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+        NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
         
-        NSArray* rows = [fileContents componentsSeparatedByString:@"/n"];
-        for (NSString *member in rows) {
-            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
-                isLocationWithinPath = YES;
-                NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-                NSArray *memberData = [member componentsSeparatedByString:@","];
-                NSLog(@"%@", memberData);
-                NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
-                [listOfNYCRepresentatives addObject:nycRepresentative];
-                self.listOfNYCRepresentatives = listOfNYCRepresentatives;
-                [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
+        NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
                 
+        for (int i = 0; i < districts.count; i++) {
+            if (i + 1 == [self.currentCouncilDistrict intValue]) {
+                isLocationWithinPath = YES;
+                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i]]];
+                self.listOfNYCRepresentatives = @[nycRep];
+                [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
             }
         }

@@ -10,7 +10,7 @@
 
 @interface NYCRepresentative : NSObject
 
-- (id)initWithData:(NSArray*)data;
+- (id)initWithData:(NSDictionary*)data;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
