@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "464074F7E5D366E77AE3C40A"
+               BlueprintIdentifier = "B6AF59E3312E1B79040016B1"
                BuildableName = "libSTPopup.a"
                BlueprintName = "STPopup"
                ReferencedContainer = "container:Pods.xcodeproj">

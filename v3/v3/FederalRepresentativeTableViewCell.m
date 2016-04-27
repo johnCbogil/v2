@@ -11,7 +11,6 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
-#import <Google/Analytics.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
@@ -71,11 +70,6 @@
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
             
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
-                                                                  action:@"federal_call"  // Event action (required)
-                                                                   label:self.federalRepresentative.fullName           // Event label
-                                                                   value:@1] build]];    // Event value
             [[UIApplication sharedApplication] openURL:callUrl];
         }
         else {

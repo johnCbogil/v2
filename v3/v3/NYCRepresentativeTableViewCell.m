@@ -11,7 +11,6 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-#import <Google/Analytics.h>
 
 @interface NYCRepresentativeTableViewCell ()
 
@@ -129,12 +128,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
-        
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                              action:@"nyc_call"
-                                                               label:[NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName]
-                                                               value:@1] build]];
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
