@@ -10,18 +10,18 @@
 
 @implementation NYCRepresentative
 
-- (id)initWithData:(NSArray*)data {
+- (id)initWithData:(NSDictionary*)data {
     //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
-        self.districtNumber = [(NSNumber*)data[0] stringValue];
-        self.firstName = data[1];
-        self.lastName = data[2];
-        self.phone = data[3];
-        self.email = data[4];
-        self.party = data[5];
-        self.photoURL = [NSURL URLWithString:data[6]];
-        self.twitter = data[7];
+        self.districtNumber = data[@"district"];
+        self.firstName = data[@"firstName"];
+        self.lastName = data[@"lastName"];
+        self.phone = data[@"phoneNumber"];
+        self.email = data[@"email"];
+        self.party = data[@"party"];
+        self.photoURL = [NSURL URLWithString:data[@"photoURLPath"]];
+        self.twitter = data[@"twitter"];
     }
     return self;
 }

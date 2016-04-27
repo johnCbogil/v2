@@ -9,12 +9,38 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "v3/RepManager.m"
-            timestampString = "483379805.851762"
+            filePath = "v3/NYCRepresentative.m"
+            timestampString = "483408720.625342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "-initWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "v3/RepManager.m"
+            timestampString = "483408055.321549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-isLocation:withinPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "v3/RepManager.m"
-            timestampString = "483380128.894979"
+            filePath = "v3/NYCRepresentative.m"
+            timestampString = "483407934.115319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "-isLocation:withinPath:"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "-initWithData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

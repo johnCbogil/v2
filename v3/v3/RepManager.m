@@ -202,24 +202,15 @@
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
         NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
         NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
-
-        NSArray *districts = [nycCouncilMemberDataDictionary objectForKey:@"district"];
-        for (NSNumber *district in districts) {
-            int districtInt = [district intValue];
-            int index = districtInt - 1;
-            if (districtInt == [self.currentCouncilDistrict intValue]) {
-                isLocationWithinPath = YES;
+        
+        NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
                 
-                NSMutableArray *memberData = [NSMutableArray new];
-                NSArray *keys = @[@"district", @"firstName", @"lastName", @"phoneNumbers", @"emails", @"party", @"photos", @"twitter"];
-                for (NSString *key in keys) {
-                    NSArray *dataArray = [nycCouncilMemberDataDictionary objectForKey:key];
-                    [memberData addObject:[dataArray objectAtIndex:index]];
-                }
-                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:memberData];
+        for (int i = 0; i < districts.count; i++) {
+            if (i + 1 == [self.currentCouncilDistrict intValue]) {
+                isLocationWithinPath = YES;
+                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i]]];
                 self.listOfNYCRepresentatives = @[nycRep];
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
-                
                 return isLocationWithinPath;
             }
         }
