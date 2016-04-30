@@ -22,6 +22,9 @@
 #import <Google/Analytics.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "SearchResultsController.h"
+
+static NSString *cellIdentifier = @"cellIdentifier";
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -37,6 +40,11 @@
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+
+//Search autocomplete
+@property (strong, nonatomic) NSArray *searchResultsArray;
+@property (weak, nonatomic) IBOutlet UITableView *searchTableView;
+
 @end
 
 @implementation HomeViewController
@@ -48,6 +56,7 @@
     [self setColors];
     [self setSearchBar];
     [self setShimmer];
+    [self setupTableView];
 }
 
 - (void)dealloc {
@@ -90,6 +99,57 @@
     [self hideSearchBar];
     [self.searchBar resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
+    self.searchTableView.hidden = YES;
+}
+
+- (void)setupTableView {
+    self.searchTableView.delegate = self;
+    self.searchTableView.dataSource = self;
+    
+    [self.searchTableView registerClass:[UITableViewCell class] forCellReuseIdentifier: cellIdentifier];
+}
+
+
+- (void)findRepsFromLocationWithSearchResult:(NSString*) result{
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:result withCompletion:^(CLLocation *locationResults) {
+        
+        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+            NSLog(@"%@", locationResults);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        
+    } onError:^(NSError *googleMapsError) {
+        NSLog(@"%@", [googleMapsError localizedDescription]);
+    }];
+    [self dismissKeyboard];
+    self.searchBar.text = @"";
+
+}
+
+- (void)handleAddressesFromSearchText:(NSString*)searchText {
+    [[NetworkManager sharedInstance] getAddressesFromSearchText:searchText withCompletion:^(NSDictionary *results) {
+        self.searchTableView.hidden = NO;
+        
+        NSMutableArray *resultsArray = [NSMutableArray new];
+        
+        for (NSDictionary *dictionary in [results objectForKey:@"predictions"]) {
+            [resultsArray addObject:[dictionary objectForKey:@"description"]];
+        }
+        self.searchResultsArray = [NSArray arrayWithArray:resultsArray];
+        [self.searchTableView reloadData];
+    } onError:^(NSError *error) {
+        NSLog(@"Error getting autocomplete results from Google Places API: \n%@\n%@", error.localizedDescription, error.userInfo);
+    }];
 }
 
 #pragma mark - Search Bar Delegate Methods
@@ -162,41 +222,20 @@
             self.pageVC = vc;
         }
     }
-    
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
-        
-        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            NSLog(@"%@", locationResults);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
-        
-    } onError:^(NSError *googleMapsError) {
-        NSLog(@"%@", [googleMapsError localizedDescription]);
-    }];
-    
-    [self hideSearchBar];
-    [searchBar resignFirstResponder];
+    [self findRepsFromLocationWithSearchResult:searchBar.text];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    [self hideSearchBar];
+//    [searchBar resignFirstResponder];
+//    [self hideSearchBar];
+    [self dismissKeyboard];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
 
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
     [self showSearchBar];
 }
+
 
 - (void)showSearchBar {
     self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
@@ -242,29 +281,49 @@
     return self.legislatureLevel.intrinsicContentSize.width + 60;
 }
 
-- (void)changePage:(NSNotification *)notification {
-    NSDictionary* userInfo = notification.object;
-    if ([userInfo objectForKey:@"currentPage"]) {
-        self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
-    }
-    
-    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
-    
-    [UIView animateWithDuration:.15
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }];
-    if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
-        self.pageControl.currentPage = 0;
-    }
-    else if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"State Legislators"]) {
-        self.pageControl.currentPage = 1;
-    }
-    else {
-        self.pageControl.currentPage = 2;
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    if (searchBar.text.length > 0) {
+        [self handleAddressesFromSearchText:searchBar.text];
     }
 }
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self handleAddressesFromSearchText:searchText];
+}
+
+
+#pragma mark - TableView Methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.searchResultsArray.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text = self.searchResultsArray[indexPath.row];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *address = [self.searchResultsArray objectAtIndex:indexPath.row];
+    [self findRepsFromLocationWithSearchResult:address];
+}
+
 
 #pragma mark - FB Shimmer methods
 
@@ -376,5 +435,33 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
 }
+
+- (void)changePage:(NSNotification *)notification {
+    NSDictionary* userInfo = notification.object;
+    if ([userInfo objectForKey:@"currentPage"]) {
+        self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    }
+    
+    self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+    
+    [UIView animateWithDuration:.15
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
+        self.pageControl.currentPage = 0;
+    }
+    else if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"State Legislators"]) {
+        self.pageControl.currentPage = 1;
+    }
+    else {
+        self.pageControl.currentPage = 2;
+    }
+    [self.searchBar resignFirstResponder];
+    [self.containerView removeGestureRecognizer:self.tap];
+}
+
+
 
 @end

@@ -4,7 +4,7 @@
 target 'Voices' do
     
     pod "AFNetworking", "~> 2.0"
-    pod “Shimmer“
+    pod "Shimmer"
     pod 'STPopup'
     pod 'SSZipArchive'
     pod 'Google/Analytics'

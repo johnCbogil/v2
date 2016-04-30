@@ -22,6 +22,7 @@ NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 NSString *const kSFCongress = @"a0c99640cc894383975eb73b99f39d2f";
 NSString *const kSFState = @"a0c99640cc894383975eb73b99f39d2f";
 NSString *const kGoogMaps = @"AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE";
+NSString *const kGoogPlaces = @"AIzaSyACa8-cF2UZpGvGCdHvZ31PLAjcrVu6Eps";
 
 NSString *const kFederalRepresentative = @"FederalRepresentative";
 NSString *const kStateRepresentative = @"StateRepresentative";

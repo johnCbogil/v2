@@ -121,5 +121,29 @@
     [operation start];
 }
 
+- (void)getAddressesFromSearchText:(NSString*)text withCompletion:(void(^)(NSDictionary* results))successBlock onError:(void(^)(NSError *error))errorBlock{
+
+    // documentation for the URL query can be found here https://developers.google.com/places/web-service/autocomplete#location_biasing
+    NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&components=country:us&key=%@", text, kGoogPlaces];
+    NSString *encodedURL = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:encodedURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Please try again" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil,nil];
+        [alert show];
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+
+}
+
 
 @end
