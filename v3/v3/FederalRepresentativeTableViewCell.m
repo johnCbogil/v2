@@ -12,6 +12,8 @@
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import <Google/Analytics.h>
+
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -67,6 +69,14 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                              action:@"button_press"
+                                                               label:self.federalRepresentative.fullName
+                                                               value:@1] build]];
+
+        
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
             

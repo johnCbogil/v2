@@ -21,6 +21,8 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import <Google/Analytics.h>
+
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
