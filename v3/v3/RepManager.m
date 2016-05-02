@@ -56,9 +56,9 @@
     else if (index == 2) {
         self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
         
-        if (self.listOfNYCRepresentatives.count > 0) {
+        //if (self.listOfNYCRepresentatives.count > 0) {
             return self.listOfNYCRepresentatives;
-        }
+        //}
     }
     return nil;
 }
@@ -152,10 +152,7 @@
     }
     
     if (!isLocationWithinPath) {
-        if (self.listOfNYCRepresentatives.count > 0) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"Local officials are only available in New York right now." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
-            [alert show];
-        }
+        self.listOfNYCRepresentatives = nil;
     }
 }
 
