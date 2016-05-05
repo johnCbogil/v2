@@ -17,7 +17,7 @@ extern NSString *const kNYCRepresentativeTableViewCell;
 extern NSString *const kAvenirNextRegular;
 extern NSString *const kMontserratLight;
 extern NSString *const kOpenSans;
-
+extern NSString *const kTitilliumWebRegular;
 
 extern NSString *const kSFCongress;
 extern NSString *const kSFState;

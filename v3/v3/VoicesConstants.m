@@ -18,6 +18,7 @@ NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCe
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 //NSString *const kMontserratLight = @"Montserrat-Light";
 //NSString *const kOpenSans = @"OpenSans";
+NSString *const kTitilliumWebRegular = @"TitilliumWeb-Regular";
 
 NSString *const kSFCongress = @"a0c99640cc894383975eb73b99f39d2f";
 NSString *const kSFState = @"a0c99640cc894383975eb73b99f39d2f";

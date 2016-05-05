@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++43AC522",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++43AC522" : 0,
+    "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++C397A25" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DEC14474-F0E8-42C2-8690-0225BD204DEE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++43AC522" : "",
+    "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++C397A25" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Voices",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Voices.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/johncbogil\/v3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++43AC522"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/johncbogil\/v3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AC43DF33E603FE4C5ED149C8EAB26051AF905553+++C397A25"
+    }
+  ]
+}
