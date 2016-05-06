@@ -52,6 +52,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     [self addObservers];
     [self toggleZeroState];
     [self reloadTableView];
@@ -62,6 +63,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
