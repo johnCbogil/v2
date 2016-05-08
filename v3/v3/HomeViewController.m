@@ -19,7 +19,6 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
-#import <Google/Analytics.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
@@ -298,11 +297,6 @@
     switch (result) {
         case MFMailComposeResultCancelled:
         {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                                  action:@"email_cancelled"
-                                                                   label:[NSString stringWithFormat:@"%@, cancel",self.representativeEmail]
-                                                                   value:@1] build]];
             break;
         }
         case MFMailComposeResultSaved:
@@ -311,14 +305,6 @@
             break;
         case MFMailComposeResultSent:
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-            
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                                  action:@"email_sent"
-                                                                   label:self.representativeEmail
-                                                                   value:@1] build]];
             break;
         }
         case MFMailComposeResultFailed:
@@ -336,22 +322,13 @@
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
             switch (result) {
                 case SLComposeViewControllerResultCancelled:
                     NSLog(@"Twitter Post Canceled");
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                                          action:@"tweet_cancelled"
-                                                                           label:[NSString stringWithFormat:@"%@, cancel",[notification.userInfo objectForKey:@"accountName"]]
-                                                                           value:@1] build]];
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"
-                                                                          action:@"tweet_sent"
-                                                                           label:[notification.userInfo objectForKey:@"accountName"]
-                                                                           value:@1] build]];
                     break;
                 default:
                     break;

@@ -11,7 +11,6 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
-#import <Google/Analytics.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
@@ -137,15 +136,7 @@
 
 - (void)trackConnectedCalls {
     self.callCenter = [[CTCallCenter alloc] init];
-    __weak typeof(self) weakSelf = self;
     [self.callCenter setCallEventHandler:^(CTCall *call) {
-        if ([[call callState] isEqual:CTCallStateConnected]) {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"direct_action"     // Event category (required)
-                                                                  action:@"federal_call"  // Event action (required)
-                                                                   label:weakSelf.federalRepresentative.fullName           // Event label
-                                                                   value:@1] build]];    // Event value
-        }
     }];
 }
 @end
