@@ -9,7 +9,7 @@
         <scene sceneID="hbQ-fR-HEb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="LwQ-q7-DUF"/>
+                    <tabBarItem key="tabBarItem" title="" image="Triangle" id="LwQ-q7-DUF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -28,7 +28,7 @@
         <scene sceneID="hAN-M3-E03">
             <objects>
                 <navigationController id="SCJ-h6-y9k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="k4q-ih-gxp"/>
+                    <tabBarItem key="tabBarItem" title="" image="Circle" id="k4q-ih-gxp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CcN-tr-qS3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,4 +98,8 @@
             <point key="canvasLocation" x="677" y="302"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circle" width="33" height="33"/>
+        <image name="Triangle" width="41" height="41"/>
+    </resources>
 </document>
