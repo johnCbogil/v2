@@ -57,7 +57,7 @@
         self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
         
         //if (self.listOfNYCRepresentatives.count > 0) {
-            return self.listOfNYCRepresentatives;
+        return self.listOfNYCRepresentatives;
         //}
     }
     return nil;
@@ -142,10 +142,10 @@
     BOOL isLocationWithinPath = false;
     
     for (NSDictionary *district in self.nycDistricts) {
-        CGMutablePathRef path = [self drawNYCDistrictPathFromDictionary:district];
-        
+        CGMutablePathRef path = CGPathCreateMutable();
+        [self drawNYCDistrictPath:path fromDictionary:district];
         isLocationWithinPath = [self isLocation:location withinPath:path];
-        
+        CGPathRelease(path);
         if (isLocationWithinPath) {
             break;
         }
@@ -154,12 +154,11 @@
     if (!isLocationWithinPath) {
         self.listOfNYCRepresentatives = nil;
     }
+    
 }
 
-- (CGMutablePathRef)drawNYCDistrictPathFromDictionary: (NSDictionary *)district {
+- (void)drawNYCDistrictPath:(CGMutablePathRef)path fromDictionary: (NSDictionary *)district {
     
-    // Create a path
-    CGMutablePathRef path = CGPathCreateMutable();
     // Parse out the council district from the data
     self.currentCouncilDistrict = [[district valueForKey:@"properties"]valueForKey:@"coundist"];
     NSLog(@"%@", self.currentCouncilDistrict);
@@ -185,7 +184,6 @@
         }
     }
     CGPathCloseSubpath(path);
-    return path;
 }
 
 - (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
@@ -201,7 +199,7 @@
         NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
         
         NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
-                
+        
         for (int i = 0; i < districts.count; i++) {
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
