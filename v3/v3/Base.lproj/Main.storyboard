@@ -188,11 +188,11 @@
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Md-kc-Kam">
-                                <rect key="frame" x="216" y="83" width="169" height="180"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Md-kc-Kam">
+                                <rect key="frame" x="216" y="83" width="169" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="0fi-Pz-rGW"/>
+                                    <constraint firstAttribute="height" id="0fi-Pz-rGW"/>
                                 </constraints>
                             </tableView>
                         </subviews>

@@ -26,7 +26,7 @@
 
 static NSString *cellIdentifier = @"cellIdentifier";
 
-@interface HomeViewController () <MFMailComposeViewControllerDelegate>
+@interface HomeViewController () <MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -59,6 +59,12 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self setupTableView];
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    if (self.isSearchBarOpen) {
+        [self showSearchBar];
+    }
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -77,7 +83,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"changePage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePageFinished:) name:kNotifyFinishPageChange object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
@@ -93,13 +99,26 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)keyboardDidShow:(NSNotification *)note {
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.containerView addGestureRecognizer:self.tap];
+//    [self.pageVC addGestureRecognizer:self.tap];
+    self.tap.delegate = self;
 }
 
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    // test if our control subview is on-screen
+//    if (self.containerView.superview != nil) {
+//        if ([touch.view isDescendantOfView:self.containerView]) {
+//            // we touched our control surface
+//            return YES; // ignore the touch
+//        }
+//    }
+//    return YES; // handle the touch
+//}
+
 - (void)dismissKeyboard {
-    [self hideSearchBar];
     [self.searchBar resignFirstResponder];
+    [self hideSearchBar];
     [self.containerView removeGestureRecognizer:self.tap];
-    self.searchTableView.hidden = YES;
+    [self hideSearchTableVC];
 }
 
 - (void)setupTableView {
@@ -131,15 +150,15 @@ static NSString *cellIdentifier = @"cellIdentifier";
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
-    [self dismissKeyboard];
-    self.searchBar.text = @"";
+    
+//    [self showSearchTableVC];
+//    [self dismissKeyboard];
+//    self.searchBar.text = @"";
 
 }
 
 - (void)handleAddressesFromSearchText:(NSString*)searchText {
     [[NetworkManager sharedInstance] getAddressesFromSearchText:searchText withCompletion:^(NSDictionary *results) {
-        self.searchTableView.hidden = NO;
-        
         NSMutableArray *resultsArray = [NSMutableArray new];
         
         for (NSDictionary *dictionary in [results objectForKey:@"predictions"]) {
@@ -147,6 +166,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
         }
         self.searchResultsArray = [NSArray arrayWithArray:resultsArray];
         [self.searchTableView reloadData];
+        
+        [self showSearchTableVC];
+
     } onError:^(NSError *error) {
         NSLog(@"Error getting autocomplete results from Google Places API: \n%@\n%@", error.localizedDescription, error.userInfo);
     }];
@@ -223,14 +245,17 @@ static NSString *cellIdentifier = @"cellIdentifier";
         }
     }
     [self findRepsFromLocationWithSearchResult:searchBar.text];
+    [self showSearchTableVC];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
 //    [searchBar resignFirstResponder];
 //    [self hideSearchBar];
     [self dismissKeyboard];
+    searchBar.text = @"";
     [searchBar setShowsCancelButton:NO animated:YES];
 }
+
 
 - (IBAction)openSearchBarButtonDidPress:(id)sender {
     [self showSearchBar];
@@ -273,6 +298,27 @@ static NSString *cellIdentifier = @"cellIdentifier";
                      }];
 }
 
+- (void) showSearchTableVC {
+    [UIView animateWithDuration:0.45 animations:^{
+        NSInteger tableViewCellMultiplier = self.searchResultsArray.count > 5 ? self.searchResultsArray.count : 4;
+        
+        CGFloat height = tableViewCellMultiplier * 44;
+        [self.searchTableView setFrame: CGRectMake(self.searchTableView.frame.origin.x,
+                                                  self.searchTableView.frame.origin.y,
+                                                  self.searchTableView.frame.size.width,
+                                                   height)];
+    }];
+}
+
+- (void) hideSearchTableVC {
+    [UIView animateWithDuration:0.55 animations:^{
+        [self.searchTableView setFrame: CGRectMake(self.searchTableView.frame.origin.x,
+                                                   self.searchTableView.frame.origin.y,
+                                                   self.searchTableView.frame.size.width,
+                                                   0)];
+    }];
+}
+
 - (CGFloat)searchViewWidth {
     return self.legislatureLevel.intrinsicContentSize.width + 60;
 }
@@ -284,11 +330,17 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     if (searchBar.text.length > 0) {
         [self handleAddressesFromSearchText:searchBar.text];
+        [self showSearchTableVC];
     }
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [self handleAddressesFromSearchText:searchText];
+    if (searchText.length > 0) {
+      [self handleAddressesFromSearchText:searchText];
+    }
+    if (searchText.length == 0) {
+        [self hideSearchTableVC];
+    }
 }
 
 
@@ -321,6 +373,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *address = [self.searchResultsArray objectAtIndex:indexPath.row];
+    
+    self.searchBar.text = address;
+    
     [self findRepsFromLocationWithSearchResult:address];
 }
 
@@ -436,7 +491,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [popupController presentInViewController:self];
 }
 
-- (void)changePage:(NSNotification *)notification {
+- (void)changePageFinished:(NSNotification *)notification {
+    self.searchTableView.hidden = NO;
+    
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
@@ -458,7 +515,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
     else {
         self.pageControl.currentPage = 2;
     }
+    
     [self.searchBar resignFirstResponder];
+//    [self showSearchTableVC];
+    //    [self dismissKeyboard];
+    
     [self.containerView removeGestureRecognizer:self.tap];
 }
 

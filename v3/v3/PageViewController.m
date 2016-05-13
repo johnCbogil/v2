@@ -8,6 +8,7 @@
 
 #import "PageViewController.h"
 #import "RepresentativesViewController.h"
+#import "VoicesConstants.h"
 
 @interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIViewController *firstVC;
@@ -77,11 +78,15 @@
     return nil;
 }
 
+//- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyStartPageChange object:nil];
+//}
+
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if(finished) {
         NSString *titleOfIncomingViewController = [[pageViewController.viewControllers firstObject] title];
         NSDictionary* userInfo = @{@"currentPage": titleOfIncomingViewController};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"changePage" object:userInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyFinishPageChange object:userInfo];
     }
 }
 

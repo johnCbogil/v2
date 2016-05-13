@@ -383,7 +383,7 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4Y3GGL46D2;
+						DevelopmentTeam = 333ZQT9JWC;
 					};
 					52BB34431B6160CA00BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
@@ -650,7 +650,7 @@
 				INFOPLIST_FILE = v3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JohnBogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -670,7 +670,7 @@
 				INFOPLIST_FILE = v3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JohnBogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

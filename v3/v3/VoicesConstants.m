@@ -40,4 +40,8 @@ NSString *const kCityCouncilZip = @"CityCouncilDistricts";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
 NSString *const kCityCouncilCSV = @"NYCCouncil";
 
+
+//NSNotificationCenter names
+NSString *const kNotifyStartPageChange = @"startPageChange";
+NSString *const kNotifyFinishPageChange = @"finishPageChange";
 @end
