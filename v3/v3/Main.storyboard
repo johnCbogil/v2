@@ -1,65 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L2I-f2-EzW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L2I-f2-EzW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="hbQ-fR-HEb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="He3-Tf-3lS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Triangle" id="LwQ-q7-DUF"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xeF-eR-1CL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="4RG-J3-KHk" kind="relationship" relationship="rootViewController" id="l7P-K4-rZQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="61r-8i-wOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-55" y="302"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hAN-M3-E03">
-            <objects>
-                <navigationController id="SCJ-h6-y9k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Circle" id="k4q-ih-gxp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CcN-tr-qS3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="PJ8-aa-SY4" kind="relationship" relationship="rootViewController" id="LRb-6S-XCg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8cm-LO-kYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-55" y="1143"/>
-        </scene>
-        <!--AdvocacyGroups Placeholder-->
-        <scene sceneID="imB-0i-P6k">
-            <objects>
-                <viewController storyboardIdentifier="AdvocacyGroups" title="AdvocacyGroups Placeholder" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PJ8-aa-SY4" customClass="StoryboardPlaceHolderViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="q9T-W1-nmM"/>
-                        <viewControllerLayoutGuide type="bottom" id="Y7V-LH-taf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="39m-dd-ktJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="QR8-DH-x5E"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zP4-np-D8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="677" y="1143"/>
-        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="sfS-j1-USn">
             <objects>
@@ -69,37 +14,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="He3-Tf-3lS" kind="relationship" relationship="viewControllers" id="CoD-V0-eDO"/>
-                        <segue destination="SCJ-h6-y9k" kind="relationship" relationship="viewControllers" id="kQe-bv-78A"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rv-G5-gIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1019" y="658"/>
         </scene>
-        <!--Actions Placeholder-->
-        <scene sceneID="S8u-MD-UQQ">
-            <objects>
-                <viewController storyboardIdentifier="Actions" title="Actions Placeholder" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4RG-J3-KHk" customClass="StoryboardPlaceHolderViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yKp-wS-YZa"/>
-                        <viewControllerLayoutGuide type="bottom" id="ANa-S3-7vw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VL7-fO-7CC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="eKC-7t-Q9E"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rd4-z9-BDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="677" y="302"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="Circle" width="33" height="33"/>
-        <image name="Triangle" width="41" height="41"/>
-    </resources>
 </document>
