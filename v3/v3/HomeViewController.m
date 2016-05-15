@@ -124,6 +124,8 @@ static BOOL didSearchButNoResults = NO;
 
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePageFinished:) name:kNotifyFinishPageChange object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startChangePage) name:kNotifyStartPageChange object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:kNotifyTableCellButtonPressed object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
@@ -274,12 +276,14 @@ static BOOL didSearchButNoResults = NO;
         
         for (NSDictionary *dictionary in [results objectForKey:@"predictions"]) {
             NSString *address = [dictionary objectForKey:@"description"];
-            NSString *omitString = @", United States";
-            NSRange possibleOmitRange = NSMakeRange(address.length - omitString.length, omitString.length);
-            NSString *testString = [address substringWithRange:possibleOmitRange];
-            if ([testString isEqualToString: omitString]) {
-                address = [address substringToIndex:(address.length - omitString.length)];
-            }
+            
+            //Uncomment to remove ", United States" from the search results
+//            NSString *omitString = @", United States";
+//            NSRange possibleOmitRange = NSMakeRange(address.length - omitString.length, omitString.length);
+//            NSString *testString = [address substringWithRange:possibleOmitRange];
+//            if ([testString isEqualToString: omitString]) {
+//                address = [address substringToIndex:(address.length - omitString.length)];
+//            }
             [resultsArray addObject:address];
         }
         
@@ -636,6 +640,11 @@ static BOOL didSearchButNoResults = NO;
     [popupController presentInViewController:self];
 }
 
+- (void)startChangePage {
+    [self dismissKeyboardButKeepSearchBarOpen];
+}
+
+
 - (void)changePageFinished:(NSNotification *)notification {
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
@@ -662,8 +671,6 @@ static BOOL didSearchButNoResults = NO;
     else {
         self.pageControl.currentPage = 2;
     }
-    
-    [self dismissKeyboardButKeepSearchBarOpen];
 }
 
 

@@ -78,9 +78,9 @@
     return nil;
 }
 
-//- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyStartPageChange object:nil];
-//}
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyStartPageChange object:nil];
+}
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if(finished) {
