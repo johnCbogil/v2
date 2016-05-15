@@ -11,6 +11,7 @@
 #import "StateRepresentative.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
+#import "VoicesConstants.h"
 #import <Google/Analytics.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <CoreTelephony/CTCallCenter.h>

@@ -44,4 +44,6 @@ extern NSString *const kCityCouncilCSV;
 extern NSString *const kNotifyStartPageChange;
 extern NSString *const kNotifyFinishPageChange;
 
+extern NSString *const kNotifyTableCellButtonPressed;
+
 @end

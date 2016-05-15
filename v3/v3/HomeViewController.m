@@ -24,7 +24,11 @@
 #import "FBShimmeringLayer.h"
 #import "SearchResultsController.h"
 
-static NSString *cellIdentifier = @"cellIdentifier";
+static NSString *const cellIdentifier = @"cellIdentifier";
+static NSString *const segueIdentifier = @"embedPageVC";
+static BOOL didTryToShowSearchTableViewAgain = NO;
+static BOOL didSearchButNoResults = NO;
+
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -37,13 +41,22 @@ static NSString *cellIdentifier = @"cellIdentifier";
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
 @property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
-@property (strong, nonatomic) PageViewController *pageVC;
+
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+@property (strong, nonatomic) UIVisualEffectView *blurView;
+@property (nonatomic) BOOL isBlurViewPresent;
 
-//Search autocomplete
+//PageViewController Properties
+@property (weak, nonatomic) PageViewController *pageViewController;
+@property (weak, nonatomic) UIScrollView *pageVCScrollView;
+@property (strong, nonatomic) UIPanGestureRecognizer *turnPageRecognizer;
+
+//Search autocomplete properties
 @property (strong, nonatomic) NSArray *searchResultsArray;
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
+@property (nonatomic) BOOL isSearchTableViewPresent;
+@property (nonatomic) BOOL didNumberOfSearchResultsChange;
 
 @end
 
@@ -56,14 +69,10 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self setColors];
     [self setSearchBar];
     [self setShimmer];
-    [self setupTableView];
+    [self setupSearchTableView];
+    [self setBlurView];
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    if (self.isSearchBarOpen) {
-        [self showSearchBar];
-    }
-}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -73,17 +82,50 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [super didReceiveMemoryWarning];
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // To get the turnPage gesture recognizer in the PageViewController's scrollView
+    if ([segue.identifier isEqualToString:segueIdentifier]) {
+        self.pageViewController = [segue destinationViewController];
+        for (UIView *view in self.pageViewController.view.subviews) {
+            if ([view isKindOfClass:[UIScrollView class]]) {
+                self.pageVCScrollView = (UIScrollView*) view;
+                self.turnPageRecognizer = self.pageVCScrollView.panGestureRecognizer;
+            }
+        }
+    }
+}
+
+#pragma mark - Setup Methods
+
+
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
     self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.5];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
+
+- (void)setBlurView {
+    self.blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    [self.blurView setFrame:self.pageVCScrollView.frame];
+    UIColor *backgroundColor = [[UIColor voicesOrange] colorWithAlphaComponent:.3];
+    self.blurView.backgroundColor = backgroundColor;
+    self.blurView.opaque = NO;
+    self.blurView.hidden = YES;
+    self.isBlurViewPresent = NO;
+    [self.containerView addSubview:self.blurView];
+}
+
+
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
 }
 
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePageFinished:) name:kNotifyFinishPageChange object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:kNotifyTableCellButtonPressed object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
@@ -99,82 +141,19 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)keyboardDidShow:(NSNotification *)note {
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.containerView addGestureRecognizer:self.tap];
-//    [self.pageVC addGestureRecognizer:self.tap];
     self.tap.delegate = self;
 }
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//    // test if our control subview is on-screen
-//    if (self.containerView.superview != nil) {
-//        if ([touch.view isDescendantOfView:self.containerView]) {
-//            // we touched our control surface
-//            return YES; // ignore the touch
-//        }
-//    }
-//    return YES; // handle the touch
-//}
 
-- (void)dismissKeyboard {
-    [self.searchBar resignFirstResponder];
-    [self hideSearchBar];
-    [self.containerView removeGestureRecognizer:self.tap];
-    [self hideSearchTableVC];
-}
 
-- (void)setupTableView {
+- (void)setupSearchTableView {
     self.searchTableView.delegate = self;
     self.searchTableView.dataSource = self;
     
     [self.searchTableView registerClass:[UITableViewCell class] forCellReuseIdentifier: cellIdentifier];
+    self.isSearchTableViewPresent = NO;
+    self.didNumberOfSearchResultsChange = NO;
 }
-
-
-- (void)findRepsFromLocationWithSearchResult:(NSString*) result{
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:result withCompletion:^(CLLocation *locationResults) {
-        
-        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            NSLog(@"%@", locationResults);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
-        
-    } onError:^(NSError *googleMapsError) {
-        NSLog(@"%@", [googleMapsError localizedDescription]);
-    }];
-    
-//    [self showSearchTableVC];
-//    [self dismissKeyboard];
-//    self.searchBar.text = @"";
-
-}
-
-- (void)handleAddressesFromSearchText:(NSString*)searchText {
-    [[NetworkManager sharedInstance] getAddressesFromSearchText:searchText withCompletion:^(NSDictionary *results) {
-        NSMutableArray *resultsArray = [NSMutableArray new];
-        
-        for (NSDictionary *dictionary in [results objectForKey:@"predictions"]) {
-            [resultsArray addObject:[dictionary objectForKey:@"description"]];
-        }
-        self.searchResultsArray = [NSArray arrayWithArray:resultsArray];
-        [self.searchTableView reloadData];
-        
-        [self showSearchTableVC];
-
-    } onError:^(NSError *error) {
-        NSLog(@"Error getting autocomplete results from Google Places API: \n%@\n%@", error.localizedDescription, error.userInfo);
-    }];
-}
-
-#pragma mark - Search Bar Delegate Methods
 
 - (void)setSearchBar {
     
@@ -237,20 +216,258 @@ static NSString *cellIdentifier = @"cellIdentifier";
     self.singleLineView.alpha = .5;
 }
 
+- (void)dismissKeyboard {
+    [self.searchBar resignFirstResponder];
+    [self hideSearchBar];
+    [self.containerView removeGestureRecognizer:self.tap];
+    [self hideSearchTableView];
+}
+
+- (void)dismissKeyboardButKeepSearchBarOpen {
+    [self.searchBar resignFirstResponder];
+    [self.containerView removeGestureRecognizer:self.tap];
+    [self hideSearchTableView];
+}
+
+
+
+//#pragma mark - Gesture recognizer delegate implementation
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    
+//    if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]) {
+//        return YES;
+//        //        if ([touch.view isEqual:self.blurView])  {
+//        //            return YES;
+//        //        }
+//    }
+//    return YES;
+//}
+
+#pragma mark - GeoLocation Methods
+
+- (void)findRepsFromLocationWithSearchResult:(NSString*) result{
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:result withCompletion:^(CLLocation *locationResults) {
+        
+        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+            NSLog(@"%@", locationResults);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        
+    } onError:^(NSError *googleMapsError) {
+        NSLog(@"%@", [googleMapsError localizedDescription]);
+    }];
+}
+
+- (void)handleAddressesFromSearchText:(NSString*)searchText {
+    [[NetworkManager sharedInstance] getAddressesFromSearchText:searchText withCompletion:^(NSDictionary *results) {
+        NSMutableArray *resultsArray = [NSMutableArray new];
+        
+        for (NSDictionary *dictionary in [results objectForKey:@"predictions"]) {
+            NSString *address = [dictionary objectForKey:@"description"];
+            NSString *omitString = @", United States";
+            NSRange possibleOmitRange = NSMakeRange(address.length - omitString.length, omitString.length);
+            NSString *testString = [address substringWithRange:possibleOmitRange];
+            if ([testString isEqualToString: omitString]) {
+                address = [address substringToIndex:(address.length - omitString.length)];
+            }
+            [resultsArray addObject:address];
+        }
+        
+        NSInteger previousNumberOfSearchResults = self.searchResultsArray.count;
+        NSInteger currentNumberOfSearchResults = resultsArray.count;
+        self.searchResultsArray = [NSArray arrayWithArray:resultsArray];
+        
+        self.didNumberOfSearchResultsChange = previousNumberOfSearchResults == currentNumberOfSearchResults ? NO : YES;
+        
+        didSearchButNoResults = self.searchResultsArray.count == 0 ? YES : NO;
+        
+        [self.searchTableView reloadData];
+        
+        [self showSearchTableView];
+
+    } onError:^(NSError *error) {
+        NSLog(@"Error getting autocomplete results from Google Places API: \n%@\n%@", error.localizedDescription, error.userInfo);
+    }];
+}
+
+
+
+#pragma mark - FB Shimmer methods
+
+- (void)setShimmer {
+    self.searchView.frame = self.shimmeringView.bounds;
+    self.shimmeringView.contentView = self.searchView;
+}
+
+- (void)toggleShimmerOn {
+    self.shimmeringView.shimmering = YES;
+}
+
+- (void)toggleShimmerOff {
+    [self.shimmeringView performSelector:@selector(setShimmering:)];
+    self.shimmeringView.shimmering = NO;
+}
+
+
+#pragma mark - Animation Methods
+- (void)blurContainerView {
+    if (!self.isBlurViewPresent) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.blurView.hidden = NO;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.isBlurViewPresent = YES;
+                [self.blurView addGestureRecognizer:self.turnPageRecognizer];
+            } else {
+                NSLog(@"Container view did not blur");
+            }
+        }];
+    }
+}
+
+- (void)unblurContainerView {
+    if (self.isBlurViewPresent) {
+        [UIView animateWithDuration:0.1 animations:^{
+            self.blurView.hidden = YES;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.isBlurViewPresent = NO;
+                [self.pageVCScrollView addGestureRecognizer:self.turnPageRecognizer];
+            } else {
+                NSLog(@"Container view did not unblur");
+            }
+        }];
+    }
+}
+- (void)showSearchBar {
+    self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
+    self.shimmerViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
+    
+    self.searchBar.showsCancelButton = YES;
+    [self.searchBar becomeFirstResponder];
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.searchBar.alpha = 1.0;
+                         self.singleLineView.alpha = 0.0;
+                         self.legislatureLevel.alpha = 0.0;
+                         self.searchButton.alpha = 0.0;
+                         self.magnifyingGlass.alpha = 0.0;
+                         [self.view layoutIfNeeded];
+                         [self.view setNeedsUpdateConstraints];
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             self.isSearchBarOpen = YES;
+                         } else {
+                             NSLog(@"Search bar did not show");
+                         }
+                     }];
+}
+
+- (void)hideSearchBar {
+    self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+    [self.searchBar resignFirstResponder];
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.searchBar.alpha = 0.0;
+                         self.searchButton.alpha = 1.0;
+                         self.magnifyingGlass.alpha = 1.0;
+                         self.legislatureLevel.alpha = 1.0;
+                         self.singleLineView.alpha = .5;
+                         [self.view layoutIfNeeded];
+                         [self.view setNeedsUpdateConstraints];
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             self.isSearchBarOpen = NO;
+                         } else {
+                             NSLog(@"Search bar did not hide");
+                         }
+                     }];
+}
+
+- (void)showSearchTableView {
+    self.isSearchTableViewPresent = self.searchTableView.frame.size.height == 0 ? NO : YES;
+    
+    if (!self.isSearchTableViewPresent || self.didNumberOfSearchResultsChange) {
+        [UIView animateWithDuration:0.25 animations:^{
+            float tableViewCellMultiplier = self.searchResultsArray.count < 5 ? self.searchResultsArray.count : 4.15;
+            
+            CGFloat height = tableViewCellMultiplier * 44;
+            [self.searchTableView setFrame: CGRectMake(self.searchTableView.frame.origin.x,
+                                                       self.searchTableView.frame.origin.y,
+                                                       self.searchTableView.frame.size.width,
+                                                       height)];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                if (self.searchTableView.frame.size.height == 0 && self.searchResultsArray.count != 0) {
+                    
+
+                    if (didTryToShowSearchTableViewAgain) {
+                        didTryToShowSearchTableViewAgain = NO;
+                        return;
+                    }
+                    didTryToShowSearchTableViewAgain = YES;
+                    [self showSearchTableView];
+                    
+                    // Without this ^^ recursion, sometimes TableView does not show after animation, so user has to type in another character to get the search results to show. Will retry the animation only once
+                    
+                } else {
+                    self.isSearchTableViewPresent = YES;
+                    self.didNumberOfSearchResultsChange = NO;
+                    didTryToShowSearchTableViewAgain = NO;
+                    [self blurContainerView];
+                }
+            } else {
+                NSLog(@"Search TableView did not show");
+            }
+        }];
+    }
+}
+
+- (void)hideSearchTableView {
+    if (self.isSearchTableViewPresent || didSearchButNoResults) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.searchTableView setFrame: CGRectMake(self.searchTableView.frame.origin.x,
+                                                       self.searchTableView.frame.origin.y,
+                                                       self.searchTableView.frame.size.width,
+                                                       0)];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.isSearchTableViewPresent = NO;
+                [self unblurContainerView];
+                didSearchButNoResults = NO;
+            } else {
+                NSLog(@"Search TableView did not hide");
+            }
+        }];
+    }
+}
+
+
+#pragma mark - Search Bar Delegate Methods
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
     for (id vc in self.childViewControllers) {
         if ([vc isKindOfClass:[UIPageViewController class]]) {
-            self.pageVC = vc;
+            self.pageViewController = vc;
         }
     }
     [self findRepsFromLocationWithSearchResult:searchBar.text];
-    [self showSearchTableVC];
+    [self dismissKeyboard];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-//    [searchBar resignFirstResponder];
-//    [self hideSearchBar];
     [self dismissKeyboard];
     searchBar.text = @"";
     [searchBar setShowsCancelButton:NO animated:YES];
@@ -262,62 +479,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 
-- (void)showSearchBar {
-    self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
-    self.shimmerViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
-    
-    self.searchBar.showsCancelButton = YES;
-    self.isSearchBarOpen = YES;
-    [self.searchBar becomeFirstResponder];
-    [UIView animateWithDuration:0.25
-                     animations:^{
-                         self.searchBar.alpha = 1.0;
-                         self.singleLineView.alpha = 0.0;
-                         self.legislatureLevel.alpha = 0.0;
-                         self.searchButton.alpha = 0.0;
-                         self.magnifyingGlass.alpha = 0.0;
-                         [self.view layoutIfNeeded];
-                         [self.view setNeedsUpdateConstraints];
-                     }];
-}
-
-- (void)hideSearchBar {
-    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
-    self.isSearchBarOpen = NO;
-    [self.searchBar resignFirstResponder];
-    [UIView animateWithDuration:0.25
-                     animations:^{
-                         self.searchBar.alpha = 0.0;
-                         self.searchButton.alpha = 1.0;
-                         self.magnifyingGlass.alpha = 1.0;
-                         self.legislatureLevel.alpha = 1.0;
-                         self.singleLineView.alpha = .5;
-                         [self.view layoutIfNeeded];
-                         [self.view setNeedsUpdateConstraints];
-                     }];
-}
-
-- (void) showSearchTableVC {
-    [UIView animateWithDuration:0.45 animations:^{
-        NSInteger tableViewCellMultiplier = self.searchResultsArray.count > 5 ? self.searchResultsArray.count : 4;
-        
-        CGFloat height = tableViewCellMultiplier * 44;
-        [self.searchTableView setFrame: CGRectMake(self.searchTableView.frame.origin.x,
-                                                  self.searchTableView.frame.origin.y,
-                                                  self.searchTableView.frame.size.width,
-                                                   height)];
-    }];
-}
-
-- (void) hideSearchTableVC {
-    [UIView animateWithDuration:0.55 animations:^{
-        [self.searchTableView setFrame: CGRectMake(self.searchTableView.frame.origin.x,
-                                                   self.searchTableView.frame.origin.y,
-                                                   self.searchTableView.frame.size.width,
-                                                   0)];
-    }];
-}
 
 - (CGFloat)searchViewWidth {
     return self.legislatureLevel.intrinsicContentSize.width + 60;
@@ -328,20 +489,21 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    if (searchBar.text.length > 0) {
+    if (self.searchBar.text.length > 0) {
         [self handleAddressesFromSearchText:searchBar.text];
-        [self showSearchTableVC];
     }
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length > 0) {
-      [self handleAddressesFromSearchText:searchText];
+        [self handleAddressesFromSearchText:searchText];
     }
     if (searchText.length == 0) {
-        [self hideSearchTableVC];
+        [self hideSearchTableView];
+//        [self.pageVCScrollView addGestureRecognizer:self.turnPageRecognizer];
     }
 }
+
 
 
 #pragma mark - TableView Methods
@@ -369,32 +531,15 @@ static NSString *cellIdentifier = @"cellIdentifier";
     return cell;
 }
 
-
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *address = [self.searchResultsArray objectAtIndex:indexPath.row];
-    
     self.searchBar.text = address;
-    
     [self findRepsFromLocationWithSearchResult:address];
+    [self dismissKeyboardButKeepSearchBarOpen];
 }
 
 
-#pragma mark - FB Shimmer methods
-
-- (void)setShimmer {
-    self.searchView.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.searchView;
-}
-
-- (void)toggleShimmerOn {
-    self.shimmeringView.shimmering = YES;
-}
-
-- (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:)];
-    self.shimmeringView.shimmering = NO;
-}
 
 #pragma mark - Presentation Controllers
 
@@ -487,25 +632,27 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal]; 
     [popupController presentInViewController:self];
 }
 
 - (void)changePageFinished:(NSNotification *)notification {
-    self.searchTableView.hidden = NO;
-    
     NSDictionary* userInfo = notification.object;
     if ([userInfo objectForKey:@"currentPage"]) {
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
     }
     
-    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
     
-    [UIView animateWithDuration:.15
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }];
+    if (!self.isSearchBarOpen) {
+        self.searchViewWidthConstraint.constant = [self searchViewWidth];
+        self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+        
+        [UIView animateWithDuration:.15
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+
     if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
         self.pageControl.currentPage = 0;
     }
@@ -516,11 +663,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         self.pageControl.currentPage = 2;
     }
     
-    [self.searchBar resignFirstResponder];
-//    [self showSearchTableVC];
-    //    [self dismissKeyboard];
-    
-    [self.containerView removeGestureRecognizer:self.tap];
+    [self dismissKeyboardButKeepSearchBarOpen];
 }
 
 

@@ -11,6 +11,7 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
+#import "VoicesConstants.h"
 #import <Google/Analytics.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <CoreTelephony/CTCallCenter.h>
@@ -117,7 +118,6 @@
     }
 }
 - (IBAction)twitterButtonDidPress:(id)sender {
-    
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
         if (self.federalRepresentative.twitter) {

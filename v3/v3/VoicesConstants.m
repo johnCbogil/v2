@@ -44,4 +44,6 @@ NSString *const kCityCouncilCSV = @"NYCCouncil";
 //NSNotificationCenter names
 NSString *const kNotifyStartPageChange = @"startPageChange";
 NSString *const kNotifyFinishPageChange = @"finishPageChange";
+NSString *const kNotifyTableCellButtonPressed = @"tableCellButtonPressed";
+
 @end

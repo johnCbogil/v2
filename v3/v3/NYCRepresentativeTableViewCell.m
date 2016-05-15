@@ -11,6 +11,7 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
+#import "VoicesConstants.h"
 #import <Google/Analytics.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
@@ -79,7 +80,6 @@
 #pragma mark - User actions
 
 - (IBAction)tweetButtonDidPress:(id)sender {
-    
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
         if (self.nycRepresentative.twitter) {
