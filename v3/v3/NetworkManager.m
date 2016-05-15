@@ -124,7 +124,7 @@
 - (void)getAddressesFromSearchText:(NSString*)text withCompletion:(void(^)(NSDictionary* results))successBlock onError:(void(^)(NSError *error))errorBlock{
 
     // documentation for the URL query can be found here https://developers.google.com/places/web-service/autocomplete#location_biasing
-    NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&components=country:us&key=%@", text, kGoogPlaces];
+    NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&components=country:us&types=(regions)&key=%@", text, kGoogPlaces];
     NSString *encodedURL = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:encodedURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
