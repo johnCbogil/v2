@@ -11,8 +11,8 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-#import <CoreTelephony/CTCallCenter.h>
-#import <CoreTelephony/CTCall.h>
+#import <Google/Analytics.h>
+
 
 @interface NYCRepresentativeTableViewCell ()
 
@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
-@property (strong, nonnull) CTCallCenter *callCenter;
 
 @end
 
@@ -35,7 +34,6 @@
     self.photo.clipsToBounds = YES;
     [self setFont];
     [self setColor];
-    [self trackConnectedCalls];
     [self setImage];
 }
 
@@ -133,6 +131,12 @@
     }
     else if (buttonIndex == 1) {
         
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                              action:@"phone call"
+                                                               label:[NSString stringWithFormat:@"%@ %@",self.nycRepresentative.firstName,self.nycRepresentative.lastName]
+                                                               value:@1] build]];
+        
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
@@ -145,13 +149,4 @@
         }
     }
 }
-
-- (void)trackConnectedCalls {
-    self.callCenter = [[CTCallCenter alloc] init];
-    [self.callCenter setCallEventHandler:^(CTCall *call) {
-        if ([[call callState] isEqual:CTCallStateConnected]) {
-        }
-    }];
-}
-
 @end
