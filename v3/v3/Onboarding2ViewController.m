@@ -22,18 +22,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.permitLocationUseButton.layer.cornerRadius = 5;
     self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
     self.permitLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:18];
     self.deferLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:11];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+}
 - (IBAction)permitLocationUseButtonDidPress:(id)sender {
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];
     [[LocationService sharedInstance] startUpdatingLocation];
     [LocationService sharedInstance].locationManager.delegate = self;
-
+    
 }
 - (IBAction)deferLocationUseButtonDidPress:(id)sender {
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];
@@ -45,12 +49,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
     
-//    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-//        NSLog(@"location authorization denied");
-//    }
-if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
+    //    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+    //        NSLog(@"location authorization denied");
+    //    }
+    if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        HomeViewController *homeViewController = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+        HomeViewController *homeViewController = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"HomeViewController"];
         // TODO: EVENTUALLY THIS SHOULD DISMISS/POP INSTEAD OF PRESENT OVER
         [self presentViewController:homeViewController animated:YES completion:nil];
     }

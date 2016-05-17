@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.startButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.startButton.layer.cornerRadius = 5;
     self.firstCivicToolLabel.font = [UIFont voicesFontWithSize:23.0];
