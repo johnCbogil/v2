@@ -15,7 +15,10 @@
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
+#import "NewsFeedManager.h"
+#import <Parse.h>
 #import <Google/Analytics.h>
+
 
 @interface AppDelegate ()
 @end
@@ -24,10 +27,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self initializeParseWithApplication:application];
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
+    
+    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    if (notificationPayload) {
+        [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[notificationPayload valueForKey:@"aps"]valueForKey:@"alert"]];
+    }
+
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     return YES;
 }
@@ -55,6 +67,35 @@
 }
 
 # pragma mark - AppDidFinishLaunchingConfigs
+
+- (void)initializeParseWithApplication:(UIApplication *)application {
+    // Initialize Parse.
+    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
+                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
+    
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    [installation setDeviceTokenFromData:deviceToken];
+    installation.channels = @[ @"global" ];
+    [installation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // Not sure what this is.
+    [PFPush handlePush:userInfo];
+    [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[userInfo valueForKey:@"aps"]valueForKey:@"alert"]];
+
+}
 
 - (void)setInitialViewController {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
@@ -113,7 +154,7 @@
     
     if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
         [RepManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
-
+        
     }
     else {
         // Get the file path for the zip

@@ -7,8 +7,9 @@ target 'Voices' do
     pod “Shimmer“
     pod 'STPopup'
     pod 'SSZipArchive'
+    pod 'Parse'
     pod 'Google/Analytics'
-    
+
 end
 
 target 'VoicesTests' do

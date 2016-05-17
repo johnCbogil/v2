@@ -166,7 +166,7 @@
 - (void)toggleShimmerOn {
     self.shimmeringView.shimmering = YES;
     self.shimmeringViewTwo.shimmering = YES;
-
+    
     
 }
 

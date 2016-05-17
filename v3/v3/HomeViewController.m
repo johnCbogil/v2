@@ -334,7 +334,7 @@
             switch (result) {
                 case SLComposeViewControllerResultCancelled:
                     NSLog(@"Twitter Post Canceled");
-
+                    
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");

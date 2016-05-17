@@ -34,7 +34,7 @@
 #pragma mark - Get Federal Representatives
 
 - (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
-                           onError:(void(^)(NSError *error))errorBlock {
+                                      onError:(void(^)(NSError *error))errorBlock {
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSLog(@"%@", url);
@@ -66,7 +66,7 @@
 #pragma mark - Get State Representatives Methods
 
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
-
+    
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFState];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSLog(@"%@", url);
@@ -76,7 +76,7 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-       // NSLog(@"%@", responseObject);
+        // NSLog(@"%@", responseObject);
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

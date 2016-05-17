@@ -21,16 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.startButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.startButton.layer.cornerRadius = 5;
     self.firstCivicToolLabel.font = [UIFont voicesFontWithSize:23.0];
     self.startButton.titleLabel.font = [UIFont voicesFontWithSize:25.0];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k0W-gi-hf3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Advocacy Groups View Controller-->
+        <scene sceneID="SMQ-F2-XmO">
+            <objects>
+                <viewController storyboardIdentifier="AdvocacyGroupsViewController" automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="AdvocacyGroupsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cez-2e-cd4"/>
+                        <viewControllerLayoutGuide type="bottom" id="WFz-Rb-9DG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZIP-ID-NhE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jea-wp-SX1">
+                                <rect key="frame" x="546" y="76" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="atd-Jz-Bg1"/>
+                                    <constraint firstAttribute="height" constant="22" id="b6R-pw-e0G"/>
+                                </constraints>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUB-rf-To8">
+                                <rect key="frame" x="0.0" y="84" width="600" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="C3e-7W-weW">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C3e-7W-weW" id="2X9-Tk-ag4">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fUB-rf-To8" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" id="77m-7d-JQL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jea-wp-SX1" secondAttribute="trailing" constant="12" id="K17-hM-Eu5"/>
+                            <constraint firstItem="fUB-rf-To8" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="20" id="QR1-wf-ia4"/>
+                            <constraint firstItem="Jea-wp-SX1" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="12" id="Y84-FY-jFU"/>
+                            <constraint firstAttribute="trailing" secondItem="fUB-rf-To8" secondAttribute="trailing" id="dbd-eL-hZd"/>
+                            <constraint firstItem="fUB-rf-To8" firstAttribute="bottom" secondItem="WFz-Rb-9DG" secondAttribute="top" id="oSK-ax-zQS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5nS-Vg-Mh9">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="wkW-V5-Dv1">
+                            <rect key="frame" x="219.5" y="7.5" width="161" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Actions"/>
+                                <segment title="My Groups"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentControlDidChange:" destination="eRD-AU-WhC" eventType="valueChanged" id="sCi-nN-JEl"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="XHg-m8-Z67">
+                            <connections>
+                                <action selector="listOfAdvocacyGroupsButtonDidPress:" destination="eRD-AU-WhC" id="aZk-KO-CLK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addAdvocacyGroupButton" destination="XHg-m8-Z67" id="NPo-P0-G59"/>
+                        <outlet property="segmentControl" destination="wkW-V5-Dv1" id="I1S-Zq-CZn"/>
+                        <outlet property="tableView" destination="fUB-rf-To8" id="RFB-5c-y8Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q2V-jl-Zww" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="313"/>
+        </scene>
+        <!--List Of Advocacy Groups View Controller-->
+        <scene sceneID="qMa-UE-C3g">
+            <objects>
+                <viewController storyboardIdentifier="ListOfAdvocacyGroupsViewController" id="x7N-it-xRH" customClass="ListOfAdvocacyGroupsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fur-lE-ZOf"/>
+                        <viewControllerLayoutGuide type="bottom" id="nHf-ya-AJ2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5qS-BV-pJM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mod-FK-t7E">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" id="Cpu-PY-RxS"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" constant="44" id="TMa-tG-bwg"/>
+                            <constraint firstItem="mod-FK-t7E" firstAttribute="bottom" secondItem="nHf-ya-AJ2" secondAttribute="top" id="YOB-yC-veo"/>
+                            <constraint firstAttribute="trailing" secondItem="mod-FK-t7E" secondAttribute="trailing" id="gw0-8j-qOh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="mod-FK-t7E" id="XKQ-ys-dEF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DKR-iB-aCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1980" y="313"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rf8-ep-UmH">
+            <objects>
+                <navigationController storyboardIdentifier="AdvocacyGroupsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eRD-AU-WhC" kind="relationship" relationship="rootViewController" id="Arb-Su-CgA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ow-4b-Hv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="445" y="313"/>
+        </scene>
+    </scenes>
+</document>
