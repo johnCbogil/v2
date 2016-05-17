@@ -27,7 +27,7 @@
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
     secondViewController.title = @"State Legislators";
     RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
-    thirdViewController.title = @"NYC Council";
+    thirdViewController.title = @"Local";
     
     NSArray *viewControllers = @[initialViewController];
     self.listOfViewControllers = @[initialViewController,secondViewController,thirdViewController];
@@ -36,10 +36,10 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-   
+    
     RepresentativesViewController *repVC = (RepresentativesViewController *)viewController;
     
-     if (repVC.index == 1) {
+    if (repVC.index == 1) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
             if (vc.index == 0) {
                 return vc;
@@ -57,9 +57,9 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-
+    
     RepresentativesViewController *repVC = (RepresentativesViewController *)viewController;
-
+    
     if (repVC.index == 0) {
         for (RepresentativesViewController *vc in self.listOfViewControllers) {
             if (vc.index == 1) {
