@@ -52,6 +52,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     [self addObservers];
     [self toggleZeroState];
     [self reloadTableView];
@@ -62,6 +63,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
@@ -82,6 +84,10 @@
     
     [self toggleZeroState];
     [self.refreshControl endRefreshing];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void)toggleZeroState {
@@ -124,8 +130,7 @@
         self.zeroStateContainer.alpha = 1;
     }];
     if (self.index == 2) {
-        self.zeroStateLabel.text = @"We couldn't find this location in NYC.";
-    }
+        self.zeroStateLabel.text = @"Local officials are only available in New York right now.";    }
 }
 
 - (void)turnZeroStateOff {
@@ -161,7 +166,7 @@
 - (void)toggleShimmerOn {
     self.shimmeringView.shimmering = YES;
     self.shimmeringViewTwo.shimmering = YES;
-
+    
     
 }
 

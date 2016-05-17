@@ -12,8 +12,8 @@
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
 #import <MessageUI/MFMailComposeViewController.h>
-#import <CoreTelephony/CTCallCenter.h>
-#import <CoreTelephony/CTCall.h>
+#import <Google/Analytics.h>
+
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
-@property (strong, nonnull) CTCallCenter *callCenter;
 
 @end
 
@@ -35,7 +34,6 @@
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
     [self setFont];
-    [self trackConnectedCalls];
 }
 
 - (void)setFont {
@@ -71,12 +69,18 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                              action:@"button_press"
+                                                               label:self.federalRepresentative.fullName
+                                                               value:@1] build]];
+        
+        
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
-        if([[UIApplication sharedApplication] canOpenURL:callUrl])
-        {
+        if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
             
             [[UIApplication sharedApplication] openURL:callUrl];
-            
         }
         else {
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -134,9 +138,4 @@
     }
 }
 
-- (void)trackConnectedCalls {
-    self.callCenter = [[CTCallCenter alloc] init];
-    [self.callCenter setCallEventHandler:^(CTCall *call) {
-    }];
-}
 @end
