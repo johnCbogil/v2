@@ -10,18 +10,18 @@
 
 @implementation NYCRepresentative
 
-- (id)initWithData:(NSArray*)data {
+- (id)initWithData:(NSDictionary*)data {
     //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
-        self.districtNumber = [data[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        self.firstName = data[1];
-        self.lastName = data[2];
-        self.phone = data[8];
-        self.party = data[12];
-        self.email = data[10];
-        self.photoURL = [NSURL URLWithString:data[13]];
-        self.twitter = data[14];
+        self.districtNumber = data[@"district"];
+        self.firstName = data[@"firstName"];
+        self.lastName = data[@"lastName"];
+        self.phone = data[@"phoneNumber"];
+        self.email = data[@"email"];
+        self.party = data[@"party"];
+        self.photoURL = [NSURL URLWithString:data[@"photoURLPath"]];
+        self.twitter = data[@"twitter"];
     }
     return self;
 }
@@ -31,7 +31,7 @@
         self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
         self.firstName = [decoder decodeObjectForKey:@"firstName"];
         self.lastName = [decoder decodeObjectForKey:@"lastName"];
-        self.phone = [decoder decodeObjectForKey:@"phone"];
+        self.phone = [decoder decodeObjectForKey:@"phoneNumber"];
         self.party = [decoder decodeObjectForKey:@"party"];
         self.email = [decoder decodeObjectForKey:@"email"];
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
@@ -45,6 +45,7 @@
     [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
     [coder encodeObject:self.firstName forKey:@"firstName"];
     [coder encodeObject:self.lastName forKey:@"lastName"];
+    [coder encodeObject:self.phone forKey:@"phoneNumber"];
     [coder encodeObject:self.party forKey:@"party"];
     [coder encodeObject:self.email forKey:@"email"];
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
