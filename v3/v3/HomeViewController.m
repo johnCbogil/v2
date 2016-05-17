@@ -25,11 +25,11 @@
 
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *shimmerViewWidthConstraint;
 @property (assign, nonatomic) CGFloat searchViewDefaultWidth;
@@ -55,15 +55,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    self.infoButton.tintColor = [[UIColor blackColor]colorWithAlphaComponent:.5];
+    self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
+
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
 }
