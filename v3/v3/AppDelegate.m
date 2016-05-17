@@ -17,6 +17,7 @@
 #import "RepManager.h"
 #import "NewsFeedManager.h"
 #import <Parse.h>
+#import <Google/Analytics.h>
 
 
 @interface AppDelegate ()
@@ -130,6 +131,16 @@
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
+    
+    // Configure tracker from GoogleService-Info.plist.
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    // Optional: configure GAI options.
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
 }
 
 - (void)setCache {
@@ -143,7 +154,7 @@
     
     if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
         [RepManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
-
+        
     }
     else {
         // Get the file path for the zip

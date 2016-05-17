@@ -47,6 +47,7 @@
 		52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
+		52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
@@ -137,6 +138,7 @@
 		52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvocacyGroupTableViewCell.xib; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
+		52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		52BB342E1B6160C900BB9FFD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */,
 				52C7D4B51CC7208700F85902 /* PushNotification.json */,
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
 				7EF613DA1CAED1D9009EBB03 /* NYCCouncil.csv */,
@@ -480,6 +483,7 @@
 				7EF613DB1CAED1D9009EBB03 /* NYCCouncil.csv in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
+				52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */,
 				52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */,
