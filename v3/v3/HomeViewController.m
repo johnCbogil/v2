@@ -21,6 +21,8 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import <Google/Analytics.h>
+
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
@@ -42,7 +44,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self addObservers];
     [self setFont];
     [self setColors];
@@ -52,6 +53,10 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void)setColors {
@@ -305,6 +310,9 @@
             break;
         case MFMailComposeResultSent:
         {
+            alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            
             break;
         }
         case MFMailComposeResultFailed:
@@ -326,6 +334,7 @@
             switch (result) {
                 case SLComposeViewControllerResultCancelled:
                     NSLog(@"Twitter Post Canceled");
+                    
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
