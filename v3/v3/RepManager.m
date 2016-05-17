@@ -56,9 +56,9 @@
     else if (index == 2) {
         self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
         
-        if (self.listOfNYCRepresentatives.count > 0) {
-            return self.listOfNYCRepresentatives;
-        }
+        //if (self.listOfNYCRepresentatives.count > 0) {
+        return self.listOfNYCRepresentatives;
+        //}
     }
     return nil;
 }
@@ -142,27 +142,23 @@
     BOOL isLocationWithinPath = false;
     
     for (NSDictionary *district in self.nycDistricts) {
-        CGMutablePathRef path = [self drawNYCDistrictPathFromDictionary:district];
-        
+        CGMutablePathRef path = CGPathCreateMutable();
+        [self drawNYCDistrictPath:path fromDictionary:district];
         isLocationWithinPath = [self isLocation:location withinPath:path];
-        
+        CGPathRelease(path);
         if (isLocationWithinPath) {
             break;
         }
     }
     
     if (!isLocationWithinPath) {
-        if (self.listOfNYCRepresentatives.count > 0) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops"  message:@"We couldn't find this location in NYC." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
-            [alert show];
-        }
+        self.listOfNYCRepresentatives = nil;
     }
+    
 }
 
-- (CGMutablePathRef)drawNYCDistrictPathFromDictionary: (NSDictionary *)district {
+- (void)drawNYCDistrictPath:(CGMutablePathRef)path fromDictionary: (NSDictionary *)district {
     
-    // Create a path
-    CGMutablePathRef path = CGPathCreateMutable();
     // Parse out the council district from the data
     self.currentCouncilDistrict = [[district valueForKey:@"properties"]valueForKey:@"coundist"];
     NSLog(@"%@", self.currentCouncilDistrict);
@@ -188,7 +184,6 @@
         }
     }
     CGPathCloseSubpath(path);
-    return path;
 }
 
 - (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
@@ -199,21 +194,18 @@
     double currentLatitude = location.coordinate.latitude;
     double currentLongitude = location.coordinate.longitude;
     if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCityCouncilCSV ofType:@"csv"];
-        NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:nil];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
+        NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+        NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
         
-        NSArray* rows = [fileContents componentsSeparatedByString:@"/n"];
-        for (NSString *member in rows) {
-            if ([rows indexOfObject:member] == [self.currentCouncilDistrict integerValue]) {
+        NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
+        
+        for (int i = 0; i < districts.count; i++) {
+            if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
-                NSMutableArray *listOfNYCRepresentatives = [[NSMutableArray alloc]init];
-                NSArray *memberData = [member componentsSeparatedByString:@","];
-                NSLog(@"%@", memberData);
-                NYCRepresentative  *nycRepresentative = [[NYCRepresentative alloc]initWithData:memberData];
-                [listOfNYCRepresentatives addObject:nycRepresentative];
-                self.listOfNYCRepresentatives = listOfNYCRepresentatives;
+                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i]]];
+                self.listOfNYCRepresentatives = @[nycRep];
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
-                
                 return isLocationWithinPath;
             }
         }
