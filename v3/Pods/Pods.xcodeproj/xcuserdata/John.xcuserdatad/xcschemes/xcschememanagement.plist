@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-VoicesTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SSZipArchive.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>19FF1455DE659DFB6081DC6F0F24A701</key>
+		<key>146D4D3BEC39209E7FD55AD619B9712E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CB4E8DAD527F07C14EBB78C216AB9EA</key>
+		<key>214F878DF47EDD1FA174563835CB384A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C66DF613C7835C7C877A86FD000BDD6</key>
+		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5F1B91C967699D055FE8914725A5554F</key>
+		<key>6095DE398C2BCE7C24317310CA12FDDD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96A1F1C7CEA6CC5A5DD34041455DA603</key>
+		<key>646B6390973F5F66004359FBB48BAC89</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A710A4EB0BC25E4A331C8AE32C4E8E1F</key>
+		<key>92BE1276F34E416D56298423B8DA08EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F8FCE5AB1A6C3F344CC491CADE485868</key>
+		<key>C107FFE9367A12A71A5E082A410975AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D29C8205C74B3495199035CCB9FE74C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
