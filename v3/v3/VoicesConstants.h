@@ -38,5 +38,6 @@ extern NSString *const kCreateNYCRepresentatives;
 extern NSString *const kCityCouncilZip;
 extern NSString *const kCityCouncilJSON;
 extern NSString *const kCityCouncilCSV;
+extern NSString *const kCouncilMemberDataJSON;
 
 @end
