@@ -203,7 +203,7 @@
         for (int i = 0; i < districts.count; i++) {
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
-                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i]]];
+                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
                 self.listOfNYCRepresentatives = @[nycRep];
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
