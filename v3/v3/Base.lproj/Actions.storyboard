@@ -196,10 +196,8 @@
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
                         <outlet property="infoButton" destination="9Fh-nE-Bwo" id="drJ-zV-IBl"/>
                         <outlet property="legislatureLevel" destination="8dR-WS-Joj" id="9rp-sB-gvA"/>
-                        <outlet property="magnifyingGlass" destination="B8M-md-h7z" id="lx3-4g-Roh"/>
                         <outlet property="pageControl" destination="baJ-84-x7R" id="LTr-mW-nOn"/>
-                        <outlet property="shimmerViewWidthConstraint" destination="Qll-F1-LOs" id="hYq-fW-aHy"/>
-                        <outlet property="shimmeringView" destination="5eP-n4-6US" id="0A0-Ng-jsi"/>
+                        <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>

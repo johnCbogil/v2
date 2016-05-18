@@ -23,21 +23,23 @@
 #import "FBShimmeringLayer.h"
 #import <Google/Analytics.h>
 
-
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *magnifyingGlass;
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
+@property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+//@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shimmerViewWidthConstraint;
-@property (assign, nonatomic) CGFloat searchViewDefaultWidth;
-@property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
+//@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+//@property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shimmerViewWidthConstraint;
+//@property (assign, nonatomic) CGFloat searchViewDefaultWidth;
+//@property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
-@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+//@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @end
 
 @implementation HomeViewController
@@ -49,10 +51,27 @@
     [self setColors];
     [self setSearchBar];
     [self setShimmer];
+    self.singleLineView.alpha = 0;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    // Create a shadow
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.searchView.frame];
+    self.searchView.layer.masksToBounds = NO;
+    self.searchView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.searchView.layer.shadowOffset = CGSizeMake(-15.0f, -39.0f);
+    self.searchView.layer.shadowOpacity = 0.15f;
+    self.searchView.layer.shadowRadius = 1;
+    self.searchView.layer.shadowPath = shadowPath.CGPath;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void)setColors {
@@ -61,7 +80,6 @@
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
-
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
 }
@@ -98,11 +116,11 @@
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by location";
     
-    self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
-    self.shimmerViewDefaultWidth = self.shimmerViewWidthConstraint.constant;
+    //    self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
+    //    self.shimmerViewDefaultWidth = self.shimmerViewWidthConstraint.constant;
     
     // Round the box
-    self.searchView.layer.cornerRadius = 5;
+    self.searchView.layer.cornerRadius = 3;
     self.searchView.clipsToBounds = YES;
     
     // Set cancel button to white color
@@ -144,14 +162,16 @@
     
     // Round the search bar
     UITextField *textSearchField = [self.searchBar valueForKey:@"_searchField"];
-    textSearchField.layer.cornerRadius = 13;
+    textSearchField.layer.cornerRadius = 3;
     
     // Hide the search bar
     self.searchBar.alpha = 0.0;
     self.searchButton.alpha = 1.0;
-    self.magnifyingGlass.alpha = 1.0;
+    //    self.magnifyingGlass.alpha = 1.0;
     self.legislatureLevel.alpha = 1.0;
     self.singleLineView.alpha = .5;
+    
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -198,8 +218,8 @@
 }
 
 - (void)showSearchBar {
-    self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
-    self.shimmerViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
+    //    self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
+    //    self.shimmerViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
     
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
@@ -210,22 +230,22 @@
                          self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
-                         self.magnifyingGlass.alpha = 0.0;
+                         //                         self.magnifyingGlass.alpha = 0.0;
                          [self.view layoutIfNeeded];
                          [self.view setNeedsUpdateConstraints];
                      }];
 }
 
 - (void)hideSearchBar {
-    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+    //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 0.0;
                          self.searchButton.alpha = 1.0;
-                         self.magnifyingGlass.alpha = 1.0;
+                         //                         self.magnifyingGlass.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.singleLineView.alpha = .5;
                          [self.view layoutIfNeeded];
@@ -233,9 +253,9 @@
                      }];
 }
 
-- (CGFloat)searchViewWidth {
-    return self.legislatureLevel.intrinsicContentSize.width + 60;
-}
+//- (CGFloat)searchViewWidth {
+//    return self.legislatureLevel.intrinsicContentSize.width + 60;
+//}
 
 - (CGFloat)shimmerViewWidth {
     return self.legislatureLevel.intrinsicContentSize.width + 60;
@@ -247,8 +267,8 @@
         self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
     }
     
-    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+    //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
     
     [UIView animateWithDuration:.15
                      animations:^{
@@ -268,17 +288,17 @@
 #pragma mark - FB Shimmer methods
 
 - (void)setShimmer {
-    self.searchView.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.searchView;
+    //self.searchView.frame = self.shimmeringView.bounds;
+    //    self.shimmeringView.contentView = self.searchView;
 }
 
 - (void)toggleShimmerOn {
-    self.shimmeringView.shimmering = YES;
+    //    self.shimmeringView.shimmering = YES;
 }
 
 - (void)toggleShimmerOff {
-    [self.shimmeringView performSelector:@selector(setShimmering:)];
-    self.shimmeringView.shimmering = NO;
+    //    [self.shimmeringView performSelector:@selector(setShimmering:)];
+    //    self.shimmeringView.shimmering = NO;
 }
 
 #pragma mark - Presentation Controllers
