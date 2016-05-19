@@ -81,7 +81,7 @@
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
 - (void)setFont {
-    self.legislatureLevel.font = [UIFont voicesFontWithSize:27];
+    self.legislatureLevel.font = [UIFont voicesFontWithSize:19];
 }
 
 - (void)addObservers {
@@ -168,7 +168,7 @@
     self.searchBar.alpha = 0.0;
     self.searchButton.alpha = 1.0;
     //    self.magnifyingGlass.alpha = 1.0;
-    self.legislatureLevel.alpha = 1.0;
+    self.legislatureLevel.alpha = .8;
     self.singleLineView.alpha = .5;
     
     
