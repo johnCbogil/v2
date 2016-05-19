@@ -161,20 +161,28 @@
                                     <constraint firstItem="8dR-WS-Joj" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="8" id="znr-jB-ums"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">
+                                <rect key="frame" x="20" y="40" width="560" height="47"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="bottom" constant="24" id="0pQ-cA-dbz"/>
                             <constraint firstItem="5eP-n4-6US" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="15" id="3Q5-Dz-1ZV"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="top" constant="111" id="3rW-2c-wsQ"/>
+                            <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="20" id="4pl-DO-dgA"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="C4X-mK-ttg"/>
                             <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="5eP-n4-6US" secondAttribute="bottom" constant="6" id="COb-dA-RHs"/>
+                            <constraint firstItem="vJT-DT-SYB" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" constant="20" id="EPP-fM-n6y"/>
+                            <constraint firstItem="vJT-DT-SYB" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="Kcz-lm-JRD"/>
                             <constraint firstItem="5eP-n4-6US" firstAttribute="centerX" secondItem="WRM-qV-4HZ" secondAttribute="centerX" id="OyY-UD-EJ1"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="Pjv-KK-coN"/>
                             <constraint firstItem="HNq-K6-6Z2" firstAttribute="top" secondItem="baJ-84-x7R" secondAttribute="bottom" constant="476" id="cWu-gB-Lr3"/>
                             <constraint firstItem="5eP-n4-6US" firstAttribute="bottom" secondItem="YFG-MQ-THZ" secondAttribute="bottom" constant="28" id="e9l-VL-Iha"/>
                             <constraint firstItem="5eP-n4-6US" firstAttribute="bottom" secondItem="baJ-84-x7R" secondAttribute="bottom" id="fdd-ld-Asd"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="gVc-T3-tAw"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="vJT-DT-SYB" secondAttribute="bottom" constant="24" id="iNF-Js-0eS"/>
                             <constraint firstItem="5eP-n4-6US" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="lta-zW-KRD"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="20" id="qhM-wb-32A"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="centerX" secondItem="5eP-n4-6US" secondAttribute="centerX" id="ru0-GF-pcV"/>
@@ -198,6 +206,7 @@
                         <outlet property="legislatureLevel" destination="8dR-WS-Joj" id="9rp-sB-gvA"/>
                         <outlet property="pageControl" destination="baJ-84-x7R" id="LTr-mW-nOn"/>
                         <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
+                        <outlet property="shimmeringView" destination="vJT-DT-SYB" id="UyY-iw-I1T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>

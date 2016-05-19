@@ -40,6 +40,7 @@
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 //@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @end
 
 @implementation HomeViewController
@@ -52,15 +53,24 @@
     [self setSearchBar];
     [self setShimmer];
     self.singleLineView.alpha = 0;
+    
+    self.shimmeringView.contentView = self.searchView;
+    self.shimmeringView.shimmering = YES;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     // Create a shadow
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.searchView.frame];
+    UIBezierPath *shadowPath;
+    if (self.shimmeringView.shimmering) {
+        shadowPath = [UIBezierPath bezierPathWithRect:self.shimmeringView.frame];
+    }
+    else {
+        [UIBezierPath bezierPathWithRect:self.searchView.frame];
+    }
     self.searchView.layer.masksToBounds = NO;
     self.searchView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.searchView.layer.shadowOffset = CGSizeMake(-15.0f, -39.0f);
+    self.searchView.layer.shadowOffset = CGSizeMake(-15.0f, -33.0f);
     self.searchView.layer.shadowOpacity = 0.15f;
     self.searchView.layer.shadowRadius = 1;
     self.searchView.layer.shadowPath = shadowPath.CGPath;
@@ -170,8 +180,6 @@
     //    self.magnifyingGlass.alpha = 1.0;
     self.legislatureLevel.alpha = .8;
     self.singleLineView.alpha = .5;
-    
-    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
