@@ -60,7 +60,11 @@
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
+            
             NSLog(@"Followed!");
+            NSString *groupName = [object valueForKey:@"Name"];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:groupName message:@"You will now recieve calls to action from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [alert show];
         }
         else {
             NSLog(@"Follow Error: %@", error);
