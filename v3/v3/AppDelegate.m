@@ -32,6 +32,7 @@
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
+    [self excludeGeoJSONFromCloudBackup];
     
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
@@ -66,7 +67,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-# pragma mark - AppDidFinishLaunchingConfigs
+# pragma mark - AppDidFinishLaunchingConfiguration
 
 - (void)initializeParseWithApplication:(UIApplication *)application {
     // Initialize Parse.
@@ -179,6 +180,21 @@
         [[NSUserDefaults standardUserDefaults]synchronize];
         
         [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+    }
+}
+
+- (void)excludeGeoJSONFromCloudBackup {
+    // Exclude files from iCloud backup
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSArray *documents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:nil];
+    NSURL *URL;
+    NSString *completeFilePath;
+    for (NSString *file in documents) {
+        completeFilePath = [NSString stringWithFormat:@"%@/%@", basePath, file];
+        URL = [NSURL fileURLWithPath:completeFilePath];
+        [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
+       // NSLog(@"File %@  is excluded from backup %@", file, [URL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsExcludedFromBackupKey] error:nil]);
     }
 }
 
