@@ -9,12 +9,11 @@
 // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
 
 #import <UIKit/UIKit.h>
-#import <Parse/Parse.h>
 
 @class ListOfAdvocacyGroupsViewController;
 
 @protocol ViewControllerBDelegate <NSObject>
-- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item;
+//- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item;
 @end
 
 @interface ListOfAdvocacyGroupsViewController : UIViewController

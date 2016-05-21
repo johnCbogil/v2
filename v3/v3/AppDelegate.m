@@ -16,7 +16,6 @@
 #import "VoicesConstants.h"
 #import "RepManager.h"
 #import "NewsFeedManager.h"
-#import <Parse.h>
 #import <Google/Analytics.h>
 
 
@@ -27,7 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self initializeParseWithApplication:application];
+   // [self initializeParseWithApplication:application];
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
@@ -69,31 +68,31 @@
 
 # pragma mark - AppDidFinishLaunchingConfiguration
 
-- (void)initializeParseWithApplication:(UIApplication *)application {
-    // Initialize Parse.
-    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
-                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
-    
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                    UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
-}
+//- (void)initializeParseWithApplication:(UIApplication *)application {
+//    // Initialize Parse.
+//    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
+//                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
+//    
+//    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+//                                                    UIUserNotificationTypeBadge |
+//                                                    UIUserNotificationTypeSound);
+//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+//                                                                             categories:nil];
+//    [application registerUserNotificationSettings:settings];
+//    [application registerForRemoteNotifications];
+//}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *installation = [PFInstallation currentInstallation];
-    [installation setDeviceTokenFromData:deviceToken];
-    installation.channels = @[ @"global" ];
-    [installation saveInBackground];
+//    PFInstallation *installation = [PFInstallation currentInstallation];
+//    [installation setDeviceTokenFromData:deviceToken];
+//    installation.channels = @[ @"global" ];
+//    [installation saveInBackground];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Not sure what this is.
-    [PFPush handlePush:userInfo];
+    //[PFPush handlePush:userInfo];
     [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[userInfo valueForKey:@"aps"]valueForKey:@"alert"]];
 
 }

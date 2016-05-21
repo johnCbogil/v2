@@ -9,16 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Bolts.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Parse.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Voices.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,12 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>146D4D3BEC39209E7FD55AD619B9712E</key>
+		<key>13D7284F0533DD0631ABFBA1B647733A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>214F878DF47EDD1FA174563835CB384A</key>
+		<key>2534AAEB06074C579E502E54CCB5037C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,27 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6095DE398C2BCE7C24317310CA12FDDD</key>
+		<key>609C09A85A564AA91F52DB6FC0F2F43F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>646B6390973F5F66004359FBB48BAC89</key>
+		<key>8A43F21F1146E15A7D4D4DDF3AD6693F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>92BE1276F34E416D56298423B8DA08EE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C107FFE9367A12A71A5E082A410975AF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D29C8205C74B3495199035CCB9FE74C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

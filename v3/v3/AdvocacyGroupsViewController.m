@@ -12,7 +12,6 @@
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
 #import "ListOfAdvocacyGroupsViewController.h"
-#import <Parse/Parse.h>
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
 
@@ -58,9 +57,9 @@
 
 
 // NOT SURE IF I NEED THIS
-- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
-    NSLog(@"This was returned from ViewControllerB %@",item);
-}
+//- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
+//    NSLog(@"This was returned from ViewControllerB %@",item);
+//}
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
     
     UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
@@ -116,7 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self removeFollower:self.listOfFollowedAdvocacyGroups[indexPath.row]];
+       // [self removeFollower:self.listOfFollowedAdvocacyGroups[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -146,68 +145,68 @@
 #pragma mark - Parse Methods
 
 - (void)retrieveFollowedAdovacyGroups {
-    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
-    [query whereKey:@"followers" equalTo:[PFUser currentUser].username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"Retrieve Selected AdvocacyGroups Success, %@", objects);
-            self.listOfFollowedAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
-            [self.tableView reloadData];
-        }
-        else {
-            NSLog(@"Retrieve Selected AdvocacyGroups Error: %@", error);
-        }
-    }];
+//    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
+//    [query whereKey:@"followers" equalTo:[PFUser currentUser].username];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (!error) {
+//            NSLog(@"Retrieve Selected AdvocacyGroups Success, %@", objects);
+//            self.listOfFollowedAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+//            [self.tableView reloadData];
+//        }
+//        else {
+//            NSLog(@"Retrieve Selected AdvocacyGroups Error: %@", error);
+//        }
+//    }];
 }
 
 - (void)retrieveAdovacyGroups {
-    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"Retrieve AdvocacyGroup Success");
-            //self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
-            [self.tableView reloadData];
-        }
-        else {
-            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
-        }
-    }];
+//    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (!error) {
+//            NSLog(@"Retrieve AdvocacyGroup Success");
+//            //self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+//            [self.tableView reloadData];
+//        }
+//        else {
+//            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
+//        }
+//    }];
 }
 
 - (void)userAuth {
-    PFUser *currentUser = [PFUser currentUser];
-    if (!currentUser) {
-        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
-            if (error) {
-                NSLog(@"Anonymous login failed.");
-            } else {
-                NSLog(@"Anonymous user logged in: %@", user);
-            }
-        }];
-    }
+//    PFUser *currentUser = [PFUser currentUser];
+//    if (!currentUser) {
+//        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
+//            if (error) {
+//                NSLog(@"Anonymous login failed.");
+//            } else {
+//                NSLog(@"Anonymous user logged in: %@", user);
+//            }
+//        }];
+//    }
 }
 
-- (void)followAdovacyGroup:(PFObject*)object {
-    [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
-    NSLog(@"AdGroup: %@", object);
-    [[PFInstallation currentInstallation]saveInBackground];
-    [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"Followed!");
-        }
-        else {
-            NSLog(@"Follow Error: %@", error);
-        }
-    }];
-}
+//- (void)followAdovacyGroup:(PFObject*)object {
+//    [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
+//    NSLog(@"AdGroup: %@", object);
+//    [[PFInstallation currentInstallation]saveInBackground];
+//    [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
+//    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (!error) {
+//            NSLog(@"Followed!");
+//        }
+//        else {
+//            NSLog(@"Follow Error: %@", error);
+//        }
+//    }];
+//}
 
-- (void)removeFollower:(PFObject*)object {
-    [[PFInstallation currentInstallation]removeObject:object.objectId forKey:@"channels"];
-    [[PFInstallation currentInstallation]saveInBackground];
-    [self.listOfFollowedAdvocacyGroups removeObject:object];
-    [object removeObjectForKey:@"followers"];
-    [object save];
-}
+//- (void)removeFollower:(PFObject*)object {
+//    [[PFInstallation currentInstallation]removeObject:object.objectId forKey:@"channels"];
+//    [[PFInstallation currentInstallation]saveInBackground];
+//    [self.listOfFollowedAdvocacyGroups removeObject:object];
+//    [object removeObjectForKey:@"followers"];
+//    [object save];
+//}
 
 @end
