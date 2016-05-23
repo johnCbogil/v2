@@ -20,6 +20,7 @@
 		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
+		52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */; };
 		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
 		52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateRepresentative.m */; };
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
@@ -47,7 +48,6 @@
 		52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52F5C7001CEAB59C0015801D /* NYCCouncil.csv in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FF1CEAB59C0015801D /* NYCCouncil.csv */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
@@ -92,6 +92,7 @@
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
 		52A610811B66AD0300B041FF /* RepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepManager.m; sourceTree = "<group>"; };
+		52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52AD2CBE1B61E7A300EAF854 /* FederalRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalRepresentative.h; sourceTree = "<group>"; };
 		52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentative.m; sourceTree = "<group>"; };
 		52AD2CC11B61F90900EAF854 /* StateRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepresentative.h; sourceTree = "<group>"; };
@@ -139,7 +140,6 @@
 		52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvocacyGroupTableViewCell.xib; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
-		52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52F5C6FF1CEAB59C0015801D /* NYCCouncil.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NYCCouncil.csv; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */,
-				52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */,
+				52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */,
 				52C7D4B51CC7208700F85902 /* PushNotification.json */,
 				52F5C6FF1CEAB59C0015801D /* NYCCouncil.csv */,
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
@@ -478,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */,
+				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52F5C7001CEAB59C0015801D /* NYCCouncil.csv in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
@@ -486,7 +487,6 @@
 				52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
-				52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */,
 				52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */,
