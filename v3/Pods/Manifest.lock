@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Firebase (2.5.1)
   - Google/Analytics (2.0.4):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -42,6 +43,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - Firebase
   - Google/Analytics
   - Shimmer
   - SSZipArchive
@@ -49,6 +51,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
@@ -59,6 +62,6 @@ SPEC CHECKSUMS:
   SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
   STPopup: 5e12539a1798514a99ffc1c6239c3db688a2d7b1
 
-PODFILE CHECKSUM: 49a1515d05b64442d8dda32fd6d027b7333c94c6
+PODFILE CHECKSUM: ad410e82e7d77cf39e7635028e2f42dc97692b0f
 
 COCOAPODS: 1.0.0

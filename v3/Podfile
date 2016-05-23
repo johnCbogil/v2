@@ -8,6 +8,7 @@ target 'Voices' do
     pod 'STPopup'
     pod 'SSZipArchive'
     pod 'Google/Analytics'
+    pod 'Firebase'
 
 end
 
