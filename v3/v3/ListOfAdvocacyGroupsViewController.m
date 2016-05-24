@@ -9,6 +9,7 @@
 #import "ListOfAdvocacyGroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
 #import "AdvocacyGroupsViewController.h"
+#import <Firebase/Firebase.h>
 
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -30,21 +31,19 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     
-    [self retrieveAdovacyGroups];
+    // Print all of the db data, db read rules are set to true
+    Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://voices-430ae.firebaseio.com/"];
+    [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"%@", snapshot.value);
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+    
 }
 
 - (void)retrieveAdovacyGroups {
-//    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (!error) {
-//            NSLog(@"Retrieve AdvocacyGroup Success");
-//            self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
-//            [self.tableView reloadData];
-//        }
-//        else {
-//            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
-//        }
-//    }];
+    
+
 }
 
 //- (void)followAdovacyGroup:(PFObject*)object {
