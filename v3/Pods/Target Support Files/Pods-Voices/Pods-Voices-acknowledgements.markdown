@@ -28,11 +28,23 @@ THE SOFTWARE.
 
 https://www.firebase.com/terms/terms-of-service.html
 
+## GGLInstanceID
+
+Copyright 2015 Google Inc.
+
 ## Google
 
 Copyright 2015 Google Inc.
 
 ## GoogleAnalytics
+
+Copyright 2015 Google Inc.
+
+## GoogleCloudMessaging
+
+Copyright 2015 Google Inc.
+
+## GoogleIPhoneUtilities
 
 Copyright 2015 Google Inc.
 

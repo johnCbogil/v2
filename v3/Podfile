@@ -9,6 +9,7 @@ target 'Voices' do
     pod 'SSZipArchive'
     pod 'Google/Analytics'
     pod 'Firebase'
+    pod 'Google/CloudMessaging'
 
 end
 
