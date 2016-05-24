@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>email</key>
+	<string></string>
+	<key>firstName</key>
+	<string>Bill</string>
+	<key>lastName</key>
+	<string>de Blasio</string>
+	<key>photoURLPath</key>
+	<string>http://upload.wikimedia.org/wikipedia/commons/7/76/Bill_de_Blasio_11-2-2013.jpg</string>
+	<key>party</key>
+	<string>D</string>
+	<key>phoneNumber</key>
+	<string>212-639-9675</string>
+	<key>districtAddress</key>
+	<string>Mayor Bill de Blasio, City Hall New York, NY 10007 </string>
+	<key>legAddress</key>
+	<string>Mayor Bill de Blasio, City Hall New York, NY 10007 </string>
+	<key>district</key>
+	<string>Mayor</string>
+	<key>borough</key>
+	<string></string>
+	<key>photo</key>
+	<data></data>
+	<key>twitter</key>
+	<string>BillDeBlasio</string>
+</dict>
+</plist>

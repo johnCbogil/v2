@@ -69,7 +69,12 @@
 - (void)initWithRep:(id)rep {
     self.nycRepresentative = rep;
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
-    self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+    if ([[rep lastName] isEqualToString:@"de Blasio"]) {
+        self.districtNumberLabel.text = [NSString stringWithFormat:@"%@", self.nycRepresentative.districtNumber];
+        
+    } else {
+        self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+    }
     [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
 }
 
