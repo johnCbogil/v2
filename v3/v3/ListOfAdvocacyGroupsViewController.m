@@ -11,6 +11,12 @@
 #import "AdvocacyGroupsViewController.h"
 #import <Firebase/Firebase.h>
 
+
+/*
+ https://www.firebase.com/docs/ios/guide/structuring-data.html
+ http://jsfiddle.net/firebase/6dzys/embedded/result,js/
+ */
+
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -32,12 +38,12 @@
 
     
     // Print all of the db data, db read rules are set to true
-    Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://voices-430ae.firebaseio.com/"];
-    [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"%@", snapshot.value);
-    } withCancelBlock:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
+    Firebase *rootRef = [[Firebase alloc] initWithUrl:@"https://voices-430ae.firebaseio.com/"];
+//    [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+//        NSLog(@"%@", snapshot.value);
+//    } withCancelBlock:^(NSError *error) {
+//        NSLog(@"%@", error.description);
+//    }];
     
 }
 
@@ -47,24 +53,7 @@
 }
 
 //- (void)followAdovacyGroup:(PFObject*)object {
-//    [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
-//    NSLog(@"AdGroup: %@", object);
-//    [[PFInstallation currentInstallation]saveInBackground];
-//    [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
-//    
-//  // I DONT THINK I NEED THIS DELEGATE ACTUALLY
-//    // I NEED TO ADD TO SUPER'S "FOLLOWEDADGROUPS" ARRAY HERE SOMEHOW
-//    [self.delegate addItemViewController:self didFinishEnteringItem:object];
-//    
-//    
-//    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (!error) {
-//            NSLog(@"Followed!");
-//        }
-//        else {
-//            NSLog(@"Follow Error: %@", error);
-//        }
-//    }];
+
 //}
 
 
