@@ -204,13 +204,21 @@
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
-                self.listOfNYCRepresentatives = @[nycRep];
+                NYCRepresentative *billDeBlasio = [self createBillDeBlasio];
+                self.listOfNYCRepresentatives = @[nycRep, billDeBlasio];
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
             }
         }
     }
     return isLocationWithinPath;
+}
+
+- (NYCRepresentative *)createBillDeBlasio {
+    
+    NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
+    NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
+    return billDeBlasio;
 }
 
 @end
