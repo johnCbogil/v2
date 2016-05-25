@@ -54,8 +54,6 @@
     [self setShimmer];
     self.singleLineView.alpha = 0;
     
-    self.shimmeringView.contentView = self.searchView;
-    self.shimmeringView.shimmering = YES;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -74,6 +72,9 @@
     self.searchView.layer.shadowOpacity = 0.15f;
     self.searchView.layer.shadowRadius = 1;
     self.searchView.layer.shadowPath = shadowPath.CGPath;
+    
+    self.shimmeringView.contentView = self.searchView;
+//    self.shimmeringView.shimmering = YES;
 }
 
 - (void)dealloc {
