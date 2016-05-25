@@ -12,7 +12,7 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import <Google/Analytics.h>
+//#import <Google/Analytics.h>
 
 
 @interface StateRepresentativeTableViewCell ()
@@ -119,11 +119,11 @@
     }
     else if (buttonIndex == 1) {
         
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-                                                              action:@"phone call"
-                                                               label:self.stateRepresentative.fullName
-                                                               value:@1] build]];
+//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+//                                                              action:@"phone call"
+//                                                               label:self.stateRepresentative.fullName
+//                                                               value:@1] build]];
         
         
         NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];

@@ -16,7 +16,7 @@
 #import "VoicesConstants.h"
 #import "RepManager.h"
 #import "NewsFeedManager.h"
-#import <Google/Analytics.h>
+//#import <Google/Analytics.h>
 @import Firebase;
 
 
@@ -135,14 +135,14 @@
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     
     // Configure tracker from GoogleService-Info.plist.
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+//    NSError *configureError;
+//    [[GGLContext sharedInstance] configureWithError:&configureError];
+//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     
     // Optional: configure GAI options.
-    GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
+//    GAI *gai = [GAI sharedInstance];
+//    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+//    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
 }
 
 - (void)setCache {

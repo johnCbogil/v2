@@ -44,26 +44,6 @@ Copyright 2016 Google
 
 Copyright 2016 Google Inc.
 
-## GGLInstanceID
-
-Copyright 2015 Google Inc.
-
-## Google
-
-Copyright 2015 Google Inc.
-
-## GoogleAnalytics
-
-Copyright 2015 Google Inc.
-
-## GoogleCloudMessaging
-
-Copyright 2015 Google Inc.
-
-## GoogleIPhoneUtilities
-
-Copyright 2015 Google Inc.
-
 ## GoogleInterchangeUtilities
 
 Copyright 2015 Google Inc.

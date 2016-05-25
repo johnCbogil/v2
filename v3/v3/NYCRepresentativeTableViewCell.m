@@ -11,7 +11,7 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-#import <Google/Analytics.h>
+//#import <Google/Analytics.h>
 
 
 @interface NYCRepresentativeTableViewCell ()
@@ -131,11 +131,11 @@
     }
     else if (buttonIndex == 1) {
         
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-                                                              action:@"phone call"
-                                                               label:[NSString stringWithFormat:@"%@ %@",self.nycRepresentative.firstName,self.nycRepresentative.lastName]
-                                                               value:@1] build]];
+//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+//                                                              action:@"phone call"
+//                                                               label:[NSString stringWithFormat:@"%@ %@",self.nycRepresentative.firstName,self.nycRepresentative.lastName]
+//                                                               value:@1] build]];
 
         
         
