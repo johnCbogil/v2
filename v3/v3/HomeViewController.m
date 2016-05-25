@@ -130,7 +130,7 @@
     //    self.shimmerViewDefaultWidth = self.shimmerViewWidthConstraint.constant;
     
     // Round the box
-    self.searchView.layer.cornerRadius = 3;
+    self.searchView.layer.cornerRadius = kButtonCornerRadius;
     self.searchView.clipsToBounds = YES;
     
     // Set cancel button to white color
@@ -172,7 +172,7 @@
     
     // Round the search bar
     UITextField *textSearchField = [self.searchBar valueForKey:@"_searchField"];
-    textSearchField.layer.cornerRadius = 3;
+    textSearchField.layer.cornerRadius = kButtonCornerRadius;
     
     // Hide the search bar
     self.searchBar.alpha = 0.0;
