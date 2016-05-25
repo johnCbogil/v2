@@ -49,12 +49,6 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     FIRDatabaseReference *groupsRef = [rootRef child:kFirebaseRefGroups];
     
     // see if BarryO is in the 'ACLU' group
-    //    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://voices-430ae.firebaseio.com/users/BarryO/groups/ACLU"];
-    //    [ref observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-    //        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
-    //        NSLog(@"BarryO %@ a member of aclu group", result);
-    //    }];
-    
     FIRDatabaseReference *obamaRef = [userRef child:kFirebaseRefUserBarryO];
     [obamaRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
@@ -65,14 +59,6 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     
     // fetch a list of BarryO groups
-    //    [groupsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-    //        // for each group, fetch the name and print it
-    //        NSString *groupKey = snapshot.key;
-    //        NSString *groupPath = [NSString stringWithFormat:@"groups/%@/name", groupKey];
-    //        [[rootRef childByAppendingPath:groupPath] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-    //            NSLog(@"BarryO is a member of this group: %@", snapshot.value);
-    //        }];
-    //    }];
     [groupsRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         // for each group, fetch the name and print it
         NSString *groupKey = snapshot.key;
@@ -83,7 +69,6 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     }];
     
     
-    // Create a new user named "DCheney"
     
 }
 
