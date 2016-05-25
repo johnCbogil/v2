@@ -105,6 +105,22 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     }
     else {
         self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
+        // FETCH FOLLOWED GROUPS
+        
+        [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            // Get user value
+            //User *user = [[User alloc] initWithUsername:snapshot.value[@"name"]];
+            NSLog(@"%@", snapshot.value[@"userID"]);
+            // ...
+        } withCancelBlock:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+        
+        [[self.usersRef child:self.currentUserID]updateChildValues:@{@"testKey" : @"testValue"} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+            if (error) {
+                NSLog(@"write error: %@", error);
+            }
+        }];
     }
 }
 
