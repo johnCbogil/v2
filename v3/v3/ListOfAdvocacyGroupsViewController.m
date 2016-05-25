@@ -75,6 +75,7 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     
     [self userAuth];
+    [self retrieveAdovacyGroups];
 
 }
 
@@ -104,9 +105,10 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
          }];
     }
     else {
-        self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-        // FETCH FOLLOWED GROUPS
         
+        self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
+        
+        // FETCH FOLLOWED GROUPS
         [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             // Get user value
             //User *user = [[User alloc] initWithUsername:snapshot.value[@"name"]];
@@ -125,6 +127,8 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 }
 
 - (void)retrieveAdovacyGroups {
+    
+
     
     
 }
