@@ -20,7 +20,28 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Firebase (2.5.1)
+  - Firebase/Analytics (3.2.0):
+    - FirebaseAnalytics (= 3.2.0)
+  - Firebase/Auth (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+    - FirebaseAuth (= 3.0.2)
+  - Firebase/Core (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+  - Firebase/Database (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+    - FirebaseDatabase (= 3.0.1)
+  - FirebaseAnalytics (3.2.0):
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleUtilities (~> 1.3)
+  - FirebaseAuth (3.0.2):
+    - FirebaseAnalytics (~> 3.2)
+    - GoogleNetworkingUtilities (~> 1.2)
+    - GoogleUtilities (~> 1.3)
+  - FirebaseDatabase (3.0.1):
+    - FirebaseAnalytics (~> 3.2)
+  - FirebaseInstanceID (1.0.6)
   - GGLInstanceID (1.2.1)
   - Google/Analytics (2.0.4):
     - Google/Core
@@ -55,7 +76,9 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - Firebase
+  - Firebase/Auth
+  - Firebase/Core
+  - Firebase/Database
   - Google/Analytics
   - Google/CloudMessaging
   - Shimmer
@@ -64,7 +87,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  Firebase: 6d4012da1598732a2b43f16d8355eca90f94ed59
+  FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
+  FirebaseAuth: 94b851fc345ce98036dfedfdc2eddeaef8fa3b4c
+  FirebaseDatabase: 34301d11621a83546f39f670d256477ba6f7fcea
+  FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
@@ -78,6 +105,6 @@ SPEC CHECKSUMS:
   SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
   STPopup: 5e12539a1798514a99ffc1c6239c3db688a2d7b1
 
-PODFILE CHECKSUM: 28bda2aca06bb08acbcaa77b985cc82203bf2094
+PODFILE CHECKSUM: c0a3d5eb3a35fc8724542886146df9b485a2d1d5
 
 COCOAPODS: 1.0.0

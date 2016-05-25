@@ -26,7 +26,23 @@ THE SOFTWARE.
 
 ## Firebase
 
-https://www.firebase.com/terms/terms-of-service.html
+Copyright 2016 Google Inc.
+
+## FirebaseAnalytics
+
+Copyright 2016 Google Inc.
+
+## FirebaseAuth
+
+Copyright 2016 Google Inc. All Rights Reserved.
+
+## FirebaseDatabase
+
+Copyright 2016 Google
+
+## FirebaseInstanceID
+
+Copyright 2016 Google Inc.
 
 ## GGLInstanceID
 

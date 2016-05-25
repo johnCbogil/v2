@@ -17,6 +17,7 @@
 #import "RepManager.h"
 #import "NewsFeedManager.h"
 #import <Google/Analytics.h>
+@import Firebase;
 
 
 @interface AppDelegate ()
@@ -32,7 +33,8 @@
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
-    
+    [FIRApp configure];
+
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (notificationPayload) {

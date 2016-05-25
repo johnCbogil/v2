@@ -9,8 +9,8 @@
 #import "ListOfAdvocacyGroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
 #import "AdvocacyGroupsViewController.h"
-#import <Firebase/Firebase.h>
-
+//#import <Firebase/Firebase.h>
+@import Firebase;
 
 /*
  https://www.firebase.com/docs/ios/guide/structuring-data.html

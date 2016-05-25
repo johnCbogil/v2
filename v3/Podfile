@@ -8,7 +8,9 @@ target 'Voices' do
     pod 'STPopup'
     pod 'SSZipArchive'
     pod 'Google/Analytics'
-    pod 'Firebase'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Auth'
     pod 'Google/CloudMessaging'
 
 end
