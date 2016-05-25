@@ -24,6 +24,11 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
+@property (strong, nonatomic) NSString *currentUserID;
+@property (strong, nonatomic) FIRDatabaseReference *rootRef;
+@property (strong, nonatomic) FIRDatabaseReference *usersRef;
+@property (strong, nonatomic) FIRDatabaseReference *groupsRef;
+
 @end
 
 @implementation ListOfAdvocacyGroupsViewController
@@ -44,12 +49,12 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     //    Firebase *usersRef = [rootRef childByAppendingPath:@"users"];
     //    Firebase *groupsRef = [rootRef childByAppendingPath:@"groups"];
     
-    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *userRef = [rootRef child:kFirebaseRefUsers];
-    FIRDatabaseReference *groupsRef = [rootRef child:kFirebaseRefGroups];
+    self.rootRef = [[FIRDatabase database] reference];
+    self.usersRef = [self.rootRef child:kFirebaseRefUsers];
+    self.groupsRef = [self.rootRef child:kFirebaseRefGroups];
     
     // see if BarryO is in the 'ACLU' group
-    FIRDatabaseReference *obamaRef = [userRef child:kFirebaseRefUserBarryO];
+    FIRDatabaseReference *obamaRef = [self.usersRef child:kFirebaseRefUserBarryO];
     [obamaRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
         NSLog(@"BarryO %@ a member of aclu group", result);
@@ -59,17 +64,48 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     
     // fetch a list of BarryO groups
-    [groupsRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [self.groupsRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         // for each group, fetch the name and print it
         NSString *groupKey = snapshot.key;
         NSString *groupPath = [NSString stringWithFormat:@"groups/%@/name", groupKey];
-        [[rootRef child:groupPath] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        [[self.rootRef child:groupPath] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             NSLog(@"BarryO is a member of this group: %@", snapshot.value);
         }];        
     }];
     
     
+    [self userAuth];
+
+}
+
+- (void)userAuth {
     
+    if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userID"]) {
+        [[FIRAuth auth]
+         signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+             if (!error) {
+                 self.currentUserID = user.uid;
+                 NSLog(@"Created a new userID: %@", self.currentUserID);
+                 [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
+                 [[NSUserDefaults standardUserDefaults]synchronize];
+                 
+                 [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                     if (!error) {
+                         NSLog(@"Created user in database");
+                     }
+                     else {
+                         NSLog(@"Error adding user to database: %@", error);
+                     }
+                 }];
+             }
+             else {
+                 NSLog(@"UserAuth error: %@", error);
+             }
+         }];
+    }
+    else {
+        self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
+    }
 }
 
 - (void)retrieveAdovacyGroups {
