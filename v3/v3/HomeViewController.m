@@ -41,48 +41,46 @@
 @property (strong, nonatomic) NSString *representativeEmail;
 //@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
+@property (nonatomic, strong) UIView *fakeShadowView;
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.fakeShadowView = [[UIView alloc] init];
+    self.fakeShadowView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:self.fakeShadowView belowSubview:self.shimmeringView];
+    
     [self addObservers];
     [self setFont];
     [self setColors];
     [self setSearchBar];
     [self setShimmer];
-    self.singleLineView.alpha = 0;
     
+    self.singleLineView.alpha = 0;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    // Create a shadow
-    UIBezierPath *shadowPath;
-    if (self.shimmeringView.shimmering) {
-        shadowPath = [UIBezierPath bezierPathWithRect:self.shimmeringView.frame];
-    }
-    else {
-        [UIBezierPath bezierPathWithRect:self.searchView.frame];
-    }
-    self.searchView.layer.masksToBounds = NO;
-    self.searchView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.searchView.layer.shadowOffset = CGSizeMake(-15.0f, -33.0f);
-    self.searchView.layer.shadowOpacity = 0.15f;
-    self.searchView.layer.shadowRadius = 1;
-    self.searchView.layer.shadowPath = shadowPath.CGPath;
     
+    // Create a shadow. Fake shadow view is white and below the shimmerview.
+    self.fakeShadowView.frame = self.shimmeringView.frame;
+    self.fakeShadowView.layer.cornerRadius = self.searchView.layer.cornerRadius;
+    
+    self.shimmeringView.shimmering = NO;
     self.shimmeringView.contentView = self.searchView;
-//    self.shimmeringView.shimmering = YES;
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.fakeShadowView.bounds];
+    self.fakeShadowView.layer.masksToBounds = NO;
+    self.fakeShadowView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.fakeShadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.fakeShadowView.layer.shadowOpacity = 0.5f;
+    self.fakeShadowView.layer.shadowPath = shadowPath.CGPath;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)setColors {
@@ -91,6 +89,7 @@
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
+
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:19];
 }
@@ -123,7 +122,6 @@
 #pragma mark - Search Bar Delegate Methods
 
 - (void)setSearchBar {
-    
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by location";
     
@@ -184,7 +182,6 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
     for (id vc in self.childViewControllers) {
         if ([vc isKindOfClass:[UIPageViewController class]]) {
             self.pageVC = vc;
