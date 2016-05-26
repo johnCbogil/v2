@@ -140,7 +140,7 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 
 - (void)followGroup {
     
-    // "Create data that scales" in firebase doc
+//https://firebase.google.com/docs/database/ios/structure-data#fanout
     
 }
 
