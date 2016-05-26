@@ -46,6 +46,12 @@
 
 @implementation HomeViewController
 
+#pragma mark - Lifecycle methods
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.fakeShadowView = [[UIView alloc] init];
@@ -79,9 +85,7 @@
     self.fakeShadowView.layer.shadowPath = shadowPath.CGPath;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+#pragma mark - Custom accessor methods
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
@@ -93,6 +97,8 @@
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:19];
 }
+
+#pragma mark - NSNotifications
 
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"changePage" object:nil];
@@ -117,6 +123,30 @@
     [self hideSearchBar];
     [self.searchBar resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
+}
+
+- (void)changePage:(NSNotification *)notification {
+    NSDictionary* userInfo = notification.object;
+    if ([userInfo objectForKey:@"currentPage"]) {
+        self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    }
+    
+    //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
+    //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
+    
+    [UIView animateWithDuration:.15
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
+        self.pageControl.currentPage = 0;
+    }
+    else if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"State Legislators"]) {
+        self.pageControl.currentPage = 1;
+    }
+    else {
+        self.pageControl.currentPage = 2;
+    }
 }
 
 #pragma mark - Search Bar Delegate Methods
@@ -259,36 +289,14 @@
                      }];
 }
 
+#pragma mark - Helper methods
+
 //- (CGFloat)searchViewWidth {
 //    return self.legislatureLevel.intrinsicContentSize.width + 60;
 //}
 
 - (CGFloat)shimmerViewWidth {
     return self.legislatureLevel.intrinsicContentSize.width + 60;
-}
-
-- (void)changePage:(NSNotification *)notification {
-    NSDictionary* userInfo = notification.object;
-    if ([userInfo objectForKey:@"currentPage"]) {
-        self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
-    }
-    
-    //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
-    
-    [UIView animateWithDuration:.15
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }];
-    if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
-        self.pageControl.currentPage = 0;
-    }
-    else if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"State Legislators"]) {
-        self.pageControl.currentPage = 1;
-    }
-    else {
-        self.pageControl.currentPage = 2;
-    }
 }
 
 #pragma mark - FB Shimmer methods
@@ -371,10 +379,6 @@
     }
 }
 
-- (IBAction)infoButtonDidPress:(id)sender {
-    [self presentInfoViewController];
-}
-
 - (void)presentInfoViewController {
     UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
@@ -390,6 +394,12 @@
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)infoButtonDidPress:(id)sender {
+    [self presentInfoViewController];
 }
 
 @end
