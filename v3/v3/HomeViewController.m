@@ -127,21 +127,22 @@
 
 - (void)changePage:(NSNotification *)notification {
     NSDictionary* userInfo = notification.object;
-    if ([userInfo objectForKey:@"currentPage"]) {
-        self.legislatureLevel.text = [userInfo valueForKey:@"currentPage"];
+    NSString *currentPageString = userInfo[@"currentPage"];
+    if (currentPageString.length > 0) {
+        self.legislatureLevel.text = currentPageString;
     }
     
     //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
     //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
     
-    [UIView animateWithDuration:.15
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }];
-    if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"Congress"]) {
+    [UIView animateWithDuration:.15 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    
+    if ([currentPageString isEqualToString:@"Congress"]) {
         self.pageControl.currentPage = 0;
     }
-    else if ([[userInfo valueForKey:@"currentPage"] isEqualToString:@"State Legislators"]) {
+    else if ([currentPageString isEqualToString:@"State Legislators"]) {
         self.pageControl.currentPage = 1;
     }
     else {
@@ -266,7 +267,7 @@
                          self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
-                         //                         self.magnifyingGlass.alpha = 0.0;
+                         // self.magnifyingGlass.alpha = 0.0;
                          [self.view layoutIfNeeded];
                          [self.view setNeedsUpdateConstraints];
                      }];
@@ -281,7 +282,7 @@
                      animations:^{
                          self.searchBar.alpha = 0.0;
                          self.searchButton.alpha = 1.0;
-                         //                         self.magnifyingGlass.alpha = 1.0;
+                         // self.magnifyingGlass.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.singleLineView.alpha = .5;
                          [self.view layoutIfNeeded];
