@@ -23,11 +23,12 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
+@property (strong, nonatomic) NSMutableDictionary *listOfGroups;
 @property (strong, nonatomic) NSString *currentUserID;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
+
 
 @end
 
@@ -40,42 +41,37 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
-    
+//    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    
-    //    Firebase *rootRef = [[Firebase alloc] initWithUrl:@"https://voices-430ae.firebaseio.com/"];
-    //    Firebase *usersRef = [rootRef childByAppendingPath:@"users"];
-    //    Firebase *groupsRef = [rootRef childByAppendingPath:@"groups"];
-    
+
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:kFirebaseRefUsers];
     self.groupsRef = [self.rootRef child:kFirebaseRefGroups];
     
-    // see if BarryO is in the 'ACLU' group
-    FIRDatabaseReference *obamaRef = [self.usersRef child:kFirebaseRefUserBarryO];
-    [obamaRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
-        NSLog(@"BarryO %@ a member of aclu group", result);
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        
-    }];
-    
-    
-    // fetch a list of BarryO groups
-    [self.groupsRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        // for each group, fetch the name and print it
-        NSString *groupKey = snapshot.key;
-        NSString *groupPath = [NSString stringWithFormat:@"groups/%@/name", groupKey];
-        [[self.rootRef child:groupPath] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            NSLog(@"BarryO is a member of this group: %@", snapshot.value);
-        }];        
-    }];
+//    // see if BarryO is in the 'ACLU' group
+//    FIRDatabaseReference *obamaRef = [self.usersRef child:kFirebaseRefUserBarryO];
+//    [obamaRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
+//        NSLog(@"BarryO %@ a member of aclu group", result);
+//    } withCancelBlock:^(NSError * _Nonnull error) {
+//        
+//    }];
+//    
+//    
+//    // fetch a list of BarryO groups
+//    [self.groupsRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        // for each group, fetch the name and print it
+//        NSString *groupKey = snapshot.key;
+//        NSString *groupPath = [NSString stringWithFormat:@"groups/%@/name", groupKey];
+//        [[self.rootRef child:groupPath] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//            NSLog(@"BarryO is a member of this group: %@", snapshot.value);
+//        }];        
+//    }];
     
     
     [self userAuth];
-    [self retrieveAdovacyGroups];
+    [self retrieveGroups];
 
 }
 
@@ -126,27 +122,39 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     }
 }
 
-- (void)retrieveAdovacyGroups {
-    
+- (void)retrieveGroups {
 
-    
-    
+    [self.groupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        self.listOfGroups = snapshot.value;
+        
+        // Having trouble retrieving groups. They come in as a dictionary, but then I can't use that dictionary in cellForRowAtIndexPath
+        
+//       NSArray *a =  [self.listOfGroups allKeys];
+//        NSString *name = snapshot.value[a[0]][@"name"];
+        
+        [self.tableView reloadData];
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 
-//- (void)followAdovacyGroup:(PFObject*)object {
-
-//}
+- (void)followGroup {
+    
+    // "Create data that scales" in firebase doc
+    
+}
 
 
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.listOfAdvocacyGroups.count;
+    return self.listOfGroups.count;
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
-    [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    //[cell initWithData:[self.listOfGroups objectAtIndex:indexPath.row]];
+  //  cell.textLabel.text = self.listOfGroups[indexPath.row];
     return cell;
 }
 
