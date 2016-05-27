@@ -72,6 +72,7 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     [self userAuth];
     [self retrieveGroups];
+    [self followGroup];
     
 }
 
@@ -143,8 +144,27 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 
 - (void)followGroup {
     
-    //https://firebase.google.com/docs/database/ios/structure-data#fanout
+    // add group to user's groups
+    [[[self.usersRef child:self.currentUserID]child:@"groups"] updateChildValues:@{@"tesgroup8" :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        if (error) {
+            NSLog(@"write error: %@", error);
+        }
+    }];
     
+    // add user to group's users
+    [[[self.groupsRef child:@"ACLU"]child:@"followers"] updateChildValues:@{@"testFollower22" :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        if (error) {
+            NSLog(@"write error: %@", error);
+        }
+    }];
+    
+}
+
+- (void)removeGroup {
+    
+    // Remove group from user's groups
+    
+    // Remove user from group's users
 }
 
 #pragma mark - TableView delegate methods
