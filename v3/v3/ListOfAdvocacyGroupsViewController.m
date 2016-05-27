@@ -66,9 +66,7 @@
     //    }];
     
     
-    [self userAuth];
     [self retrieveGroups];
-    [self removeGroup];
     
 }
 
@@ -99,29 +97,21 @@
 - (void)followGroup:(NSString *)groupName {
     
     // add group to user's groups
-    [[[self.usersRef child:self.currentUserID]child:@"groups"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [[[self.usersRef child:groupName]child:@"groups"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"write error: %@", error);
         }
     }];
     
     // add user to group's users
-    [[[self.groupsRef child:@"ACLU"]child:@"followers"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [[[self.groupsRef child:self.currentUserID]child:@"followers"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"write error: %@", error);
         }
     }];
-    
 }
 
-- (void)removeGroup {
-    
-    // Remove group from user's groups
-    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:@"tesgroup8"]removeValue];
-    
-    // Remove user from group's users
-    [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:@"testFollower"]removeValue];
-}
+
 
 #pragma mark - TableView delegate methods
 

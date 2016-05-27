@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-//@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
@@ -46,7 +45,9 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
 
-
+    [self createTableView];
+    [self userAuth];
+    [self fetchFollowedGroups];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,13 +109,34 @@
 
 - (void)fetchFollowedGroups {
     
+    __weak AdvocacyGroupsViewController *weakSelf = self;
+    [[self.usersRef child:@"groups"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSDictionary *groups = snapshot.value;
+        NSMutableArray *namesArray = @[].mutableCopy;
+        [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            NSDictionary *objDict = obj; //add dictOrNil macro
+            NSString *name = objDict[@"name"];
+            if (name.length > 0) {
+                [namesArray addObject:name];
+            }
+        }];
+        
+        weakSelf.listOfFollowedAdvocacyGroups = [NSArray arrayWithArray:namesArray];
+        [weakSelf.tableView reloadData];
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 
+- (void)removeGroup {
+    
+    // Remove group from user's groups
+    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:@"tesgroup8"]removeValue];
+    
+    // Remove user from group's users
+    [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:@"testFollower"]removeValue];
+}
 
-// NOT SURE IF I NEED THIS
-//- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
-//    NSLog(@"This was returned from ViewControllerB %@",item);
-//}
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
     
     UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
@@ -145,8 +167,9 @@
         return cell;
     }
     else {
-        AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
-        [cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
+        UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        //[cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
+        cell.textLabel.text = self.listOfFollowedAdvocacyGroups[indexPath.row];
         return cell;
     }
 }
