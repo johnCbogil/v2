@@ -11,10 +11,6 @@
 #import "AdvocacyGroupsViewController.h"
 @import Firebase;
 
-NSString * const kFirebaseRefUsers = @"users";
-NSString * const kFirebaseRefGroups = @"groups";
-NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
-
 /*
  https://www.firebase.com/docs/ios/guide/structuring-data.html
  http://jsfiddle.net/firebase/6dzys/embedded/result,js/
@@ -46,8 +42,8 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     
     self.rootRef = [[FIRDatabase database] reference];
-    self.usersRef = [self.rootRef child:kFirebaseRefUsers];
-    self.groupsRef = [self.rootRef child:kFirebaseRefGroups];
+    self.usersRef = [self.rootRef child:@"users"];
+    self.groupsRef = [self.rootRef child:@"groups"];
     
     //    // see if BarryO is in the 'ACLU' group
     //    FIRDatabaseReference *obamaRef = [self.usersRef child:kFirebaseRefUserBarryO];
@@ -72,55 +68,12 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     [self userAuth];
     [self retrieveGroups];
-    [self followGroup];
     [self removeGroup];
     
 }
 
 - (void)userAuth {
-    if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userID"]) {
-        [[FIRAuth auth]
-         signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-             if (!error) {
-                 self.currentUserID = user.uid;
-                 NSLog(@"Created a new userID: %@", self.currentUserID);
-                 [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
-                 [[NSUserDefaults standardUserDefaults]synchronize];
-                 
-                 [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                     if (!error) {
-                         NSLog(@"Created user in database");
-                     }
-                     else {
-                         NSLog(@"Error adding user to database: %@", error);
-                     }
-                 }];
-             }
-             else {
-                 NSLog(@"UserAuth error: %@", error);
-             }
-         }];
-    }
-    else {
-        
-        self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-        
-        // FETCH FOLLOWED GROUPS
-        [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            // Get user value
-            //User *user = [[User alloc] initWithUsername:snapshot.value[@"name"]];
-            NSLog(@"%@", snapshot.value[@"userID"]);
-            // ...
-        } withCancelBlock:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error.localizedDescription);
-        }];
-        
-        [[self.usersRef child:self.currentUserID]updateChildValues:@{@"testKey" : @"testValue"} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-            if (error) {
-                NSLog(@"write error: %@", error);
-            }
-        }];
-    }
+   
 }
 
 - (void)retrieveGroups {
@@ -143,17 +96,17 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     }];
 }
 
-- (void)followGroup {
+- (void)followGroup:(NSString *)groupName {
     
     // add group to user's groups
-    [[[self.usersRef child:self.currentUserID]child:@"groups"] updateChildValues:@{@"tesgroup8" :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [[[self.usersRef child:self.currentUserID]child:@"groups"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"write error: %@", error);
         }
     }];
     
     // add user to group's users
-    [[[self.groupsRef child:@"ACLU"]child:@"followers"] updateChildValues:@{@"testFollower22" :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [[[self.groupsRef child:@"ACLU"]child:@"followers"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"write error: %@", error);
         }
@@ -168,7 +121,6 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     
     // Remove user from group's users
     [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:@"testFollower"]removeValue];
-
 }
 
 #pragma mark - TableView delegate methods
@@ -179,7 +131,6 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //[cell initWithData:[self.listOfGroups objectAtIndex:indexPath.row]];
     cell.textLabel.text = self.listOfGroups[indexPath.row];
     return cell;
 }
@@ -187,7 +138,7 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //  [self followAdovacyGroup:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+    [self followGroup:self.listOfGroups[indexPath.row]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

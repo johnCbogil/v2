@@ -18,7 +18,7 @@
 
 @interface ListOfAdvocacyGroupsViewController : UIViewController
 
-@property (nonatomic, weak) id <ViewControllerBDelegate> delegate;
+//@property (nonatomic, weak) id <ViewControllerBDelegate> delegate;
 
 
 @end

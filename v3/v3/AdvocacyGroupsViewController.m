@@ -12,6 +12,7 @@
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
 #import "ListOfAdvocacyGroupsViewController.h"
+@import Firebase;
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
 
@@ -23,6 +24,11 @@
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
+@property (strong, nonatomic) NSString *currentUserID;
+@property (strong, nonatomic) FIRDatabaseReference *rootRef;
+@property (strong, nonatomic) FIRDatabaseReference *usersRef;
+@property (strong, nonatomic) FIRDatabaseReference *groupsRef;
+
 @end
 
 @implementation AdvocacyGroupsViewController
@@ -31,28 +37,77 @@
     [super viewDidLoad];
     
     self.navigationItem.hidesBackButton = YES;
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"CallToActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"CallToActionTableViewCell"];
 
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
     self.segmentControl.tintColor = [UIColor voicesOrange];
     
-    [self userAuth];
-    //[self retrieveAdovacyGroups];
-    
     self.listofCallsToAction = [NewsFeedManager sharedInstance].newsFeedObjects;
+    
+    self.rootRef = [[FIRDatabase database] reference];
+    self.usersRef = [self.rootRef child:@"users"];
+    self.groupsRef = [self.rootRef child:@"groups"];
+
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
     if (self.selectedSegment) {
-        [self retrieveFollowedAdovacyGroups];
+//        [self retrieveFollowedAdovacyGroups];
     }
+}
+
+- (void)createTableView {
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CallToActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"CallToActionTableViewCell"];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)userAuth {
+    if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userID"]) {
+        [[FIRAuth auth]
+         signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+             if (!error) {
+                 self.currentUserID = user.uid;
+                 NSLog(@"Created a new userID: %@", self.currentUserID);
+                 [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
+                 [[NSUserDefaults standardUserDefaults]synchronize];
+                 
+                 [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                     if (!error) {
+                         NSLog(@"Created user in database");
+                     }
+                     else {
+                         NSLog(@"Error adding user to database: %@", error);
+                     }
+                 }];
+             }
+             else {
+                 NSLog(@"UserAuth error: %@", error);
+             }
+         }];
+    }
+    else {
+        
+        self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
+        
+        // FETCH FOLLOWED GROUPS
+        [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            // Get user value
+            //User *user = [[User alloc] initWithUsername:snapshot.value[@"name"]];
+            NSLog(@"%@", snapshot.value[@"userID"]);
+            // ...
+        } withCancelBlock:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+    }
+}
+
+- (void)fetchFollowedGroups {
+    
 }
 
 
@@ -68,7 +123,7 @@
     
     
 //    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] initWithNibName:@"ListOfAdvocacyGroupsViewController" bundle:nil];
-    viewControllerB.delegate = self;
+//    viewControllerB.delegate = self;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
@@ -136,77 +191,11 @@
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
 
     if (self.selectedSegment) {
-        [self retrieveFollowedAdovacyGroups];
+//        [self retrieveFollowedAdovacyGroups];
     }
     
     [self.tableView reloadData];
 }
 
-#pragma mark - Parse Methods
-
-- (void)retrieveFollowedAdovacyGroups {
-//    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
-//    [query whereKey:@"followers" equalTo:[PFUser currentUser].username];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (!error) {
-//            NSLog(@"Retrieve Selected AdvocacyGroups Success, %@", objects);
-//            self.listOfFollowedAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
-//            [self.tableView reloadData];
-//        }
-//        else {
-//            NSLog(@"Retrieve Selected AdvocacyGroups Error: %@", error);
-//        }
-//    }];
-}
-
-- (void)retrieveAdovacyGroups {
-//    PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (!error) {
-//            NSLog(@"Retrieve AdvocacyGroup Success");
-//            //self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
-//            [self.tableView reloadData];
-//        }
-//        else {
-//            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
-//        }
-//    }];
-}
-
-- (void)userAuth {
-//    PFUser *currentUser = [PFUser currentUser];
-//    if (!currentUser) {
-//        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
-//            if (error) {
-//                NSLog(@"Anonymous login failed.");
-//            } else {
-//                NSLog(@"Anonymous user logged in: %@", user);
-//            }
-//        }];
-//    }
-}
-
-//- (void)followAdovacyGroup:(PFObject*)object {
-//    [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
-//    NSLog(@"AdGroup: %@", object);
-//    [[PFInstallation currentInstallation]saveInBackground];
-//    [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
-//    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (!error) {
-//            NSLog(@"Followed!");
-//        }
-//        else {
-//            NSLog(@"Follow Error: %@", error);
-//        }
-//    }];
-//}
-
-//- (void)removeFollower:(PFObject*)object {
-//    [[PFInstallation currentInstallation]removeObject:object.objectId forKey:@"channels"];
-//    [[PFInstallation currentInstallation]saveInBackground];
-//    [self.listOfFollowedAdvocacyGroups removeObject:object];
-//    [object removeObjectForKey:@"followers"];
-//    [object save];
-//}
 
 @end
