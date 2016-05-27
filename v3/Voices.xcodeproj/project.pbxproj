@@ -54,6 +54,7 @@
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
+		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		B64042451965BF66BE2FB354 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F17D036B6D8B3C6EF9A5392 /* libPods-Voices.a */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +150,8 @@
 		52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Onboarding2ViewController.m; sourceTree = "<group>"; };
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
+		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		B65BD03341B3B7A2D40AFBD2 /* Pods-Voices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.release.xcconfig"; sourceTree = "<group>"; };
 		D407581116439FFB581CAC07 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -261,7 +264,7 @@
 				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
 				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */,
+				52D8929D1CC471AA004FBEA3 /* GroupsPage */,
 				52D892901CC45CC1004FBEA3 /* ActionPage */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
@@ -313,24 +316,16 @@
 			name = ActionPage;
 			sourceTree = "<group>";
 		};
-		52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */ = {
+		52D8929D1CC471AA004FBEA3 /* GroupsPage */ = {
 			isa = PBXGroup;
 			children = (
-				52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */,
-				52D8929A1CC463D9004FBEA3 /* AdvocacyGroupsViewController.h */,
-				52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */,
-				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
-				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
-				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
-				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
-				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
-				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
+				7EEDF30B1CF8DA95006E0696 /* View */,
+				7EEDF30A1CF8DA87006E0696 /* Controller */,
+				7EEDF30F1CF8DABC006E0696 /* Model */,
 				52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */,
 				52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */,
-				525306601CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.h */,
-				525306611CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m */,
 			);
-			name = AdvocacyGroupsPage;
+			name = GroupsPage;
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {
@@ -388,6 +383,40 @@
 				52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		7EEDF30A1CF8DA87006E0696 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52D8929A1CC463D9004FBEA3 /* AdvocacyGroupsViewController.h */,
+				52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */,
+				525306601CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.h */,
+				525306611CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7EEDF30B1CF8DA95006E0696 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */,
+				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
+				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
+				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
+				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
+				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
+				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7EEDF30F1CF8DABC006E0696 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7EEDF30C1CF8DAB8006E0696 /* Group.h */,
+				7EEDF30D1CF8DAB8006E0696 /* Group.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,6 +646,7 @@
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
+				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
 				5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
