@@ -52,7 +52,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
     if (self.selectedSegment) {
-//        [self retrieveFollowedAdovacyGroups];
+        [self fetchFollowedGroups];
     }
 }
 
