@@ -10,15 +10,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class ListOfAdvocacyGroupsViewController;
-
-@protocol ViewControllerBDelegate <NSObject>
-//- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item;
-@end
-
 @interface ListOfAdvocacyGroupsViewController : UIViewController
 
-//@property (nonatomic, weak) id <ViewControllerBDelegate> delegate;
+@property (strong, nonatomic) NSString *currentUserID;
 
 
 @end

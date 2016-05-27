@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AdvocacyGroupsViewController : UIViewController
+@property (strong, nonatomic) NSString *currentUserID;
 
 @end

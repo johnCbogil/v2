@@ -14,7 +14,7 @@
 #import "ListOfAdvocacyGroupsViewController.h"
 @import Firebase;
 
-@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
+@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -23,7 +23,6 @@
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
-@property (strong, nonatomic) NSString *currentUserID;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -35,6 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self createTableView];
+
     self.navigationItem.hidesBackButton = YES;
 
     self.segmentControl.tintColor = [UIColor voicesOrange];
@@ -45,9 +46,7 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
 
-    [self createTableView];
     [self userAuth];
-    [self fetchFollowedGroups];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -95,7 +94,6 @@
         
         self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
         
-        // FETCH FOLLOWED GROUPS
         [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             // Get user value
             //User *user = [[User alloc] initWithUsername:snapshot.value[@"name"]];
@@ -110,19 +108,22 @@
 - (void)fetchFollowedGroups {
     
     __weak AdvocacyGroupsViewController *weakSelf = self;
-    [[self.usersRef child:@"groups"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *groups = snapshot.value;
-        NSMutableArray *namesArray = @[].mutableCopy;
-        [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSDictionary *objDict = obj; //add dictOrNil macro
-            NSString *name = objDict[@"name"];
-            if (name.length > 0) {
-                [namesArray addObject:name];
-            }
-        }];
-        
-        weakSelf.listOfFollowedAdvocacyGroups = [NSArray arrayWithArray:namesArray];
-        [weakSelf.tableView reloadData];
+    [[[self.usersRef child:self.currentUserID]child:@"groups" ] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if (![snapshot.value isKindOfClass:[NSNull class]]) {
+            NSDictionary *groups = snapshot.value;
+            NSMutableArray *namesArray = @[].mutableCopy;
+            [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+//                NSDictionary *objDict = obj; //add dictOrNil macro
+                NSString *name = key;
+                if (name.length > 0) {
+                    [namesArray addObject:name];
+                }
+            }];
+            
+            weakSelf.listOfFollowedAdvocacyGroups = [NSMutableArray arrayWithArray:namesArray];
+            [weakSelf.tableView reloadData];
+        }
+
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
@@ -141,11 +142,9 @@
     
     UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
     ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
-
+    viewControllerB.currentUserID = self.currentUserID;
     
     
-//    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] initWithNibName:@"ListOfAdvocacyGroupsViewController" bundle:nil];
-//    viewControllerB.delegate = self;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
@@ -215,6 +214,8 @@
 
     if (self.selectedSegment) {
 //        [self retrieveFollowedAdovacyGroups];
+        [self fetchFollowedGroups];
+
     }
     
     [self.tableView reloadData];
