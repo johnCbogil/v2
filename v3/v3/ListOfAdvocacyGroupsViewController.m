@@ -9,6 +9,7 @@
 #import "ListOfAdvocacyGroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
 #import "AdvocacyGroupsViewController.h"
+#import "Group.h"
 @import Firebase;
 
 /*
@@ -19,11 +20,10 @@
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray <NSString *> *listOfGroups;
+@property (strong, nonatomic) NSMutableArray *listOfGroups;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
-
 
 @end
 
@@ -44,6 +44,7 @@
 
     [self retrieveGroups];
     
+    self.listOfGroups = @[].mutableCopy;
 }
 
 #pragma mark - Firebase methods
@@ -52,33 +53,36 @@
     __weak ListOfAdvocacyGroupsViewController *weakSelf = self;
     [self.groupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *groups = snapshot.value;
-        NSMutableArray *namesArray = @[].mutableCopy;
+//        NSMutableArray *namesArray = @[].mutableCopy;
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSDictionary *objDict = obj; //add dictOrNil macro
-            NSString *name = objDict[@"name"];
-            if (name.length > 0) {
-                [namesArray addObject:name];
-            }
+//            NSDictionary *objDict = obj; //add dictOrNil macro
+//            NSString *name = objDict[@"name"];
+//            if (name.length > 0) {
+//                [namesArray addObject:name];
+//            }
+            Group *group = [[Group alloc]initWithKey:key andValue:obj];
+            [weakSelf.listOfGroups addObject:group];
         }];
         
-        weakSelf.listOfGroups = [NSArray arrayWithArray:namesArray];
+//        weakSelf.listOfGroups = [NSArray arrayWithArray:namesArray];
         [weakSelf.tableView reloadData];
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
 }
 
-- (void)followGroup:(NSString *)groupName {
+- (void)followGroup:(Group *)group {
     
     // add group to user's groups
-    [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{groupName :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    
+    [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"write error: %@", error);
         }
     }];
     
     // add user to group's users
-    [[[self.groupsRef child:groupName]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"write error: %@", error);
         }
@@ -114,7 +118,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.listOfGroups[indexPath.row];
+    cell.textLabel.text = [self.listOfGroups[indexPath.row]valueForKey:@"name"];
     return cell;
 }
 

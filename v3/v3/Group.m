@@ -10,7 +10,12 @@
 
 @implementation Group
 
-- (void)initWithData:(NSDictionary *)data {
+- (id)initWithKey:(NSString *)key andValue:(NSDictionary *)value {
     
+    self.name = [value valueForKey:@"name"];
+    self.key = key;
+    
+    return self;
 }
+
 @end

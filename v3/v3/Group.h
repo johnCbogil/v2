@@ -10,4 +10,8 @@
 
 @interface Group : NSObject
 
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *key;
+- (id)initWithKey:(NSString *)key andValue:(NSDictionary *)value;
+
 @end

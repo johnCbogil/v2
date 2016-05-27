@@ -102,6 +102,7 @@
     }
 }
 
+// This needs to be fixed
 - (void)fetchFollowedGroups {
     
     __weak AdvocacyGroupsViewController *weakSelf = self;
@@ -164,7 +165,7 @@
     }
     else {
         UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        cell.textLabel.text = self.listOfFollowedAdvocacyGroups[indexPath.row];
+        cell.textLabel.text = [self.listOfFollowedAdvocacyGroups[indexPath.row]valueForKey:@"name"];
         return cell;
     }
 }
