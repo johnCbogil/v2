@@ -95,10 +95,7 @@
         self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
         
         [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            // Get user value
-            //User *user = [[User alloc] initWithUsername:snapshot.value[@"name"]];
             NSLog(@"%@", snapshot.value[@"userID"]);
-            // ...
         } withCancelBlock:^(NSError * _Nonnull error) {
             NSLog(@"%@", error.localizedDescription);
         }];
@@ -113,7 +110,6 @@
             NSDictionary *groups = snapshot.value;
             NSMutableArray *namesArray = @[].mutableCopy;
             [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-//                NSDictionary *objDict = obj; //add dictOrNil macro
                 NSString *name = key;
                 if (name.length > 0) {
                     [namesArray addObject:name];
@@ -129,13 +125,16 @@
     }];
 }
 
-- (void)removeGroup {
+- (void)removeGroup:(NSString *)groupName {
+    
+    // Remove group from local array
+    [self.listOfFollowedAdvocacyGroups removeObject:groupName];
     
     // Remove group from user's groups
-    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:@"tesgroup8"]removeValue];
+    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:groupName]removeValue];
     
     // Remove user from group's users
-    [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:@"testFollower"]removeValue];
+    [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:self.currentUserID]removeValue];
 }
 
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
@@ -143,8 +142,6 @@
     UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
     ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
     viewControllerB.currentUserID = self.currentUserID;
-    
-    
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
@@ -167,7 +164,6 @@
     }
     else {
         UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        //[cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
         cell.textLabel.text = self.listOfFollowedAdvocacyGroups[indexPath.row];
         return cell;
     }
@@ -193,6 +189,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
        // [self removeFollower:self.listOfFollowedAdvocacyGroups[indexPath.row]];
+        [self removeGroup:self.listOfFollowedAdvocacyGroups[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -213,13 +210,9 @@
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
 
     if (self.selectedSegment) {
-//        [self retrieveFollowedAdovacyGroups];
         [self fetchFollowedGroups];
-
     }
-    
     [self.tableView reloadData];
 }
-
 
 @end
