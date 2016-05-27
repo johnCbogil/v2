@@ -73,6 +73,7 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
     [self userAuth];
     [self retrieveGroups];
     [self followGroup];
+    [self removeGroup];
     
 }
 
@@ -163,8 +164,11 @@ NSString * const kFirebaseRefUserBarryO = @"BarryO/groups/ACLU";
 - (void)removeGroup {
     
     // Remove group from user's groups
+    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:@"tesgroup8"]removeValue];
     
     // Remove user from group's users
+    [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:@"testFollower"]removeValue];
+
 }
 
 #pragma mark - TableView delegate methods
