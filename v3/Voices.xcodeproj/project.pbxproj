@@ -53,7 +53,6 @@
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
-		6181FBBE1CFA403B001AF79A /* FirebaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FBBD1CFA403B001AF79A /* FirebaseManager.m */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		B64042451965BF66BE2FB354 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F17D036B6D8B3C6EF9A5392 /* libPods-Voices.a */; };
@@ -149,8 +148,6 @@
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		52FC68FC1C3765A400E29B7A /* Onboarding2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onboarding2ViewController.h; sourceTree = "<group>"; };
 		52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Onboarding2ViewController.m; sourceTree = "<group>"; };
-		6181FBBC1CFA403B001AF79A /* FirebaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseManager.h; sourceTree = "<group>"; };
-		6181FBBD1CFA403B001AF79A /* FirebaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseManager.m; sourceTree = "<group>"; };
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -231,8 +228,6 @@
 				52A610811B66AD0300B041FF /* RepManager.m */,
 				52877FCB1BA0EC1700B5AE02 /* CacheManager.h */,
 				52877FCC1BA0EC1700B5AE02 /* CacheManager.m */,
-				6181FBBC1CFA403B001AF79A /* FirebaseManager.h */,
-				6181FBBD1CFA403B001AF79A /* FirebaseManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -650,7 +645,6 @@
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */,
-				6181FBBE1CFA403B001AF79A /* FirebaseManager.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
 				5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */,

@@ -12,6 +12,8 @@
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
 #import "ListOfAdvocacyGroupsViewController.h"
+#import "Group.h"
+
 @import Firebase;
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -19,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray *listOfFollowedAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray<Group *> *listOfFollowedAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
@@ -105,37 +107,41 @@
 // This needs to be fixed
 - (void)fetchFollowedGroups {
     __weak AdvocacyGroupsViewController *weakSelf = self;
+    NSMutableArray *groupsArray = [NSMutableArray array];
     [[[self.usersRef child:self.currentUserID]child:@"groups" ] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
             return;
         }
         NSDictionary *groups = snapshot.value;
-        NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSString *name = key;
-            if (name.length > 0) {
-                [groupsArray addObject:name];
-            }
+            NSString *fbGroupKey = key;
+            [[self.groupsRef child:fbGroupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                if (snapshot.value == [NSNull null]) {
+                    return;
+                }
+                NSString *groupKey = snapshot.key;
+                Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+                [groupsArray addObject:group];
+                // Need to think of a better solution than updating the table for every group returned. 
+                weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
+                [weakSelf.tableView reloadData];
+            }];
         }];
-        
-        weakSelf.listOfFollowedAdvocacyGroups = [NSMutableArray arrayWithArray:groupsArray];
-        [weakSelf.tableView reloadData];
-
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
 }
 
-- (void)removeGroup:(NSString *)groupName {
+- (void)removeGroup:(Group *)group {
     
     // Remove group from local array
-    [self.listOfFollowedAdvocacyGroups removeObject:groupName];
+    [self.listOfFollowedAdvocacyGroups removeObject:group];
     
     // Remove group from user's groups
-    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:groupName]removeValue];
+    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key]removeValue];
     
     // Remove user from group's users
-    [[[[self.groupsRef child:@"ACLU"]child:@"followers"]child:self.currentUserID]removeValue];
+    [[[[self.groupsRef child:group.key]child:@"followers"]child:self.currentUserID]removeValue];
 }
 
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
@@ -166,7 +172,8 @@
     }
     else {
         UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        cell.textLabel.text = [self.listOfFollowedAdvocacyGroups[indexPath.row]valueForKey:@"name"];
+        Group *group = self.listOfFollowedAdvocacyGroups[indexPath.row];
+        cell.textLabel.text = group.name;
         return cell;
     }
 }
