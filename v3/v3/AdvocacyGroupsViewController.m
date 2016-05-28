@@ -104,22 +104,22 @@
 
 // This needs to be fixed
 - (void)fetchFollowedGroups {
-    
     __weak AdvocacyGroupsViewController *weakSelf = self;
     [[[self.usersRef child:self.currentUserID]child:@"groups" ] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        if (![snapshot.value isKindOfClass:[NSNull class]]) {
-            NSDictionary *groups = snapshot.value;
-            NSMutableArray *namesArray = @[].mutableCopy;
-            [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                NSString *name = key;
-                if (name.length > 0) {
-                    [namesArray addObject:name];
-                }
-            }];
-            
-            weakSelf.listOfFollowedAdvocacyGroups = [NSMutableArray arrayWithArray:namesArray];
-            [weakSelf.tableView reloadData];
+        if ([snapshot.value isKindOfClass:[NSNull class]]) {
+            return;
         }
+        NSDictionary *groups = snapshot.value;
+        NSMutableArray *groupsArray = [NSMutableArray array];
+        [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            NSString *name = key;
+            if (name.length > 0) {
+                [groupsArray addObject:name];
+            }
+        }];
+        
+        weakSelf.listOfFollowedAdvocacyGroups = [NSMutableArray arrayWithArray:groupsArray];
+        [weakSelf.tableView reloadData];
 
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
@@ -154,7 +154,8 @@
     }
     else {
         return self.listOfFollowedAdvocacyGroups.count;
-    }}
+    }
+}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
