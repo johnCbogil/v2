@@ -120,7 +120,11 @@
             }
             NSString *groupKey = snapshot.key;
             NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-                return group.key == groupKey;
+                if ([group.key isEqualToString:groupKey]) {
+                    *stop = YES;
+                    return YES;
+                }
+                return NO;
             }];
             if (index != NSNotFound) {
                 // We already have this group in our table
