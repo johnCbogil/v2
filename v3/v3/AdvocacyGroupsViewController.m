@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.listOfFollowedAdvocacyGroups = [NSMutableArray array];
     [self createTableView];
 
     self.navigationItem.hidesBackButton = YES;
@@ -108,24 +109,28 @@
 - (void)fetchFollowedGroups {
     __weak AdvocacyGroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
-    [[[self.usersRef child:self.currentUserID]child:@"groups" ] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
             return;
         }
-        NSDictionary *groups = snapshot.value;
-        [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSString *fbGroupKey = key;
-            [[self.groupsRef child:fbGroupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                if (snapshot.value == [NSNull null]) {
-                    return;
-                }
-                NSString *groupKey = snapshot.key;
-                Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
-                [groupsArray addObject:group];
-                // Need to think of a better solution than updating the table for every group returned. 
-                weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
-                [weakSelf.tableView reloadData];
+        NSString *groupKey = snapshot.key;
+        [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                return;
+            }
+            NSString *groupKey = snapshot.key;
+            NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+                return group.key == groupKey;
             }];
+            if (index != NSNotFound) {
+                // We already have this group in our table
+                return;
+            }
+            
+            Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+            [groupsArray addObject:group];
+            weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
+            [weakSelf.tableView reloadData];
         }];
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
@@ -145,7 +150,6 @@
 }
 
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
-    
     UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
     ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
     viewControllerB.currentUserID = self.currentUserID;
