@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface Group : NSObject
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *key;
-- (id)initWithKey:(NSString *)key andValue:(NSDictionary *)value;
+@property (readonly, nonatomic, copy) NSString *key;
+@property (readonly, nonatomic, copy) NSString *name;
+
+- (instancetype)initWithKey:(NSString *)key groupDictionary:(NSDictionary *)dictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END
