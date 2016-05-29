@@ -98,6 +98,9 @@
         self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
         
         [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                return;
+            }
             NSLog(@"%@", snapshot.value[@"userID"]);
         } withCancelBlock:^(NSError * _Nonnull error) {
             NSLog(@"%@", error.localizedDescription);
