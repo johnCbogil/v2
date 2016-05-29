@@ -12,15 +12,11 @@
 #import "Group.h"
 @import Firebase;
 
-/*
- https://www.firebase.com/docs/ios/guide/structuring-data.html
- http://jsfiddle.net/firebase/6dzys/embedded/result,js/
- */
-
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *listOfGroups;
+@property (strong, nonatomic) NSMutableArray *listOfGroups;
+@property (strong, nonatomic) NSArray *listOfFollowedGroups;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -44,7 +40,7 @@
 
     [self retrieveGroups];
     
-    self.listOfGroups = @[].mutableCopy;
+//    self.listOfGroups = @[];
 }
 
 #pragma mark - Firebase methods
@@ -58,7 +54,7 @@
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
             [groupsArray addObject:group];
         }];
-        weakSelf.listOfGroups = [NSArray arrayWithArray:groupsArray];
+        weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groupsArray];
         [weakSelf.tableView reloadData];
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
@@ -67,42 +63,31 @@
 
 - (void)followGroup:(Group *)group {
     
-    // add group to user's groups
-    
-    [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-        if (error) {
-            NSLog(@"write error: %@", error);
+    // Check if the current user already belongs to selected group or not
+    FIRDatabaseReference *currentUserRef = [[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key];
+    [currentUserRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
+        NSLog(@"User %@ a member of selected group", result);
+        if (snapshot.value == [NSNull null]) {
+            
+            // add group to user's groups
+            [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                if (error) {
+                    NSLog(@"write error: %@", error);
+                }
+            }];
+            
+            // add user to group's users
+            [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                if (error) {
+                    NSLog(@"write error: %@", error);
+                }
+            }];
         }
-    }];
-    
-    // add user to group's users
-    [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-        if (error) {
-            NSLog(@"write error: %@", error);
-        }
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
     }];
 }
-
-//    // see if BarryO is in the 'ACLU' group
-//    FIRDatabaseReference *obamaRef = [self.usersRef child:kFirebaseRefUserBarryO];
-//    [obamaRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
-//        NSLog(@"BarryO %@ a member of aclu group", result);
-//    } withCancelBlock:^(NSError * _Nonnull error) {
-//
-//    }];
-//
-//
-//    // fetch a list of BarryO groups
-//    [self.groupsRef observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        // for each group, fetch the name and print it
-//        NSString *groupKey = snapshot.key;
-//        NSString *groupPath = [NSString stringWithFormat:@"groups/%@/name", groupKey];
-//        [[self.rootRef child:groupPath] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//            NSLog(@"BarryO is a member of this group: %@", snapshot.value);
-//        }];
-//    }];
-
 
 #pragma mark - TableView delegate methods
 

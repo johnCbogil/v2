@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray<Group *> *listOfFollowedAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
