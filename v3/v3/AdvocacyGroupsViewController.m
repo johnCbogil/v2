@@ -108,7 +108,7 @@
     }
 }
 
-- (void)fetchFollowedGroups {
+- (void)fetchFollowedGroups {    
     __weak AdvocacyGroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
     [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
