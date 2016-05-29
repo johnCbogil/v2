@@ -18,6 +18,7 @@
 #import "NewsFeedManager.h"
 //#import <Google/Analytics.h>
 @import Firebase;
+@import FirebaseInstanceID;
 @import FirebaseMessaging;
 
 
