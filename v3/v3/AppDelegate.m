@@ -18,6 +18,8 @@
 #import "NewsFeedManager.h"
 //#import <Google/Analytics.h>
 @import Firebase;
+@import FirebaseMessaging;
+
 
 
 @interface AppDelegate ()
@@ -43,7 +45,28 @@
 
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
+    
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Pring full message.
+    NSLog(@"%@", userInfo);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
