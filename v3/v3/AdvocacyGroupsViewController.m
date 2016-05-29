@@ -105,7 +105,6 @@
     }
 }
 
-// This needs to be fixed
 - (void)fetchFollowedGroups {
     __weak AdvocacyGroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
@@ -134,6 +133,9 @@
             Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
             [groupsArray addObject:group];
             weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
+            // TODO: Possibe cleaner solution then refreshing the table multiple times:
+            // Count how many groups the user belongs too, then only refresh the table when
+            // listOfFollowedAdvocacyGroups has that count.
             [weakSelf.tableView reloadData];
         }];
     } withCancelBlock:^(NSError * _Nonnull error) {
