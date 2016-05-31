@@ -11,6 +11,7 @@
 #import "AdvocacyGroupsViewController.h"
 #import "Group.h"
 @import Firebase;
+@import FirebaseMessaging;
 
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -39,8 +40,6 @@
     self.groupsRef = [self.rootRef child:@"groups"];
 
     [self retrieveGroups];
-    
-//    self.listOfGroups = @[];
 }
 
 #pragma mark - Firebase methods
@@ -70,19 +69,24 @@
         NSLog(@"User %@ a member of selected group", result);
         if (snapshot.value == [NSNull null]) {
             
-            // add group to user's groups
+            // Add group to user's groups
             [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
                 if (error) {
                     NSLog(@"write error: %@", error);
                 }
             }];
             
-            // add user to group's users
+            // Add user to group's users
             [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
                 if (error) {
                     NSLog(@"write error: %@", error);
                 }
             }];
+            
+            // Add group to user's subscriptions
+            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", group.key]];
+            NSLog(@"User subscribed to %@", group.key);
+
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
@@ -100,7 +104,6 @@
     cell.textLabel.text = [self.listOfGroups[indexPath.row]valueForKey:@"name"];
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

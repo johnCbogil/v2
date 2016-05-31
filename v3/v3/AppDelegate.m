@@ -77,7 +77,6 @@
         if (error != nil) {
             NSLog(@"Unable to connect to FCM. %@", error);
         } else {
-            [[FIRMessaging messaging] subscribeToTopic:@"/topics/news"];
             NSLog(@"Connected to FCM.");
         }
     }];

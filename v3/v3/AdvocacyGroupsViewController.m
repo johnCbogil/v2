@@ -15,6 +15,7 @@
 #import "Group.h"
 
 @import Firebase;
+@import FirebaseMessaging;
 
 @interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -111,7 +112,10 @@
 - (void)fetchFollowedGroups {    
     __weak AdvocacyGroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
+    
+    
     [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // This is happening once per group
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
             return;
         }
@@ -156,6 +160,11 @@
     
     // Remove user from group's users
     [[[[self.groupsRef child:group.key]child:@"followers"]child:self.currentUserID]removeValue];
+    
+    // Remove group from user's subscriptions
+    [[FIRMessaging messaging]unsubscribeFromTopic:group.key];
+    
+    NSLog(@"User unsubscribed to %@", group.key);
 }
 
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
@@ -184,18 +193,10 @@
         return cell;
     }
     else {
-        UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         Group *group = self.listOfFollowedAdvocacyGroups[indexPath.row];
         cell.textLabel.text = group.name;
         return cell;
-    }
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.selectedSegment == 0) {
-        //[self followAdovacyGroup:[self.listofCallsToAction objectAtIndex:indexPath.row]];
     }
 }
 
@@ -210,7 +211,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-       // [self removeFollower:self.listOfFollowedAdvocacyGroups[indexPath.row]];
         [self removeGroup:self.listOfFollowedAdvocacyGroups[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
