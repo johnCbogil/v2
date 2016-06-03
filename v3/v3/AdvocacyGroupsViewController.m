@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
 @property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray *listOfActions;
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
@@ -53,10 +54,28 @@
     [self userAuth];
 }
 
+- (void)fetchActions {
+    
+    // for every group the user belongs to
+    for (Group *group in self.listOfFollowedAdvocacyGroups) {
+        // fetch actions
+        [[[self.groupsRef child:group.key]child:@"actions"]observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value != [NSNull null]) {
+                NSLog(@"%@", snapshot.value);
+                
+            }
+        }];
+    }
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
     if (self.selectedSegment) {
         [self fetchFollowedGroups];
+    }
+    else {
+        [self fetchActions];
     }
 }
 
