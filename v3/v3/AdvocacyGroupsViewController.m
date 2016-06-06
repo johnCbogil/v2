@@ -30,6 +30,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
+@property (strong, nonatomic) FIRDatabaseReference *actionsRef;
 
 @end
 
@@ -50,6 +51,7 @@
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
+    self.actionsRef = [self.rootRef child:@"actions"];
 
     [self userAuth];
 }
@@ -166,8 +168,58 @@
 
 - (void)fetchActions {
     
-
+    __weak AdvocacyGroupsViewController *weakSelf = self;
+    NSMutableArray *groupsArray = [NSMutableArray array];
     
+    // For each group
+    
+    for (Group *group in self.listOfFollowedAdvocacyGroups) {
+        
+        [[[self.groupsRef child:group.key] child:@"actions"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            // This is happening once per group
+            if ([snapshot.value isKindOfClass:[NSNull class]]) {
+                return;
+            }
+            
+            // Retrieve this group's key
+            NSString *actionKey = snapshot.key;
+            
+            // Go to the actions table
+            [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                if (snapshot.value == [NSNull null]) {
+                    return;
+                }
+                
+                // Not sure why this is happening twice
+                NSString *actionKey = snapshot.key;
+                
+                // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
+                NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+                    if ([group.key isEqualToString:actionKey]) {
+                        *stop = YES;
+                        return YES;
+                    }
+                    return NO;
+                }];
+                if (index != NSNotFound) {
+                    // We already have this group in our table
+                    return;
+                }
+                
+                NSLog(@"%@", snapshot.value);
+                //            Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+                //            [groupsArray addObject:group];
+                //            weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
+                //            // TODO: Possibe cleaner solution then refreshing the table multiple times:
+                //            // Count how many groups the user belongs too, then only refresh the table when
+                //            // listOfFollowedAdvocacyGroups has that count.
+                //            [weakSelf.tableView reloadData];
+            }];
+        } withCancelBlock:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+
+    }
 }
 
 - (void)removeGroup:(Group *)group {
@@ -182,7 +234,7 @@
     [[[[self.groupsRef child:group.key]child:@"followers"]child:self.currentUserID]removeValue];
     
     // Remove group from user's subscriptions
-    [[FIRMessaging messaging]unsubscribeFromTopic:group.key];
+    [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
     
     NSLog(@"User unsubscribed to %@", group.key);
 }
@@ -253,6 +305,9 @@
 
     if (self.selectedSegment) {
         [self fetchFollowedGroups];
+    }
+    else {
+        [self fetchActions];
     }
     [self.tableView reloadData];
 }
