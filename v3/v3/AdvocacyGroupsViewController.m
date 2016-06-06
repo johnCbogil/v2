@@ -54,20 +54,7 @@
     [self userAuth];
 }
 
-- (void)fetchActions {
-    
-    // for every group the user belongs to
-    for (Group *group in self.listOfFollowedAdvocacyGroups) {
-        // fetch actions
-        [[[self.groupsRef child:group.key]child:@"actions"]observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value != [NSNull null]) {
-                NSLog(@"%@", snapshot.value);
-                
-            }
-        }];
-    }
-    
-}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:NO];
@@ -132,18 +119,26 @@
     __weak AdvocacyGroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
     
-    
+    // For each group that the user belongs to
     [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         // This is happening once per group
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
             return;
         }
+        
+        // Retrieve this group's key
         NSString *groupKey = snapshot.key;
+        
+        // Go to the groups table
         [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value == [NSNull null]) {
                 return;
             }
+            
+            // Not sure why this is happening twice
             NSString *groupKey = snapshot.key;
+            
+            // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
             NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
                 if ([group.key isEqualToString:groupKey]) {
                     *stop = YES;
@@ -167,6 +162,12 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
+}
+
+- (void)fetchActions {
+    
+
+    
 }
 
 - (void)removeGroup:(Group *)group {
