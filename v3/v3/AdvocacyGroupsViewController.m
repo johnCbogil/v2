@@ -192,6 +192,9 @@
                             return;
                         }
                         NSLog(@"%@", snapshot.value);
+                        NSDictionary *action = snapshot.value;
+                        [self.listOfActions addObject:action];
+                        [self.tableView reloadData];
                     }
                 }];
             }
@@ -229,11 +232,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.selectedSegment) {
-        
         return self.listOfFollowedAdvocacyGroups.count;
     }
     else {
-        return 0;
+        return self.listOfActions.count;
     }
 }
 
@@ -246,7 +248,9 @@
         return cell;
     }
     else {
-        return nil;
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        cell.textLabel.text = [self.listOfActions[indexPath.row]objectForKey:@"body"];
+        return cell;
     }
     
 }
