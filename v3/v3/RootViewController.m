@@ -1,12 +1,12 @@
 //
-//  HomeViewController.m
+//  RootViewController.h
 //  Voices
 //
 //  Created by John Bogil on 8/7/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "NetworkManager.h"
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
@@ -24,7 +24,7 @@
 #import <Google/Analytics.h>
 
 
-@interface HomeViewController () <MFMailComposeViewControllerDelegate>
+@interface RootViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -40,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @end
 
-@implementation HomeViewController
+@implementation RootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

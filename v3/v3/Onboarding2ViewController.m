@@ -42,9 +42,9 @@
 - (IBAction)deferLocationUseButtonDidPress:(id)sender {
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isOnboardingCompleted"];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    TabBarViewController *homeViewController = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
     // TODO: EVENTUALLY THIS SHOULD DISMISS/POP INSTEAD OF PRESENT OVER
-    [self presentViewController:homeViewController animated:YES completion:nil];
+    [self presentViewController:tabVC animated:YES completion:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
@@ -54,9 +54,9 @@
     //    }
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        TabBarViewController *homeViewController = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
         // TODO: EVENTUALLY THIS SHOULD DISMISS/POP INSTEAD OF PRESENT OVER
-        [self presentViewController:homeViewController animated:YES completion:nil];
+        [self presentViewController:tabVC animated:YES completion:nil];
     }
 }
 

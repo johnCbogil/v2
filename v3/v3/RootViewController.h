@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  RootViewController.h
 //  Voices
 //
 //  Created by John Bogil on 8/7/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController <UISearchBarDelegate>
+@interface RootViewController : UIViewController <UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
