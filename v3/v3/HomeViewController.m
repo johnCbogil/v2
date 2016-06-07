@@ -81,7 +81,7 @@
     self.fakeShadowView.layer.masksToBounds = NO;
     self.fakeShadowView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.fakeShadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.fakeShadowView.layer.shadowOpacity = 0.5f;
+    self.fakeShadowView.layer.shadowOpacity = 0.125f;
     self.fakeShadowView.layer.shadowPath = shadowPath.CGPath;
 }
 
