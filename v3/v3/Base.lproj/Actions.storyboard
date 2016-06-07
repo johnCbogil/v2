@@ -105,11 +105,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-84-x7R">
-                                <rect key="frame" x="281" y="79" width="39" height="45"/>
+                                <rect key="frame" x="281" y="81" width="39" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="K7Z-CH-EIY"/>
                                 </constraints>
                                 <color key="currentPageIndicatorTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="K7Z-CH-EIY"/>
+                                    </mask>
+                                </variation>
                             </pageControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
                                 <rect key="frame" x="0.0" y="111" width="600" height="489"/>
@@ -166,7 +171,9 @@
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="20" id="4pl-DO-dgA"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="leading" secondItem="vJT-DT-SYB" secondAttribute="leading" id="8gc-RE-Pr8"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="C4X-mK-ttg"/>
+                            <constraint firstItem="baJ-84-x7R" firstAttribute="top" secondItem="WRM-qV-4HZ" secondAttribute="topMargin" constant="81" id="DVj-0y-Lkk"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" constant="20" id="EPP-fM-n6y"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="baJ-84-x7R" secondAttribute="bottom" constant="476" id="Iof-If-Vvc"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="centerX" secondItem="baJ-84-x7R" secondAttribute="centerX" id="Kcz-lm-JRD"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="top" secondItem="vJT-DT-SYB" secondAttribute="top" id="OFv-vd-cxu"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="trailing" secondItem="vJT-DT-SYB" secondAttribute="trailing" id="a7T-Ps-NLR"/>
@@ -177,6 +184,12 @@
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="bottom" secondItem="vJT-DT-SYB" secondAttribute="bottom" id="vdZ-1t-xLF"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="centerX" secondItem="YFG-MQ-THZ" secondAttribute="centerX" id="xWa-hD-HoM"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Iof-If-Vvc"/>
+                                <exclude reference="cWu-gB-Lr3"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
