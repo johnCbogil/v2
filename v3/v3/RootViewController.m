@@ -355,10 +355,7 @@
     UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.cornerRadius = 10;
-    if (NSClassFromString(@"UIBlurEffect")) {
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        popupController.backgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    }
+
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
