@@ -95,7 +95,7 @@
 }
 
 - (void)setFont {
-    self.legislatureLevel.font = [UIFont voicesFontWithSize:19];
+    self.legislatureLevel.font = [UIFont voicesFontWithSize:25];
 }
 
 #pragma mark - NSNotifications
