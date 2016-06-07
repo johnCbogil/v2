@@ -130,9 +130,9 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8M-md-h7z" userLabel="searchButton">
-                                        <rect key="frame" x="520" y="14" width="20" height="20"/>
+                                        <rect key="frame" x="520" y="14" width="22" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="wd5-s4-4cA"/>
+                                            <constraint firstAttribute="width" constant="22" id="jpR-OD-OWY"/>
                                         </constraints>
                                         <state key="normal" image="MagnifyingGlass"/>
                                         <connections>
@@ -161,16 +161,16 @@
                                     <constraint firstItem="Og0-9p-oGV" firstAttribute="centerY" secondItem="9Fh-nE-Bwo" secondAttribute="centerY" id="4el-od-kEs"/>
                                     <constraint firstItem="8dR-WS-Joj" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" id="53O-Zs-5sh"/>
                                     <constraint firstItem="8dR-WS-Joj" firstAttribute="leading" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="17" id="7mc-TK-kEa"/>
-                                    <constraint firstAttribute="trailing" secondItem="B8M-md-h7z" secondAttribute="trailing" constant="20" id="OYg-pD-AB3"/>
+                                    <constraint firstItem="B8M-md-h7z" firstAttribute="bottom" secondItem="9Fh-nE-Bwo" secondAttribute="bottom" id="XY7-6X-adl"/>
                                     <constraint firstItem="9Fh-nE-Bwo" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="11" id="Y2n-Fz-OHe"/>
                                     <constraint firstAttribute="trailing" secondItem="Og0-9p-oGV" secondAttribute="trailing" id="Zi4-0J-dL9"/>
                                     <constraint firstItem="Og0-9p-oGV" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leading" id="Zxp-Fh-MRZ"/>
-                                    <constraint firstItem="8dR-WS-Joj" firstAttribute="centerY" secondItem="B8M-md-h7z" secondAttribute="centerY" id="aEx-jN-jw7"/>
-                                    <constraint firstItem="B8M-md-h7z" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="14" id="cJv-eZ-KBq"/>
                                     <constraint firstItem="9Fh-nE-Bwo" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leading" constant="15" id="iPx-Uv-b7G"/>
                                     <constraint firstAttribute="bottom" secondItem="8dR-WS-Joj" secondAttribute="bottom" id="j4Z-Ae-AXf"/>
                                     <constraint firstItem="9Fh-nE-Bwo" firstAttribute="centerY" secondItem="8dR-WS-Joj" secondAttribute="centerY" id="oE5-ww-dEU"/>
                                     <constraint firstAttribute="trailing" secondItem="8dR-WS-Joj" secondAttribute="trailing" constant="38" id="uFh-Ab-hLb"/>
+                                    <constraint firstAttribute="trailing" secondItem="B8M-md-h7z" secondAttribute="trailing" constant="18" id="ugg-ZN-ZAp"/>
+                                    <constraint firstItem="B8M-md-h7z" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="14" id="zVl-aL-EbF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">
