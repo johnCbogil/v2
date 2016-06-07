@@ -28,18 +28,12 @@
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-//@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-//@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-//@property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlass;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewWidthConstraint;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shimmerViewWidthConstraint;
-//@property (assign, nonatomic) CGFloat searchViewDefaultWidth;
-//@property (assign, nonatomic) CGFloat shimmerViewDefaultWidth;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
-//@property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *fakeShadowView;
 @end
@@ -62,9 +56,6 @@
     [self setFont];
     [self setColors];
     [self setSearchBar];
-    [self setShimmer];
-    
-    self.singleLineView.alpha = 0;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -209,7 +200,7 @@
     self.searchButton.alpha = 1.0;
     //    self.magnifyingGlass.alpha = 1.0;
     self.legislatureLevel.alpha = .8;
-    self.singleLineView.alpha = .5;
+//    self.singleLineView.alpha = .5;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -255,36 +246,29 @@
 }
 
 - (void)showSearchBar {
-    //    self.searchViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
-    //    self.shimmerViewWidthConstraint.constant = self.view.frame.size.width / 1.25;
-    
     self.searchBar.showsCancelButton = YES;
     self.isSearchBarOpen = YES;
     [self.searchBar becomeFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 1.0;
-                         self.singleLineView.alpha = 0.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
-                         // self.magnifyingGlass.alpha = 0.0;
+                         self.infoButton.alpha = 0.0;
                          [self.view layoutIfNeeded];
                          [self.view setNeedsUpdateConstraints];
                      }];
 }
 
 - (void)hideSearchBar {
-    //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
     self.isSearchBarOpen = NO;
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 0.0;
                          self.searchButton.alpha = 1.0;
-                         // self.magnifyingGlass.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
-                         self.singleLineView.alpha = .5;
+                         self.infoButton.alpha = 1.0;
                          [self.view layoutIfNeeded];
                          [self.view setNeedsUpdateConstraints];
                      }];
@@ -292,28 +276,19 @@
 
 #pragma mark - Helper methods
 
-//- (CGFloat)searchViewWidth {
-//    return self.legislatureLevel.intrinsicContentSize.width + 60;
-//}
-
 - (CGFloat)shimmerViewWidth {
     return self.legislatureLevel.intrinsicContentSize.width + 60;
 }
 
 #pragma mark - FB Shimmer methods
 
-- (void)setShimmer {
-    //self.searchView.frame = self.shimmeringView.bounds;
-    //    self.shimmeringView.contentView = self.searchView;
-}
-
 - (void)toggleShimmerOn {
-    //    self.shimmeringView.shimmering = YES;
+        self.shimmeringView.shimmering = YES;
 }
 
 - (void)toggleShimmerOff {
-    //    [self.shimmeringView performSelector:@selector(setShimmering:)];
-    //    self.shimmeringView.shimmering = NO;
+        [self.shimmeringView performSelector:@selector(setShimmering:)];
+        self.shimmeringView.shimmering = NO;
 }
 
 #pragma mark - Presentation Controllers
