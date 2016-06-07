@@ -13,6 +13,7 @@
 #import "CallToActionTableViewCell.h"
 #import "ListOfAdvocacyGroupsViewController.h"
 #import "Group.h"
+#import "Action.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -22,8 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedAdvocacyGroups;
-@property (strong, nonatomic) NSMutableArray *listOfActions;
+@property (strong, nonatomic) NSMutableArray<Group *> *listOfFollowedAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray<Action *> *listOfActions;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
@@ -55,25 +56,22 @@
     [self userAuth];
 }
 
-
-
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:NO];
-    if (self.selectedSegment) {
-        [self fetchFollowedGroups];
-    }
-    else {
-        [self fetchActions];
-    }
+    [super viewDidAppear:animated];
+    [self fetchFollowedGroups];
+//    if (self.selectedSegment == 1) {
+//        [self fetchFollowedGroups];
+//    }
+//    else {
+//       // [self fetchActions];
+//    }
 }
 
 - (void)createTableView {
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CallToActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"CallToActionTableViewCell"];
-    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -123,86 +121,116 @@
     // For each group that the user belongs to
     [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         // This is happening once per group
-        if (![snapshot.value isKindOfClass:[NSNull class]]) {
+        if ([snapshot.value isKindOfClass:[NSNull class]]) {
+            return;
+        }
+        // Retrieve this group's key
+        NSString *groupKey = snapshot.key;
+        
+        // Go to the groups table
+        [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
+                return;
+            }
+            // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
+            NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+                if ([group.key isEqualToString:groupKey]) {
+                    *stop = YES;
+                    return YES;
+                }
+                return NO;
+                
+            }];
+            if (index != NSNotFound) {
+                // We already have this group in our table
+                return;
+            }
             
-            // Retrieve this group's key
-            NSString *groupKey = snapshot.key;
+            Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+            [groupsArray addObject:group];
+            weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
+            [weakSelf.tableView reloadData];
             
-            // Go to the groups table
-            [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                if (snapshot.value != [NSNull null]) {
+            // Possible fix for not having actions loaded at first
+            // Retrieve the actions for this group
+            if(!snapshot.value[@"actions"]) {
+                return;
+            }
+            NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
+            for (NSString *actionKey in actionKeys) {
+                
+                [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                    //FIXME: why is this different than above comparison to [NSNull class]?
+                    if (snapshot.value == [NSNull null]) {
+                        return ;
+                    }
                     
-                    // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
-                    NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-                        if ([group.key isEqualToString:groupKey]) {
+                    // Check to see if the action key is in the listOfActions
+                    NSUInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+                        if ([action.key isEqualToString:actionKey]) {
                             *stop = YES;
                             return YES;
                         }
                         return NO;
-                        
                     }];
                     if (index != NSNotFound) {
                         // We already have this group in our table
                         return;
                     }
-                    
-                    Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
-                    [groupsArray addObject:group];
-                    weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
-                    // TODO: Possibe cleaner solution then refreshing the table multiple times:
-                    // Count how many groups the user belongs too, then only refresh the table when
-                    // listOfFollowedAdvocacyGroups has that count.
-                    [weakSelf.tableView reloadData];
-                }
-            }];
-        }
+                    NSLog(@"%@", snapshot.value);
+                    Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+                    [self.listOfActions addObject:newAction];
+                    [self.tableView reloadData];
+                }];
+            }
+        }];
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
 }
 
-- (void)fetchActions {
-    
-    __weak AdvocacyGroupsViewController *weakSelf = self;
-    
-    // For each group that the user belongs to
-    for (Group *group in self.listOfFollowedAdvocacyGroups) {
-        
-        // Retrieve group data
-        [[[self.groupsRef child:group.key] child:@"actions"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (![snapshot.value isKindOfClass:[NSNull class]]) {
-                
-                // Retrieve this action's key
-                NSString *actionKey = snapshot.key;
-                
-                // Retrieve the actions for this group
-                [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                    if (snapshot.value != [NSNull null]) {
-                        
-                        // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
-                        NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-                            if ([group.key isEqualToString:actionKey]) {
-                                *stop = YES;
-                                return YES;
-                            }
-                            return NO;
-                        }];
-                        if (index != NSNotFound) {
-                            // We already have this group in our table
-                            return;
-                        }
-                        NSLog(@"%@", snapshot.value);
-                        NSDictionary *action = snapshot.value;
-                        [self.listOfActions addObject:action];
-                        [self.tableView reloadData];
-                    }
-                }];
-            }
-        } withCancelBlock:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error.localizedDescription);
-        }];
-    }
-}
+//- (void)fetchActions {
+//    __weak AdvocacyGroupsViewController *weakSelf = self;
+//    
+//    // For each group that the user belongs to
+//    for (Group *group in self.listOfFollowedAdvocacyGroups) {
+//        // Retrieve group's action data
+//        [[[self.groupsRef child:group.key] child:@"actions"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//            if ([snapshot.value isKindOfClass:[NSNull class]]) {
+//                return;
+//            }
+//            // Retrieve this action's key
+//            NSString *actionKey = snapshot.key;
+//            
+//            // Retrieve the actions for this group
+//            [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//                //FIXME: why is this different than above comparison to [NSNull class]?
+//                if (snapshot.value == [NSNull null]) {
+//                    return ;
+//                }
+//                
+//                // Check to see if the action key is in the listOfActions
+//                NSUInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+//                    if ([action.key isEqualToString:actionKey]) {
+//                        *stop = YES;
+//                        return YES;
+//                    }
+//                    return NO;
+//                }];
+//                if (index != NSNotFound) {
+//                    // We already have this group in our table
+//                    return;
+//                }
+//                NSLog(@"%@", snapshot.value);
+//                Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+//                [self.listOfActions addObject:newAction];
+//                [self.tableView reloadData];
+//            }];
+//        } withCancelBlock:^(NSError * _Nonnull error) {
+//            NSLog(@"%@", error.localizedDescription);
+//        }];
+//    }
+//}
 
 - (void)removeGroup:(Group *)group {
     
@@ -240,8 +268,7 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (self.selectedSegment) {
+    if (self.selectedSegment == 1) {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
         Group *group = self.listOfFollowedAdvocacyGroups[indexPath.row];
         cell.textLabel.text = group.name;
@@ -249,10 +276,10 @@
     }
     else {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        cell.textLabel.text = [self.listOfActions[indexPath.row]objectForKey:@"body"];
+        Action *action = self.listOfActions[indexPath.row];
+        cell.textLabel.text = action.body;
         return cell;
     }
-    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -286,12 +313,13 @@
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
     
-    if (self.selectedSegment) {
-        [self fetchFollowedGroups];
-    }
-    else {
-        [self fetchActions];
-    }
+    [self fetchFollowedGroups];
+//    if (self.selectedSegment) {
+//        [self fetchFollowedGroups];
+//    }
+//    else {
+//        [self fetchActions];
+//    }
     [self.tableView reloadData];
 }
 
