@@ -59,12 +59,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self fetchFollowedGroups];
-//    if (self.selectedSegment == 1) {
-//        [self fetchFollowedGroups];
-//    }
-//    else {
-//       // [self fetchActions];
-//    }
+    //    if (self.selectedSegment == 1) {
+    //        [self fetchFollowedGroups];
+    //    }
+    //    else {
+    //       // [self fetchActions];
+    //    }
 }
 
 - (void)createTableView {
@@ -79,24 +79,22 @@
     if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userID"]) {
         [[FIRAuth auth]
          signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-             if (!error) {
-                 self.currentUserID = user.uid;
-                 NSLog(@"Created a new userID: %@", self.currentUserID);
-                 [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
-                 [[NSUserDefaults standardUserDefaults]synchronize];
-                 
-                 [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                     if (!error) {
-                         NSLog(@"Created user in database");
-                     }
-                     else {
-                         NSLog(@"Error adding user to database: %@", error);
-                     }
-                 }];
-             }
-             else {
+             if (error) {
                  NSLog(@"UserAuth error: %@", error);
+                 return;
              }
+             self.currentUserID = user.uid;
+             NSLog(@"Created a new userID: %@", self.currentUserID);
+             [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
+             
+             [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                 if (error) {
+                     NSLog(@"Error adding user to database: %@", error);
+                     return;
+                 }
+                 NSLog(@"Created user in database");
+             }];
          }];
     }
     else {
@@ -191,7 +189,7 @@
 
 //- (void)fetchActions {
 //    __weak AdvocacyGroupsViewController *weakSelf = self;
-//    
+//
 //    // For each group that the user belongs to
 //    for (Group *group in self.listOfFollowedAdvocacyGroups) {
 //        // Retrieve group's action data
@@ -201,14 +199,14 @@
 //            }
 //            // Retrieve this action's key
 //            NSString *actionKey = snapshot.key;
-//            
+//
 //            // Retrieve the actions for this group
 //            [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
 //                //FIXME: why is this different than above comparison to [NSNull class]?
 //                if (snapshot.value == [NSNull null]) {
 //                    return ;
 //                }
-//                
+//
 //                // Check to see if the action key is in the listOfActions
 //                NSUInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
 //                    if ([action.key isEqualToString:actionKey]) {
@@ -314,12 +312,12 @@
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
     
     [self fetchFollowedGroups];
-//    if (self.selectedSegment) {
-//        [self fetchFollowedGroups];
-//    }
-//    else {
-//        [self fetchActions];
-//    }
+    //    if (self.selectedSegment) {
+    //        [self fetchFollowedGroups];
+    //    }
+    //    else {
+    //        [self fetchActions];
+    //    }
     [self.tableView reloadData];
 }
 
