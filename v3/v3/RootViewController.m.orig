@@ -23,8 +23,13 @@
 #import "FBShimmeringLayer.h"
 #import <Google/Analytics.h>
 
+<<<<<<< HEAD:v3/v3/RootViewController.m
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate>
+=======
+@interface HomeViewController () <MFMailComposeViewControllerDelegate>
+
+>>>>>>> newSearchBar2:v3/v3/HomeViewController.m
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
@@ -343,6 +348,10 @@
     UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoViewController"];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.cornerRadius = 10;
+<<<<<<< HEAD:v3/v3/RootViewController.m
+
+=======
+>>>>>>> newSearchBar2:v3/v3/HomeViewController.m
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;

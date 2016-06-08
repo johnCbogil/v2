@@ -9,6 +9,7 @@
 #import "Onboarding2ViewController.h"
 #import "TabBarViewController.h"
 #import "UIFont+voicesFont.h"
+#import "VoicesConstants.h"
 
 @interface Onboarding2ViewController ()
 
@@ -23,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.permitLocationUseButton.layer.cornerRadius = 5;
+    self.permitLocationUseButton.layer.cornerRadius = kButtonCornerRadius;
     self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
     self.permitLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:18];
     self.deferLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:11];

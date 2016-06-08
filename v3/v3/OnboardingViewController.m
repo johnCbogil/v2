@@ -8,6 +8,7 @@
 
 #import "OnboardingViewController.h"
 #import "UIFont+voicesFont.h"
+#import "VoicesConstants.h"
 
 @interface OnboardingViewController ()
 
@@ -23,7 +24,7 @@
     [super viewDidLoad];
     
     self.startButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.startButton.layer.cornerRadius = 5;
+    self.startButton.layer.cornerRadius = kButtonCornerRadius;
     self.firstCivicToolLabel.font = [UIFont voicesFontWithSize:23.0];
     self.startButton.titleLabel.font = [UIFont voicesFontWithSize:25.0];
 }

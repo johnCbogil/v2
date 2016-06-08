@@ -304,9 +304,9 @@
 		52D892901CC45CC1004FBEA3 /* ActionPage */ = {
 			isa = PBXGroup;
 			children = (
+				7E5CC8281C909065005E8F45 /* View */,
 				52AD33971BE5CAA000EC0468 /* Managers */,
 				7E5CC8261C909034005E8F45 /* Controller */,
-				7E5CC8281C909065005E8F45 /* View */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
 			);
