@@ -23,7 +23,7 @@
 }
 
 - (void)initWithData:(NSDictionary *)data {
-    self.ctaGroupName.text = [data valueForKey:@"advocacyGroupName"];
+    self.ctaGroupName.text = [data valueForKey:@"groupName"];
     self.ctaDescription.text = [data valueForKey:@"body"];
     
 }
