@@ -138,64 +138,71 @@
         NSString *groupKey = snapshot.key;
         
         // Go to the groups table
-        [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
-                return;
-            }
-            // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
-            NSUInteger index = [weakSelf.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-                if ([group.key isEqualToString:groupKey]) {
-                    *stop = YES;
-                    return YES;
-                }
-                return NO;
-                
-            }];
-            if (index != NSNotFound) {
-                // We already have this group in our table
-                return;
-            }
-            
-            Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
-            [groupsArray addObject:group];
-            weakSelf.listOfFollowedAdvocacyGroups = groupsArray;
-            [weakSelf.tableView reloadData];
-            
-            // Possible fix for not having actions loaded at first
-            // Retrieve the actions for this group
-            if(!snapshot.value[@"actions"]) {
-                return;
-            }
-            NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
-            for (NSString *actionKey in actionKeys) {
-                
-                [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                    //FIXME: why is this different than above comparison to [NSNull class]?
-                    if (snapshot.value == [NSNull null]) {
-                        return ;
-                    }
-                    
-                    // Check to see if the action key is in the listOfActions
-                    NSUInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-                        if ([action.key isEqualToString:actionKey]) {
-                            *stop = YES;
-                            return YES;
-                        }
-                        return NO;
-                    }];
-                    if (index != NSNotFound) {
-                        // We already have this group in our table
-                        return;
-                    }
-                    NSLog(@"%@", snapshot.value);
-                    Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-                    [self.listOfActions addObject:newAction];
-                    [self.tableView reloadData];
-                }];
-            }
-        }];
+        [weakSelf fetchGroupWithKey:groupKey groupsArray:groupsArray];
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
+    }];
+}
+
+- (void)fetchGroupWithKey:(NSString *)groupKey groupsArray:(NSMutableArray *)groupsArray {
+    [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
+            return;
+        }
+        // Iterate through the listOfFollowedAdvocacyGroups and determine the index of the object that passes the following test:
+        NSInteger index = [self.listOfFollowedAdvocacyGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+            if ([group.key isEqualToString:groupKey]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+            
+        }];
+        if (index != NSNotFound) {
+            // We already have this group in our table
+            return;
+        }
+        
+        Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+        
+        [groupsArray addObject:group];
+        self.listOfFollowedAdvocacyGroups = groupsArray;
+        [self.tableView reloadData];
+        
+        // Retrieve the actions for this group
+        if(!snapshot.value[@"actions"]) {
+            return;
+        }
+        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
+        for (NSString *actionKey in actionKeys) {
+            [self fetchActionsForActionKey:actionKey];
+        }
+    }];
+}
+
+- (void)fetchActionsForActionKey:(NSString *)actionKey {
+    [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        //FIXME: why is this different than above comparison to [NSNull class]?
+        if (snapshot.value == [NSNull null]) {
+            return ;
+        }
+        
+        // Check to see if the action key is in the listOfActions
+        NSInteger index = [self.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+            if ([action.key isEqualToString:actionKey]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+        }];
+        if (index != NSNotFound) {
+            // We already have this group in our table
+            return;
+        }
+        NSLog(@"%@", snapshot.value);
+        Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+        [self.listOfActions addObject:newAction];
+        [self.tableView reloadData];
     }];
 }
 
@@ -220,7 +227,7 @@
 //                }
 //
 //                // Check to see if the action key is in the listOfActions
-//                NSUInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+//                NSInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
 //                    if ([action.key isEqualToString:actionKey]) {
 //                        *stop = YES;
 //                        return YES;
