@@ -58,7 +58,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self fetchFollowedGroups];
+    if (self.currentUserID) {
+        [self fetchFollowedGroups];
+    }
     //    if (self.selectedSegment == 1) {
     //        [self fetchFollowedGroups];
     //    }
@@ -76,9 +78,9 @@
 }
 
 - (void)userAuth {
-    if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userID"]) {
-        [[FIRAuth auth]
-         signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+    NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
+    if (!userId) {
+        [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
              if (error) {
                  NSLog(@"UserAuth error: %@", error);
                  return;
@@ -98,10 +100,8 @@
          }];
     }
     else {
-        
-        self.currentUserID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-        
-        [[self.usersRef child:self.currentUserID] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        [self fetchGroupsWithUserId:userId];
+        [[self.usersRef child:userId] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value == [NSNull null]) {
                 return;
             }
@@ -110,6 +110,11 @@
             NSLog(@"%@", error.localizedDescription);
         }];
     }
+}
+
+- (void)fetchGroupsWithUserId:(NSString *)userId {
+    self.currentUserID = userId;
+    [self fetchFollowedGroups];
 }
 
 - (void)fetchFollowedGroups {
@@ -310,8 +315,12 @@
 - (IBAction)segmentControlDidChange:(id)sender {
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
-    
-    [self fetchFollowedGroups];
+    if (self.currentUserID) {
+        [self fetchFollowedGroups];
+    } else {
+        [self userAuth];
+    }
+//    [self fetchFollowedGroups];
     //    if (self.selectedSegment) {
     //        [self fetchFollowedGroups];
     //    }
