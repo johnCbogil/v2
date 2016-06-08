@@ -26,7 +26,7 @@
 @property (strong, nonatomic) NSMutableArray<Group *> *listOfFollowedAdvocacyGroups;
 @property (strong, nonatomic) NSMutableArray<Action *> *listOfActions;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
-
+@property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -52,7 +52,7 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
     self.actionsRef = [self.rootRef child:@"actions"];
-    
+    self.isUserAuthInProgress = NO;
     [self userAuth];
 }
 
@@ -78,11 +78,16 @@
 }
 
 - (void)userAuth {
+    if (self.isUserAuthInProgress) {
+        return;
+    }
+    self.isUserAuthInProgress = YES;
     NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
     if (!userId) {
         [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
              if (error) {
                  NSLog(@"UserAuth error: %@", error);
+                 self.isUserAuthInProgress = NO;
                  return;
              }
              self.currentUserID = user.uid;
@@ -93,6 +98,7 @@
              [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
                  if (error) {
                      NSLog(@"Error adding user to database: %@", error);
+                     self.isUserAuthInProgress = NO;
                      return;
                  }
                  NSLog(@"Created user in database");
@@ -114,6 +120,7 @@
 
 - (void)fetchGroupsWithUserId:(NSString *)userId {
     self.currentUserID = userId;
+    self.isUserAuthInProgress = NO;
     [self fetchFollowedGroups];
 }
 
