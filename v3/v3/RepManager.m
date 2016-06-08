@@ -211,6 +211,7 @@
             }
         }
     }
+    [[CacheManager sharedInstance]saveRepsToCache:@[] forKey:kCachedNYCRepresentatives];
     return isLocationWithinPath;
 }
 
