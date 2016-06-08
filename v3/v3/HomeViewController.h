@@ -10,6 +10,4 @@
 
 @interface HomeViewController : UIViewController <UISearchBarDelegate>
 
-@property (nonatomic) BOOL isSearchBarOpen;
-
 @end

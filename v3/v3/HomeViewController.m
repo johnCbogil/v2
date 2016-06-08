@@ -24,6 +24,7 @@
 #import <Google/Analytics.h>
 
 @interface HomeViewController () <MFMailComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
@@ -35,7 +36,9 @@
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
-@property (nonatomic, strong) UIView *fakeShadowView;
+@property (nonatomic, strong) UIView *shadowView;
+@property (nonatomic) BOOL isSearchBarOpen;
+
 @end
 
 @implementation HomeViewController
@@ -48,9 +51,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.fakeShadowView = [[UIView alloc] init];
-    self.fakeShadowView.backgroundColor = [UIColor whiteColor];
-    [self.view insertSubview:self.fakeShadowView belowSubview:self.shimmeringView];
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
     
     [self addObservers];
     [self setFont];
@@ -62,18 +65,18 @@
     [super viewDidLayoutSubviews];
     
     // Create a shadow. Fake shadow view is white and below the shimmerview.
-    self.fakeShadowView.frame = self.shimmeringView.frame;
-    self.fakeShadowView.layer.cornerRadius = self.searchView.layer.cornerRadius;
+    self.shadowView.frame = self.shimmeringView.frame;
+    self.shadowView.layer.cornerRadius = self.searchView.layer.cornerRadius;
     
     self.shimmeringView.shimmering = NO;
     self.shimmeringView.contentView = self.searchView;
     
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.fakeShadowView.bounds];
-    self.fakeShadowView.layer.masksToBounds = NO;
-    self.fakeShadowView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.fakeShadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.fakeShadowView.layer.shadowOpacity = 0.125f;
-    self.fakeShadowView.layer.shadowPath = shadowPath.CGPath;
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.shadowView.bounds];
+    self.shadowView.layer.masksToBounds = NO;
+    self.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.shadowView.layer.shadowOpacity = 0.125f;
+    self.shadowView.layer.shadowPath = shadowPath.CGPath;
 }
 
 #pragma mark - Custom accessor methods
@@ -97,7 +100,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
@@ -123,9 +125,6 @@
         self.legislatureLevel.text = currentPageString;
     }
     
-    //    self.searchViewWidthConstraint.constant = [self searchViewWidth];
-    //    self.shimmerViewWidthConstraint.constant = [self shimmerViewWidth];
-    
     [UIView animateWithDuration:.15 animations:^{
         [self.view layoutIfNeeded];
     }];
@@ -146,9 +145,6 @@
 - (void)setSearchBar {
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search by location";
-    
-    //    self.searchViewDefaultWidth = self.searchViewWidthConstraint.constant;
-    //    self.shimmerViewDefaultWidth = self.shimmerViewWidthConstraint.constant;
     
     // Round the box
     self.searchView.layer.cornerRadius = kButtonCornerRadius;
@@ -198,9 +194,7 @@
     // Hide the search bar
     self.searchBar.alpha = 0.0;
     self.searchButton.alpha = 1.0;
-    //    self.magnifyingGlass.alpha = 1.0;
     self.legislatureLevel.alpha = .8;
-//    self.singleLineView.alpha = .5;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -255,8 +249,6 @@
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
                          self.infoButton.alpha = 0.0;
-                         [self.view layoutIfNeeded];
-                         [self.view setNeedsUpdateConstraints];
                      }];
 }
 
@@ -269,26 +261,18 @@
                          self.searchButton.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.infoButton.alpha = 1.0;
-                         [self.view layoutIfNeeded];
-                         [self.view setNeedsUpdateConstraints];
                      }];
-}
-
-#pragma mark - Helper methods
-
-- (CGFloat)shimmerViewWidth {
-    return self.legislatureLevel.intrinsicContentSize.width + 60;
 }
 
 #pragma mark - FB Shimmer methods
 
 - (void)toggleShimmerOn {
-        self.shimmeringView.shimmering = YES;
+    self.shimmeringView.shimmering = YES;
 }
 
 - (void)toggleShimmerOff {
-        [self.shimmeringView performSelector:@selector(setShimmering:)];
-        self.shimmeringView.shimmering = NO;
+    [self.shimmeringView performSelector:@selector(setShimmering:)];
+    self.shimmeringView.shimmering = NO;
 }
 
 #pragma mark - Presentation Controllers
