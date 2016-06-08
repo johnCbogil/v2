@@ -1,22 +1,22 @@
 //
-//  ListOfAdvocacyGroupsViewController.m
+//  ListOfGroupsViewController.h
 //  Voices
 //
 //  Created by John Bogil on 4/20/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "ListOfAdvocacyGroupsViewController.h"
+#import "ListOfGroupsViewController.h"
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 
-@interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ListOfGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
 @end
 
-@implementation ListOfAdvocacyGroupsViewController
+@implementation ListOfGroupsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +25,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 

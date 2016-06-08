@@ -11,7 +11,7 @@
 #import "UIColor+voicesOrange.h"
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
-#import "ListOfAdvocacyGroupsViewController.h"
+#import "ListOfGroupsViewController.h"
 #import <Parse/Parse.h>
 
 @interface GroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
@@ -35,7 +35,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CallToActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"CallToActionTableViewCell"];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -58,13 +58,13 @@
 
 
 // NOT SURE IF I NEED THIS
-- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
+- (void)addItemViewController:(ListOfGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
     NSLog(@"This was returned from ViewControllerB %@",item);
 }
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
     
     UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
+    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
 
     
     

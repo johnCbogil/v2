@@ -1,5 +1,5 @@
 //
-//  ListOfAdvocacyGroupsViewController.h
+//  ListOfGroupsViewController.h
 //  Voices
 //
 //  Created by John Bogil on 4/20/16.
@@ -11,13 +11,13 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@class ListOfAdvocacyGroupsViewController;
+@class ListOfGroupsViewController;
 
 @protocol ViewControllerBDelegate <NSObject>
-- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item;
+- (void)addItemViewController:(ListOfGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item;
 @end
 
-@interface ListOfAdvocacyGroupsViewController : UIViewController
+@interface ListOfGroupsViewController : UIViewController
 
 @property (nonatomic, weak) id <ViewControllerBDelegate> delegate;
 

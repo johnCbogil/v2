@@ -79,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="1257" y="313"/>
         </scene>
-        <!--List Of Advocacy Groups View Controller-->
+        <!--List Of Groups View Controller-->
         <scene sceneID="qMa-UE-C3g">
             <objects>
-                <viewController storyboardIdentifier="ListOfAdvocacyGroupsViewController" id="x7N-it-xRH" customClass="ListOfAdvocacyGroupsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListOfGroupsViewController" id="x7N-it-xRH" customClass="ListOfGroupsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fur-lE-ZOf"/>
                         <viewControllerLayoutGuide type="bottom" id="nHf-ya-AJ2"/>
