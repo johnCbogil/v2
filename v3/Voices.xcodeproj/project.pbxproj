@@ -44,8 +44,8 @@
 		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
 		52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
-		52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */; };
-		52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */; };
+		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
+		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
@@ -134,9 +134,9 @@
 		52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
-		52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvocacyGroupTableViewCell.h; sourceTree = "<group>"; };
-		52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvocacyGroupTableViewCell.m; sourceTree = "<group>"; };
-		52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvocacyGroupTableViewCell.xib; sourceTree = "<group>"; };
+		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
+		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
+		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -319,9 +319,9 @@
 				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
 				52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */,
 				52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */,
-				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
-				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
-				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
+				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
+				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
+				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */,
 				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
 				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
 				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
@@ -477,7 +477,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */,
+				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.xib in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
@@ -627,7 +627,7 @@
 				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
-				52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */,
+				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,

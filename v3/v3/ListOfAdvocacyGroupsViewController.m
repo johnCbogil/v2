@@ -7,7 +7,7 @@
 //
 
 #import "ListOfAdvocacyGroupsViewController.h"
-#import "AdvocacyGroupTableViewCell.h"
+#import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -80,7 +80,7 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
+        GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
         [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
         return cell;
 }

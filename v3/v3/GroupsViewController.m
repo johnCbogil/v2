@@ -7,7 +7,7 @@
 //
 
 #import "GroupsViewController.h"
-#import "AdvocacyGroupTableViewCell.h"
+#import "GroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
@@ -91,7 +91,7 @@
         return cell;
     }
     else {
-        AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
+        GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell.h" forIndexPath:indexPath];
         [cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
         return cell;
     }

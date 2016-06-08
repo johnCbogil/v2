@@ -1,16 +1,16 @@
 //
-//  AdvocacyGroupTableViewCell.m
+//  GroupTableViewCell.m
 //  Voices
 //
 //  Created by John Bogil on 4/17/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "AdvocacyGroupTableViewCell.h"
+#import "GroupTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
 
-@interface AdvocacyGroupTableViewCell()
+@interface GroupTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UIImageView *advocacyGroupLogo;
 @property (weak, nonatomic) IBOutlet UILabel *advocacyGroupName;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation AdvocacyGroupTableViewCell
+@implementation GroupTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
