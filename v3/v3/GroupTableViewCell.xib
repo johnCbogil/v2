@@ -60,9 +60,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="advocacyGroupLogo" destination="N13-sc-YXl" id="XkA-wx-vOY"/>
-                <outlet property="advocacyGroupName" destination="iw9-uU-dZC" id="bqj-cG-zxr"/>
-                <outlet property="advocacyGroupType" destination="LZX-Uu-8L4" id="NWO-GX-ncZ"/>
+                <outlet property="groupLogo" destination="N13-sc-YXl" id="DL3-AT-IP1"/>
+                <outlet property="groupName" destination="iw9-uU-dZC" id="Wmy-wA-of8"/>
+                <outlet property="groupType" destination="LZX-Uu-8L4" id="fNT-tf-EEO"/>
             </connections>
             <point key="canvasLocation" x="587" y="598"/>
         </tableViewCell>

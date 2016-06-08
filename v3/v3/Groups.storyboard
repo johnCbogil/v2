@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Groups View Controller-->
@@ -18,13 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jea-wp-SX1">
-                                <rect key="frame" x="546" y="76" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="atd-Jz-Bg1"/>
-                                    <constraint firstAttribute="height" constant="22" id="b6R-pw-e0G"/>
-                                </constraints>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUB-rf-To8">
                                 <rect key="frame" x="0.0" y="84" width="600" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,9 +35,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" id="77m-7d-JQL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Jea-wp-SX1" secondAttribute="trailing" constant="12" id="K17-hM-Eu5"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="20" id="QR1-wf-ia4"/>
-                            <constraint firstItem="Jea-wp-SX1" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="12" id="Y84-FY-jFU"/>
                             <constraint firstAttribute="trailing" secondItem="fUB-rf-To8" secondAttribute="trailing" id="dbd-eL-hZd"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="bottom" secondItem="WFz-Rb-9DG" secondAttribute="top" id="oSK-ax-zQS"/>
                         </constraints>
@@ -65,12 +55,12 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XHg-m8-Z67">
                             <connections>
-                                <action selector="listOfAdvocacyGroupsButtonDidPress:" destination="eRD-AU-WhC" id="aZk-KO-CLK"/>
+                                <action selector="listOfGroupsButtonDidPress:" destination="eRD-AU-WhC" id="W8U-rx-Vao"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addAdvocacyGroupButton" destination="XHg-m8-Z67" id="NPo-P0-G59"/>
+                        <outlet property="addGroupButton" destination="XHg-m8-Z67" id="acG-aa-cKF"/>
                         <outlet property="segmentControl" destination="wkW-V5-Dv1" id="I1S-Zq-CZn"/>
                         <outlet property="tableView" destination="fUB-rf-To8" id="RFB-5c-y8Y"/>
                     </connections>
@@ -115,7 +105,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Rf8-ep-UmH">
             <objects>
-                <navigationController storyboardIdentifier="AdvocacyGroupsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GroupsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

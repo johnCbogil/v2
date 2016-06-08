@@ -13,7 +13,7 @@
 @interface ListOfGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray *listOfGroups;
 @end
 
 @implementation ListOfGroupsViewController
@@ -37,19 +37,19 @@
     PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve AdvocacyGroup Success");
-            self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+            NSLog(@"Retrieve Group Success");
+            self.listOfGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
-            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
+            NSLog(@"Retrieve Groups Error: %@", error);
         }
     }];
 }
 
 - (void)followAdovacyGroup:(PFObject*)object {
     [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
-    NSLog(@"AdGroup: %@", object);
+    NSLog(@"Group: %@", object);
     [[PFInstallation currentInstallation]saveInBackground];
     [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
     
@@ -76,19 +76,19 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.listOfAdvocacyGroups.count;
+    return self.listOfGroups.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
         GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
-        [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+        [cell initWithData:[self.listOfGroups objectAtIndex:indexPath.row]];
         return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self followAdovacyGroup:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+        [self followAdovacyGroup:[self.listOfGroups objectAtIndex:indexPath.row]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

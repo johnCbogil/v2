@@ -12,10 +12,10 @@
 
 @interface GroupTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UIImageView *advocacyGroupLogo;
-@property (weak, nonatomic) IBOutlet UILabel *advocacyGroupName;
-@property (weak, nonatomic) IBOutlet UILabel *advocacyGroupType;
-@property (weak, nonatomic) IBOutlet UILabel *advocacyGroupDescription;
+@property (weak, nonatomic) IBOutlet UIImageView *groupLogo;
+@property (weak, nonatomic) IBOutlet UILabel *groupName;
+@property (weak, nonatomic) IBOutlet UILabel *groupType;
+@property (weak, nonatomic) IBOutlet UILabel *groupDescription;
 
 @end
 
@@ -23,16 +23,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.advocacyGroupLogo.contentMode = UIViewContentModeScaleToFill;
-    self.advocacyGroupLogo.layer.cornerRadius = 5;
-    self.advocacyGroupLogo.clipsToBounds = YES;
+    self.groupLogo.contentMode = UIViewContentModeScaleToFill;
+    self.groupLogo.layer.cornerRadius = 5;
+    self.groupLogo.clipsToBounds = YES;
     [self setFont];
 }
 
 - (void)initWithData:(id) data {
-    self.advocacyGroupName.text = [data valueForKey:@"Name"];
-    self.advocacyGroupType.text = [data valueForKey:@"Type"];
-    self.advocacyGroupDescription.text = [data valueForKey:@"Description"];
+    self.groupName.text = [data valueForKey:@"Name"];
+    self.groupType.text = [data valueForKey:@"Type"];
+    self.groupDescription.text = [data valueForKey:@"Description"];
     [self setImageFromPhotoURL:[NSURL URLWithString:[data valueForKey:@"PhotoURL"]]];
 }
 
@@ -41,8 +41,8 @@
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    [self.advocacyGroupLogo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        self.advocacyGroupLogo.image = image;
+    [self.groupLogo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+        self.groupLogo.image = image;
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
@@ -50,10 +50,10 @@
 }
 
 - (void)setFont {
-    self.advocacyGroupName.font = [UIFont voicesFontWithSize:24];
-    [self.advocacyGroupName sizeToFit];
-    self.advocacyGroupType.font = [UIFont voicesFontWithSize:18];
-    self.advocacyGroupDescription.font = [UIFont voicesFontWithSize:15];
+    self.groupName.font = [UIFont voicesFontWithSize:24];
+    [self.groupName sizeToFit];
+    self.groupType.font = [UIFont voicesFontWithSize:18];
+    self.groupDescription.font = [UIFont voicesFontWithSize:15];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

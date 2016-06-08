@@ -32,7 +32,7 @@
     UIStoryboard *actionsSB = [UIStoryboard storyboardWithName:@"Actions" bundle:nil];
     
     RootViewController *rootVC = (RootViewController *)[actionsSB instantiateViewControllerWithIdentifier: @"RootViewController"];
-    GroupsViewController *groupsVC = (GroupsViewController *)[groupsSB instantiateViewControllerWithIdentifier: @"AdvocacyGroupsNavigationViewController"];
+    GroupsViewController *groupsVC = (GroupsViewController *)[groupsSB instantiateViewControllerWithIdentifier: @"GroupsNavigationViewController"];
     
     self.viewControllers = @[rootVC, groupsVC];
 }
