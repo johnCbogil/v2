@@ -41,8 +41,8 @@
 		52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */; };
 		52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B51CC7208700F85902 /* PushNotification.json */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
-		52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */; };
-		52D8929C1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */; };
+		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
+		52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */; };
@@ -129,9 +129,9 @@
 		52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallToActionTableViewCell.m; sourceTree = "<group>"; };
 		52C7D4B51CC7208700F85902 /* PushNotification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PushNotification.json; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AdvocacyGroups.storyboard; sourceTree = "<group>"; };
-		52D8929A1CC463D9004FBEA3 /* AdvocacyGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvocacyGroupsViewController.h; sourceTree = "<group>"; };
-		52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvocacyGroupsViewController.m; sourceTree = "<group>"; };
+		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
+		52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
+		52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvocacyGroupTableViewCell.h; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
 				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */,
+				52D8929D1CC471AA004FBEA3 /* GroupsPage */,
 				52D892901CC45CC1004FBEA3 /* ActionPage */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
@@ -313,12 +313,12 @@
 			name = ActionPage;
 			sourceTree = "<group>";
 		};
-		52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */ = {
+		52D8929D1CC471AA004FBEA3 /* GroupsPage */ = {
 			isa = PBXGroup;
 			children = (
-				52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */,
-				52D8929A1CC463D9004FBEA3 /* AdvocacyGroupsViewController.h */,
-				52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */,
+				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
+				52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */,
+				52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */,
 				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
 				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
@@ -330,7 +330,7 @@
 				525306601CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.h */,
 				525306611CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m */,
 			);
-			name = AdvocacyGroupsPage;
+			name = GroupsPage;
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {
@@ -482,7 +482,7 @@
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
-				52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */,
+				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
 				52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */,
@@ -612,7 +612,7 @@
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
-				52D8929C1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m in Sources */,
+				52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */,

@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Advocacy Groups View Controller-->
+        <!--Groups View Controller-->
         <scene sceneID="SMQ-F2-XmO">
             <objects>
-                <viewController storyboardIdentifier="AdvocacyGroupsViewController" automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="AdvocacyGroupsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupsViewController" automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="GroupsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cez-2e-cd4"/>
                         <viewControllerLayoutGuide type="bottom" id="WFz-Rb-9DG"/>

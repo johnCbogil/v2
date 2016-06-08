@@ -8,7 +8,7 @@
 
 #import "ListOfAdvocacyGroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
-#import "AdvocacyGroupsViewController.h"
+#import "GroupsViewController.h"
 
 @interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 

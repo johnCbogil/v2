@@ -1,12 +1,12 @@
 //
-//  AdvocacyGroupsViewController.m
+//  GroupsViewController.m
 //  Voices
 //
 //  Created by John Bogil on 12/19/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
 //
 
-#import "AdvocacyGroupsViewController.h"
+#import "GroupsViewController.h"
 #import "AdvocacyGroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
 #import "NewsFeedManager.h"
@@ -14,7 +14,7 @@
 #import "ListOfAdvocacyGroupsViewController.h"
 #import <Parse/Parse.h>
 
-@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
+@interface GroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation AdvocacyGroupsViewController
+@implementation GroupsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,7 +63,7 @@
 }
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
     
-    UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
+    UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
 
     
