@@ -15,7 +15,7 @@
 		5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */; };
 		524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */; };
 		5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */; };
-		525306621CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m */; };
+		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
 		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
 		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
@@ -34,22 +34,21 @@
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
 		52BB344B1B6160CA00BB9FFD /* v3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB344A1B6160CA00BB9FFD /* v3Tests.m */; };
 		52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */; };
-		52C653301B75120900EA6FFD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* HomeViewController.m */; };
+		52C653301B75120900EA6FFD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* RootViewController.m */; };
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
 		52C7D4AF1CC7133000F85902 /* NewsFeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */; };
 		52C7D4B11CC71EFA00F85902 /* CallToActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */; };
 		52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */; };
 		52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B51CC7208700F85902 /* PushNotification.json */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
-		52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */; };
-		52D8929C1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */; };
+		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
+		52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
-		52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */; };
-		52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */; };
+		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
+		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
-		52F5C7001CEAB59C0015801D /* NYCCouncil.csv in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FF1CEAB59C0015801D /* NYCCouncil.csv */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
@@ -83,8 +82,8 @@
 		5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentativeTableViewCell.m; sourceTree = "<group>"; };
 		524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = CityCouncilDistricts.zip; sourceTree = "<group>"; };
 		5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
-		525306601CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfAdvocacyGroupsViewController.h; sourceTree = "<group>"; };
-		525306611CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfAdvocacyGroupsViewController.m; sourceTree = "<group>"; };
+		525306601CC8571800982CC8 /* ListOfGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfGroupsViewController.h; sourceTree = "<group>"; };
+		525306611CC8571800982CC8 /* ListOfGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfGroupsViewController.m; sourceTree = "<group>"; };
 		5253FB4C1BCB32F1001A5328 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		52877FCB1BA0EC1700B5AE02 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
@@ -119,8 +118,8 @@
 		52BB344A1B6160CA00BB9FFD /* v3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = v3Tests.m; sourceTree = "<group>"; };
 		52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYCRepresentative.h; sourceTree = "<group>"; };
 		52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYCRepresentative.m; sourceTree = "<group>"; };
-		52C6532E1B75120900EA6FFD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		52C6532F1B75120900EA6FFD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		52C6532E1B75120900EA6FFD /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		52C6532F1B75120900EA6FFD /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicesConstants.h; sourceTree = "<group>"; };
 		52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesConstants.m; sourceTree = "<group>"; };
 		52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedManager.h; sourceTree = "<group>"; };
@@ -130,19 +129,18 @@
 		52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallToActionTableViewCell.m; sourceTree = "<group>"; };
 		52C7D4B51CC7208700F85902 /* PushNotification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PushNotification.json; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AdvocacyGroups.storyboard; sourceTree = "<group>"; };
-		52D8929A1CC463D9004FBEA3 /* AdvocacyGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvocacyGroupsViewController.h; sourceTree = "<group>"; };
-		52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvocacyGroupsViewController.m; sourceTree = "<group>"; };
+		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
+		52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
+		52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
-		52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvocacyGroupTableViewCell.h; sourceTree = "<group>"; };
-		52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvocacyGroupTableViewCell.m; sourceTree = "<group>"; };
-		52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvocacyGroupTableViewCell.xib; sourceTree = "<group>"; };
+		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
+		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
+		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
-		52F5C6FF1CEAB59C0015801D /* NYCCouncil.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NYCCouncil.csv; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
@@ -263,7 +261,7 @@
 				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
 				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */,
+				52D8929D1CC471AA004FBEA3 /* GroupsPage */,
 				52D892901CC45CC1004FBEA3 /* ActionPage */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
@@ -279,7 +277,6 @@
 				52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */,
 				52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */,
 				52C7D4B51CC7208700F85902 /* PushNotification.json */,
-				52F5C6FF1CEAB59C0015801D /* NYCCouncil.csv */,
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
 				52BB342F1B6160C900BB9FFD /* Info.plist */,
 				52BB34301B6160CA00BB9FFD /* main.m */,
@@ -307,33 +304,33 @@
 		52D892901CC45CC1004FBEA3 /* ActionPage */ = {
 			isa = PBXGroup;
 			children = (
+				7E5CC8281C909065005E8F45 /* View */,
 				52AD33971BE5CAA000EC0468 /* Managers */,
 				7E5CC8261C909034005E8F45 /* Controller */,
-				7E5CC8281C909065005E8F45 /* View */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
 			);
 			name = ActionPage;
 			sourceTree = "<group>";
 		};
-		52D8929D1CC471AA004FBEA3 /* AdvocacyGroupsPage */ = {
+		52D8929D1CC471AA004FBEA3 /* GroupsPage */ = {
 			isa = PBXGroup;
 			children = (
-				52D892981CC463C2004FBEA3 /* AdvocacyGroups.storyboard */,
-				52D8929A1CC463D9004FBEA3 /* AdvocacyGroupsViewController.h */,
-				52D8929B1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m */,
-				52D892A11CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.h */,
-				52D892A21CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m */,
-				52D892A41CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib */,
+				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
+				52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */,
+				52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */,
+				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
+				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
+				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */,
 				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
 				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
 				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
 				52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */,
 				52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */,
-				525306601CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.h */,
-				525306611CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m */,
+				525306601CC8571800982CC8 /* ListOfGroupsViewController.h */,
+				525306611CC8571800982CC8 /* ListOfGroupsViewController.m */,
 			);
-			name = AdvocacyGroupsPage;
+			name = GroupsPage;
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {
@@ -355,8 +352,8 @@
 			children = (
 				521C7FF71B715C8600D6CE1F /* PageViewController.h */,
 				521C7FF81B715C8600D6CE1F /* PageViewController.m */,
-				52C6532E1B75120900EA6FFD /* HomeViewController.h */,
-				52C6532F1B75120900EA6FFD /* HomeViewController.m */,
+				52C6532E1B75120900EA6FFD /* RootViewController.h */,
+				52C6532F1B75120900EA6FFD /* RootViewController.m */,
 				7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */,
 				7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */,
 			);
@@ -480,13 +477,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D892A51CC47DFB004FBEA3 /* AdvocacyGroupTableViewCell.xib in Resources */,
-				52F5C7001CEAB59C0015801D /* NYCCouncil.csv in Resources */,
+				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.xib in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
-				52D892991CC463C2004FBEA3 /* AdvocacyGroups.storyboard in Resources */,
+				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
 				52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */,
@@ -613,10 +609,10 @@
 				7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
-				52C653301B75120900EA6FFD /* HomeViewController.m in Sources */,
-				525306621CC8571800982CC8 /* ListOfAdvocacyGroupsViewController.m in Sources */,
+				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
+				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
-				52D8929C1CC463D9004FBEA3 /* AdvocacyGroupsViewController.m in Sources */,
+				52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */,
@@ -631,7 +627,7 @@
 				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
-				52D892A31CC47D07004FBEA3 /* AdvocacyGroupTableViewCell.m in Sources */,
+				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,

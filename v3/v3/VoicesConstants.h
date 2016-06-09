@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface VoicesConstants : NSObject
 
@@ -37,7 +38,8 @@ extern NSString *const kCreateNYCRepresentatives;
 
 extern NSString *const kCityCouncilZip;
 extern NSString *const kCityCouncilJSON;
-extern NSString *const kCityCouncilCSV;
 extern NSString *const kCouncilMemberDataJSON;
+
+extern CGFloat const kButtonCornerRadius;
 
 @end

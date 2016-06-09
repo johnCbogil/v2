@@ -1,32 +1,31 @@
 //
-//  AdvocacyGroupsViewController.m
+//  GroupsViewController.m
 //  Voices
 //
 //  Created by John Bogil on 12/19/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
 //
 
-#import "AdvocacyGroupsViewController.h"
-#import "AdvocacyGroupTableViewCell.h"
+#import "GroupsViewController.h"
+#import "GroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
 #import "NewsFeedManager.h"
 #import "CallToActionTableViewCell.h"
-#import "ListOfAdvocacyGroupsViewController.h"
+#import "ListOfGroupsViewController.h"
 #import <Parse/Parse.h>
 
-@interface AdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
+@interface GroupsViewController () <UITableViewDataSource, UITableViewDelegate, ViewControllerBDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-//@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
-@property (strong, nonatomic) NSMutableArray *listOfFollowedAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
 @property (strong, nonatomic) NSMutableArray *listofCallsToAction;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addGroupButton;
 
 @end
 
-@implementation AdvocacyGroupsViewController
+@implementation GroupsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +34,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"CallToActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"CallToActionTableViewCell"];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -58,17 +57,16 @@
 
 
 // NOT SURE IF I NEED THIS
-- (void)addItemViewController:(ListOfAdvocacyGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
+- (void)addItemViewController:(ListOfGroupsViewController *)controller didFinishEnteringItem:(PFObject *)item{
     NSLog(@"This was returned from ViewControllerB %@",item);
 }
-- (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
+- (IBAction)listOfGroupsButtonDidPress:(id)sender {
     
-    UIStoryboard *advocacyGroupsStoryboard = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
-    ListOfAdvocacyGroupsViewController *viewControllerB = (ListOfAdvocacyGroupsViewController *)[advocacyGroupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfAdvocacyGroupsViewController"];
+    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
 
     
     
-//    ListOfAdvocacyGroupsViewController *viewControllerB = [[ListOfAdvocacyGroupsViewController alloc] initWithNibName:@"ListOfAdvocacyGroupsViewController" bundle:nil];
     viewControllerB.delegate = self;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
@@ -80,7 +78,7 @@
         return self.listofCallsToAction.count;
     }
     else {
-        return self.listOfFollowedAdvocacyGroups.count;
+        return self.listOfFollowedGroups.count;
     }}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -91,8 +89,8 @@
         return cell;
     }
     else {
-        AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
-        [cell initWithData:[self.listOfFollowedAdvocacyGroups objectAtIndex:indexPath.row]];
+        GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
+        [cell initWithData:[self.listOfFollowedGroups objectAtIndex:indexPath.row]];
         return cell;
     }
 }
@@ -116,7 +114,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self removeFollower:self.listOfFollowedAdvocacyGroups[indexPath.row]];
+        [self removeFollower:self.listOfFollowedGroups[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -150,12 +148,12 @@
     [query whereKey:@"followers" equalTo:[PFUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve Selected AdvocacyGroups Success, %@", objects);
-            self.listOfFollowedAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+            NSLog(@"Retrieve Selected Groups Success, %@", objects);
+            self.listOfFollowedGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
-            NSLog(@"Retrieve Selected AdvocacyGroups Error: %@", error);
+            NSLog(@"Retrieve Selected Groups Error: %@", error);
         }
     }];
 }
@@ -164,12 +162,11 @@
     PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve AdvocacyGroup Success");
-            //self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+            NSLog(@"Retrieve Group Success");
             [self.tableView reloadData];
         }
         else {
-            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
+            NSLog(@"Retrieve Groups Error: %@", error);
         }
     }];
 }
@@ -205,7 +202,7 @@
 - (void)removeFollower:(PFObject*)object {
     [[PFInstallation currentInstallation]removeObject:object.objectId forKey:@"channels"];
     [[PFInstallation currentInstallation]saveInBackground];
-    [self.listOfFollowedAdvocacyGroups removeObject:object];
+    [self.listOfFollowedGroups removeObject:object];
     [object removeObjectForKey:@"followers"];
     [object save];
 }

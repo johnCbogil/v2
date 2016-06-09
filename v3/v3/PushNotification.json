@@ -1,8 +1,8 @@
 { 
   "aps": { 
     "alert": {
-      "advocacyGroupName" : "League Of Women Voters",
-      "advocacyGroupLogoURL" : "https://s3.graphiq.com/sites/default/files/6552/media/images/League_of_Women_Voters_of_New_York_State_5746977.jpg",
+      "groupName" : "League Of Women Voters",
+      "groupLogoURL" : "https://s3.graphiq.com/sites/default/files/6552/media/images/League_of_Women_Voters_of_New_York_State_5746977.jpg",
       "body": "Reminder: Tuesday, April 19th is the LAST DAY to deliver ballot IN-PERSON to the local board of elections."
 },
     "sound": "default" 
@@ -15,8 +15,8 @@
 {
 aps =     {
 alert =         {
-advocacyGroupLogoURL = "https://s3.graphiq.com/sites/default/files/6552/media/images/League_of_Women_Voters_of_New_York_State_5746977.jpg";
-advocacyGroupName = "League Of Women Voters";
+groupLogoURL = "https://s3.graphiq.com/sites/default/files/6552/media/images/League_of_Women_Voters_of_New_York_State_5746977.jpg";
+groupName = "League Of Women Voters";
 body = "Reminder: Tuesday, April 19th is the LAST DAY to deliver ballot IN-PERSON to the local board of elections.";
 };
 sound = default;

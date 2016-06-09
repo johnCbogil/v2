@@ -1,5 +1,5 @@
 //
-//  AdvocacyGroupTableViewCell.h
+//  GroupTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 4/17/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AdvocacyGroupTableViewCell : UITableViewCell
+@interface GroupTableViewCell : UITableViewCell
 
 - (void)initWithData:(id) data;
 

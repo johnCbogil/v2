@@ -1,22 +1,22 @@
 //
-//  ListOfAdvocacyGroupsViewController.m
+//  ListOfGroupsViewController.h
 //  Voices
 //
 //  Created by John Bogil on 4/20/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "ListOfAdvocacyGroupsViewController.h"
-#import "AdvocacyGroupTableViewCell.h"
-#import "AdvocacyGroupsViewController.h"
+#import "ListOfGroupsViewController.h"
+#import "GroupTableViewCell.h"
+#import "GroupsViewController.h"
 
-@interface ListOfAdvocacyGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ListOfGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *listOfAdvocacyGroups;
+@property (strong, nonatomic) NSMutableArray *listOfGroups;
 @end
 
-@implementation ListOfAdvocacyGroupsViewController
+@implementation ListOfGroupsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +25,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -37,19 +37,19 @@
     PFQuery *query = [PFQuery queryWithClassName:@"AdvocacyGroups"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
-            NSLog(@"Retrieve AdvocacyGroup Success");
-            self.listOfAdvocacyGroups = [[NSMutableArray alloc]initWithArray:objects];
+            NSLog(@"Retrieve Group Success");
+            self.listOfGroups = [[NSMutableArray alloc]initWithArray:objects];
             [self.tableView reloadData];
         }
         else {
-            NSLog(@"Retrieve AdvocacyGroups Error: %@", error);
+            NSLog(@"Retrieve Groups Error: %@", error);
         }
     }];
 }
 
 - (void)followAdovacyGroup:(PFObject*)object {
     [[PFInstallation currentInstallation]addUniqueObject:object.objectId forKey:@"channels"];
-    NSLog(@"AdGroup: %@", object);
+    NSLog(@"Group: %@", object);
     [[PFInstallation currentInstallation]saveInBackground];
     [object addUniqueObject:[PFUser currentUser].username forKey:@"followers"];
     
@@ -76,19 +76,19 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.listOfAdvocacyGroups.count;
+    return self.listOfGroups.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        AdvocacyGroupTableViewCell  *cell = (AdvocacyGroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AdvocacyGroupTableViewCell" forIndexPath:indexPath];
-        [cell initWithData:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+        GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
+        [cell initWithData:[self.listOfGroups objectAtIndex:indexPath.row]];
         return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self followAdovacyGroup:[self.listOfAdvocacyGroups objectAtIndex:indexPath.row]];
+        [self followAdovacyGroup:[self.listOfGroups objectAtIndex:indexPath.row]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

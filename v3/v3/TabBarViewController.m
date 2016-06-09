@@ -8,8 +8,8 @@
 
 #import "TabBarViewController.h"
 #import "UIColor+voicesOrange.h"
-#import "HomeViewController.h"
-#import "AdvocacyGroupsViewController.h"
+#import "RootViewController.h"
+#import "GroupsViewController.h"
 
 @interface TabBarViewController ()
 
@@ -28,13 +28,13 @@
 
 - (void)createViewControllers {
     
-    UIStoryboard *groupsSB = [UIStoryboard storyboardWithName:@"AdvocacyGroups" bundle: nil];
+    UIStoryboard *groupsSB = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     UIStoryboard *actionsSB = [UIStoryboard storyboardWithName:@"Actions" bundle:nil];
     
-    HomeViewController *homeVC = (HomeViewController *)[actionsSB instantiateViewControllerWithIdentifier: @"HomeViewController"];
-    AdvocacyGroupsViewController *groupsVC = (AdvocacyGroupsViewController *)[groupsSB instantiateViewControllerWithIdentifier: @"AdvocacyGroupsNavigationViewController"];
+    RootViewController *rootVC = (RootViewController *)[actionsSB instantiateViewControllerWithIdentifier: @"RootViewController"];
+    GroupsViewController *groupsVC = (GroupsViewController *)[groupsSB instantiateViewControllerWithIdentifier: @"GroupsNavigationViewController"];
     
-    self.viewControllers = @[homeVC, groupsVC];
+    self.viewControllers = @[rootVC, groupsVC];
 }
 
 - (void)createTabBarButtons {
