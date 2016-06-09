@@ -52,6 +52,7 @@
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
+		6B21048A1D092EA90082E6AD /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B2104891D092EA90082E6AD /* stateGovernors.json */; };
 		6BBD1B4B1CF01334005ABBAF /* BilldeBlasio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BBD1B4A1CF01334005ABBAF /* BilldeBlasio.plist */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
 		B64042451965BF66BE2FB354 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F17D036B6D8B3C6EF9A5392 /* libPods-Voices.a */; };
@@ -146,6 +147,7 @@
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		52FC68FC1C3765A400E29B7A /* Onboarding2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onboarding2ViewController.h; sourceTree = "<group>"; };
 		52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Onboarding2ViewController.m; sourceTree = "<group>"; };
+		6B2104891D092EA90082E6AD /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
 		6BBD1B4A1CF01334005ABBAF /* BilldeBlasio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BilldeBlasio.plist; sourceTree = "<group>"; };
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		52BB342E1B6160C900BB9FFD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6B2104891D092EA90082E6AD /* stateGovernors.json */,
 				6BBD1B4A1CF01334005ABBAF /* BilldeBlasio.plist */,
 				52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */,
 				52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */,
@@ -494,6 +497,7 @@
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
 				5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */,
 				52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */,
+				6B21048A1D092EA90082E6AD /* stateGovernors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

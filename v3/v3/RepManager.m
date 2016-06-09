@@ -120,8 +120,21 @@
     
     [[NetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
         NSMutableArray *listOfStateRepresentatives = [[NSMutableArray alloc]init];
+        int count = 0;
         for (NSDictionary *resultDict in results) {
             StateRepresentative *stateRepresentative = [[StateRepresentative alloc] initWithData:resultDict];
+           if (count == 0) {
+    //       Get current state code (ie abbreviation)
+               NSString *stateCode = [stateRepresentative stateCode];
+                if (stateCode) {
+                    StateRepresentative *governor = [self createGovernors:stateCode];
+                        if (governor) {
+                            [listOfStateRepresentatives addObject:governor];
+                            count++;
+                      }
+                  }
+              }
+
             if (successBlock) {
                 [listOfStateRepresentatives addObject:stateRepresentative];
                 self.listOfStateRepresentatives = listOfStateRepresentatives;
@@ -220,6 +233,25 @@
     NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
     NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
     return billDeBlasio;
+}
+
+#pragma mark Add Governors
+-(StateRepresentative *)createGovernors:(NSString *)stateCode
+{
+    StateRepresentative *governorRepresentative;
+    NSLog(@"%@", stateCode);
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"stateGovernors" ofType:@"json"];
+    NSData *governorJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+    NSDictionary *governorDataDictionary = [NSJSONSerialization JSONObjectWithData:governorJSONData options:NSJSONReadingAllowFragments error:nil];
+
+    for (NSDictionary *governor in governorDataDictionary) {
+        if ([[governor valueForKey:@"state"]caseInsensitiveCompare:stateCode] == NSOrderedSame) {
+            governorRepresentative = [[StateRepresentative alloc] initGovWithData:governor];
+            break;
+            }
+    }
+    return governorRepresentative;
 }
 
 @end
