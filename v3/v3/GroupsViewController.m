@@ -44,6 +44,11 @@
     [self userAuth];
     //[self retrieveAdovacyGroups];
     
+    UIImageView *zeroStateView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ZeroStateImage"]];
+    zeroStateView.contentMode = UIViewContentModeScaleAspectFit;
+    self.tableView.backgroundView = zeroStateView;
+    self.tableView.backgroundView.hidden = YES;
+    
     self.listofCallsToAction = [NewsFeedManager sharedInstance].newsFeedObjects;
 
 }
@@ -73,14 +78,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.selectedSegment == 0) {
+        self.tableView.backgroundView.hidden = YES;
         return self.listofCallsToAction.count;
     }
     else {
-        if (self.listOfFollowedGroups.count > 0) {
-            return self.listOfFollowedGroups.count;
+        if (self.listOfFollowedGroups.count == 0) {
+            self.tableView.backgroundView.hidden = NO;
         } else {
-            return 1;
+            self.tableView.backgroundView.hidden = YES;
         }
+        return self.listOfFollowedGroups.count;
     }
 }
 
@@ -92,18 +99,9 @@
         return cell;
     }
     else {
-        if (self.listOfFollowedGroups.count > 0) {
-            GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
-            [cell initWithData:[self.listOfFollowedGroups objectAtIndex:indexPath.row]];
-            return cell;
-        } else {
-            UITableViewCell *cell = [[UITableViewCell alloc] init];
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.frame];
-            imageView.image = [UIImage imageNamed:@"ZeroStateImage"];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            [cell addSubview: imageView];
-            return cell;
-        }
+        GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
+        [cell initWithData:[self.listOfFollowedGroups objectAtIndex:indexPath.row]];
+        return cell;
     }
 }
 
