@@ -78,7 +78,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.selectedSegment == 0) {
-        self.tableView.backgroundView.hidden = YES;
+        if (self.listofCallsToAction.count == 0) {
+            self.tableView.backgroundView.hidden = NO;
+        } else {
+            self.tableView.backgroundView.hidden = YES;
+        }
         return self.listofCallsToAction.count;
     }
     else {
