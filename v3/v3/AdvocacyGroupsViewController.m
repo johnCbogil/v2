@@ -262,8 +262,17 @@
     
     // Remove group from user's subscriptions
     [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
-    
     NSLog(@"User unsubscribed to %@", group.key);
+    
+    // Remove associated actions
+    NSMutableArray *discardedItems = [NSMutableArray array];
+    for (Action *action in self.listOfActions) {
+        if ([action.group isEqualToString:group.key]) {
+            [discardedItems addObject:action];
+        }
+    }
+    [self.listOfActions removeObjectsInArray:discardedItems];
+    
 }
 
 - (IBAction)listOfAdvocacyGroupsButtonDidPress:(id)sender {
