@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aHE-mT-4XI" id="FXl-oV-8jG">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="139"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-zI-HQX">
@@ -27,7 +28,7 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="ksZ-6H-Pwf">
-                        <rect key="frame" x="123" y="8" width="229" height="30"/>
+                        <rect key="frame" x="123" y="8" width="229" height="27"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -52,9 +53,31 @@
                             <action selector="callButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="LRA-2E-JiV"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Email Button">
-                        <rect key="frame" x="200" y="83" width="33" height="33"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-xQ-nFh">
+                        <rect key="frame" x="123" y="43" width="229" height="21"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="21" id="lrU-Ah-SlL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24I-Pa-Eoo">
+                        <rect key="frame" x="292" y="83" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="7Ck-Yi-Axv"/>
+                            <constraint firstAttribute="height" constant="35" id="d3p-xv-98i"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="Twitter Filled"/>
+                        <connections>
+                            <action selector="tweetButton:" destination="aHE-mT-4XI" eventType="touchUpInside" id="wC1-q4-3lo"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-Ub-0WH" userLabel="Email Button">
+                        <rect key="frame" x="207" y="83" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="1p7-Fe-aEY"/>
+                            <constraint firstAttribute="width" constant="35" id="8h9-aD-3yv"/>
                             <constraint firstAttribute="width" constant="35" id="AyF-jM-xYu"/>
                         </constraints>
                         <state key="normal" backgroundImage="Message Filled"/>
@@ -67,29 +90,24 @@
                             <action selector="emailButtonDidPress:" destination="aHE-mT-4XI" eventType="touchUpInside" id="WdJ-GJ-DHj"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-xQ-nFh">
-                        <rect key="frame" x="123" y="46" width="229" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="lrU-Ah-SlL"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="IOz-xQ-nFh" firstAttribute="leading" secondItem="ksZ-6H-Pwf" secondAttribute="leading" id="0Mn-fD-Bjw"/>
                     <constraint firstAttribute="bottom" secondItem="8EL-J2-byu" secondAttribute="bottom" constant="23.5" id="1mi-1Y-jaf"/>
                     <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="8EL-J2-byu" secondAttribute="top" id="2wl-ZP-KC8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="24I-Pa-Eoo" secondAttribute="trailing" constant="25" id="6iy-zx-RGG"/>
                     <constraint firstItem="ksZ-6H-Pwf" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="6jo-Ri-ZzW"/>
                     <constraint firstItem="IOz-xQ-nFh" firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" id="8xk-pd-N6C"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="24I-Pa-Eoo" secondAttribute="bottom" constant="6.5" id="Gev-vb-FIo"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="JeA-Fq-gGt"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="leading" secondItem="FXl-oV-8jG" secondAttribute="leading" constant="8" id="Ktm-i1-HkL"/>
-                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="IOz-xQ-nFh" secondAttribute="bottom" constant="16" id="Mjr-sz-INw"/>
                     <constraint firstItem="IOz-xQ-nFh" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="8" symbolic="YES" id="OPF-QV-bDf"/>
                     <constraint firstItem="OiI-zI-HQX" firstAttribute="centerY" secondItem="FXl-oV-8jG" secondAttribute="centerY" id="SRT-8R-u25"/>
                     <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="15" id="SWR-Kf-VhV"/>
+                    <constraint firstItem="24I-Pa-Eoo" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="48" id="WFn-Zy-wD4"/>
                     <constraint firstItem="8EL-J2-byu" firstAttribute="leading" secondItem="OiI-zI-HQX" secondAttribute="trailing" constant="45" id="Zec-CW-OiP"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="top" secondItem="ksZ-6H-Pwf" secondAttribute="bottom" constant="48" id="eRi-tt-V2m"/>
+                    <constraint firstItem="Vmf-Ub-0WH" firstAttribute="centerX" secondItem="ksZ-6H-Pwf" secondAttribute="centerX" constant="-13" id="f7A-5A-5MQ"/>
                     <constraint firstAttribute="trailing" secondItem="ksZ-6H-Pwf" secondAttribute="trailing" constant="8" id="jMb-9Q-ld0"/>
                     <constraint firstItem="Vmf-Ub-0WH" firstAttribute="leading" secondItem="8EL-J2-byu" secondAttribute="trailing" constant="44" id="jUu-q5-IY0"/>
                     <constraint firstItem="ksZ-6H-Pwf" firstAttribute="top" secondItem="FXl-oV-8jG" secondAttribute="top" constant="8" id="uBb-x2-2zw"/>
@@ -97,6 +115,8 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="Zec-CW-OiP"/>
+                        <exclude reference="jUu-q5-IY0"/>
+                        <exclude reference="Gev-vb-FIo"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -106,6 +126,7 @@
                 <outlet property="emailButton" destination="Vmf-Ub-0WH" id="JZe-7M-vXG"/>
                 <outlet property="name" destination="ksZ-6H-Pwf" id="F1Z-ip-bbd"/>
                 <outlet property="photo" destination="OiI-zI-HQX" id="e1o-Ux-gGu"/>
+                <outlet property="tweetButton" destination="24I-Pa-Eoo" id="X9E-oO-ddJ"/>
             </connections>
             <point key="canvasLocation" x="583" y="282"/>
         </tableViewCell>
@@ -113,5 +134,6 @@
     <resources>
         <image name="Message Filled" width="33" height="33"/>
         <image name="Phone Filled" width="33" height="33"/>
+        <image name="Twitter Filled" width="33" height="33"/>
     </resources>
 </document>

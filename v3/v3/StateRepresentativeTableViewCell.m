@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSArray *listOfStatesWithAssembly;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 
 @end
 
@@ -62,6 +63,7 @@
     self.emailButton.imageView.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)createDistrictNumberLabel {
@@ -72,6 +74,13 @@
         else {
             self.districtNumberLabel.text = [NSString stringWithFormat:@"House District %@", self.stateRepresentative.districtNumber];
         }
+    }
+    else if ([self.stateRepresentative.chamber isEqualToString:@"Gov."]) {
+        if (self.stateRepresentative.nextElection) {
+            self.districtNumberLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.stateRepresentative.nextElection];
+        } else {
+            self.districtNumberLabel.text = @"";
+       }
     }
     else {
         self.districtNumberLabel.text = [NSString stringWithFormat:@"Senate District %@", self.stateRepresentative.districtNumber];
@@ -103,7 +112,7 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
-    if (self.stateRepresentative.email.length > 0) {
+    if (self.stateRepresentative.email != nil && ([self.stateRepresentative.email isKindOfClass:[NSString class]]) && self.stateRepresentative.email.length > 0 ) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.stateRepresentative.email];
     }
     else {
@@ -135,6 +144,23 @@
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
+    }
+}
+- (IBAction)tweetButton:(id)sender {
+    NSURL *tURL = [NSURL URLWithString:@"twitter://"];
+    if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
+        if (self.stateRepresentative.twitter) {
+            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.stateRepresentative.twitter, @"accountName", nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        [alert show];
     }
 }
 @end
