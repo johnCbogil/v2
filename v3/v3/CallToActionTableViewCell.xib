@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,39 +11,52 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0NS-vx-xEm" id="y5l-rm-C94">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="199.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGT-Td-XTR">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGT-Td-XTR">
                         <rect key="frame" x="8" y="8" width="344" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="orH-eg-9JG"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-bg-TiE">
-                        <rect key="frame" x="8" y="56" width="344" height="136"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-bg-TiE" userLabel="Description">
+                        <rect key="frame" x="8" y="83" width="344" height="109"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="109" id="Nr3-WN-UQ9"/>
+                        </constraints>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Y3-FE-fbV" userLabel="GroupName">
+                        <rect key="frame" x="8" y="52" width="344" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="t6D-2P-jGk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="2W8-ER-MFH"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="y5l-rm-C94" secondAttribute="trailingMargin" id="O04-ah-BHR"/>
-                    <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" constant="8" symbolic="YES" id="a8b-1l-o8U"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="fEk-0Y-mCt"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="PKl-bg-TiE" secondAttribute="leading" id="nv8-pf-xvs"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="sa4-5A-bMd"/>
-                    <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="8" id="w2A-Yy-gWP"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="8" id="EF1-X9-7Mr"/>
+                    <constraint firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="8" id="LMU-3H-I3W"/>
+                    <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" constant="8" id="TOD-TJ-yUi"/>
+                    <constraint firstAttribute="bottom" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="8" id="cVl-fL-9hI"/>
+                    <constraint firstItem="1Y3-FE-fbV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="dqN-qO-ZmZ"/>
+                    <constraint firstAttribute="trailing" secondItem="IGT-Td-XTR" secondAttribute="trailing" constant="8" id="iyj-3Z-rNy"/>
+                    <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="8" id="jX2-Mi-HU0"/>
+                    <constraint firstItem="PKl-bg-TiE" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="mR7-t8-l3G"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="s3K-bK-Imk"/>
+                    <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" constant="4" id="txP-sb-NLF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="ctaDescription" destination="PKl-bg-TiE" id="neb-4D-7yB"/>
-                <outlet property="ctaGroupName" destination="IGT-Td-XTR" id="zEd-Cg-JRk"/>
+                <outlet property="descriptionTextView" destination="PKl-bg-TiE" id="aWb-ld-wlg"/>
+                <outlet property="groupNameLabel" destination="1Y3-FE-fbV" id="QuI-he-L4l"/>
+                <outlet property="titleLabel" destination="IGT-Td-XTR" id="Rin-HL-qJK"/>
             </connections>
             <point key="canvasLocation" x="587" y="652"/>
         </tableViewCell>

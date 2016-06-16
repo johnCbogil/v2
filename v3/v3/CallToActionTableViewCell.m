@@ -10,8 +10,6 @@
 
 @interface CallToActionTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *ctaGroupName;
-@property (weak, nonatomic) IBOutlet UITextView *ctaDescription;
 
 @end
 
@@ -23,9 +21,9 @@
 }
 
 - (void)initWithData:(NSDictionary *)data {
-    self.ctaGroupName.text = [data valueForKey:@"advocacyGroupName"];
-    self.ctaDescription.text = [data valueForKey:@"body"];
-    
+    self.groupNameLabel.text = [data valueForKey:@"advocacyGroupName"];
+    self.descriptionTextView.text = [data valueForKey:@"body"];
+//    self.titleLabel.text = [data valueForKey:@""];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

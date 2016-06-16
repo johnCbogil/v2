@@ -294,16 +294,19 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.selectedSegment == 1) {
-        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        Group *group = self.listOfFollowedAdvocacyGroups[indexPath.row];
-        cell.textLabel.text = group.name;
+    if (self.selectedSegment == 0) {
+        CallToActionTableViewCell *cell = (CallToActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CallToActionTableViewCell" forIndexPath:indexPath];
+        Action *action = self.listOfActions[indexPath.row];
+        cell.descriptionTextView.text = action.body;
+        cell.titleLabel.text = action.title;
+        cell.groupNameLabel.text = action.group;
+        
         return cell;
     }
     else {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-        Action *action = self.listOfActions[indexPath.row];
-        cell.textLabel.text = action.body;
+        Group *group = self.listOfFollowedAdvocacyGroups[indexPath.row];
+        cell.textLabel.text = group.name;
         return cell;
     }
 }

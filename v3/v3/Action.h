@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic, copy) NSString *key;
 @property (readonly, nonatomic, copy) NSString *body;
 @property (readonly, nonatomic, copy) NSString *title;
-@property (readonly, nonatomic, copy) NSString *group;
+@property (readonly, nonatomic, copy) NSString *groupName;
+@property (readonly, nonatomic, copy) NSString *timestamp;
 
 - (instancetype)initWithKey:(NSString *)key actionDictionary:(NSDictionary *)dictionary;
 

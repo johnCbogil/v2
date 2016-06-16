@@ -11,5 +11,8 @@
 @interface CallToActionTableViewCell : UITableViewCell
 
 - (void)initWithData:(NSDictionary *)data;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 
 @end
