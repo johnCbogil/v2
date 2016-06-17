@@ -267,7 +267,7 @@
     // Remove associated actions
     NSMutableArray *discardedItems = [NSMutableArray array];
     for (Action *action in self.listOfActions) {
-        if ([action.group isEqualToString:group.key]) {
+        if ([action.groupKey isEqualToString:group.key]) {
             [discardedItems addObject:action];
         }
     }
@@ -297,9 +297,9 @@
     if (self.selectedSegment == 0) {
         CallToActionTableViewCell *cell = (CallToActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CallToActionTableViewCell" forIndexPath:indexPath];
         Action *action = self.listOfActions[indexPath.row];
-        cell.descriptionTextView.text = action.body;
+        cell.descriptionLabel.text = action.body;
         cell.titleLabel.text = action.title;
-        cell.groupNameLabel.text = action.group;
+        cell.groupNameLabel.text = action.groupName;
         
         return cell;
     }
@@ -329,7 +329,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedSegment == 0) {
-        return 150;
+        return 225;
     }
     else {
         return 100;

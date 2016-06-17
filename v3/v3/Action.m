@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
     self = [self init];
     _key = key;
     _body = dictionary[@"body"];
-    _groupName = dictionary[@"group"];
+    _groupName = dictionary[@"groupName"];
+    _groupKey = dictionary[@"groupKey"];
     _title = dictionary[@"title"];
     return self;
 }
