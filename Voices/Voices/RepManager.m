@@ -234,7 +234,7 @@
                 isLocationWithinPath = YES;
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
                 NYCRepresentative *billDeBlasio = [self createBillDeBlasio];
-                self.listOfNYCRepresentatives = @[nycRep, billDeBlasio];
+                self.listOfNYCRepresentatives = @[billDeBlasio, nycRep];
                 [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
             }
