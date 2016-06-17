@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSString *influenceExplorerID;
 @property (strong, nonatomic) NSString *crpID;
 @property (strong, nonatomic) NSString *districtNumber;
+@property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSArray *topContributors;
 @property (strong, nonatomic) NSArray *topIndustries;

@@ -27,6 +27,7 @@
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         [self formatTitle:[data valueForKey:@"title"]];
         self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
+        self.gender = [data valueForKey:@"gender"];
         return self;
     }
     return self;
@@ -78,6 +79,7 @@
         self.shortTitle = [decoder decodeObjectForKey:@"shortTitle"];
         self.photo = [decoder decodeObjectForKey:@"photo"];
         self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
+        self.gender = [decoder decodeObjectForKey:@"gender"];
     }
     return self;
 }
@@ -98,5 +100,6 @@
     [coder encodeObject:self.shortTitle forKey:@"shortTitle"];
     [coder encodeObject:self.photo forKey:@"photo"];
     [coder encodeObject:self.photoURL forKey:@"photoURL"];
+    [coder encodeObject:self.gender forKey:@"gender"];
 }
 @end
