@@ -42,7 +42,7 @@
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+    [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Federal image success");
         self.photo.image = image;
         
@@ -75,7 +75,7 @@
     } else {
         self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
     }
-    [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
+    [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRepMale"]];
 }
 
 #pragma mark - User actions
