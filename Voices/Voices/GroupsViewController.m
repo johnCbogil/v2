@@ -273,6 +273,8 @@
     }
     [self.listOfActions removeObjectsInArray:discardedItems];
     
+    // DISPLAY FEEDBACK HERE
+    
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {

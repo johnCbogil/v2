@@ -81,12 +81,14 @@
                 if (error) {
                     NSLog(@"write error: %@", error);
                 }
+                else {
+                    // DISPLAY FEEDBACK HERE
+                }
             }];
             
             // Add group to user's subscriptions
             [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", group.key]];
             NSLog(@"User subscribed to %@", group.key);
-
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
