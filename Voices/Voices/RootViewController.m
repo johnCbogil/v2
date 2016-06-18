@@ -21,7 +21,6 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
-#import <Google/Analytics.h>
 
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate>

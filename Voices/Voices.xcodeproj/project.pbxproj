@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FD3876B8FFD6957646DCFB5 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D407581116439FFB581CAC07 /* libPods-VoicesTests.a */; };
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
 		5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5224640C1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m */; };
 		5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224640E1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib */; };
 		5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */; };
 		524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */; };
+		524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */; };
 		5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */; };
 		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
 		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
+		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
+		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
+		5261CF6D1D14F26D007B122B /* BilldeBlasio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6C1D14F26D007B122B /* BilldeBlasio.plist */; };
 		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
+		52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */; };
 		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
 		52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateRepresentative.m */; };
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
@@ -41,21 +47,18 @@
 		52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B51CC7208700F85902 /* PushNotification.json */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
 		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
-		52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
-		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */; };
+		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */; };
-		5346927E64DCC58A39C31204 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0633DFD96E7CAFF518D628 /* libPods-VoicesTests.a */; };
-		6B21048A1D092EA90082E6AD /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B2104891D092EA90082E6AD /* stateGovernors.json */; };
-		6BBD1B4B1CF01334005ABBAF /* BilldeBlasio.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BBD1B4A1CF01334005ABBAF /* BilldeBlasio.plist */; };
+		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
-		EA6E621D797F4DB4D5DEA29C /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7472EED1865E5C3374A4E1D2 /* libPods-Voices.a */; };
+		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
+		B64042451965BF66BE2FB354 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F17D036B6D8B3C6EF9A5392 /* libPods-Voices.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +72,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1ABB4833BA41933DEDBBC1E4 /* Pods-VoicesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoicesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests.release.xcconfig"; sourceTree = "<group>"; };
-		4CBB51C2BDB250E87A75B3FE /* Pods-Voices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.release.xcconfig"; sourceTree = "<group>"; };
+		02A908BF05CC330FE41C504F /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
+		097BC36271C06043F3BCBDC4 /* Pods-VoicesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoicesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests.release.xcconfig"; sourceTree = "<group>"; };
+		25C08A0C2D1E9C6E84660895 /* Pods-VoicesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoicesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F17D036B6D8B3C6EF9A5392 /* libPods-Voices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		5224640B1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepresentativeTableViewCell.h; sourceTree = "<group>"; };
@@ -80,17 +85,22 @@
 		5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalRepresentativeTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentativeTableViewCell.m; sourceTree = "<group>"; };
 		524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = CityCouncilDistricts.zip; sourceTree = "<group>"; };
+		524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
+		524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		525306601CC8571800982CC8 /* ListOfGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfGroupsViewController.h; sourceTree = "<group>"; };
 		525306611CC8571800982CC8 /* ListOfGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfGroupsViewController.m; sourceTree = "<group>"; };
 		5253FB4C1BCB32F1001A5328 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		5261CF6A1D14F121007B122B /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
+		5261CF6C1D14F26D007B122B /* BilldeBlasio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BilldeBlasio.plist; sourceTree = "<group>"; };
 		52877FCB1BA0EC1700B5AE02 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		52877FCC1BA0EC1700B5AE02 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		52A610801B66AD0300B041FF /* RepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepManager.h; sourceTree = "<group>"; };
 		52A610811B66AD0300B041FF /* RepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepManager.m; sourceTree = "<group>"; };
+		52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52AD2CBE1B61E7A300EAF854 /* FederalRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FederalRepresentative.h; sourceTree = "<group>"; };
 		52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FederalRepresentative.m; sourceTree = "<group>"; };
 		52AD2CC11B61F90900EAF854 /* StateRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateRepresentative.h; sourceTree = "<group>"; };
@@ -129,30 +139,27 @@
 		52C7D4B51CC7208700F85902 /* PushNotification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PushNotification.json; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
-		52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
-		52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
-		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
-		52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		52FC68FC1C3765A400E29B7A /* Onboarding2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Onboarding2ViewController.h; sourceTree = "<group>"; };
 		52FC68FD1C3765A400E29B7A /* Onboarding2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Onboarding2ViewController.m; sourceTree = "<group>"; };
-		651E1DEFCDABE5E9FA695A9D /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
-		6B2104891D092EA90082E6AD /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
-		6BBD1B4A1CF01334005ABBAF /* BilldeBlasio.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BilldeBlasio.plist; sourceTree = "<group>"; };
-		7472EED1865E5C3374A4E1D2 /* libPods-Voices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		61DC8EA11D0660590086C070 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
+		61DC8EA21D0660590086C070 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativesViewController.h; sourceTree = "<group>"; };
 		7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativesViewController.m; sourceTree = "<group>"; };
-		802E09D0715F47C243B20171 /* Pods-VoicesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoicesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DF0633DFD96E7CAFF518D628 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		B65BD03341B3B7A2D40AFBD2 /* Pods-Voices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.release.xcconfig"; sourceTree = "<group>"; };
+		D407581116439FFB581CAC07 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA6E621D797F4DB4D5DEA29C /* libPods-Voices.a in Frameworks */,
+				B64042451965BF66BE2FB354 /* libPods-Voices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,20 +175,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5346927E64DCC58A39C31204 /* libPods-VoicesTests.a in Frameworks */,
+				2FD3876B8FFD6957646DCFB5 /* libPods-VoicesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		44B15E6A3CDCA9EABEE6849D /* Frameworks */ = {
+		05BD27BC7754E0E33C9B4A78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7472EED1865E5C3374A4E1D2 /* libPods-Voices.a */,
-				DF0633DFD96E7CAFF518D628 /* libPods-VoicesTests.a */,
+				4F17D036B6D8B3C6EF9A5392 /* libPods-Voices.a */,
+				D407581116439FFB581CAC07 /* libPods-VoicesTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08D27E1BCC029746B6F2EB8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				02A908BF05CC330FE41C504F /* Pods-Voices.debug.xcconfig */,
+				B65BD03341B3B7A2D40AFBD2 /* Pods-Voices.release.xcconfig */,
+				25C08A0C2D1E9C6E84660895 /* Pods-VoicesTests.debug.xcconfig */,
+				097BC36271C06043F3BCBDC4 /* Pods-VoicesTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5204038B1BCC137F00016768 /* Info */ = {
@@ -227,8 +245,8 @@
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB34471B6160CA00BB9FFD /* VoicesTests */,
 				52BB342C1B6160C900BB9FFD /* Products */,
-				9C3361F397AB3478602C14D4 /* Pods */,
-				44B15E6A3CDCA9EABEE6849D /* Frameworks */,
+				08D27E1BCC029746B6F2EB8A /* Pods */,
+				05BD27BC7754E0E33C9B4A78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,10 +282,10 @@
 		52BB342E1B6160C900BB9FFD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6B2104891D092EA90082E6AD /* stateGovernors.json */,
-				6BBD1B4A1CF01334005ABBAF /* BilldeBlasio.plist */,
+				5261CF6A1D14F121007B122B /* stateGovernors.json */,
 				52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */,
-				52F5C6FB1CEAB2800015801D /* GoogleService-Info.plist */,
+				52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */,
+				5261CF6C1D14F26D007B122B /* BilldeBlasio.plist */,
 				52C7D4B51CC7208700F85902 /* PushNotification.json */,
 				524B15B11C7E76A7003B4372 /* CityCouncilDistricts.zip */,
 				52BB342F1B6160C900BB9FFD /* Info.plist */,
@@ -296,9 +314,9 @@
 		52D892901CC45CC1004FBEA3 /* ActionPage */ = {
 			isa = PBXGroup;
 			children = (
-				7E5CC8281C909065005E8F45 /* View */,
 				52AD33971BE5CAA000EC0468 /* Managers */,
 				7E5CC8261C909034005E8F45 /* Controller */,
+				7E5CC8281C909065005E8F45 /* View */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
 			);
@@ -308,19 +326,11 @@
 		52D8929D1CC471AA004FBEA3 /* GroupsPage */ = {
 			isa = PBXGroup;
 			children = (
-				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
-				52D8929A1CC463D9004FBEA3 /* GroupsViewController.h */,
-				52D8929B1CC463D9004FBEA3 /* GroupsViewController.m */,
-				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
-				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
-				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.xib */,
-				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
-				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
-				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
+				7EEDF30B1CF8DA95006E0696 /* View */,
+				7EEDF30A1CF8DA87006E0696 /* Controller */,
+				7EEDF30F1CF8DABC006E0696 /* Model */,
 				52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */,
 				52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */,
-				525306601CC8571800982CC8 /* ListOfGroupsViewController.h */,
-				525306611CC8571800982CC8 /* ListOfGroupsViewController.m */,
 			);
 			name = GroupsPage;
 			sourceTree = "<group>";
@@ -382,15 +392,40 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		9C3361F397AB3478602C14D4 /* Pods */ = {
+		7EEDF30A1CF8DA87006E0696 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				651E1DEFCDABE5E9FA695A9D /* Pods-Voices.debug.xcconfig */,
-				4CBB51C2BDB250E87A75B3FE /* Pods-Voices.release.xcconfig */,
-				802E09D0715F47C243B20171 /* Pods-VoicesTests.debug.xcconfig */,
-				1ABB4833BA41933DEDBBC1E4 /* Pods-VoicesTests.release.xcconfig */,
+				524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */,
+				524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */,
+				525306601CC8571800982CC8 /* ListOfGroupsViewController.h */,
+				525306611CC8571800982CC8 /* ListOfGroupsViewController.m */,
 			);
-			name = Pods;
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7EEDF30B1CF8DA95006E0696 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
+				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
+				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
+				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */,
+				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
+				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
+				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7EEDF30F1CF8DABC006E0696 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				61DC8EA11D0660590086C070 /* Action.h */,
+				61DC8EA21D0660590086C070 /* Action.m */,
+				7EEDF30C1CF8DAB8006E0696 /* Group.h */,
+				7EEDF30D1CF8DAB8006E0696 /* Group.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,12 +435,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "Voices" */;
 			buildPhases = (
-				3FB9C62AAF6FD6156C0AACD4 /* 📦 Check Pods Manifest.lock */,
+				C1A9110AED79C6D6FCBBA89B /* 📦 Check Pods Manifest.lock */,
 				52BB34271B6160C900BB9FFD /* Sources */,
 				52BB34281B6160C900BB9FFD /* Frameworks */,
 				52BB34291B6160C900BB9FFD /* Resources */,
-				0A54266DE7D54108B04377AB /* 📦 Embed Pods Frameworks */,
-				902DE2382A7DCC65DCEB9E67 /* 📦 Copy Pods Resources */,
+				1584BD9FAB98C0E37158D4D1 /* 📦 Embed Pods Frameworks */,
+				5FE26C9114B80E8E5EF52229 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -420,12 +455,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "VoicesTests" */;
 			buildPhases = (
-				C7E5466C9C5FBA1129EA2E4B /* 📦 Check Pods Manifest.lock */,
+				5BE7EF842AD504930BD75E2D /* 📦 Check Pods Manifest.lock */,
 				52BB34401B6160CA00BB9FFD /* Sources */,
 				52BB34411B6160CA00BB9FFD /* Frameworks */,
 				52BB34421B6160CA00BB9FFD /* Resources */,
-				10B10D75A4552C74B06F30DF /* 📦 Embed Pods Frameworks */,
-				93644054D181EA14B76F702A /* 📦 Copy Pods Resources */,
+				5E269DA345979FC02C3DFD1A /* 📦 Embed Pods Frameworks */,
+				9640864F6122B513053DF486 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -480,7 +515,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.xib in Resources */,
+				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
+				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
+				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
@@ -488,16 +525,15 @@
 				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib in Resources */,
 				5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */,
-				52F5C6FC1CEAB2800015801D /* GoogleService-Info.plist in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */,
 				52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */,
 				52C7D4B11CC71EFA00F85902 /* CallToActionTableViewCell.xib in Resources */,
-				6BBD1B4B1CF01334005ABBAF /* BilldeBlasio.plist in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
 				5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */,
 				52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */,
-				6B21048A1D092EA90082E6AD /* stateGovernors.json in Resources */,
+				5261CF6D1D14F26D007B122B /* BilldeBlasio.plist in Resources */,
+				5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +547,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A54266DE7D54108B04377AB /* 📦 Embed Pods Frameworks */ = {
+		1584BD9FAB98C0E37158D4D1 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -526,22 +562,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voices/Pods-Voices-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		10B10D75A4552C74B06F30DF /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3FB9C62AAF6FD6156C0AACD4 /* 📦 Check Pods Manifest.lock */ = {
+		5BE7EF842AD504930BD75E2D /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -556,7 +577,22 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		902DE2382A7DCC65DCEB9E67 /* 📦 Copy Pods Resources */ = {
+		5E269DA345979FC02C3DFD1A /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FE26C9114B80E8E5EF52229 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -571,7 +607,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voices/Pods-Voices-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93644054D181EA14B76F702A /* 📦 Copy Pods Resources */ = {
+		9640864F6122B513053DF486 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,7 +622,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C7E5466C9C5FBA1129EA2E4B /* 📦 Check Pods Manifest.lock */ = {
+		C1A9110AED79C6D6FCBBA89B /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -616,14 +652,15 @@
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
-				52D8929C1CC463D9004FBEA3 /* GroupsViewController.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
+				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
 				5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
+				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
 				52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
@@ -634,6 +671,7 @@
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
+				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);
@@ -762,7 +800,7 @@
 		};
 		52BB344F1B6160CA00BB9FFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 651E1DEFCDABE5E9FA695A9D /* Pods-Voices.debug.xcconfig */;
+			baseConfigurationReference = 02A908BF05CC330FE41C504F /* Pods-Voices.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
@@ -781,7 +819,7 @@
 		};
 		52BB34501B6160CA00BB9FFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CBB51C2BDB250E87A75B3FE /* Pods-Voices.release.xcconfig */;
+			baseConfigurationReference = B65BD03341B3B7A2D40AFBD2 /* Pods-Voices.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
@@ -801,7 +839,7 @@
 		};
 		52BB34521B6160CA00BB9FFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 802E09D0715F47C243B20171 /* Pods-VoicesTests.debug.xcconfig */;
+			baseConfigurationReference = 25C08A0C2D1E9C6E84660895 /* Pods-VoicesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -819,7 +857,7 @@
 		};
 		52BB34531B6160CA00BB9FFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1ABB4833BA41933DEDBBC1E4 /* Pods-VoicesTests.release.xcconfig */;
+			baseConfigurationReference = 097BC36271C06043F3BCBDC4 /* Pods-VoicesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "";

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GroupsViewController : UIViewController
+@property (strong, nonatomic) NSString *currentUserID;
 
 @end

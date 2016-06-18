@@ -16,9 +16,10 @@
 #import "VoicesConstants.h"
 #import "RepManager.h"
 #import "NewsFeedManager.h"
-#import <Parse.h>
-#import <Google/Analytics.h>
 
+@import Firebase;
+@import FirebaseInstanceID;
+@import FirebaseMessaging;
 
 @interface AppDelegate ()
 @end
@@ -27,13 +28,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self initializeParseWithApplication:application];
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
-    
+    [FIRApp configure];
+
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (notificationPayload) {
@@ -42,7 +43,55 @@
 
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
+    
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+    // Add observer for InstanceID token refresh callback.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
+                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    
     return YES;
+}
+
+- (void)tokenRefreshNotification:(NSNotification *)notification {
+    // Note that this callback will be fired everytime a new token is generated, including the first
+    // time. So if you need to retrieve the token as soon as it is available this is where that
+    // should be done.
+    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+    NSLog(@"InstanceID token: %@", refreshedToken);
+    
+    // Connect to FCM since connection may have failed when attempted before having a token.
+    [self connectToFcm];
+    
+    // TODO: If necessary send token to appliation server.
+}
+
+- (void)connectToFcm {
+    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Unable to connect to FCM. %@", error);
+        } else {
+            NSLog(@"Connected to FCM.");
+        }
+    }];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Pring full message.
+    NSLog(@"%@", userInfo);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -61,6 +110,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self connectToFcm];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -69,31 +119,31 @@
 
 # pragma mark - AppDidFinishLaunchingConfiguration
 
-- (void)initializeParseWithApplication:(UIApplication *)application {
-    // Initialize Parse.
-    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
-                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
-    
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                    UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
-}
+//- (void)initializeParseWithApplication:(UIApplication *)application {
+//    // Initialize Parse.
+//    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
+//                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
+//    
+//    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+//                                                    UIUserNotificationTypeBadge |
+//                                                    UIUserNotificationTypeSound);
+//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+//                                                                             categories:nil];
+//    [application registerUserNotificationSettings:settings];
+//    [application registerForRemoteNotifications];
+//}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *installation = [PFInstallation currentInstallation];
-    [installation setDeviceTokenFromData:deviceToken];
-    installation.channels = @[ @"global" ];
-    [installation saveInBackground];
+//    PFInstallation *installation = [PFInstallation currentInstallation];
+//    [installation setDeviceTokenFromData:deviceToken];
+//    installation.channels = @[ @"global" ];
+//    [installation saveInBackground];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Not sure what this is.
-    [PFPush handlePush:userInfo];
+    //[PFPush handlePush:userInfo];
     [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[userInfo valueForKey:@"aps"]valueForKey:@"alert"]];
 
 }
@@ -134,14 +184,14 @@
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     
     // Configure tracker from GoogleService-Info.plist.
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+//    NSError *configureError;
+//    [[GGLContext sharedInstance] configureWithError:&configureError];
+//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     
     // Optional: configure GAI options.
-    GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
+//    GAI *gai = [GAI sharedInstance];
+//    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+//    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
 }
 
 - (void)setCache {
