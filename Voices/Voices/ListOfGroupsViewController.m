@@ -82,7 +82,8 @@
                     NSLog(@"write error: %@", error);
                 }
                 else {
-                    // DISPLAY FEEDBACK HERE
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+                    [alert show];
                 }
             }];
             
