@@ -20,16 +20,21 @@
     // Initialization code
 }
 
-- (void)initWithData:(NSDictionary *)data {
-    self.groupNameLabel.text = [data valueForKey:@"advocacyGroupName"];
-    self.descriptionTextView.text = [data valueForKey:@"body"];
-//    self.titleLabel.text = [data valueForKey:@""];
+- (void)initWithAction:(Action *)action {
+    self.groupNameLabel.text = action.groupName;
+    self.descriptionTextView.text = action.body;
+    self.titleLabel.text = action.title;
+    [self setmage:action.groupImageURL];
+}
+
+- (void)setmage:(NSString *)url {
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -23,9 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray<Group *> *listOfFollowedGroups;
-@property (strong, nonatomic) NSMutableArray<Action *> *listOfActions;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addAdvocacyGroupButton;
+@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
+@property (strong, nonatomic) NSMutableArray <Action *> *listOfActions;
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -85,25 +84,25 @@
     NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
     if (!userId) {
         [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-             if (error) {
-                 NSLog(@"UserAuth error: %@", error);
-                 self.isUserAuthInProgress = NO;
-                 return;
-             }
-             self.currentUserID = user.uid;
-             NSLog(@"Created a new userID: %@", self.currentUserID);
-             [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
-             [[NSUserDefaults standardUserDefaults]synchronize];
-             
-             [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                 if (error) {
-                     NSLog(@"Error adding user to database: %@", error);
-                     self.isUserAuthInProgress = NO;
-                     return;
-                 }
-                 NSLog(@"Created user in database");
-             }];
-         }];
+            if (error) {
+                NSLog(@"UserAuth error: %@", error);
+                self.isUserAuthInProgress = NO;
+                return;
+            }
+            self.currentUserID = user.uid;
+            NSLog(@"Created a new userID: %@", self.currentUserID);
+            [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                if (error) {
+                    NSLog(@"Error adding user to database: %@", error);
+                    self.isUserAuthInProgress = NO;
+                    return;
+                }
+                NSLog(@"Created user in database");
+            }];
+        }];
     }
     else {
         [self fetchGroupsWithUserId:userId];
@@ -206,49 +205,6 @@
     }];
 }
 
-//- (void)fetchActions {
-//    __weak GroupsViewController *weakSelf = self;
-//
-//    // For each group that the user belongs to
-//    for (Group *group in self.listOfFollowedGroups) {
-//        // Retrieve group's action data
-//        [[[self.groupsRef child:group.key] child:@"actions"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//            if ([snapshot.value isKindOfClass:[NSNull class]]) {
-//                return;
-//            }
-//            // Retrieve this action's key
-//            NSString *actionKey = snapshot.key;
-//
-//            // Retrieve the actions for this group
-//            [[weakSelf.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//                //FIXME: why is this different than above comparison to [NSNull class]?
-//                if (snapshot.value == [NSNull null]) {
-//                    return ;
-//                }
-//
-//                // Check to see if the action key is in the listOfActions
-//                NSInteger index = [weakSelf.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-//                    if ([action.key isEqualToString:actionKey]) {
-//                        *stop = YES;
-//                        return YES;
-//                    }
-//                    return NO;
-//                }];
-//                if (index != NSNotFound) {
-//                    // We already have this group in our table
-//                    return;
-//                }
-//                NSLog(@"%@", snapshot.value);
-//                Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-//                [self.listOfActions addObject:newAction];
-//                [self.tableView reloadData];
-//            }];
-//        } withCancelBlock:^(NSError * _Nonnull error) {
-//            NSLog(@"%@", error.localizedDescription);
-//        }];
-//    }
-//}
-
 - (void)removeGroup:(Group *)group {
     
     // Remove group from local array
@@ -299,9 +255,7 @@
     if (self.selectedSegment == 0) {
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         Action *action = self.listOfActions[indexPath.row];
-        cell.descriptionLabel.text = action.body;
-        cell.titleLabel.text = action.title;
-        cell.groupNameLabel.text = action.groupName;
+        [cell initWithAction:action];
         
         return cell;
     }
@@ -348,7 +302,7 @@
     } else {
         [self userAuth];
     }
-//    [self fetchFollowedGroups];
+    //    [self fetchFollowedGroups];
     //    if (self.selectedSegment) {
     //        [self fetchFollowedGroups];
     //    }
