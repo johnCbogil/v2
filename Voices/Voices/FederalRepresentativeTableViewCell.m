@@ -51,12 +51,20 @@
     [self setImage];
 }
 
-- (void)setImage{
+- (void)setImage {
+    
+    UIImage *placeholderImage;
+    if ([self.federalRepresentative.gender isEqualToString:@"M"]) {
+        placeholderImage = [UIImage imageNamed:@"MissingRepMale"];
+    }
+    else {
+        placeholderImage = [UIImage imageNamed:@"MissingRepFemale"];
+    }
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.federalRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRep"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+    [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         self.photo.image = image;
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {

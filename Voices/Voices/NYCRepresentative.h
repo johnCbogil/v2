@@ -23,4 +23,6 @@
 @property (strong, nonatomic) NSString *borough;
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSString *twitter;
+@property (strong, nonatomic) NSString *gender;
+
 @end

@@ -25,8 +25,8 @@
     self = [super init];
     if(self != nil) {
         self.manager = [AFHTTPRequestOperationManager manager];
-        self.missingRepresentativePhoto = [UIImage imageNamed:@"MissingRep"];
-        [self.missingRepresentativePhoto setAccessibilityIdentifier:@"MissingRep"];
+//        self.missingRepresentativePhoto = [UIImage imageNamed:@"MissingRep"];
+//        [self.missingRepresentativePhoto setAccessibilityIdentifier:@"MissingRep"];
     }
     return self;
 }
