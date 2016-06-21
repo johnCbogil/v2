@@ -12,8 +12,6 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-//#import <Google/Analytics.h>
-
 
 @interface StateRepresentativeTableViewCell ()
 

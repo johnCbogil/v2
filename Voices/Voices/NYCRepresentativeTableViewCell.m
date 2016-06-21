@@ -11,7 +11,6 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-//#import <Google/Analytics.h>
 
 
 @interface NYCRepresentativeTableViewCell ()
@@ -75,7 +74,6 @@
     } else {
         self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
     }
-    [self.photo setImageWithURL:self.nycRepresentative.photoURL placeholderImage:[UIImage imageNamed:@"MissingRep"]];
 }
 
 #pragma mark - User actions
@@ -135,15 +133,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
-        
-//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-//                                                              action:@"phone call"
-//                                                               label:[NSString stringWithFormat:@"%@ %@",self.nycRepresentative.firstName,self.nycRepresentative.lastName]
-//                                                               value:@1] build]];
-
-        
-        
+                
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
         {

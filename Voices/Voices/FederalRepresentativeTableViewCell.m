@@ -12,8 +12,6 @@
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
 #import <MessageUI/MFMailComposeViewController.h>
-//#import <Google/Analytics.h>
-
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
