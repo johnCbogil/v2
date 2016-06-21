@@ -9,7 +9,6 @@
 #import "GroupsViewController.h"
 #import "GroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
-#import "NewsFeedManager.h"
 #import "ActionTableViewCell.h"
 #import "ListOfGroupsViewController.h"
 #import "Group.h"

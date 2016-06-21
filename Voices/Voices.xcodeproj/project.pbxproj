@@ -41,7 +41,6 @@
 		52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */; };
 		52C653301B75120900EA6FFD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* RootViewController.m */; };
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
-		52C7D4AF1CC7133000F85902 /* NewsFeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */; };
 		52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */; };
 		52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */; };
 		52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B51CC7208700F85902 /* PushNotification.json */; };
@@ -131,8 +130,6 @@
 		52C6532F1B75120900EA6FFD /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicesConstants.h; sourceTree = "<group>"; };
 		52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesConstants.m; sourceTree = "<group>"; };
-		52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedManager.h; sourceTree = "<group>"; };
-		52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedManager.m; sourceTree = "<group>"; };
 		52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionTableViewCell.xib; sourceTree = "<group>"; };
 		52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionTableViewCell.h; sourceTree = "<group>"; };
 		52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionTableViewCell.m; sourceTree = "<group>"; };
@@ -329,8 +326,6 @@
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
 				7EEDF30F1CF8DABC006E0696 /* Model */,
-				52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */,
-				52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */,
 			);
 			name = GroupsPage;
 			sourceTree = "<group>";
@@ -645,7 +640,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
-				52C7D4AF1CC7133000F85902 /* NewsFeedManager.m in Sources */,
 				7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,

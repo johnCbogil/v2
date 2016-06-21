@@ -24,14 +24,9 @@
     self.groupNameLabel.text = action.groupName;
     self.descriptionTextView.text = action.body;
     self.titleLabel.text = action.title;
-    [self setmage:action.groupImageURL];
+
 }
 
-- (void)setmage:(NSString *)url {
-    
-    
-    
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

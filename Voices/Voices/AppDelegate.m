@@ -15,7 +15,6 @@
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
-#import "NewsFeedManager.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -38,7 +37,7 @@
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (notificationPayload) {
-        [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[notificationPayload valueForKey:@"aps"]valueForKey:@"alert"]];
+
     }
 
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -117,35 +116,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-# pragma mark - AppDidFinishLaunchingConfiguration
-
-//- (void)initializeParseWithApplication:(UIApplication *)application {
-//    // Initialize Parse.
-//    [Parse setApplicationId:@"msKZQRGc37A1UdBdxGO1WdJa0dmyuXz61m7O4qPO"
-//                  clientKey:@"tApEQQS6ygoaRC6UM4H7jtdzknUZiL8LfT88fjmr"];
-//    
-//    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-//                                                    UIUserNotificationTypeBadge |
-//                                                    UIUserNotificationTypeSound);
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-//                                                                             categories:nil];
-//    [application registerUserNotificationSettings:settings];
-//    [application registerForRemoteNotifications];
-//}
-
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Store the deviceToken in the current installation and save it to Parse.
-//    PFInstallation *installation = [PFInstallation currentInstallation];
-//    [installation setDeviceTokenFromData:deviceToken];
-//    installation.channels = @[ @"global" ];
-//    [installation saveInBackground];
+
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    // Not sure what this is.
-    //[PFPush handlePush:userInfo];
-    [[NewsFeedManager sharedInstance]createCallToActionFromNotificationPayload:[[userInfo valueForKey:@"aps"]valueForKey:@"alert"]];
-
+ 
+    
 }
 
 - (void)setInitialViewController {
@@ -183,15 +160,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     
-    // Configure tracker from GoogleService-Info.plist.
-//    NSError *configureError;
-//    [[GGLContext sharedInstance] configureWithError:&configureError];
-//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-    // Optional: configure GAI options.
-//    GAI *gai = [GAI sharedInstance];
-//    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-//    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
+
 }
 
 - (void)setCache {
