@@ -21,7 +21,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d2mendez.jpg",
 			"twitter": "RosieMendez",
-			"facebook": "rosie.mendez"
+			"facebook": "rosie.mendez",
+			 "gender" : "F"
 		},
 		"3": {
 			"district": "3",
@@ -32,7 +33,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District03_Johnson.JPG",
 			"twitter": "CoreyinNYC",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "M"
 		},
 		"4": {
 			"district": "4",
@@ -43,7 +45,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d4garodnick.jpg",
 			"twitter": "DanGarodnick",
-			"facebook": "DanGarodnick"
+			"facebook": "DanGarodnick",
+			 "gender" : "M"
 		},
 		"5": {
 			"district": "5",
@@ -54,7 +57,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District05_Kallos.JPG",
 			"twitter": "kallos",
-			"facebook": "1410000000000000"
+			"facebook": "1410000000000000",
+			 "gender" : "M"
 		},
 		"6": {
 			"district": "6",
@@ -65,7 +69,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District06_Rosenthal.JPG",
 			"twitter": "HelenRosenthal",
-			"facebook": "VoteHelen2013"
+			"facebook": "VoteHelen2013",
+			 "gender" : "F"
 		},
 		"7": {
 			"district": "7",
@@ -76,7 +81,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District07_Levine.JPG",
 			"twitter": "MarkLevineNYC",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "M"
 		},
 		"8": {
 			"district": "8",
@@ -87,7 +93,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/melissa_mark-viverito.jpg",
 			"twitter": "MMViverito",
-			"facebook": "120000000000"
+			"facebook": "120000000000",
+			 "gender" : "F"
 		},
 		"9": {
 			"district": "9",
@@ -98,7 +105,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d09ignizio.jpg",
 			"twitter": "inezdickens2013",
-			"facebook": "84792331605"
+			"facebook": "84792331605",
+			 "gender" : "F"
 		},
 		"10": {
 			"district": "10",
@@ -109,7 +117,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d10rodriguez.jpg",
 			"twitter": "ydanis",
-			"facebook": "ydanis.rodriguez"
+			"facebook": "ydanis.rodriguez",
+			 "gender" : "M"
 		},
 		"11": {
 			"district": "11",
@@ -120,7 +129,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District11_Cohen.JPG",
 			"twitter": "AndrewCohenNYC",
-			"facebook": "402000000000000"
+			"facebook": "402000000000000",
+			 "gender" : "M"
 		},
 		"12": {
 			"district": "12",
@@ -131,7 +141,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/CMKING HS 220-311.JPG",
 			"twitter": "AndyKingNYC",
-			"facebook": "117000000000000"
+			"facebook": "117000000000000",
+			 "gender" : "M"
 		},
 		"13": {
 			"district": "13",
@@ -142,7 +153,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d13vacca.jpg",
 			"twitter": "JamesVacca13",
-			"facebook": "CouncilMemberJamesVacca"
+			"facebook": "CouncilMemberJamesVacca",
+			 "gender" : "M"
 		},
 		"14": {
 			"district": "14",
@@ -153,7 +165,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d14cabrera.jpg",
 			"twitter": "FCabreraNY",
-			"facebook": "councilmembercabrera"
+			"facebook": "councilmembercabrera",
+			 "gender" : "F"
 		},
 		"15": {
 			"district": "15",
@@ -164,7 +177,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District15_Torres2.JPG",
 			"twitter": "RitchieTorres",
-			"facebook": "ritchie.torres.9"
+			"facebook": "ritchie.torres.9",
+			 "gender" : "M"
 		},
 		"16": {
 			"district": "16",
@@ -175,7 +189,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/district16_gibson.JPG",
 			"twitter": "Vanessalgibson",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "F"
 		},
 		"17": {
 			"district": "17",
@@ -186,7 +201,8 @@
 			"party": " ",
 			"photoURLPath": "",
 			"twitter": "",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "M"
 		},
 		"18": {
 			"district": "18",
@@ -197,7 +213,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d18palma.jpg",
 			"twitter": "PalmaAnnabel",
-			"facebook": "annabel.palma"
+			"facebook": "annabel.palma",
+			 "gender" : "F"
 		},
 		"19": {
 			"district": "19",
@@ -208,7 +225,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District19_Vallone.JPG",
 			"twitter": "PaulVallone",
-			"facebook": "paul.vallone1"
+			"facebook": "paul.vallone1",
+			 "gender" : "M"
 		},
 		"20": {
 			"district": "20",
@@ -219,7 +237,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d20koo.jpg",
 			"twitter": "PeterKoo2009",
-			"facebook": "2.08E+11"
+			"facebook": "2.08E+11",
+			 "gender" : "M"
 		},
 		"21": {
 			"district": "21",
@@ -230,7 +249,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d21ferreras.jpg",
 			"twitter": "JulissaFerreras",
-			"facebook": "Julissa.Ferreras"
+			"facebook": "Julissa.Ferreras",
+			 "gender" : "F"
 		},
 		"22": {
 			"district": "22",
@@ -241,7 +261,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District22_Constantinides.JPG",
 			"twitter": "Costa4NY",
-			"facebook": "costaforastoria"
+			"facebook": "costaforastoria",
+			 "gender" : "M"
 		},
 		"23": {
 			"district": "23",
@@ -252,7 +273,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/BarryGrodenchik_400x400.jpg",
 			"twitter": "BarryGrodenchik",
-			"facebook": "barry.grodenchik"
+			"facebook": "barry.grodenchik",
+			 "gender" : "M"
 		},
 		"24": {
 			"district": "24",
@@ -263,7 +285,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District24_Lancman.JPG",
 			"twitter": "RoryLancman",
-			"facebook": "rory.lancman"
+			"facebook": "rory.lancman",
+			 "gender" : "M"
 		},
 		"25": {
 			"district": "25",
@@ -274,7 +297,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d25dromm.jpg",
 			"twitter": "Dromm25",
-			"facebook": "18241697139"
+			"facebook": "18241697139",
+			 "gender" : "M"
 		},
 		"26": {
 			"district": "26",
@@ -285,7 +309,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d26vanbramer.jpg",
 			"twitter": "JimmyVanBramer",
-			"facebook": "126000000000"
+			"facebook": "126000000000",
+			 "gender" : "M"
 		},
 		"27": {
 			"district": "27",
@@ -296,7 +321,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District27_Miller.JPG",
 			"twitter": "IDaneekMiller",
-			"facebook": "daneek.miller"
+			"facebook": "daneek.miller",
+			 "gender" : "M"
 		},
 		"28": {
 			"district": "28",
@@ -307,7 +333,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/WebSiteCM Wills 1.2.JPG",
 			"twitter": "CM_RubenWills",
-			"facebook": "CouncilMemberRubenWills"
+			"facebook": "CouncilMemberRubenWills",
+			 "gender" : "M"
 		},
 		"29": {
 			"district": "29",
@@ -318,7 +345,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d29koslowitz.jpg",
 			"twitter": "CMKoslowitz",
-			"facebook": "119000000000"
+			"facebook": "119000000000",
+			 "gender" : "F"
 		},
 		"30": {
 			"district": "30",
@@ -329,7 +357,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/crowley_headshot_new.jpg",
 			"twitter": "ElizCrowleyNYC",
-			"facebook": "elizcrowleynyc"
+			"facebook": "elizcrowleynyc",
+			 "gender" : "F"
 		},
 		"31": {
 			"district": "31",
@@ -340,7 +369,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/cmrichardsheadshot.JPG",
 			"twitter": "DRichards13",
-			"facebook": "DonovanRichards2013"
+			"facebook": "DonovanRichards2013",
+			 "gender" : "M"
 		},
 		"32": {
 			"district": "32",
@@ -351,7 +381,8 @@
 			"party": "R",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/ulrichheadshot.JPG",
 			"twitter": "eric_ulrich",
-			"facebook": "ericulrich32"
+			"facebook": "ericulrich32",
+			 "gender" : "M"
 		},
 		"33": {
 			"district": "33",
@@ -362,7 +393,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d33levin.jpg",
 			"twitter": "StephenLevin33",
-			"facebook": "55177376157"
+			"facebook": "55177376157",
+			 "gender" : "M"
 		},
 		"34": {
 			"district": "34",
@@ -373,7 +405,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District34_Reynoso.JPG",
 			"twitter": "Antonio4Council",
-			"facebook": "Antonio4Council"
+			"facebook": "Antonio4Council",
+			 "gender" : "M"
 		},
 		"35": {
 			"district": "35",
@@ -384,7 +417,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District35_Cumbo1.JPG",
 			"twitter": "lauriecumbo",
-			"facebook": "CMLaurieCumbo"
+			"facebook": "CMLaurieCumbo",
+			 "gender" : "F"
 		},
 		"36": {
 			"district": "36",
@@ -395,7 +429,8 @@
 			"party": "WF",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District36_Cornegy.JPG",
 			"twitter": "RobertCornegyJr",
-			"facebook": "robertcornegyjr"
+			"facebook": "robertcornegyjr",
+			 "gender" : "M"
 		},
 		"37": {
 			"district": "37",
@@ -406,7 +441,8 @@
 			"party": "D",
 			"photoURLPath": "",
 			"twitter": "RLEspinal",
-			"facebook": "RafaelLEspinaljr"
+			"facebook": "RafaelLEspinaljr",
+			 "gender" : "M"
 		},
 		"38": {
 			"district": "38",
@@ -417,7 +453,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District38_Menchaca.JPG",
 			"twitter": "cmenchaca",
-			"facebook": "Menchaca.Carlos.Jr"
+			"facebook": "Menchaca.Carlos.Jr",
+			 "gender" : "M"
 		},
 		"39": {
 			"district": "39",
@@ -428,7 +465,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d39lander.jpg",
 			"twitter": "bradlander",
-			"facebook": "BradLander"
+			"facebook": "BradLander",
+			 "gender" : "M"
 		},
 		"40": {
 			"district": "40",
@@ -439,7 +477,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d40eugene.jpg",
 			"twitter": "MathieuEugene",
-			"facebook": "1.1E+14"
+			"facebook": "1.1E+14",
+			 "gender" : "M"
 		},
 		"41": {
 			"district": "41",
@@ -450,7 +489,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d41mealy.jpg",
 			"twitter": "CMDarleneMealy",
-			"facebook": "1.08E+14"
+			"facebook": "1.08E+14",
+			 "gender" : "F"
 		},
 		"42": {
 			"district": "42",
@@ -461,7 +501,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District42_Barron.JPG",
 			"twitter": "",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "F"
 		},
 		"43": {
 			"district": "43",
@@ -472,7 +513,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d43gentile.jpg",
 			"twitter": "",
-			"facebook": "CouncilmanGentile"
+			"facebook": "CouncilmanGentile",
+			 "gender" : "M"
 		},
 		"44": {
 			"district": "44",
@@ -483,7 +525,8 @@
 			"party": "WF",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d44greenfield.jpg",
 			"twitter": "NYCGreenfield",
-			"facebook": "david.g.greenfield"
+			"facebook": "david.g.greenfield",
+			 "gender" : "M"
 		},
 		"45": {
 			"district": "45",
@@ -494,7 +537,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d45williams.jpg",
 			"twitter": "JumaaneWilliams",
-			"facebook": "70235440648"
+			"facebook": "70235440648",
+			 "gender" : "M"
 		},
 		"46": {
 			"district": "46",
@@ -505,7 +549,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District46_Maisel.JPG",
 			"twitter": "",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "M"
 		},
 		"47": {
 			"district": "47",
@@ -516,7 +561,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District47_Treyger.JPG",
 			"twitter": "MarkTreyger718",
-			"facebook": "mark.treyger"
+			"facebook": "mark.treyger",
+			 "gender" : "M"
 		},
 		"48": {
 			"district": "48",
@@ -527,7 +573,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District48_Deutsch.JPG",
 			"twitter": "ChaimDeutsch",
-			"facebook": "5.54E+14"
+			"facebook": "5.54E+14",
+			 "gender" : "M"
 		},
 		"49": {
 			"district": "49",
@@ -538,7 +585,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/d49rose.jpg",
 			"twitter": "",
-			"facebook": ""
+			"facebook": "",
+			 "gender" : "F"
 		},
 		"50": {
 			"district": "50",
@@ -549,7 +597,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/District50_Matteo.JPG",
 			"twitter": "StevenMatteo",
-			"facebook": "StevenMatteoSI"
+			"facebook": "StevenMatteoSI",
+			 "gender" : "M"
 		},
 		"51": {
 			"district": "51",
@@ -560,7 +609,8 @@
 			"party": "D",
 			"photoURLPath": "http://www.mygovnyc.org/img/photos/council/jb.jpg",
 			"twitter": "BorelliJoe",
-			"facebook": "joe.borelli"
+			"facebook": "joe.borelli",
+			 "gender" : "M"
 		}
 	}
 }

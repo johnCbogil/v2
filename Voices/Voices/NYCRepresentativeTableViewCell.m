@@ -38,11 +38,18 @@
 }
 
 - (void)setImage{
+    UIImage *placeholderImage;
+    if ([self.nycRepresentative.gender isEqualToString:@"M"]) {
+        placeholderImage = [UIImage imageNamed:@"MissingRepMale"];
+    }
+    else {
+        placeholderImage = [UIImage imageNamed:@"MissingRepFemale"];
+    }
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.nycRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+    [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Federal image success");
         self.photo.image = image;
         
@@ -141,8 +148,6 @@
                                                               action:@"phone call"
                                                                label:[NSString stringWithFormat:@"%@ %@",self.nycRepresentative.firstName,self.nycRepresentative.lastName]
                                                                value:@1] build]];
-
-        
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
