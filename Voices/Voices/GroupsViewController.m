@@ -10,7 +10,7 @@
 #import "GroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
 #import "NewsFeedManager.h"
-#import "CallToActionTableViewCell.h"
+#import "ActionTableViewCell.h"
 #import "ListOfGroupsViewController.h"
 #import "Group.h"
 #import "Action.h"
@@ -73,7 +73,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"CallToActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"CallToActionTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -297,7 +297,7 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedSegment == 0) {
-        CallToActionTableViewCell *cell = (CallToActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CallToActionTableViewCell" forIndexPath:indexPath];
+        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         Action *action = self.listOfActions[indexPath.row];
         cell.descriptionLabel.text = action.body;
         cell.titleLabel.text = action.title;

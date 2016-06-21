@@ -42,8 +42,8 @@
 		52C653301B75120900EA6FFD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* RootViewController.m */; };
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
 		52C7D4AF1CC7133000F85902 /* NewsFeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */; };
-		52C7D4B11CC71EFA00F85902 /* CallToActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */; };
-		52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */; };
+		52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */; };
+		52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */; };
 		52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B51CC7208700F85902 /* PushNotification.json */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
 		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
@@ -133,9 +133,9 @@
 		52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesConstants.m; sourceTree = "<group>"; };
 		52C7D4AD1CC7133000F85902 /* NewsFeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedManager.h; sourceTree = "<group>"; };
 		52C7D4AE1CC7133000F85902 /* NewsFeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedManager.m; sourceTree = "<group>"; };
-		52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallToActionTableViewCell.xib; sourceTree = "<group>"; };
-		52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallToActionTableViewCell.h; sourceTree = "<group>"; };
-		52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallToActionTableViewCell.m; sourceTree = "<group>"; };
+		52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionTableViewCell.xib; sourceTree = "<group>"; };
+		52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionTableViewCell.h; sourceTree = "<group>"; };
+		52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionTableViewCell.m; sourceTree = "<group>"; };
 		52C7D4B51CC7208700F85902 /* PushNotification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PushNotification.json; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
@@ -410,9 +410,9 @@
 				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
 				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */,
-				52C7D4B21CC71F5A00F85902 /* CallToActionTableViewCell.h */,
-				52C7D4B31CC71F5A00F85902 /* CallToActionTableViewCell.m */,
-				52C7D4B01CC71EFA00F85902 /* CallToActionTableViewCell.xib */,
+				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
+				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
+				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -528,7 +528,7 @@
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */,
 				52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */,
-				52C7D4B11CC71EFA00F85902 /* CallToActionTableViewCell.xib in Resources */,
+				52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
 				5224640F1BD17BCA006CFDB5 /* StateRepresentativeTableViewCell.xib in Resources */,
 				52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */,
@@ -654,7 +654,7 @@
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
 				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
-				52C7D4B41CC71F5A00F85902 /* CallToActionTableViewCell.m in Sources */,
+				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
 				5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */,

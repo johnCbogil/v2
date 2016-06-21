@@ -1,19 +1,19 @@
 //
-//  CallToActionTableViewCell.m
+//  ActionTableViewCell.m
 //  Voices
 //
 //  Created by John Bogil on 4/19/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "CallToActionTableViewCell.h"
+#import "ActionTableViewCell.h"
 
-@interface CallToActionTableViewCell()
+@interface ActionTableViewCell()
 
 
 @end
 
-@implementation CallToActionTableViewCell
+@implementation ActionTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

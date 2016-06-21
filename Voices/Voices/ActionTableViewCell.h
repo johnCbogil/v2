@@ -1,5 +1,5 @@
 //
-//  CallToActionTableViewCell.h
+//  ActionTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 4/19/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CallToActionTableViewCell : UITableViewCell
+@interface ActionTableViewCell : UITableViewCell
 
 - (void)initWithData:(NSDictionary *)data;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
