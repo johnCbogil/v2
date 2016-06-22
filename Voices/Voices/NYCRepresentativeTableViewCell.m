@@ -11,7 +11,6 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-//#import <Google/Analytics.h>
 
 
 @interface NYCRepresentativeTableViewCell ()
