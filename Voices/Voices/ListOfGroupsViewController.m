@@ -40,6 +40,8 @@
     self.groupsRef = [self.rootRef child:@"groups"];
 
     [self retrieveGroups];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
 }
 
 #pragma mark - Firebase methods
@@ -103,8 +105,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell  *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.listOfGroups[indexPath.row]valueForKey:@"name"];
+    GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
+    [cell initWithGroup:self.listOfGroups[indexPath.row]];
+    
     return cell;
 }
 
