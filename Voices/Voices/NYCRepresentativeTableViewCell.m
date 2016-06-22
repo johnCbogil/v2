@@ -34,7 +34,6 @@
     self.photo.clipsToBounds = YES;
     [self setFont];
     [self setColor];
-    [self setImage];
 }
 
 - (void)setImage{
@@ -50,11 +49,11 @@
                                               timeoutInterval:60];
     
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        NSLog(@"Federal image success");
+        NSLog(@"NYC image success");
         self.photo.image = image;
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
-        NSLog(@"Federal image failure");
+        NSLog(@"NYC image failure");
     }];
 }
 
@@ -82,6 +81,7 @@
     } else {
         self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
     }
+    [self setImage];
 }
 
 #pragma mark - User actions
