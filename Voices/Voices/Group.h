@@ -12,8 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Group : NSObject
 
-@property (readonly, nonatomic, copy) NSString *key;
-@property (readonly, nonatomic, copy) NSString *name;
+@property (strong, nonatomic) NSString *key;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *groupType;
+@property (strong, nonatomic) NSURL *groupImageURL;
+
 
 - (instancetype)initWithKey:(NSString *)key groupDictionary:(NSDictionary *)dictionary;
 

@@ -10,6 +10,7 @@
 #import "GroupTableViewCell.h"
 #import "UIColor+voicesOrange.h"
 #import "ActionTableViewCell.h"
+#import "GroupTableViewCell.h"
 #import "ListOfGroupsViewController.h"
 #import "Group.h"
 #import "Action.h"
@@ -70,7 +71,7 @@
 - (void)createTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"AdvocacyGroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"AdvocacyGroupTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -259,9 +260,9 @@
         return cell;
     }
     else {
-        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        GroupTableViewCell *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
         Group *group = self.listOfFollowedGroups[indexPath.row];
-        cell.textLabel.text = group.name;
+        [cell initWithGroup:group];
         return cell;
     }
 }

@@ -11,8 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Group()
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *key;
+
 @end
 
 @implementation Group
@@ -23,7 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
         return nil;
     }
     self.name = dictionary[@"name"];
+    self.groupType = dictionary[@"groupType"];
     self.key = key;
+    self.groupImageURL = [NSURL URLWithString:dictionary[@"imageURL"]];
+    
     
     return self;
 }
