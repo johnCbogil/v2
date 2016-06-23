@@ -93,6 +93,11 @@
             [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", group.key]];
             NSLog(@"User subscribed to %@", group.key);
         }
+        else {
+            // feedback goes here
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You already belong to this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+            [alert show];
+        }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
