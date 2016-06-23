@@ -43,7 +43,7 @@
     
     [self createTableView];
     [self toggleZeroState];
-
+    
     self.navigationItem.hidesBackButton = YES;
     
     self.segmentControl.tintColor = [UIColor voicesOrange];
@@ -61,7 +61,6 @@
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     }
-    
 }
 
 - (void)createTableView {
@@ -227,6 +226,8 @@
     
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
     [alert show];
+    
+    [self toggleZeroState];
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -293,27 +294,23 @@
 - (IBAction)segmentControlDidChange:(id)sender {
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
-
+    
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     } else {
         [self userAuth];
     }
-
+    
     [self toggleZeroState];
     [self.tableView reloadData];
 }
 
 - (void)toggleZeroState {
-    if (self.selectedSegment) {
-        if (!self.listOfFollowedGroups.count) {
-            NSLog(@"Groups Zero State");
-        }
+    if (self.selectedSegment && !self.listOfFollowedGroups.count) {
+        NSLog(@"Groups Zero State");
     }
-    else {
-        if (!self.listOfActions.count) {
-            NSLog(@"Actions Zero State");
-        }
+    else if (!self.selectedSegment && !self.listOfActions.count) {
+        NSLog(@"Actions Zero State");
     }
 }
 

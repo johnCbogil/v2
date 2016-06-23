@@ -20,6 +20,7 @@
 #import "FBShimmeringLayer.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
@@ -32,12 +33,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageTwo;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
+
 @end
 
 @implementation RepresentativesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
         [self fetchDataForIndex:self.index];
     }
