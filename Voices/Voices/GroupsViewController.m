@@ -81,10 +81,11 @@
 
 - (void)createActivityIndicator {
     self.activityIndicatorView = [[UIActivityIndicatorView alloc]
-                                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.center=self.view.center;
     [self.view addSubview:self.activityIndicatorView];
+    [self.activityIndicatorView startAnimating];
 }
 
 - (void)addObservers {
