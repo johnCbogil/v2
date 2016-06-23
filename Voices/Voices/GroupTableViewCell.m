@@ -41,9 +41,10 @@
     
     [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         self.groupImage.image = image;
-        
+        NSLog(@"Group image success");
+
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
-        NSLog(@"Federal image failure");
+        NSLog(@"Group image failure");
     }];
 }
 
