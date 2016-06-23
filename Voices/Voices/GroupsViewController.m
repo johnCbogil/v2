@@ -42,7 +42,8 @@
     self.listOfActions = @[].mutableCopy;
     
     [self createTableView];
-    
+    [self toggleZeroState];
+
     self.navigationItem.hidesBackButton = YES;
     
     self.segmentControl.tintColor = [UIColor voicesOrange];
@@ -60,12 +61,7 @@
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     }
-    //    if (self.selectedSegment == 1) {
-    //        [self fetchFollowedGroups];
-    //    }
-    //    else {
-    //       // [self fetchActions];
-    //    }
+    
 }
 
 - (void)createTableView {
@@ -297,19 +293,28 @@
 - (IBAction)segmentControlDidChange:(id)sender {
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
+
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     } else {
         [self userAuth];
     }
-    //    [self fetchFollowedGroups];
-    //    if (self.selectedSegment) {
-    //        [self fetchFollowedGroups];
-    //    }
-    //    else {
-    //        [self fetchActions];
-    //    }
+
+    [self toggleZeroState];
     [self.tableView reloadData];
+}
+
+- (void)toggleZeroState {
+    if (self.selectedSegment) {
+        if (!self.listOfFollowedGroups.count) {
+            NSLog(@"Groups Zero State");
+        }
+    }
+    else {
+        if (!self.listOfActions.count) {
+            NSLog(@"Actions Zero State");
+        }
+    }
 }
 
 @end
