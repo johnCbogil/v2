@@ -75,8 +75,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 255.0;
-
+    if (self.selectedSegment) {
+        self.tableView.estimatedRowHeight = 100.0;
+    }
+    else {
+        self.tableView.estimatedRowHeight = 255.0;
+    }
 }
 
 - (void)userAuth {
@@ -285,15 +289,6 @@
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-////    if (self.selectedSegment == 0) {
-////        return 225;
-////    }
-////    else {
-//        return 100;
-////    }
-//}
 
 #pragma mark - Segment Control
 
