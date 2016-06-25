@@ -41,7 +41,7 @@
     self.listOfFollowedGroups = [NSMutableArray array];
     self.listOfActions = @[].mutableCopy;
     
-    [self createTableView];
+    [self configureTableView];
     
     self.navigationItem.hidesBackButton = YES;
     
@@ -68,7 +68,7 @@
     //    }
 }
 
-- (void)createTableView {
+- (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];

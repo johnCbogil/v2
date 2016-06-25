@@ -45,7 +45,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
     }
-    [self createTableView];
+    [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
     self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
@@ -115,7 +115,7 @@
 
 #pragma mark - UI Methods
 
-- (void)createTableView {
+- (void)configureTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
