@@ -36,6 +36,7 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
 
+    [self configureTableView];
     [self retrieveGroups];
 }
 
