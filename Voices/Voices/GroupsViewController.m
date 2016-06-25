@@ -306,10 +306,10 @@
 }
 
 - (void)toggleZeroState {
-    if (self.selectedSegment && !self.listOfFollowedGroups.count) {
+    if (self.selectedSegment && !self.listOfFollowedGroups.count) { // THIS MUST ALSO ACCOUNT FOR ACTIVITY INDICATOR
         NSLog(@"Groups Zero State");
     }
-    else if (!self.selectedSegment && !self.listOfActions.count) {
+    else if (!self.selectedSegment && !self.listOfActions.count) { // THIS MUST ALSO ACCOUNT FOR ACTIVITY INDICATOR
         NSLog(@"Actions Zero State");
     }
 }
