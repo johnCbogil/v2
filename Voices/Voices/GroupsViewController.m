@@ -88,11 +88,11 @@
 }
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingOperationDidStartNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)toggleActivityIndicatorOn {
@@ -207,6 +207,7 @@
 }
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
+    [self toggleActivityIndicatorOn];
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //FIXME: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
@@ -229,7 +230,9 @@
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
         [self.listOfActions addObject:newAction];
         [self.tableView reloadData];
+        [self toggleActivityIndicatorOff];
     }];
+    
 }
 
 - (void)removeGroup:(Group *)group {
