@@ -87,11 +87,15 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self.activityIndicatorView startAnimating];
+    });
 }
 
 - (void)toggleActivityIndicatorOff {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self.activityIndicatorView stopAnimating];
+    });
 }
 
 - (void)userAuth {
@@ -142,6 +146,7 @@
 }
 
 - (void)fetchFollowedGroups {
+    [self toggleActivityIndicatorOn];
     __weak GroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
     
@@ -198,7 +203,6 @@
 }
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
-    [self toggleActivityIndicatorOn];
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //FIXME: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
