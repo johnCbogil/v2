@@ -43,7 +43,6 @@
     
     [self configureTableView];
     [self createActivityIndicator];
-    [self addObservers];
     
     self.navigationItem.hidesBackButton = YES;
     
@@ -62,12 +61,6 @@
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     }
-    //    if (self.selectedSegment == 1) {
-    //        [self fetchFollowedGroups];
-    //    }
-    //    else {
-    //       // [self fetchActions];
-    //    }
 }
 
 - (void)configureTableView {
@@ -91,14 +84,6 @@
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.center=self.view.center;
     [self.view addSubview:self.activityIndicatorView];
-}
-
-- (void)addObservers {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingOperationDidStartNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)toggleActivityIndicatorOn {
@@ -328,13 +313,6 @@
     } else {
         [self userAuth];
     }
-    //    [self fetchFollowedGroups];
-    //    if (self.selectedSegment) {
-    //        [self fetchFollowedGroups];
-    //    }
-    //    else {
-    //        [self fetchActions];
-    //    }
     [self.tableView reloadData];
 }
 
