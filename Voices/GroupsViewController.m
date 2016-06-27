@@ -98,6 +98,8 @@
     });
 }
 
+#pragma mark - Firebase Methods
+
 - (void)userAuth {
     if (self.isUserAuthInProgress) {
         return;
@@ -182,6 +184,7 @@
         }];
         if (index != NSNotFound) {
             // We already have this group in our table
+            [self toggleActivityIndicatorOff];
             return;
         }
         
