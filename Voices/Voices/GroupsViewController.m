@@ -42,9 +42,8 @@
     self.listOfFollowedGroups = [NSMutableArray array];
     self.listOfActions = @[].mutableCopy;
     
-    [self createTableView];
+    [self configureTableView];
     [self createActivityIndicator];
-    [self addObservers];
     
     self.navigationItem.hidesBackButton = YES;
     
@@ -63,15 +62,10 @@
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     }
-    //    if (self.selectedSegment == 1) {
-    //        [self fetchFollowedGroups];
-    //    }
-    //    else {
-    //       // [self fetchActions];
-    //    }
+
 }
 
-- (void)createTableView {
+- (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
@@ -87,20 +81,16 @@
     [self.view addSubview:self.activityIndicatorView];
 }
 
-- (void)addObservers {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingOperationDidStartNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingOperationDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
-}
-
 - (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self.activityIndicatorView startAnimating];
+    });
 }
 
 - (void)toggleActivityIndicatorOff {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self.activityIndicatorView stopAnimating];
+    });
 }
 
 - (void)userAuth {
@@ -151,6 +141,7 @@
 }
 
 - (void)fetchFollowedGroups {
+    [self toggleActivityIndicatorOn];
     __weak GroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
     
@@ -207,7 +198,6 @@
 }
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
-    [self toggleActivityIndicatorOn];
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //FIXME: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
@@ -232,7 +222,6 @@
         [self.tableView reloadData];
         [self toggleActivityIndicatorOff];
     }];
-    
 }
 
 - (void)removeGroup:(Group *)group {
@@ -332,13 +321,7 @@
     } else {
         [self userAuth];
     }
-    //    [self fetchFollowedGroups];
-    //    if (self.selectedSegment) {
-    //        [self fetchFollowedGroups];
-    //    }
-    //    else {
-    //        [self fetchActions];
-    //    }
+
     [self.tableView reloadData];
 }
 
