@@ -48,7 +48,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
     }
-    [self createTableView];
+    [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
     self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
@@ -110,15 +110,15 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(endRefreshing) name:@"endRefreshing" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff:) name:AFNetworkingOperationDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff:) name:AFNetworkingTaskDidSuspendNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff:) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 #pragma mark - UI Methods
 
-- (void)createTableView {
+- (void)configureTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
@@ -169,11 +169,9 @@
 - (void)toggleShimmerOn {
     self.shimmeringView.shimmering = YES;
     self.shimmeringViewTwo.shimmering = YES;
-    
-    
 }
 
-- (void)toggleShimmerOff:(NSNotification *)notification {
+- (void)toggleShimmerOff {
     self.shimmeringView.shimmering = NO;
     self.shimmeringViewTwo.shimmering = NO;
 }

@@ -31,16 +31,20 @@
     
     self.title = @"Select A Group To Follow";
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
 
+    [self configureTableView];
     [self retrieveGroups];
-    
+}
+
+- (void)configureTableView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
 }
 

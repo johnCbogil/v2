@@ -30,7 +30,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
-
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation GroupsViewController
@@ -41,8 +41,8 @@
     self.listOfFollowedGroups = [NSMutableArray array];
     self.listOfActions = @[].mutableCopy;
     
-    [self createTableView];
-    [self toggleZeroState];
+    [self configureTableView];
+    [self createActivityIndicator];
     
     self.navigationItem.hidesBackButton = YES;
     
@@ -63,12 +63,35 @@
     }
 }
 
-- (void)createTableView {
+- (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    if (self.selectedSegment) {
+        self.tableView.estimatedRowHeight = 100.0;
+    }
+    else {
+        self.tableView.estimatedRowHeight = 255.0;
+    }
+}
+
+- (void)createActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center=self.view.center;
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)toggleActivityIndicatorOn {
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void)toggleActivityIndicatorOff {
+    [self.activityIndicatorView stopAnimating];
 }
 
 - (void)userAuth {
@@ -175,6 +198,7 @@
 }
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
+    [self toggleActivityIndicatorOn];
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //FIXME: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
@@ -197,6 +221,7 @@
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
         [self.listOfActions addObject:newAction];
         [self.tableView reloadData];
+        [self toggleActivityIndicatorOff];
     }];
 }
 
@@ -280,21 +305,11 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.selectedSegment == 0) {
-        return 225;
-    }
-    else {
-        return 100;
-    }
-}
-
 #pragma mark - Segment Control
 
 - (IBAction)segmentControlDidChange:(id)sender {
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
-    
     if (self.currentUserID) {
         [self fetchFollowedGroups];
     } else {
