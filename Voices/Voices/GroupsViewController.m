@@ -30,7 +30,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
-
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation GroupsViewController
@@ -42,6 +42,8 @@
     self.listOfActions = @[].mutableCopy;
     
     [self configureTableView];
+    [self createActivityIndicator];
+    [self addObservers];
     
     self.navigationItem.hidesBackButton = YES;
     
@@ -81,6 +83,30 @@
     else {
         self.tableView.estimatedRowHeight = 255.0;
     }
+}
+
+- (void)createActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center=self.view.center;
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)addObservers {
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingOperationDidStartNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingOperationDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:AFNetworkingTaskDidResumeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+}
+
+- (void)toggleActivityIndicatorOn {
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void)toggleActivityIndicatorOff {
+    [self.activityIndicatorView stopAnimating];
 }
 
 - (void)userAuth {
@@ -187,6 +213,7 @@
 }
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
+    [self toggleActivityIndicatorOn];
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //FIXME: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
@@ -209,6 +236,7 @@
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
         [self.listOfActions addObject:newAction];
         [self.tableView reloadData];
+        [self toggleActivityIndicatorOff];
     }];
 }
 
