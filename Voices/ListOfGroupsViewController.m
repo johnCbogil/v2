@@ -21,6 +21,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -31,12 +32,12 @@
     
     self.title = @"Select A Group To Follow";
     
-    
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
 
     [self configureTableView];
+    [self createActivityIndicator];
     [self retrieveGroups];
 }
 
@@ -48,9 +49,30 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
 }
 
+- (void)createActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center=self.view.center;
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView startAnimating];
+    });
+}
+
+- (void)toggleActivityIndicatorOff {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView stopAnimating];
+    });
+}
+
 #pragma mark - Firebase methods
 
 - (void)retrieveGroups {
+    [self toggleActivityIndicatorOn];
     __weak ListOfGroupsViewController *weakSelf = self;
     [self.groupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *groups = snapshot.value;
@@ -61,6 +83,7 @@
         }];
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groupsArray];
         [weakSelf.tableView reloadData];
+        [self toggleActivityIndicatorOff];
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
