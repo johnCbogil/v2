@@ -15,6 +15,8 @@
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
+#import "GroupsViewController.h"
+#import "TabBarViewController.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -91,6 +93,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     // Pring full message.
     NSLog(@"%@", userInfo);
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+    self.window.rootViewController = tabVC;
+    tabVC.selectedIndex = 1;
+    [self.window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -116,14 +124,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
- 
-    
-}
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+// 
+//    
+//}
 
 - (void)setInitialViewController {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
