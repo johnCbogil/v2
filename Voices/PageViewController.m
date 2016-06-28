@@ -23,9 +23,9 @@
     self.delegate = self;
     
     RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
-    initialViewController.title = @"Congress";
+    initialViewController.title = @"Federal";
     RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
-    secondViewController.title = @"State Legislators";
+    secondViewController.title = @"State";
     RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
     thirdViewController.title = @"Local";
     

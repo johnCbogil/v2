@@ -128,10 +128,10 @@
         [self.view layoutIfNeeded];
     }];
     
-    if ([currentPageString isEqualToString:@"Congress"]) {
+    if ([currentPageString isEqualToString:@"Federal"]) {
         self.pageControl.currentPage = 0;
     }
-    else if ([currentPageString isEqualToString:@"State Legislators"]) {
+    else if ([currentPageString isEqualToString:@"State"]) {
         self.pageControl.currentPage = 1;
     }
     else {
