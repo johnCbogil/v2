@@ -160,16 +160,19 @@
     NSMutableArray *groupsArray = [NSMutableArray array];
     
     // For each group that the user belongs to
-    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         // This is happening once per group
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
+            [weakSelf toggleActivityIndicatorOff];
             return;
         }
         // Retrieve this group's key
-        NSString *groupKey = snapshot.key;
-        
-        // Go to the groups table
-        [weakSelf fetchGroupWithKey:groupKey groupsArray:groupsArray];
+        NSDictionary *groupsKeys = snapshot.value;
+        NSArray *keys = groupsKeys.allKeys;
+        for (NSString *key in keys) {
+            // Go to the groups table
+            [weakSelf fetchGroupWithKey:key groupsArray:groupsArray];
+        }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
@@ -178,6 +181,7 @@
 - (void)fetchGroupWithKey:(NSString *)groupKey groupsArray:(NSMutableArray *)groupsArray {
     [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
+            [self toggleActivityIndicatorOff];
             return;
         }
         // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
