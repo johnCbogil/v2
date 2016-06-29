@@ -270,7 +270,6 @@
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
     [alert show];
     
-    [self toggleZeroState];
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -334,20 +333,12 @@
         [self userAuth];
     }
     
-    [self toggleZeroState];
     [self.tableView reloadData];
 }
 
 - (void)toggleZeroState {
-    if (self.selectedSegment && !self.listOfFollowedGroups.count && self.activityIndicatorView.hidden) { // THIS MUST ALSO ACCOUNT FOR ACTIVITY INDICATOR
-        NSLog(@"Groups Zero State");
-        if (self.emptyStateLabel.hidden) {
-            self.emptyStateLabel.hidden
-        }
-    }
-    else if (!self.selectedSegment && !self.listOfActions.count && self.activityIndicatorView.hidden) { // THIS MUST ALSO ACCOUNT FOR ACTIVITY INDICATOR
-        NSLog(@"Actions Zero State");
-    }
+
+    
 }
 
 @end
