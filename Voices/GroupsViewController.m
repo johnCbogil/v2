@@ -31,6 +31,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) UILabel *emptyStateLabel;
 @end
 
 @implementation GroupsViewController
@@ -76,6 +77,10 @@
     else {
         self.tableView.estimatedRowHeight = 255.0;
     }
+    self.emptyStateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.emptyStateLabel.text = @"emptystatefam";
+    self.tableView.backgroundView = self.emptyStateLabel;
+    self.emptyStateLabel.hidden = YES;
 }
 
 - (void)createActivityIndicator {
@@ -86,6 +91,8 @@
     [self.view addSubview:self.activityIndicatorView];
 }
 
+
+// THESE METHODS MAY BE REDUNDANT
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
     [self.activityIndicatorView startAnimating];
@@ -93,9 +100,17 @@
 }
 
 - (void)toggleActivityIndicatorOff {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-    [self.activityIndicatorView stopAnimating];
+        
+        if (!self.listOfActions.count) {
+            self.emptyStateLabel.hidden = NO;
+        }
+        else {
+            self.emptyStateLabel.hidden = YES;
+        }
     });
+    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Firebase Methods
@@ -262,6 +277,7 @@
     
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
     [alert show];
+    
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -324,6 +340,7 @@
     } else {
         [self userAuth];
     }
+    
     [self.tableView reloadData];
 }
 
