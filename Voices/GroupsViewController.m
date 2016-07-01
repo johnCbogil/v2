@@ -80,7 +80,7 @@
     self.emptyStateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
     self.emptyStateLabel.text = @"emptystatefam";
     self.tableView.backgroundView = self.emptyStateLabel;
-//    self.emptyStateLabel.hidden = YES;
+    self.emptyStateLabel.hidden = YES;
 }
 
 - (void)createActivityIndicator {
@@ -100,8 +100,17 @@
 }
 
 - (void)toggleActivityIndicatorOff {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-    [self.activityIndicatorView stopAnimating];
+        
+        if (!self.listOfActions.count) {
+            self.emptyStateLabel.hidden = NO;
+            [self.activityIndicatorView stopAnimating]; // I dont like how this is duplicated but otherwise it still displays label quickly before actions load
+        }
+        else {
+            self.emptyStateLabel.hidden = YES;
+            [self.activityIndicatorView stopAnimating];
+        }
     });
 }
 
@@ -334,11 +343,6 @@
     }
     
     [self.tableView reloadData];
-}
-
-- (void)toggleZeroState {
-
-    
 }
 
 @end
