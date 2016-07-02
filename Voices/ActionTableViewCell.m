@@ -13,9 +13,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
-@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIButton *learnMoreButton;
+
 
 @end
 
@@ -28,8 +29,8 @@
 
 - (void)initWithAction:(Action *)action {
     self.groupNameLabel.text = action.groupName;
-    self.descriptionTextView.text = action.body;
-    self.titleLabel.text = action.title;
+    self.actionTitleTextView.text = action.title;
+    self.actionSubjectLabel.text = @"Subject";
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:action.groupImageURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
@@ -48,7 +49,8 @@
     [super setSelected:selected animated:animated];
 }
 
-- (IBAction)moreButtonDidPress:(id)sender {
+- (IBAction)learnMoreButtonDidPress:(id)sender {
 }
+
 
 @end
