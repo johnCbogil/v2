@@ -11,6 +11,11 @@
 
 @interface ActionTableViewCell()
 
+@property (weak, nonatomic) IBOutlet UIImageView *groupImage;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *moreButton;
 
 @end
 
@@ -41,6 +46,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
+
+- (IBAction)moreButtonDidPress:(id)sender {
 }
 
 @end
