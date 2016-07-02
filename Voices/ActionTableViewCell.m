@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (weak, nonatomic) IBOutlet UIButton *learnMoreButton;
 
-
 @end
 
 @implementation ActionTableViewCell
