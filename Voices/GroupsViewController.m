@@ -12,6 +12,7 @@
 #import "ActionTableViewCell.h"
 #import "GroupTableViewCell.h"
 #import "ListOfGroupsViewController.h"
+#import "ActionDetailViewController.h"
 #import "Group.h"
 #import "Action.h"
 
@@ -327,6 +328,15 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self removeGroup:self.listOfFollowedGroups[indexPath.row]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!self.segmentControl.selectedSegmentIndex) {
+        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        ActionDetailViewController *viewControllerB = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        [self.navigationController pushViewController:viewControllerB animated:YES];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
