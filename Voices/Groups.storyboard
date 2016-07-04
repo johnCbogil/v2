@@ -167,7 +167,10 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8H-Lq-KAX">
                                 <rect key="frame" x="20" y="165" width="560" height="30"/>
-                                <state key="normal" title="TAKE ACTION"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="TAKE ACTION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="takeActionButtonDidPress:" destination="fHj-Lv-qI7" eventType="touchUpInside" id="1Gn-0x-KsU"/>
                                 </connections>
