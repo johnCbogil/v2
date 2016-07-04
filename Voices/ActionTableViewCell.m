@@ -29,9 +29,13 @@
 - (void)initWithAction:(Action *)action {
     self.groupNameLabel.text = action.groupName;
     self.actionTitleTextView.text = action.title;
-    self.actionSubjectLabel.text = @"Subject";
+    self.actionSubjectLabel.text = action.subject;
+    [self setGroupImageFromURL:action.groupImageURL];
+}
+
+- (void)setGroupImageFromURL:(NSURL *)url {
     
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:action.groupImageURL
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
@@ -43,7 +47,6 @@
         NSLog(@"Action image failure");
     }];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
