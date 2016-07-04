@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Action.h"
 
 @interface ActionDetailViewController : UIViewController
+
+@property (strong, nonatomic) Action *action;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ActionDetailViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ActionDetailViewController ()
 
@@ -19,13 +20,32 @@
 @property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
 
 
+
 @end
 
 @implementation ActionDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.groupNameLabel.text = self.action.groupName;
+    self.actionDateLabel.text = self.action.timestamp;
+    self.actionSubjectLabel.text = self.action.subject;
+    self.actionTitleLabel.text = self.action.title;
+    self.actionBodyTextView.text = self.action.body;
+    
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
+                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                              timeoutInterval:60];
+
+    [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: @"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+        NSLog(@"Action image success");
+        self.groupImage.image = image;
+        
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
+        NSLog(@"Action image failure");
+    }];
+
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {

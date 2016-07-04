@@ -335,8 +335,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.segmentControl.selectedSegmentIndex) {
         UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-        ActionDetailViewController *viewControllerB = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        [self.navigationController pushViewController:viewControllerB animated:YES];
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        actionDetailViewController.action = self.listOfActions[indexPath.row];
+        [self.navigationController pushViewController:actionDetailViewController animated:YES];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
