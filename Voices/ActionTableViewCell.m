@@ -8,6 +8,8 @@
 
 #import "ActionTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIFont+voicesFont.h"
+#import "UIColor+voicesOrange.h"
 
 @interface ActionTableViewCell()
 
@@ -31,6 +33,8 @@
     self.actionTitleTextView.text = action.title;
     self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:action.groupImageURL];
+    
+    self.learnMoreButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {

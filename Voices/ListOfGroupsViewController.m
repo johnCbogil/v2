@@ -10,6 +10,9 @@
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 #import "Group.h"
+#import "UIFont+voicesFont.h"
+#import "UIColor+voicesOrange.h"
+
 @import Firebase;
 @import FirebaseMessaging;
 
@@ -41,7 +44,7 @@
     [self retrieveGroups];
     
     self.navigationController.navigationBar.topItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
 - (void)configureTableView {

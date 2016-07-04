@@ -8,6 +8,8 @@
 
 #import "ActionDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIFont+voicesFont.h"
+#import "UIColor+voicesOrange.h"
 
 @interface ActionDetailViewController ()
 
@@ -35,7 +37,7 @@
     self.actionBodyTextView.text = self.action.body;
     
     self.navigationController.navigationBar.topItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad

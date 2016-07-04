@@ -8,6 +8,7 @@
 
 #import "GroupsViewController.h"
 #import "GroupTableViewCell.h"
+#import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "ActionTableViewCell.h"
 #import "GroupTableViewCell.h"
@@ -48,7 +49,8 @@
     [self createActivityIndicator];
     
     self.navigationItem.hidesBackButton = YES;
-    
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+
     self.segmentControl.tintColor = [UIColor voicesOrange];
     
     self.rootRef = [[FIRDatabase database] reference];
