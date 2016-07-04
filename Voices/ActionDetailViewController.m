@@ -38,6 +38,7 @@
     
     self.navigationController.navigationBar.topItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+    self.title = @"TAKE ACTION";
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
