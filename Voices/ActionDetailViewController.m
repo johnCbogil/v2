@@ -45,7 +45,6 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Action image failure");
     }];
-
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
