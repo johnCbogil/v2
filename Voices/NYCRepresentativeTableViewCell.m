@@ -11,7 +11,7 @@
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
-
+#import "VoicesConstants.h"
 
 @interface NYCRepresentativeTableViewCell ()
 
@@ -29,7 +29,7 @@
 
 - (void)awakeFromNib {
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
-    self.photo.layer.cornerRadius = 5;
+    self.photo.layer.cornerRadius = kButtonCornerRadius;
     self.photo.clipsToBounds = YES;
     [self setFont];
     [self setColor];

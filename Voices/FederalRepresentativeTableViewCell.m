@@ -12,8 +12,7 @@
 #import "UIColor+voicesOrange.h"
 #import "UIImageView+AFNetworking.h"
 #import <MessageUI/MFMailComposeViewController.h>
-//#import <Google/Analytics.h>
-
+#import "VoicesConstants.h"
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -70,6 +69,8 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
     }];
+    
+    self.photo.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

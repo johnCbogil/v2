@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
+#import "VoicesConstants.h"
 
 @interface ActionDetailViewController ()
 
@@ -41,6 +42,11 @@
     self.title = @"TAKE ACTION";
     
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
+    self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
+    
+    self.groupImage.contentMode = UIViewContentModeScaleToFill;
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImage.clipsToBounds = YES;
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad

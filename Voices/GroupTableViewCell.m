@@ -9,6 +9,7 @@
 #import "GroupTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
+#import "VoicesConstants.h"
 
 @interface GroupTableViewCell()
 
@@ -23,7 +24,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.groupImage.contentMode = UIViewContentModeScaleToFill;
-    self.groupImage.layer.cornerRadius = 5;
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
     self.groupImage.clipsToBounds = YES;
     [self setFont];
 }
@@ -46,6 +47,8 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Group image failure");
     }];
+    
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)setFont {

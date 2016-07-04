@@ -9,6 +9,7 @@
 #import "InfoViewController.h"
 #import "UIColor+voicesOrange.h"
 #import <STPopup/STPopup.h>
+#import "VoicesConstants.h"
 
 @interface InfoViewController ()
 
@@ -31,7 +32,7 @@
 
     self.title = @"Here's what to say";
     self.contentSizeInPopup = CGSizeMake(300, 315);
-    self.closeWindowButton.layer.cornerRadius = 5;
+    self.closeWindowButton.layer.cornerRadius = kButtonCornerRadius;
     self.closeWindowButton.backgroundColor = [UIColor voicesOrange];
 }
 

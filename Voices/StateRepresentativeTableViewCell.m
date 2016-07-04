@@ -12,8 +12,7 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-//#import <Google/Analytics.h>
-
+#import "VoicesConstants.h"
 
 @interface StateRepresentativeTableViewCell ()
 
@@ -32,11 +31,12 @@
 
 - (void)awakeFromNib {
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
-    self.photo.layer.cornerRadius = 5;
+    self.photo.layer.cornerRadius = kButtonCornerRadius;
     self.photo.clipsToBounds = YES;
     [self setFont];
     [self setColor];
     self.listOfStatesWithAssembly = [NSArray arrayWithObjects:@"CA", @"NV", @"NJ", @"NY", @"WI", nil];
+    
 }
 
 - (void)initWithRep:(id)rep {

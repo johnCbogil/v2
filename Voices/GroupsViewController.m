@@ -340,8 +340,8 @@
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = self.listOfActions[indexPath.row];
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Segment Control

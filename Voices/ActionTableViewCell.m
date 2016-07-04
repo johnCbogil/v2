@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
+#import "VoicesConstants.h"
 
 @interface ActionTableViewCell()
 
@@ -25,7 +26,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    self.groupImage.contentMode = UIViewContentModeScaleToFill;
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImage.clipsToBounds = YES;
 }
 
 - (void)initWithAction:(Action *)action {
@@ -50,6 +54,8 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Action image failure");
     }];
+    
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
