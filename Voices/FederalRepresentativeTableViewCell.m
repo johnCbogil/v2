@@ -69,8 +69,6 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
     }];
-    
-    self.photo.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -78,13 +76,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
-        
-//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-//                                                              action:@"button_press"
-//                                                               label:self.federalRepresentative.fullName
-//                                                               value:@1] build]];
-        
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl]) {

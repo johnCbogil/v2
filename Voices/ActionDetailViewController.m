@@ -44,14 +44,19 @@
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
     
+    [self setGroupImageFromURL:self.action.groupImageURL];
+}
+
+- (void)setGroupImageFromURL:(NSURL *)url {
+    
     self.groupImage.contentMode = UIViewContentModeScaleToFill;
     self.groupImage.layer.cornerRadius = kButtonCornerRadius;
     self.groupImage.clipsToBounds = YES;
     
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
-
+    
     [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: @"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
         self.groupImage.image = image;

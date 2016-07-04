@@ -23,19 +23,21 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.groupImage.contentMode = UIViewContentModeScaleToFill;
-    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
-    self.groupImage.clipsToBounds = YES;
     [self setFont];
 }
 
 - (void)initWithGroup:(Group *)group {
     self.groupName.text = group.name;
     self.groupType.text = group.groupType;
-    [self setImageFromPhotoURL:group.groupImageURL];
+    [self setGroupImageFromURL:group.groupImageURL];
 }
 
-- (void)setImageFromPhotoURL:(NSURL *)photoURL{
+- (void)setGroupImageFromURL:(NSURL *)photoURL { 
+    
+    self.groupImage.contentMode = UIViewContentModeScaleToFill;
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImage.clipsToBounds = YES;
+
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];

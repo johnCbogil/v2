@@ -27,9 +27,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.groupImage.contentMode = UIViewContentModeScaleToFill;
-    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
-    self.groupImage.clipsToBounds = YES;
 }
 
 - (void)initWithAction:(Action *)action {
@@ -42,6 +39,11 @@
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
+    
+    self.groupImage.contentMode = UIViewContentModeScaleToFill;
+    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImage.clipsToBounds = YES;
+
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
