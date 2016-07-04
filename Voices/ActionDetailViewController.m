@@ -29,10 +29,13 @@
     [super viewDidLoad];
 
     self.groupNameLabel.text = self.action.groupName;
-    self.actionDateLabel.text = self.action.timestamp;
+    self.actionDateLabel.text = @"4/7/16";
     self.actionSubjectLabel.text = self.action.subject;
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
+    
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad

@@ -39,6 +39,9 @@
     [self configureTableView];
     [self createActivityIndicator];
     [self retrieveGroups];
+    
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
 }
 
 - (void)configureTableView {
