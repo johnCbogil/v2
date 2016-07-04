@@ -40,6 +40,8 @@
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
     
+    [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
+    
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.action.groupImageURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
@@ -54,16 +56,7 @@
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
+    self.tabBarController.selectedIndex = 0;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
