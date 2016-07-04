@@ -10,6 +10,15 @@
 
 @interface ActionDetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *groupImage;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actionDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
+@property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
+
+
 @end
 
 @implementation ActionDetailViewController
@@ -19,9 +28,7 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)takeActionButtonDidPress:(id)sender {
 }
 
 /*

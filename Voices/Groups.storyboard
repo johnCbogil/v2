@@ -167,6 +167,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8H-Lq-KAX">
                                 <rect key="frame" x="20" y="165" width="560" height="30"/>
                                 <state key="normal" title="TAKE ACTION"/>
+                                <connections>
+                                    <action selector="takeActionButtonDidPress:" destination="fHj-Lv-qI7" eventType="touchUpInside" id="1Gn-0x-KsU"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vEa-wq-RJR">
                                 <rect key="frame" x="20" y="203" width="560" height="397"/>
@@ -199,6 +202,15 @@
                             <constraint firstItem="jaR-NY-mSg" firstAttribute="top" secondItem="yLj-wz-TAC" secondAttribute="bottom" constant="8" symbolic="YES" id="tzT-qG-hHl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="actionBodyTextView" destination="vEa-wq-RJR" id="c7B-pq-oDh"/>
+                        <outlet property="actionDateLabel" destination="nGe-IA-rnK" id="TnS-x0-nh2"/>
+                        <outlet property="actionSubjectLabel" destination="JjK-gs-3Xb" id="zRN-Ba-PYs"/>
+                        <outlet property="actionTitleLabel" destination="feY-TM-O5W" id="fLh-HY-kqo"/>
+                        <outlet property="groupImage" destination="jaR-NY-mSg" id="avL-T9-KcA"/>
+                        <outlet property="groupNameLabel" destination="OFt-fB-va1" id="J3o-SK-Mb3"/>
+                        <outlet property="takeActionButton" destination="o8H-Lq-KAX" id="vzz-fx-iCn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X3N-pf-WML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

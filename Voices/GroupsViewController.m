@@ -33,6 +33,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UILabel *emptyStateLabel;
+
 @end
 
 @implementation GroupsViewController
@@ -350,7 +351,6 @@
     } else {
         [self userAuth];
     }
-    
     [self.tableView reloadData];
 }
 
