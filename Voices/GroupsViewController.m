@@ -14,6 +14,7 @@
 #import "GroupTableViewCell.h"
 #import "ListOfGroupsViewController.h"
 #import "ActionDetailViewController.h"
+#import "GroupDetailViewController.h"
 #import "Group.h"
 #import "Action.h"
 
@@ -335,11 +336,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     if (!self.segmentControl.selectedSegmentIndex) {
-        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = self.listOfActions[indexPath.row];
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
+    }
+    else {
+        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+        [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
