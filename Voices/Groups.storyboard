@@ -266,6 +266,9 @@
                                 <state key="normal" title="Follow This Group">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="followGroupButtonDidPress:" destination="QJt-d5-XBj" eventType="touchUpInside" id="zjZ-AO-IiS"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-4C-Ixt">
                                 <rect key="frame" x="20" y="238" width="560" height="362"/>
@@ -300,6 +303,15 @@
                             <constraint firstItem="dKt-bz-IHE" firstAttribute="leading" secondItem="kcM-Ua-X58" secondAttribute="trailing" constant="8" symbolic="YES" id="wXx-GJ-HmE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="followGroupButton" destination="9tY-He-2Ce" id="toA-vg-PNw"/>
+                        <outlet property="groupDescriptionLabel" destination="FgL-lK-ok5" id="LCS-XJ-Cte"/>
+                        <outlet property="groupImageView" destination="kcM-Ua-X58" id="Ien-M6-iHW"/>
+                        <outlet property="groupNameLabel" destination="dKt-bz-IHE" id="wss-a2-MM6"/>
+                        <outlet property="groupTypeLabel" destination="cC3-K4-gJR" id="JEM-7g-B1R"/>
+                        <outlet property="policyPositionsLabel" destination="UZT-Lz-2XV" id="FGC-Ra-faj"/>
+                        <outlet property="tableView" destination="qEi-4C-Ixt" id="mnY-cP-LHr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5I-QN-OqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

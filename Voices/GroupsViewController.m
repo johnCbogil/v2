@@ -282,7 +282,6 @@
     
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
     [alert show];
-    
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -344,6 +343,7 @@
     }
     else {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+        groupDetailViewController.group = self.listOfFollowedGroups[indexPath.row];
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
