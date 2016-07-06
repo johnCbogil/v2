@@ -7,6 +7,10 @@
 //
 
 #import "GroupDetailViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIFont+voicesFont.h"
+#import "UIColor+voicesOrange.h"
+#import "VoicesConstants.h"
 
 @import Firebase;
 
@@ -24,6 +28,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 
+@property (strong, nonatomic) NSArray *tempArray;
 
 @end
 
@@ -37,7 +42,37 @@
     self.groupsRef = [self.rootRef child:@"groups"];
     
     [self configureTableView];
+    
+    self.title = self.group.name;
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 
+    self.groupNameLabel.text = self.group.name;
+    self.groupTypeLabel.text = self.group.groupType;
+//    self.groupDescriptionLabel.text = self.group.description;
+    [self setGroupImageFromURL:self.group.groupImageURL];
+
+    self.tempArray = @[@"Campaign Finance", @"Civil Liberties", @"Women's Healthcare", @"Affordable Housing", @"Gun Safety"];
+    
+}
+
+- (void)setGroupImageFromURL:(NSURL *)url {
+    
+    self.groupImageView.contentMode = UIViewContentModeScaleToFill;
+    self.groupImageView.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImageView.clipsToBounds = YES;
+    
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
+                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                              timeoutInterval:60];
+    
+    [self.groupImageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: @"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+        NSLog(@"Action image success");
+        self.groupImageView.image = image;
+        
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
+        NSLog(@"Action image failure");
+    }];
 }
 
 - (void)configureTableView {
@@ -47,6 +82,8 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
 }
+
+#pragma mark - Firebase methods
 
 - (IBAction)followGroupButtonDidPress:(id)sender {
     
@@ -94,14 +131,15 @@
     }];
 }
 
+#pragma mark - UITableView methods
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.tempArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
-
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = self.tempArray[indexPath.row];
     return cell;
 }
 

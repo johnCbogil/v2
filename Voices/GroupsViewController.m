@@ -344,6 +344,7 @@
     else {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
         groupDetailViewController.group = self.listOfFollowedGroups[indexPath.row];
+        groupDetailViewController.currentUserID = self.currentUserID;
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
