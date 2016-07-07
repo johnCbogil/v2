@@ -47,11 +47,19 @@
 }
 
 - (void)setImage{
+    UIImage *placeholderImage;
+    if ( drand48() < 0.5 ){
+        placeholderImage  = [UIImage imageNamed:@"MissingRepMale"];
+    } else {
+        placeholderImage  = [UIImage imageNamed:@"MissingRepFemale"];
+    }
+    
+    
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.stateRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    [self.photo setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"MissingRepMale"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+    [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         self.photo.image = image;
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
@@ -80,7 +88,7 @@
             self.districtNumberLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.stateRepresentative.nextElection];
         } else {
             self.districtNumberLabel.text = @"";
-       }
+        }
     }
     else {
         self.districtNumberLabel.text = [NSString stringWithFormat:@"Senate District %@", self.stateRepresentative.districtNumber];
@@ -128,11 +136,11 @@
     }
     else if (buttonIndex == 1) {
         
-//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-//                                                              action:@"phone call"
-//                                                               label:self.stateRepresentative.fullName
-//                                                               value:@1] build]];
+        //        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        //        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+        //                                                              action:@"phone call"
+        //                                                               label:self.stateRepresentative.fullName
+        //                                                               value:@1] build]];
         
         
         NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];
