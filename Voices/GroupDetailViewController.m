@@ -7,6 +7,7 @@
 //
 
 #import "GroupDetailViewController.h"
+#import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
@@ -53,7 +54,6 @@
     [self setGroupImageFromURL:self.group.groupImageURL];
 
     self.tempArray = @[@"Campaign Finance", @"Civil Liberties", @"Women's Healthcare", @"Affordable Housing", @"Gun Safety"];
-    
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -141,6 +141,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = self.tempArray[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
+//    actionDetailViewController.action = self.listOfActions[indexPath.row];
+    [self.navigationController pushViewController:policyDetailViewController animated:YES];
+
 }
 
 @end
