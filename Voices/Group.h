@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *key;
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *groupDescription;
 @property (strong, nonatomic) NSString *groupType;
 @property (strong, nonatomic) NSURL *groupImageURL;
 

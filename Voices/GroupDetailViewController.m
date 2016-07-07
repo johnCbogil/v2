@@ -49,7 +49,7 @@
 
     self.groupNameLabel.text = self.group.name;
     self.groupTypeLabel.text = self.group.groupType;
-//    self.groupDescriptionLabel.text = self.group.description;
+    self.groupDescriptionLabel.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
 
     self.tempArray = @[@"Campaign Finance", @"Civil Liberties", @"Women's Healthcare", @"Affordable Housing", @"Gun Safety"];

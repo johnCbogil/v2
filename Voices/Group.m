@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.groupType = dictionary[@"groupType"];
     self.key = key;
     self.groupImageURL = [NSURL URLWithString:dictionary[@"imageURL"]];
-    
+    self.groupDescription = dictionary[@"description"];
     
     return self;
 }
