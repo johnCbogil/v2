@@ -29,6 +29,10 @@
     self.learnMoreButton.tintColor = [UIColor voicesOrange];
     [self setFont];
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
+    
+    self.learnMoreButton.tintColor = [UIColor whiteColor];
+    self.learnMoreButton.backgroundColor = [UIColor voicesOrange];
+    self.learnMoreButton.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)setFont {

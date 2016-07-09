@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="1Y3-FE-fbV" userLabel="GroupName">
-                        <rect key="frame" x="76" y="8" width="276" height="20"/>
+                        <rect key="frame" x="86" y="8" width="266" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="sAA-PW-Jrc"/>
                         </constraints>
@@ -32,15 +32,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnM-pP-jmA">
-                        <rect key="frame" x="274" y="174" width="78" height="30"/>
-                        <state key="normal" title="Learn More"/>
-                        <connections>
-                            <action selector="learnMoreButtonDidPress:" destination="0NS-vx-xEm" eventType="touchUpInside" id="K43-tT-7TU"/>
-                        </connections>
-                    </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-bg-TiE" userLabel="Description">
-                        <rect key="frame" x="71" y="48" width="281" height="126"/>
+                        <rect key="frame" x="81" y="59" width="271" height="108"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="109" id="Nr3-WN-UQ9"/>
                         </constraints>
@@ -54,35 +47,46 @@
                         </variation>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Subject" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGT-Td-XTR">
-                        <rect key="frame" x="76" y="28" width="276" height="20"/>
+                        <rect key="frame" x="86" y="36" width="266" height="20"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnM-pP-jmA">
+                        <rect key="frame" x="252" y="167" width="100" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Ciz-lu-3FV"/>
+                            <constraint firstAttribute="height" constant="25" id="lLp-40-ofp"/>
+                        </constraints>
+                        <state key="normal" title="Learn More"/>
+                        <connections>
+                            <action selector="learnMoreButtonDidPress:" destination="0NS-vx-xEm" eventType="touchUpInside" id="K43-tT-7TU"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="PKl-bg-TiE" secondAttribute="leading" id="0S4-ju-PYk"/>
                     <constraint firstAttribute="bottomMargin" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="-0.5" id="1gr-LQ-PhK"/>
+                    <constraint firstItem="YnM-pP-jmA" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="4yP-AD-PfJ"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" id="7hy-yp-617"/>
-                    <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" id="HUB-X3-tIA"/>
-                    <constraint firstItem="YnM-pP-jmA" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="Hvx-MV-vxu"/>
+                    <constraint firstItem="YnM-pP-jmA" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" id="CHb-id-ZES"/>
+                    <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" constant="3" id="HUB-X3-tIA"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="8" id="IDh-Rh-XRW"/>
                     <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="8" id="ISG-VZ-GwK"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="Iyc-XP-lwa"/>
-                    <constraint firstItem="YnM-pP-jmA" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="274" id="LyH-HW-6mc"/>
                     <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="5cj-rV-NyV" secondAttribute="top" id="N3R-Xp-tr5"/>
-                    <constraint firstAttribute="trailing" secondItem="YnM-pP-jmA" secondAttribute="trailing" constant="8" id="Nno-o6-z5b"/>
-                    <constraint firstAttribute="bottom" secondItem="YnM-pP-jmA" secondAttribute="bottom" constant="0.5" id="SDV-Gh-hNV"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="bottom" secondItem="5cj-rV-NyV" secondAttribute="bottom" constant="-20" id="WUC-ee-49h"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" id="XJk-P0-5dt"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YnM-pP-jmA" secondAttribute="bottom" constant="4.5" id="Va8-BQ-oEM"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="bottom" secondItem="5cj-rV-NyV" secondAttribute="bottom" constant="-12" id="WUC-ee-49h"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" constant="8" id="XJk-P0-5dt"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="Xkv-bv-sHN"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="5cj-rV-NyV" secondAttribute="trailing" constant="8" symbolic="YES" id="eQE-3Z-WIk"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="5cj-rV-NyV" secondAttribute="trailing" constant="18" id="eQE-3Z-WIk"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="ewi-XH-OtG"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" id="hF3-Re-f5a"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="1Y3-FE-fbV" secondAttribute="leading" id="i8V-XB-FRE"/>
+                    <constraint firstItem="YnM-pP-jmA" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="-10" id="kib-XA-GcQ"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" id="q6v-bq-n57"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="1Y3-FE-fbV" secondAttribute="leading" id="qVk-WE-zNt"/>
-                    <constraint firstItem="PKl-bg-TiE" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="71" id="xm2-6X-MTj"/>
+                    <constraint firstItem="PKl-bg-TiE" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="81" id="xm2-6X-MTj"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -92,6 +96,7 @@
                         <exclude reference="q6v-bq-n57"/>
                         <exclude reference="qVk-WE-zNt"/>
                         <exclude reference="1gr-LQ-PhK"/>
+                        <exclude reference="kib-XA-GcQ"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
