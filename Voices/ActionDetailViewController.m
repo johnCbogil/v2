@@ -50,14 +50,14 @@
 }
 
 - (void)setFont {
-    self.groupNameLabel.font = [UIFont voicesFontWithSize:21];
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
     self.groupNameLabel.minimumScaleFactor = 0.75;
     [self.groupNameLabel sizeToFit];
     
-    self.actionSubjectLabel.font = [UIFont voicesFontWithSize:19];
-    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:21];
-    self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:19];
-    self.actionBodyTextView.font = [UIFont voicesFontWithSize:21];
+    self.actionSubjectLabel.font = [UIFont voicesFontWithSize:17];
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
+    self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
 - (void)setGroupImageFromURL:(NSURL *)url {
     

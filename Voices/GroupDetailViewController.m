@@ -19,12 +19,11 @@
 @interface GroupDetailViewController ()  <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
-@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *groupDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
+@property (weak, nonatomic) IBOutlet UITextView *groupDescriptionTextview;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -52,14 +51,25 @@
     self.title = self.group.name;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 
-    self.groupNameLabel.text = self.group.name;
     self.groupTypeLabel.text = self.group.groupType;
-    self.groupDescriptionLabel.text = self.group.groupDescription;
+    self.groupDescriptionTextview.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
+    
+    self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
+
 }
 
 - (void)setFont {
     
+    self.groupDescriptionTextview.font = [UIFont voicesFontWithSize:17];
+    self.groupTypeLabel.font = [UIFont voicesFontWithSize:17];
+    self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:21];
+    self.policyPositionsLabel.font = [UIFont voicesBoldFontWithSize:17];
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    [self.groupDescriptionTextview setContentOffset:CGPointZero animated:NO];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -163,6 +173,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
+    cell.textLabel.font = [UIFont voicesFontWithSize:19];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
