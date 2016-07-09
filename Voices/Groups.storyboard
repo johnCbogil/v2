@@ -141,11 +141,20 @@
                                     <constraint firstAttribute="width" constant="100" id="AQP-gw-YDi"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFt-fB-va1">
-                                <rect key="frame" x="128" y="28" width="97" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFt-fB-va1">
+                                <rect key="frame" x="128" y="28" width="452" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="fX8-NC-wLS"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="hIw-pk-dwL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hIw-pk-dwL"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjK-gs-3Xb">
                                 <rect key="frame" x="128" y="57" width="112" height="21"/>
@@ -190,11 +199,12 @@
                         <constraints>
                             <constraint firstItem="nGe-IA-rnK" firstAttribute="top" secondItem="JjK-gs-3Xb" secondAttribute="bottom" constant="8" symbolic="YES" id="25S-WX-efV"/>
                             <constraint firstItem="o8H-Lq-KAX" firstAttribute="leading" secondItem="vEa-wq-RJR" secondAttribute="leading" id="7Xg-iK-fc9"/>
+                            <constraint firstAttribute="trailing" secondItem="OFt-fB-va1" secondAttribute="trailing" constant="20" id="DcQ-v1-vcI"/>
                             <constraint firstItem="vEa-wq-RJR" firstAttribute="top" secondItem="o8H-Lq-KAX" secondAttribute="bottom" constant="8" symbolic="YES" id="I1J-Wq-BX8"/>
                             <constraint firstItem="o8H-Lq-KAX" firstAttribute="top" secondItem="feY-TM-O5W" secondAttribute="bottom" constant="8" symbolic="YES" id="KBV-Zj-uaw"/>
                             <constraint firstItem="OFt-fB-va1" firstAttribute="leading" secondItem="jaR-NY-mSg" secondAttribute="trailing" constant="8" symbolic="YES" id="KQ2-fC-QaD"/>
                             <constraint firstItem="JjK-gs-3Xb" firstAttribute="leading" secondItem="nGe-IA-rnK" secondAttribute="leading" id="O4a-za-L17"/>
-                            <constraint firstItem="feY-TM-O5W" firstAttribute="top" secondItem="nGe-IA-rnK" secondAttribute="bottom" constant="29" id="WMH-wn-5wI"/>
+                            <constraint firstItem="feY-TM-O5W" firstAttribute="top" relation="lessThanOrEqual" secondItem="nGe-IA-rnK" secondAttribute="bottom" constant="29" id="WMH-wn-5wI"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="trailing" secondItem="o8H-Lq-KAX" secondAttribute="trailing" id="ZjD-2M-1WW"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="top" secondItem="jaR-NY-mSg" secondAttribute="bottom" constant="8" symbolic="YES" id="aDG-dm-eEP"/>
                             <constraint firstItem="o8H-Lq-KAX" firstAttribute="trailing" secondItem="vEa-wq-RJR" secondAttribute="trailing" id="bVG-Lv-hU6"/>

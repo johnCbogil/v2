@@ -49,6 +49,10 @@
     self.learnMoreButton.titleLabel.font = [UIFont voicesBoldFontWithSize:17];
 }
 
+- (void)viewDidLayoutSubviews {
+    [self.actionTitleTextView setContentOffset:CGPointZero animated:NO];
+}
+
 - (void)initWithAction:(Action *)action {
     
     self.groupNameLabel.text = action.groupName;

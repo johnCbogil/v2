@@ -22,8 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 @property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
 
-
-
 @end
 
 @implementation ActionDetailViewController
@@ -37,6 +35,7 @@
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
     
+    
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
     
@@ -48,8 +47,20 @@
     [self setFont];
 }
 
+- (void)viewDidLayoutSubviews {
+    [self.actionBodyTextView setContentOffset:CGPointZero animated:NO];
+}
+
 - (void)setFont {
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
+    self.groupNameLabel.minimumScaleFactor = 0.75;
+    [self.groupNameLabel sizeToFit];
     
+    self.actionSubjectLabel.font = [UIFont voicesFontWithSize:17];
+    self.actionDateLabel.font = [UIFont voicesFontWithSize:17];
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:17];
+    self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
 - (void)setGroupImageFromURL:(NSURL *)url {
     

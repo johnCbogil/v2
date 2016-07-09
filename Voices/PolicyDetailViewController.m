@@ -33,6 +33,10 @@
     
 }
 
+- (void)viewDidLayoutSubviews {
+    [self.policyPositionTextView setContentOffset:CGPointZero animated:NO];
+}
+
 - (IBAction)contactRepsButtonDidPress:(id)sender {
     self.tabBarController.selectedIndex = 0;
 }
