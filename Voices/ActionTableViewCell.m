@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
-@property (weak, nonatomic) IBOutlet UIButton *learnMoreButton;
 
 @end
 

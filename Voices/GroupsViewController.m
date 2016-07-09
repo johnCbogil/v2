@@ -86,6 +86,7 @@
     self.emptyStateLabel.text = @"emptystatefam";
     self.tableView.backgroundView = self.emptyStateLabel;
     self.emptyStateLabel.hidden = YES;
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)createActivityIndicator {
@@ -285,11 +286,21 @@
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
+    
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
     viewControllerB.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
+
+- (void)learnMoreButtonDidPress:(UIButton*)sender {
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+    actionDetailViewController.action = self.listOfActions[indexPath.row];
+    [self.navigationController pushViewController:actionDetailViewController animated:YES];}
 
 #pragma mark - TableView delegate methods
 
@@ -305,9 +316,9 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedSegment == 0) {
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
+        [cell.learnMoreButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = self.listOfActions[indexPath.row];
         [cell initWithAction:action];
-        
         return cell;
     }
     else {
@@ -337,9 +348,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     if (!self.segmentControl.selectedSegmentIndex) {
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        actionDetailViewController.action = self.listOfActions[indexPath.row];
-        [self.navigationController pushViewController:actionDetailViewController animated:YES];
+
     }
     else {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
@@ -359,6 +368,12 @@
         [self fetchFollowedGroups];
     } else {
         [self userAuth];
+    }
+    if (!self.selectedSegment) {
+        self.tableView.allowsSelection = NO;
+    }
+    else {
+        self.tableView.allowsSelection = YES;
     }
     [self.tableView reloadData];
 }
