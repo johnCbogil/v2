@@ -53,7 +53,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnM-pP-jmA">
-                        <rect key="frame" x="252" y="167" width="100" height="25"/>
+                        <rect key="frame" x="233" y="167" width="100" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Ciz-lu-3FV"/>
                             <constraint firstAttribute="height" constant="25" id="lLp-40-ofp"/>
@@ -69,7 +69,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="-0.5" id="1gr-LQ-PhK"/>
                     <constraint firstItem="YnM-pP-jmA" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="4yP-AD-PfJ"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" id="7hy-yp-617"/>
-                    <constraint firstItem="YnM-pP-jmA" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" id="CHb-id-ZES"/>
+                    <constraint firstItem="YnM-pP-jmA" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="-19" id="CHb-id-ZES"/>
                     <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" constant="3" id="HUB-X3-tIA"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="8" id="IDh-Rh-XRW"/>
                     <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="8" id="ISG-VZ-GwK"/>
