@@ -21,7 +21,7 @@
 }
 
 + (UIColor *)voicesGray {
-    return [UIColor grayColor];
+    return [[UIColor blackColor]colorWithAlphaComponent:0.5];
 }
 
 @end

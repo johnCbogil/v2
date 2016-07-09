@@ -9,6 +9,7 @@
 #import "GroupTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
+#import "UIColor+voicesColor.h"
 #import "VoicesConstants.h"
 
 @interface GroupTableViewCell()
@@ -29,8 +30,10 @@
 - (void)setFont {
     self.groupName.font = [UIFont voicesFontWithSize:20];
     self.groupName.minimumScaleFactor = 0.75;
+    self.groupType.textColor = [UIColor voicesBlack];
     self.groupType.font = [UIFont voicesFontWithSize:17];
     self.groupType.minimumScaleFactor = 0.75;
+    self.groupType.textColor = [UIColor voicesGray];
 }
 
 - (void)initWithGroup:(Group *)group {

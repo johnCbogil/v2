@@ -38,6 +38,8 @@
 - (void)setFont {
     self.name.font = [UIFont voicesFontWithSize:24];
     self.nextElectionLabel.font = [UIFont voicesFontWithSize:20];
+    self.name.textColor = [UIColor voicesBlack];
+//    self.nextElectionLabel.textColor = [UIColor voicesGray];
 }
 
 - (void)initWithRep:(id)rep {
