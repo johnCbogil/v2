@@ -16,7 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *actionDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
@@ -30,7 +29,6 @@
     [super viewDidLoad];
 
     self.groupNameLabel.text = self.action.groupName;
-    self.actionDateLabel.text = @"4/7/16";
     self.actionSubjectLabel.text = self.action.subject;
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
@@ -52,15 +50,14 @@
 }
 
 - (void)setFont {
-    self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:21];
     self.groupNameLabel.minimumScaleFactor = 0.75;
     [self.groupNameLabel sizeToFit];
     
-    self.actionSubjectLabel.font = [UIFont voicesFontWithSize:17];
-    self.actionDateLabel.font = [UIFont voicesFontWithSize:17];
-    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
-    self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:17];
-    self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
+    self.actionSubjectLabel.font = [UIFont voicesFontWithSize:19];
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:21];
+    self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:19];
+    self.actionBodyTextView.font = [UIFont voicesFontWithSize:21];
 }
 - (void)setGroupImageFromURL:(NSURL *)url {
     
