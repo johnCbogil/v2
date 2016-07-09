@@ -49,7 +49,7 @@
     [self fetchPolicyPositions];
     
     self.title = self.group.name;
-    self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationController.navigationBar.topItem.title = @""; // THIS LINE IS REMOVING PREVIOUS TITLES
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 
     self.groupNameLabel.text = self.group.name;
@@ -167,6 +167,7 @@
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
     policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
+    policyDetailViewController.title = self.group.name;
     [self.navigationController pushViewController:policyDetailViewController animated:YES];
 
 }
