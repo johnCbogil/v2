@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIFont (voicesFont)
+
 + (UIFont*)voicesFontWithSize:(CGFloat)size;
++ (UIFont *)voicesBoldFontWithSize:(CGFloat)size;
+
 @end

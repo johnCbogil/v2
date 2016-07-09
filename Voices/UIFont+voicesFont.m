@@ -10,7 +10,13 @@
 #import "VoicesConstants.h"
 
 @implementation UIFont (voicesFont)
-+ (UIFont*)voicesFontWithSize:(CGFloat)size {
+
++ (UIFont *)voicesFontWithSize:(CGFloat)size {
     return [UIFont fontWithName:kAvenirNextRegular size:size];
 }
+
++ (UIFont *)voicesBoldFontWithSize:(CGFloat)size {
+    return [UIFont fontWithName:kAvenirNextBold size:size];
+}
+
 @end

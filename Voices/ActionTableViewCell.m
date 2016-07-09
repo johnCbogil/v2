@@ -29,18 +29,29 @@
     
     self.learnMoreButton.tintColor = [UIColor voicesOrange];
     [self setFont];
+    self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
 }
 
 - (void)setFont {
+    self.groupNameLabel.textColor = [UIColor voicesBlack];
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
     
+    self.actionSubjectLabel.textColor = [UIColor voicesBlack];
+    self.actionSubjectLabel.font = [UIFont voicesBoldFontWithSize:19];
+    
+    self.actionTitleTextView.textColor = [UIColor voicesGray];
+    self.actionTitleTextView.font = [UIFont voicesFontWithSize:19];
+    
+    self.learnMoreButton.tintColor = [UIColor voicesOrange];
+    self.learnMoreButton.titleLabel.font = [UIFont voicesBoldFontWithSize:17];
 }
 
 - (void)initWithAction:(Action *)action {
+    
     self.groupNameLabel.text = action.groupName;
     self.actionTitleTextView.text = action.title;
     self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:action.groupImageURL];
-    
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
