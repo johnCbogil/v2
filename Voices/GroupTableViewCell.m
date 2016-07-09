@@ -27,7 +27,10 @@
 }
 
 - (void)setFont {
-    
+    self.groupName.font = [UIFont voicesFontWithSize:20];
+    self.groupName.minimumScaleFactor = 0.75;
+    self.groupType.font = [UIFont voicesFontWithSize:17];
+    self.groupType.minimumScaleFactor = 0.75;
 }
 
 - (void)initWithGroup:(Group *)group {

@@ -9,7 +9,7 @@
 #import "FederalRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "UIFont+voicesFont.h"
-#import "UIColor+voicesOrange.h"
+#import "UIColor+voicesColor.h"
 #import "UIImageView+AFNetworking.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "VoicesConstants.h"

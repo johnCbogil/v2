@@ -10,7 +10,7 @@
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIFont+voicesFont.h"
-#import "UIColor+voicesOrange.h"
+#import "UIColor+voicesColor.h"
 #import "VoicesConstants.h"
 #import "PolicyPosition.h"
 

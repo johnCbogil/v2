@@ -10,7 +10,7 @@
 #import "RepManager.h"
 #import "StateRepresentative.h"
 #import "UIFont+voicesFont.h"
-#import "UIColor+voicesOrange.h"
+#import "UIColor+voicesColor.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "VoicesConstants.h"
 

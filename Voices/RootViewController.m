@@ -12,7 +12,7 @@
 #import "UIFont+voicesFont.h"
 #import "StateRepresentative.h"
 #import "CacheManager.h"
-#import "UIColor+voicesOrange.h"
+#import "UIColor+voicesColor.h"
 #import "PageViewController.h"
 #import "LocationService.h"
 #import "VoicesConstants.h"

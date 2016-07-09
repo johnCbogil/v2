@@ -32,7 +32,7 @@
 		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
 		52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateRepresentative.m */; };
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
-		52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33941BE5C8FD00EC0468 /* UIColor+voicesOrange.m */; };
+		52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */; };
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */; };
 		52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */; };
@@ -118,8 +118,8 @@
 		52AD2CC21B61F90900EAF854 /* StateRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateRepresentative.m; sourceTree = "<group>"; };
 		52AD33901BE5C73D00EC0468 /* UIFont+voicesFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+voicesFont.h"; sourceTree = "<group>"; };
 		52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+voicesFont.m"; sourceTree = "<group>"; };
-		52AD33931BE5C8FD00EC0468 /* UIColor+voicesOrange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+voicesOrange.h"; sourceTree = "<group>"; };
-		52AD33941BE5C8FD00EC0468 /* UIColor+voicesOrange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesOrange.m"; sourceTree = "<group>"; };
+		52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+voicesColor.h"; sourceTree = "<group>"; };
+		52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesColor.m"; sourceTree = "<group>"; };
 		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NYCRepresentativeTableViewCell.xib; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 			children = (
 				52AD33901BE5C73D00EC0468 /* UIFont+voicesFont.h */,
 				52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */,
-				52AD33931BE5C8FD00EC0468 /* UIColor+voicesOrange.h */,
-				52AD33941BE5C8FD00EC0468 /* UIColor+voicesOrange.m */,
+				52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */,
+				52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -681,7 +681,7 @@
 			files = (
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
 				7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */,
-				52AD33951BE5C8FD00EC0468 /* UIColor+voicesOrange.m in Sources */,
+				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,

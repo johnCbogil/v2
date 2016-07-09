@@ -7,7 +7,7 @@
 //
 
 #import "InfoViewController.h"
-#import "UIColor+voicesOrange.h"
+#import "UIColor+voicesColor.h"
 #import <STPopup/STPopup.h>
 #import "VoicesConstants.h"
 

@@ -1,5 +1,5 @@
 //
-//  UIColor+voicesOrange.h
+//  UIColor+voicesColor.h
 //  v2
 //
 //  Created by John Bogil on 11/1/15.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (voicesOrange)
+@interface UIColor (voicesColor)
+
 + (UIColor*)voicesOrange;
++ (UIColor *)voicesBlack;
++ (UIColor *)voicesGray;
+
 @end

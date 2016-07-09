@@ -12,7 +12,7 @@
 #import "GroupsViewController.h"
 #import "Group.h"
 #import "UIFont+voicesFont.h"
-#import "UIColor+voicesOrange.h"
+#import "UIColor+voicesColor.h"
 
 @import Firebase;
 @import FirebaseMessaging;
