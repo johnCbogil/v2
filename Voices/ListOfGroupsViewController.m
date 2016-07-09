@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Select A Group To Follow";
+    self.title = @"Select A Group To Learn More";
     
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];

@@ -21,13 +21,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setFont];
+    self.title = @"TAKE ACTION";
+    
     self.policySubjectLabel.text = self.policyPosition.key;
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
     
 }
 
-- (IBAction)contactRepsButtonDidPress:(id)sender {
+- (void)setFont {
     
+}
+
+- (IBAction)contactRepsButtonDidPress:(id)sender {
+    self.tabBarController.selectedIndex = 0;
 }
 
 @end

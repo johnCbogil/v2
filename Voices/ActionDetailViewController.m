@@ -44,8 +44,13 @@
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
     
     [self setGroupImageFromURL:self.action.groupImageURL];
+    
+    [self setFont];
 }
 
+- (void)setFont {
+    
+}
 - (void)setGroupImageFromURL:(NSURL *)url {
     
     self.groupImage.contentMode = UIViewContentModeScaleToFill;

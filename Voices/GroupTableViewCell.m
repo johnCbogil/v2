@@ -26,6 +26,10 @@
     [self setFont];
 }
 
+- (void)setFont {
+    
+}
+
 - (void)initWithGroup:(Group *)group {
     self.groupName.text = group.name;
     self.groupType.text = group.groupType;
@@ -53,17 +57,8 @@
     self.groupImage.layer.cornerRadius = kButtonCornerRadius;
 }
 
-- (void)setFont {
-//    self.groupName.font = [UIFont voicesFontWithSize:24];
-//    [self.groupName sizeToFit];
-//    self.groupType.font = [UIFont voicesFontWithSize:18];
-//    self.groupDescription.font = [UIFont voicesFontWithSize:15];
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

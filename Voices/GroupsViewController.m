@@ -280,7 +280,7 @@
     }
     [self.listOfActions removeObjectsInArray:discardedItems];
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer recieve actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
     [alert show];
 }
 

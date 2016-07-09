@@ -47,6 +47,7 @@
     
     [self configureTableView];
     [self fetchPolicyPositions];
+    [self setFont];
     
     self.title = self.group.name;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
@@ -55,6 +56,10 @@
     self.groupTypeLabel.text = self.group.groupType;
     self.groupDescriptionLabel.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
+}
+
+- (void)setFont {
+    
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -166,7 +171,6 @@
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
     policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
-    policyDetailViewController.title = self.group.name;
     [self.navigationController pushViewController:policyDetailViewController animated:YES];
 
 }

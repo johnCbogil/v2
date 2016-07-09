@@ -27,6 +27,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    self.learnMoreButton.tintColor = [UIColor voicesOrange];
+    [self setFont];
+}
+
+- (void)setFont {
+    
 }
 
 - (void)initWithAction:(Action *)action {
@@ -35,7 +41,6 @@
     self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:action.groupImageURL];
     
-    self.learnMoreButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
