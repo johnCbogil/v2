@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@import Firebase;
+
 @interface PolicyDetailViewController : UIViewController
+
+@property (strong, nonatomic) FIRDatabaseReference *policyRef;
 
 @end

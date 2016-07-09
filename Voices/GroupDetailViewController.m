@@ -28,8 +28,9 @@
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
+@property (strong, nonatomic) FIRDatabaseReference *policyPositionsRef;
 
-@property (strong, nonatomic) NSArray *tempArray;
+@property (strong, nonatomic) NSMutableArray *listOfPolicyPositions;
 
 @end
 
@@ -41,8 +42,10 @@
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
+    self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
     
     [self configureTableView];
+    [self fetchPolicyPositions];
     
     self.title = self.group.name;
     self.navigationController.navigationBar.topItem.title = @"";
@@ -52,8 +55,6 @@
     self.groupTypeLabel.text = self.group.groupType;
     self.groupDescriptionLabel.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
-
-    self.tempArray = @[@"Campaign Finance", @"Civil Liberties", @"Women's Healthcare", @"Affordable Housing", @"Gun Safety"];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -131,15 +132,32 @@
     }];
 }
 
+- (void)fetchPolicyPositions {
+    
+    __weak GroupDetailViewController *weakSelf = self;
+    [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSDictionary *policyPositionsDict = snapshot.value;
+        NSMutableArray *policyPositionsArray = [NSMutableArray array];
+        [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            // NOTE: SHOULD I BE CREATING 'POLICY' OBJECTS HERE
+            [policyPositionsArray addObject:key];
+        }];
+        weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
+        [weakSelf.tableView reloadData];
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+}
+
 #pragma mark - UITableView methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tempArray.count;
+    return self.listOfPolicyPositions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.tempArray[indexPath.row];
+    cell.textLabel.text = self.listOfPolicyPositions[indexPath.row];
     return cell;
 }
 
@@ -147,7 +165,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
-//    actionDetailViewController.action = self.listOfActions[indexPath.row];
+
     [self.navigationController pushViewController:policyDetailViewController animated:YES];
 
 }
