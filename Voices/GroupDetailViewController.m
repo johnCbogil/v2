@@ -51,6 +51,7 @@
     self.title = self.group.name;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 
+    self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupTypeLabel.text = self.group.groupType;
     self.groupDescriptionTextview.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];

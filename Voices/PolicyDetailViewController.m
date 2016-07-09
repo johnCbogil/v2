@@ -7,6 +7,9 @@
 //
 
 #import "PolicyDetailViewController.h"
+#import "VoicesConstants.h"
+#import "UIColor+voicesColor.h"
+#import "UIFont+voicesFont.h"
 
 @interface PolicyDetailViewController ()
 
@@ -27,9 +30,13 @@
     self.policySubjectLabel.text = self.policyPosition.key;
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
     
+    self.contactRepsButton.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)setFont {
+    self.policySubjectLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.policyPositionTextView.font = [UIFont voicesFontWithSize:19];
+    self.contactRepsButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     
 }
 
