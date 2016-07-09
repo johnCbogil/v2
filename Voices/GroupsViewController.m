@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.listOfFollowedGroups = [NSMutableArray array];
+    self.listOfFollowedGroups = @[].mutableCopy;
     self.listOfActions = @[].mutableCopy;
     
     [self configureTableView];
@@ -60,6 +60,9 @@
     self.actionsRef = [self.rootRef child:@"actions"];
     self.isUserAuthInProgress = NO;
     [self userAuth];
+    
+    self.emptyStateLabel.hidden = NO;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
