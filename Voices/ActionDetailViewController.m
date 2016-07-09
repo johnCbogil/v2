@@ -37,7 +37,6 @@
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
     
-    self.navigationController.navigationBar.topItem.title = @""; // THIS LINE IS REMOVING PREVIOUS TITLES
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
     

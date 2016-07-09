@@ -21,8 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.topItem.title = @""; // THIS LINE IS REMOVING PREVIOUS TITLES
-
     self.policySubjectLabel.text = self.policyPosition.key;
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
     

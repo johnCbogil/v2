@@ -49,7 +49,6 @@
     [self fetchPolicyPositions];
     
     self.title = self.group.name;
-    self.navigationController.navigationBar.topItem.title = @""; // THIS LINE IS REMOVING PREVIOUS TITLES
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 
     self.groupNameLabel.text = self.group.name;

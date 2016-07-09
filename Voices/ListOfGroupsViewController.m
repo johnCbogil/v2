@@ -44,7 +44,6 @@
     [self createActivityIndicator];
     [self retrieveGroups];
     
-    self.navigationController.navigationBar.topItem.title = @""; // THIS LINE IS REMOVING PREVIOUS TITLES
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
