@@ -17,17 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // root/groups/[groupKey]/policyPositions/[issue#]
-
     
-//    [[self.usersRef child:userId] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        if (snapshot.value == [NSNull null]) {
-//            return;
-//        }
-//        NSLog(@"%@", snapshot.value[@"userID"]);
-//    } withCancelBlock:^(NSError * _Nonnull error) {
-//        NSLog(@"%@", error.localizedDescription);
-//    }];
     
     
 }

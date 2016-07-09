@@ -96,47 +96,6 @@
     }];
 }
 
-//- (void)followGroup:(Group *)group {
-//    
-//    // Check if the current user already belongs to selected group or not
-//    FIRDatabaseReference *currentUserRef = [[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key];
-//    [currentUserRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
-//        NSLog(@"User %@ a member of selected group", result);
-//        if (snapshot.value == [NSNull null]) {
-//            
-//            // Add group to user's groups
-//            [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//                if (error) {
-//                    NSLog(@"write error: %@", error);
-//                }
-//            }];
-//            
-//            // Add user to group's users
-//            [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//                if (error) {
-//                    NSLog(@"write error: %@", error);
-//                }
-//                else {
-//                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now recieve updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-//                    [alert show];
-//                }
-//            }];
-//            
-//            // Add group to user's subscriptions
-//            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", group.key]];
-//            NSLog(@"User subscribed to %@", group.key);
-//        }
-//        else {
-//            // feedback goes here
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You already belong to this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-//            [alert show];
-//        }
-//    } withCancelBlock:^(NSError * _Nonnull error) {
-//        NSLog(@"%@", error);
-//    }];
-//}
-
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

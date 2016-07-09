@@ -12,6 +12,7 @@
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesOrange.h"
 #import "VoicesConstants.h"
+#import "PolicyPosition.h"
 
 @import Firebase;
 
@@ -139,8 +140,8 @@
         NSDictionary *policyPositionsDict = snapshot.value;
         NSMutableArray *policyPositionsArray = [NSMutableArray array];
         [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            // NOTE: SHOULD I BE CREATING 'POLICY' OBJECTS HERE
-            [policyPositionsArray addObject:key];
+            PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
+            [policyPositionsArray addObject:policyPosition];
         }];
         weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
         [weakSelf.tableView reloadData];
@@ -157,7 +158,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.listOfPolicyPositions[indexPath.row];
+    cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
     return cell;
 }
 
@@ -165,7 +166,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
-
+    policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
     [self.navigationController pushViewController:policyDetailViewController animated:YES];
 
 }
