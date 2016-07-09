@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7K-3L-5w0">
-                        <rect key="frame" x="91" y="42" width="337" height="30"/>
+                        <rect key="frame" x="91" y="42" width="304" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -34,22 +34,30 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DisclosureIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="rQW-8E-tE5">
+                        <rect key="frame" x="403" y="51" width="25" height="25"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="d7K-3L-5w0" firstAttribute="leading" secondItem="PdU-2w-4MU" secondAttribute="trailing" constant="8" symbolic="YES" id="05g-Ty-4wn"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0We-tT-3Ec" secondAttribute="bottom" constant="48.5" id="6EO-nd-Grh"/>
-                    <constraint firstItem="d7K-3L-5w0" firstAttribute="trailing" secondItem="0We-tT-3Ec" secondAttribute="trailing" id="AXp-BU-cBM"/>
+                    <constraint firstItem="rQW-8E-tE5" firstAttribute="leading" secondItem="d7K-3L-5w0" secondAttribute="trailing" constant="8" symbolic="YES" id="6rG-ru-dcS"/>
+                    <constraint firstItem="d7K-3L-5w0" firstAttribute="trailing" secondItem="0We-tT-3Ec" secondAttribute="trailing" constant="-33" id="AXp-BU-cBM"/>
+                    <constraint firstItem="rQW-8E-tE5" firstAttribute="trailing" secondItem="0We-tT-3Ec" secondAttribute="trailing" id="BMq-wg-Hik"/>
+                    <constraint firstItem="rQW-8E-tE5" firstAttribute="top" secondItem="0We-tT-3Ec" secondAttribute="bottom" constant="8" id="Oe0-Hq-yGs"/>
                     <constraint firstItem="PdU-2w-4MU" firstAttribute="top" secondItem="PcU-QH-YdM" secondAttribute="top" constant="13" id="PwA-mR-kxU"/>
                     <constraint firstItem="0We-tT-3Ec" firstAttribute="top" secondItem="PdU-2w-4MU" secondAttribute="top" id="Yqv-Bu-QPs"/>
                     <constraint firstItem="PdU-2w-4MU" firstAttribute="leading" secondItem="PcU-QH-YdM" secondAttribute="leading" constant="8" id="ebu-pv-6tT"/>
                     <constraint firstAttribute="bottomMargin" secondItem="d7K-3L-5w0" secondAttribute="bottom" constant="19.5" id="j0f-jj-bh1"/>
-                    <constraint firstItem="d7K-3L-5w0" firstAttribute="trailing" secondItem="PcU-QH-YdM" secondAttribute="trailingMargin" id="qIE-Yx-BIc"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rQW-8E-tE5" secondAttribute="bottom" constant="16" id="poQ-yh-7sB"/>
+                    <constraint firstItem="d7K-3L-5w0" firstAttribute="trailing" secondItem="PcU-QH-YdM" secondAttribute="trailingMargin" constant="-33" id="qIE-Yx-BIc"/>
                     <constraint firstItem="d7K-3L-5w0" firstAttribute="leading" secondItem="0We-tT-3Ec" secondAttribute="leading" id="su3-5T-g6i"/>
                     <constraint firstItem="d7K-3L-5w0" firstAttribute="top" secondItem="PcU-QH-YdM" secondAttribute="topMargin" constant="34" id="t9t-r7-XHQ"/>
                     <constraint firstAttribute="bottom" secondItem="PdU-2w-4MU" secondAttribute="bottom" constant="11.5" id="yc5-Lm-lbj"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="disclosureIndicatorImageView" destination="rQW-8E-tE5" id="f1m-9f-hY0"/>
                 <outlet property="groupImage" destination="PdU-2w-4MU" id="wEV-Dy-zJL"/>
                 <outlet property="groupName" destination="0We-tT-3Ec" id="seM-Ia-LhT"/>
                 <outlet property="groupType" destination="d7K-3L-5w0" id="FJy-eI-a0t"/>
@@ -57,4 +65,7 @@
             <point key="canvasLocation" x="782" y="94"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="DisclosureIndicator" width="33" height="33"/>
+    </resources>
 </document>

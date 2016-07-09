@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupName;
 @property (weak, nonatomic) IBOutlet UILabel *groupType;
+@property (weak, nonatomic) IBOutlet UIImageView *disclosureIndicatorImageView;
 
 @end
 
@@ -34,6 +35,7 @@
     self.groupType.font = [UIFont voicesFontWithSize:17];
     self.groupType.minimumScaleFactor = 0.75;
     self.groupType.textColor = [UIColor voicesGray];
+    self.disclosureIndicatorImageView.tintColor = [UIColor voicesOrange];
 }
 
 - (void)initWithGroup:(Group *)group {
