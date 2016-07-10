@@ -19,7 +19,7 @@
 
 @implementation EmptyState
 
-- (instancetype)init {
+- (instancetype)initWithTopLabel:(NSString *)topLabel andBottomLabel:(NSString *)bottomLabel {
     self = [super init];
     
     UIView *emptyStateView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyState" owner:self options:nil] objectAtIndex:0];
@@ -75,10 +75,11 @@
     [self addConstraint:top];
     [self addConstraint:leading];
 
-    
+    self.topLabel.text = topLabel;
     self.topLabel.font = [UIFont voicesFontWithSize:19];
     self.topLabel.textColor = [UIColor voicesBlack];
     
+    self.bottomLabel.text = bottomLabel;
     self.bottomLabel.font = [UIFont voicesFontWithSize:17];
     self.bottomLabel.textColor = [UIColor voicesGray];
     

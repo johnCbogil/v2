@@ -17,7 +17,6 @@ NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCe
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 NSString *const kAvenirNextBold = @"AvenirNext-Medium";
-
 //NSString *const kMontserratLight = @"Montserrat-Light";
 //NSString *const kOpenSans = @"OpenSans";
 
@@ -43,6 +42,10 @@ NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
 
 CGFloat const kButtonCornerRadius = 2.f;
 
+NSString *const kActionEmptyStateTopLabel = @"You haven't received any actions yet";
+NSString *const kActionEmptyStateBottomLabel = @"To receive actions from advocacy groups, tap the + button above to follow groups.";
+NSString *const kGroupEmptyStateTopLabel = @"You don't follow any groups yet";
+NSString *const kGroupEmptyStateBottomLable = @"To follow groups, tap the + button above";
 
 
 @end
