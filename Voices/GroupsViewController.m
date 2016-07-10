@@ -17,6 +17,7 @@
 #import "GroupDetailViewController.h"
 #import "Group.h"
 #import "Action.h"
+#import "EmptyState.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -34,7 +35,6 @@
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) UILabel *emptyStateLabel;
 
 @end
 
@@ -66,9 +66,7 @@
 
 - (void)configureEmptyState {
     
-    self.emptyStateLabel.hidden = NO;
-    UIView *emptyStateView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyState" owner:self options:nil] objectAtIndex:0];
-    self.tableView.backgroundView = emptyStateView;
+    self.tableView.backgroundView = [[EmptyState alloc]init];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -91,10 +89,6 @@
     else {
         self.tableView.estimatedRowHeight = 255.0;
     }
-    self.emptyStateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-    self.emptyStateLabel.text = @"emptystatefam";
-    self.tableView.backgroundView = self.emptyStateLabel;
-    self.emptyStateLabel.hidden = YES;
     self.tableView.allowsSelection = NO;
 }
 
@@ -119,10 +113,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (!self.listOfActions.count) {
-            self.emptyStateLabel.hidden = NO;
+            self.tableView.backgroundView.hidden = NO;
         }
         else {
-            self.emptyStateLabel.hidden = YES;
+            self.tableView.backgroundView.hidden = YES;
         }
     });
     [self.activityIndicatorView stopAnimating];
