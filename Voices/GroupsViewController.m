@@ -123,7 +123,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (!self.listOfActions.count) {
+        if (!self.listOfFollowedGroups.count) {
             self.tableView.backgroundView.hidden = NO;
         }
         else {
