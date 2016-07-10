@@ -31,6 +31,8 @@
     
     self.bottomLabel.text = kActionEmptyStateBottomLabel;
     self.bottomLabel.font = [UIFont voicesFontWithSize:17];
+    self.bottomLabel.textColor = [UIColor voicesGray];
+
     
     return self;
 }
