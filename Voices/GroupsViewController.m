@@ -67,7 +67,8 @@
 - (void)configureEmptyState {
     
     self.emptyStateLabel.hidden = NO;
-    
+    UIView *emptyStateView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyState" owner:self options:nil] objectAtIndex:0];
+    self.tableView.backgroundView = emptyStateView;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
