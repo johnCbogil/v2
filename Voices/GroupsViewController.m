@@ -65,7 +65,9 @@
     
     self.emptyStateView = [[EmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
-    self.tableView.backgroundView.hidden = YES;
+    if (!self.isUserAuthInProgress) {
+        self.tableView.backgroundView.hidden = YES;
+    }
 }
 
 - (void)configureEmptyState {
