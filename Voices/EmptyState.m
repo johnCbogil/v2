@@ -26,11 +26,11 @@
     self = [[[NSBundle mainBundle] loadNibNamed:@"EmptyState" owner:self options:nil] objectAtIndex:0];
     
     self.topLabel.text = kActionEmptyStateTopLabel;
-    self.topLabel.font = [UIFont voicesFontWithSize:19];
+    self.topLabel.font = [UIFont voicesFontWithSize:21];
     self.topLabel.textColor = [UIColor voicesBlack];
     
     self.bottomLabel.text = kActionEmptyStateBottomLabel;
-    self.bottomLabel.font = [UIFont voicesFontWithSize:17];
+    self.bottomLabel.font = [UIFont voicesFontWithSize:19];
     self.bottomLabel.textColor = [UIColor voicesGray];
 
     
