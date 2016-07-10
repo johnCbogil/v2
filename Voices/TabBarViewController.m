@@ -40,11 +40,11 @@
 - (void)createTabBarButtons {
     
     UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];// setImage:[UIImage imageNamed:@"Triangle"]];
-    repsTab.title = @"REPS";
+    repsTab.title = @"Reps";
     repsTab.image = [UIImage imageNamed:@"Triangle"];
     
     UITabBarItem *groupsTab = [self.tabBar.items objectAtIndex:1];
-    groupsTab.title = @"GROUPS";
+    groupsTab.title = @"Groups";
     groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
     
 //    for(UITabBarItem * tabBarItem in self.tabBar.items){
