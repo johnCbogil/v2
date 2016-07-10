@@ -10,7 +10,8 @@
     "photo_url": "http://governor.alabama.gov/assets/2013/06/Governor-Robert-Bentley-100x100.jpg",
     "next_election_date": "11/6/2018",
     "first_name": "Robert",
-    "last_name": "Bentley"
+    "last_name": "Bentley",
+    "gender" : "M"
   },
   {
     "full_name": "Bill Walker",

@@ -39,13 +39,18 @@
 
 - (void)createTabBarButtons {
     
-    [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"Triangle"]];
-    [[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"Circle"]];
+    UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];// setImage:[UIImage imageNamed:@"Triangle"]];
+    repsTab.title = @"Reps";
+    repsTab.image = [UIImage imageNamed:@"Triangle"];
     
-    for(UITabBarItem * tabBarItem in self.tabBar.items){
-        tabBarItem.title = @"";
-        tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-    }
+    UITabBarItem *groupsTab = [self.tabBar.items objectAtIndex:1];
+    groupsTab.title = @"Groups";
+    groupsTab.image = [UIImage imageNamed:@"Circle"];
+    
+//    for(UITabBarItem * tabBarItem in self.tabBar.items){
+//        tabBarItem.title = @"";
+//        tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+//    }
 }
 
 @end
