@@ -66,6 +66,7 @@
     if (self = [super init]) {
         self.firstName = [decoder decodeObjectForKey:@"firstName"];
         self.lastName = [decoder decodeObjectForKey:@"lastName"];
+        self.fullName = [decoder decodeObjectForKey:@"fullName"];
         self.nickname = [decoder decodeObjectForKey:@"nickname"];
         self.bioguide = [decoder decodeObjectForKey:@"bioguide_id"];
         self.phone = [decoder decodeObjectForKey:@"phone"];
@@ -87,6 +88,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.firstName forKey:@"firstName"];
     [coder encodeObject:self.lastName forKey:@"lastName"];
+    [coder encodeObject:self.fullName forKey:@"fullName"];
     [coder encodeObject:self.nickname forKey:@"nickname"];
     [coder encodeObject:self.bioguide forKey:@"bioguide_id"];
     [coder encodeObject:self.phone forKey:@"phone"];
