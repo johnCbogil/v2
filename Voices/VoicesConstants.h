@@ -43,4 +43,9 @@ extern NSString *const kCouncilMemberDataJSON;
 
 extern CGFloat const kButtonCornerRadius;
 
+extern NSString *const kActionEmptyStateTopLabel;
+extern NSString *const kActionEmptyStateBottomLabel;
+extern NSString *const kGroupEmptyStateTopLabel;
+extern NSString *const kGroupEmptyStateBottomLabel;
+
 @end

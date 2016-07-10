@@ -11,6 +11,7 @@
 
 @interface EmptyState : UIView
 
-- (instancetype)initWithTopLabel:(NSString *)topLabel andBottomLabel:(NSString *)bottomLabel;
+- (instancetype)init;
+- (void)updateLabels:(NSString *)top bottom:(NSString *)bottom;
 
 @end

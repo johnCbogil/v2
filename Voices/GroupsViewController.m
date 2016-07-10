@@ -18,6 +18,7 @@
 #import "Group.h"
 #import "Action.h"
 #import "EmptyState.h"
+#import "VoicesConstants.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -34,8 +35,9 @@
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) EmptyState *emptyStateView;
 @end
 
 @implementation GroupsViewController
@@ -61,12 +63,23 @@
     self.isUserAuthInProgress = NO;
     [self userAuth];
     
+    self.emptyStateView = [[EmptyState alloc]init];
+    self.tableView.backgroundView = self.emptyStateView;
+
     [self configureEmptyState];
 }
 
 - (void)configureEmptyState {
     
-    self.tableView.backgroundView = [[EmptyState alloc]init];
+//    self.tableView.backgroundView = [[EmptyState alloc]initWithTopLabel:kActionEmptyStateTopLabel andBottomLabel:kActionEmptyStateBottomLabel];
+    
+    if (self.segmentControl.selectedSegmentIndex) {
+        [self.emptyStateView updateLabels:kGroupEmptyStateTopLabel bottom:kGroupEmptyStateBottomLabel];
+    }
+    else {
+        [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
+    }
+    [self.view layoutSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -365,6 +378,7 @@
 #pragma mark - Segment Control
 
 - (IBAction)segmentControlDidChange:(id)sender {
+    [self configureEmptyState];
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
     if (self.currentUserID) {
