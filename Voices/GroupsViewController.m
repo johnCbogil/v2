@@ -61,8 +61,13 @@
     self.isUserAuthInProgress = NO;
     [self userAuth];
     
-    self.emptyStateLabel.hidden = NO;
+    [self configureEmptyState];
+}
 
+- (void)configureEmptyState {
+    
+    self.emptyStateLabel.hidden = NO;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

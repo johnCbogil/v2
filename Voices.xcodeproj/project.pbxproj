@@ -19,6 +19,8 @@
 		5252B7BD1BCC0ED200DF6F9F /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5252B7BC1BCC0ED200DF6F9F /* Info.storyboard */; };
 		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
 		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
+		525475961D31C40C00A894BA /* EmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525475951D31C40C00A894BA /* EmptyState.xib */; };
+		5254759C1D31C57F00A894BA /* EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254759B1D31C57F00A894BA /* EmptyState.m */; };
 		525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */; };
 		525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EE80E1D2AB2690047211F /* ActionDetailViewController.m */; };
 		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
@@ -98,6 +100,9 @@
 		525306611CC8571800982CC8 /* ListOfGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfGroupsViewController.m; sourceTree = "<group>"; };
 		5253FB4C1BCB32F1001A5328 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		525475951D31C40C00A894BA /* EmptyState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyState.xib; sourceTree = "<group>"; };
+		5254759A1D31C57F00A894BA /* EmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyState.h; sourceTree = "<group>"; };
+		5254759B1D31C57F00A894BA /* EmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyState.m; sourceTree = "<group>"; };
 		525EC5A41D2C9C2E007F3C13 /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
 		525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
 		525EE80D1D2AB2690047211F /* ActionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDetailViewController.h; sourceTree = "<group>"; };
@@ -429,6 +434,9 @@
 				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
 				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
 				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
+				5254759A1D31C57F00A894BA /* EmptyState.h */,
+				5254759B1D31C57F00A894BA /* EmptyState.m */,
+				525475951D31C40C00A894BA /* EmptyState.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -538,6 +546,7 @@
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
+				525475961D31C40C00A894BA /* EmptyState.xib in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
@@ -694,6 +703,7 @@
 				5235B0811BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m in Sources */,
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
+				5254759C1D31C57F00A894BA /* EmptyState.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
 				52FC68FE1C3765A400E29B7A /* Onboarding2ViewController.m in Sources */,
