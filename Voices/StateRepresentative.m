@@ -53,6 +53,7 @@
         self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
         self.nextElection = [self formatElectionDate:[data valueForKey:@"next_election_date"]];
         self.twitter = [data valueForKey:@"twitter"];
+        self.gender = [data valueForKey:@"gender"];
         return self;
     }
     return self;
@@ -92,6 +93,7 @@
         self.nextElection = [decoder decodeObjectForKey:@"next_election_date"];
         self.state = [decoder decodeObjectForKey:@"state_full"];
         self.twitter = [decoder decodeObjectForKey:@"twitter"];
+        self.gender = [decoder decodeObjectForKey:@"gender"];
     }
     return self;
 }
@@ -111,5 +113,6 @@
     [coder encodeObject:self.nextElection forKey:@"next_election_date"];
     [coder encodeObject:self.state forKey:@"state_full"];
     [coder encodeObject:self.twitter forKey:@"twitter"];
+    [coder encodeObject:self.gender forKey:@"gender"];
 }
 @end
