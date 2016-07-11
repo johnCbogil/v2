@@ -36,7 +36,6 @@
     [self setFont];
     [self setColor];
     self.listOfStatesWithAssembly = [NSArray arrayWithObjects:@"CA", @"NV", @"NJ", @"NY", @"WI", nil];
-    
 }
 
 - (void)initWithRep:(id)rep {
@@ -48,11 +47,22 @@
 
 - (void)setImage{
     UIImage *placeholderImage;
-    if ( drand48() < 0.5 ){
-        placeholderImage  = [UIImage imageNamed:@"MissingRepMale"];
-    } else {
-        placeholderImage  = [UIImage imageNamed:@"MissingRepFemale"];
+    if (self.stateRepresentative.gender) {
+        if ([self.stateRepresentative.gender isEqualToString:@"M"]) {
+            placeholderImage  = [UIImage imageNamed:@"MissingRepMale"];
+        }
+        else {
+            placeholderImage  = [UIImage imageNamed:@"MissingRepFemale"];
+        }
     }
+    else {
+        if ( drand48() < 0.5 ){
+            placeholderImage  = [UIImage imageNamed:@"MissingRepMale"];
+        } else {
+            placeholderImage  = [UIImage imageNamed:@"MissingRepFemale"];
+        }
+    }
+
     
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.stateRepresentative.photoURL
