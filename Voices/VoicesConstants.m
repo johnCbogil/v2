@@ -40,7 +40,7 @@ NSString *const kCityCouncilZip = @"CityCouncilDistricts";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
 NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
 
-CGFloat const kButtonCornerRadius = 4.f;
+CGFloat const kButtonCornerRadius = 3.f;
 
 NSString *const kActionEmptyStateTopLabel = @"You haven't received any actions yet.";
 NSString *const kActionEmptyStateBottomLabel = @"To receive actions from advocacy groups, tap the + button above to follow groups.";
