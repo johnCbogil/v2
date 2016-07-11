@@ -8,6 +8,8 @@
 
 #import "TabBarViewController.h"
 #import "UIColor+voicesColor.h"
+#import "UIFont+voicesFont.h"
+#import "VoicesConstants.h"
 #import "GroupsViewController.h"
 #import "RootViewController.h"
 
@@ -22,8 +24,16 @@
 
     [self createViewControllers];
     [self createTabBarButtons];
+    [self setFont];
     
     [UITabBar appearance].tintColor = [UIColor voicesOrange];
+}
+
+- (void)setFont {
+    [[UITabBarItem appearance] setTitleTextAttributes:@{
+                                                        NSFontAttributeName:[UIFont fontWithName: kAvenirNextRegular size:11]
+                                                        } forState:UIControlStateNormal];
+    
 }
 
 - (void)createViewControllers {
@@ -47,10 +57,6 @@
     groupsTab.title = @"Groups";
     groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
     
-//    for(UITabBarItem * tabBarItem in self.tabBar.items){
-//        tabBarItem.title = @"";
-//        tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-//    }
 }
 
 @end
