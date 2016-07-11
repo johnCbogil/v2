@@ -21,19 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self createViewControllers];
     [self createTabBarButtons];
-    [self setFont];
     
     [UITabBar appearance].tintColor = [UIColor voicesOrange];
-}
-
-- (void)setFont {
-    [[UITabBarItem appearance] setTitleTextAttributes:@{
-                                                        NSFontAttributeName:[UIFont fontWithName: kAvenirNextRegular size:11]
-                                                        } forState:UIControlStateNormal];
-    
 }
 
 - (void)createViewControllers {
@@ -49,7 +41,7 @@
 
 - (void)createTabBarButtons {
     
-    UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];// setImage:[UIImage imageNamed:@"Triangle"]];
+    UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];
     repsTab.title = @"Reps";
     repsTab.image = [UIImage imageNamed:@"Triangle"];
     
