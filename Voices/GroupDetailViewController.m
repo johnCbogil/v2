@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *groupDescriptionTextview;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -57,6 +58,10 @@
     [self setGroupImageFromURL:self.group.groupImageURL];
     
     self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
+    
+    self.lineView.backgroundColor = [UIColor voicesOrange];
+    self.lineView.layer.cornerRadius = kButtonCornerRadius;
+    
 
 }
 

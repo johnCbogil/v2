@@ -8,6 +8,8 @@
 
 #import "TabBarViewController.h"
 #import "UIColor+voicesColor.h"
+#import "UIFont+voicesFont.h"
+#import "VoicesConstants.h"
 #import "GroupsViewController.h"
 #import "RootViewController.h"
 
@@ -19,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self createViewControllers];
     [self createTabBarButtons];
     
@@ -39,7 +41,7 @@
 
 - (void)createTabBarButtons {
     
-    UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];// setImage:[UIImage imageNamed:@"Triangle"]];
+    UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];
     repsTab.title = @"Reps";
     repsTab.image = [UIImage imageNamed:@"Triangle"];
     
@@ -47,10 +49,6 @@
     groupsTab.title = @"Groups";
     groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
     
-//    for(UITabBarItem * tabBarItem in self.tabBar.items){
-//        tabBarItem.title = @"";
-//        tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-//    }
 }
 
 @end
