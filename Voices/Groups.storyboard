@@ -277,7 +277,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4AK-tx-66C" id="bMS-49-8Yt">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -297,10 +297,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ids-xR-dHG">
-                                <rect key="frame" x="10" y="136" width="580" height="4"/>
+                                <rect key="frame" x="10" y="136" width="580" height="2"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="4" id="hZ5-KG-tS0"/>
+                                    <constraint firstAttribute="height" constant="2" id="hZ5-KG-tS0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -314,7 +314,7 @@
                             <constraint firstItem="kcM-Ua-X58" firstAttribute="top" secondItem="wti-XY-ZOH" secondAttribute="bottom" constant="8" id="Bnt-wp-kjD"/>
                             <constraint firstItem="ids-xR-dHG" firstAttribute="leading" secondItem="7i0-zL-Pbe" secondAttribute="leading" constant="10" id="BoC-4d-fbF"/>
                             <constraint firstItem="UFf-aR-3Ah" firstAttribute="top" secondItem="wti-XY-ZOH" secondAttribute="bottom" constant="8" id="F6a-wa-Jot"/>
-                            <constraint firstItem="cC3-K4-gJR" firstAttribute="top" secondItem="ids-xR-dHG" secondAttribute="bottom" constant="8" id="Fe3-Mm-M0N"/>
+                            <constraint firstItem="cC3-K4-gJR" firstAttribute="top" secondItem="ids-xR-dHG" secondAttribute="bottom" constant="10" id="Fe3-Mm-M0N"/>
                             <constraint firstItem="UZT-Lz-2XV" firstAttribute="top" secondItem="9tY-He-2Ce" secondAttribute="bottom" constant="8" symbolic="YES" id="I8H-at-F45"/>
                             <constraint firstAttribute="trailing" secondItem="UFf-aR-3Ah" secondAttribute="trailing" constant="20" id="T5O-sR-W5z"/>
                             <constraint firstItem="kcM-Ua-X58" firstAttribute="leading" secondItem="7i0-zL-Pbe" secondAttribute="leading" constant="20" id="Vkp-bS-BDR"/>
