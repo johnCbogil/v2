@@ -133,7 +133,7 @@
         self.zeroStateContainer.alpha = 1;
     }];
     if (self.index == 2) {
-        self.zeroStateLabel.text = @"Local officials are only available in New York right now.";    }
+        self.zeroStateLabel.text = @"Local officials are not available in your area yet.";    }
 }
 
 - (void)turnZeroStateOff {
