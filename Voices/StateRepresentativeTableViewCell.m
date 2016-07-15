@@ -49,17 +49,17 @@
     UIImage *placeholderImage;
     if (self.stateRepresentative.gender) {
         if ([self.stateRepresentative.gender isEqualToString:@"M"]) {
-            placeholderImage  = [UIImage imageNamed:@"MissingRepMale"];
+            placeholderImage  = [UIImage imageNamed:kRepDefaultImageMale];
         }
         else {
-            placeholderImage  = [UIImage imageNamed:@"MissingRepFemale"];
+            placeholderImage  = [UIImage imageNamed:kRepDefaultImageFemale];
         }
     }
     else {
         if ( drand48() < 0.5 ){
-            placeholderImage  = [UIImage imageNamed:@"MissingRepMale"];
+            placeholderImage  = [UIImage imageNamed:kRepDefaultImageMale];
         } else {
-            placeholderImage  = [UIImage imageNamed:@"MissingRepFemale"];
+            placeholderImage  = [UIImage imageNamed:kRepDefaultImageFemale];
         }
     }
 

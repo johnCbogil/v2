@@ -47,5 +47,9 @@ NSString *const kActionEmptyStateBottomLabel = @"To receive actions from advocac
 NSString *const kGroupEmptyStateTopLabel = @"You don't follow any groups yet.";
 NSString *const kGroupEmptyStateBottomLabel = @"To follow groups, tap the + button above.";
 
+NSString *const kGroupDefaultImage = @"VoicesIcon";
+NSString *const kRepDefaultImageMale = @"MissingRepMale";
+NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
+
 
 @end

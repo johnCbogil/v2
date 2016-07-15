@@ -38,10 +38,10 @@
 - (void)setImage{
     UIImage *placeholderImage;
     if ([self.nycRepresentative.gender isEqualToString:@"M"]) {
-        placeholderImage = [UIImage imageNamed:@"MissingRepMale"];
+        placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
     }
     else {
-        placeholderImage = [UIImage imageNamed:@"MissingRepFemale"];
+        placeholderImage = [UIImage imageNamed:kRepDefaultImageFemale];
     }
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.nycRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad

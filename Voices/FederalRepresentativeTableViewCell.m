@@ -41,7 +41,6 @@
     self.name.font = [UIFont voicesFontWithSize:24];
     self.nextElectionLabel.font = [UIFont voicesFontWithSize:20];
     self.name.textColor = [UIColor voicesBlack];
-//    self.nextElectionLabel.textColor = [UIColor voicesGray];
 }
 
 - (void)initWithRep:(id)rep {
@@ -58,10 +57,10 @@
     
     UIImage *placeholderImage;
     if ([self.federalRepresentative.gender isEqualToString:@"M"]) {
-        placeholderImage = [UIImage imageNamed:@"MissingRepMale"];
+        placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
     }
     else {
-        placeholderImage = [UIImage imageNamed:@"MissingRepFemale"];
+        placeholderImage = [UIImage imageNamed:kRepDefaultImageFemale];
     }
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.federalRepresentative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
