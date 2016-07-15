@@ -140,7 +140,8 @@
             }];
             
             // Add group to user's subscriptions
-            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", group.key]];
+            NSString *topic = [group.key stringByReplacingOccurrencesOfString:@" " withString:@""];
+            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
             NSLog(@"User subscribed to %@", group.key);
         }
         else {
