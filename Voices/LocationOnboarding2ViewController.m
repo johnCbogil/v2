@@ -1,17 +1,17 @@
 //
-//  Onboarding2ViewController.m
+//  LocationOnboarding2ViewController.m
 //  Voices
 //
 //  Created by John Bogil on 1/1/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "Onboarding2ViewController.h"
+#import "LocationOnboarding2ViewController.h"
 #import "TabBarViewController.h"
 #import "UIFont+voicesFont.h"
 #import "VoicesConstants.h"
 
-@interface Onboarding2ViewController ()
+@interface LocationOnboarding2ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *deferLocationUseButton;
 @property (weak, nonatomic) IBOutlet UIButton *permitLocationUseButton;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation Onboarding2ViewController
+@implementation LocationOnboarding2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

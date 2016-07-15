@@ -1,5 +1,5 @@
 //
-//  Onboarding2ViewController.h
+//  LocationOnboarding2ViewController.h
 //  v3
 //
 //  Created by John Bogil on 1/1/16.
@@ -10,6 +10,6 @@
 #import "LocationService.h"
 #import "UIFont+voicesFont.h"
 
-@interface Onboarding2ViewController : UIViewController <CLLocationManagerDelegate>
+@interface LocationOnboarding2ViewController : UIViewController <CLLocationManagerDelegate>
 
 @end

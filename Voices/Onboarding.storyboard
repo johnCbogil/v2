@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="1408" y="329"/>
         </scene>
-        <!--Onboarding2 View Controller-->
+        <!--Location Onboarding2 View Controller-->
         <scene sceneID="82V-Fb-bRq">
             <objects>
-                <viewController storyboardIdentifier="Onboarding2ViewController" id="zfO-9H-wcq" customClass="Onboarding2ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationOnboarding2ViewController" id="zfO-9H-wcq" customClass="LocationOnboarding2ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EcH-7M-6ZW"/>
                         <viewControllerLayoutGuide type="bottom" id="5dJ-rd-3UR"/>

@@ -11,7 +11,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "Onboarding2ViewController.h"
+#import "LocationOnboarding2ViewController.h"
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
@@ -150,7 +150,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     else if (![self isOnboardingCompleted]) {
         // User did not complete onboarding
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-        Onboarding2ViewController *onboardingPageViewController = (Onboarding2ViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"Onboarding2ViewController"];
+        LocationOnboarding2ViewController *onboardingPageViewController = (LocationOnboarding2ViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"LocationOnboarding2ViewController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
     }
