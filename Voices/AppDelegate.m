@@ -24,6 +24,8 @@
 @import FirebaseMessaging;
 
 @interface AppDelegate ()
+
+
 @end
 
 @implementation AppDelegate
@@ -50,6 +52,7 @@
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
     
     return YES;
 }
@@ -119,10 +122,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//
-//}
-//
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    self.isRegisteredForPushNotis = application.isRegisteredForRemoteNotifications;
+    
+  //  self.
+    
+}
+
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //
 //

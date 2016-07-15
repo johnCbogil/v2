@@ -11,6 +11,8 @@
 #import "UIColor+voicesColor.h"
 #import "UIFont+voicesFont.h"
 
+#import "AppDelegate.h"
+
 @import FirebaseMessaging;
 
 @interface NotiOnboardingViewController ()
@@ -29,8 +31,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate]   ;
+    
+
     
     
+    [appDelegate addObserver:self forKeyPath:@"isRegisteredForPushNotis" options:NSKeyValueObservingOptionNew context:nil];
+
+//    [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
 
 }
 
@@ -42,9 +50,12 @@
     [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"registered boi");
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isRegisteredForPushNotis"]) {
+        NSLog(@"OtherVC: The value of self.myVC.mySetting has changed");
+    }
 }
+
 
 
 @end
