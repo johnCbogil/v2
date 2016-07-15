@@ -7,8 +7,17 @@
 //
 
 #import "NotiOnboardingViewController.h"
+#import "VoicesConstants.h"
+#import "UIColor+voicesColor.h"
+#import "UIFont+voicesFont.h"
 
 @interface NotiOnboardingViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *turnOnNotiLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *notiOnboardingImageView;
+@property (weak, nonatomic) IBOutlet UIView *singleLineView;
+@property (weak, nonatomic) IBOutlet UIButton *turnOnNotificationsButton;
+@property (weak, nonatomic) IBOutlet UIButton *deferNotiButton;
 
 @end
 
@@ -19,19 +28,10 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)deferNotiButtonDidPress:(id)sender {
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)turnOnNotiButtonDidPress:(id)sender {
 }
-*/
 
 @end

@@ -241,17 +241,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn on notifications so Voices can send you relevant and timely updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1z-jT-745">
-                                <rect key="frame" x="144" y="28" width="313" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on notifications so Voices can send you relevant and timely updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1z-jT-745">
+                                <rect key="frame" x="20" y="28" width="560" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="ngL-Rc-ifD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="ngL-Rc-ifD">
                                 <rect key="frame" x="166" y="144" width="269" height="311"/>
                             </imageView>
-                            <view alpha="0.25" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99R-FO-aoS" userLabel="SingleLineView">
-                                <rect key="frame" x="25" y="463" width="550" height="1"/>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99R-FO-aoS" userLabel="SingleLineView">
+                                <rect key="frame" x="25" y="464" width="550" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="0wj-Oh-iHY"/>
@@ -263,17 +263,55 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkM-Xw-5IW">
-                                <rect key="frame" x="277" y="472" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkM-Xw-5IW">
+                                <rect key="frame" x="227" y="493" width="146" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="lWM-At-E7T"/>
+                                </constraints>
+                                <state key="normal" title="Turn On Notifications"/>
+                                <connections>
+                                    <action selector="turnOnNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="QeG-6w-2vi"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp2-mc-tRu">
-                                <rect key="frame" x="277" y="510" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp2-mc-tRu">
+                                <rect key="frame" x="205" y="551" width="191" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="wsQ-lG-U7o"/>
+                                </constraints>
+                                <state key="normal" title="I'm not interested right now."/>
+                                <connections>
+                                    <action selector="deferNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="psG-M6-IZJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="60F-QC-wB3" firstAttribute="top" secondItem="bp2-mc-tRu" secondAttribute="bottom" constant="19" id="60B-g4-NiI"/>
+                            <constraint firstAttribute="trailing" secondItem="a1z-jT-745" secondAttribute="trailing" constant="20" id="CGQ-Xn-hHB"/>
+                            <constraint firstAttribute="trailing" secondItem="bp2-mc-tRu" secondAttribute="trailing" constant="204" id="G0H-gj-lkc"/>
+                            <constraint firstItem="ngL-Rc-ifD" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leading" constant="166" id="JaT-OI-BIC"/>
+                            <constraint firstItem="ngL-Rc-ifD" firstAttribute="centerY" secondItem="BLr-Wh-0YQ" secondAttribute="centerY" id="Qp6-wV-z2p"/>
+                            <constraint firstItem="tkM-Xw-5IW" firstAttribute="top" secondItem="99R-FO-aoS" secondAttribute="bottom" constant="28" id="U46-dS-uGg"/>
+                            <constraint firstAttribute="trailing" secondItem="tkM-Xw-5IW" secondAttribute="trailing" constant="227" id="V9U-fC-UkZ"/>
+                            <constraint firstAttribute="trailing" secondItem="99R-FO-aoS" secondAttribute="trailing" constant="25" id="VPF-Ef-tsR"/>
+                            <constraint firstItem="tkM-Xw-5IW" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leading" constant="227" id="WbA-bE-dlk"/>
+                            <constraint firstAttribute="trailing" secondItem="ngL-Rc-ifD" secondAttribute="trailing" constant="165" id="WeR-Wa-RjS"/>
+                            <constraint firstItem="99R-FO-aoS" firstAttribute="top" secondItem="ngL-Rc-ifD" secondAttribute="bottom" constant="9" id="hPd-UV-ApR"/>
+                            <constraint firstItem="a1z-jT-745" firstAttribute="top" secondItem="PUc-d5-yfv" secondAttribute="bottom" constant="8" id="hQg-ED-VAB"/>
+                            <constraint firstItem="bp2-mc-tRu" firstAttribute="top" secondItem="tkM-Xw-5IW" secondAttribute="bottom" constant="28" id="hic-iZ-Gnv"/>
+                            <constraint firstItem="ngL-Rc-ifD" firstAttribute="top" secondItem="a1z-jT-745" secondAttribute="bottom" constant="55" id="jJG-jH-enM"/>
+                            <constraint firstItem="bp2-mc-tRu" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leading" constant="205" id="knB-dr-2Eq"/>
+                            <constraint firstItem="a1z-jT-745" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leading" constant="20" id="mTL-VK-TRC"/>
+                            <constraint firstItem="99R-FO-aoS" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leading" constant="25" id="uqT-Aw-0uc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="deferNotiButton" destination="bp2-mc-tRu" id="dyI-NH-k2J"/>
+                        <outlet property="notiOnboardingImageView" destination="ngL-Rc-ifD" id="xFR-kq-IOb"/>
+                        <outlet property="singleLineView" destination="99R-FO-aoS" id="xgs-Mz-nlf"/>
+                        <outlet property="turnOnNotiLabel" destination="a1z-jT-745" id="e9U-Dh-c3U"/>
+                        <outlet property="turnOnNotificationsButton" destination="tkM-Xw-5IW" id="VPW-db-3bh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzK-Gq-HjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,7 +338,7 @@
     </scenes>
     <resources>
         <image name="LocationOnboarding" width="780" height="952"/>
-        <image name="NotiOnboarding" width="292" height="357"/>
+        <image name="NotiOnboarding" width="500" height="610"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>
