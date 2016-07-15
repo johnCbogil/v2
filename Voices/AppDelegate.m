@@ -12,6 +12,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
 #import "LocationOnboardingViewController.h"
+#import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
@@ -29,7 +30,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self setInitialViewController];
+   // [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
@@ -150,19 +151,19 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     else if (![self isOnboardingCompleted]) {
         // User did not complete onboarding
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-        LocationOnboardingViewController *onboardingPageViewController = (LocationOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"LocationOnboardingViewController"];
+        NotiOnboardingViewController *onboardingPageViewController = (NotiOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"NotiOnboardingViewController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
     }
 }
 
 - (BOOL)isOnboardingCompleted {
-    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isOnboardingCompleted"]) {
-        return YES;
-    }
-    else {
+//    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isOnboardingCompleted"]) {
+//        return YES;
+//    }
+//    else {
         return NO;
-    }
+  //  }
 }
 
 - (void)enableFeedbackAndReporting {
