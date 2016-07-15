@@ -308,6 +308,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="dNC-Bg-UCx"/>
+                                    <action selector="turnOnNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="SPE-19-gYU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q">
@@ -322,6 +323,7 @@
                                 </state>
                                 <connections>
                                     <action selector="deferLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="5yc-FG-T9L"/>
+                                    <action selector="deferNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="hJj-N8-cNE"/>
                                     <segue destination="zfO-9H-wcq" kind="show" id="9Be-xt-P9V"/>
                                 </connections>
                             </button>

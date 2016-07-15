@@ -11,6 +11,8 @@
 #import "UIColor+voicesColor.h"
 #import "UIFont+voicesFont.h"
 
+@import FirebaseMessaging;
+
 @interface NotiOnboardingViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *turnOnNotiLabel;
@@ -26,12 +28,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
+    
+    
+    
 
-- (IBAction)deferNotiButtonDidPress:(id)sender {
 }
 
 - (IBAction)turnOnNotiButtonDidPress:(id)sender {
+    
+    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"registered boi");
+}
+
 
 @end
