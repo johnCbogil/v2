@@ -167,7 +167,7 @@
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
-		52FC68FC1C3765A400E29B7A /* LocationOnboarding2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationOnboarding2ViewController.h; sourceTree = "<group>"; };
+		52FC68FC1C3765A400E29B7A /* LocationOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationOnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FD1C3765A400E29B7A /* LocationOnboarding2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationOnboarding2ViewController.m; sourceTree = "<group>"; };
 		61DC8EA11D0660590086C070 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		61DC8EA21D0660590086C070 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
 				52FC68F91C37657000E29B7A /* OnboardingViewController.h */,
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
-				52FC68FC1C3765A400E29B7A /* LocationOnboarding2ViewController.h */,
+				52FC68FC1C3765A400E29B7A /* LocationOnboardingViewController.h */,
 				52FC68FD1C3765A400E29B7A /* LocationOnboarding2ViewController.m */,
 				52B2CA501D3889A6005FE0D6 /* NotiOnboardingViewController.h */,
 				52B2CA511D3889A6005FE0D6 /* NotiOnboardingViewController.m */,
