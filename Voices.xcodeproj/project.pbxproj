@@ -35,6 +35,7 @@
 		52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateRepresentative.m */; };
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
 		52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */; };
+		52B2CA521D3889A6005FE0D6 /* NotiOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2CA511D3889A6005FE0D6 /* NotiOnboardingViewController.m */; };
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52B89B6C1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */; };
 		52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */; };
@@ -125,6 +126,8 @@
 		52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+voicesFont.m"; sourceTree = "<group>"; };
 		52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+voicesColor.h"; sourceTree = "<group>"; };
 		52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesColor.m"; sourceTree = "<group>"; };
+		52B2CA501D3889A6005FE0D6 /* NotiOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiOnboardingViewController.h; sourceTree = "<group>"; };
+		52B2CA511D3889A6005FE0D6 /* NotiOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiOnboardingViewController.m; sourceTree = "<group>"; };
 		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		52B89B6B1C5556F3005950BB /* NYCRepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NYCRepresentativeTableViewCell.xib; sourceTree = "<group>"; };
@@ -353,12 +356,14 @@
 			isa = PBXGroup;
 			children = (
 				52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */,
+				52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */,
+				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
 				52FC68F91C37657000E29B7A /* OnboardingViewController.h */,
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
 				52FC68FC1C3765A400E29B7A /* LocationOnboarding2ViewController.h */,
 				52FC68FD1C3765A400E29B7A /* LocationOnboarding2ViewController.m */,
-				52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */,
-				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
+				52B2CA501D3889A6005FE0D6 /* NotiOnboardingViewController.h */,
+				52B2CA511D3889A6005FE0D6 /* NotiOnboardingViewController.m */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -705,6 +710,7 @@
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
 				5254759C1D31C57F00A894BA /* EmptyState.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
+				52B2CA521D3889A6005FE0D6 /* NotiOnboardingViewController.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
 				52FC68FE1C3765A400E29B7A /* LocationOnboarding2ViewController.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,

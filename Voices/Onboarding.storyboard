@@ -229,6 +229,24 @@
             </objects>
             <point key="canvasLocation" x="2130" y="329"/>
         </scene>
+        <!--Noti Onboarding View Controller-->
+        <scene sceneID="ydI-7y-fXF">
+            <objects>
+                <viewController storyboardIdentifier="NotiOnboardingViewController" id="B0a-h2-Dsp" customClass="NotiOnboardingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PUc-d5-yfv"/>
+                        <viewControllerLayoutGuide type="bottom" id="60F-QC-wB3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BLr-Wh-0YQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hzK-Gq-HjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2752" y="329"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Zz-qY-LqM">
             <objects>
