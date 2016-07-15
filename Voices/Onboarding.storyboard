@@ -112,7 +112,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnboardingPage2" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
                                 <rect key="frame" x="166" y="144" width="269" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="2rb-Ke-YcW"/>
@@ -240,6 +240,38 @@
                     <view key="view" contentMode="scaleToFill" id="BLr-Wh-0YQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn on notifications so Voices can send you relevant and timely updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1z-jT-745">
+                                <rect key="frame" x="144" y="28" width="313" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="ngL-Rc-ifD">
+                                <rect key="frame" x="166" y="144" width="269" height="311"/>
+                            </imageView>
+                            <view alpha="0.25" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99R-FO-aoS" userLabel="SingleLineView">
+                                <rect key="frame" x="25" y="463" width="550" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="0wj-Oh-iHY"/>
+                                    <constraint firstAttribute="width" constant="300" id="Kgo-Nq-P1a"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Kgo-Nq-P1a"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkM-Xw-5IW">
+                                <rect key="frame" x="277" y="472" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp2-mc-tRu">
+                                <rect key="frame" x="277" y="510" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -267,7 +299,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="OnboardingPage2" width="780" height="952"/>
+        <image name="LocationOnboarding" width="780" height="952"/>
+        <image name="NotiOnboarding" width="292" height="357"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>
