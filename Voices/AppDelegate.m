@@ -30,19 +30,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-   // [self setInitialViewController];
+    [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
-
+    
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (notificationPayload) {
-
+        
     }
-
+    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     
@@ -132,38 +132,19 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //}
 //
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-// 
-//    
+//
+//
 //}
 
 - (void)setInitialViewController {
+ 
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        // The app is launching for the first time
         NSLog(@"First launch");
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
     }
-    else if (![self isOnboardingCompleted]) {
-        // User did not complete onboarding
-        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-        NotiOnboardingViewController *onboardingPageViewController = (NotiOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"NotiOnboardingViewController"];
-        self.window.rootViewController = onboardingPageViewController;
-        [self.window makeKeyAndVisible];
-    }
-}
-
-- (BOOL)isOnboardingCompleted {
-//    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isOnboardingCompleted"]) {
-//        return YES;
-//    }
-//    else {
-        return NO;
-  //  }
 }
 
 - (void)enableFeedbackAndReporting {
@@ -171,7 +152,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     
-
+    
 }
 
 - (void)setCache {
@@ -224,7 +205,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         completeFilePath = [NSString stringWithFormat:@"%@/%@", basePath, file];
         URL = [NSURL fileURLWithPath:completeFilePath];
         [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
-       // NSLog(@"File %@  is excluded from backup %@", file, [URL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsExcludedFromBackupKey] error:nil]);
+        // NSLog(@"File %@  is excluded from backup %@", file, [URL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsExcludedFromBackupKey] error:nil]);
     }
 }
 

@@ -50,6 +50,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor whiteColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
