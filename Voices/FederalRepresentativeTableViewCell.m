@@ -14,6 +14,8 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "VoicesConstants.h"
 
+@import FirebaseAnalytics;
+
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) FederalRepresentative *federalRepresentative;
@@ -77,6 +79,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
     }
     else if (buttonIndex == 1) {
+        
+        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.federalRepresentative.fullName, kFIRParameterValue : @1}];
+        
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl]) {

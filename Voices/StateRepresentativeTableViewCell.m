@@ -14,6 +14,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "VoicesConstants.h"
 
+@import FirebaseAnalytics;
+
 @interface StateRepresentativeTableViewCell ()
 
 @property (strong, nonatomic) StateRepresentative *stateRepresentative;
@@ -146,11 +148,7 @@
     }
     else if (buttonIndex == 1) {
         
-        //        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        //        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-        //                                                              action:@"phone call"
-        //                                                               label:self.stateRepresentative.fullName
-        //                                                               value:@1] build]];
+        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.stateRepresentative.fullName, kFIRParameterValue : @1}];
         
         
         NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];

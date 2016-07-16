@@ -13,6 +13,8 @@
 #import "UIColor+voicesColor.h"
 #import "VoicesConstants.h"
 
+@import FirebaseAnalytics;
+
 @interface NYCRepresentativeTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
@@ -141,12 +143,8 @@
     }
     else if (buttonIndex == 1) {
         
-//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
-//                                                              action:@"phone call"
-//                                                               label:[NSString stringWithFormat:@"%@ %@",self.nycRepresentative.firstName,self.nycRepresentative.lastName]
-//                                                               value:@1] build]];
-
+        NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
+        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : fullName, kFIRParameterValue : @1}];
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
