@@ -11,7 +11,8 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "Onboarding2ViewController.h"
+#import "LocationOnboardingViewController.h"
+#import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
 #import "VoicesConstants.h"
 #import "RepManager.h"
@@ -23,6 +24,8 @@
 @import FirebaseMessaging;
 
 @interface AppDelegate ()
+
+
 @end
 
 @implementation AppDelegate
@@ -35,28 +38,21 @@
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
-
+    
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
     if (notificationPayload) {
-
+        
     }
-
+    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    
-    
-    UIUserNotificationType allNotificationTypes =
-    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings =
-    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
     
     return YES;
 }
@@ -126,42 +122,27 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//
-//}
-//
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    self.isRegisteredForPushNotis = application.isRegisteredForRemoteNotifications;
+    
+  //  self.
+    
+}
+
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-// 
-//    
+//
+//
 //}
 
 - (void)setInitialViewController {
+ 
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        // The app is launching for the first time
         NSLog(@"First launch");
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
-    }
-    else if (![self isOnboardingCompleted]) {
-        // User did not complete onboarding
-        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-        Onboarding2ViewController *onboardingPageViewController = (Onboarding2ViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"Onboarding2ViewController"];
-        self.window.rootViewController = onboardingPageViewController;
-        [self.window makeKeyAndVisible];
-    }
-}
-
-- (BOOL)isOnboardingCompleted {
-    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isOnboardingCompleted"]) {
-        return YES;
-    }
-    else {
-        return NO;
     }
 }
 
@@ -170,7 +151,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     
-
+    
 }
 
 - (void)setCache {
@@ -223,7 +204,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         completeFilePath = [NSString stringWithFormat:@"%@/%@", basePath, file];
         URL = [NSURL fileURLWithPath:completeFilePath];
         [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
-       // NSLog(@"File %@  is excluded from backup %@", file, [URL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsExcludedFromBackupKey] error:nil]);
+        // NSLog(@"File %@  is excluded from backup %@", file, [URL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsExcludedFromBackupKey] error:nil]);
     }
 }
 

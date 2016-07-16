@@ -1,17 +1,17 @@
 //
-//  Onboarding2ViewController.m
+//  LocationOnboardingViewController.m
 //  Voices
 //
 //  Created by John Bogil on 1/1/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "Onboarding2ViewController.h"
+#import "LocationOnboardingViewController.h"
 #import "TabBarViewController.h"
 #import "UIFont+voicesFont.h"
 #import "VoicesConstants.h"
 
-@interface Onboarding2ViewController ()
+@interface LocationOnboardingViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *deferLocationUseButton;
 @property (weak, nonatomic) IBOutlet UIButton *permitLocationUseButton;
@@ -19,10 +19,15 @@
 
 @end
 
-@implementation Onboarding2ViewController
+@implementation LocationOnboardingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setFont];
+}
+
+- (void)setFont {
     
     self.permitLocationUseButton.layer.cornerRadius = kButtonCornerRadius;
     self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
@@ -49,10 +54,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    
-    //    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-    //        NSLog(@"location authorization denied");
-    //    }
+
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];

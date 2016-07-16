@@ -13,4 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString *dataSetPathWithComponent;
 
+@property BOOL isRegisteredForPushNotis;
+
+
 @end

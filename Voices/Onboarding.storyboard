@@ -53,7 +53,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zfO-9H-wcq" kind="show" id="J1N-U5-h9P"/>
+                                    <segue destination="B0a-h2-Dsp" kind="show" id="Kmo-n3-hsw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="1408" y="329"/>
         </scene>
-        <!--Onboarding2 View Controller-->
+        <!--Location Onboarding View Controller-->
         <scene sceneID="82V-Fb-bRq">
             <objects>
-                <viewController storyboardIdentifier="Onboarding2ViewController" id="zfO-9H-wcq" customClass="Onboarding2ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationOnboardingViewController" id="zfO-9H-wcq" customClass="LocationOnboardingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EcH-7M-6ZW"/>
                         <viewControllerLayoutGuide type="bottom" id="5dJ-rd-3UR"/>
@@ -112,7 +112,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnboardingPage2" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
                                 <rect key="frame" x="166" y="144" width="269" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="2rb-Ke-YcW"/>
@@ -227,7 +227,134 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEe-DZ-bdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="329"/>
+            <point key="canvasLocation" x="2710" y="329"/>
+        </scene>
+        <!--Noti Onboarding View Controller-->
+        <scene sceneID="ydI-7y-fXF">
+            <objects>
+                <viewController storyboardIdentifier="NotiOnboardingViewController" id="B0a-h2-Dsp" customClass="NotiOnboardingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PUc-d5-yfv"/>
+                        <viewControllerLayoutGuide type="bottom" id="60F-QC-wB3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BLr-Wh-0YQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on notifications so Voices can send you relevant and timely updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-yB-sZN">
+                                <rect key="frame" x="20" y="28" width="560" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="eLU-gd-TOj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eLU-gd-TOj"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="ruW-m4-7F3">
+                                <rect key="frame" x="166" y="144" width="269" height="311"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="311" id="3K8-t9-B4v"/>
+                                    <constraint firstAttribute="width" secondItem="ruW-m4-7F3" secondAttribute="height" multiplier="269:311" id="C18-ki-uR6"/>
+                                    <constraint firstAttribute="width" constant="269" id="Oes-bQ-9xg"/>
+                                    <constraint firstAttribute="width" secondItem="ruW-m4-7F3" secondAttribute="height" multiplier="269:311" id="ZQM-7T-lDg"/>
+                                    <constraint firstAttribute="width" secondItem="ruW-m4-7F3" secondAttribute="height" multiplier="269:311" id="qhG-gq-sOT"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3K8-t9-B4v"/>
+                                        <exclude reference="ZQM-7T-lDg"/>
+                                        <exclude reference="qhG-gq-sOT"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOt-Sh-FuP" userLabel="SingleLineView">
+                                <rect key="frame" x="25" y="464" width="550" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="p4b-Q4-wK8"/>
+                                    <constraint firstAttribute="width" constant="300" id="yOC-pt-IsI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="yOC-pt-IsI"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbt-Xc-Oa6">
+                                <rect key="frame" x="188" y="493" width="225" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="IoB-zp-AFX"/>
+                                    <constraint firstAttribute="height" constant="50" id="MTF-F0-SlR"/>
+                                    <constraint firstAttribute="width" secondItem="sbt-Xc-Oa6" secondAttribute="height" multiplier="9:2" id="VFq-ZI-GPD"/>
+                                    <constraint firstAttribute="width" constant="225" id="ZqT-AW-gyy"/>
+                                    <constraint firstAttribute="height" constant="50" id="m0x-Q2-qNs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Turn On Notifications">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IoB-zp-AFX"/>
+                                        <exclude reference="MTF-F0-SlR"/>
+                                        <exclude reference="VFq-ZI-GPD"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="dNC-Bg-UCx"/>
+                                    <action selector="turnOnNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="SPE-19-gYU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q" userLabel="Defer">
+                                <rect key="frame" x="188" y="551" width="225" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="OOC-Qw-0L5"/>
+                                    <constraint firstAttribute="width" constant="225" id="wCo-wa-ANt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deferNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="fs1-Gl-XDW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hOt-Sh-FuP" firstAttribute="top" secondItem="ruW-m4-7F3" secondAttribute="bottom" constant="9" id="0Ry-48-M7r"/>
+                            <constraint firstItem="Iyk-yB-sZN" firstAttribute="top" secondItem="PUc-d5-yfv" secondAttribute="bottom" constant="8" symbolic="YES" id="1Yv-hH-v5L"/>
+                            <constraint firstItem="ruW-m4-7F3" firstAttribute="centerX" secondItem="hOt-Sh-FuP" secondAttribute="centerX" id="4h0-Km-oXV"/>
+                            <constraint firstItem="Tmc-3q-q5q" firstAttribute="top" secondItem="sbt-Xc-Oa6" secondAttribute="bottom" constant="8" id="4rE-j6-aKQ"/>
+                            <constraint firstItem="hOt-Sh-FuP" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leadingMargin" constant="5" id="7HN-kZ-UJI"/>
+                            <constraint firstItem="60F-QC-wB3" firstAttribute="top" secondItem="Tmc-3q-q5q" secondAttribute="bottom" constant="16" id="8b4-oC-2l8"/>
+                            <constraint firstItem="hOt-Sh-FuP" firstAttribute="centerX" secondItem="sbt-Xc-Oa6" secondAttribute="centerX" id="986-gm-sTL"/>
+                            <constraint firstItem="ruW-m4-7F3" firstAttribute="top" secondItem="Iyk-yB-sZN" secondAttribute="bottom" constant="17" id="F2S-sG-Zw4"/>
+                            <constraint firstItem="ruW-m4-7F3" firstAttribute="centerY" secondItem="BLr-Wh-0YQ" secondAttribute="centerY" id="WcG-yS-aWs"/>
+                            <constraint firstItem="Iyk-yB-sZN" firstAttribute="centerX" secondItem="ruW-m4-7F3" secondAttribute="centerX" id="aSJ-Y9-t9w"/>
+                            <constraint firstItem="sbt-Xc-Oa6" firstAttribute="centerX" secondItem="Tmc-3q-q5q" secondAttribute="centerX" id="hYV-Mu-0IN"/>
+                            <constraint firstItem="Iyk-yB-sZN" firstAttribute="trailing" secondItem="BLr-Wh-0YQ" secondAttribute="trailingMargin" id="ov7-nW-Def"/>
+                            <constraint firstItem="Iyk-yB-sZN" firstAttribute="leading" secondItem="BLr-Wh-0YQ" secondAttribute="leadingMargin" id="qRf-hV-SZW"/>
+                            <constraint firstItem="ruW-m4-7F3" firstAttribute="width" secondItem="ruW-m4-7F3" secondAttribute="height" multiplier="269:311" id="t0i-f1-pfG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deferNotiButton" destination="Tmc-3q-q5q" id="aOG-Pj-6Ee"/>
+                        <outlet property="notiOnboardingImageView" destination="ruW-m4-7F3" id="Kyb-uR-zDs"/>
+                        <outlet property="singleLineView" destination="hOt-Sh-FuP" id="ss1-Jk-XCs"/>
+                        <outlet property="turnOnNotiLabel" destination="Iyk-yB-sZN" id="pIB-hc-Hpb"/>
+                        <outlet property="turnOnNotificationsButton" destination="sbt-Xc-Oa6" id="tWQ-Nb-1qt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hzK-Gq-HjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2060" y="329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Zz-qY-LqM">
@@ -249,7 +376,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="OnboardingPage2" width="780" height="952"/>
+        <image name="LocationOnboarding" width="780" height="952"/>
+        <image name="NotiOnboarding" width="566" height="691"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>
