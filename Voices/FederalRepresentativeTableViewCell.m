@@ -14,8 +14,6 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "VoicesConstants.h"
 
-@import FirebaseAnalytics;
-
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) FederalRepresentative *federalRepresentative;
@@ -85,8 +83,6 @@
             
             [[UIApplication sharedApplication] openURL:callUrl];
             
-            [FIRAnalytics logEventWithName:@"phone_call"
-                                parameters:@{ @"name": self.federalRepresentative.fullName }];
         }
         else {
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
