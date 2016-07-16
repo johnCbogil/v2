@@ -143,7 +143,7 @@
 
 - (void)setSearchBar {
     self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search by location";
+    self.searchBar.placeholder = @"Search by address";
     
     // Round the box
     self.searchView.layer.cornerRadius = kButtonCornerRadius;
