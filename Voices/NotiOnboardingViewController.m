@@ -28,8 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.nextButton.enabled = NO;
     
     [self setFont];
 }
