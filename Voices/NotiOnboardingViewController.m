@@ -42,28 +42,45 @@
     self.turnOnNotificationsButton.backgroundColor = [UIColor voicesOrange];
     self.turnOnNotificationsButton.layer.cornerRadius = kButtonCornerRadius;
     
-    self.nextButton.titleLabel.font = [UIFont voicesFontWithSize:23];
+    self.nextButton.titleLabel.font = [UIFont voicesFontWithSize:13];
     [self.nextButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
     self.nextButton.alpha = 0.5;
+    [self.nextButton setTitle:@"I will later" forState:UIControlStateNormal];
 }
 
 - (IBAction)turnOnNotiButtonDidPress:(id)sender {
     
-    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    if (![self.turnOnNotificationsButton.titleLabel.text isEqualToString:@"Next"]) {
+        UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+
+    }
+    else {
+        [self pushNextVC];
+    }
     
-    self.nextButton.enabled = YES;
-    [self.nextButton setTitleColor:[UIColor voicesOrange] forState:UIControlStateNormal];
-    self.nextButton.alpha = 1.0;
+    
+//    self.nextButton.enabled = YES;
+//    [self.nextButton setTitleColor:[UIColor voicesOrange] forState:UIControlStateNormal];
+//    self.nextButton.alpha = 1.0;
+    
+    [self.turnOnNotificationsButton setTitle:@"Next" forState:UIControlStateNormal];
+    self.nextButton.alpha = 0;
 }
 
 - (IBAction)nextButtonDidPress:(id)sender {
     
+    [self pushNextVC];
+}
+
+- (void)pushNextVC {
+    
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
     LocationOnboardingViewController *locationOnboardingViewController = (LocationOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"LocationOnboardingViewController"];
     [self.navigationController pushViewController:locationOnboardingViewController animated:YES];
+
 }
 
 @end

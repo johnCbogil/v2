@@ -24,6 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setFont];
+}
+
+- (void)setFont {
+    
     self.permitLocationUseButton.layer.cornerRadius = kButtonCornerRadius;
     self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
     self.permitLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:18];
@@ -49,10 +54,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    
-    //    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-    //        NSLog(@"location authorization denied");
-    //    }
+
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
