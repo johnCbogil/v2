@@ -12,8 +12,6 @@
 #import "UIColor+voicesColor.h"
 #import "UIFont+voicesFont.h"
 
-#import "AppDelegate.h"
-
 @import FirebaseMessaging;
 
 @interface NotiOnboardingViewController ()
@@ -45,7 +43,7 @@
     self.nextButton.titleLabel.font = [UIFont voicesFontWithSize:13];
     [self.nextButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
     self.nextButton.alpha = 0.5;
-    [self.nextButton setTitle:@"I will later" forState:UIControlStateNormal];
+    [self.nextButton setTitle:@"I'm not interested right now." forState:UIControlStateNormal];
 }
 
 - (IBAction)turnOnNotiButtonDidPress:(id)sender {
@@ -55,16 +53,10 @@
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-
     }
     else {
         [self pushNextVC];
     }
-    
-    
-//    self.nextButton.enabled = YES;
-//    [self.nextButton setTitleColor:[UIColor voicesOrange] forState:UIControlStateNormal];
-//    self.nextButton.alpha = 1.0;
     
     [self.turnOnNotificationsButton setTitle:@"Next" forState:UIControlStateNormal];
     self.nextButton.alpha = 0;
@@ -80,7 +72,6 @@
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
     LocationOnboardingViewController *locationOnboardingViewController = (LocationOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"LocationOnboardingViewController"];
     [self.navigationController pushViewController:locationOnboardingViewController animated:YES];
-
 }
 
 @end

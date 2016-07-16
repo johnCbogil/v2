@@ -312,10 +312,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q">
-                                <rect key="frame" x="265" y="551" width="71" height="33"/>
+                                <rect key="frame" x="188" y="551" width="225" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="OOC-Qw-0L5"/>
-                                    <constraint firstAttribute="width" constant="71" id="wCo-wa-ANt"/>
+                                    <constraint firstAttribute="width" constant="225" id="wCo-wa-ANt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Next">
