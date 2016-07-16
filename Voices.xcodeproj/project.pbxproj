@@ -41,7 +41,7 @@
 		52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B89B6E1C555735005950BB /* NYCRepresentativeTableViewCell.m */; };
 		52BB34311B6160CA00BB9FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34301B6160CA00BB9FFD /* main.m */; };
 		52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34331B6160CA00BB9FFD /* AppDelegate.m */; };
-		52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BB34381B6160CA00BB9FFD /* Actions.storyboard */; };
+		52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BB34381B6160CA00BB9FFD /* Reps.storyboard */; };
 		52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343B1B6160CA00BB9FFD /* Images.xcassets */; };
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
 		52BB344B1B6160CA00BB9FFD /* VoicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB344A1B6160CA00BB9FFD /* VoicesTests.m */; };
@@ -138,7 +138,7 @@
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52BB34321B6160CA00BB9FFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		52BB34331B6160CA00BB9FFD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		52BB34391B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Actions.storyboard; sourceTree = "<group>"; };
+		52BB34391B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reps.storyboard; sourceTree = "<group>"; };
 		52BB343B1B6160CA00BB9FFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Voices/Images.xcassets; sourceTree = "<group>"; };
 		52BB343E1B6160CA00BB9FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		52BB34441B6160CA00BB9FFD /* Voices.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Voices.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,8 +289,8 @@
 				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
 				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52D8929D1CC471AA004FBEA3 /* GroupsPage */,
-				52D892901CC45CC1004FBEA3 /* ActionPage */,
+				52D8929D1CC471AA004FBEA3 /* GroupsTab */,
+				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
@@ -330,7 +330,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		52D892901CC45CC1004FBEA3 /* ActionPage */ = {
+		52D892901CC45CC1004FBEA3 /* RepsTab */ = {
 			isa = PBXGroup;
 			children = (
 				52AD33971BE5CAA000EC0468 /* Managers */,
@@ -339,17 +339,17 @@
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
 			);
-			name = ActionPage;
+			name = RepsTab;
 			sourceTree = "<group>";
 		};
-		52D8929D1CC471AA004FBEA3 /* GroupsPage */ = {
+		52D8929D1CC471AA004FBEA3 /* GroupsTab */ = {
 			isa = PBXGroup;
 			children = (
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
 				7EEDF30F1CF8DABC006E0696 /* Model */,
 			);
-			name = GroupsPage;
+			name = GroupsTab;
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {
@@ -397,7 +397,7 @@
 		7E5CC8281C909065005E8F45 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				52BB34381B6160CA00BB9FFD /* Actions.storyboard */,
+				52BB34381B6160CA00BB9FFD /* Reps.storyboard */,
 				5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */,
 				5235B07D1BA732EA00CF43F9 /* FederalRepresentativeTableViewCell.xib */,
@@ -550,7 +550,7 @@
 				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
-				52BB343A1B6160CA00BB9FFD /* Actions.storyboard in Resources */,
+				52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */,
 				525475961D31C40C00A894BA /* EmptyState.xib in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CityCouncilDistricts.zip in Resources */,
@@ -750,12 +750,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		52BB34381B6160CA00BB9FFD /* Actions.storyboard */ = {
+		52BB34381B6160CA00BB9FFD /* Reps.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				52BB34391B6160CA00BB9FFD /* Base */,
 			);
-			name = Actions.storyboard;
+			name = Reps.storyboard;
 			sourceTree = "<group>";
 		};
 		52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */ = {

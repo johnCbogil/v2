@@ -31,7 +31,7 @@
 - (void)createViewControllers {
     
     UIStoryboard *groupsSB = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    UIStoryboard *actionsSB = [UIStoryboard storyboardWithName:@"Actions" bundle:nil];
+    UIStoryboard *actionsSB = [UIStoryboard storyboardWithName:@"Reps" bundle:nil];
     
     RootViewController *rootVC = (RootViewController *)[actionsSB instantiateViewControllerWithIdentifier: @"RootViewController"];
     GroupsViewController *groupsVC = (GroupsViewController *)[groupsSB instantiateViewControllerWithIdentifier: @"GroupsNavigationViewController"];
