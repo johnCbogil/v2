@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *notiOnboardingImageView;
 @property (weak, nonatomic) IBOutlet UIView *singleLineView;
 @property (weak, nonatomic) IBOutlet UIButton *turnOnNotificationsButton;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UIButton *deferNotiButton;
 
 @end
 
@@ -38,10 +38,10 @@
     self.turnOnNotificationsButton.backgroundColor = [UIColor voicesOrange];
     self.turnOnNotificationsButton.layer.cornerRadius = kButtonCornerRadius;
     
-    self.nextButton.titleLabel.font = [UIFont voicesFontWithSize:13];
-    [self.nextButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
-    self.nextButton.alpha = 0.5;
-    [self.nextButton setTitle:@"I'm not interested right now." forState:UIControlStateNormal];
+    self.deferNotiButton.titleLabel.font = [UIFont voicesFontWithSize:13];
+    [self.deferNotiButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
+    self.deferNotiButton.alpha = 0.5;
+    [self.deferNotiButton setTitle:@"I'm not interested right now." forState:UIControlStateNormal];
 }
 
 - (IBAction)turnOnNotiButtonDidPress:(id)sender {
@@ -57,10 +57,11 @@
     }
     
     [self.turnOnNotificationsButton setTitle:@"Next" forState:UIControlStateNormal];
-    self.nextButton.alpha = 0;
+    self.turnOnNotificationsButton.titleLabel.font = [UIFont voicesFontWithSize:29];
+    self.deferNotiButton.alpha = 0;
 }
 
-- (IBAction)nextButtonDidPress:(id)sender {
+- (IBAction)deferNotiButtonDidPress:(id)sender {
     
     [self pushNextVC];
 }

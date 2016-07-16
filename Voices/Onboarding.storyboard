@@ -311,7 +311,7 @@
                                     <action selector="turnOnNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="SPE-19-gYU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q" userLabel="Defer">
                                 <rect key="frame" x="188" y="551" width="225" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="OOC-Qw-0L5"/>
@@ -322,7 +322,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="nextButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="6aF-63-H3l"/>
+                                    <action selector="deferNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="fs1-Gl-XDW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -345,7 +345,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="nextButton" destination="Tmc-3q-q5q" id="iyI-lj-0L5"/>
+                        <outlet property="deferNotiButton" destination="Tmc-3q-q5q" id="aOG-Pj-6Ee"/>
                         <outlet property="notiOnboardingImageView" destination="ruW-m4-7F3" id="Kyb-uR-zDs"/>
                         <outlet property="singleLineView" destination="hOt-Sh-FuP" id="ss1-Jk-XCs"/>
                         <outlet property="turnOnNotiLabel" destination="Iyk-yB-sZN" id="pIB-hc-Hpb"/>
@@ -377,7 +377,7 @@
     </scenes>
     <resources>
         <image name="LocationOnboarding" width="780" height="952"/>
-        <image name="NotiOnboarding" width="500" height="610"/>
+        <image name="NotiOnboarding" width="566" height="691"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>
