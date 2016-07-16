@@ -22,8 +22,8 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 
-
 @interface RootViewController () <MFMailComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic) BOOL isSearchBarOpen;
+@property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 
 @end
 
@@ -83,6 +84,7 @@
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
     self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
 }
@@ -193,6 +195,7 @@
     // Hide the search bar
     self.searchBar.alpha = 0.0;
     self.searchButton.alpha = 1.0;
+    self.magnifyingGlassImageView.alpha = 1.0;
     self.legislatureLevel.alpha = .8;
 }
 
@@ -247,6 +250,7 @@
                          self.searchBar.alpha = 1.0;
                          self.legislatureLevel.alpha = 0.0;
                          self.searchButton.alpha = 0.0;
+                         self.magnifyingGlassImageView.alpha = 0.0;
                          self.infoButton.alpha = 0.0;
                      }];
 }
@@ -258,6 +262,7 @@
                      animations:^{
                          self.searchBar.alpha = 0.0;
                          self.searchButton.alpha = 1.0;
+                         self.magnifyingGlassImageView.alpha = 1.0;
                          self.legislatureLevel.alpha = 1.0;
                          self.infoButton.alpha = 1.0;
                      }];
