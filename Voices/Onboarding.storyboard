@@ -77,7 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6gM-5p-aiD"/>
                     <connections>
-                        <outlet property="firstCivicToolLabel" destination="s6n-tv-dL9" id="zCp-oi-dLf"/>
+                        <outlet property="introLabel" destination="s6n-tv-dL9" id="z42-7R-0ji"/>
                         <outlet property="startButton" destination="bPg-AL-k8o" id="sbV-ZE-xGv"/>
                         <outlet property="voicesIcon" destination="DT0-Pw-P0G" id="nBh-TY-6cw"/>
                     </connections>
