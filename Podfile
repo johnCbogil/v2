@@ -13,6 +13,8 @@ target 'Voices' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Messaging'
+    pod 'Firebase/Crash'
+
 end
 
 target 'VoicesTests' do
