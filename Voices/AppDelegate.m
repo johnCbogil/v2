@@ -52,7 +52,8 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     
-    
+//    assert(false);
+
     return YES;
 }
 
@@ -123,9 +124,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
-    self.isRegisteredForPushNotis = application.isRegisteredForRemoteNotifications;
     
-  //  self.
+    // I DONT THINK WERE USING THIS
+    self.isRegisteredForPushNotis = application.isRegisteredForRemoteNotifications;
     
 }
 
