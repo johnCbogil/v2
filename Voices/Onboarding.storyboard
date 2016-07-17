@@ -20,16 +20,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
-                                <rect key="frame" x="174" y="53" width="250" height="250"/>
+                                <rect key="frame" x="174" y="28" width="250" height="250"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DT0-Pw-P0G" secondAttribute="height" multiplier="1:1" id="oOy-gC-ole"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is an advocacy tool. It's the smart way to make your voice heard." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
-                                <rect key="frame" x="20" y="311" width="560" height="112"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is an advocacy tool. It's the smart way to make your voice heard." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
+                                <rect key="frame" x="20" y="286" width="560" height="199"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="112" id="hDT-A7-8Em"/>
+                                    <constraint firstAttribute="height" constant="199" id="hDT-A7-8Em"/>
                                     <constraint firstAttribute="height" constant="112" id="r7w-ro-Way"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
@@ -62,12 +62,12 @@
                             <constraint firstItem="G6I-Ka-J2W" firstAttribute="top" secondItem="bPg-AL-k8o" secondAttribute="bottom" constant="57" id="6Lb-Hi-TBB"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="top" secondItem="DT0-Pw-P0G" secondAttribute="bottom" constant="8" id="EKo-U9-ydi"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="centerX" secondItem="bPg-AL-k8o" secondAttribute="centerX" id="PaF-Hi-8CE"/>
-                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="33" id="QiM-qi-Bo4"/>
+                            <constraint firstItem="DT0-Pw-P0G" firstAttribute="top" secondItem="fpw-ld-ZLL" secondAttribute="bottom" constant="8" id="QiM-qi-Bo4"/>
                             <constraint firstItem="bPg-AL-k8o" firstAttribute="centerX" secondItem="0hX-ZG-Zh9" secondAttribute="centerX" id="e0z-UQ-uUH"/>
                             <constraint firstItem="s6n-tv-dL9" firstAttribute="leading" secondItem="0hX-ZG-Zh9" secondAttribute="leadingMargin" id="ly9-Fg-U6f"/>
                             <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerX" secondItem="s6n-tv-dL9" secondAttribute="centerX" constant="-1" id="tXt-eO-KaY"/>
                             <constraint firstItem="DT0-Pw-P0G" firstAttribute="centerY" secondItem="0hX-ZG-Zh9" secondAttribute="centerY" id="vMu-Ux-kx2"/>
-                            <constraint firstItem="bPg-AL-k8o" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="70" id="wUM-S5-00c"/>
+                            <constraint firstItem="bPg-AL-k8o" firstAttribute="top" secondItem="s6n-tv-dL9" secondAttribute="bottom" constant="8" id="wUM-S5-00c"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
