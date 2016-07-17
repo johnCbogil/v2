@@ -348,7 +348,8 @@
 }
 
 - (void)presentInfoViewController {
-    UIViewController *infoViewController = [[UIStoryboard storyboardWithName:@"Info" bundle:nil] instantiateViewControllerWithIdentifier:@"InfoViewController"];
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"Info" owner:self options:nil] objectAtIndex:0];
+
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.containerView.layer.cornerRadius = 10;
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
