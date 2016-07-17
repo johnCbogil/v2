@@ -11,7 +11,6 @@
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 #import "Group.h"
-#import "UIFont+voicesFont.h"
 #import "UIColor+voicesColor.h"
 
 @import Firebase;

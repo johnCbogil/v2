@@ -8,7 +8,6 @@
 
 #import "GroupsViewController.h"
 #import "GroupTableViewCell.h"
-#import "UIFont+voicesFont.h"
 #import "UIColor+voicesColor.h"
 #import "ActionTableViewCell.h"
 #import "GroupTableViewCell.h"

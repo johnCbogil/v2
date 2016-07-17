@@ -25,6 +25,13 @@
     
     self = [[[NSBundle mainBundle] loadNibNamed:@"EmptyState" owner:self options:nil] objectAtIndex:0];
     
+    [self setFont];
+    
+    return self;
+}
+
+- (void)setFont {
+
     self.topLabel.text = kActionEmptyStateTopLabel;
     self.topLabel.font = [UIFont voicesFontWithSize:21];
     self.topLabel.textColor = [UIColor voicesBlack];
@@ -32,9 +39,6 @@
     self.bottomLabel.text = kActionEmptyStateBottomLabel;
     self.bottomLabel.font = [UIFont voicesFontWithSize:19];
     self.bottomLabel.textColor = [UIColor voicesGray];
-
-    
-    return self;
 }
 
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom  {
