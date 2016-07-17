@@ -9,6 +9,7 @@
 #import "OnboardingViewController.h"
 #import "UIFont+voicesFont.h"
 #import "VoicesConstants.h"
+#import "UIColor+voicesColor.h"
 
 @interface OnboardingViewController ()
 
@@ -31,6 +32,7 @@
     self.startButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.startButton.layer.cornerRadius = kButtonCornerRadius;
     self.startButton.titleLabel.font = [UIFont voicesFontWithSize:25.0];
+    self.startButton.backgroundColor = [UIColor voicesOrange];
     
     self.introLabel.font = [UIFont voicesFontWithSize:23.0];
     self.introLabel.text = @"Voices is an advocacy tool for people who care. It's the smart way to make your voice heard.";
