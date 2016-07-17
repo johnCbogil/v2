@@ -148,8 +148,7 @@
     }
     else if (buttonIndex == 1) {
         
-        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.stateRepresentative.fullName, kFIRParameterValue : @1}];
-        
+        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.stateRepresentative.fullName, kFIRParameterValue : @1}];        
         
         NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl])
