@@ -9,6 +9,7 @@
 #import "LocationOnboardingViewController.h"
 #import "TabBarViewController.h"
 #import "UIFont+voicesFont.h"
+#import "UIColor+voicesColor.h"
 #import "VoicesConstants.h"
 
 @interface LocationOnboardingViewController ()
@@ -32,7 +33,9 @@
     self.permitLocationUseButton.layer.cornerRadius = kButtonCornerRadius;
     self.turnOnLocationLabel.font = [UIFont voicesFontWithSize:20];
     self.permitLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:18];
+    self.permitLocationUseButton.backgroundColor = [UIColor voicesOrange];
     self.deferLocationUseButton.titleLabel.font = [UIFont voicesFontWithSize:11];
+    [self.deferLocationUseButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

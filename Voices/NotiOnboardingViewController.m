@@ -34,6 +34,8 @@
 
 - (void)setFont {
     
+    self.turnOnNotiLabel.font = [UIFont voicesFontWithSize:19];
+    
     self.turnOnNotificationsButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.turnOnNotificationsButton.backgroundColor = [UIColor voicesOrange];
     self.turnOnNotificationsButton.layer.cornerRadius = kButtonCornerRadius;
