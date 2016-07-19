@@ -75,7 +75,7 @@
 
 - (void)initWithRep:(id)rep {
     self.nycRepresentative = rep;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
+    self.nameLabel.text = self.nycRepresentative.fullName;
     if ([[rep lastName] isEqualToString:@"de Blasio"]) {
         self.districtNumberLabel.text = [NSString stringWithFormat:@"%@", self.nycRepresentative.districtNumber];
         
@@ -126,7 +126,7 @@
 - (IBAction)phoneButtonDidPress:(id)sender {
     if (![self.nycRepresentative.phone isEqualToString:@""]) {
         NSString *confirmCallMessage;
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
+        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.nycRepresentative.fullName];
         UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Council Member %@",self.nycRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
@@ -143,7 +143,7 @@
     }
     else if (buttonIndex == 1) {
         
-        NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
+        NSString *fullName = [NSString stringWithFormat:@"%@", self.nycRepresentative.fullName];
         [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : fullName, kFIRParameterValue : @1}];
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];

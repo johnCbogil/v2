@@ -17,6 +17,7 @@
         self.districtNumber = data[@"district"];
         self.firstName = data[@"firstName"];
         self.lastName = data[@"lastName"];
+        self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.phone = data[@"phoneNumber"];
         self.email = data[@"email"];
         self.party = data[@"party"];
@@ -32,6 +33,7 @@
         self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
         self.firstName = [decoder decodeObjectForKey:@"firstName"];
         self.lastName = [decoder decodeObjectForKey:@"lastName"];
+        self.fullName = [decoder decodeObjectForKey:@"fullName"];
         self.phone = [decoder decodeObjectForKey:@"phoneNumber"];
         self.party = [decoder decodeObjectForKey:@"party"];
         self.email = [decoder decodeObjectForKey:@"email"];
@@ -47,6 +49,7 @@
     [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
     [coder encodeObject:self.firstName forKey:@"firstName"];
     [coder encodeObject:self.lastName forKey:@"lastName"];
+    [coder encodeObject:self.fullName forKey:@"fullName"];
     [coder encodeObject:self.phone forKey:@"phoneNumber"];
     [coder encodeObject:self.party forKey:@"party"];
     [coder encodeObject:self.email forKey:@"email"];
