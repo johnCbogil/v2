@@ -47,6 +47,19 @@
     [self setImage];
 }
 
+- (void)setFont {
+    self.name.font = [UIFont voicesFontWithSize:24];
+    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
+}
+
+- (void)setColor {
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
+    
+    self.districtNumberLabel.textColor = [UIColor voicesBlack];
+}
+
 - (void)setImage{
     UIImage *placeholderImage;
     if (self.stateRepresentative.gender) {
@@ -79,13 +92,6 @@
     }];
 }
 
-- (void)setColor {
-    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
-}
-
 - (void)createDistrictNumberLabel {
     if ([self.stateRepresentative.chamber isEqualToString:@"Rep."]) {
         if ([self.listOfStatesWithAssembly containsObject:self.stateRepresentative.stateCode.uppercaseString]) {
@@ -107,10 +113,7 @@
     }
 }
 
-- (void)setFont {
-    self.name.font = [UIFont voicesFontWithSize:24];
-    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
-}
+
 
 - (IBAction)callButtonDidPress:(id)sender {
     if (self.stateRepresentative.phone) {

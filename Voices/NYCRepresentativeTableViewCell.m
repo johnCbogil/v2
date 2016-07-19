@@ -37,6 +37,19 @@
     [self setColor];
 }
 
+- (void)setFont {
+    self.nameLabel.font = [UIFont voicesFontWithSize:24];
+    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
+}
+
+- (void)setColor {
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
+    
+    self.districtNumberLabel.textColor = [UIColor voicesBlack];
+}
+
 - (void)setImage{
     UIImage *placeholderImage;
     if ([self.nycRepresentative.gender isEqualToString:@"M"]) {
@@ -58,17 +71,6 @@
     }];
 }
 
-- (void)setFont {
-    self.nameLabel.font = [UIFont voicesFontWithSize:24];
-    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
-}
-
-- (void)setColor {
-    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
-}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
