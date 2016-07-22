@@ -24,4 +24,15 @@
     return [[UIColor blackColor]colorWithAlphaComponent:0.5];
 }
 
++ (UIColor *)voicesBlue {
+    // 26, 140, 255 -- pantone
+    return [UIColor colorWithRed:(26.0/255.0) green:(140.0/255.0) blue:(255.0/255.0) alpha:1];
+}
+
++ (UIColor *)voicesLightBlue {
+    // 117,201,235 -- prisma
+
+    return [UIColor colorWithRed:(117/255.0) green:(201/255.0) blue:(235/255.0) alpha:1];
+}
+
 @end
