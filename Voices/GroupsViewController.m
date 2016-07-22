@@ -266,8 +266,16 @@
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
         [self.listOfActions addObject:newAction];
         [self.tableView reloadData];
+        [self sortActionsByTime];
         [self toggleActivityIndicatorOff];
     }];
+}
+
+- (void)sortActionsByTime {
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.listOfActions = [self.listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
 }
 
 - (void)removeGroup:(Group *)group {
