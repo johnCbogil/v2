@@ -95,7 +95,7 @@
             self.districtNumberLabel.text = [NSString stringWithFormat:@"House District %@", self.stateRepresentative.districtNumber];
         }
     }
-    else if ([self.stateRepresentative.chamber isEqualToString:@"Gov."]) {
+    else if ([self.stateRepresentative.chamber isEqualToString:@"Governor"]) {
         if (self.stateRepresentative.nextElection) {
             self.districtNumberLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.stateRepresentative.nextElection];
         } else {

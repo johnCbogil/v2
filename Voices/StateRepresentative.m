@@ -49,7 +49,7 @@
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         self.state = [data valueForKey:@"state_full"];
-        self.chamber = @"Gov.";
+        self.chamber = @"Governor";
         self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
         self.nextElection = [self formatElectionDate:[data valueForKey:@"next_election_date"]];
         self.twitter = [data valueForKey:@"twitter"];
