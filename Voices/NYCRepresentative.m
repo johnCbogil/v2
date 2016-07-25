@@ -24,6 +24,8 @@
         self.photoURL = [NSURL URLWithString:data[@"photoURLPath"]];
         self.twitter = data[@"twitter"];
         self.gender = data[@"gender"];
+        self.title = data[@"title"] ? data[@"title"] : @"Council Member";
+        self.nextElection = data[@"nextElection"];
     }
     return self;
 }
@@ -41,6 +43,8 @@
         self.photo = [decoder decodeObjectForKey:@"photo"];
         self.twitter = [decoder decodeObjectForKey:@"twitter"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
+        self.title = [decoder decodeObjectForKey:@"title"];
+        self.nextElection = [decoder decodeObjectForKey:@"nextElection"];
     }
     return self;
 }
@@ -57,5 +61,7 @@
     [coder encodeObject:self.photo forKey:@"photo"];
     [coder encodeObject:self.twitter forKey:@"twitter"];
     [coder encodeObject:self.gender forKey:@"gender"];
+    [coder encodeObject:self.title forKey:@"title"];
+    [coder encodeObject:self.nextElection forKey:@"nextElection"];
 }
 @end

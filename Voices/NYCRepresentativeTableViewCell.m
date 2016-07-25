@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subLabel;
 @property (strong, nonatomic) NYCRepresentative *nycRepresentative;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -60,7 +60,7 @@
 
 - (void)setFont {
     self.nameLabel.font = [UIFont voicesFontWithSize:24];
-    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
+    self.subLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (void)setColor {
@@ -76,12 +76,13 @@
 - (void)initWithRep:(id)rep {
     self.nycRepresentative = rep;
     self.nameLabel.text = self.nycRepresentative.fullName;
-    if ([[rep lastName] isEqualToString:@"de Blasio"]) {
-        self.districtNumberLabel.text = [NSString stringWithFormat:@"%@", self.nycRepresentative.districtNumber];
-        
-    } else {
-        self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+    if (self.nycRepresentative.nextElection) {
+        self.subLabel.text = [NSString stringWithFormat:@"Next Election: %@", self.nycRepresentative.nextElection];
     }
+    else {
+        self.subLabel.text  = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+    }
+    
     [self setImage];
 }
 
@@ -125,9 +126,10 @@
 }
 - (IBAction)phoneButtonDidPress:(id)sender {
     if (![self.nycRepresentative.phone isEqualToString:@""]) {
-        NSString *confirmCallMessage;
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.nycRepresentative.fullName];
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Council Member %@",self.nycRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        NSString *confirmCallTitle = [NSString stringWithFormat:@"%@ %@",self.nycRepresentative.title,self.nycRepresentative.lastName];
+        NSString *confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.nycRepresentative.fullName];
+        
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:confirmCallTitle  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }

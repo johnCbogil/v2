@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>nextElection</key>
+	<string>7 Nov 2017</string>
+	<key>title</key>
+	<string>Mayor</string>
 	<key>gender</key>
 	<string>M</string>
 	<key>email</key>

@@ -25,5 +25,7 @@
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSString *twitter;
 @property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *nextElection;
 
 @end
