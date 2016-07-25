@@ -52,7 +52,7 @@
     
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-
+    
     self.segmentControl.tintColor = [UIColor voicesOrange];
     
     self.rootRef = [[FIRDatabase database] reference];
@@ -92,13 +92,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    if (self.selectedSegment) {
-        self.tableView.estimatedRowHeight = 100.0;
-    }
-    else {
-        self.tableView.estimatedRowHeight = 255.0;
-    }
     self.tableView.allowsSelection = NO;
 }
 
@@ -114,7 +107,7 @@
 // THESE METHODS MAY BE REDUNDANT
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
-    [self.activityIndicatorView startAnimating];
+        [self.activityIndicatorView startAnimating];
     });
 }
 
@@ -369,7 +362,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     if (!self.segmentControl.selectedSegmentIndex) {
-
+        
     }
     else {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
@@ -378,6 +371,17 @@
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.selectedSegment) {
+        return 75.0;
+    }
+    else {
+        self.tableView.estimatedRowHeight = 255.0;
+        return self.tableView.rowHeight = UITableViewAutomaticDimension;
+    }
 }
 
 #pragma mark - Segment Control
