@@ -95,7 +95,7 @@
             self.districtNumberLabel.text = [NSString stringWithFormat:@"House District %@", self.stateRepresentative.districtNumber];
         }
     }
-    else if ([self.stateRepresentative.chamber isEqualToString:@"Governor"]) {
+    else if ([self.stateRepresentative.chamber isEqualToString:@"Gov."]) {
         if (self.stateRepresentative.nextElection) {
             self.districtNumberLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.stateRepresentative.nextElection];
         } else {
@@ -121,7 +121,7 @@
         else {
             confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.stateRepresentative.firstName, self.stateRepresentative.lastName];
         }
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber ,self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }
