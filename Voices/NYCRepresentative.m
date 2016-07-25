@@ -17,12 +17,15 @@
         self.districtNumber = data[@"district"];
         self.firstName = data[@"firstName"];
         self.lastName = data[@"lastName"];
+        self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.phone = data[@"phoneNumber"];
         self.email = data[@"email"];
         self.party = data[@"party"];
         self.photoURL = [NSURL URLWithString:data[@"photoURLPath"]];
         self.twitter = data[@"twitter"];
         self.gender = data[@"gender"];
+        self.title = data[@"title"] ? data[@"title"] : @"Council Member";
+        self.nextElection = data[@"nextElection"];
     }
     return self;
 }
@@ -32,6 +35,7 @@
         self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
         self.firstName = [decoder decodeObjectForKey:@"firstName"];
         self.lastName = [decoder decodeObjectForKey:@"lastName"];
+        self.fullName = [decoder decodeObjectForKey:@"fullName"];
         self.phone = [decoder decodeObjectForKey:@"phoneNumber"];
         self.party = [decoder decodeObjectForKey:@"party"];
         self.email = [decoder decodeObjectForKey:@"email"];
@@ -39,6 +43,8 @@
         self.photo = [decoder decodeObjectForKey:@"photo"];
         self.twitter = [decoder decodeObjectForKey:@"twitter"];
         self.gender = [decoder decodeObjectForKey:@"gender"];
+        self.title = [decoder decodeObjectForKey:@"title"];
+        self.nextElection = [decoder decodeObjectForKey:@"nextElection"];
     }
     return self;
 }
@@ -47,6 +53,7 @@
     [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
     [coder encodeObject:self.firstName forKey:@"firstName"];
     [coder encodeObject:self.lastName forKey:@"lastName"];
+    [coder encodeObject:self.fullName forKey:@"fullName"];
     [coder encodeObject:self.phone forKey:@"phoneNumber"];
     [coder encodeObject:self.party forKey:@"party"];
     [coder encodeObject:self.email forKey:@"email"];
@@ -54,5 +61,7 @@
     [coder encodeObject:self.photo forKey:@"photo"];
     [coder encodeObject:self.twitter forKey:@"twitter"];
     [coder encodeObject:self.gender forKey:@"gender"];
+    [coder encodeObject:self.title forKey:@"title"];
+    [coder encodeObject:self.nextElection forKey:@"nextElection"];
 }
 @end

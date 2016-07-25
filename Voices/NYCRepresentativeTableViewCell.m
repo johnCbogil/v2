@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subLabel;
 @property (strong, nonatomic) NYCRepresentative *nycRepresentative;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -35,19 +35,6 @@
     self.photo.clipsToBounds = YES;
     [self setFont];
     [self setColor];
-}
-
-- (void)setFont {
-    self.nameLabel.font = [UIFont voicesFontWithSize:24];
-    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
-}
-
-- (void)setColor {
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
-    
-    self.districtNumberLabel.textColor = [UIColor voicesBlack];
 }
 
 - (void)setImage{
@@ -71,19 +58,31 @@
     }];
 }
 
+- (void)setFont {
+    self.nameLabel.font = [UIFont voicesFontWithSize:24];
+    self.subLabel.font = [UIFont voicesFontWithSize:20];
+}
+
+- (void)setColor {
+    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
 
 - (void)initWithRep:(id)rep {
     self.nycRepresentative = rep;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
-    if ([[rep lastName] isEqualToString:@"de Blasio"]) {
-        self.districtNumberLabel.text = [NSString stringWithFormat:@"%@", self.nycRepresentative.districtNumber];
-        
-    } else {
-        self.districtNumberLabel.text = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+    self.nameLabel.text = self.nycRepresentative.fullName;
+    if (self.nycRepresentative.nextElection) {
+        self.subLabel.text = [NSString stringWithFormat:@"Next Election: %@", self.nycRepresentative.nextElection];
     }
+    else {
+        self.subLabel.text  = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+    }
+    
     [self setImage];
 }
 
@@ -127,9 +126,10 @@
 }
 - (IBAction)phoneButtonDidPress:(id)sender {
     if (![self.nycRepresentative.phone isEqualToString:@""]) {
-        NSString *confirmCallMessage;
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Council Member %@",self.nycRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        NSString *confirmCallTitle = [NSString stringWithFormat:@"%@ %@",self.nycRepresentative.title,self.nycRepresentative.lastName];
+        NSString *confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.nycRepresentative.fullName];
+        
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:confirmCallTitle  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }
@@ -145,7 +145,7 @@
     }
     else if (buttonIndex == 1) {
         
-        NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.firstName, self.nycRepresentative.lastName];
+        NSString *fullName = [NSString stringWithFormat:@"%@", self.nycRepresentative.fullName];
         [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : fullName, kFIRParameterValue : @1}];
         
         NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.nycRepresentative.phone]];

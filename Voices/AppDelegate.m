@@ -122,10 +122,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
-    
-    // I DONT THINK WERE USING THIS
-    self.isRegisteredForPushNotis = application.isRegisteredForRemoteNotifications;
-    
 }
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

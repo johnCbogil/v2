@@ -13,5 +13,7 @@
 + (UIColor*)voicesOrange;
 + (UIColor *)voicesBlack;
 + (UIColor *)voicesGray;
++ (UIColor *)voicesBlue;
++ (UIColor *)voicesLightBlue;
 
 @end

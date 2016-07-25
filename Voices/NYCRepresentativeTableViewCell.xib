@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6mD-cf-Unf" id="byV-jb-wf5">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="139"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-Np-oh2">
@@ -103,10 +103,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="callButton" destination="FlO-Wd-l3S" id="CB8-pL-vFX"/>
-                <outlet property="districtNumberLabel" destination="RYI-eh-vTy" id="ygV-zU-L1z"/>
                 <outlet property="emailButton" destination="aZG-pP-JOs" id="kFK-PU-WsB"/>
                 <outlet property="nameLabel" destination="Ggm-JQ-8Pb" id="Xx5-on-dLC"/>
                 <outlet property="photo" destination="6mC-Np-oh2" id="QRV-qc-Gpa"/>
+                <outlet property="subLabel" destination="RYI-eh-vTy" id="ja9-Z9-OSW"/>
                 <outlet property="tweetButton" destination="MVt-Om-q4i" id="mLi-Yh-yHs"/>
             </connections>
             <point key="canvasLocation" x="527" y="562"/>
