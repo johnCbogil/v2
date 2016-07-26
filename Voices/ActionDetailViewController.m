@@ -33,7 +33,7 @@
     self.actionSubjectLabel.text = self.action.subject;
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
-    
+    self.actionBodyTextView.dataDetectorTypes = UIDataDetectorTypeAll;
     
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
