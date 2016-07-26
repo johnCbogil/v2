@@ -75,7 +75,14 @@
 
 - (void)initWithRep:(id)rep {
     self.nycRepresentative = rep;
-    self.nameLabel.text = self.nycRepresentative.fullName;
+
+    if ([self.nycRepresentative.title isEqualToString:@"Mayor"]) {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.title, self.nycRepresentative.fullName];
+    }
+    else {
+        self.nameLabel.text = self.nycRepresentative.fullName;
+    }
+    
     if (self.nycRepresentative.nextElection) {
         self.subLabel.text = [NSString stringWithFormat:@"Next Election: %@", self.nycRepresentative.nextElection];
     }
