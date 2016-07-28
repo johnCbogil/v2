@@ -29,17 +29,21 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-NX-ZHW">
-                        <rect key="frame" x="123" y="8" width="229" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-NX-ZHW">
+                        <rect key="frame" x="123" y="8" width="229" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="229" id="Mfe-yH-W5p"/>
+                            <constraint firstAttribute="height" priority="250" constant="26" id="mnk-hY-ZOg"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ContainerView">
-                        <rect key="frame" x="122" y="92.5" width="229" height="38.5"/>
+                        <rect key="frame" x="122" y="92" width="229" height="38.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAb-DP-LFI">
-                                <rect key="frame" x="7.5" y="4" width="32" height="32"/>
+                                <rect key="frame" x="7" y="4" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="0wA-rA-wjg"/>
                                     <constraint firstAttribute="height" constant="32" id="mVt-u2-B8f"/>
@@ -61,7 +65,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p8-P5-2it">
-                                <rect key="frame" x="188.5" y="4" width="35" height="35"/>
+                                <rect key="frame" x="188" y="4" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="jYc-iD-mJw"/>
                                     <constraint firstAttribute="width" constant="35" id="phg-up-xo0"/>
@@ -85,17 +89,23 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="1ob-kW-VVe"/>
                     <constraint firstItem="4Qj-e2-LYP" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="14" id="6K4-oA-S6r"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4Qj-e2-LYP" secondAttribute="trailing" constant="1" id="9uP-AC-JhX"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="15" id="EP3-0E-xIT"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="trailing" secondItem="9uY-lc-yzz" secondAttribute="trailingMargin" id="Kdg-4n-pP9"/>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="trailing" secondItem="9uY-lc-yzz" secondAttribute="trailingMargin" id="AOP-OK-Kbo"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="centerY" secondItem="9uY-lc-yzz" secondAttribute="centerY" constant="-0.75" id="Sty-Oh-1zo"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="leading" secondItem="9uY-lc-yzz" secondAttribute="leadingMargin" id="VZg-kR-Koy"/>
+                    <constraint firstItem="4Qj-e2-LYP" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="58.5" id="c6p-7c-Uz4"/>
                     <constraint firstAttribute="bottomMargin" secondItem="4Qj-e2-LYP" secondAttribute="bottom" constant="0.5" id="fr4-g2-1ZV"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="gfx-kp-sw6"/>
-                    <constraint firstItem="4Qj-e2-LYP" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="58.5" id="hSQ-sB-kIv"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="nBo-XU-rZw"/>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="15" id="zJL-Tl-4w1"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="AOP-OK-Kbo"/>
+                        <exclude reference="c6p-7c-Uz4"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="callButton" destination="qAb-DP-LFI" id="3i6-3d-FZQ"/>

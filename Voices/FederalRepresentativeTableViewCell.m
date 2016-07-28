@@ -44,6 +44,7 @@
 - (void)initWithRep:(id)rep {
     self.federalRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.federalRepresentative.shortTitle, self.federalRepresentative.firstName, self.federalRepresentative.lastName];
+    self.name.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
