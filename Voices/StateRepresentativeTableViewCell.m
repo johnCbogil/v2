@@ -86,7 +86,7 @@
 }
 
 - (void)setFont {
-    self.nameLabel.font = self.nameLabel.text.length > 16 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
+    self.nameLabel.font = self.nameLabel.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
 }
 
 - (IBAction)callButtonDidPress:(id)sender {

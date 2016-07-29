@@ -37,7 +37,7 @@
 }
 
 - (void)setFont {
-    self.name.font = self.name.text.length > 16 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
+    self.name.font = self.name.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
     self.name.textColor = [UIColor voicesBlack];
 }
 

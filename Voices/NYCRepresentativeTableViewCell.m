@@ -19,11 +19,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subLabel;
 @property (strong, nonatomic) NYCRepresentative *nycRepresentative;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @end
 
@@ -59,8 +59,7 @@
 }
 
 - (void)setFont {
-    self.nameLabel.font = [UIFont voicesFontWithSize:24];
-    self.subLabel.font = [UIFont voicesFontWithSize:20];
+    self.nameLabel.font = self.nameLabel.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
 }
 
 - (void)setColor {
@@ -80,14 +79,7 @@
         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.title, self.nycRepresentative.fullName];
     }
     else {
-        self.nameLabel.text = self.nycRepresentative.fullName;
-    }
-    
-    if (self.nycRepresentative.nextElection) {
-        self.subLabel.text = [NSString stringWithFormat:@"Next Election: %@", self.nycRepresentative.nextElection];
-    }
-    else {
-        self.subLabel.text  = [NSString stringWithFormat:@"Council District %@", self.nycRepresentative.districtNumber];
+        self.nameLabel.text = [NSString stringWithFormat:@"Council Member %@", self.nycRepresentative.fullName];
     }
     
     [self setImage];
