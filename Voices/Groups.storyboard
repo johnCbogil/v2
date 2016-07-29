@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k0W-gi-hf3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k0W-gi-hf3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -156,23 +156,17 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjK-gs-3Xb">
-                                <rect key="frame" x="128" y="57" width="112" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feY-TM-O5W">
-                                <rect key="frame" x="20" y="136" width="560" height="101"/>
+                                <rect key="frame" x="20" y="128" width="560" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="101" id="aSz-1Z-QBu"/>
+                                    <constraint firstAttribute="height" constant="80" id="aSz-1Z-QBu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8H-Lq-KAX">
-                                <rect key="frame" x="20" y="245" width="560" height="30"/>
+                                <rect key="frame" x="20" y="223" width="560" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="TAKE ACTION">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -182,14 +176,14 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vEa-wq-RJR">
-                                <rect key="frame" x="20" y="304" width="560" height="296"/>
+                                <rect key="frame" x="20" y="282" width="560" height="318"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QE-fd-fNg">
-                                <rect key="frame" x="20" y="283" width="560" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QE-fd-fNg" userLabel="Action Subject">
+                                <rect key="frame" x="20" y="261" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -202,12 +196,11 @@
                             <constraint firstItem="3QE-fd-fNg" firstAttribute="leading" secondItem="sIx-BJ-vgw" secondAttribute="leading" constant="20" id="2Wk-Ry-kQ8"/>
                             <constraint firstItem="o8H-Lq-KAX" firstAttribute="leading" secondItem="vEa-wq-RJR" secondAttribute="leading" id="7Xg-iK-fc9"/>
                             <constraint firstAttribute="trailing" secondItem="OFt-fB-va1" secondAttribute="trailing" constant="20" id="DcQ-v1-vcI"/>
-                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="top" secondItem="feY-TM-O5W" secondAttribute="bottom" constant="8" symbolic="YES" id="KBV-Zj-uaw"/>
+                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="top" secondItem="feY-TM-O5W" secondAttribute="bottom" constant="15" id="KBV-Zj-uaw"/>
                             <constraint firstItem="OFt-fB-va1" firstAttribute="leading" secondItem="jaR-NY-mSg" secondAttribute="trailing" constant="8" symbolic="YES" id="KQ2-fC-QaD"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="trailing" secondItem="o8H-Lq-KAX" secondAttribute="trailing" id="ZjD-2M-1WW"/>
-                            <constraint firstItem="feY-TM-O5W" firstAttribute="top" secondItem="jaR-NY-mSg" secondAttribute="bottom" constant="8" symbolic="YES" id="aDG-dm-eEP"/>
+                            <constraint firstItem="feY-TM-O5W" firstAttribute="top" secondItem="jaR-NY-mSg" secondAttribute="bottom" id="aDG-dm-eEP"/>
                             <constraint firstItem="o8H-Lq-KAX" firstAttribute="trailing" secondItem="vEa-wq-RJR" secondAttribute="trailing" id="bVG-Lv-hU6"/>
-                            <constraint firstItem="OFt-fB-va1" firstAttribute="leading" secondItem="JjK-gs-3Xb" secondAttribute="leading" id="byT-Gp-GPd"/>
                             <constraint firstItem="3QE-fd-fNg" firstAttribute="top" secondItem="o8H-Lq-KAX" secondAttribute="bottom" constant="8" id="dR3-B8-71o"/>
                             <constraint firstItem="jaR-NY-mSg" firstAttribute="top" secondItem="yLj-wz-TAC" secondAttribute="bottom" constant="8" symbolic="YES" id="dxj-41-0Fo"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="leading" secondItem="o8H-Lq-KAX" secondAttribute="leading" id="fcq-aM-kQF"/>
@@ -216,16 +209,14 @@
                             <constraint firstItem="feY-TM-O5W" firstAttribute="trailing" secondItem="sIx-BJ-vgw" secondAttribute="trailingMargin" id="nln-7e-GAu"/>
                             <constraint firstItem="vEa-wq-RJR" firstAttribute="bottom" secondItem="vW2-AM-kDQ" secondAttribute="top" id="pHu-2D-CJb"/>
                             <constraint firstItem="jaR-NY-mSg" firstAttribute="leading" secondItem="feY-TM-O5W" secondAttribute="leading" id="pVQ-Wr-Lkh"/>
-                            <constraint firstItem="JjK-gs-3Xb" firstAttribute="top" secondItem="OFt-fB-va1" secondAttribute="bottom" constant="8" symbolic="YES" id="zln-Hj-uYm"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="actionBodyTextView" destination="vEa-wq-RJR" id="c7B-pq-oDh"/>
-                        <outlet property="actionSubjectLabel" destination="JjK-gs-3Xb" id="zRN-Ba-PYs"/>
+                        <outlet property="actionSubjectLabel" destination="3QE-fd-fNg" id="xMg-pW-YAa"/>
                         <outlet property="actionTitleLabel" destination="feY-TM-O5W" id="fLh-HY-kqo"/>
                         <outlet property="groupImage" destination="jaR-NY-mSg" id="avL-T9-KcA"/>
                         <outlet property="groupNameLabel" destination="OFt-fB-va1" id="J3o-SK-Mb3"/>
-                        <outlet property="moreInfoLabel" destination="3QE-fd-fNg" id="aTr-Jz-k46"/>
                         <outlet property="takeActionButton" destination="o8H-Lq-KAX" id="vzz-fx-iCn"/>
                     </connections>
                 </viewController>
