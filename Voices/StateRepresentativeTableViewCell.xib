@@ -38,6 +38,12 @@
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CU6-Gz-AjF"/>
+                                <exclude reference="ShL-k2-oXH"/>
+                            </mask>
+                        </variation>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgh-lD-6Rl" userLabel="ContainerView">
                         <rect key="frame" x="116" y="50.5" width="236" height="80"/>
