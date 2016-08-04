@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
-@property (weak, nonatomic) IBOutlet UILabel *moreInfoLabel;
 @property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
 
 @end
@@ -33,7 +32,7 @@
     self.actionSubjectLabel.text = self.action.subject;
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
-    
+    self.actionBodyTextView.dataDetectorTypes = UIDataDetectorTypeAll;
     
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
@@ -51,14 +50,13 @@
 }
 
 - (void)setFont {
-    self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:24];
     self.groupNameLabel.minimumScaleFactor = 0.75;
     [self.groupNameLabel sizeToFit];
     
-    self.actionSubjectLabel.font = [UIFont voicesFontWithSize:17];
+    self.actionSubjectLabel.font = [UIFont voicesBoldFontWithSize:17];
     self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
     self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
-    self.moreInfoLabel.font = [UIFont voicesBoldFontWithSize:17];
     self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
 - (void)setGroupImageFromURL:(NSURL *)url {

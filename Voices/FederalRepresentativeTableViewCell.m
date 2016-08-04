@@ -19,12 +19,11 @@
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) FederalRepresentative *federalRepresentative;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
-@property (weak, nonatomic) IBOutlet UILabel *nextElectionLabel;
-@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 
 @end
 
@@ -38,17 +37,13 @@
 }
 
 - (void)setFont {
-    self.name.font = [UIFont voicesFontWithSize:24];
+    self.name.font = self.name.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
     self.name.textColor = [UIColor voicesBlack];
-
-    self.nextElectionLabel.font = [UIFont voicesFontWithSize:20];
-    self.nextElectionLabel.textColor = [UIColor voicesBlack];
 }
 
 - (void)initWithRep:(id)rep {
     self.federalRepresentative = rep;
     self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.federalRepresentative.shortTitle, self.federalRepresentative.firstName, self.federalRepresentative.lastName];
-    self.nextElectionLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.federalRepresentative.nextElection];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
@@ -101,6 +96,7 @@
 #pragma mark - User Actions
 
 - (IBAction)callButtonDidPress:(id)sender {
+    
     if (self.federalRepresentative.phone) {
         NSString *confirmCallMessage;
         if (![self.federalRepresentative.nickname isEqual:[NSNull null]]) {
@@ -120,6 +116,7 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
+    
     if (self.federalRepresentative.email) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.federalRepresentative.email];
     }
@@ -128,7 +125,8 @@
         [alert show];
     }
 }
-- (IBAction)twitterButtonDidPress:(id)sender {
+
+- (IBAction)tweetButtonDidPress:(id)sender {
     
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {

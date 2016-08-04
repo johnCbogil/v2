@@ -95,7 +95,8 @@
 }
 
 - (void)setFont {
-    self.legislatureLevel.font = [UIFont voicesFontWithSize:25];
+    self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
+    self.legislatureLevel.textColor = [UIColor whiteColor];
 }
 
 #pragma mark - NSNotifications
@@ -201,7 +202,7 @@
     self.searchBar.alpha = 0.0;
     self.searchButton.alpha = 1.0;
     self.magnifyingGlassImageView.alpha = 1.0;
-    self.legislatureLevel.alpha = .8;
+    self.legislatureLevel.alpha = 1.0;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

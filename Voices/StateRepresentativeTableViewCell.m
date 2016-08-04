@@ -13,20 +13,20 @@
 #import "UIColor+voicesColor.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "VoicesConstants.h"
+#import "AlignedLabel.h"
 
 @import FirebaseAnalytics;
 
 @interface StateRepresentativeTableViewCell ()
 
 @property (strong, nonatomic) StateRepresentative *stateRepresentative;
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UIImageView *photo;
-@property (weak, nonatomic) IBOutlet UILabel *districtNumberLabel;
 @property (strong, nonatomic) NSArray *listOfStatesWithAssembly;
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet AlignedLabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @end
 
 @implementation StateRepresentativeTableViewCell
@@ -42,22 +42,8 @@
 
 - (void)initWithRep:(id)rep {
     self.stateRepresentative = rep;
-    self.name.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
-    [self createDistrictNumberLabel];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
     [self setImage];
-}
-
-- (void)setFont {
-    self.name.font = [UIFont voicesFontWithSize:24];
-    self.districtNumberLabel.font = [UIFont voicesFontWithSize:20];
-}
-
-- (void)setColor {
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
-    
-    self.districtNumberLabel.textColor = [UIColor voicesBlack];
 }
 
 - (void)setImage{
@@ -92,28 +78,16 @@
     }];
 }
 
-- (void)createDistrictNumberLabel {
-    if ([self.stateRepresentative.chamber isEqualToString:@"Rep."]) {
-        if ([self.listOfStatesWithAssembly containsObject:self.stateRepresentative.stateCode.uppercaseString]) {
-            self.districtNumberLabel.text = [NSString stringWithFormat:@"Assembly District %@", self.stateRepresentative.districtNumber];
-        }
-        else {
-            self.districtNumberLabel.text = [NSString stringWithFormat:@"House District %@", self.stateRepresentative.districtNumber];
-        }
-    }
-    else if ([self.stateRepresentative.chamber isEqualToString:@"Gov."]) {
-        if (self.stateRepresentative.nextElection) {
-            self.districtNumberLabel.text = [NSString stringWithFormat:@"Next Election: %@",self.stateRepresentative.nextElection];
-        } else {
-            self.districtNumberLabel.text = @"";
-        }
-    }
-    else {
-        self.districtNumberLabel.text = [NSString stringWithFormat:@"Senate District %@", self.stateRepresentative.districtNumber];
-    }
+- (void)setColor {
+    self.emailButton.imageView.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
 }
 
-
+- (void)setFont {
+    self.nameLabel.font = self.nameLabel.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
+}
 
 - (IBAction)callButtonDidPress:(id)sender {
     if (self.stateRepresentative.phone) {
@@ -145,25 +119,7 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
-    }
-    else if (buttonIndex == 1) {
-        
-        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.stateRepresentative.fullName, kFIRParameterValue : @1}];        
-        
-        NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];
-        if([[UIApplication sharedApplication] canOpenURL:callUrl])
-        {
-            [[UIApplication sharedApplication] openURL:callUrl];
-        }
-        else {
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-    }
-}
+
 - (IBAction)tweetButton:(id)sender {
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
@@ -179,6 +135,26 @@
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
         [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
+    }
+    else if (buttonIndex == 1) {
+        
+        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.stateRepresentative.fullName, kFIRParameterValue : @1}];
+        
+        NSURL *callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.stateRepresentative.phone]];
+        if([[UIApplication sharedApplication] canOpenURL:callUrl])
+        {
+            [[UIApplication sharedApplication] openURL:callUrl];
+        }
+        else {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 @end

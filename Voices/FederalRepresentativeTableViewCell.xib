@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -28,86 +29,98 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-NX-ZHW">
-                        <rect key="frame" x="123" y="8" width="229" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-NX-ZHW" customClass="AlignedLabel">
+                        <rect key="frame" x="116" y="8" width="236" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="236" id="Mfe-yH-W5p"/>
+                            <constraint firstAttribute="height" priority="250" constant="33" id="mnk-hY-ZOg"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Mfe-yH-W5p"/>
+                                <exclude reference="mnk-hY-ZOg"/>
+                            </mask>
+                        </variation>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-nf-nal">
-                        <rect key="frame" x="300" y="82" width="35" height="35"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ContainerView">
+                        <rect key="frame" x="116" y="50.5" width="236" height="80"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAb-DP-LFI">
+                                <rect key="frame" x="7" y="20" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="0wA-rA-wjg"/>
+                                    <constraint firstAttribute="height" constant="37" id="mVt-u2-B8f"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Phone Filled"/>
+                                <connections>
+                                    <action selector="callButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="Qu3-Xx-cLu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-QW-5ph">
+                                <rect key="frame" x="97" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="N9p-qB-Af3"/>
+                                    <constraint firstAttribute="height" constant="40" id="hpr-iX-YuG"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Message Filled"/>
+                                <connections>
+                                    <action selector="emailButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="dTD-tr-slT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p8-P5-2it">
+                                <rect key="frame" x="188" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="jYc-iD-mJw"/>
+                                    <constraint firstAttribute="width" constant="40" id="phg-up-xo0"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Twitter Filled"/>
+                                <connections>
+                                    <action selector="tweetButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="z3s-GU-Jb9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="TEO-3y-w8u"/>
-                            <constraint firstAttribute="height" constant="35" id="ozp-dc-lxm"/>
+                            <constraint firstItem="qAb-DP-LFI" firstAttribute="centerY" secondItem="4Qj-e2-LYP" secondAttribute="centerY" constant="-1.5" id="2B4-KE-4gz"/>
+                            <constraint firstItem="lgW-QW-5ph" firstAttribute="centerY" secondItem="4Qj-e2-LYP" secondAttribute="centerY" id="DFB-bt-czM"/>
+                            <constraint firstItem="qAb-DP-LFI" firstAttribute="centerX" secondItem="4Qj-e2-LYP" secondAttribute="centerX" multiplier="0.2" constant="2.5999999999999979" id="Ghk-kO-uFP"/>
+                            <constraint firstItem="8p8-P5-2it" firstAttribute="centerY" secondItem="4Qj-e2-LYP" secondAttribute="centerY" id="Ky4-Nb-TdX"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="VOk-oT-yya"/>
+                            <constraint firstItem="lgW-QW-5ph" firstAttribute="centerX" secondItem="4Qj-e2-LYP" secondAttribute="centerX" constant="-1" id="bDo-kG-id4"/>
+                            <constraint firstItem="8p8-P5-2it" firstAttribute="centerX" secondItem="4Qj-e2-LYP" secondAttribute="centerX" multiplier="1.8" constant="-4.4000000000000057" id="n6K-7Y-S7c"/>
                         </constraints>
-                        <state key="normal" backgroundImage="Twitter Filled"/>
-                        <connections>
-                            <action selector="twitterButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="VRK-oF-whX"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Election:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="6pc-pS-6xH">
-                        <rect key="frame" x="123" y="42" width="229" height="21"/>
-                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5S-a1-pTK">
-                        <rect key="frame" x="123" y="82" width="31" height="31"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="31" id="3YJ-Lt-KpZ"/>
-                            <constraint firstAttribute="height" constant="31" id="FRP-Uf-5IX"/>
-                        </constraints>
-                        <state key="normal" backgroundImage="Phone Filled"/>
-                        <connections>
-                            <action selector="callButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="gwC-WV-jfw"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV2-uE-cnu">
-                        <rect key="frame" x="207" y="82" width="35" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="Rcf-Em-PtI"/>
-                            <constraint firstAttribute="height" constant="35" id="Xnk-MY-zFF"/>
-                        </constraints>
-                        <state key="normal" backgroundImage="Message Filled"/>
-                        <connections>
-                            <action selector="emailButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="ySh-je-z2z"/>
-                        </connections>
-                    </button>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="BV2-uE-cnu" firstAttribute="leading" secondItem="R5S-a1-pTK" secondAttribute="trailing" constant="21" id="AkK-6J-549"/>
-                    <constraint firstItem="R5S-a1-pTK" firstAttribute="top" secondItem="6pc-pS-6xH" secondAttribute="bottom" constant="19" id="CWo-y3-Iuo"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="6pc-pS-6xH" secondAttribute="trailing" id="DdP-Nh-fTu"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="15" id="EP3-0E-xIT"/>
-                    <constraint firstItem="BV2-uE-cnu" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="48" id="Fuq-bz-0gJ"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="trailing" secondItem="9uY-lc-yzz" secondAttribute="trailingMargin" id="Kdg-4n-pP9"/>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="1ob-kW-VVe"/>
+                    <constraint firstItem="4Qj-e2-LYP" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="8" id="6K4-oA-S6r"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4Qj-e2-LYP" secondAttribute="trailing" id="9uP-AC-JhX"/>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="trailing" secondItem="9uY-lc-yzz" secondAttribute="trailingMargin" id="AOP-OK-Kbo"/>
+                    <constraint firstItem="4Qj-e2-LYP" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="9.5" id="Qzx-80-Kpk"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="centerY" secondItem="9uY-lc-yzz" secondAttribute="centerY" constant="-0.75" id="Sty-Oh-1zo"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="leading" secondItem="9uY-lc-yzz" secondAttribute="leadingMargin" id="VZg-kR-Koy"/>
-                    <constraint firstAttribute="trailing" secondItem="8cF-nf-nal" secondAttribute="trailing" constant="25" id="ZNi-47-elq"/>
-                    <constraint firstItem="BV2-uE-cnu" firstAttribute="centerX" secondItem="cJk-NX-ZHW" secondAttribute="centerX" constant="-13" id="aHN-Rg-5rg"/>
-                    <constraint firstItem="6pc-pS-6xH" firstAttribute="centerY" secondItem="i04-Gh-fbL" secondAttribute="centerY" constant="-17" id="eRy-IO-jAM"/>
-                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="gfx-kp-sw6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cJk-NX-ZHW" secondAttribute="trailing" id="XPQ-Je-hgB"/>
+                    <constraint firstItem="4Qj-e2-LYP" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="58.5" id="c6p-7c-Uz4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="4Qj-e2-LYP" secondAttribute="bottom" constant="0.5" id="fr4-g2-1ZV"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="nBo-XU-rZw"/>
-                    <constraint firstItem="R5S-a1-pTK" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="48" id="qwb-BG-ekd"/>
-                    <constraint firstAttribute="bottom" secondItem="BV2-uE-cnu" secondAttribute="bottom" constant="22.5" id="ucu-DI-FdO"/>
-                    <constraint firstAttribute="bottom" secondItem="R5S-a1-pTK" secondAttribute="bottom" constant="26.5" id="uqC-ZW-GeK"/>
-                    <constraint firstItem="6pc-pS-6xH" firstAttribute="leading" secondItem="cJk-NX-ZHW" secondAttribute="leading" id="y3I-Av-r0N"/>
-                    <constraint firstItem="8cF-nf-nal" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="48" id="zcT-tz-qgT"/>
-                    <constraint firstItem="R5S-a1-pTK" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="15" id="zdL-aA-4sq"/>
+                    <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="8" id="zJL-Tl-4w1"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="AkK-6J-549"/>
+                        <exclude reference="AOP-OK-Kbo"/>
+                        <exclude reference="c6p-7c-Uz4"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="callButton" destination="R5S-a1-pTK" id="PTi-Ll-YJL"/>
-                <outlet property="emailButton" destination="BV2-uE-cnu" id="T1J-6B-fyg"/>
+                <outlet property="callButton" destination="qAb-DP-LFI" id="3i6-3d-FZQ"/>
+                <outlet property="emailButton" destination="lgW-QW-5ph" id="Fvd-JT-tSl"/>
                 <outlet property="name" destination="cJk-NX-ZHW" id="9ba-RQ-WQ5"/>
-                <outlet property="nextElectionLabel" destination="6pc-pS-6xH" id="CmO-I1-YiZ"/>
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
-                <outlet property="tweetButton" destination="8cF-nf-nal" id="h0r-ii-gow"/>
+                <outlet property="tweetButton" destination="8p8-P5-2it" id="i2f-rW-fea"/>
             </connections>
             <point key="canvasLocation" x="527" y="562"/>
         </tableViewCell>

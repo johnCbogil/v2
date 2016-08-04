@@ -57,6 +57,7 @@
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
+		52EA78F71D4B9E8D0064B186 /* AlignedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EA78F61D4B9E8D0064B186 /* AlignedLabel.m */; };
 		52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */ = {isa = PBXBuildFile; fileRef = 52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
@@ -161,6 +162,8 @@
 		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
+		52EA78F51D4B9E8D0064B186 /* AlignedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignedLabel.h; sourceTree = "<group>"; };
+		52EA78F61D4B9E8D0064B186 /* AlignedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignedLabel.m; sourceTree = "<group>"; };
 		52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Voices-ae779cfd4221.json"; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
+				52EA78F51D4B9E8D0064B186 /* AlignedLabel.h */,
+				52EA78F61D4B9E8D0064B186 /* AlignedLabel.m */,
 			);
 			path = Voices;
 			sourceTree = "<group>";
@@ -326,8 +331,8 @@
 			isa = PBXGroup;
 			children = (
 				52AD33971BE5CAA000EC0468 /* Managers */,
-				7E5CC8261C909034005E8F45 /* Controller */,
 				7E5CC8281C909065005E8F45 /* View */,
+				7E5CC8261C909034005E8F45 /* Controller */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
 			);
@@ -728,6 +733,7 @@
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
+				52EA78F71D4B9E8D0064B186 /* AlignedLabel.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);
