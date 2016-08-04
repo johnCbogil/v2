@@ -16,7 +16,7 @@
 #import "GroupDetailViewController.h"
 #import "Group.h"
 #import "Action.h"
-#import "EmptyState.h"
+#import "GroupsEmptyState.h"
 #import "VoicesConstants.h"
 
 @import Firebase;
@@ -36,7 +36,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *actionsRef;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) EmptyState *emptyStateView;
+@property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 @end
 
 @implementation GroupsViewController
@@ -62,7 +62,7 @@
     self.isUserAuthInProgress = NO;
     [self userAuth];
     
-    self.emptyStateView = [[EmptyState alloc]init];
+    self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
     if (!self.isUserAuthInProgress) {
         self.tableView.backgroundView.hidden = YES;

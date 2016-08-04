@@ -1,29 +1,29 @@
 //
-//  EmptyState.m
+//  GroupsEmptyState.m
 //  Voices
 //
 //  Created by John Bogil on 7/9/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "EmptyState.h"
+#import "GroupsEmptyState.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesColor.h"
 #import "VoicesConstants.h"
 
-@interface EmptyState()
+@interface GroupsEmptyState()
 
 @property (weak, nonatomic) IBOutlet UILabel *topLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 
 @end
 
-@implementation EmptyState
+@implementation GroupsEmptyState
 
 - (instancetype)init {
     self = [super init];
     
-    self = [[[NSBundle mainBundle] loadNibNamed:@"EmptyState" owner:self options:nil] objectAtIndex:0];
+    self = [[[NSBundle mainBundle] loadNibNamed:@"GroupsEmptyState" owner:self options:nil] objectAtIndex:0];
     
     [self setFont];
     

@@ -1,5 +1,5 @@
 //
-//  EmptyState.h
+//  GroupsEmptyState.h
 //  Voices
 //
 //  Created by John Bogil on 7/9/16.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface EmptyState : UIView
+@interface GroupsEmptyState : UIView
 
 - (instancetype)init;
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom;
