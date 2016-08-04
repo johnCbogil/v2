@@ -48,6 +48,8 @@ extern NSString *const kActionEmptyStateBottomLabel;
 extern NSString *const kGroupEmptyStateTopLabel;
 extern NSString *const kGroupEmptyStateBottomLabel;
 
+extern NSString *const kLocalRepsMissing;
+
 extern NSString *const kGroupDefaultImage;
 extern NSString *const kRepDefaultImageMale;
 extern NSString *const kRepDefaultImageFemale;

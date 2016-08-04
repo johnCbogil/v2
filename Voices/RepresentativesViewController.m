@@ -53,7 +53,6 @@
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
-//    self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -129,8 +128,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-//    self.repsEmptyStateView = [[RepsEmptyState alloc]init];
-    self.tableView.backgroundView = [[RepsEmptyState alloc]init];
+    self.repsEmptyStateView = [[RepsEmptyState alloc]init];
+    self.tableView.backgroundView = self.repsEmptyStateView;
 }
 
 - (void)turnZeroStateOn {
@@ -138,7 +137,7 @@
         self.tableView.backgroundView.alpha = 1;
     }];
     if (self.index == 2) {
-//        self.zeroStateLabel.text = @"Local officials are not available in your area yet.";
+        [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
     }
 }
 
