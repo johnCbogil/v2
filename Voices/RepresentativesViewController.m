@@ -18,12 +18,12 @@
 #import "UIFont+voicesFont.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "RepsEmptyState.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (strong, nonatomic) NSString *tableViewCellName;
 @property (strong, nonatomic) NSString *cachedRepresentatives;
 @property (strong, nonatomic) NSArray *tableViewDataSource;
@@ -31,8 +31,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageOne;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageTwo;
+@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
+@property (strong, nonatomic) RepsEmptyState *repsEmptyStateView;
 
 @end
 
@@ -51,7 +53,7 @@
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
-    self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
+//    self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -127,21 +129,22 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.tableView.backgroundView = self.zeroStateContainer;
+//    self.repsEmptyStateView = [[RepsEmptyState alloc]init];
+    self.tableView.backgroundView = [[RepsEmptyState alloc]init];
 }
 
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 1;
+        self.tableView.backgroundView.alpha = 1;
     }];
     if (self.index == 2) {
-        self.zeroStateLabel.text = @"Local officials are not available in your area yet.";
+//        self.zeroStateLabel.text = @"Local officials are not available in your area yet.";
     }
 }
 
 - (void)turnZeroStateOff {
     [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 0;
+        self.tableView.backgroundView.alpha = 0;
     }];
 }
 
@@ -163,10 +166,10 @@
 #pragma mark - Shimmer
 
 - (void)createShimmer {
-    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.zeroStateImageOne;
-    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
-    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
+//    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
+//    self.shimmeringView.contentView = self.zeroStateImageOne;
+//    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
+//    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
 }
 
 - (void)toggleShimmerOn {

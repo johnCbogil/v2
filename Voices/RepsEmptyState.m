@@ -8,14 +8,34 @@
 
 #import "RepsEmptyState.h"
 
+@interface RepsEmptyState()
+
+@property (weak, nonatomic) IBOutlet UILabel *topLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *emptyStateImageView;
+
+@end
+
 @implementation RepsEmptyState
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)init {
+    self = [super init];
+    
+    self = [[[NSBundle mainBundle] loadNibNamed:@"RepsEmptyState" owner:self options:nil] objectAtIndex:0];
+    
+    [self setFont];
+    
+    return self;
 }
-*/
+
+- (void)setFont {
+    
+}
+
+- (void)updateLabels:(NSString *)top bottom:(NSString *)bottom  {
+
+    self.topLabel.text = top;
+    self.bottomLabel.text = bottom;
+}
 
 @end

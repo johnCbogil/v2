@@ -3,14 +3,52 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RepsEmptyState">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To View Your Representatives" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-xO-8Nf">
+                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use the search bar above or swipe down to use current location." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUJ-OZ-zqJ">
+                    <rect key="frame" x="8" y="37" width="584" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ahe-KL-I1c">
+                    <rect key="frame" x="172" y="66" width="257" height="110"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="257" id="sqe-6K-Wvp"/>
+                        <constraint firstAttribute="height" constant="110" id="zbh-FC-A5X"/>
+                    </constraints>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="Ahe-KL-I1c" secondAttribute="centerX" id="1Nq-lt-Z2h"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="3Qe-dY-9fQ"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="DFL-KU-kVC"/>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="Z7O-up-CuQ"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ZpQ-by-nZu"/>
+                <constraint firstItem="Ahe-KL-I1c" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="cj9-C1-tpT"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="roz-Sm-Lod"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="uH4-SE-hXx"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
+                <outlet property="emptyStateImageView" destination="Ahe-KL-I1c" id="S1o-Xb-EBt"/>
+                <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
+            </connections>
         </view>
     </objects>
 </document>

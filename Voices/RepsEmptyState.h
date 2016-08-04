@@ -10,4 +10,7 @@
 
 @interface RepsEmptyState : UIView
 
+- (instancetype)init;
+- (void)updateLabels:(NSString *)top bottom:(NSString *)bottom;
+
 @end
