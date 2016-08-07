@@ -62,7 +62,29 @@
     self.lineView.backgroundColor = [UIColor voicesOrange];
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
     
+    [self observeFollowStatus];
 
+}
+
+- (void)observeFollowStatus {
+    // does the current user follow this group
+    // observe the list of groups that are followed by the current user and see if this group is one of them
+    
+    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+       
+        if (snapshot) {
+            
+            //
+        }
+    }];
+    
+    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if (snapshot) {
+            
+            //
+        }
+    }];
 }
 
 - (void)setFont {
