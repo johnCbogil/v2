@@ -67,14 +67,12 @@
 }
 
 - (void)observeFollowStatus {
-    // does the current user follow this group
-    // observe the list of groups that are followed by the current user and see if this group is one of them
     
     [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
        
         if (snapshot) {
             
-            self.followGroupButton.titleLabel.text = @"Followed";
+            [self.followGroupButton setTitle:@"Followed" forState:UIControlStateNormal];
         }
     }];
     
@@ -82,10 +80,9 @@
         
         if (snapshot) {
             
-            self.followGroupButton.titleLabel.text = @"Follow This Group";
+            [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
         }
     }];
-    
     
     [self.followGroupButton.titleLabel setTextAlignment: NSTextAlignmentCenter];
 
@@ -97,7 +94,6 @@
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:17];
     self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.policyPositionsLabel.font = [UIFont voicesBoldFontWithSize:17];
-    
 }
 
 - (void)viewDidLayoutSubviews {
