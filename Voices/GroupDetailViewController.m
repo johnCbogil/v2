@@ -74,7 +74,7 @@
        
         if (snapshot) {
             
-            //
+            self.followGroupButton.titleLabel.text = @"Followed";
         }
     }];
     
@@ -82,9 +82,13 @@
         
         if (snapshot) {
             
-            //
+            self.followGroupButton.titleLabel.text = @"Follow This Group";
         }
     }];
+    
+    
+    [self.followGroupButton.titleLabel setTextAlignment: NSTextAlignmentCenter];
+
 }
 
 - (void)setFont {
