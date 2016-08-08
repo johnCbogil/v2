@@ -72,7 +72,7 @@
        
         if (snapshot) {
             
-            [self.followGroupButton setTitle:@"Followed" forState:UIControlStateNormal];
+            [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
         }
     }];
     
