@@ -198,10 +198,8 @@
                                               if (snapshot.value == [NSNull null]) {
                                                   
                                                   [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
-
+                                                  
                                               }
-                 
-                                              
                                           } withCancelBlock:^(NSError * _Nonnull error) {
                                               NSLog(@"%@", error.localizedDescription);
                                           }];
@@ -216,6 +214,7 @@
         NSLog(@"%@", error);
     }];
 }
+
 
 - (void)fetchPolicyPositions {
     

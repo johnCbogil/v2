@@ -62,6 +62,7 @@
     self.isUserAuthInProgress = NO;
     [self userAuth];
     
+    // TODO: Change this to a delegate, or perhaps this can be addressed by firebase manager refactor
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
 }
 
@@ -170,7 +171,6 @@
             NSLog(@"Created user in database");
         }];
     }];
-
 }
 
 - (void)fetchFollowedGroupsForUserId:(NSString *)userId {
@@ -240,7 +240,7 @@
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        //FIXME: why is this different than above comparison to [NSNull class]?
+        // TODO: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
             return ;
         }
@@ -369,11 +369,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    if (!self.segmentControl.selectedSegmentIndex) {
-        
-    }
-    else {
+    if (self.segmentControl.selectedSegmentIndex) {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
         groupDetailViewController.group = self.listOfFollowedGroups[indexPath.row];
         groupDetailViewController.currentUserID = self.currentUserID;
