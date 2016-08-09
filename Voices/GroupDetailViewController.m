@@ -68,15 +68,21 @@
 
 - (void)observeFollowStatus {
     
-    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        if (snapshot) {
+        if (snapshot.value != [NSNull null]) {
             
-            [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
+            if ([self.followGroupButton.titleLabel.text isEqualToString:@"Followed ▾"]) {
+                [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
+            }
+            else {
+                [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
+            }
+            
         }
     }];
     
-    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         if (snapshot) {
             
@@ -186,6 +192,19 @@
                                       handler:^(UIAlertAction * action) {
                                           // Remove group
                                           [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
+                                          
+                                          // read the value once to see if group key exists
+                                          [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                              if (snapshot.value == [NSNull null]) {
+                                                  
+                                                  [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
+
+                                              }
+                 
+                                              
+                                          } withCancelBlock:^(NSError * _Nonnull error) {
+                                              NSLog(@"%@", error.localizedDescription);
+                                          }];
                                           
                                       }];
             
