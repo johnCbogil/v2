@@ -170,6 +170,9 @@
             // feedback goes here
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You already belong to this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
             [alert show];
+            
+            // Remove group
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);

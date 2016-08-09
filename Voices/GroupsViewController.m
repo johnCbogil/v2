@@ -67,6 +67,13 @@
     if (!self.isUserAuthInProgress) {
         self.tableView.backgroundView.hidden = YES;
     }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
+}
+
+- (void)removeGroupFromDetailViewController:(NSNotification *)notification {
+    [self removeGroup:notification.object];
+    
 }
 
 - (void)configureEmptyState {
@@ -77,6 +84,12 @@
         [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
     }
     [self.view layoutSubviews];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -275,6 +288,13 @@
     
     // Remove group from local array
     [self.listOfFollowedGroups removeObject:group];
+    NSMutableArray *discardedGroups = [NSMutableArray array];
+    for (Group *g in self.listOfFollowedGroups) {
+        if ([g.key isEqualToString:group.key]) {
+            [discardedGroups addObject:g];
+        }
+    }
+    [self.listOfFollowedGroups removeObjectsInArray:discardedGroups];
     
     // Remove group from user's groups
     [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key]removeValue];
