@@ -51,7 +51,7 @@
     
     self.title = self.group.name;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-
+    
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupTypeLabel.text = self.group.groupType;
     self.groupDescriptionTextview.text = self.group.groupDescription;
@@ -63,13 +63,13 @@
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
     
     [self observeFollowStatus];
-
+    
 }
 
 - (void)observeFollowStatus {
     
     [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-       
+        
         if (snapshot) {
             
             [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
@@ -85,7 +85,7 @@
     }];
     
     [self.followGroupButton.titleLabel setTextAlignment: NSTextAlignmentCenter];
-
+    
 }
 
 - (void)setFont {
@@ -167,12 +167,31 @@
             NSLog(@"User subscribed to %@", group.key);
         }
         else {
-            // feedback goes here
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You already belong to this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-            [alert show];
             
-            // Remove group
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
+            
+            UIAlertController *alert = [UIAlertController
+                                        alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
+                                        message:@"Would you like to stop helping this group?"
+                                        preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *button0 = [UIAlertAction
+                                      actionWithTitle:@"Cancel"
+                                      style:UIAlertActionStyleCancel
+                                      handler:^(UIAlertAction * action)
+                                      {}];
+            
+            UIAlertAction *button1 = [UIAlertAction
+                                      actionWithTitle:@"Unfollow"
+                                      style:UIAlertActionStyleDestructive
+                                      handler:^(UIAlertAction * action) {
+                                          // Remove group
+                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
+                                          
+                                      }];
+            
+            [alert addAction:button0];
+            [alert addAction:button1];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
@@ -217,7 +236,7 @@
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
     policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
     [self.navigationController pushViewController:policyDetailViewController animated:YES];
-
+    
 }
 
 @end
