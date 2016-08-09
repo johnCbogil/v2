@@ -62,18 +62,11 @@
     self.isUserAuthInProgress = NO;
     [self userAuth];
     
-    self.emptyStateView = [[EmptyState alloc]init];
-    self.tableView.backgroundView = self.emptyStateView;
-    if (!self.isUserAuthInProgress) {
-        self.tableView.backgroundView.hidden = YES;
-    }
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
 }
 
 - (void)removeGroupFromDetailViewController:(NSNotification *)notification {
     [self removeGroup:notification.object];
-    
 }
 
 - (void)configureEmptyState {
@@ -88,18 +81,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (self.currentUserID) {
+        [self fetchFollowedGroupsForUserId:self.currentUserID];
+    }
     
     [self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (self.currentUserID) {
-        [self fetchFollowedGroups];
-    }
-}
-
 - (void)configureTableView {
+    
+    self.emptyStateView = [[EmptyState alloc]init];
+    self.tableView.backgroundView = self.emptyStateView;
+    if (!self.isUserAuthInProgress) {
+        self.tableView.backgroundView.hidden = YES;
+    }
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
@@ -116,8 +112,6 @@
     [self.view addSubview:self.activityIndicatorView];
 }
 
-
-// THESE METHODS MAY BE REDUNDANT
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicatorView startAnimating];
@@ -147,47 +141,42 @@
     self.isUserAuthInProgress = YES;
     NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
     if (!userId) {
-        [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+        [self createAnonymousUser];
+           }
+    else {
+        [self fetchFollowedGroupsForUserId:userId];
+    }
+}
+
+- (void)createAnonymousUser {
+    
+    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"UserAuth error: %@", error);
+            self.isUserAuthInProgress = NO;
+            return;
+        }
+        self.currentUserID = user.uid;
+        NSLog(@"Created a new userID: %@", self.currentUserID);
+        [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             if (error) {
-                NSLog(@"UserAuth error: %@", error);
+                NSLog(@"Error adding user to database: %@", error);
                 self.isUserAuthInProgress = NO;
                 return;
             }
-            self.currentUserID = user.uid;
-            NSLog(@"Created a new userID: %@", self.currentUserID);
-            [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
-            [[NSUserDefaults standardUserDefaults]synchronize];
-            
-            [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                if (error) {
-                    NSLog(@"Error adding user to database: %@", error);
-                    self.isUserAuthInProgress = NO;
-                    return;
-                }
-                NSLog(@"Created user in database");
-            }];
+            NSLog(@"Created user in database");
         }];
-    }
-    else {
-        [self fetchGroupsWithUserId:userId];
-        [[self.usersRef child:userId] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value == [NSNull null]) {
-                return;
-            }
-            NSLog(@"%@", snapshot.value[@"userID"]);
-        } withCancelBlock:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error.localizedDescription);
-        }];
-    }
+    }];
+
 }
 
-- (void)fetchGroupsWithUserId:(NSString *)userId {
+- (void)fetchFollowedGroupsForUserId:(NSString *)userId {
     self.currentUserID = userId;
     self.isUserAuthInProgress = NO;
-    [self fetchFollowedGroups];
-}
 
-- (void)fetchFollowedGroups {
     [self toggleActivityIndicatorOn];
     __weak GroupsViewController *weakSelf = self;
     NSMutableArray *groupsArray = [NSMutableArray array];
@@ -307,13 +296,13 @@
     NSLog(@"User unsubscribed to %@", group.key);
     
     // Remove associated actions
-    NSMutableArray *discardedItems = [NSMutableArray array];
+    NSMutableArray *discardedActions = [NSMutableArray array];
     for (Action *action in self.listOfActions) {
         if ([action.groupKey isEqualToString:group.key]) {
-            [discardedItems addObject:action];
+            [discardedActions addObject:action];
         }
     }
-    [self.listOfActions removeObjectsInArray:discardedItems];
+    [self.listOfActions removeObjectsInArray:discardedActions];
     
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
     [alert show];
@@ -411,7 +400,7 @@
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
     if (self.currentUserID) {
-        [self fetchFollowedGroups];
+        [self fetchFollowedGroupsForUserId:self.currentUserID];
     } else {
         [self userAuth];
     }
