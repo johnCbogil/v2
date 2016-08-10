@@ -85,14 +85,11 @@
     if (self.currentUserID) {
         [self fetchFollowedGroupsForUserId:self.currentUserID];
     }
+    else {
+        self.tableView.backgroundView.hidden = NO;
+    }
     
     [self.tableView reloadData];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    if (self.currentUserID) {
-        [self fetchFollowedGroupsForUserId:self.currentUserID];
-    }
 }
 
 - (void)configureTableView {
