@@ -89,6 +89,12 @@
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.currentUserID) {
+        [self fetchFollowedGroupsForUserId:self.currentUserID];
+    }
+}
+
 - (void)configureTableView {
     
     self.emptyStateView = [[EmptyState alloc]init];
