@@ -63,7 +63,6 @@
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
     
     [self observeFollowStatus];
-    
 }
 
 - (void)observeFollowStatus {
@@ -78,20 +77,10 @@
             else {
                 [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
             }
-            
-        }
-    }];
-    
-    [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        if (snapshot) {
-            
-            [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
         }
     }];
     
     [self.followGroupButton.titleLabel setTextAlignment: NSTextAlignmentCenter];
-    
 }
 
 - (void)setFont {
@@ -203,7 +192,6 @@
                                           } withCancelBlock:^(NSError * _Nonnull error) {
                                               NSLog(@"%@", error.localizedDescription);
                                           }];
-                                          
                                       }];
             
             [alert addAction:button0];
@@ -214,7 +202,6 @@
         NSLog(@"%@", error);
     }];
 }
-
 
 - (void)fetchPolicyPositions {
     
