@@ -12,7 +12,6 @@
 #import "NYCRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
-#import "CacheManager.h"
 #import "NetworkManager.h"
 #import "VoicesConstants.h"
 #import "UIFont+voicesFont.h"
@@ -25,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSString *tableViewCellName;
-@property (strong, nonatomic) NSString *cachedRepresentatives;
 @property (strong, nonatomic) NSArray *tableViewDataSource;
 @property (strong, nonatomic) NSString *getRepresentativesMethod;
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
@@ -42,14 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-//        [self fetchDataForIndex:self.index];
-//    }
-//    else if (self.index == 0) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
-//        [alert show];
-//    }
+
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];

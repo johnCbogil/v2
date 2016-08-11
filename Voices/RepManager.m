@@ -13,7 +13,7 @@
 #import "NYCRepresentative.h"
 #import "LocationService.h"
 #import "AppDelegate.h"
-#import "CacheManager.h"
+//#import "CacheManager.h"
 #import "VoicesConstants.h"
 
 @implementation RepManager
@@ -89,7 +89,7 @@
 #pragma mark - Check Cache For Representatives
 
 - (NSArray *)fetchRepsFromCache:(NSString *)representativeType {
-    return [[CacheManager sharedInstance] fetchRepsFromCache:representativeType];
+    return nil; //[[CacheManager sharedInstance] fetchRepsFromCache:representativeType];
 }
 
 #pragma mark - Create Federal Representatives
@@ -105,7 +105,7 @@
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [listOfFederalRepresentatives addObject:federalRepresentative];
             self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-            [[CacheManager sharedInstance]saveRepsToCache:self.listOfFederalRepresentatives forKey:kCachedFederalRepresentatives];
+            //[[CacheManager sharedInstance]saveRepsToCache:self.listOfFederalRepresentatives forKey:kCachedFederalRepresentatives];
             successBlock();
         }
         
@@ -139,7 +139,7 @@
             if (successBlock) {
                 [listOfStateRepresentatives addObject:stateRepresentative];
                 self.listOfStateRepresentatives = listOfStateRepresentatives;
-                [[CacheManager sharedInstance]saveRepsToCache:self.listOfStateRepresentatives forKey:kCachedStateRepresentatives];
+                //[[CacheManager sharedInstance]saveRepsToCache:self.listOfStateRepresentatives forKey:kCachedStateRepresentatives];
                 successBlock();
             }
         }
@@ -235,12 +235,12 @@
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
                 NYCRepresentative *billDeBlasio = [self createBillDeBlasio];
                 self.listOfNYCRepresentatives = @[billDeBlasio, nycRep];
-                [[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
+                //[[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
             }
         }
     }
-    [[CacheManager sharedInstance]saveRepsToCache:@[] forKey:kCachedNYCRepresentatives];
+   // [[CacheManager sharedInstance]saveRepsToCache:@[] forKey:kCachedNYCRepresentatives];
     return isLocationWithinPath;
 }
 
