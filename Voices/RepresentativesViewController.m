@@ -43,13 +43,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [self fetchDataForIndex:self.index];
-    }
-    else if (self.index == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+//    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+//        [self fetchDataForIndex:self.index];
+//    }
+//    else if (self.index == 0) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
@@ -136,7 +136,7 @@
     [UIView animateWithDuration:.25 animations:^{
         self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2) {
+    if (self.index == 2 && self.tableViewDataSource.count == 0) {
         [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
     }
 }
