@@ -136,7 +136,7 @@
     [UIView animateWithDuration:.25 animations:^{
         self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2 && self.tableViewDataSource.count == 0) {
+    if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
         [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
     }
 }
