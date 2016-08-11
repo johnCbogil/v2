@@ -31,7 +31,6 @@
 
 + (UIColor *)voicesLightBlue {
     // 117,201,235 -- prisma
-
     return [UIColor colorWithRed:(117/255.0) green:(201/255.0) blue:(235/255.0) alpha:1];
 }
 
