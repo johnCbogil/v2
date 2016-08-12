@@ -9,6 +9,7 @@
 #import "RepsEmptyState.h"
 #import "UIFont+voicesFont.h"
 #import "UIColor+voicesColor.h"
+#import "VoicesConstants.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
@@ -16,7 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *topLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *emptyStateImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *jonLennonImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *swipeDownImageView;
 
 @end
 
@@ -34,13 +36,12 @@
 
 - (void)setFont {
     
-    self.topLabel.font = [UIFont voicesFontWithSize:21];
-    self.bottomLabel.font = [UIFont voicesFontWithSize:19];
+    self.topLabel.font = [UIFont voicesFontWithSize:23];
+    self.bottomLabel.font = [UIFont voicesFontWithSize:21];
     
-    CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity,
-                                                                RADIANS(-15.0));
-    
-    self.emptyStateImageView.transform = rotateTransform;
+    CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity,RADIANS(-15.0));
+    self.swipeDownImageView.transform = rotateTransform;
+    self.jonLennonImageView.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom  {

@@ -25,32 +25,43 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeDownHand" translatesAutoresizingMaskIntoConstraints="NO" id="By0-Zd-PcV">
-                    <rect key="frame" x="223" y="107" width="155" height="120"/>
+                    <rect key="frame" x="222" y="107" width="155" height="120"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="155" id="nFf-2d-pTt"/>
-                        <constraint firstAttribute="height" constant="120" id="nSx-oi-Jkh"/>
+                        <constraint firstAttribute="width" constant="155" id="fp2-PY-WIi"/>
+                        <constraint firstAttribute="height" constant="120" id="nAF-mo-S6V"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MissingRepMale" translatesAutoresizingMaskIntoConstraints="NO" id="yqj-Wn-jdW">
+                    <rect key="frame" x="243" y="235" width="115" height="115"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="115" id="VPd-iy-xpa"/>
+                        <constraint firstAttribute="height" constant="115" id="ef6-Lw-Cbo"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="By0-Zd-PcV" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="EF6-xu-ml1"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="M0P-VL-v7i"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="d0t-Nu-OBf"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="fAh-ma-5XE"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="By0-Zd-PcV" secondAttribute="centerX" id="lMm-93-oEI"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="tH1-pU-eNu"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ub4-BQ-KCJ"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="v1j-pY-nFe"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="AQH-wZ-9F7"/>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="By0-Zd-PcV" secondAttribute="centerX" id="RMJ-51-OAQ"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="RWv-GX-wLO"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="TZg-eb-NKg"/>
+                <constraint firstItem="By0-Zd-PcV" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="X55-og-Ymg"/>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="dek-hC-S8c"/>
+                <constraint firstItem="yqj-Wn-jdW" firstAttribute="top" secondItem="By0-Zd-PcV" secondAttribute="bottom" constant="8" symbolic="YES" id="etW-yw-6J6"/>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="yqj-Wn-jdW" secondAttribute="centerX" id="r5U-uN-W7t"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="rzc-9W-Nrx"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="za9-KI-fVR"/>
             </constraints>
             <connections>
                 <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
-                <outlet property="emptyStateImageView" destination="By0-Zd-PcV" id="0my-QB-xYS"/>
+                <outlet property="jonLennonImageView" destination="yqj-Wn-jdW" id="QON-7u-JMh"/>
+                <outlet property="swipeDownImageView" destination="By0-Zd-PcV" id="8AV-6F-b7A"/>
                 <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
             </connections>
         </view>
     </objects>
     <resources>
+        <image name="MissingRepMale" width="333" height="333"/>
         <image name="SwipeDownHand" width="182" height="141"/>
     </resources>
 </document>
