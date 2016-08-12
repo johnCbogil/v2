@@ -7,6 +7,8 @@
 //
 
 #import "RepsEmptyState.h"
+#import "UIFont+voicesFont.h"
+#import "UIColor+voicesColor.h"
 
 @interface RepsEmptyState()
 
@@ -30,6 +32,8 @@
 
 - (void)setFont {
     
+    self.topLabel.font = [UIFont voicesFontWithSize:21];
+    self.bottomLabel.font = [UIFont voicesFontWithSize:19];
 }
 
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom  {

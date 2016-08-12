@@ -6,11 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "johnlennon23.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "johnlennon23.png",
       "scale" : "3x"
     }
   ],
