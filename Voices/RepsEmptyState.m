@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *jonLennonImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *swipeDownImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *malalaImageView;
+@property (weak, nonatomic) IBOutlet UILabel *swipeForRepsLabel;
 
 @end
 
@@ -42,6 +44,11 @@
     CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity,RADIANS(-15.0));
     self.swipeDownImageView.transform = rotateTransform;
     self.jonLennonImageView.layer.cornerRadius = kButtonCornerRadius;
+    self.malalaImageView.layer.cornerRadius = kButtonCornerRadius;
+    self.jonLennonImageView.clipsToBounds = YES;
+    self.malalaImageView.clipsToBounds = YES;
+    
+    self.swipeForRepsLabel.font = [UIFont voicesFontWithSize:21];
 }
 
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom  {

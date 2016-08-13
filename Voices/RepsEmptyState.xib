@@ -31,45 +31,80 @@
                         <constraint firstAttribute="height" constant="120" id="nAF-mo-S6V"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MissingRepMale" translatesAutoresizingMaskIntoConstraints="NO" id="yqj-Wn-jdW">
-                    <rect key="frame" x="243" y="235" width="115" height="115"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="115" id="VPd-iy-xpa"/>
-                        <constraint firstAttribute="height" constant="115" id="ef6-Lw-Cbo"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe Left For More Representatives." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1J-jW-129">
                     <rect key="frame" x="8" y="571" width="584" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vra-vG-hSe">
+                    <rect key="frame" x="8" y="247" width="584" height="128"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MissingRepMale" translatesAutoresizingMaskIntoConstraints="NO" id="TOg-BC-dYn">
+                            <rect key="frame" x="296" y="6" width="115" height="115"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="115" id="9zC-y4-CVh"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MissingRepFemale" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-ok-BSg">
+                            <rect key="frame" x="173" y="7" width="115" height="115"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="115" id="NQv-pD-cs9"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="EL4-ok-BSg" firstAttribute="centerY" secondItem="Vra-vG-hSe" secondAttribute="centerY" id="9zP-Zm-5WW"/>
+                        <constraint firstItem="EL4-ok-BSg" firstAttribute="leading" secondItem="Vra-vG-hSe" secondAttribute="leading" constant="173" id="C7L-Pd-bka"/>
+                        <constraint firstItem="TOg-BC-dYn" firstAttribute="top" secondItem="Vra-vG-hSe" secondAttribute="top" constant="6" id="Gbd-tm-8Gp"/>
+                        <constraint firstItem="TOg-BC-dYn" firstAttribute="leading" secondItem="EL4-ok-BSg" secondAttribute="trailing" constant="8" symbolic="YES" id="IjX-Iv-zAK"/>
+                        <constraint firstItem="EL4-ok-BSg" firstAttribute="top" secondItem="Vra-vG-hSe" secondAttribute="top" constant="7" id="MSb-Nc-GZe"/>
+                        <constraint firstAttribute="height" constant="128" id="NRo-z2-zCE"/>
+                        <constraint firstAttribute="width" constant="584" id="QFe-e5-wH5"/>
+                        <constraint firstItem="TOg-BC-dYn" firstAttribute="centerY" secondItem="Vra-vG-hSe" secondAttribute="centerY" id="ggT-zC-ROS"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="J1J-jW-129" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="26b-tL-fOd"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="AQH-wZ-9F7"/>
+                <constraint firstAttribute="bottom" secondItem="Vra-vG-hSe" secondAttribute="bottom" constant="114" id="B8X-Xa-ioX"/>
+                <constraint firstItem="Vra-vG-hSe" firstAttribute="leading" secondItem="J1J-jW-129" secondAttribute="leading" id="J8V-AI-1S5"/>
+                <constraint firstItem="Vra-vG-hSe" firstAttribute="top" secondItem="By0-Zd-PcV" secondAttribute="bottom" constant="20" id="JKz-59-N1C"/>
+                <constraint firstItem="Vra-vG-hSe" firstAttribute="centerX" secondItem="WUJ-OZ-zqJ" secondAttribute="centerX" id="NyT-Ee-lKW"/>
                 <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="By0-Zd-PcV" secondAttribute="centerX" id="RMJ-51-OAQ"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="RWv-GX-wLO"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="TZg-eb-NKg"/>
                 <constraint firstItem="By0-Zd-PcV" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="X55-og-Ymg"/>
+                <constraint firstItem="Vra-vG-hSe" firstAttribute="trailing" secondItem="J1J-jW-129" secondAttribute="trailing" id="cIS-Fu-S2z"/>
                 <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="dek-hC-S8c"/>
-                <constraint firstItem="yqj-Wn-jdW" firstAttribute="top" secondItem="By0-Zd-PcV" secondAttribute="bottom" constant="8" symbolic="YES" id="etW-yw-6J6"/>
                 <constraint firstItem="J1J-jW-129" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="hT3-QJ-eOI"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="yqj-Wn-jdW" secondAttribute="centerX" id="r5U-uN-W7t"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="rzc-9W-Nrx"/>
                 <constraint firstItem="J1J-jW-129" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="z49-Cx-akC"/>
+                <constraint firstItem="J1J-jW-129" firstAttribute="top" secondItem="Vra-vG-hSe" secondAttribute="bottom" constant="85" id="zGs-yc-27f"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="za9-KI-fVR"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="B8X-Xa-ioX"/>
+                    <exclude reference="J8V-AI-1S5"/>
+                    <exclude reference="cIS-Fu-S2z"/>
+                    <exclude reference="zGs-yc-27f"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
-                <outlet property="jonLennonImageView" destination="yqj-Wn-jdW" id="QON-7u-JMh"/>
+                <outlet property="jonLennonImageView" destination="TOg-BC-dYn" id="Omw-4u-NAa"/>
+                <outlet property="malalaImageView" destination="EL4-ok-BSg" id="KAY-PQ-VqF"/>
                 <outlet property="swipeDownImageView" destination="By0-Zd-PcV" id="8AV-6F-b7A"/>
+                <outlet property="swipeForRepsLabel" destination="J1J-jW-129" id="Gfs-WQ-DeC"/>
                 <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
             </connections>
         </view>
     </objects>
     <resources>
+        <image name="MissingRepFemale" width="266" height="266"/>
         <image name="MissingRepMale" width="333" height="333"/>
         <image name="SwipeDownHand" width="182" height="141"/>
     </resources>
