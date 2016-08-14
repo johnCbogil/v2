@@ -166,7 +166,7 @@
 
 #pragma mark - Create NYC Representatives
 
-- (void)createNYCRepsFromLocation:(CLLocation*)location {
+- (void)createNYCRepsFromLocation:(CLLocation *)location {
     
     BOOL isLocationWithinPath = false;
     
