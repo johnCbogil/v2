@@ -12,5 +12,6 @@
 
 - (instancetype)init;
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom;
+- (void)updateImage;
 
 @end

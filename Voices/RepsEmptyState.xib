@@ -31,20 +31,40 @@
                         <constraint firstAttribute="height" constant="105" id="Krc-OQ-rfs"/>
                     </constraints>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZeroStateImage" translatesAutoresizingMaskIntoConstraints="NO" id="1zO-Cy-elk">
+                    <rect key="frame" x="8" y="125" width="278" height="118"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="278" id="O7s-EF-L27"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZeroStateImage" translatesAutoresizingMaskIntoConstraints="NO" id="WxJ-9r-CMb">
+                    <rect key="frame" x="8" y="266" width="278" height="118"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="118" id="4jK-Nm-KsN"/>
+                        <constraint firstAttribute="width" constant="278" id="HMK-KS-w8s"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="1zO-Cy-elk" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="26" id="7Sg-k5-bbh"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="7UO-GG-sOi"/>
+                <constraint firstItem="1zO-Cy-elk" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="EUb-MI-ElM"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="HSs-fi-ay3"/>
+                <constraint firstItem="WxJ-9r-CMb" firstAttribute="leading" secondItem="1zO-Cy-elk" secondAttribute="leading" id="I71-Wn-lzV"/>
                 <constraint firstItem="EL4-ok-BSg" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="LbO-i4-KOT"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="QoD-o8-6cb"/>
                 <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="UKX-PA-gUC"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="WId-De-1hI"/>
+                <constraint firstItem="WxJ-9r-CMb" firstAttribute="top" secondItem="1zO-Cy-elk" secondAttribute="bottom" constant="23" id="aOW-Ap-2yd"/>
                 <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="EL4-ok-BSg" secondAttribute="centerX" id="jCS-dC-UUl"/>
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="pH5-84-Adk"/>
+                <constraint firstItem="1zO-Cy-elk" firstAttribute="bottom" secondItem="EL4-ok-BSg" secondAttribute="bottom" constant="31" id="pkH-mw-3sz"/>
             </constraints>
             <connections>
                 <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
+                <outlet property="missingRepImageView" destination="1zO-Cy-elk" id="FLj-JP-7cd"/>
+                <outlet property="missingRepImageViewTwo" destination="WxJ-9r-CMb" id="yk2-sQ-BkU"/>
                 <outlet property="swipeDownImageView" destination="EL4-ok-BSg" id="YN4-PP-MKo"/>
                 <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
             </connections>
@@ -52,5 +72,6 @@
     </objects>
     <resources>
         <image name="SwipeDownHand" width="182" height="141"/>
+        <image name="ZeroStateImage" width="623" height="268"/>
     </resources>
 </document>

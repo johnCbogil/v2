@@ -129,6 +129,7 @@
     }];
     if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
         [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
+        [self.repsEmptyStateView updateImage];
     }
 }
 

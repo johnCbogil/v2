@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *swipeDownImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *malalaImageView;
 @property (weak, nonatomic) IBOutlet UILabel *swipeForRepsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *missingRepImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *missingRepImageViewTwo;
 
 @end
 
@@ -32,13 +34,15 @@
     self = [[[NSBundle mainBundle] loadNibNamed:@"RepsEmptyState" owner:self options:nil] objectAtIndex:0];
     
     [self setFont];
+    self.missingRepImageView.alpha = 0;
+    self.missingRepImageViewTwo.alpha = 0;
     
     return self;
 }
 
 - (void)setFont {
     
-    self.topLabel.font = [UIFont voicesFontWithSize:23];
+    self.topLabel.font = [UIFont voicesBoldFontWithSize:23];
     self.bottomLabel.font = [UIFont voicesFontWithSize:21];
     
     CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity,RADIANS(-15.0));
@@ -55,6 +59,13 @@
 
     self.topLabel.text = top;
     self.bottomLabel.text = bottom;
+}
+
+- (void)updateImage {
+    
+    self.missingRepImageView.alpha = 0.75;
+    self.missingRepImageViewTwo.alpha = 0.75;
+    self.swipeDownImageView.alpha = 0.0;
 }
 
 @end
