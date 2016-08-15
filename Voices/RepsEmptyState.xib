@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,61 +24,33 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vra-vG-hSe">
-                    <rect key="frame" x="8" y="107" width="584" height="141"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeDownHand" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-ok-BSg">
-                            <rect key="frame" x="214" y="7" width="155" height="120"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="155" id="NQv-pD-cs9"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeDownHand" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-ok-BSg">
+                    <rect key="frame" x="233" y="107" width="135" height="105"/>
                     <constraints>
-                        <constraint firstItem="EL4-ok-BSg" firstAttribute="centerY" secondItem="Vra-vG-hSe" secondAttribute="centerY" constant="-3.5" id="9zP-Zm-5WW"/>
-                        <constraint firstItem="EL4-ok-BSg" firstAttribute="leading" secondItem="Vra-vG-hSe" secondAttribute="leading" constant="214" id="C7L-Pd-bka"/>
-                        <constraint firstItem="EL4-ok-BSg" firstAttribute="top" secondItem="Vra-vG-hSe" secondAttribute="top" constant="7" id="MSb-Nc-GZe"/>
-                        <constraint firstAttribute="height" constant="141" id="NRo-z2-zCE"/>
-                        <constraint firstAttribute="width" constant="584" id="QFe-e5-wH5"/>
-                    </constraints>
-                </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MissingRepMale" translatesAutoresizingMaskIntoConstraints="NO" id="TOg-BC-dYn">
-                    <rect key="frame" x="242" y="256" width="115" height="115"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="115" id="fpk-qw-lof"/>
-                        <constraint firstAttribute="height" constant="115" id="nLq-KD-sMY"/>
+                        <constraint firstAttribute="width" constant="135" id="7VH-7i-AVV"/>
+                        <constraint firstAttribute="height" constant="105" id="Krc-OQ-rfs"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="AQH-wZ-9F7"/>
-                <constraint firstAttribute="bottom" secondItem="Vra-vG-hSe" secondAttribute="bottom" constant="114" id="B8X-Xa-ioX"/>
-                <constraint firstItem="Vra-vG-hSe" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" id="MJB-PE-BLU"/>
-                <constraint firstItem="Vra-vG-hSe" firstAttribute="centerX" secondItem="WUJ-OZ-zqJ" secondAttribute="centerX" id="NyT-Ee-lKW"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="RWv-GX-wLO"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="TZg-eb-NKg"/>
-                <constraint firstItem="TOg-BC-dYn" firstAttribute="top" secondItem="Vra-vG-hSe" secondAttribute="bottom" constant="8" symbolic="YES" id="Tog-jR-xAO"/>
-                <constraint firstItem="TOg-BC-dYn" firstAttribute="centerX" secondItem="Vra-vG-hSe" secondAttribute="centerX" id="YU3-Yn-kxt"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="dek-hC-S8c"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="rzc-9W-Nrx"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="za9-KI-fVR"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="WUJ-OZ-zqJ" secondAttribute="trailing" id="7UO-GG-sOi"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="HSs-fi-ay3"/>
+                <constraint firstItem="EL4-ok-BSg" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" constant="8" symbolic="YES" id="LbO-i4-KOT"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="QoD-o8-6cb"/>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="UKX-PA-gUC"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="WUJ-OZ-zqJ" secondAttribute="leading" id="WId-De-1hI"/>
+                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="centerX" secondItem="EL4-ok-BSg" secondAttribute="centerX" id="jCS-dC-UUl"/>
+                <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="pH5-84-Adk"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="B8X-Xa-ioX"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
-                <outlet property="jonLennonImageView" destination="TOg-BC-dYn" id="Omw-4u-NAa"/>
                 <outlet property="swipeDownImageView" destination="EL4-ok-BSg" id="YN4-PP-MKo"/>
                 <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
             </connections>
         </view>
     </objects>
     <resources>
-        <image name="MissingRepMale" width="333" height="333"/>
         <image name="SwipeDownHand" width="182" height="141"/>
     </resources>
 </document>
