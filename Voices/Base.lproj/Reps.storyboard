@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -104,6 +104,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpW-Yu-4Jl" customClass="SMPageControl">
+                                <rect key="frame" x="20" y="236" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-bZ-YzX" userLabel="searchView">
                                 <rect key="frame" x="20" y="40" width="560" height="47"/>
                                 <subviews>
@@ -122,7 +126,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="YuL-Ad-Zst"/>
                                         </constraints>
-                                        <state key="normal" image="InfoButton"/>
+                                        <state key="normal" image="SpeechBubble"/>
                                         <connections>
                                             <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="lRr-5w-diI"/>
                                         </connections>
@@ -171,11 +175,13 @@
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="OY4-HK-hrM">
-                                <rect key="frame" x="281" y="85" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="SMPage Control" customClass="SMPageControl">
+                                <rect key="frame" x="254" y="94" width="93" height="25"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="BEL-hr-dEx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -184,16 +190,27 @@
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="Ai7-MB-cUL"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="Dr0-G4-4rS"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="bottom" secondItem="ZVD-bZ-YzX" secondAttribute="bottom" id="GLQ-59-TiL"/>
+                            <constraint firstItem="pPG-hc-XD3" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="65" id="MGl-pR-3KM"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" id="N88-2y-A80"/>
+                            <constraint firstItem="pPG-hc-XD3" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" constant="281" id="PeP-N4-Wbz"/>
+                            <constraint firstItem="pPG-hc-XD3" firstAttribute="bottom" secondItem="YFG-MQ-THZ" secondAttribute="bottom" id="QLo-ax-PE2"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leading" id="VBm-DV-JhV"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="20" id="XGf-3v-14T"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="OY4-HK-hrM" secondAttribute="bottom" constant="-10" id="gVd-pe-dML"/>
+                            <constraint firstItem="pPG-hc-XD3" firstAttribute="centerX" secondItem="vJT-DT-SYB" secondAttribute="centerX" id="dKO-3V-gen"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="trailing" secondItem="vJT-DT-SYB" secondAttribute="trailing" id="ihK-xz-gAw"/>
-                            <constraint firstItem="OY4-HK-hrM" firstAttribute="centerX" secondItem="ZVD-bZ-YzX" secondAttribute="centerX" id="oPc-Cy-85g"/>
+                            <constraint firstItem="pPG-hc-XD3" firstAttribute="top" secondItem="vJT-DT-SYB" secondAttribute="bottom" constant="7" id="r8S-8C-8c4"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="rk2-Ed-Tim"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="centerX" secondItem="YFG-MQ-THZ" secondAttribute="centerX" id="tUU-Hw-fyZ"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="pPG-hc-XD3" secondAttribute="bottom" constant="-7" id="uBN-dN-KQy"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="xbD-hi-ymm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MGl-pR-3KM"/>
+                                <exclude reference="PeP-N4-Wbz"/>
+                                <exclude reference="QLo-ax-PE2"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
@@ -201,7 +218,7 @@
                         <outlet property="infoButton" destination="9Fh-nE-Bwo" id="drJ-zV-IBl"/>
                         <outlet property="legislatureLevel" destination="8dR-WS-Joj" id="9rp-sB-gvA"/>
                         <outlet property="magnifyingGlassImageView" destination="Pe0-Sl-hug" id="CPn-Cb-NJo"/>
-                        <outlet property="pageControl" destination="OY4-HK-hrM" id="Xc4-wJ-AQO"/>
+                        <outlet property="pageControl" destination="pPG-hc-XD3" id="Hm3-BW-lD0"/>
                         <outlet property="searchBar" destination="Og0-9p-oGV" id="2V7-1J-3dU"/>
                         <outlet property="searchButton" destination="B8M-md-h7z" id="omU-3c-pvJ"/>
                         <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
@@ -214,8 +231,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="InfoButton" width="33" height="33"/>
         <image name="MagnifyingGlass" width="33" height="33"/>
+        <image name="SpeechBubble" width="176" height="176"/>
         <image name="ZeroStateImage" width="623" height="268"/>
     </resources>
 </document>

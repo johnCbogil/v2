@@ -7,7 +7,7 @@
 //
 
 #import "NotiOnboardingViewController.h"
-#import "LocationOnboardingViewController.h"
+#import "TabBarViewController.h"
 #import "VoicesConstants.h"
 #import "UIColor+voicesColor.h"
 #import "UIFont+voicesFont.h"
@@ -70,9 +70,9 @@
 
 - (void)pushNextVC {
     
-    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-    LocationOnboardingViewController *locationOnboardingViewController = (LocationOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"LocationOnboardingViewController"];
-    [self.navigationController pushViewController:locationOnboardingViewController animated:YES];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+    [self.navigationController pushViewController:tabVC animated:YES];    
 }
 
 @end

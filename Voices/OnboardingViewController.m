@@ -35,9 +35,8 @@
     self.startButton.backgroundColor = [UIColor voicesOrange];
     self.startButton.titleLabel.minimumScaleFactor = 0.75;
 
-    self.introLabel.font = [UIFont voicesFontWithSize:23.0];
-    self.introLabel.text = @"Voices is an advocacy tool for the people who care. It's the smart way to make your voice heard.";
-
+    self.introLabel.font = [UIFont voicesFontWithSize:25.0];
+    self.introLabel.text = @"Voices is an advocacy tool for the people who care.";
 }
 
 @end

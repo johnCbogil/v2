@@ -10,9 +10,8 @@
 
 @implementation UIColor (voicesColor)
 
-//rgb(252,146,37)
+// HEX #ff860d, RGB(255,134,13), CMYK(0,47,95,0)
 + (UIColor *)voicesOrange {
-   // return [UIColor colorWithRed:252.0/255.0 green:146.0/255.0 blue:37.0/255.0 alpha:1];
     return [[UIColor orangeColor]colorWithAlphaComponent:.95];
 }
 
@@ -25,12 +24,10 @@
 }
 
 + (UIColor *)voicesBlue {
-    // 26, 140, 255 -- pantone
     return [UIColor colorWithRed:(26.0/255.0) green:(140.0/255.0) blue:(255.0/255.0) alpha:1];
 }
 
 + (UIColor *)voicesLightBlue {
-    // 117,201,235 -- prisma
     return [UIColor colorWithRed:(117/255.0) green:(201/255.0) blue:(235/255.0) alpha:1];
 }
 

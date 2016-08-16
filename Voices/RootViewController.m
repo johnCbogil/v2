@@ -21,12 +21,13 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "SMPageControl.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (strong, nonatomic) IBOutlet SMPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -63,6 +64,7 @@
     [self setFont];
     [self setColors];
     [self setSearchBar];
+    [self configurePageControl];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -90,13 +92,19 @@
     self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
+    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.15];
     self.pageControl.currentPageIndicatorTintColor = [UIColor voicesLightBlue];
 }
 
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
     self.legislatureLevel.textColor = [UIColor whiteColor];
+}
+
+- (void)configurePageControl {
+    
+    self.pageControl.numberOfPages = 3;
+    self.pageControl.indicatorDiameter = 12.5f;
 }
 
 #pragma mark - NSNotifications
@@ -125,6 +133,7 @@
     [self.containerView removeGestureRecognizer:self.tap];
 }
 
+// TODO: CHANGE THIS TO DELEGATE PATTERN
 - (void)changePage:(NSNotification *)notification {
     NSDictionary* userInfo = notification.object;
     NSString *currentPageString = userInfo[@"currentPage"];

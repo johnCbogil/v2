@@ -12,27 +12,27 @@
 #import "NYCRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
-#import "CacheManager.h"
 #import "NetworkManager.h"
 #import "VoicesConstants.h"
 #import "UIFont+voicesFont.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "RepsEmptyState.h"
 
 @interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (strong, nonatomic) NSString *tableViewCellName;
-@property (strong, nonatomic) NSString *cachedRepresentatives;
 @property (strong, nonatomic) NSArray *tableViewDataSource;
 @property (strong, nonatomic) NSString *getRepresentativesMethod;
 @property (weak, nonatomic) IBOutlet UILabel *zeroStateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageOne;
 @property (weak, nonatomic) IBOutlet UIImageView *zeroStateImageTwo;
+@property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
+@property (strong, nonatomic) RepsEmptyState *repsEmptyStateView;
 
 @end
 
@@ -40,22 +40,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [self fetchDataForIndex:self.index];
-    }
-    else if (self.index == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
-    self.zeroStateLabel.font = [UIFont voicesFontWithSize:20];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
     [self addObservers];
     [self toggleZeroState];
     [self reloadTableView];
@@ -126,19 +119,24 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.repsEmptyStateView = [[RepsEmptyState alloc]init];
+    self.tableView.backgroundView = self.repsEmptyStateView;
 }
 
 - (void)turnZeroStateOn {
     [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 1;
+        self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2) {
-        self.zeroStateLabel.text = @"Local officials are not available in your area yet.";    }
+    if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
+        [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
+        [self.repsEmptyStateView updateImage];
+    }
 }
 
 - (void)turnZeroStateOff {
     [UIView animateWithDuration:.25 animations:^{
-        self.zeroStateContainer.alpha = 0;
+        self.tableView.backgroundView.alpha = 0;
     }];
 }
 
@@ -160,10 +158,10 @@
 #pragma mark - Shimmer
 
 - (void)createShimmer {
-    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
-    self.shimmeringView.contentView = self.zeroStateImageOne;
-    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
-    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
+//    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
+//    self.shimmeringView.contentView = self.zeroStateImageOne;
+//    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
+//    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
 }
 
 - (void)toggleShimmerOn {
