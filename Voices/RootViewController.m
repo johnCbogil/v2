@@ -104,7 +104,7 @@
 - (void)configurePageControl {
     
     self.pageControl.numberOfPages = 3;
-    self.pageControl.indicatorDiameter = 15.0f;
+    self.pageControl.indicatorDiameter = 12.5f;
 }
 
 #pragma mark - NSNotifications
