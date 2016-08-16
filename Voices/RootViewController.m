@@ -67,12 +67,6 @@
     [self configurePageControl];
 }
 
-- (void)configurePageControl {
-
-    self.pageControl.numberOfPages = 3;
-    self.pageControl.indicatorDiameter = 15.0f;
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
@@ -105,6 +99,12 @@
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
     self.legislatureLevel.textColor = [UIColor whiteColor];
+}
+
+- (void)configurePageControl {
+    
+    self.pageControl.numberOfPages = 3;
+    self.pageControl.indicatorDiameter = 15.0f;
 }
 
 #pragma mark - NSNotifications
