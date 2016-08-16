@@ -23,6 +23,8 @@
     if (self = [super init]) {
         self.title = @"Here's what to say";
         self.contentSizeInPopup = CGSizeMake(300, 315);
+        
+        // TODO: Set font sizes
     }
     return self;
 }
