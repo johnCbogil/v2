@@ -51,6 +51,7 @@
 		52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */; };
 		52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */; };
 		52C7D4B61CC7208700F85902 /* PushNotification.json in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B51CC7208700F85902 /* PushNotification.json */; };
+		52C8C43B1D62AC8E003F6C58 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C8C43A1D62AC8E003F6C58 /* SMPageControl.m */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
 		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
@@ -154,6 +155,8 @@
 		52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionTableViewCell.h; sourceTree = "<group>"; };
 		52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionTableViewCell.m; sourceTree = "<group>"; };
 		52C7D4B51CC7208700F85902 /* PushNotification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PushNotification.json; sourceTree = "<group>"; };
+		52C8C4391D62AC8E003F6C58 /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
+		52C8C43A1D62AC8E003F6C58 /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 		7E5CC8281C909065005E8F45 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52C8C4391D62AC8E003F6C58 /* SMPageControl.h */,
+				52C8C43A1D62AC8E003F6C58 /* SMPageControl.m */,
 				52BB34381B6160CA00BB9FFD /* Reps.storyboard */,
 				5235B07F1BA735A500CF43F9 /* FederalRepresentativeTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* FederalRepresentativeTableViewCell.m */,
@@ -735,6 +740,7 @@
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
+				52C8C43B1D62AC8E003F6C58 /* SMPageControl.m in Sources */,
 				525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */,
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,

@@ -21,12 +21,13 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "SMPageControl.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (strong, nonatomic) IBOutlet SMPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -63,6 +64,15 @@
     [self setFont];
     [self setColors];
     [self setSearchBar];
+    [self configurePageControl];
+}
+
+- (void)configurePageControl {
+
+    self.pageControl.numberOfPages = 3;
+    self.pageControl.indicatorDiameter = 20.0f;
+
+
 }
 
 - (void)viewDidLayoutSubviews {
@@ -125,6 +135,7 @@
     [self.containerView removeGestureRecognizer:self.tap];
 }
 
+// TODO: CHANGE THIS TO DELEGATE PATTERN
 - (void)changePage:(NSNotification *)notification {
     NSDictionary* userInfo = notification.object;
     NSString *currentPageString = userInfo[@"currentPage"];
