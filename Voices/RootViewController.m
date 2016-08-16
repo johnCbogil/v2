@@ -70,9 +70,7 @@
 - (void)configurePageControl {
 
     self.pageControl.numberOfPages = 3;
-    self.pageControl.indicatorDiameter = 20.0f;
-
-
+    self.pageControl.indicatorDiameter = 15.0f;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -100,7 +98,7 @@
     self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.2];
+    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.15];
     self.pageControl.currentPageIndicatorTintColor = [UIColor voicesLightBlue];
 }
 

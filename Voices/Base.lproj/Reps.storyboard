@@ -176,8 +176,8 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="SMPage Control" customClass="SMPageControl">
-                                <rect key="frame" x="254" y="87" width="93" height="25"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="254" y="91" width="93" height="25"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="93" id="BEL-hr-dEx"/>
                                 </constraints>
@@ -198,10 +198,10 @@
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="20" id="XGf-3v-14T"/>
                             <constraint firstItem="pPG-hc-XD3" firstAttribute="centerX" secondItem="vJT-DT-SYB" secondAttribute="centerX" id="dKO-3V-gen"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="trailing" secondItem="vJT-DT-SYB" secondAttribute="trailing" id="ihK-xz-gAw"/>
-                            <constraint firstItem="pPG-hc-XD3" firstAttribute="top" secondItem="vJT-DT-SYB" secondAttribute="bottom" id="r8S-8C-8c4"/>
+                            <constraint firstItem="pPG-hc-XD3" firstAttribute="top" secondItem="vJT-DT-SYB" secondAttribute="bottom" constant="4" id="r8S-8C-8c4"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leadingMargin" id="rk2-Ed-Tim"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="centerX" secondItem="YFG-MQ-THZ" secondAttribute="centerX" id="tUU-Hw-fyZ"/>
-                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="pPG-hc-XD3" secondAttribute="bottom" id="uBN-dN-KQy"/>
+                            <constraint firstItem="YFG-MQ-THZ" firstAttribute="top" secondItem="pPG-hc-XD3" secondAttribute="bottom" constant="-4" id="uBN-dN-KQy"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" id="xbD-hi-ymm"/>
                         </constraints>
                         <variation key="default">

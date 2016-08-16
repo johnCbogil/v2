@@ -56,6 +56,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
     [self addObservers];
     [self toggleZeroState];
     [self reloadTableView];
