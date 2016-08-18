@@ -13,8 +13,6 @@
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NetworkManager.h"
-#import "VoicesConstants.h"
-#import "UIFont+voicesFont.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import "RepsEmptyState.h"

@@ -12,7 +12,7 @@
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NYCRepresentative.h"
-#import "VoicesConstants.h"
+
 
 @interface CacheManager ()
 @property (strong, nonatomic) NSManagedObjectContext *context;

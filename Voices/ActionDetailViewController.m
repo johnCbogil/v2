@@ -8,9 +8,7 @@
 
 #import "ActionDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
+
 
 @interface ActionDetailViewController ()
 

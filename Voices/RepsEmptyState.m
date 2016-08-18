@@ -7,9 +7,6 @@
 //
 
 #import "RepsEmptyState.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 

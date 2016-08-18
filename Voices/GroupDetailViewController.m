@@ -9,9 +9,6 @@
 #import "GroupDetailViewController.h"
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
 #import "PolicyPosition.h"
 
 @import Firebase;

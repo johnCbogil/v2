@@ -7,7 +7,6 @@
 //
 
 #import "UIFont+voicesFont.h"
-#import "VoicesConstants.h"
 
 @implementation UIFont (voicesFont)
 

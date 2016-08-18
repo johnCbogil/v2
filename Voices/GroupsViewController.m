@@ -8,7 +8,6 @@
 
 #import "GroupsViewController.h"
 #import "GroupTableViewCell.h"
-#import "UIColor+voicesColor.h"
 #import "ActionTableViewCell.h"
 #import "GroupTableViewCell.h"
 #import "ListOfGroupsViewController.h"
@@ -17,7 +16,7 @@
 #import "Group.h"
 #import "Action.h"
 #import "GroupsEmptyState.h"
-#import "VoicesConstants.h"
+
 
 @import Firebase;
 @import FirebaseMessaging;
