@@ -9,13 +9,10 @@
 #import "RootViewController.h"
 #import "NetworkManager.h"
 #import "RepManager.h"
-#import "UIFont+voicesFont.h"
 #import "StateRepresentative.h"
 #import "CacheManager.h"
-#import "UIColor+voicesColor.h"
 #import "PageViewController.h"
 #import "LocationService.h"
-#import "VoicesConstants.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>

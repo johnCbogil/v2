@@ -7,9 +7,6 @@
 //
 
 #import "TabBarViewController.h"
-#import "UIColor+voicesColor.h"
-#import "UIFont+voicesFont.h"
-#import "VoicesConstants.h"
 #import "GroupsViewController.h"
 #import "RootViewController.h"
 

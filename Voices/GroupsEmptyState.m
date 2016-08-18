@@ -7,9 +7,6 @@
 //
 
 #import "GroupsEmptyState.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
 
 @interface GroupsEmptyState()
 

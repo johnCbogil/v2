@@ -9,9 +9,7 @@
 #import "NYCRepresentativeTableViewCell.h"
 #import "NYCRepresentative.h"
 #import "RepManager.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
+
 
 @import FirebaseAnalytics;
 

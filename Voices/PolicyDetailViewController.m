@@ -7,9 +7,6 @@
 //
 
 #import "PolicyDetailViewController.h"
-#import "VoicesConstants.h"
-#import "UIColor+voicesColor.h"
-#import "UIFont+voicesFont.h"
 
 @interface PolicyDetailViewController ()
 

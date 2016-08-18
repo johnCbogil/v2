@@ -9,10 +9,7 @@
 #import "StateRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "StateRepresentative.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "VoicesConstants.h"
 #import "AlignedLabel.h"
 
 @import FirebaseAnalytics;
