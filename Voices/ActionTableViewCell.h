@@ -12,7 +12,7 @@
 @interface ActionTableViewCell : UITableViewCell
 
 - (void)initWithAction:(Action *)action;
-@property (weak, nonatomic) IBOutlet UIButton *learnMoreButton;
+@property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 
 
 @end
