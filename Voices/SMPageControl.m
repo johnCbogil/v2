@@ -477,36 +477,36 @@ static SMPageControlStyleDefaults _defaultStyleForSystemVersion;
 // touching down, sliding around, and releasing, still results in the page incrementing or decrementing.
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	UITouch *touch = [touches anyObject];
-	CGPoint point = [touch locationInView:self];
-    
-    if (SMPageControlTapBehaviorJump == self.tapBehavior) {
-		
-        __block NSInteger tappedIndicatorIndex = NSNotFound;
-		
-        [self.pageRects enumerateObjectsUsingBlock:^(NSValue *value, NSUInteger index, BOOL *stop) {
-            CGRect indicatorRect = [value CGRectValue];
-						
-            if (CGRectContainsPoint(indicatorRect, point)) {
-                tappedIndicatorIndex = index;
-                *stop = YES;
-            }
-        }];
-        
-        if (NSNotFound != tappedIndicatorIndex) {
-            [self setCurrentPage:tappedIndicatorIndex sendEvent:YES canDefer:YES];
-            return;
-        }
-    }
-    
-    CGSize size = [self sizeForNumberOfPages:self.numberOfPages];
-    CGFloat left = [self _leftOffset];
-    CGFloat middle = left + (size.width / 2.0f);
-    if (point.x < middle) {
-        [self setCurrentPage:self.currentPage - 1 sendEvent:YES canDefer:YES];
-    } else {
-        [self setCurrentPage:self.currentPage + 1 sendEvent:YES canDefer:YES];
-    }
+//	UITouch *touch = [touches anyObject];
+//	CGPoint point = [touch locationInView:self];
+//    
+//    if (SMPageControlTapBehaviorJump == self.tapBehavior) {
+//		
+//        __block NSInteger tappedIndicatorIndex = NSNotFound;
+//		
+//        [self.pageRects enumerateObjectsUsingBlock:^(NSValue *value, NSUInteger index, BOOL *stop) {
+//            CGRect indicatorRect = [value CGRectValue];
+//						
+//            if (CGRectContainsPoint(indicatorRect, point)) {
+//                tappedIndicatorIndex = index;
+//                *stop = YES;
+//            }
+//        }];
+//        
+//        if (NSNotFound != tappedIndicatorIndex) {
+//            [self setCurrentPage:tappedIndicatorIndex sendEvent:YES canDefer:YES];
+//            return;
+//        }
+//    }
+//    
+//    CGSize size = [self sizeForNumberOfPages:self.numberOfPages];
+//    CGFloat left = [self _leftOffset];
+//    CGFloat middle = left + (size.width / 2.0f);
+//    if (point.x < middle) {
+//        [self setCurrentPage:self.currentPage - 1 sendEvent:YES canDefer:YES];
+//    } else {
+//        [self setCurrentPage:self.currentPage + 1 sendEvent:YES canDefer:YES];
+//    }
     
 }
 
