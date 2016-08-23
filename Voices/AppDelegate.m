@@ -62,13 +62,19 @@ continueUserActivity:(NSUserActivity *)userActivity
                     handleUniversalLink:userActivity.webpageURL
                     completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                  NSError * _Nullable error) {
-                        // ...
+                        if (dynamicLink.url) {
+                            [self handleDynamicLink:dynamicLink];
+                        }
+                        else if (error) {
+                            NSLog(@"%@", error);
+                        }
                     }];
-    
-    
     return handled;
 }
 
+- (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
+    NSLog(@"%@", dynamicLink);
+}
 
 
 - (void)tokenRefreshNotification:(NSNotification *)notification {
