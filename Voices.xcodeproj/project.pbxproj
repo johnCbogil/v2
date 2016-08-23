@@ -491,12 +491,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52BB344E1B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "Voices" */;
 			buildPhases = (
-				B76C339F11399757175141FF /* 📦 Check Pods Manifest.lock */,
+				B76C339F11399757175141FF /* [CP] Check Pods Manifest.lock */,
 				52BB34271B6160C900BB9FFD /* Sources */,
 				52BB34281B6160C900BB9FFD /* Frameworks */,
 				52BB34291B6160C900BB9FFD /* Resources */,
-				F16EFDBD744C8237112B1C28 /* 📦 Embed Pods Frameworks */,
-				93EDF3E0C978BBEEB8F3810B /* 📦 Copy Pods Resources */,
+				F16EFDBD744C8237112B1C28 /* [CP] Embed Pods Frameworks */,
+				93EDF3E0C978BBEEB8F3810B /* [CP] Copy Pods Resources */,
 				52EFF8601D3C38240003E2E0 /* ShellScript */,
 			);
 			buildRules = (
@@ -512,12 +512,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52BB34511B6160CA00BB9FFD /* Build configuration list for PBXNativeTarget "VoicesTests" */;
 			buildPhases = (
-				FB7B0D371B683EC33BC550D4 /* 📦 Check Pods Manifest.lock */,
+				FB7B0D371B683EC33BC550D4 /* [CP] Check Pods Manifest.lock */,
 				52BB34401B6160CA00BB9FFD /* Sources */,
 				52BB34411B6160CA00BB9FFD /* Frameworks */,
 				52BB34421B6160CA00BB9FFD /* Resources */,
-				F11AEE0923583B7ACA91306E /* 📦 Embed Pods Frameworks */,
-				65E37E33A3447ED70FDB1E37 /* 📦 Copy Pods Resources */,
+				F11AEE0923583B7ACA91306E /* [CP] Embed Pods Frameworks */,
+				65E37E33A3447ED70FDB1E37 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -626,14 +626,14 @@
 			shellPath = /bin/sh;
 			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=./Voices/Voices-ae779cfd4221.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:1073657114728:ios:4cd690a7b995db5d\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
 		};
-		65E37E33A3447ED70FDB1E37 /* 📦 Copy Pods Resources */ = {
+		65E37E33A3447ED70FDB1E37 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,14 +641,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93EDF3E0C978BBEEB8F3810B /* 📦 Copy Pods Resources */ = {
+		93EDF3E0C978BBEEB8F3810B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,14 +656,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voices/Pods-Voices-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B76C339F11399757175141FF /* 📦 Check Pods Manifest.lock */ = {
+		B76C339F11399757175141FF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,14 +671,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F11AEE0923583B7ACA91306E /* 📦 Embed Pods Frameworks */ = {
+		F11AEE0923583B7ACA91306E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,14 +686,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F16EFDBD744C8237112B1C28 /* 📦 Embed Pods Frameworks */ = {
+		F16EFDBD744C8237112B1C28 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,14 +701,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voices/Pods-Voices-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB7B0D371B683EC33BC550D4 /* 📦 Check Pods Manifest.lock */ = {
+		FB7B0D371B683EC33BC550D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -898,7 +898,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
 				INFOPLIST_FILE = Voices/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
@@ -921,7 +921,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
 				INFOPLIST_FILE = Voices/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;

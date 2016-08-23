@@ -14,6 +14,8 @@ target 'Voices' do
     pod 'Firebase/Auth'
     pod 'Firebase/Messaging'
     pod 'Firebase/Crash'
+    pod 'Firebase/DynamicLinks'
+
 
 end
 

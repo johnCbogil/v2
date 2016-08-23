@@ -54,6 +54,23 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+ restorationHandler:(void (^)(NSArray *))restorationHandler {
+    
+    BOOL handled = [[FIRDynamicLinks dynamicLinks]
+                    handleUniversalLink:userActivity.webpageURL
+                    completion:^(FIRDynamicLink * _Nullable dynamicLink,
+                                 NSError * _Nullable error) {
+                        // ...
+                    }];
+    
+    
+    return handled;
+}
+
+
+
 - (void)tokenRefreshNotification:(NSNotification *)notification {
     // Note that this callback will be fired everytime a new token is generated, including the first
     // time. So if you need to retrieve the token as soon as it is available this is where that
