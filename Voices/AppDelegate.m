@@ -85,7 +85,7 @@ continueUserActivity:(NSUserActivity *)userActivity
 }
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
-    NSLog(@"%@", dynamicLink);
+    NSLog(@"%@", dynamicLink.url);
 }
 
 
