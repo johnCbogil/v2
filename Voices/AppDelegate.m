@@ -85,6 +85,8 @@
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     NSLog(@"%@", dynamicLink.url);
+    
+    // TODO: HANDLE TOPIC SUBSCRIPTION HERE
 }
 
 
