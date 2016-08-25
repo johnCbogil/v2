@@ -21,6 +21,7 @@
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
+@import FirebaseDynamicLinks;
 
 @interface AppDelegate ()
 
@@ -54,9 +55,7 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application
-continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
     
     BOOL handled = [[FIRDynamicLinks dynamicLinks]
                     handleUniversalLink:userActivity.webpageURL
