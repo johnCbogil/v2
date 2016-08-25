@@ -72,6 +72,18 @@ continueUserActivity:(NSUserActivity *)userActivity
     return handled;
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks]dynamicLinkFromCustomSchemeURL:url];
+    if (dynamicLink) {
+        NSLog(@"I am handling a link through the openURL method");
+        [self handleDynamicLink:dynamicLink];
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     NSLog(@"%@", dynamicLink);
 }
