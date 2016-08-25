@@ -70,6 +70,7 @@
 		7EA5BECD1C52DCD5000C8935 /* RepresentativesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */; };
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
+		AA2C2E4F1D6F385A009989C9 /* RepresentativeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepresentativeDetailViewController.m */; };
 		C0A87038D5F61A314ADE7039 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */; };
 /* End PBXBuildFile section */
 
@@ -187,6 +188,8 @@
 		7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDetailViewController.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		AA2C2E4D1D6F385A009989C9 /* RepresentativeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativeDetailViewController.h; sourceTree = "<group>"; };
+		AA2C2E4E1D6F385A009989C9 /* RepresentativeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativeDetailViewController.m; sourceTree = "<group>"; };
 		AA7506DE1D6644EC00DADD93 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D0B117A45B252CA574D86425 /* libPods-Voices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB714B7579D0FC9896DE4497 /* Pods-Voices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.release.xcconfig"; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				52C6532F1B75120900EA6FFD /* RootViewController.m */,
 				7EA5BECB1C52DCD5000C8935 /* RepresentativesViewController.h */,
 				7EA5BECC1C52DCD5000C8935 /* RepresentativesViewController.m */,
+				AA2C2E4D1D6F385A009989C9 /* RepresentativeDetailViewController.h */,
+				AA2C2E4E1D6F385A009989C9 /* RepresentativeDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -739,6 +744,7 @@
 				52FC68FE1C3765A400E29B7A /* LocationOnboardingViewController.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
+				AA2C2E4F1D6F385A009989C9 /* RepresentativeDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
