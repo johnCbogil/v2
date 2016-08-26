@@ -211,6 +211,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
         }
         
+        // TODO: SHOULD THIS BE SELF.DATASETCOMPONENT
         NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
         NSError *error =  nil;
         NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];

@@ -30,6 +30,7 @@
     return self;
 }
 
+// TODO: AM I EVEN USING THESE?
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
         self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];

@@ -40,6 +40,7 @@ extern NSString *const kCreateNYCRepresentatives;
 extern NSString *const kCityCouncilZip;
 extern NSString *const kCityCouncilJSON;
 extern NSString *const kCouncilMemberDataJSON;
+extern NSString *const kNYCExtraRepsJSON;
 
 extern CGFloat const kButtonCornerRadius;
 

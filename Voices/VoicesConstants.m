@@ -36,9 +36,10 @@ NSString *const kCreateFederalRepresentatives = @"createFederalRepresentatives";
 NSString *const kCreateStateRepresentatives = @"createStateRepresentatives";
 NSString *const kCreateNYCRepresentatives = @"createNYCRepresentatives";
 
-NSString *const kCityCouncilZip = @"CityCouncilDistricts";
+NSString *const kCityCouncilZip = @"CouncilDistrictsJSON";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
 NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
+NSString *const kNYCExtraRepsJSON = @"nycExtraReps";
 
 CGFloat const kButtonCornerRadius = 3.f;
 

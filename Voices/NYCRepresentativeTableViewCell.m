@@ -71,15 +71,9 @@
 }
 
 - (void)initWithRep:(id)rep {
-    self.nycRepresentative = rep;
-
-    if ([self.nycRepresentative.title isEqualToString:@"Mayor"]) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.title, self.nycRepresentative.fullName];
-    }
-    else {
-        self.nameLabel.text = [NSString stringWithFormat:@"Council Member %@", self.nycRepresentative.fullName];
-    }
     
+    self.nycRepresentative = rep;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.title, self.nycRepresentative.fullName];
     [self setImage];
 }
 
