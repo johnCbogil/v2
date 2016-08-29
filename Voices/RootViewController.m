@@ -36,6 +36,10 @@
 @property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic) BOOL isSearchBarOpen;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
+@property (weak, nonatomic) IBOutlet UIView *pageIndicatorView;
+@property (weak, nonatomic) IBOutlet UILabel *federalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *localLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 
 @end
 
@@ -89,8 +93,8 @@
     self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.15];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor voicesLightBlue];
+//    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.15];
+//    self.pageControl.currentPageIndicatorTintColor = [UIColor voicesLightBlue];
 }
 
 - (void)setFont {
@@ -100,8 +104,8 @@
 
 - (void)configurePageControl {
     
-    self.pageControl.numberOfPages = 3;
-    self.pageControl.indicatorDiameter = 12.5f;
+//    self.pageControl.numberOfPages = 3;
+//    self.pageControl.indicatorDiameter = 12.5f;
 }
 
 #pragma mark - NSNotifications

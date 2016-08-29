@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -175,11 +175,35 @@
                                     <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="SMPage Control" customClass="SMPageControl">
-                                <rect key="frame" x="254" y="94" width="93" height="25"/>
-                                <color key="backgroundColor" red="0.86274509799999999" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="PageIndicatorView">
+                                <rect key="frame" x="20" y="94" width="560" height="25"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dft-vw-WtP">
+                                        <rect key="frame" x="8" y="2" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-hL-CgS">
+                                        <rect key="frame" x="510" y="2" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQu-Vb-YhS">
+                                        <rect key="frame" x="259" y="2" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="BEL-hr-dEx"/>
+                                    <constraint firstItem="kVD-hL-CgS" firstAttribute="trailing" secondItem="pPG-hc-XD3" secondAttribute="trailingMargin" id="0E1-wa-WtO"/>
+                                    <constraint firstItem="BQu-Vb-YhS" firstAttribute="baseline" secondItem="kVD-hL-CgS" secondAttribute="baseline" id="4D4-fb-3cB"/>
+                                    <constraint firstItem="Dft-vw-WtP" firstAttribute="centerY" secondItem="pPG-hc-XD3" secondAttribute="centerY" id="Ds8-Qj-Kzq"/>
+                                    <constraint firstItem="Dft-vw-WtP" firstAttribute="baseline" secondItem="BQu-Vb-YhS" secondAttribute="baseline" id="FeU-2U-byo"/>
+                                    <constraint firstItem="Dft-vw-WtP" firstAttribute="leading" secondItem="pPG-hc-XD3" secondAttribute="leadingMargin" id="Lns-A6-cHC"/>
+                                    <constraint firstItem="BQu-Vb-YhS" firstAttribute="centerX" secondItem="pPG-hc-XD3" secondAttribute="centerX" id="Y7X-Qi-o3b"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -190,11 +214,13 @@
                             <constraint firstAttribute="trailing" secondItem="YFG-MQ-THZ" secondAttribute="trailing" id="Ai7-MB-cUL"/>
                             <constraint firstItem="YFG-MQ-THZ" firstAttribute="bottom" secondItem="HNq-K6-6Z2" secondAttribute="top" id="Dr0-G4-4rS"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="bottom" secondItem="ZVD-bZ-YzX" secondAttribute="bottom" id="GLQ-59-TiL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pPG-hc-XD3" secondAttribute="trailing" id="KKp-YH-W2P"/>
                             <constraint firstItem="pPG-hc-XD3" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="65" id="MGl-pR-3KM"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" id="N88-2y-A80"/>
                             <constraint firstItem="pPG-hc-XD3" firstAttribute="leading" secondItem="WRM-qV-4HZ" secondAttribute="leading" constant="281" id="PeP-N4-Wbz"/>
                             <constraint firstItem="pPG-hc-XD3" firstAttribute="bottom" secondItem="YFG-MQ-THZ" secondAttribute="bottom" id="QLo-ax-PE2"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leading" id="VBm-DV-JhV"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="pPG-hc-XD3" secondAttribute="leading" id="W8C-Lx-Dcv"/>
                             <constraint firstItem="vJT-DT-SYB" firstAttribute="top" secondItem="Iw5-Jr-6md" secondAttribute="bottom" constant="20" id="XGf-3v-14T"/>
                             <constraint firstItem="pPG-hc-XD3" firstAttribute="centerX" secondItem="vJT-DT-SYB" secondAttribute="centerX" id="dKO-3V-gen"/>
                             <constraint firstItem="ZVD-bZ-YzX" firstAttribute="trailing" secondItem="vJT-DT-SYB" secondAttribute="trailing" id="ihK-xz-gAw"/>
@@ -215,14 +241,18 @@
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
+                        <outlet property="federalLabel" destination="Dft-vw-WtP" id="bHr-ag-t36"/>
                         <outlet property="infoButton" destination="9Fh-nE-Bwo" id="drJ-zV-IBl"/>
                         <outlet property="legislatureLevel" destination="8dR-WS-Joj" id="9rp-sB-gvA"/>
+                        <outlet property="localLabel" destination="kVD-hL-CgS" id="Gxp-C9-3c2"/>
                         <outlet property="magnifyingGlassImageView" destination="Pe0-Sl-hug" id="CPn-Cb-NJo"/>
                         <outlet property="pageControl" destination="pPG-hc-XD3" id="Hm3-BW-lD0"/>
+                        <outlet property="pageIndicatorView" destination="pPG-hc-XD3" id="Jmh-1W-vit"/>
                         <outlet property="searchBar" destination="Og0-9p-oGV" id="2V7-1J-3dU"/>
                         <outlet property="searchButton" destination="B8M-md-h7z" id="omU-3c-pvJ"/>
                         <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
                         <outlet property="shimmeringView" destination="vJT-DT-SYB" id="UyY-iw-I1T"/>
+                        <outlet property="stateLabel" destination="BQu-Vb-YhS" id="sYQ-F8-YFN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
