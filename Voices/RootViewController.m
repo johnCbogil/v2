@@ -361,7 +361,6 @@
 
 - (void)presentInfoViewController {
     UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"Info" owner:self options:nil] objectAtIndex:0];
-
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.containerView.layer.cornerRadius = 10;
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
@@ -378,6 +377,7 @@
 - (IBAction)infoButtonDidPress:(id)sender {
     [self presentInfoViewController];
 }
+
 - (IBAction)federalPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
     self.federalButton.tintColor = [UIColor voicesBlue];
@@ -389,7 +389,6 @@
     self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
     self.stateButton.tintColor = [UIColor voicesBlue];
     self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-
 }
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];

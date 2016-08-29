@@ -93,14 +93,16 @@
     return representativesViewController;
 }
 
+// TODO: DETERMINE THE CURRENT PAGE SO THAT I CAN SET THE ANIMATION DIRECTION
 - (void)changePage:(NSNotification *)notification {
     
     long int pageNumber = [notification.object integerValue];
     RepresentativesViewController *vc = self.listOfViewControllers[pageNumber];
+
     
     [self setViewControllers:@[vc]
                    direction:UIPageViewControllerNavigationDirectionForward
-                    animated:YES
+                    animated:NO
                   completion:nil];
 }
 @end
