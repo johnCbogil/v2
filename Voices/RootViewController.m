@@ -37,9 +37,9 @@
 @property (nonatomic) BOOL isSearchBarOpen;
 @property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (weak, nonatomic) IBOutlet UIView *pageIndicatorView;
-@property (weak, nonatomic) IBOutlet UILabel *federalLabel;
-@property (weak, nonatomic) IBOutlet UILabel *localLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *federalButton;
+@property (weak, nonatomic) IBOutlet UIButton *stateButton;
+@property (weak, nonatomic) IBOutlet UIButton *localButton;
 
 @end
 
@@ -92,12 +92,10 @@
     self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.federalLabel.textColor = [UIColor voicesBlue];
-    self.stateLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-    self.localLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-
-//    self.pageControl.pageIndicatorTintColor = [[UIColor blackColor]colorWithAlphaComponent:.15];
-//    self.pageControl.currentPageIndicatorTintColor = [UIColor voicesLightBlue];
+    
+    self.federalButton.tintColor = [UIColor voicesBlue];
+    self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
 }
 
 - (void)setFont {
@@ -144,24 +142,18 @@
     }];
     
     if ([currentPageString isEqualToString:@"Federal"]) {
-//        self.pageControl.currentPage = 0;
-        self.federalLabel.textColor = [UIColor voicesBlue];
-        self.stateLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-        self.localLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-    }
+        self.federalButton.tintColor = [UIColor voicesBlue];
+        self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];    }
     else if ([currentPageString isEqualToString:@"State"]) {
-//        self.pageControl.currentPage = 1;
-        self.federalLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-        self.stateLabel.textColor = [UIColor voicesBlue];
-        self.localLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-
+        self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.stateButton.tintColor = [UIColor voicesBlue];
+        self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
     }
     else {
-//        self.pageControl.currentPage = 2;
-        self.federalLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-        self.stateLabel.textColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-        self.localLabel.textColor = [UIColor voicesBlue];
-
+        self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.localButton.tintColor = [UIColor voicesBlue];
     }
 }
 
@@ -385,6 +377,25 @@
 
 - (IBAction)infoButtonDidPress:(id)sender {
     [self presentInfoViewController];
+}
+- (IBAction)federalPageButtonDidPress:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
+    self.federalButton.tintColor = [UIColor voicesBlue];
+    self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+}
+- (IBAction)statePageButtonDidPress:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
+    self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.stateButton.tintColor = [UIColor voicesBlue];
+    self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+
+}
+- (IBAction)localPageButtonDidPress:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
+    self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.localButton.tintColor = [UIColor voicesBlue];
 }
 
 @end

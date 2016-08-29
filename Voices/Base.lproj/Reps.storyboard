@@ -178,32 +178,35 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="PageIndicatorView">
                                 <rect key="frame" x="20" y="94" width="560" height="25"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dft-vw-WtP">
-                                        <rect key="frame" x="8" y="2" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-hL-CgS">
-                                        <rect key="frame" x="510" y="2" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQu-Vb-YhS">
-                                        <rect key="frame" x="259" y="2" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz2-4k-dvR">
+                                        <rect key="frame" x="8" y="-2" width="52" height="30"/>
+                                        <state key="normal" title="Federal"/>
+                                        <connections>
+                                            <action selector="federalPageButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="olU-xj-4v2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqA-a1-Mg2">
+                                        <rect key="frame" x="262" y="-2" width="37" height="30"/>
+                                        <state key="normal" title="State"/>
+                                        <connections>
+                                            <action selector="statePageButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="JrO-Kd-fJY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6i-lw-PSH">
+                                        <rect key="frame" x="515" y="-2" width="37" height="30"/>
+                                        <state key="normal" title="Local"/>
+                                        <connections>
+                                            <action selector="localPageButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="ZrN-Ah-6Dy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="kVD-hL-CgS" firstAttribute="trailing" secondItem="pPG-hc-XD3" secondAttribute="trailingMargin" id="0E1-wa-WtO"/>
-                                    <constraint firstItem="BQu-Vb-YhS" firstAttribute="baseline" secondItem="kVD-hL-CgS" secondAttribute="baseline" id="4D4-fb-3cB"/>
-                                    <constraint firstItem="Dft-vw-WtP" firstAttribute="centerY" secondItem="pPG-hc-XD3" secondAttribute="centerY" id="Ds8-Qj-Kzq"/>
-                                    <constraint firstItem="Dft-vw-WtP" firstAttribute="baseline" secondItem="BQu-Vb-YhS" secondAttribute="baseline" id="FeU-2U-byo"/>
-                                    <constraint firstItem="Dft-vw-WtP" firstAttribute="leading" secondItem="pPG-hc-XD3" secondAttribute="leadingMargin" id="Lns-A6-cHC"/>
-                                    <constraint firstItem="BQu-Vb-YhS" firstAttribute="centerX" secondItem="pPG-hc-XD3" secondAttribute="centerX" id="Y7X-Qi-o3b"/>
+                                    <constraint firstItem="zqA-a1-Mg2" firstAttribute="baseline" secondItem="c6i-lw-PSH" secondAttribute="baseline" id="8CX-9W-yU3"/>
+                                    <constraint firstItem="Sz2-4k-dvR" firstAttribute="leading" secondItem="pPG-hc-XD3" secondAttribute="leadingMargin" id="E53-2c-oEf"/>
+                                    <constraint firstItem="zqA-a1-Mg2" firstAttribute="centerX" secondItem="pPG-hc-XD3" secondAttribute="centerX" id="Ezt-sP-rCF"/>
+                                    <constraint firstItem="Sz2-4k-dvR" firstAttribute="baseline" secondItem="zqA-a1-Mg2" secondAttribute="baseline" id="jkD-5B-6c6"/>
+                                    <constraint firstItem="Sz2-4k-dvR" firstAttribute="centerY" secondItem="pPG-hc-XD3" secondAttribute="centerY" id="qVb-qx-lwl"/>
+                                    <constraint firstItem="c6i-lw-PSH" firstAttribute="trailing" secondItem="pPG-hc-XD3" secondAttribute="trailingMargin" id="qrN-aj-NmV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -241,10 +244,10 @@
                     <navigationItem key="navigationItem" id="JLB-71-c5n"/>
                     <connections>
                         <outlet property="containerView" destination="YFG-MQ-THZ" id="L0V-O0-QcX"/>
-                        <outlet property="federalLabel" destination="Dft-vw-WtP" id="bHr-ag-t36"/>
+                        <outlet property="federalButton" destination="Sz2-4k-dvR" id="xlV-TS-d8s"/>
                         <outlet property="infoButton" destination="9Fh-nE-Bwo" id="drJ-zV-IBl"/>
                         <outlet property="legislatureLevel" destination="8dR-WS-Joj" id="9rp-sB-gvA"/>
-                        <outlet property="localLabel" destination="kVD-hL-CgS" id="Gxp-C9-3c2"/>
+                        <outlet property="localButton" destination="c6i-lw-PSH" id="JC3-q7-aTr"/>
                         <outlet property="magnifyingGlassImageView" destination="Pe0-Sl-hug" id="CPn-Cb-NJo"/>
                         <outlet property="pageControl" destination="pPG-hc-XD3" id="Hm3-BW-lD0"/>
                         <outlet property="pageIndicatorView" destination="pPG-hc-XD3" id="Jmh-1W-vit"/>
@@ -252,7 +255,7 @@
                         <outlet property="searchButton" destination="B8M-md-h7z" id="omU-3c-pvJ"/>
                         <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
                         <outlet property="shimmeringView" destination="vJT-DT-SYB" id="UyY-iw-I1T"/>
-                        <outlet property="stateLabel" destination="BQu-Vb-YhS" id="sYQ-F8-YFN"/>
+                        <outlet property="stateButton" destination="zqA-a1-Mg2" id="SxK-Pi-NGy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>

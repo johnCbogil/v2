@@ -33,6 +33,8 @@
     self.listOfViewControllers = @[initialViewController,secondViewController,thirdViewController];
     
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished){}];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
@@ -89,5 +91,16 @@
     RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
     representativesViewController.index = index;
     return representativesViewController;
+}
+
+- (void)changePage:(NSNotification *)notification {
+    
+    long int pageNumber = [notification.object integerValue];
+    RepresentativesViewController *vc = self.listOfViewControllers[pageNumber];
+    
+    [self setViewControllers:@[vc]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:YES
+                  completion:nil];
 }
 @end
