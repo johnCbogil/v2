@@ -165,6 +165,8 @@
 
 - (void)setSearchBar {
     self.searchBar.delegate = self;
+    
+    // TODO: CREATE A CONSTANT FOR THIS
     self.searchBar.placeholder = @"Search by address                              ";
     
     // Round the box
