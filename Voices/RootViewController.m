@@ -96,11 +96,15 @@
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
     self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    
+    self.legislatureLevel.textColor = [UIColor whiteColor];
 }
 
 - (void)setFont {
     self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
-    self.legislatureLevel.textColor = [UIColor whiteColor];
+    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
 }
 
 #pragma mark - NSNotifications
