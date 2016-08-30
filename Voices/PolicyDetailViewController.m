@@ -31,7 +31,7 @@
 }
 
 - (void)setFont {
-    self.policySubjectLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.policySubjectLabel.font = [UIFont voicesMediumFontWithSize:19];
     self.policyPositionTextView.font = [UIFont voicesFontWithSize:19];
     self.contactRepsButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     

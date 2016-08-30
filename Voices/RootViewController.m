@@ -89,19 +89,19 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-//    self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    //    self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     
     self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-    self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.stateButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
+    self.localButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
     
-//    self.legislatureLevel.textColor = [UIColor whiteColor];
+    //    self.legislatureLevel.textColor = [UIColor whiteColor];
 }
 
 - (void)setFont {
-//    self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
+    //    self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
     self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
     self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
     self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
@@ -138,7 +138,7 @@
     NSDictionary* userInfo = notification.object;
     NSString *currentPageString = userInfo[@"currentPage"];
     if (currentPageString.length > 0) {
-//        self.legislatureLevel.text = currentPageString;
+        //        self.legislatureLevel.text = currentPageString;
     }
     
     [UIView animateWithDuration:.15 animations:^{
@@ -147,16 +147,17 @@
     
     if ([currentPageString isEqualToString:@"Federal"]) {
         self.federalButton.tintColor = [UIColor voicesBlue];
-        self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-        self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];    }
+        self.stateButton.tintColor = [UIColor groupTableViewBackgroundColor];//colorWithAlphaComponent:.5];
+        self.localButton.tintColor = [UIColor groupTableViewBackgroundColor];//colorWithAlphaComponent:.5];
+    }
     else if ([currentPageString isEqualToString:@"State"]) {
-        self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.federalButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
         self.stateButton.tintColor = [UIColor voicesBlue];
-        self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.localButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
     }
     else {
-        self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-        self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+        self.federalButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
+        self.stateButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
         self.localButton.tintColor = [UIColor voicesBlue];
     }
 }
@@ -215,15 +216,15 @@
     textSearchField.layer.cornerRadius = kButtonCornerRadius;
     
     // Hide the search bar
-//    self.searchBar.alpha = 0.0;
-//    self.searchButton.alpha = 1.0;
+    //    self.searchBar.alpha = 0.0;
+    //    self.searchButton.alpha = 1.0;
     self.magnifyingGlassImageView.alpha = 1.0;
-//    self.legislatureLevel.alpha = 1.0;
+    //    self.legislatureLevel.alpha = 1.0;
     
     UITextField *searchTextField = [self.searchBar valueForKey:@"_searchField"];
     searchTextField.textAlignment = NSTextAlignmentLeft;
     
-
+    
     
 }
 
@@ -276,8 +277,8 @@
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 1.0;
-//                         self.legislatureLevel.alpha = 0.0;
-//                         self.searchButton.alpha = 0.0;
+                         //                         self.legislatureLevel.alpha = 0.0;
+                         //                         self.searchButton.alpha = 0.0;
                          self.magnifyingGlassImageView.alpha = 0.0;
                          self.infoButton.alpha = 0.0;
                      }];
@@ -288,10 +289,10 @@
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
-//                         self.searchBar.alpha = 0.0;
-//                         self.searchButton.alpha = 1.0;
+                         //                         self.searchBar.alpha = 0.0;
+                         //                         self.searchButton.alpha = 1.0;
                          self.magnifyingGlassImageView.alpha = 1.0;
-//                         self.legislatureLevel.alpha = 1.0;
+                         //                         self.legislatureLevel.alpha = 1.0;
                          self.infoButton.alpha = 1.0;
                      }];
 }

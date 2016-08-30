@@ -39,7 +39,7 @@
 
 - (void)setFont {
     
-    self.topLabel.font = [UIFont voicesBoldFontWithSize:23];
+    self.topLabel.font = [UIFont voicesMediumFontWithSize:23];
     self.bottomLabel.font = [UIFont voicesFontWithSize:21];
     
     CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity,RADIANS(-15.0));

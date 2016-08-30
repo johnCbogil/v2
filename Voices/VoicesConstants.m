@@ -16,7 +16,8 @@ NSString *const kStateRepresentativeTableViewCell = @"StateRepresentativeTableVi
 NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCell";
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
-NSString *const kAvenirNextBold = @"AvenirNext-Medium";
+NSString *const kAvenirNextMedium = @"AvenirNext-Medium";
+NSString *const kAvenirNextBold = @"AvenirNext-Bold";
 //NSString *const kMontserratLight = @"Montserrat-Light";
 //NSString *const kOpenSans = @"OpenSans";
 
