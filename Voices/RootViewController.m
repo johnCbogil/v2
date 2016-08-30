@@ -165,7 +165,7 @@
 
 - (void)setSearchBar {
     self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"Search by address";
+    self.searchBar.placeholder = @"Search by address                              ";
     
     // Round the box
     self.searchView.layer.cornerRadius = kButtonCornerRadius;
@@ -183,7 +183,7 @@
      setDefaultTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:15],NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     // Hide the magnifying glass
-    [self.searchBar setImage:[UIImage new]
+    [self.searchBar setImage:[UIImage imageNamed:@"MagnifyingGlass"]
             forSearchBarIcon:UISearchBarIconSearch
                        state:UIControlStateNormal];
     
@@ -217,6 +217,11 @@
 //    self.searchButton.alpha = 1.0;
     self.magnifyingGlassImageView.alpha = 1.0;
 //    self.legislatureLevel.alpha = 1.0;
+    
+    UITextField *searchTextField = [self.searchBar valueForKey:@"_searchField"];
+    searchTextField.textAlignment = NSTextAlignmentLeft;
+    
+
     
 }
 
@@ -281,7 +286,7 @@
     [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:0.25
                      animations:^{
-                         self.searchBar.alpha = 0.0;
+//                         self.searchBar.alpha = 0.0;
 //                         self.searchButton.alpha = 1.0;
                          self.magnifyingGlassImageView.alpha = 1.0;
 //                         self.legislatureLevel.alpha = 1.0;
