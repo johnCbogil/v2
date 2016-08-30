@@ -22,11 +22,11 @@
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
+//@property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (strong, nonatomic) IBOutlet SMPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+//@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
@@ -89,7 +89,7 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+//    self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     
@@ -97,11 +97,11 @@
     self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
     self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
     
-    self.legislatureLevel.textColor = [UIColor whiteColor];
+//    self.legislatureLevel.textColor = [UIColor whiteColor];
 }
 
 - (void)setFont {
-    self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
+//    self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
     self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
     self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
     self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
@@ -138,7 +138,7 @@
     NSDictionary* userInfo = notification.object;
     NSString *currentPageString = userInfo[@"currentPage"];
     if (currentPageString.length > 0) {
-        self.legislatureLevel.text = currentPageString;
+//        self.legislatureLevel.text = currentPageString;
     }
     
     [UIView animateWithDuration:.15 animations:^{
@@ -213,10 +213,11 @@
     textSearchField.layer.cornerRadius = kButtonCornerRadius;
     
     // Hide the search bar
-    self.searchBar.alpha = 0.0;
-    self.searchButton.alpha = 1.0;
+//    self.searchBar.alpha = 0.0;
+//    self.searchButton.alpha = 1.0;
     self.magnifyingGlassImageView.alpha = 1.0;
-    self.legislatureLevel.alpha = 1.0;
+//    self.legislatureLevel.alpha = 1.0;
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -268,8 +269,8 @@
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 1.0;
-                         self.legislatureLevel.alpha = 0.0;
-                         self.searchButton.alpha = 0.0;
+//                         self.legislatureLevel.alpha = 0.0;
+//                         self.searchButton.alpha = 0.0;
                          self.magnifyingGlassImageView.alpha = 0.0;
                          self.infoButton.alpha = 0.0;
                      }];
@@ -281,9 +282,9 @@
     [UIView animateWithDuration:0.25
                      animations:^{
                          self.searchBar.alpha = 0.0;
-                         self.searchButton.alpha = 1.0;
+//                         self.searchButton.alpha = 1.0;
                          self.magnifyingGlassImageView.alpha = 1.0;
-                         self.legislatureLevel.alpha = 1.0;
+//                         self.legislatureLevel.alpha = 1.0;
                          self.infoButton.alpha = 1.0;
                      }];
 }
