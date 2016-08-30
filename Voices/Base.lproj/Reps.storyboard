@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -111,12 +111,16 @@
                             <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-bZ-YzX" userLabel="searchView">
                                 <rect key="frame" x="20" y="40" width="560" height="47"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search by address" translatesAutoresizingMaskIntoConstraints="NO" id="Og0-9p-oGV">
-                                        <rect key="frame" x="0.0" y="2" width="521" height="44"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-gw-JY9">
+                                        <rect key="frame" x="8" y="9" width="505" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
                                         <rect key="frame" x="521" y="11" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="TVY-ev-WIl"/>
+                                        </constraints>
                                         <state key="normal" image="SpeechBubble"/>
                                         <connections>
                                             <action selector="infoButtonDidPress:" destination="2Z5-RF-Vdv" eventType="touchUpInside" id="lRr-5w-diI"/>
@@ -125,13 +129,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="leading" secondItem="Og0-9p-oGV" secondAttribute="trailing" id="2IJ-3L-gIb"/>
-                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="11" id="GEf-Ti-WpF"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="14" id="OQR-Bl-MZK"/>
-                                    <constraint firstItem="Og0-9p-oGV" firstAttribute="centerY" secondItem="ZVD-bZ-YzX" secondAttribute="centerY" id="XcP-db-ysP"/>
-                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="centerY" secondItem="Og0-9p-oGV" secondAttribute="centerY" id="lFO-dn-Q0b"/>
-                                    <constraint firstAttribute="trailing" secondItem="Og0-9p-oGV" secondAttribute="trailing" constant="39" id="obL-cH-Xwq"/>
-                                    <constraint firstItem="Og0-9p-oGV" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leading" id="uce-4U-Sn0"/>
+                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="centerY" secondItem="ZVD-bZ-YzX" secondAttribute="centerY" id="ERR-26-KWP"/>
+                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="11" id="eZR-Fi-WIs"/>
+                                    <constraint firstItem="aNS-gw-JY9" firstAttribute="centerY" secondItem="9Fh-nE-Bwo" secondAttribute="centerY" id="hDc-66-TBg"/>
+                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="leading" secondItem="aNS-gw-JY9" secondAttribute="trailing" constant="8" symbolic="YES" id="m2x-GA-PuH"/>
+                                    <constraint firstItem="aNS-gw-JY9" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leadingMargin" id="pfD-DG-Tiz"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="14" id="wp1-X1-vw1"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">
@@ -218,7 +221,7 @@
                         <outlet property="localButton" destination="c6i-lw-PSH" id="JC3-q7-aTr"/>
                         <outlet property="pageControl" destination="pPG-hc-XD3" id="Hm3-BW-lD0"/>
                         <outlet property="pageIndicatorView" destination="pPG-hc-XD3" id="Jmh-1W-vit"/>
-                        <outlet property="searchBar" destination="Og0-9p-oGV" id="2V7-1J-3dU"/>
+                        <outlet property="searchTextField" destination="aNS-gw-JY9" id="VFz-Dr-upe"/>
                         <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
                         <outlet property="shimmeringView" destination="vJT-DT-SYB" id="UyY-iw-I1T"/>
                         <outlet property="stateButton" destination="zqA-a1-Mg2" id="SxK-Pi-NGy"/>
@@ -226,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Beb-ky-4vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250" y="293"/>
+            <point key="canvasLocation" x="234" y="290"/>
         </scene>
     </scenes>
     <resources>

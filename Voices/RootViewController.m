@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *federalButton;
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 @end
 
@@ -65,6 +66,20 @@
     [self setFont];
     [self setColors];
     [self setSearchBar];
+    [self configureSearchBar];
+}
+
+- (void)configureSearchBar {
+    self.searchTextField.backgroundColor = [UIColor searchBarBackground];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self.searchTextField.layer setBorderWidth:2.0f];
+    self.searchTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.searchTextField.layer.borderColor = [UIColor searchBarBackground].CGColor;
+    self.searchTextField.layer.cornerRadius = kButtonCornerRadius;
+    [self.searchTextField setLeftViewMode:UITextFieldViewModeAlways];
+    self.searchTextField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"MagnifyingGlass"]];
+    
+
 }
 
 - (void)viewDidLayoutSubviews {
@@ -89,19 +104,14 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    //    self.searchButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    
     self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
-    self.localButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
-    
-    //    self.legislatureLevel.textColor = [UIColor whiteColor];
+    self.stateButton.tintColor = [UIColor voicesLightGray];
+    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (void)setFont {
-    //    self.legislatureLevel.font = [UIFont voicesFontWithSize:35];
     self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
     self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
     self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
@@ -145,19 +155,20 @@
         [self.view layoutIfNeeded];
     }];
     
+    // TODO: THIS IS NOT DRY
     if ([currentPageString isEqualToString:@"Federal"]) {
         self.federalButton.tintColor = [UIColor voicesBlue];
-        self.stateButton.tintColor = [UIColor groupTableViewBackgroundColor];//colorWithAlphaComponent:.5];
-        self.localButton.tintColor = [UIColor groupTableViewBackgroundColor];//colorWithAlphaComponent:.5];
+        self.stateButton.tintColor = [UIColor voicesLightGray];
+        self.localButton.tintColor = [UIColor voicesLightGray];
     }
     else if ([currentPageString isEqualToString:@"State"]) {
-        self.federalButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
+        self.federalButton.tintColor = [UIColor voicesLightGray];
         self.stateButton.tintColor = [UIColor voicesBlue];
-        self.localButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
+        self.localButton.tintColor = [UIColor voicesLightGray];
     }
     else {
-        self.federalButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
-        self.stateButton.tintColor = [[UIColor voicesGray]colorWithAlphaComponent:.5];
+        self.federalButton.tintColor = [UIColor voicesLightGray];
+        self.stateButton.tintColor = [UIColor voicesLightGray];
         self.localButton.tintColor = [UIColor voicesBlue];
     }
 }
@@ -168,7 +179,7 @@
     self.searchBar.delegate = self;
     
     // TODO: CREATE A CONSTANT FOR THIS
-    self.searchBar.placeholder = @"Search by address                              ";
+    self.searchBar.placeholder = @"Search by address";
     
     // Round the box
     self.searchView.layer.cornerRadius = kButtonCornerRadius;
@@ -186,7 +197,7 @@
      setDefaultTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:15],NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     // Hide the magnifying glass
-    [self.searchBar setImage:[UIImage imageNamed:@"MagnifyingGlass"]
+    [self.searchBar setImage:[UIImage new]
             forSearchBarIcon:UISearchBarIconSearch
                        state:UIControlStateNormal];
     
@@ -394,19 +405,19 @@
 - (IBAction)federalPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
     self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-    self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.stateButton.tintColor = [UIColor voicesLightGray];
+    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 - (IBAction)statePageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
-    self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.federalButton.tintColor = [UIColor voicesLightGray];
     self.stateButton.tintColor = [UIColor voicesBlue];
-    self.localButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
-    self.federalButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
-    self.stateButton.tintColor = [[UIColor voicesBlue]colorWithAlphaComponent:.5];
+    self.federalButton.tintColor = [UIColor voicesLightGray];
+    self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesBlue];
 }
 
