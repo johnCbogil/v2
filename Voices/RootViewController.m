@@ -76,16 +76,32 @@
     self.searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.searchTextField.layer.borderColor = [UIColor searchBarBackground].CGColor;
     self.searchTextField.layer.cornerRadius = kButtonCornerRadius;
+    self.searchTextField.textColor = [UIColor whiteColor];
+    self.searchTextField.tintColor = [UIColor voicesBlue];
     
     // Set the left view magnifiying glass
     [self.searchTextField setLeftViewMode:UITextFieldViewModeAlways];
     UIImageView *magnifyingGlass = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MagnifyingGlass"]];
     magnifyingGlass.frame = CGRectMake(0.0, 0.0, magnifyingGlass.image.size.width+20.0, magnifyingGlass.image.size.height);
     magnifyingGlass.contentMode = UIViewContentModeCenter;
-    
-    
     self.searchTextField.leftView = magnifyingGlass;
     
+    
+    
+    CGFloat myWidth = 26.0f;
+    CGFloat myHeight = 30.0f;
+    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, myWidth, myHeight)];
+    [myButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+    [myButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+    
+    [myButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.rightView = myButton;
+}
+
+- (void)clearSearchBar {
+   self.searchTextField.text = @"";
+   self.searchTextField.rightViewMode = UITextFieldViewModeNever;
 
 }
 
