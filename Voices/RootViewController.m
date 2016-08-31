@@ -20,7 +20,7 @@
 #import "FBShimmeringLayer.h"
 #import "SMPageControl.h"
 
-@interface RootViewController () <MFMailComposeViewControllerDelegate>
+@interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
 //@property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
@@ -70,6 +70,7 @@
 }
 
 - (void)configureSearchBar {
+    self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [self.searchTextField.layer setBorderWidth:2.0f];
@@ -86,8 +87,7 @@
     magnifyingGlass.contentMode = UIViewContentModeCenter;
     self.searchTextField.leftView = magnifyingGlass;
     
-    
-    
+    // Set the clear button
     CGFloat myWidth = 26.0f;
     CGFloat myHeight = 30.0f;
     UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, myWidth, myHeight)];
@@ -99,11 +99,44 @@
     self.searchTextField.rightView = myButton;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    for (id vc in self.childViewControllers) {
+        if ([vc isKindOfClass:[UIPageViewController class]]) {
+            self.pageVC = vc;
+        }
+    }
+    
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
+        
+        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+            NSLog(@"%@", locationResults);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        
+    } onError:^(NSError *googleMapsError) {
+        NSLog(@"%@", [googleMapsError localizedDescription]);
+    }];
+    
+    
+    return NO;
+}
+
 - (void)clearSearchBar {
    self.searchTextField.text = @"";
    [self.searchTextField resignFirstResponder];
    self.searchTextField.rightViewMode = UITextFieldViewModeNever;
-
 }
 
 - (void)viewDidLayoutSubviews {
