@@ -52,15 +52,48 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    self.shadowView = [[UIView alloc] init];
-    self.shadowView.backgroundColor = [UIColor whiteColor];
-    [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
-    
     [self addObservers];
     [self setFont];
     [self setColors];
     [self configureSearchBar];
 }
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    // Create a shadow. Fake shadow view is white and below the shimmerview.
+    self.shadowView.frame = self.shimmeringView.frame;
+    self.shadowView.layer.cornerRadius = self.searchView.layer.cornerRadius;
+    
+    self.shimmeringView.shimmering = NO;
+    self.shimmeringView.contentView = self.searchView;
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.shadowView.bounds];
+    self.shadowView.layer.masksToBounds = NO;
+    self.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.shadowView.layer.shadowOpacity = 0.125f;
+    self.shadowView.layer.shadowPath = shadowPath.CGPath;
+}
+
+#pragma mark - Custom accessor methods
+
+- (void)setColors {
+    self.searchView.backgroundColor = [UIColor voicesOrange];
+//    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    self.federalButton.tintColor = [UIColor voicesBlue];
+    self.stateButton.tintColor = [UIColor voicesLightGray];
+    self.localButton.tintColor = [UIColor voicesLightGray];
+}
+
+- (void)setFont {
+    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+}
+
+#pragma mark - Custom Search Bar Methods
 
 - (void)configureSearchBar {
     self.searchTextField.delegate = self;
@@ -87,6 +120,11 @@
     [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
     self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
     self.searchTextField.rightView = clearButton;
+    
+    // Create shadow
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -124,44 +162,9 @@
 }
 
 - (void)clearSearchBar {
-   self.searchTextField.text = @"";
-   [self.searchTextField resignFirstResponder];
-   self.searchTextField.rightViewMode = UITextFieldViewModeNever;
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    
-    // Create a shadow. Fake shadow view is white and below the shimmerview.
-    self.shadowView.frame = self.shimmeringView.frame;
-    self.shadowView.layer.cornerRadius = self.searchView.layer.cornerRadius;
-    
-    self.shimmeringView.shimmering = NO;
-    self.shimmeringView.contentView = self.searchView;
-    
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.shadowView.bounds];
-    self.shadowView.layer.masksToBounds = NO;
-    self.shadowView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    self.shadowView.layer.shadowOpacity = 0.125f;
-    self.shadowView.layer.shadowPath = shadowPath.CGPath;
-}
-
-#pragma mark - Custom accessor methods
-
-- (void)setColors {
-    self.searchView.backgroundColor = [UIColor voicesOrange];
-//    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesLightGray];
-}
-
-- (void)setFont {
-    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
-    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
-    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    self.searchTextField.text = @"";
+    [self.searchTextField resignFirstResponder];
+    self.searchTextField.rightViewMode = UITextFieldViewModeNever;
 }
 
 #pragma mark - NSNotifications
