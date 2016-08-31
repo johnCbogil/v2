@@ -22,20 +22,14 @@
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
-//@property (weak, nonatomic) IBOutlet UILabel *legislatureLevel;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
-@property (strong, nonatomic) IBOutlet SMPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-//@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *shadowView;
-@property (nonatomic) BOOL isSearchBarOpen;
-@property (weak, nonatomic) IBOutlet UIImageView *magnifyingGlassImageView;
 @property (weak, nonatomic) IBOutlet UIView *pageIndicatorView;
 @property (weak, nonatomic) IBOutlet UIButton *federalButton;
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
@@ -65,7 +59,6 @@
     [self addObservers];
     [self setFont];
     [self setColors];
-    [self setSearchBar];
     [self configureSearchBar];
 }
 
@@ -88,15 +81,12 @@
     self.searchTextField.leftView = magnifyingGlass;
     
     // Set the clear button
-    CGFloat myWidth = 26.0f;
-    CGFloat myHeight = 30.0f;
-    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, myWidth, myHeight)];
-    [myButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
-    [myButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
-    
-    [myButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
     self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    self.searchTextField.rightView = myButton;
+    self.searchTextField.rightView = clearButton;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -161,7 +151,7 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+//    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
@@ -195,8 +185,6 @@
 }
 
 - (void)dismissKeyboard {
-    [self hideSearchBar];
-    [self.searchBar resignFirstResponder];
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
 }
@@ -229,141 +217,6 @@
         self.stateButton.tintColor = [UIColor voicesLightGray];
         self.localButton.tintColor = [UIColor voicesBlue];
     }
-}
-
-#pragma mark - Search Bar Delegate Methods
-
-- (void)setSearchBar {
-    self.searchBar.delegate = self;
-    
-    // TODO: CREATE A CONSTANT FOR THIS
-    self.searchBar.placeholder = @"Search by address";
-    
-    // Round the box
-    self.searchView.layer.cornerRadius = kButtonCornerRadius;
-    self.searchView.clipsToBounds = YES;
-    
-    // Set cancel button to white color
-    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil]
-     setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]forState:UIControlStateNormal];
-    
-    // Set placeholder text to white
-    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil]setTextColor:[UIColor whiteColor]];
-    
-    // Set the input text font
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
-     setDefaultTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:15],NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    
-    // Hide the magnifying glass
-    [self.searchBar setImage:[UIImage new]
-            forSearchBarIcon:UISearchBarIconSearch
-                       state:UIControlStateNormal];
-    
-    // Set the cursor position
-    [[UISearchBar appearance] setPositionAdjustment:UIOffsetMake(-20, 0)
-                                   forSearchBarIcon:UISearchBarIconSearch];
-    
-    [self.searchBar setTintColor:[UIColor whiteColor]];
-    
-    // Set the cursor color
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
-     setTintColor:[UIColor colorWithRed:255.0 / 255.0
-                                  green:160.0 / 255.0
-                                   blue:5.0 / 255.0
-                                  alpha:1.0]];
-    
-    // Set the clear button for both states
-    [self.searchBar setImage:[UIImage imageNamed:@"ClearButton"]
-            forSearchBarIcon:UISearchBarIconClear
-                       state:UIControlStateHighlighted];
-    [self.searchBar setImage:[UIImage imageNamed:@"ClearButton"]
-            forSearchBarIcon:UISearchBarIconClear
-                       state:UIControlStateNormal];
-    
-    // Round the search bar
-    UITextField *textSearchField = [self.searchBar valueForKey:@"_searchField"];
-    textSearchField.layer.cornerRadius = kButtonCornerRadius;
-    
-    // Hide the search bar
-    //    self.searchBar.alpha = 0.0;
-    //    self.searchButton.alpha = 1.0;
-    self.magnifyingGlassImageView.alpha = 1.0;
-    //    self.legislatureLevel.alpha = 1.0;
-    
-    UITextField *searchTextField = [self.searchBar valueForKey:@"_searchField"];
-    searchTextField.textAlignment = NSTextAlignmentLeft;
-    
-    
-    
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    for (id vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[UIPageViewController class]]) {
-            self.pageVC = vc;
-        }
-    }
-    
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:searchBar.text withCompletion:^(CLLocation *locationResults) {
-        
-        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            NSLog(@"%@", locationResults);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
-        
-    } onError:^(NSError *googleMapsError) {
-        NSLog(@"%@", [googleMapsError localizedDescription]);
-    }];
-    
-    [self hideSearchBar];
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    [self hideSearchBar];
-    [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (IBAction)openSearchBarButtonDidPress:(id)sender {
-    [self showSearchBar];
-}
-
-- (void)showSearchBar {
-    self.searchBar.showsCancelButton = YES;
-    self.isSearchBarOpen = YES;
-    [self.searchBar becomeFirstResponder];
-    [UIView animateWithDuration:0.25
-                     animations:^{
-                         self.searchBar.alpha = 1.0;
-                         //                         self.legislatureLevel.alpha = 0.0;
-                         //                         self.searchButton.alpha = 0.0;
-                         self.magnifyingGlassImageView.alpha = 0.0;
-                         self.infoButton.alpha = 0.0;
-                     }];
-}
-
-- (void)hideSearchBar {
-    self.isSearchBarOpen = NO;
-    [self.searchBar resignFirstResponder];
-    [UIView animateWithDuration:0.25
-                     animations:^{
-                         //                         self.searchBar.alpha = 0.0;
-                         //                         self.searchButton.alpha = 1.0;
-                         self.magnifyingGlassImageView.alpha = 1.0;
-                         //                         self.legislatureLevel.alpha = 1.0;
-                         self.infoButton.alpha = 1.0;
-                     }];
 }
 
 #pragma mark - FB Shimmer methods

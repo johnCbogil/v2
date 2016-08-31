@@ -104,10 +104,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpW-Yu-4Jl" customClass="SMPageControl">
-                                <rect key="frame" x="20" y="236" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-bZ-YzX" userLabel="searchView">
                                 <rect key="frame" x="20" y="40" width="560" height="47"/>
                                 <subviews>
@@ -219,7 +215,6 @@
                         <outlet property="federalButton" destination="Sz2-4k-dvR" id="xlV-TS-d8s"/>
                         <outlet property="infoButton" destination="9Fh-nE-Bwo" id="drJ-zV-IBl"/>
                         <outlet property="localButton" destination="c6i-lw-PSH" id="JC3-q7-aTr"/>
-                        <outlet property="pageControl" destination="pPG-hc-XD3" id="Hm3-BW-lD0"/>
                         <outlet property="pageIndicatorView" destination="pPG-hc-XD3" id="Jmh-1W-vit"/>
                         <outlet property="searchTextField" destination="aNS-gw-JY9" id="VFz-Dr-upe"/>
                         <outlet property="searchView" destination="ZVD-bZ-YzX" id="8sX-jk-iHP"/>
