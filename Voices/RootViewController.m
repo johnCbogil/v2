@@ -101,6 +101,7 @@
 
 - (void)clearSearchBar {
    self.searchTextField.text = @"";
+   [self.searchTextField resignFirstResponder];
    self.searchTextField.rightViewMode = UITextFieldViewModeNever;
 
 }
@@ -163,6 +164,7 @@
 - (void)dismissKeyboard {
     [self hideSearchBar];
     [self.searchBar resignFirstResponder];
+    [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
 }
 
