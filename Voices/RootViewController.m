@@ -76,8 +76,15 @@
     self.searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.searchTextField.layer.borderColor = [UIColor searchBarBackground].CGColor;
     self.searchTextField.layer.cornerRadius = kButtonCornerRadius;
+    
+    // Set the left view magnifiying glass
     [self.searchTextField setLeftViewMode:UITextFieldViewModeAlways];
-    self.searchTextField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"MagnifyingGlass"]];
+    UIImageView *magnifyingGlass = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MagnifyingGlass"]];
+    magnifyingGlass.frame = CGRectMake(0.0, 0.0, magnifyingGlass.image.size.width+20.0, magnifyingGlass.image.size.height);
+    magnifyingGlass.contentMode = UIViewContentModeCenter;
+    
+    
+    self.searchTextField.leftView = magnifyingGlass;
     
 
 }
