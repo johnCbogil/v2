@@ -37,13 +37,13 @@
     self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
     
     self.actionSubjectLabel.textColor = [UIColor voicesBlack];
-    self.actionSubjectLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:19];
     
     self.actionTitleTextView.textColor = [UIColor voicesGray];
     self.actionTitleTextView.font = [UIFont voicesFontWithSize:19];
     
     self.takeActionButton.tintColor = [UIColor voicesOrange];
-    self.takeActionButton.titleLabel.font = [UIFont voicesBoldFontWithSize:17];
+    self.takeActionButton.titleLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
 - (void)viewDidLayoutSubviews {
