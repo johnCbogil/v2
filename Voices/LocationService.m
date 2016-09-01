@@ -53,7 +53,7 @@
     [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
             NSLog(@"theres beena google maps mistake!");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
         else {
