@@ -14,7 +14,7 @@
 #import "LocationService.h"
 #import "AppDelegate.h"
 //#import "CacheManager.h"
-#import "VoicesConstants.h"
+
 
 @implementation RepManager
 
@@ -37,7 +37,7 @@
 
 - (NSArray *)createRepsForIndex:(NSInteger)index {
     if (index == 0) {
-        self.listOfFederalRepresentatives = [self fetchRepsFromCache:kCachedFederalRepresentatives];
+        //self.listOfFederalRepresentatives = [self fetchRepsFromCache:kCachedFederalRepresentatives];
         
         if (self.listOfFederalRepresentatives.count > 0) {
             return self.listOfFederalRepresentatives;
@@ -47,14 +47,14 @@
         }
     }
     else if (index == 1) {
-        self.listOfStateRepresentatives = [self fetchRepsFromCache:kCachedStateRepresentatives];
+        //self.listOfStateRepresentatives = [self fetchRepsFromCache:kCachedStateRepresentatives];
         
         if (self.listOfStateRepresentatives.count > 0) {
             return self.listOfStateRepresentatives;
         }
     }
     else if (index == 2) {
-        self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
+       // self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
         
         //if (self.listOfNYCRepresentatives.count > 0) {
         return self.listOfNYCRepresentatives;
@@ -168,6 +168,8 @@
 
 - (void)createNYCRepsFromLocation:(CLLocation *)location {
     
+    self.listOfNYCRepresentatives = @[].mutableCopy;
+    
     BOOL isLocationWithinPath = false;
     
     for (NSDictionary *district in self.nycDistricts) {
@@ -226,15 +228,14 @@
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
         NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
         NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
-        
         NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
         
         for (int i = 0; i < districts.count; i++) {
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
-                NYCRepresentative *billDeBlasio = [self createBillDeBlasio];
-                self.listOfNYCRepresentatives = @[billDeBlasio, nycRep];
+                [self.listOfNYCRepresentatives addObject:nycRep];
+                [self createExtraNYCReps];
                 //[[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
             }
@@ -249,6 +250,18 @@
     NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
     NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
     return billDeBlasio;
+}
+
+- (void)createExtraNYCReps {
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:kNYCExtraRepsJSON ofType:@"json"];
+    NSData *nycExtraRepsData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+    NSDictionary *nycExtraRepsDict = [NSJSONSerialization JSONObjectWithData:nycExtraRepsData options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *reps = [nycExtraRepsDict objectForKey:@"reps"];
+    for (id repData in reps) {
+        NYCRepresentative *rep = [[NYCRepresentative alloc]initWithData:reps[repData]];
+        [self.listOfNYCRepresentatives addObject:rep];
+    }
 }
 
 @end

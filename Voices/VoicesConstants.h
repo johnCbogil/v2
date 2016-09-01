@@ -16,10 +16,10 @@ extern NSString *const kStateRepresentativeTableViewCell;
 extern NSString *const kNYCRepresentativeTableViewCell;
 
 extern NSString *const kAvenirNextRegular;
+extern NSString *const kAvenirNextMedium;
 extern NSString *const kAvenirNextBold;
 extern NSString *const kMontserratLight;
 extern NSString *const kOpenSans;
-
 
 extern NSString *const kSFCongress;
 extern NSString *const kSFState;
@@ -40,6 +40,7 @@ extern NSString *const kCreateNYCRepresentatives;
 extern NSString *const kCityCouncilZip;
 extern NSString *const kCityCouncilJSON;
 extern NSString *const kCouncilMemberDataJSON;
+extern NSString *const kNYCExtraRepsJSON;
 
 extern CGFloat const kButtonCornerRadius;
 

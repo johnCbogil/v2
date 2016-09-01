@@ -58,9 +58,9 @@
                             <constraint firstAttribute="width" constant="100" id="Ciz-lu-3FV"/>
                             <constraint firstAttribute="height" constant="25" id="lLp-40-ofp"/>
                         </constraints>
-                        <state key="normal" title="Learn More"/>
+                        <state key="normal" title="Take Action"/>
                         <connections>
-                            <action selector="learnMoreButtonDidPress:" destination="0NS-vx-xEm" eventType="touchUpInside" id="K43-tT-7TU"/>
+                            <action selector="takeActionButtonDidPress:" destination="0NS-vx-xEm" eventType="touchUpInside" id="kLZ-1M-KKV"/>
                         </connections>
                     </button>
                 </subviews>
@@ -105,7 +105,7 @@
                 <outlet property="actionTitleTextView" destination="PKl-bg-TiE" id="ECc-Sx-iyo"/>
                 <outlet property="groupImage" destination="5cj-rV-NyV" id="cgx-g0-KLP"/>
                 <outlet property="groupNameLabel" destination="1Y3-FE-fbV" id="GYp-Ks-Anf"/>
-                <outlet property="learnMoreButton" destination="YnM-pP-jmA" id="CnP-11-XF3"/>
+                <outlet property="takeActionButton" destination="YnM-pP-jmA" id="5om-gk-Moe"/>
             </connections>
             <point key="canvasLocation" x="587" y="713.5"/>
         </tableViewCell>

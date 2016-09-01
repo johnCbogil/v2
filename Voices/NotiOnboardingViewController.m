@@ -8,9 +8,6 @@
 
 #import "NotiOnboardingViewController.h"
 #import "TabBarViewController.h"
-#import "VoicesConstants.h"
-#import "UIColor+voicesColor.h"
-#import "UIFont+voicesFont.h"
 
 @import FirebaseMessaging;
 

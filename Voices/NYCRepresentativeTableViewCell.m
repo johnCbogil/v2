@@ -9,9 +9,7 @@
 #import "NYCRepresentativeTableViewCell.h"
 #import "NYCRepresentative.h"
 #import "RepManager.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
+
 
 @import FirebaseAnalytics;
 
@@ -73,15 +71,9 @@
 }
 
 - (void)initWithRep:(id)rep {
-    self.nycRepresentative = rep;
-
-    if ([self.nycRepresentative.title isEqualToString:@"Mayor"]) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.title, self.nycRepresentative.fullName];
-    }
-    else {
-        self.nameLabel.text = [NSString stringWithFormat:@"Council Member %@", self.nycRepresentative.fullName];
-    }
     
+    self.nycRepresentative = rep;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.nycRepresentative.title, self.nycRepresentative.fullName];
     [self setImage];
 }
 
@@ -96,12 +88,12 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Good Idea" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
@@ -119,7 +111,7 @@
         else {
             alertMessage = @"This office is currently vacant.";
         }
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:alertMessage delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:alertMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
@@ -133,7 +125,7 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This office is currently vacant" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This office is currently vacant" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
 }

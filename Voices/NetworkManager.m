@@ -8,7 +8,7 @@
 
 #import "NetworkManager.h"
 #import "LocationService.h"
-#import "VoicesConstants.h"
+
 
 @implementation NetworkManager
 
@@ -51,7 +51,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         if (error.code == -1009) {
             alert.message = @"The internet connection appears to be offline";
         }
@@ -82,14 +82,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
-        if (error.code == -1009) {
-            alert.message = @"The internet connection appears to be offline";
-        }
-        else {
-            alert.message = @"It appears there was a server error";
-        }
-        [alert show];
     }];
     [operation start];
 }
@@ -113,7 +105,7 @@
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Please try again" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil,nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [alert show];
         NSLog(@"Error: %@", error);
     }];

@@ -9,9 +9,6 @@
 #import "GroupDetailViewController.h"
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
 #import "PolicyPosition.h"
 
 @import Firebase;
@@ -88,7 +85,7 @@
     self.groupDescriptionTextview.font = [UIFont voicesFontWithSize:17];
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:17];
     self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:21];
-    self.policyPositionsLabel.font = [UIFont voicesBoldFontWithSize:17];
+    self.policyPositionsLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
 - (void)viewDidLayoutSubviews {

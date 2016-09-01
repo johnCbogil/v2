@@ -8,9 +8,7 @@
 
 #import "LocationOnboardingViewController.h"
 #import "TabBarViewController.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
+
 
 @interface LocationOnboardingViewController ()
 

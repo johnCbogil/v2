@@ -8,9 +8,6 @@
 
 #import "ActionTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
-#import "VoicesConstants.h"
 
 @interface ActionTableViewCell()
 
@@ -26,13 +23,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.learnMoreButton.tintColor = [UIColor voicesOrange];
+    self.takeActionButton.tintColor = [UIColor voicesOrange];
     [self setFont];
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
     
-    self.learnMoreButton.tintColor = [UIColor whiteColor];
-    self.learnMoreButton.backgroundColor = [UIColor voicesOrange];
-    self.learnMoreButton.layer.cornerRadius = kButtonCornerRadius;
+    self.takeActionButton.tintColor = [UIColor whiteColor];
+    self.takeActionButton.backgroundColor = [UIColor voicesOrange];
+    self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
 }
 
 - (void)setFont {
@@ -40,13 +37,13 @@
     self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
     
     self.actionSubjectLabel.textColor = [UIColor voicesBlack];
-    self.actionSubjectLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:19];
     
     self.actionTitleTextView.textColor = [UIColor voicesGray];
     self.actionTitleTextView.font = [UIFont voicesFontWithSize:19];
     
-    self.learnMoreButton.tintColor = [UIColor voicesOrange];
-    self.learnMoreButton.titleLabel.font = [UIFont voicesBoldFontWithSize:17];
+    self.takeActionButton.tintColor = [UIColor voicesOrange];
+    self.takeActionButton.titleLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -86,7 +83,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (IBAction)learnMoreButtonDidPress:(id)sender {
+- (IBAction)takeActionButtonDidPress:(id)sender {
 }
 
 

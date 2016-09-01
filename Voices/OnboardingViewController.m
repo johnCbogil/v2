@@ -7,9 +7,7 @@
 //
 
 #import "OnboardingViewController.h"
-#import "UIFont+voicesFont.h"
-#import "VoicesConstants.h"
-#import "UIColor+voicesColor.h"
+
 
 @interface OnboardingViewController ()
 

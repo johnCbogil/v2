@@ -9,10 +9,7 @@
 #import "StateRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "StateRepresentative.h"
-#import "UIFont+voicesFont.h"
-#import "UIColor+voicesColor.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "VoicesConstants.h"
 #import "AlignedLabel.h"
 
 @import FirebaseAnalytics;
@@ -103,7 +100,7 @@
         confirmCallAlert.delegate = self;
     }
     else {
-        UIAlertView *phoneAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their phone number listed" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+        UIAlertView *phoneAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their phone number listed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [phoneAlert show];
     }
 }
@@ -114,7 +111,7 @@
     }
     else {
         
-        UIAlertView *emailAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their email listed" delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil];
+        UIAlertView *emailAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Representative %@ %@",self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:@"This representative doesn't have their email listed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [emailAlert show];
     }
 }
@@ -128,12 +125,12 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Good Idea" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
