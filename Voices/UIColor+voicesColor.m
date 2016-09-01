@@ -37,7 +37,7 @@
 
 + (UIColor *)searchBarBackground {
 //    RGB(237,128,25)
-    return [UIColor colorWithRed:(237.0/255.0) green:(128.0/255.0) blue:(25/255.0) alpha:1.];
+    return [UIColor colorWithRed:(227.0/255.0) green:(118.0/255.0) blue:(15/255.0) alpha:1.];
 }
 
 @end
