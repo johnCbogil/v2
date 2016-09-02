@@ -11,7 +11,6 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "LocationOnboardingViewController.h"
 #import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
 #import "RepManager.h"
