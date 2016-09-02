@@ -10,7 +10,6 @@
 #import "NetworkManager.h"
 #import "RepManager.h"
 #import "StateRepresentative.h"
-#import "CacheManager.h"
 #import "PageViewController.h"
 #import "LocationService.h"
 #import <MessageUI/MFMailComposeViewController.h>

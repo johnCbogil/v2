@@ -26,7 +26,6 @@
 		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
 		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
 		527871C51D3C443200CD29BB /* Info.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* Info.xib */; };
-		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
@@ -110,8 +109,6 @@
 		525EE80E1D2AB2690047211F /* ActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailViewController.m; sourceTree = "<group>"; };
 		5261CF6A1D14F121007B122B /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
 		527871C41D3C443200CD29BB /* Info.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Info.xib; sourceTree = "<group>"; };
-		52877FCB1BA0EC1700B5AE02 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
-		52877FCC1BA0EC1700B5AE02 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		52939A331D1A29C00076F878 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
@@ -250,8 +247,6 @@
 				52B51B091B61B789006DF423 /* LocationService.m */,
 				52A610801B66AD0300B041FF /* RepManager.h */,
 				52A610811B66AD0300B041FF /* RepManager.m */,
-				52877FCB1BA0EC1700B5AE02 /* CacheManager.h */,
-				52877FCC1BA0EC1700B5AE02 /* CacheManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -722,7 +717,6 @@
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
-				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
