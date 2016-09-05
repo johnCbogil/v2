@@ -59,7 +59,7 @@
     self.groupsRef = [self.rootRef child:@"groups"];
     self.actionsRef = [self.rootRef child:@"actions"];
     self.isUserAuthInProgress = NO;
-    [self userAuth];
+//    [self userAuth];
     
     // TODO: Change this to a delegate, or perhaps this can be addressed by firebase manager refactor
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];

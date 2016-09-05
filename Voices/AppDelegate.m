@@ -16,6 +16,7 @@
 #import "RepManager.h"
 #import "GroupsViewController.h"
 #import "TabBarViewController.h"
+#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -50,6 +51,8 @@
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
+    [CurrentUser sharedInstance];
     
     return YES;
 }
