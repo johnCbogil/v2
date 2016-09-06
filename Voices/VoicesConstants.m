@@ -16,7 +16,8 @@ NSString *const kStateRepresentativeTableViewCell = @"StateRepresentativeTableVi
 NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCell";
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
-NSString *const kAvenirNextBold = @"AvenirNext-Medium";
+NSString *const kAvenirNextMedium = @"AvenirNext-Medium";
+NSString *const kAvenirNextBold = @"AvenirNext-Bold";
 //NSString *const kMontserratLight = @"Montserrat-Light";
 //NSString *const kOpenSans = @"OpenSans";
 
@@ -28,17 +29,14 @@ NSString *const kFederalRepresentative = @"FederalRepresentative";
 NSString *const kStateRepresentative = @"StateRepresentative";
 NSString *const kNYCRepresentative = @"NYCRepresentative";
 
-NSString *const kCachedFederalRepresentatives = @"cachedFederalRepresentatives";
-NSString *const kCachedStateRepresentatives = @"cachedStateRepresentatives";
-NSString *const kCachedNYCRepresentatives = @"cachedNYCRepresentatives";
-
 NSString *const kCreateFederalRepresentatives = @"createFederalRepresentatives";
 NSString *const kCreateStateRepresentatives = @"createStateRepresentatives";
 NSString *const kCreateNYCRepresentatives = @"createNYCRepresentatives";
 
-NSString *const kCityCouncilZip = @"CityCouncilDistricts";
+NSString *const kCityCouncilZip = @"CouncilDistrictsJSON";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
 NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
+NSString *const kNYCExtraRepsJSON = @"nycExtraReps";
 
 CGFloat const kButtonCornerRadius = 3.f;
 

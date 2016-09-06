@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface FederalRepresentative : NSObject <NSCoding>
+@interface FederalRepresentative : NSObject
 
 @property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *firstName;

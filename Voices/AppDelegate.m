@@ -11,7 +11,6 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "LocationOnboardingViewController.h"
 #import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
 #import "RepManager.h"
@@ -21,6 +20,7 @@
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
+@import FirebaseDynamicLinks;
 
 @interface AppDelegate ()
 
@@ -53,6 +53,41 @@
     
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
+    
+    BOOL handled = [[FIRDynamicLinks dynamicLinks]
+                    handleUniversalLink:userActivity.webpageURL
+                    completion:^(FIRDynamicLink * _Nullable dynamicLink,
+                                 NSError * _Nullable error) {
+                        if (dynamicLink.url) {
+                            [self handleDynamicLink:dynamicLink];
+                        }
+                        else if (error) {
+                            NSLog(@"%@", error);
+                        }
+                    }];
+    return handled;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks]dynamicLinkFromCustomSchemeURL:url];
+    if (dynamicLink) {
+        NSLog(@"I am handling a link through the openURL method");
+        [self handleDynamicLink:dynamicLink];
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+- (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
+    NSLog(@"%@", dynamicLink.url);
+    
+    // TODO: HANDLE TOPIC SUBSCRIPTION HERE
+}
+
 
 - (void)tokenRefreshNotification:(NSNotification *)notification {
     // Note that this callback will be fired everytime a new token is generated, including the first
@@ -175,6 +210,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
         }
         
+        // TODO: SHOULD THIS BE SELF.DATASETCOMPONENT
         NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
         NSError *error =  nil;
         NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];

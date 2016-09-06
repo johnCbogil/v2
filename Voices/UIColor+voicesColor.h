@@ -15,5 +15,7 @@
 + (UIColor *)voicesGray;
 + (UIColor *)voicesBlue;
 + (UIColor *)voicesLightBlue;
++ (UIColor *)voicesLightGray;
++ (UIColor *)searchBarBackground;
 
 @end

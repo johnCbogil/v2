@@ -30,38 +30,4 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    if (self = [super init]) {
-        self.districtNumber = [decoder decodeObjectForKey:@"districtNumber"];
-        self.firstName = [decoder decodeObjectForKey:@"firstName"];
-        self.lastName = [decoder decodeObjectForKey:@"lastName"];
-        self.fullName = [decoder decodeObjectForKey:@"fullName"];
-        self.phone = [decoder decodeObjectForKey:@"phoneNumber"];
-        self.party = [decoder decodeObjectForKey:@"party"];
-        self.email = [decoder decodeObjectForKey:@"email"];
-        self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
-        self.photo = [decoder decodeObjectForKey:@"photo"];
-        self.twitter = [decoder decodeObjectForKey:@"twitter"];
-        self.gender = [decoder decodeObjectForKey:@"gender"];
-        self.title = [decoder decodeObjectForKey:@"title"];
-        self.nextElection = [decoder decodeObjectForKey:@"nextElection"];
-    }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.districtNumber forKey:@"districtNumber"];
-    [coder encodeObject:self.firstName forKey:@"firstName"];
-    [coder encodeObject:self.lastName forKey:@"lastName"];
-    [coder encodeObject:self.fullName forKey:@"fullName"];
-    [coder encodeObject:self.phone forKey:@"phoneNumber"];
-    [coder encodeObject:self.party forKey:@"party"];
-    [coder encodeObject:self.email forKey:@"email"];
-    [coder encodeObject:self.photoURL forKey:@"photoURL"];
-    [coder encodeObject:self.photo forKey:@"photo"];
-    [coder encodeObject:self.twitter forKey:@"twitter"];
-    [coder encodeObject:self.gender forKey:@"gender"];
-    [coder encodeObject:self.title forKey:@"title"];
-    [coder encodeObject:self.nextElection forKey:@"nextElection"];
-}
 @end

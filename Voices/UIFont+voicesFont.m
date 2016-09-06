@@ -14,6 +14,10 @@
     return [UIFont fontWithName:kAvenirNextRegular size:size];
 }
 
++ (UIFont *)voicesMediumFontWithSize:(CGFloat)size {
+    return [UIFont fontWithName:kAvenirNextMedium size:size];
+}
+
 + (UIFont *)voicesBoldFontWithSize:(CGFloat)size {
     return [UIFont fontWithName:kAvenirNextBold size:size];
 }

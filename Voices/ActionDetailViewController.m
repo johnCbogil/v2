@@ -52,8 +52,8 @@
     self.groupNameLabel.minimumScaleFactor = 0.75;
     [self.groupNameLabel sizeToFit];
     
-    self.actionSubjectLabel.font = [UIFont voicesBoldFontWithSize:17];
-    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:17];
+    self.actionTitleLabel.font = [UIFont voicesMediumFontWithSize:19];
     self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }

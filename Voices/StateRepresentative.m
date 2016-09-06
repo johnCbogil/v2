@@ -77,42 +77,4 @@
     }
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    if (self = [super init]) {
-        self.firstName = [decoder decodeObjectForKey:@"first_name"];
-        self.lastName = [decoder decodeObjectForKey:@"last_name"];
-        self.fullName = [decoder decodeObjectForKey:@"fullName"];
-        self.phone = [decoder decodeObjectForKey:@"phone"];
-        self.party = [decoder decodeObjectForKey:@"party"];
-        self.email = [decoder decodeObjectForKey:@"email"];
-        self.districtNumber = [decoder decodeObjectForKey:@"district"];
-        self.stateCode = [decoder decodeObjectForKey:@"state"];
-        self.photo = [decoder decodeObjectForKey:@"photo"];
-        self.chamber = [decoder decodeObjectForKey:@"chamber"];
-        self.photoURL = [decoder decodeObjectForKey:@"photoURL"];
-        self.nextElection = [decoder decodeObjectForKey:@"next_election_date"];
-        self.state = [decoder decodeObjectForKey:@"state_full"];
-        self.twitter = [decoder decodeObjectForKey:@"twitter"];
-        self.gender = [decoder decodeObjectForKey:@"gender"];
-    }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.firstName forKey:@"first_name"];
-    [coder encodeObject:self.lastName forKey:@"last_name"];
-    [coder encodeObject:self.fullName forKey:@"fullName"];
-    [coder encodeObject:self.phone forKey:@"phone"];
-    [coder encodeObject:self.party forKey:@"party"];
-    [coder encodeObject:self.email forKey:@"email"];
-    [coder encodeObject:self.districtNumber forKey:@"district"];
-    [coder encodeObject:self.stateCode forKey:@"state"];
-    [coder encodeObject:self.photo forKey:@"photo"];
-    [coder encodeObject:self.chamber forKey:@"chamber"];
-    [coder encodeObject:self.photoURL forKey:@"photoURL"];
-    [coder encodeObject:self.nextElection forKey:@"next_election_date"];
-    [coder encodeObject:self.state forKey:@"state_full"];
-    [coder encodeObject:self.twitter forKey:@"twitter"];
-    [coder encodeObject:self.gender forKey:@"gender"];
-}
 @end
