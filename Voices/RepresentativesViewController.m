@@ -210,7 +210,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.repdetails = [[RepresentativeDetailViewController alloc]initWithNibName:nil bundle:nil] ;
+    self.repdetails = [[RepresentativeDetailViewController alloc]initWithNibName:nil bundle:nil];
     
     [self.navigationController pushViewController:self.repdetails animated:YES];
 

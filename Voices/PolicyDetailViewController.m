@@ -23,6 +23,7 @@
     
     [self setFont];
     self.title = @"TAKE ACTION";
+    //self.navigationController.navigationBar.
     
     self.policySubjectLabel.text = self.policyPosition.key;
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
