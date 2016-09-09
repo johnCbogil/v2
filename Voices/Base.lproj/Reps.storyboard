@@ -92,6 +92,102 @@
             </objects>
             <point key="canvasLocation" x="1592" y="312"/>
         </scene>
+        <!--Rep Detail View-->
+        <scene sceneID="je3-vs-KNP">
+            <objects>
+                <viewController storyboardIdentifier="repDetailView" title="Rep Detail View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZLH-2f-7cq" customClass="RepresentativeDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d5D-xe-svz"/>
+                        <viewControllerLayoutGuide type="bottom" id="UTx-d1-2qy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Won-pE-Ttc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-Ve-aBY">
+                                <rect key="frame" x="149" y="97" width="278" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-59-UeV">
+                                <rect key="frame" x="149" y="139" width="278" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="party and district" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1D-FJ-MYl">
+                                <rect key="frame" x="149" y="190" width="278" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1x0-mh-4WI">
+                                <rect key="frame" x="327" y="461" width="40" height="40"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <state key="normal" image="Twitter Filled"/>
+                                <connections>
+                                    <action selector="didPressTweetButton:" destination="ZLH-2f-7cq" eventType="touchUpInside" id="yvL-do-khc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gac-P1-Zur">
+                                <rect key="frame" x="280" y="461" width="40" height="40"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <state key="normal" image="Message Filled"/>
+                                <connections>
+                                    <action selector="didPressEmailButton:" destination="ZLH-2f-7cq" eventType="touchUpInside" id="iPv-mM-TfW"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJc-DJ-yVz">
+                                <rect key="frame" x="41" y="88" width="100" height="123"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="123" id="Gur-7r-8hq"/>
+                                    <constraint firstAttribute="width" constant="100" id="TSW-M0-scx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="next election" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBc-sN-XLB">
+                                <rect key="frame" x="251" y="375" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceI-ZK-S5G">
+                                <rect key="frame" x="235" y="462" width="37" height="37"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <state key="normal" image="Phone Filled"/>
+                                <connections>
+                                    <action selector="didPressCallButton:" destination="ZLH-2f-7cq" eventType="touchUpInside" id="3id-fA-41i"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TBc-sN-XLB" firstAttribute="centerX" secondItem="Won-pE-Ttc" secondAttribute="centerX" id="1NA-fl-RGR"/>
+                            <constraint firstItem="jJc-DJ-yVz" firstAttribute="centerY" secondItem="Won-pE-Ttc" secondAttribute="centerY" constant="-150.5" id="3pc-Du-wL4"/>
+                            <constraint firstItem="1QZ-Ve-aBY" firstAttribute="centerY" secondItem="Won-pE-Ttc" secondAttribute="centerY" constant="-192.5" id="3xj-Kf-2KG"/>
+                            <constraint firstItem="f1D-FJ-MYl" firstAttribute="centerY" secondItem="Won-pE-Ttc" secondAttribute="centerY" constant="-99.5" id="7OC-qA-M9q"/>
+                            <constraint firstItem="1x0-mh-4WI" firstAttribute="leading" secondItem="Gac-P1-Zur" secondAttribute="trailing" constant="40" id="7hG-Mv-yDW"/>
+                            <constraint firstItem="Gac-P1-Zur" firstAttribute="centerX" secondItem="Won-pE-Ttc" secondAttribute="centerX" id="J5o-e6-W9z"/>
+                            <constraint firstItem="Gac-P1-Zur" firstAttribute="leading" secondItem="ceI-ZK-S5G" secondAttribute="trailing" constant="40" id="XAW-Hw-6HJ"/>
+                            <constraint firstItem="Os4-59-UeV" firstAttribute="centerY" secondItem="Won-pE-Ttc" secondAttribute="centerY" constant="-150.5" id="z9g-I0-bG6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="callButton" destination="ceI-ZK-S5G" id="aKi-Q6-fOV"/>
+                        <outlet property="emailButton" destination="Gac-P1-Zur" id="bUJ-Hs-5j6"/>
+                        <outlet property="nextElection" destination="TBc-sN-XLB" id="hXM-Gd-cXc"/>
+                        <outlet property="repImageView" destination="jJc-DJ-yVz" id="elQ-Fw-ROc"/>
+                        <outlet property="repName" destination="Os4-59-UeV" id="BbM-3R-7Xi"/>
+                        <outlet property="repPartyDistrict" destination="f1D-FJ-MYl" id="OOf-C4-Idb"/>
+                        <outlet property="repTitle" destination="1QZ-Ve-aBY" id="Ynu-ce-WEc"/>
+                        <outlet property="tweetButton" destination="1x0-mh-4WI" id="D1c-Oo-lqO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4mn-TE-rZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="976"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hq1-Sz-xIY">
             <objects>
@@ -120,15 +216,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-bZ-YzX" userLabel="searchView">
+                            <view alpha="0.89999997615814209" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-bZ-YzX" userLabel="searchView">
                                 <rect key="frame" x="20" y="40" width="560" height="47"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-gw-JY9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-gw-JY9">
                                         <rect key="frame" x="8" y="9" width="511" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
                                         <rect key="frame" x="527" y="11" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="TVY-ev-WIl"/>
@@ -149,16 +245,10 @@
                                     <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="8" id="wp1-X1-vw1"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">
                                 <rect key="frame" x="20" y="40" width="560" height="47"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
-                                <rect key="frame" x="0.0" y="150" width="600" height="450"/>
-                                <connections>
-                                    <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="PageIndicatorView">
                                 <rect key="frame" x="20" y="94" width="560" height="48"/>
                                 <subviews>
@@ -193,6 +283,12 @@
                                     <constraint firstItem="c6i-lw-PSH" firstAttribute="trailing" secondItem="pPG-hc-XD3" secondAttribute="trailingMargin" id="qrN-aj-NmV"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
+                                <rect key="frame" x="0.0" y="150" width="600" height="450"/>
+                                <connections>
+                                    <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -244,7 +340,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Message Filled" width="33" height="33"/>
+        <image name="Phone Filled" width="33" height="33"/>
         <image name="SpeechBubble" width="176" height="176"/>
+        <image name="Twitter Filled" width="33" height="33"/>
         <image name="ZeroStateImage" width="623" height="268"/>
     </resources>
 </document>

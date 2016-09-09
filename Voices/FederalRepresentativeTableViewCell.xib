@@ -122,7 +122,7 @@
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
                 <outlet property="tweetButton" destination="8p8-P5-2it" id="i2f-rW-fea"/>
             </connections>
-            <point key="canvasLocation" x="527" y="562"/>
+            <point key="canvasLocation" x="498" y="563"/>
         </tableViewCell>
     </objects>
     <resources>
