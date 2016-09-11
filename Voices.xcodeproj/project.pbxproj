@@ -26,7 +26,6 @@
 		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
 		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
 		527871C51D3C443200CD29BB /* Info.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* Info.xib */; };
-		52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52877FCC1BA0EC1700B5AE02 /* CacheManager.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
@@ -62,7 +61,6 @@
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
-		52FC68FE1C3765A400E29B7A /* LocationOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FD1C3765A400E29B7A /* LocationOnboardingViewController.m */; };
 		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
 		7E133DB71D53A50900F128CC /* RepsEmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* RepsEmptyState.m */; };
 		7E160FF11D53E37300B8AED6 /* RepsEmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* RepsEmptyState.xib */; };
@@ -111,8 +109,6 @@
 		525EE80E1D2AB2690047211F /* ActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailViewController.m; sourceTree = "<group>"; };
 		5261CF6A1D14F121007B122B /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
 		527871C41D3C443200CD29BB /* Info.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Info.xib; sourceTree = "<group>"; };
-		52877FCB1BA0EC1700B5AE02 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
-		52877FCC1BA0EC1700B5AE02 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		52939A331D1A29C00076F878 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
@@ -172,8 +168,6 @@
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
-		52FC68FC1C3765A400E29B7A /* LocationOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationOnboardingViewController.h; sourceTree = "<group>"; };
-		52FC68FD1C3765A400E29B7A /* LocationOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationOnboardingViewController.m; sourceTree = "<group>"; };
 		61DC8EA11D0660590086C070 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		61DC8EA21D0660590086C070 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		7E133DB51D53A50900F128CC /* RepsEmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsEmptyState.h; sourceTree = "<group>"; };
@@ -253,8 +247,6 @@
 				52B51B091B61B789006DF423 /* LocationService.m */,
 				52A610801B66AD0300B041FF /* RepManager.h */,
 				52A610811B66AD0300B041FF /* RepManager.m */,
-				52877FCB1BA0EC1700B5AE02 /* CacheManager.h */,
-				52877FCC1BA0EC1700B5AE02 /* CacheManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -366,8 +358,6 @@
 				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
 				52FC68F91C37657000E29B7A /* OnboardingViewController.h */,
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
-				52FC68FC1C3765A400E29B7A /* LocationOnboardingViewController.h */,
-				52FC68FD1C3765A400E29B7A /* LocationOnboardingViewController.m */,
 				52B2CA501D3889A6005FE0D6 /* NotiOnboardingViewController.h */,
 				52B2CA511D3889A6005FE0D6 /* NotiOnboardingViewController.m */,
 			);
@@ -727,7 +717,6 @@
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */,
-				52877FCD1BA0EC1700B5AE02 /* CacheManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
@@ -739,7 +728,6 @@
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
 				52B2CA521D3889A6005FE0D6 /* NotiOnboardingViewController.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
-				52FC68FE1C3765A400E29B7A /* LocationOnboardingViewController.m in Sources */,
 				52A610821B66AD0300B041FF /* RepManager.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
