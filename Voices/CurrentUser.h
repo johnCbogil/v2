@@ -13,5 +13,6 @@
 
 + (CurrentUser *) sharedInstance;
 @property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
+- (void)followGroup:(NSString *)groupKey;
 
 @end

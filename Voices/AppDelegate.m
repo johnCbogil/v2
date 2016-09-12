@@ -86,9 +86,11 @@
 }
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
-    NSLog(@"%@", dynamicLink.url);
     
-    // TODO: HANDLE TOPIC SUBSCRIPTION HERE
+    NSLog(@"%@", dynamicLink.url);
+    NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
+    NSString *groupKey = splitURLString.lastObject;
+    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString];
 }
 
 
