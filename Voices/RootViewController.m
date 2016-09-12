@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (strong, nonatomic) UIView *tapView;
 
 @end
 
@@ -129,6 +130,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
+    if([self.tapView respondsToSelector:@selector(removeFromSuperview)]){
+        [self.tapView removeFromSuperview];
+    }
+    
     for (id vc in self.childViewControllers) {
         if ([vc isKindOfClass:[UIPageViewController class]]) {
             self.pageVC = vc;
@@ -182,13 +187,18 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
+    self.tapView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    self.tapView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.tapView];
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.containerView addGestureRecognizer:self.tap];
+    [self.tapView addGestureRecognizer:self.tap];
 }
+
 
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
+    [self.tapView removeFromSuperview];
 }
 
 // TODO: CHANGE THIS TO DELEGATE PATTERN
