@@ -47,7 +47,6 @@
                 
         if ([FIRAuth auth].currentUser.uid) {
             [self createUserReferences];
-            [self fetchFollowedGroups];
         }
         else {
             [self createUser];
@@ -94,41 +93,5 @@
     }];
 }
 
-- (void)fetchFollowedGroups {
-    
-    [self.currentUsersGroupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
 
-        if (snapshot.exists) {
-            NSLog(@"GROUPS: %@", snapshot);
-            NSDictionary *groupKeysDict = snapshot.value;
-            NSArray *groupKeysArray = groupKeysDict.allKeys;
-            
-            for (NSString *key in groupKeysArray) {
-                // fetch group data for key
-                [self fetchGroupForKey:key];
-            }
-        }
-        
-        
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
-}
-
-- (void)fetchGroupForKey:(NSString *)key {
-    
-    [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-
-        if (snapshot.exists) {
-            NSLog(@"GROUP DATA: %@", snapshot);
-            Group *group = [[Group alloc]initWithKey:key groupDictionary:snapshot.value];
-            [self.listOfFollowedGroups addObject:group];
-        }
-        
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
-    
-    
-}
 @end

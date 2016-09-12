@@ -58,6 +58,7 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
     self.actionsRef = [self.rootRef child:@"actions"];
+    self.currentUserID = [FIRAuth auth].currentUser.uid;
     self.isUserAuthInProgress = NO;
 //    [self userAuth];
     
