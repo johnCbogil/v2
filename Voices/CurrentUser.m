@@ -93,6 +93,7 @@
     }];
 }
 
+// TODO: THIS CODE IS REPEATED IN GROUPDETAILVC
 - (void)followGroup:(NSString *)groupKey {
     
     // Check if the current user already belongs to selected group or not
@@ -126,43 +127,6 @@
             [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
             NSLog(@"User subscribed to %@", groupKey);
         }
-//        else {
-//            
-//            
-//            UIAlertController *alert = [UIAlertController
-//                                        alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
-//                                        message:@"Would you like to stop helping this group?"
-//                                        preferredStyle:UIAlertControllerStyleActionSheet];
-//            
-//            UIAlertAction *button0 = [UIAlertAction
-//                                      actionWithTitle:@"Cancel"
-//                                      style:UIAlertActionStyleCancel
-//                                      handler:^(UIAlertAction * action)
-//                                      {}];
-//            
-//            UIAlertAction *button1 = [UIAlertAction
-//                                      actionWithTitle:@"Unfollow"
-//                                      style:UIAlertActionStyleDestructive
-//                                      handler:^(UIAlertAction * action) {
-//                                          // Remove group
-//                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
-//                                          
-//                                          // read the value once to see if group key exists
-//                                          [[[[self.usersRef child:self.userID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//                                              if (snapshot.value == [NSNull null]) {
-//                                                  
-//                                                  [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
-//                                                  
-//                                              }
-//                                          } withCancelBlock:^(NSError * _Nonnull error) {
-//                                              NSLog(@"%@", error.localizedDescription);
-//                                          }];
-//                                      }];
-//            
-//            [alert addAction:button0];
-//            [alert addAction:button1];
-//            [self presentViewController:alert animated:YES completion:nil];
-//        }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
