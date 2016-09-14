@@ -105,7 +105,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.allowsSelection = NO;
 }
 
 - (void)createActivityIndicator {
@@ -326,7 +325,8 @@
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = self.listOfActions[indexPath.row];
-    [self.navigationController pushViewController:actionDetailViewController animated:YES];}
+    [self.navigationController pushViewController:actionDetailViewController animated:YES];
+}
 
 #pragma mark - TableView delegate methods
 
@@ -380,6 +380,11 @@
         groupDetailViewController.currentUserID = self.currentUserID;
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
+    else {
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        actionDetailViewController.action = self.listOfActions[indexPath.row];
+        [self.navigationController pushViewController:actionDetailViewController animated:YES];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -405,12 +410,7 @@
     } else {
         [self userAuth];
     }
-    if (!self.selectedSegment) {
-        self.tableView.allowsSelection = NO;
-    }
-    else {
-        self.tableView.allowsSelection = YES;
-    }
+
     [self.tableView reloadData];
 }
 
