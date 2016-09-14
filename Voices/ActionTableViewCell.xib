@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -52,8 +52,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnM-pP-jmA">
-                        <rect key="frame" x="248" y="167" width="100" height="25"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnM-pP-jmA">
+                        <rect key="frame" x="235" y="167" width="100" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Ciz-lu-3FV"/>
                             <constraint firstAttribute="height" constant="25" id="lLp-40-ofp"/>
@@ -74,6 +74,7 @@
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="8" id="IDh-Rh-XRW"/>
                     <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="8" id="ISG-VZ-GwK"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="Iyc-XP-lwa"/>
+                    <constraint firstAttribute="trailing" secondItem="YnM-pP-jmA" secondAttribute="trailing" constant="25" id="K5G-Nu-a7q"/>
                     <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="5cj-rV-NyV" secondAttribute="top" id="N3R-Xp-tr5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="YnM-pP-jmA" secondAttribute="bottom" constant="4.5" id="Va8-BQ-oEM"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="bottom" secondItem="5cj-rV-NyV" secondAttribute="bottom" constant="-2" id="WUC-ee-49h"/>
@@ -96,6 +97,7 @@
                         <exclude reference="q6v-bq-n57"/>
                         <exclude reference="qVk-WE-zNt"/>
                         <exclude reference="1gr-LQ-PhK"/>
+                        <exclude reference="CHb-id-ZES"/>
                         <exclude reference="kib-XA-GcQ"/>
                     </mask>
                 </variation>
