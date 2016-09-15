@@ -77,7 +77,7 @@
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
-    self.tabBarController.selectedIndex = 0;
+    self.tabBarController.selectedIndex = self.action.level;
 }
 
 @end
