@@ -60,7 +60,6 @@
     self.actionsRef = [self.rootRef child:@"actions"];
     self.currentUserID = [FIRAuth auth].currentUser.uid;
     self.isUserAuthInProgress = NO;
-//    [self userAuth];
     
     // TODO: Change this to a delegate, or perhaps this can be addressed by firebase manager refactor
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
@@ -125,12 +124,24 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (!self.listOfFollowedGroups.count) {
-            self.tableView.backgroundView.hidden = NO;
+        // TODO: THIS IS NOT DRY
+        if (self.selectedSegment == 0) {
+            if (!self.listOfActions.count) {
+                self.tableView.backgroundView.hidden = NO;
+            }
+            else {
+                self.tableView.backgroundView.hidden = YES;
+            }
         }
         else {
-            self.tableView.backgroundView.hidden = YES;
+            if (!self.listOfFollowedGroups.count) {
+                self.tableView.backgroundView.hidden = NO;
+            }
+            else {
+                self.tableView.backgroundView.hidden = YES;
+            }
         }
+
     });
     [self.activityIndicatorView stopAnimating];
 }
@@ -143,37 +154,10 @@
     }
     self.isUserAuthInProgress = YES;
     NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-    if (!userId) {
-//        [self createAnonymousUser];
-           }
-    else {
+    if (userId) {
         [self fetchFollowedGroupsForUserId:userId];
     }
 }
-
-//- (void)createAnonymousUser {
-//    
-//    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-//        if (error) {
-//            NSLog(@"UserAuth error: %@", error);
-//            self.isUserAuthInProgress = NO;
-//            return;
-//        }
-//        self.currentUserID = user.uid;
-//        NSLog(@"Created a new userID: %@", self.currentUserID);
-//        [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
-//        [[NSUserDefaults standardUserDefaults]synchronize];
-//        
-//        [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//            if (error) {
-//                NSLog(@"Error adding user to database: %@", error);
-//                self.isUserAuthInProgress = NO;
-//                return;
-//            }
-//            NSLog(@"Created user in database");
-//        }];
-//    }];
-//}
 
 - (void)fetchFollowedGroupsForUserId:(NSString *)userId {
     self.currentUserID = userId;
