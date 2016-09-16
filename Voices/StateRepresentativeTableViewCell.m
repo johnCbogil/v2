@@ -29,6 +29,7 @@
 @implementation StateRepresentativeTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = kButtonCornerRadius;
     self.photo.clipsToBounds = YES;
