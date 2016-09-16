@@ -24,7 +24,6 @@
 - (void)createStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                        onError:(void(^)(NSError *error))errorBlock;
 - (void)createNYCRepsFromLocation:(CLLocation*)location;
-- (NSArray *)fetchRepsFromCache:(NSString *)representativeType;
 - (NSArray *)createRepsForIndex:(NSInteger)index;
 - (void)startUpdatingLocation;
 

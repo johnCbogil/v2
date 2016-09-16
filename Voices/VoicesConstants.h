@@ -29,10 +29,6 @@ extern NSString *const kFederalRepresentative;
 extern NSString *const kStateRepresentative;
 extern NSString *const kNYCRepresentative;
 
-extern NSString *const kCachedFederalRepresentatives;
-extern NSString *const kCachedStateRepresentatives;
-extern NSString *const kCachedNYCRepresentatives;
-
 extern NSString *const kCreateFederalRepresentatives;
 extern NSString *const kCreateStateRepresentatives;
 extern NSString *const kCreateNYCRepresentatives;

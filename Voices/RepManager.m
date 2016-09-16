@@ -13,7 +13,6 @@
 #import "NYCRepresentative.h"
 #import "LocationService.h"
 #import "AppDelegate.h"
-//#import "CacheManager.h"
 
 
 @implementation RepManager
@@ -37,7 +36,6 @@
 
 - (NSArray *)createRepsForIndex:(NSInteger)index {
     if (index == 0) {
-        //self.listOfFederalRepresentatives = [self fetchRepsFromCache:kCachedFederalRepresentatives];
         
         if (self.listOfFederalRepresentatives.count > 0) {
             return self.listOfFederalRepresentatives;
@@ -47,18 +45,14 @@
         }
     }
     else if (index == 1) {
-        //self.listOfStateRepresentatives = [self fetchRepsFromCache:kCachedStateRepresentatives];
         
         if (self.listOfStateRepresentatives.count > 0) {
             return self.listOfStateRepresentatives;
         }
     }
     else if (index == 2) {
-       // self.listOfNYCRepresentatives = [self fetchRepsFromCache:kCachedNYCRepresentatives];
-        
-        //if (self.listOfNYCRepresentatives.count > 0) {
         return self.listOfNYCRepresentatives;
-        //}
+        
     }
     return nil;
 }
@@ -86,12 +80,6 @@
     [[LocationService sharedInstance]startUpdatingLocation];
 }
 
-#pragma mark - Check Cache For Representatives
-
-- (NSArray *)fetchRepsFromCache:(NSString *)representativeType {
-    return nil; //[[CacheManager sharedInstance] fetchRepsFromCache:representativeType];
-}
-
 #pragma mark - Create Federal Representatives
 
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
@@ -105,7 +93,6 @@
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [listOfFederalRepresentatives addObject:federalRepresentative];
             self.listOfFederalRepresentatives = listOfFederalRepresentatives;
-            //[[CacheManager sharedInstance]saveRepsToCache:self.listOfFederalRepresentatives forKey:kCachedFederalRepresentatives];
             successBlock();
         }
         
@@ -139,7 +126,6 @@
             if (successBlock) {
                 [listOfStateRepresentatives addObject:stateRepresentative];
                 self.listOfStateRepresentatives = listOfStateRepresentatives;
-                //[[CacheManager sharedInstance]saveRepsToCache:self.listOfStateRepresentatives forKey:kCachedStateRepresentatives];
                 successBlock();
             }
         }
@@ -236,12 +222,10 @@
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
                 [self.listOfNYCRepresentatives addObject:nycRep];
                 [self createExtraNYCReps];
-                //[[CacheManager sharedInstance]saveRepsToCache:self.listOfNYCRepresentatives forKey:kCachedNYCRepresentatives];
                 return isLocationWithinPath;
             }
         }
     }
-   // [[CacheManager sharedInstance]saveRepsToCache:@[] forKey:kCachedNYCRepresentatives];
     return isLocationWithinPath;
 }
 
