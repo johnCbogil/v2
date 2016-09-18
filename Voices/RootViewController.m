@@ -10,7 +10,6 @@
 #import "NetworkManager.h"
 #import "RepManager.h"
 #import "StateRepresentative.h"
-#import "CacheManager.h"
 #import "PageViewController.h"
 #import "LocationService.h"
 #import <MessageUI/MFMailComposeViewController.h>
@@ -56,6 +55,9 @@
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+
 }
 
 - (void)viewDidLayoutSubviews {
@@ -322,17 +324,36 @@
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesLightGray];
 }
+
 - (IBAction)statePageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
     self.federalButton.tintColor = [UIColor voicesLightGray];
     self.stateButton.tintColor = [UIColor voicesBlue];
     self.localButton.tintColor = [UIColor voicesLightGray];
 }
+
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
     self.federalButton.tintColor = [UIColor voicesLightGray];
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesBlue];
 }
+
+- (void)setPageIndicator:(NSNotification *)notification {
+    long int pageNumber = [notification.object integerValue];
+    if (pageNumber == 0) {
+        [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }
+    else if (pageNumber == 1) {
+        [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+    }
+    else if (pageNumber == 2) {
+        [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+    }
+}
+
+
 
 @end

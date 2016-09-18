@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Z5-RF-Vdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -108,12 +108,12 @@
                                 <rect key="frame" x="20" y="40" width="560" height="47"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-gw-JY9">
-                                        <rect key="frame" x="8" y="9" width="505" height="30"/>
+                                        <rect key="frame" x="8" y="9" width="511" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
-                                        <rect key="frame" x="521" y="11" width="25" height="25"/>
+                                        <rect key="frame" x="527" y="11" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="TVY-ev-WIl"/>
                                         </constraints>
@@ -130,7 +130,7 @@
                                     <constraint firstItem="aNS-gw-JY9" firstAttribute="centerY" secondItem="9Fh-nE-Bwo" secondAttribute="centerY" id="hDc-66-TBg"/>
                                     <constraint firstItem="9Fh-nE-Bwo" firstAttribute="leading" secondItem="aNS-gw-JY9" secondAttribute="trailing" constant="8" symbolic="YES" id="m2x-GA-PuH"/>
                                     <constraint firstItem="aNS-gw-JY9" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leadingMargin" id="pfD-DG-Tiz"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="14" id="wp1-X1-vw1"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="8" id="wp1-X1-vw1"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">

@@ -11,12 +11,12 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "LocationOnboardingViewController.h"
 #import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
 #import "RepManager.h"
 #import "GroupsViewController.h"
 #import "TabBarViewController.h"
+#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -52,6 +52,8 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     
+    [CurrentUser sharedInstance];
+    
     return YES;
 }
 
@@ -84,9 +86,11 @@
 }
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
-    NSLog(@"%@", dynamicLink.url);
     
-    // TODO: HANDLE TOPIC SUBSCRIPTION HERE
+    NSLog(@"%@", dynamicLink.url);
+    NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
+    NSString *groupKey = splitURLString.lastObject;
+    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString];
 }
 
 
