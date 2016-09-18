@@ -29,10 +29,6 @@ NSString *const kFederalRepresentative = @"FederalRepresentative";
 NSString *const kStateRepresentative = @"StateRepresentative";
 NSString *const kNYCRepresentative = @"NYCRepresentative";
 
-NSString *const kCachedFederalRepresentatives = @"cachedFederalRepresentatives";
-NSString *const kCachedStateRepresentatives = @"cachedStateRepresentatives";
-NSString *const kCachedNYCRepresentatives = @"cachedNYCRepresentatives";
-
 NSString *const kCreateFederalRepresentatives = @"createFederalRepresentatives";
 NSString *const kCreateStateRepresentatives = @"createStateRepresentatives";
 NSString *const kCreateNYCRepresentatives = @"createNYCRepresentatives";

@@ -21,7 +21,10 @@
     [super viewDidLoad];
     
     [self setFont];
+
+    
     self.title = self.policyPosition.key;
+
     
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
     
