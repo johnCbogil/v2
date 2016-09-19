@@ -209,25 +209,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
     self.repdetails = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"repDetailView"];
-    
-    if(self.index == 0){
-        self.repdetails.federalRep = self.tableViewDataSource[indexPath.row];
-        self.repdetails.repType = @"Federal";
-    }
-    if (self.index == 1) {
-        self.repdetails.stateRep = self.tableViewDataSource[indexPath.row];
-        self.repdetails.repType = @"State";
-    }
-    if (self.index == 2) {
-        self.repdetails.NYCRep = self.tableViewDataSource[indexPath.row];
-        self.repdetails.repType = @"NYC";
-    }
-    
+    self.repdetails.representative = self.tableViewDataSource[indexPath.row];
     [self.navigationController pushViewController:self.repdetails animated:YES];
-
 }
 
 @end

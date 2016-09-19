@@ -15,17 +15,9 @@
 
 @interface RepresentativeDetailViewController : UIViewController <UIAlertViewDelegate>
 
-@property (strong, nonatomic) FederalRepresentative *federalRep;
-@property (strong, nonatomic) StateRepresentative *stateRep;
-@property (strong, nonatomic) NYCRepresentative *NYCRep;
 
-@property (strong, nonatomic) NSString *phone;
-@property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *twitter;
-@property (strong, nonatomic) NSString *gender;
-@property (strong, nonatomic) NSURL *photoURL;
+@property (strong, nonatomic) Representative *representative;
 
-@property (strong, nonatomic) NSString *repType;
 
 @property (weak, nonatomic) IBOutlet UIImageView *repImageView;
 

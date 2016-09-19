@@ -21,10 +21,10 @@
 
     self.title = @"More Info";
 
-    
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     self.repImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.repImageView.layer.cornerRadius = 5;
@@ -39,13 +39,23 @@
 
 -(void)setImage{
     UIImage *placeholderImage;
-    if ([self.gender isEqualToString:@"M"]) {
-        placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
+    if(self.representative.gender){
+        if ([self.representative.gender isEqualToString:@"M"]) {
+            placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
+        }
+        else {
+            placeholderImage = [UIImage imageNamed:kRepDefaultImageFemale];
+        }
     }
     else {
-        placeholderImage = [UIImage imageNamed:kRepDefaultImageFemale];
+        if ( drand48() < 0.5 ){
+            placeholderImage  = [UIImage imageNamed:kRepDefaultImageMale];
+        } else {
+            placeholderImage  = [UIImage imageNamed:kRepDefaultImageFemale];
+        }
     }
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.photoURL
+    
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.representative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
@@ -78,21 +88,14 @@
 }
 
 -(void)fillInData{
-    // This puts the data in the pictures and labels
-    if ([self.repType isEqualToString:@"Federal"]) {
-        [self createWithFederal];
-    }
-    else if ([self.repType isEqualToString:@"State"]) {
-        [self createWithState];
-    }
-    else if ([self.repType isEqualToString:@"NYC"]) {
-        [self createWithNYC];
-    }
+    [self.representative generateDistrictName];
+    [self createWithRepresentative];
+
     
 }
 
 - (IBAction)didPressCallButton:(id)sender {
-    if (self.phone) {
+    if (self.representative.phone) {
         NSString *confirmCallMessage;
 
         confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.repName.text];
@@ -109,8 +112,8 @@
 }
 
 - (IBAction)didPressEmailButton:(id)sender {
-    if (self.email) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.email];
+    if (self.representative.email) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." delegate:nil cancelButtonTitle:@"Good Idea" otherButtonTitles:nil, nil];
@@ -121,8 +124,8 @@
 - (IBAction)didPressTweetButton:(id)sender {
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
-        if (self.twitter) {
-            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.twitter, @"accountName", nil];
+        if (self.representative.twitter) {
+            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
         }
         else {
@@ -136,80 +139,30 @@
     }
 }
 
--(void)createWithFederal{
-    self.phone = self.federalRep.phone;
-    self.email = self.federalRep.email;
-    self.twitter = self.federalRep.twitter;
+-(void)createWithRepresentative{
     
-    if([self.federalRep.nextElection length]>1){
-        self.nextElection.text = [NSString stringWithFormat:@"Next election on %@",self.federalRep.nextElection ];
+    if([self.representative.nextElection length]>1){
+        self.nextElection.text = [NSString stringWithFormat:@"Next election on %@",self.representative.nextElection ];
     }
     else{
         self.nextElection.text = @"Next election unknown";
     }
     
-    self.repTitle.text = self.federalRep.title;
-    self.repName.text = [NSString stringWithFormat:@"%@ %@", self.federalRep.firstName, self.federalRep.lastName];
-    self.gender = self.federalRep.gender;
-    self.photoURL = self.federalRep.photoURL;
+    self.repTitle.text = self.representative.title;
+    self.repName.text = [NSString stringWithFormat:@"%@", self.representative.fullName];
     
-    if([self.federalRep.party isEqualToString:@"D"]){
+    if([self.representative.party isEqualToString:@"D"]){
         self.repPartyDistrict.text = @"Democrat";
     }
-    else if([self.federalRep.party isEqualToString:@"R"]){
-        self.repPartyDistrict.text = @" Republican";
+    else if([self.representative.party isEqualToString:@"R"]){
+        self.repPartyDistrict.text = @"Republican\n";
+    }
+    
+    if(self.representative.districtFullName && ![self.representative.title  isEqual: @"Senator"]){
+        self.repPartyDistrict.text = [self.repPartyDistrict.text stringByAppendingString:[NSString stringWithFormat:@" %@",self.representative.districtFullName]];
     }
 }
 
--(void)createWithState{
-    self.phone = self.stateRep.phone;
-    self.email = self.stateRep.email;
-    self.twitter = self.stateRep.twitter;
-    
-    if([self.stateRep.nextElection length]>1){
-        self.nextElection.text = [NSString stringWithFormat:@"Next election on %@",self.stateRep.nextElection ];
-    }
-    else{
-        self.nextElection.text = @"Next election unknown";
-    }
-    
-    self.repTitle.text = self.stateRep.chamber;
-    self.repName.text = [NSString stringWithFormat:@"%@ %@", self.stateRep.firstName, self.stateRep.lastName];
-    self.gender = self.stateRep.gender;
-    self.photoURL = self.stateRep.photoURL;
-    
-    if([self.stateRep.party isEqualToString:@"D"]){
-        self.repPartyDistrict.text = @"Democrat";
-    }
-    else if([self.stateRep.party isEqualToString:@"R"]){
-        self.repPartyDistrict.text = @" Republican";
-    }
-}
-
--(void)createWithNYC{
-    self.phone = self.NYCRep.phone;
-    self.email = self.NYCRep.email;
-    self.twitter = self.NYCRep.twitter;
-    
-    if([self.NYCRep.nextElection length]>1){
-        self.nextElection.text = [NSString stringWithFormat:@"Next election on %@",self.NYCRep.nextElection ];
-    }
-    else{
-        self.nextElection.text = @"Next election unknown";
-    }
-    
-    self.repTitle.text = self.NYCRep.title;
-    self.repName.text = [NSString stringWithFormat:@"%@", self.NYCRep.fullName];
-    self.gender = self.NYCRep.gender;
-    self.photoURL = self.NYCRep.photoURL;
-    
-    if([self.NYCRep.party isEqualToString:@"D"]){
-        self.repPartyDistrict.text = @"Democrat";
-    }
-    else if([self.NYCRep.party isEqualToString:@"R"]){
-        self.repPartyDistrict.text = @" Republican";
-    }
-}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
@@ -219,7 +172,7 @@
         
         //[FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.repName.text, kFIRParameterValue : @1}];
         
-        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.phone]];
+        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.representative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
             
             [[UIApplication sharedApplication] openURL:callUrl];
