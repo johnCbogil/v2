@@ -262,19 +262,8 @@
         NSLog(@"%@", snapshot.value);
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
         
-        // JSahli working
         NSDate *currentTime = [NSDate date];
         double currentTimeUnix = currentTime.timeIntervalSince1970;
-        currentTimeUnix = currentTimeUnix;
-        
-//        NSDictionary *testActionDictionary = @{@"body":@"This Is A Test", @"groupName":@"Electronic Frontier Foundation", @"groupKey":@"EFF", @"title":@"We need to TEST MORE THINGS!", @"imageURL":@"no image", @"subject":@"Privacy Rights", @"timestamp":@1574249077};
-//        
-//        Action *testAction = [[Action alloc]initWithKey:@"999" actionDictionary:testActionDictionary];
-//        if (testAction.timestamp < currentTimeUnix) {
-//        
-//        [self.listOfActions addObject:testAction];
-//        //Check for timestamp value here <JSahli>
-//        }
         
         if(newAction.timestamp < currentTimeUnix) {
             [self.listOfActions addObject:newAction];
