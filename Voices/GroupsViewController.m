@@ -245,9 +245,15 @@
         }
         NSLog(@"%@", snapshot.value);
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-        [self.listOfActions addObject:newAction];
-        [self.tableView reloadData];
-        [self sortActionsByTime];
+        
+        NSDate *currentTime = [NSDate date];
+        double currentTimeUnix = currentTime.timeIntervalSince1970;
+        
+        if(newAction.timestamp < currentTimeUnix) {
+            [self.listOfActions addObject:newAction];
+            [self.tableView reloadData];
+            [self sortActionsByTime];
+        }
         [self toggleActivityIndicatorOff];
     }];
 }
