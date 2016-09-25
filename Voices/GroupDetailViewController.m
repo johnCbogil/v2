@@ -55,7 +55,7 @@
     [self setGroupImageFromURL:self.group.groupImageURL];
     
     self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
-    
+    self.groupImageView.backgroundColor = [UIColor clearColor];
     self.lineView.backgroundColor = [UIColor voicesOrange];
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
     
