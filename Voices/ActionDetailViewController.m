@@ -37,7 +37,7 @@
     
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
-    
+    self.groupImage.backgroundColor = [UIColor clearColor];
     [self setGroupImageFromURL:self.action.groupImageURL];
     
     [self setFont];

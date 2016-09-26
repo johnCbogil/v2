@@ -58,7 +58,7 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Group image failure");
     }];
-    
+    self.groupImage.backgroundColor = [UIColor clearColor];
     self.groupImage.layer.cornerRadius = kButtonCornerRadius;
 }
 
