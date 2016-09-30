@@ -28,9 +28,11 @@
 @implementation NYCRepresentativeTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = kButtonCornerRadius;
     self.photo.clipsToBounds = YES;
+    self.photo.backgroundColor = [UIColor whiteColor];
     [self setFont];
     [self setColor];
 }

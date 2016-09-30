@@ -68,11 +68,11 @@
         
         if (snapshot.value != [NSNull null]) {
             
-            if ([self.followGroupButton.titleLabel.text isEqualToString:@"Followed ▾"]) {
+            if ([self.followGroupButton.titleLabel.text isEqualToString:@"Following ▾"]) {
                 [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
             }
             else {
-                [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
+                [self.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
             }
         }
     }];

@@ -26,6 +26,7 @@
 		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
 		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
 		527871C51D3C443200CD29BB /* Info.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* Info.xib */; };
+		52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52911CE51D7DF25D00FCD267 /* CurrentUser.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
 		52A610821B66AD0300B041FF /* RepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A610811B66AD0300B041FF /* RepManager.m */; };
@@ -109,6 +110,8 @@
 		525EE80E1D2AB2690047211F /* ActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailViewController.m; sourceTree = "<group>"; };
 		5261CF6A1D14F121007B122B /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
 		527871C41D3C443200CD29BB /* Info.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Info.xib; sourceTree = "<group>"; };
+		52911CE41D7DF25D00FCD267 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		52911CE51D7DF25D00FCD267 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
 		52939A331D1A29C00076F878 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				52EA78F51D4B9E8D0064B186 /* AlignedLabel.h */,
 				52EA78F61D4B9E8D0064B186 /* AlignedLabel.m */,
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
+				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
+				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
 				52D8929D1CC471AA004FBEA3 /* GroupsTab */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
@@ -522,7 +527,7 @@
 		52BB34231B6160C900BB9FFD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "John Bogil";
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
@@ -733,6 +738,7 @@
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				5224640D1BD17A68006CFDB5 /* StateRepresentativeTableViewCell.m in Sources */,
 				52B89B6F1C555735005950BB /* NYCRepresentativeTableViewCell.m in Sources */,
+				52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
@@ -799,8 +805,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -844,8 +852,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
