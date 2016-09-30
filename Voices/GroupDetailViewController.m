@@ -147,10 +147,6 @@
                 if (error) {
                     NSLog(@"write error: %@", error);
                 }
-                else {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now receive updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-                    [alert show];
-                }
             }];
             
             // Add group to user's subscriptions
@@ -159,7 +155,6 @@
             NSLog(@"User subscribed to %@", group.key);
         }
         else {
-            
             
             UIAlertController *alert = [UIAlertController
                                         alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons

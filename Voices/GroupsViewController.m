@@ -295,9 +295,6 @@
         }
     }
     [self.listOfActions removeObjectsInArray:discardedActions];
-    
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-    [alert show];
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -356,7 +353,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self removeGroup:self.listOfFollowedGroups[indexPath.row]];
+        Group *currGroup = self.listOfFollowedGroups[indexPath.row];
+        [self removeGroup:currGroup];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:currGroup.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+        [alert show];
+        
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
