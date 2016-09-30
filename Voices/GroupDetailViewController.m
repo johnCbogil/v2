@@ -158,7 +158,7 @@
             
             UIAlertController *alert = [UIAlertController
                                         alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
-                                        message:@"Would you like to stop helping this group?"
+                                        message:@"Would you like to stop supporting this group?"
                                         preferredStyle:UIAlertControllerStyleActionSheet];
             
             UIAlertAction *button0 = [UIAlertAction
