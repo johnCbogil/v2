@@ -115,13 +115,7 @@
     magnifyingGlass.contentMode = UIViewContentModeCenter;
     self.searchTextField.leftView = magnifyingGlass;
     
-    // Set the clear button
-    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
-    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
-    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    self.searchTextField.rightView = clearButton;
+    
     
     // Create shadow
     self.shadowView = [[UIView alloc] init];
@@ -161,6 +155,17 @@
     
     
     return NO;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField { 
+    
+    // Set the clear button
+    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.rightView = clearButton;
 }
 
 - (void)clearSearchBar {
