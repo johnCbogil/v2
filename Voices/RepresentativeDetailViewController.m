@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     [self.navigationController setNavigationBarHidden:NO];
 
     self.title = @"More Info";
@@ -30,14 +30,12 @@
     self.repImageView.layer.cornerRadius = 5;
     self.repImageView.clipsToBounds = YES;
     
-    
     [self setFont];
     [self fillInData];
     [self setImage];
-    
 }
 
--(void)setImage{
+-(void)setImage {
     UIImage *placeholderImage;
     if(self.representative.gender){
         if ([self.representative.gender isEqualToString:@"M"]) {
@@ -59,7 +57,6 @@
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    
     [self.repImageView setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         self.repImageView.image = image;
       
@@ -68,7 +65,7 @@
     }];
 }
 
--(void)setFont{
+-(void)setFont {
     self.repName.font = self.repName.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
     self.repName.textColor = [UIColor voicesBlack];
     
@@ -90,8 +87,6 @@
 -(void)fillInData{
     [self.representative generateDistrictName];
     [self createWithRepresentative];
-
-    
 }
 
 - (IBAction)didPressCallButton:(id)sender {

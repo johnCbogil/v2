@@ -33,16 +33,13 @@
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
 @property (strong, nonatomic) RepsEmptyState *repsEmptyStateView;
 
-@property (strong, nonatomic) UINavigationController *navigation;
-@property (strong, nonatomic) RepresentativeDetailViewController *repdetails;
-
 @end
 
 @implementation RepresentativesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.delegate = self;/////////////
+    self.navigationController.delegate = self;
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
@@ -208,10 +205,11 @@
     return 140;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.repdetails = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"repDetailView"];
-    self.repdetails.representative = self.tableViewDataSource[indexPath.row];
-    [self.navigationController pushViewController:self.repdetails animated:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RepresentativeDetailViewController *repDetailViewController = [[RepresentativeDetailViewController alloc]init];
+    repDetailViewController = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"repDetailView"];
+    repDetailViewController.representative = self.tableViewDataSource[indexPath.row];
+    [self.navigationController pushViewController:repDetailViewController animated:YES];
 }
 
 @end
