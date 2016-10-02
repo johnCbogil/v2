@@ -143,4 +143,76 @@
     }];
 }
 
+- (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock {
+ 
+//    self.isUserAuthInProgress = NO;
+    
+//    [self toggleActivityIndicatorOn];
+//    __weak GroupsViewController *weakSelf = self;
+    NSMutableArray *groupsArray = [NSMutableArray array];
+    
+    // For each group that the user belongs to
+    [[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // This is happening once per group
+        if ([snapshot.value isKindOfClass:[NSNull class]]) {
+//            [weakSelf toggleActivityIndicatorOff];
+            return;
+        }
+        // Retrieve this group's key
+        
+        NSDictionary *groupsKeys = snapshot.value;
+        NSArray *keys = groupsKeys.allKeys;
+
+        for (NSString *key in keys) {
+            // Go to the groups table
+//            [weakSelf fetchGroupWithKey:key groupsArray:groupsArray];
+            
+            [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
+//                    [self toggleActivityIndicatorOff];
+                    return;
+                }
+                // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
+                NSInteger index = [self.listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+                    if ([group.key isEqualToString:key]) {
+                        *stop = YES;
+                        return YES;
+                    }
+                    return NO;
+                    
+                }];
+                if (index != NSNotFound) {
+                    // We already have this group in our table
+//                    [self toggleActivityIndicatorOff];
+                    return;
+                }
+                
+                Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
+                
+                [groupsArray addObject:group];
+                successBlock(groupsArray);
+                
+//                self.listOfFollowedGroups = groupsArray;
+//                [self.tableView reloadData];
+                
+                // Retrieve the actions for this group
+                if(!snapshot.value[@"actions"]) {
+                    return;
+                }
+//                NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
+//                for (NSString *actionKey in actionKeys) {
+//                    [self fetchActionsForActionKey:actionKey];
+//                }
+            }];
+
+        }
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+    
+}
+
+
+
+
 @end

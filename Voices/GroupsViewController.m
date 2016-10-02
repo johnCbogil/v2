@@ -160,33 +160,45 @@
 }
 
 - (void)fetchFollowedGroupsForUserId:(NSString *)userId {
-    self.currentUserID = userId;
-    self.isUserAuthInProgress = NO;
+//    self.currentUserID = userId;
+//    self.isUserAuthInProgress = NO;
+//
+//    [self toggleActivityIndicatorOn];
+//    __weak GroupsViewController *weakSelf = self;
+//    NSMutableArray *groupsArray = [NSMutableArray array];
+//    
+//    // For each group that the user belongs to
+//    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        // This is happening once per group
+//        if ([snapshot.value isKindOfClass:[NSNull class]]) {
+//            [weakSelf toggleActivityIndicatorOff];
+//            return;
+//        }
+//        // Retrieve this group's key
+//        NSDictionary *groupsKeys = snapshot.value;
+//        NSArray *keys = groupsKeys.allKeys;
+//        for (NSString *key in keys) {
+//            // Go to the groups table
+//            [weakSelf fetchGroupWithKey:key groupsArray:groupsArray];
+//        }
+//    } withCancelBlock:^(NSError * _Nonnull error) {
+//        NSLog(@"%@", error.localizedDescription);
+//    }];
+    [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userId WithCompletion:^(NSArray *listOfFollowedGroups) {
+        [self toggleActivityIndicatorOff];
+        NSLog(@"%@", listOfFollowedGroups);
 
-    [self toggleActivityIndicatorOn];
-    __weak GroupsViewController *weakSelf = self;
-    NSMutableArray *groupsArray = [NSMutableArray array];
-    
-    // For each group that the user belongs to
-    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        // This is happening once per group
-        if ([snapshot.value isKindOfClass:[NSNull class]]) {
-            [weakSelf toggleActivityIndicatorOff];
-            return;
+        for (Group *group in listOfFollowedGroups) {
+            [self fetchGroupWithKey:group.key];
         }
-        // Retrieve this group's key
-        NSDictionary *groupsKeys = snapshot.value;
-        NSArray *keys = groupsKeys.allKeys;
-        for (NSString *key in keys) {
-            // Go to the groups table
-            [weakSelf fetchGroupWithKey:key groupsArray:groupsArray];
-        }
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
+
+
+    } onError:^(NSError *error) {
+        [self toggleActivityIndicatorOff];
     }];
 }
 
-- (void)fetchGroupWithKey:(NSString *)groupKey groupsArray:(NSMutableArray *)groupsArray {
+- (void)fetchGroupWithKey:(NSString *)groupKey {
     [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
             [self toggleActivityIndicatorOff];
@@ -209,8 +221,8 @@
         
         Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
         
-        [groupsArray addObject:group];
-        self.listOfFollowedGroups = groupsArray;
+        [self.listOfFollowedGroups addObject:group];
+//        self.listOfFollowedGroups = groupsArray;
         [self.tableView reloadData];
         
         // Retrieve the actions for this group
