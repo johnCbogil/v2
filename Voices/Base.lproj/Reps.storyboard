@@ -232,7 +232,7 @@
         <scene sceneID="hq1-Sz-xIY">
             <objects>
                 <navigationController storyboardIdentifier="RepresentativesNavigationController" id="RmI-J4-9MX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aIh-RF-ida">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aIh-RF-ida">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
