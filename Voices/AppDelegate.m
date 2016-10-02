@@ -90,7 +90,17 @@
     NSLog(@"%@", dynamicLink.url);
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
-    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString];
+    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
+        
+        if (!result) {
+        NSLog(@"User subscribed to %@ via deeplink", groupKey);
+        }
+        else {
+         NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
+        }
+    } onError:^(NSError *error) {
+        NSLog(@"There has been an error attempting to subscribe via deeplink: %@", error);
+    }];
 }
 
 
