@@ -185,15 +185,18 @@
 //        NSLog(@"%@", error.localizedDescription);
 //    }];
     
+    self.isUserAuthInProgress = NO;
+//    [self toggleActivityIndicatorOn];
+    
     [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userId WithCompletion:^(NSArray *listOfFollowedGroups) {
-        [self toggleActivityIndicatorOff];
+//        [self toggleActivityIndicatorOff];
         NSLog(@"%@", listOfFollowedGroups);
 
         for (Group *group in listOfFollowedGroups) {
             [self fetchGroupWithKey:group.key];
         }
     } onError:^(NSError *error) {
-        [self toggleActivityIndicatorOff];
+//        [self toggleActivityIndicatorOff];
     }];
     
 }
@@ -202,7 +205,7 @@
     
     [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
-            [self toggleActivityIndicatorOff];
+//            [self toggleActivityIndicatorOff];
             return;
         }
         // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
@@ -216,7 +219,7 @@
         }];
         if (index != NSNotFound) {
             // We already have this group in our table
-            [self toggleActivityIndicatorOff];
+//            [self toggleActivityIndicatorOff];
             return;
         }
         
@@ -267,7 +270,7 @@
             [self.tableView reloadData];
             [self sortActionsByTime];
         }
-        [self toggleActivityIndicatorOff];
+//        [self toggleActivityIndicatorOff];
     }];
 }
 
