@@ -18,10 +18,10 @@
             </objects>
             <point key="canvasLocation" x="1099" y="195"/>
         </scene>
-        <!--Representatives View Controller-->
+        <!--Reps View Controller-->
         <scene sceneID="NHe-k4-6Hz">
             <objects>
-                <viewController storyboardIdentifier="RepresentativesViewController" id="uTI-OG-QE8" customClass="RepresentativesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepsViewController" id="uTI-OG-QE8" customClass="RepsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7uZ-Cc-R2W"/>
                         <viewControllerLayoutGuide type="bottom" id="wcF-oG-GrQ"/>

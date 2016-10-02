@@ -1,18 +1,14 @@
 //
-//  RepresentativeDetailViewController.m
+//  RepDetailViewController.m
 //  Voices
 //
 //  Created by Ben Rosenfeld on 8/25/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "RepresentativeDetailViewController.h"
+#import "RepDetailViewController.h"
 
-@interface RepresentativeDetailViewController ()
-
-@end
-
-@implementation RepresentativeDetailViewController
+@implementation RepDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

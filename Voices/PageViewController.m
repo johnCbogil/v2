@@ -7,7 +7,7 @@
 //
 
 #import "PageViewController.h"
-#import "RepresentativesViewController.h"
+#import "RepsViewController.h"
 
 @interface PageViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIViewController *firstVC;
@@ -22,11 +22,11 @@
     self.dataSource = self;
     self.delegate = self;
     
-    RepresentativesViewController *initialViewController = [self viewControllerAtIndex:0];
+    RepsViewController *initialViewController = [self viewControllerAtIndex:0];
     initialViewController.title = @"Federal";
-    RepresentativesViewController *secondViewController = [self viewControllerAtIndex:1];
+    RepsViewController *secondViewController = [self viewControllerAtIndex:1];
     secondViewController.title = @"State";
-    RepresentativesViewController *thirdViewController = [self viewControllerAtIndex:2];
+    RepsViewController *thirdViewController = [self viewControllerAtIndex:2];
     thirdViewController.title = @"Local";
     
     
@@ -40,17 +40,17 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    RepresentativesViewController *repVC = (RepresentativesViewController *)viewController;
+    RepsViewController *repVC = (RepsViewController *)viewController;
     
     if (repVC.index == 1) {
-        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+        for (RepsViewController *vc in self.listOfViewControllers) {
             if (vc.index == 0) {
                 return vc;
             }
         }
     }
     else if (repVC.index == 2) {
-        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+        for (RepsViewController *vc in self.listOfViewControllers) {
             if (vc.index == 1) {
                 return vc;
             }
@@ -61,17 +61,17 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
-    RepresentativesViewController *repVC = (RepresentativesViewController *)viewController;
+    RepsViewController *repVC = (RepsViewController *)viewController;
     
     if (repVC.index == 0) {
-        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+        for (RepsViewController *vc in self.listOfViewControllers) {
             if (vc.index == 1) {
                 return vc;
             }
         }
     }
     else if (repVC.index == 1) {
-        for (RepresentativesViewController *vc in self.listOfViewControllers) {
+        for (RepsViewController *vc in self.listOfViewControllers) {
             if (vc.index == 2) {
                 return vc;
             }
@@ -88,17 +88,17 @@
     }
 }
 
-- (RepresentativesViewController *)viewControllerAtIndex:(NSUInteger)index {
-    RepresentativesViewController *representativesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepresentativesViewController"];
-    representativesViewController.index = index;
-    return representativesViewController;
+- (RepsViewController *)viewControllerAtIndex:(NSUInteger)index {
+    RepsViewController *repsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepsViewController"];
+    repsViewController.index = index;
+    return repsViewController;
 }
 
 // TODO: DETERMINE THE CURRENT PAGE SO THAT I CAN SET THE ANIMATION DIRECTION
 - (void)changePage:(NSNotification *)notification {
     
     long int pageNumber = [notification.object integerValue];
-    RepresentativesViewController *vc = self.listOfViewControllers[pageNumber];
+    RepsViewController *vc = self.listOfViewControllers[pageNumber];
 
     
     [self setViewControllers:@[vc]

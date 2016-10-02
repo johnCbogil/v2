@@ -1,5 +1,5 @@
 //
-//  RepresentativeDetailViewController.h
+//  RepDetailViewController.h
 //  Voices
 //
 //  Created by Ben Rosenfeld on 8/25/16.
@@ -13,7 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 
 
-@interface RepresentativeDetailViewController : UIViewController <UIAlertViewDelegate>
+@interface RepDetailViewController : UIViewController <UIAlertViewDelegate>
 
 
 @property (strong, nonatomic) Representative *representative;
