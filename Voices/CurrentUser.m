@@ -132,5 +132,51 @@
     }];
 }
 
+- (void)followGroup:(NSString *)groupKey WithCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    // Check if the current user already belongs to selected group or not
+    FIRDatabaseReference *currentUserRef = [[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:groupKey];
+    
+    [currentUserRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        BOOL result = snapshot.value == [NSNull null] ? NO : YES;
+        NSLog(@"User %d a member of selected group", result);
+        
+        if (snapshot.value == [NSNull null]) {
+            
+            // Add group to user's groups
+            [[[self.usersRef child:self.userID]child:@"groups"] updateChildValues:@{groupKey :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                if (error) {
+                    NSLog(@"write error: %@", error);
+                }
+            }];
+            
+            // Add user to group's users
+            [[[self.groupsRef child:groupKey]child:@"followers"] updateChildValues:@{self.userID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                if (error) {
+                    NSLog(@"write error: %@", error);
+                }
+                else {
+                    //                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now receive updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+                    //                    [alert show];
+                    NSLog(@"Added user to group via deeplink succesfully");
+                }
+            }];
+            
+            // Add group to user's subscriptions
+            NSString *topic = [groupKey stringByReplacingOccurrencesOfString:@" " withString:@""];
+            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
+            NSLog(@"User subscribed to %@", groupKey);
+            
+            successBlock(result);
+        }
+        else {
+
+            // RETURN NO?
+        }
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+}
 
 @end
