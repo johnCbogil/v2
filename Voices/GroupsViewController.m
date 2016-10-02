@@ -184,6 +184,7 @@
 //    } withCancelBlock:^(NSError * _Nonnull error) {
 //        NSLog(@"%@", error.localizedDescription);
 //    }];
+    
     [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userId WithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         NSLog(@"%@", listOfFollowedGroups);
@@ -191,14 +192,14 @@
         for (Group *group in listOfFollowedGroups) {
             [self fetchGroupWithKey:group.key];
         }
-
-
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
+    
 }
 
 - (void)fetchGroupWithKey:(NSString *)groupKey {
+    
     [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
             [self toggleActivityIndicatorOff];

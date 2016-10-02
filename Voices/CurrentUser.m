@@ -41,7 +41,6 @@
     self = [super init];
     if(self != nil) {
         
-        self.listOfFollowedGroups = @[].mutableCopy;
         
         [self createInitialReferences];
                 
@@ -173,7 +172,7 @@
                     return;
                 }
                 // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-                NSInteger index = [self.listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+                NSInteger index = [groupsArray indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
                     if ([group.key isEqualToString:key]) {
                         *stop = YES;
                         return YES;
