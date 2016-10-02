@@ -51,6 +51,12 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
+    
     [self addObservers];
     [self setFont];
     [self setColors];

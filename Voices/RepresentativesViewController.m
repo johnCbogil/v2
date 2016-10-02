@@ -16,8 +16,9 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import "RepsEmptyState.h"
+#import "RepresentativeDetailViewController.h"
 
-@interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -38,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationController.delegate = self;
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
@@ -46,6 +47,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     
     [self addObservers];
     [self toggleZeroState];
@@ -117,6 +119,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.allowsSelection = YES;
     
     self.repsEmptyStateView = [[RepsEmptyState alloc]init];
     self.tableView.backgroundView = self.repsEmptyStateView;
@@ -200,6 +203,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RepresentativeDetailViewController *repDetailViewController = [[RepresentativeDetailViewController alloc]init];
+    repDetailViewController = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"repDetailView"];
+    repDetailViewController.representative = self.tableViewDataSource[indexPath.row];
+    [self.navigationController pushViewController:repDetailViewController animated:YES];
 }
 
 @end
