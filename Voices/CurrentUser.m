@@ -155,6 +155,7 @@
         // This is happening once per group
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
 //            [weakSelf toggleActivityIndicatorOff];
+            successBlock(nil);
             return;
         }
         // Retrieve this group's key
