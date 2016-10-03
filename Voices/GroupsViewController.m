@@ -141,7 +141,6 @@
                 self.tableView.backgroundView.hidden = YES;
             }
         }
-
     });
     [self.activityIndicatorView stopAnimating];
 }
@@ -160,33 +159,9 @@
 }
 
 - (void)fetchFollowedGroupsForUserId:(NSString *)userId {
-//    self.currentUserID = userId;
-//    self.isUserAuthInProgress = NO;
-//
-//    [self toggleActivityIndicatorOn];
-//    __weak GroupsViewController *weakSelf = self;
-//    NSMutableArray *groupsArray = [NSMutableArray array];
-//    
-//    // For each group that the user belongs to
-//    [[[self.usersRef child:self.currentUserID] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        // This is happening once per group
-//        if ([snapshot.value isKindOfClass:[NSNull class]]) {
-//            [weakSelf toggleActivityIndicatorOff];
-//            return;
-//        }
-//        // Retrieve this group's key
-//        NSDictionary *groupsKeys = snapshot.value;
-//        NSArray *keys = groupsKeys.allKeys;
-//        for (NSString *key in keys) {
-//            // Go to the groups table
-//            [weakSelf fetchGroupWithKey:key groupsArray:groupsArray];
-//        }
-//    } withCancelBlock:^(NSError * _Nonnull error) {
-//        NSLog(@"%@", error.localizedDescription);
-//    }];
     
     self.isUserAuthInProgress = NO;
-//    [self toggleActivityIndicatorOn];
+    [self toggleActivityIndicatorOn];
     
     [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userId WithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
@@ -198,7 +173,6 @@
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
-    
 }
 
 - (void)fetchGroupWithKey:(NSString *)groupKey {
@@ -208,6 +182,7 @@
             [self toggleActivityIndicatorOff];
             return;
         }
+        
         // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
         NSInteger index = [self.listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
             if ([group.key isEqualToString:groupKey]) {
@@ -226,7 +201,6 @@
         Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
         
         [self.listOfFollowedGroups addObject:group];
-//        self.listOfFollowedGroups = groupsArray;
         [self.tableView reloadData];
         
         // Retrieve the actions for this group
@@ -242,7 +216,6 @@
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        // TODO: why is this different than above comparison to [NSNull class]?
         if (snapshot.value == [NSNull null]) {
             return ;
         }
