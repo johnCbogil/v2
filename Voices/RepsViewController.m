@@ -1,12 +1,12 @@
 //
-//  RepresentativesViewController.m
+//  RepsViewController.m
 //  Voices
 //
 //  Created by Bogil, John on 1/22/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "RepresentativesViewController.h"
+#import "RepsViewController.h"
 #import "FederalRepresentativeTableViewCell.h"
 #import "StateRepresentativeTableViewCell.h"
 #import "NYCRepresentativeTableViewCell.h"
@@ -16,8 +16,9 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import "RepsEmptyState.h"
+#import "RepDetailViewController.h"
 
-@interface RepresentativesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface RepsViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -34,11 +35,11 @@
 
 @end
 
-@implementation RepresentativesViewController
+@implementation RepsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationController.delegate = self;
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
@@ -46,6 +47,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     
     [self addObservers];
     [self toggleZeroState];
@@ -117,6 +119,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.allowsSelection = NO;
     
     self.repsEmptyStateView = [[RepsEmptyState alloc]init];
     self.tableView.backgroundView = self.repsEmptyStateView;
@@ -201,5 +204,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 140;
 }
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    RepresentativeDetailViewController *repDetailViewController = [[RepresentativeDetailViewController alloc]init];
+//    repDetailViewController = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"repDetailView"];
+//    repDetailViewController.representative = self.tableViewDataSource[indexPath.row];
+//    [self.navigationController pushViewController:repDetailViewController animated:YES];
+//}
 
 @end

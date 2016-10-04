@@ -17,7 +17,6 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
-#import "SMPageControl.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -52,10 +51,19 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
+    
     [self addObservers];
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+
 }
 
 - (void)viewDidLayoutSubviews {
@@ -113,13 +121,7 @@
     magnifyingGlass.contentMode = UIViewContentModeCenter;
     self.searchTextField.leftView = magnifyingGlass;
     
-    // Set the clear button
-    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
-    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
-    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    self.searchTextField.rightView = clearButton;
+    
     
     // Create shadow
     self.shadowView = [[UIView alloc] init];
@@ -163,6 +165,17 @@
     
     
     return NO;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField { 
+    
+    // Set the clear button
+    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.rightView = clearButton;
 }
 
 - (void)clearSearchBar {
@@ -331,17 +344,36 @@
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesLightGray];
 }
+
 - (IBAction)statePageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
     self.federalButton.tintColor = [UIColor voicesLightGray];
     self.stateButton.tintColor = [UIColor voicesBlue];
     self.localButton.tintColor = [UIColor voicesLightGray];
 }
+
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
     self.federalButton.tintColor = [UIColor voicesLightGray];
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesBlue];
 }
+
+- (void)setPageIndicator:(NSNotification *)notification {
+    long int pageNumber = [notification.object integerValue];
+    if (pageNumber == 0) {
+        [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }
+    else if (pageNumber == 1) {
+        [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+    }
+    else if (pageNumber == 2) {
+        [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+    }
+}
+
+
 
 @end

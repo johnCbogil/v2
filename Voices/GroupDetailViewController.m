@@ -10,6 +10,7 @@
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
+#import "CurrentUser.h"
 
 @import Firebase;
 
@@ -55,7 +56,7 @@
     [self setGroupImageFromURL:self.group.groupImageURL];
     
     self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
-    
+    self.groupImageView.backgroundColor = [UIColor clearColor];
     self.lineView.backgroundColor = [UIColor voicesOrange];
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
     
@@ -68,11 +69,11 @@
         
         if (snapshot.value != [NSNull null]) {
             
-            if ([self.followGroupButton.titleLabel.text isEqualToString:@"Followed ▾"]) {
+            if ([self.followGroupButton.titleLabel.text isEqualToString:@"Following ▾"]) {
                 [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
             }
             else {
-                [self.followGroupButton setTitle:@"Followed ▾" forState:UIControlStateNormal];
+                [self.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
             }
         }
     }];
@@ -123,47 +124,19 @@
 
 - (IBAction)followGroupButtonDidPress:(id)sender {
     
-    [self followGroup:self.group];
-}
+    NSString *groupKey = self.group.key;
 
-- (void)followGroup:(Group *)group {
-    
-    // Check if the current user already belongs to selected group or not
-    FIRDatabaseReference *currentUserRef = [[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key];
-    [currentUserRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
-        NSLog(@"User %@ a member of selected group", result);
-        if (snapshot.value == [NSNull null]) {
+    [[CurrentUser sharedInstance]followGroup:groupKey WithCompletion:^(BOOL isUserFollowingGroup) {
+        
+        if (!isUserFollowingGroup) {
             
-            // Add group to user's groups
-            [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                if (error) {
-                    NSLog(@"write error: %@", error);
-                }
-            }];
-            
-            // Add user to group's users
-            [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                if (error) {
-                    NSLog(@"write error: %@", error);
-                }
-                else {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now receive updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-                    [alert show];
-                }
-            }];
-            
-            // Add group to user's subscriptions
-            NSString *topic = [group.key stringByReplacingOccurrencesOfString:@" " withString:@""];
-            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
-            NSLog(@"User subscribed to %@", group.key);
+            NSLog(@"User subscribed to %@", groupKey);
         }
         else {
             
-            
             UIAlertController *alert = [UIAlertController
                                         alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
-                                        message:@"Would you like to stop helping this group?"
+                                        message:@"Would you like to stop supporting this group?"
                                         preferredStyle:UIAlertControllerStyleActionSheet];
             
             UIAlertAction *button0 = [UIAlertAction
@@ -177,7 +150,7 @@
                                       style:UIAlertActionStyleDestructive
                                       handler:^(UIAlertAction * action) {
                                           // Remove group
-                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
+                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:self.group];
                                           
                                           // read the value once to see if group key exists
                                           [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -195,7 +168,7 @@
             [alert addAction:button1];
             [self presentViewController:alert animated:YES completion:nil];
         }
-    } withCancelBlock:^(NSError * _Nonnull error) {
+    } onError:^(NSError *error) {
         NSLog(@"%@", error);
     }];
 }

@@ -37,7 +37,7 @@
     
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
-    
+    self.groupImage.backgroundColor = [UIColor clearColor];
     [self setGroupImageFromURL:self.action.groupImageURL];
     
     [self setFont];
@@ -78,6 +78,8 @@
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
     self.tabBarController.selectedIndex = 0;
+    NSNumber *level = [NSNumber numberWithInt:self.action.level];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];
 }
 
 @end

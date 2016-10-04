@@ -16,7 +16,7 @@
 #import "Group.h"
 #import "Action.h"
 #import "GroupsEmptyState.h"
-
+#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -58,8 +58,8 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
     self.actionsRef = [self.rootRef child:@"actions"];
+    self.currentUserID = [FIRAuth auth].currentUser.uid;
     self.isUserAuthInProgress = NO;
-    [self userAuth];
     
     // TODO: Change this to a delegate, or perhaps this can be addressed by firebase manager refactor
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
@@ -104,7 +104,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.allowsSelection = NO;
 }
 
 - (void)createActivityIndicator {
@@ -125,12 +124,24 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (!self.listOfFollowedGroups.count) {
-            self.tableView.backgroundView.hidden = NO;
+        // TODO: THIS IS NOT DRY
+        if (self.selectedSegment == 0) {
+            if (!self.listOfActions.count) {
+                self.tableView.backgroundView.hidden = NO;
+            }
+            else {
+                self.tableView.backgroundView.hidden = YES;
+            }
         }
         else {
-            self.tableView.backgroundView.hidden = YES;
+            if (!self.listOfFollowedGroups.count) {
+                self.tableView.backgroundView.hidden = NO;
+            }
+            else {
+                self.tableView.backgroundView.hidden = YES;
+            }
         }
+
     });
     [self.activityIndicatorView stopAnimating];
 }
@@ -143,36 +154,9 @@
     }
     self.isUserAuthInProgress = YES;
     NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-    if (!userId) {
-        [self createAnonymousUser];
-           }
-    else {
+    if (userId) {
         [self fetchFollowedGroupsForUserId:userId];
     }
-}
-
-- (void)createAnonymousUser {
-    
-    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-        if (error) {
-            NSLog(@"UserAuth error: %@", error);
-            self.isUserAuthInProgress = NO;
-            return;
-        }
-        self.currentUserID = user.uid;
-        NSLog(@"Created a new userID: %@", self.currentUserID);
-        [[NSUserDefaults standardUserDefaults]setObject:self.currentUserID forKey:@"userID"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
-        [self.usersRef updateChildValues:@{self.currentUserID : @{@"userID" : self.currentUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-            if (error) {
-                NSLog(@"Error adding user to database: %@", error);
-                self.isUserAuthInProgress = NO;
-                return;
-            }
-            NSLog(@"Created user in database");
-        }];
-    }];
 }
 
 - (void)fetchFollowedGroupsForUserId:(NSString *)userId {
@@ -261,9 +245,15 @@
         }
         NSLog(@"%@", snapshot.value);
         Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-        [self.listOfActions addObject:newAction];
-        [self.tableView reloadData];
-        [self sortActionsByTime];
+        
+        NSDate *currentTime = [NSDate date];
+        double currentTimeUnix = currentTime.timeIntervalSince1970;
+        
+        if(newAction.timestamp < currentTimeUnix) {
+            [self.listOfActions addObject:newAction];
+            [self.tableView reloadData];
+            [self sortActionsByTime];
+        }
         [self toggleActivityIndicatorOff];
     }];
 }
@@ -305,9 +295,6 @@
         }
     }
     [self.listOfActions removeObjectsInArray:discardedActions];
-    
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-    [alert show];
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -325,7 +312,8 @@
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = self.listOfActions[indexPath.row];
-    [self.navigationController pushViewController:actionDetailViewController animated:YES];}
+    [self.navigationController pushViewController:actionDetailViewController animated:YES];
+}
 
 #pragma mark - TableView delegate methods
 
@@ -365,7 +353,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self removeGroup:self.listOfFollowedGroups[indexPath.row]];
+        Group *currGroup = self.listOfFollowedGroups[indexPath.row];
+        [self removeGroup:currGroup];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:currGroup.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+        [alert show];
+        
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -378,6 +370,11 @@
         groupDetailViewController.group = self.listOfFollowedGroups[indexPath.row];
         groupDetailViewController.currentUserID = self.currentUserID;
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
+    }
+    else {
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        actionDetailViewController.action = self.listOfActions[indexPath.row];
+        [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -404,12 +401,7 @@
     } else {
         [self userAuth];
     }
-    if (!self.selectedSegment) {
-        self.tableView.allowsSelection = NO;
-    }
-    else {
-        self.tableView.allowsSelection = YES;
-    }
+
     [self.tableView reloadData];
 }
 
