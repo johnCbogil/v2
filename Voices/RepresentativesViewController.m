@@ -119,7 +119,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    //<JSAHLI>>
     self.repsEmptyStateView = [[RepsEmptyState alloc]init];
 }
 
