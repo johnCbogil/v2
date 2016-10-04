@@ -31,8 +31,7 @@
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
 @property (strong, nonatomic) RepsEmptyState *repsEmptyStateView;
-//JSAHLI
-@property BOOL emptyStateSwitch;
+
 
 @end
 
@@ -129,9 +128,10 @@
         self.tableView.backgroundView.alpha = 1;
     }];
     if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
-        self.tableView.backgroundView = self.repsEmptyStateView;
+        // self.tableView.backgroundView = self.repsEmptyStateView;
         [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
         [self.repsEmptyStateView updateImage];
+        // reload
     }
 }
 
@@ -182,19 +182,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.tableViewDataSource.count > 0 || self.emptyStateSwitch){
-        self.emptyStateSwitch = YES;
+    if(self.tableViewDataSource.count > 0){
         return self.tableViewDataSource.count;
     } else{
-        //return only if we are not in index 2 after refreshing
         return 1;
     }
 }
 
-//<<JSAHLI>>
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell;
-    if(self.tableViewDataSource.count > 0 || self.emptyStateSwitch){
+    if(self.tableViewDataSource.count > 0){
     if (self.index == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
     }
@@ -207,9 +204,7 @@
     
     [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     } else {
-        //only if we are not in index 2 after refreshing
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
-//        self.repsEmptyStateView = [[RepsEmptyState alloc]init];
         emptyStateCell.backgroundView = self.repsEmptyStateView;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         cell = emptyStateCell;

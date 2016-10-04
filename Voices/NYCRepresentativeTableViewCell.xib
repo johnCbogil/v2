@@ -123,7 +123,7 @@
     </objects>
     <resources>
         <image name="Message Filled" width="33" height="33"/>
-        <image name="Phone Filled" width="33" height="33"/>
+        <image name="Phone Filled" width="182" height="141"/>
         <image name="Twitter Filled" width="33" height="33"/>
     </resources>
 </document>
