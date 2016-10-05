@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
@@ -112,6 +112,7 @@
 
 - (void)configureTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kNYCRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kNYCRepresentativeTableViewCell];
@@ -127,7 +128,6 @@
         self.tableView.backgroundView.alpha = 1;
     }];
     if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
-        // self.tableView.backgroundView = self.repsEmptyStateView;
         [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
         [self.repsEmptyStateView updateImage];
         // reload
@@ -158,10 +158,10 @@
 #pragma mark - Shimmer
 
 - (void)createShimmer {
-//    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
-//    self.shimmeringView.contentView = self.zeroStateImageOne;
-//    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
-//    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
+    //    self.zeroStateImageOne.frame = self.shimmeringView.bounds;
+    //    self.shimmeringView.contentView = self.zeroStateImageOne;
+    //    self.zeroStateImageTwo.frame = self.shimmeringViewTwo.bounds;
+    //    self.shimmeringViewTwo.contentView = self.zeroStateImageTwo;
 }
 
 - (void)toggleShimmerOn {
@@ -190,29 +190,33 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell;
-    if(self.tableViewDataSource.count > 0){
-    if (self.index == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
-    }
-    if (self.index == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
-    }
-    if (self.index == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
-    }
-    
-    [cell initWithRep:self.tableViewDataSource[indexPath.row]];
+    if(self.tableViewDataSource.count > 0) {
+        if (self.index == 0) {
+            cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
+        }
+        if (self.index == 1) {
+            cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
+        }
+        if (self.index == 2) {
+            cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
+        }
+        
+        [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     } else {
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
         emptyStateCell.backgroundView = self.repsEmptyStateView;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         cell = emptyStateCell;
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 140;
+    if (self.tableViewDataSource.count > 0) {
+        return 140;
+    }
+    else {
+        return 700;
+    }
 }
 
 @end
