@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepsEmptyState : UIView
+@interface RepsEmptyState : UITableViewCell
 
 - (instancetype)init;
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom;
