@@ -130,7 +130,6 @@
     if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
         [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
         [self.repsEmptyStateView updateImage];
-        // reload
     }
 }
 
@@ -202,7 +201,8 @@
         }
         
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
-    } else {
+    }
+    else {
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
         emptyStateCell.backgroundView = self.repsEmptyStateView;
         cell = emptyStateCell;
