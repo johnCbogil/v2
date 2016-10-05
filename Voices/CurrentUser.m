@@ -14,7 +14,6 @@
 @interface CurrentUser()
 
 @property (strong, nonatomic) NSString *userID;
-@property (strong, nonatomic) NSMutableArray <Action *> *listOfActions;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -148,7 +147,7 @@
     
 //    [self toggleActivityIndicatorOn];
 //    __weak GroupsViewController *weakSelf = self;
-    NSMutableArray *groupsArray = [NSMutableArray array];
+    self.listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
     [[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -173,7 +172,7 @@
                     return;
                 }
                 // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-                NSInteger index = [groupsArray indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+                NSInteger index = [self.listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
                     if ([group.key isEqualToString:key]) {
                         *stop = YES;
                         return YES;
@@ -189,8 +188,8 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                [groupsArray addObject:group];
-                successBlock(groupsArray);
+                [self.listOfFollowedGroups addObject:group];
+                successBlock(self.listOfFollowedGroups);
                 
 //                self.listOfFollowedGroups = groupsArray;
 //                [self.tableView reloadData];
