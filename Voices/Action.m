@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
     _groupImageURL = [NSURL URLWithString:dictionary[@"imageURL"]];
     _subject = dictionary[@"subject"];
     _timestamp = [dictionary[@"timestamp"]intValue];
+    _level = [dictionary[@"level"]intValue];
     return self;
 }
 

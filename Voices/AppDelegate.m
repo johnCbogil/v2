@@ -16,6 +16,7 @@
 #import "RepManager.h"
 #import "GroupsViewController.h"
 #import "TabBarViewController.h"
+#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -51,6 +52,8 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     
+    [CurrentUser sharedInstance];
+    
     return YES;
 }
 
@@ -83,9 +86,21 @@
 }
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
-    NSLog(@"%@", dynamicLink.url);
     
-    // TODO: HANDLE TOPIC SUBSCRIPTION HERE
+    NSLog(@"%@", dynamicLink.url);
+    NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
+    NSString *groupKey = splitURLString.lastObject;
+    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
+        
+        if (!result) {
+        NSLog(@"User subscribed to %@ via deeplink", groupKey);
+        }
+        else {
+         NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
+        }
+    } onError:^(NSError *error) {
+        NSLog(@"There has been an error attempting to subscribe via deeplink: %@", error);
+    }];
 }
 
 
@@ -116,7 +131,6 @@
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
-    // TODO: Handle data of notification
     
     // Print message ID.
     NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
@@ -210,7 +224,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
         }
         
-        // TODO: SHOULD THIS BE SELF.DATASETCOMPONENT
         NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
         NSError *error =  nil;
         NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];

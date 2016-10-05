@@ -78,6 +78,8 @@
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
     self.tabBarController.selectedIndex = 0;
+    NSNumber *level = [NSNumber numberWithInt:self.action.level];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];
 }
 
 @end

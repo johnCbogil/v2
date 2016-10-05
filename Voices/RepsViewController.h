@@ -1,5 +1,5 @@
 //
-//  RepresentativesViewController.h
+//  RepsViewController.h
 //  Voices
 //
 //  Created by Bogil, John on 1/22/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepresentativesViewController : UIViewController
+@interface RepsViewController : UIViewController
 @property (assign, nonatomic) NSInteger index;
 @end
