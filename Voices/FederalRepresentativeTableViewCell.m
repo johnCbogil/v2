@@ -100,7 +100,7 @@
     
     if (self.representative.phone) {
         NSString *confirmCallMessage;
-        if (self.representative.nickname != nil) {
+        if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
             confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.representative.nickname];
         }
         else {
