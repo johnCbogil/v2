@@ -9,6 +9,7 @@
 #import "FederalRepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "Representative.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 
@@ -16,7 +17,7 @@
 
 @interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
-@property (strong, nonatomic) FederalRepresentative *federalRepresentative;
+@property (strong, nonatomic) Representative *representative;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
@@ -41,8 +42,8 @@
 }
 
 - (void)initWithRep:(id)rep {
-    self.federalRepresentative = rep;
-    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.federalRepresentative.shortTitle, self.federalRepresentative.firstName, self.federalRepresentative.lastName];
+    self.representative = rep;
+    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.representative.shortTitle, self.representative.firstName, self.representative.lastName];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
@@ -52,13 +53,13 @@
 - (void)setImage {
     
     UIImage *placeholderImage;
-    if ([self.federalRepresentative.gender isEqualToString:@"M"]) {
+    if ([self.representative.gender isEqualToString:@"M"]) {
         placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
     }
     else {
         placeholderImage = [UIImage imageNamed:kRepDefaultImageFemale];
     }
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.federalRepresentative.photoURL
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.representative.photoURL
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
@@ -76,10 +77,10 @@
     }
     else if (buttonIndex == 1) {
         
-        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.federalRepresentative.fullName, kFIRParameterValue : @1}];
+        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.representative.fullName, kFIRParameterValue : @1}];
         
         
-        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.federalRepresentative.phone]];
+        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.representative.phone]];
         if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
             
             [[UIApplication sharedApplication] openURL:callUrl];
@@ -96,15 +97,15 @@
 
 - (IBAction)callButtonDidPress:(id)sender {
     
-    if (self.federalRepresentative.phone) {
+    if (self.representative.phone) {
         NSString *confirmCallMessage;
-        if (![self.federalRepresentative.nickname isEqual:[NSNull null]]) {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.federalRepresentative.nickname];
+        if (![self.representative.nickname isEqual:[NSNull null]]) {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.representative.nickname];
         }
         else {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.federalRepresentative.firstName, self.federalRepresentative.lastName];
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.representative.firstName, self.representative.lastName];
         }
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.federalRepresentative.title,self.federalRepresentative.firstName, self.federalRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.representative.title,self.representative.firstName, self.representative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }
@@ -116,8 +117,8 @@
 
 - (IBAction)emailButtonDidPress:(id)sender {
     
-    if (self.federalRepresentative.email) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.federalRepresentative.email];
+    if (self.representative.email) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." delegate:nil cancelButtonTitle:@"Good Idea" otherButtonTitles:nil, nil];
@@ -129,8 +130,8 @@
     
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
-        if (self.federalRepresentative.twitter) {
-            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.federalRepresentative.twitter, @"accountName", nil];
+        if (self.representative.twitter) {
+            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
         }
         else {
