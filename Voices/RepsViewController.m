@@ -193,16 +193,16 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell;
     if(self.tableViewDataSource.count > 0) {
-        if (self.index == 0) {
+//        if (self.index == 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
-        }
-        if (self.index == 1) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
-        }
-        if (self.index == 2) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
-        }
-        
+//        }
+//        if (self.index == 1) {
+//            cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
+//        }
+//        if (self.index == 2) {
+//            cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
+//        }
+//        
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else {
