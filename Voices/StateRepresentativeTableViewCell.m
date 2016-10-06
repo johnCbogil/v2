@@ -40,7 +40,7 @@
 
 - (void)initWithRep:(id)rep {
     self.stateRepresentative = rep;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.shortTitle, self.stateRepresentative.firstName, self.stateRepresentative.lastName];
     [self setImage];
 }
 
@@ -96,7 +96,7 @@
         else {
             confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.stateRepresentative.firstName, self.stateRepresentative.lastName];
         }
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.chamber ,self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.stateRepresentative.shortTitle ,self.stateRepresentative.firstName, self.stateRepresentative.lastName]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [confirmCallAlert show];
         confirmCallAlert.delegate = self;
     }
