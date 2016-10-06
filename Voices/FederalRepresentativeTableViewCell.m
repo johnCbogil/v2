@@ -43,7 +43,8 @@
 
 - (void)initWithRep:(id)rep {
     self.representative = rep;
-    self.name.text = [NSString stringWithFormat:@"%@. %@ %@", self.representative.shortTitle, self.representative.firstName, self.representative.lastName];
+    NSString *title = self.representative.shortTitle ? self.representative.shortTitle : self.representative.title;
+    self.name.text = [NSString stringWithFormat:@"%@ %@ %@", title, self.representative.firstName, self.representative.lastName];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];

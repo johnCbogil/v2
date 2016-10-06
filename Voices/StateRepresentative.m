@@ -26,11 +26,11 @@
         //self.gender = [data valueForKey:@"gender"];
         // Add state property.
         if ([[data valueForKey:@"chamber"] isEqualToString:@"upper"]) {
-            self.shortTitle = @"Sen";
+            self.shortTitle = @"Sen.";
             self.title = @"Senator "; //space differentiates state Sen. from Federal. refactor needed
         }
         else {
-            self.shortTitle = @"Rep";
+            self.shortTitle = @"Rep.";
             self.title = @"Representative";
         }
         self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
@@ -52,7 +52,7 @@
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];
         self.stateName = [data valueForKey:@"state_full"];
-        self.shortTitle = @"Gov";
+        self.shortTitle = @"Gov.";
         self.title = @"Governor";
         self.party = [[data valueForKey:@"party"]substringToIndex: MIN(1, [[data valueForKey:@"party"] length])].capitalizedString;
         self.nextElection = [self formatElectionDate:[data valueForKey:@"next_election_date"]];
