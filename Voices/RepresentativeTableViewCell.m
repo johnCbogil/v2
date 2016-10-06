@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "FederalRepresentativeTableViewCell.h"
+#import "RepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "UIImageView+AFNetworking.h"
 #import "Representative.h"
@@ -15,7 +15,7 @@
 
 @import FirebaseAnalytics;
 
-@interface FederalRepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface RepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Representative *representative;
 @property (weak, nonatomic) IBOutlet UILabel *name;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation FederalRepresentativeTableViewCell
+@implementation RepresentativeTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

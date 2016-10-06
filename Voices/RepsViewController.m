@@ -7,9 +7,7 @@
 //
 
 #import "RepsViewController.h"
-#import "FederalRepresentativeTableViewCell.h"
-#import "StateRepresentativeTableViewCell.h"
-#import "NYCRepresentativeTableViewCell.h"
+#import "RepresentativeTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NetworkManager.h"
@@ -116,8 +114,6 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:kNYCRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kNYCRepresentativeTableViewCell];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -193,16 +189,9 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell;
     if(self.tableViewDataSource.count > 0) {
-//        if (self.index == 0) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
-//        }
-//        if (self.index == 1) {
-//            cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
-//        }
-//        if (self.index == 2) {
-//            cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
-//        }
-//        
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:kRepresentativeTableViewCell];
+        
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else {

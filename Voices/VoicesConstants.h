@@ -25,7 +25,7 @@ extern NSString *const kSFCongress;
 extern NSString *const kSFState;
 extern NSString *const kGoogMaps;
 
-extern NSString *const kFederalRepresentative;
+extern NSString *const kRepresentativeTableViewCell;
 extern NSString *const kStateRepresentative;
 extern NSString *const kNYCRepresentative;
 

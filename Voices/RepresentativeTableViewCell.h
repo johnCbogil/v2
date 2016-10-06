@@ -1,5 +1,5 @@
 //
-//  FederalRepresentativeTableViewCell.h
+//  RepresentativeTableViewCell.h
 //  v3
 //
 //  Created by John Bogil on 9/14/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FederalRepresentativeTableViewCell : UITableViewCell
+@interface RepresentativeTableViewCell : UITableViewCell
 
 - (void)initWithRep:(id)rep;
 
