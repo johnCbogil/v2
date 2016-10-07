@@ -11,7 +11,7 @@
 
 @implementation VoicesConstants
 
-NSString *const kRepsTableViewCell = @"RepsTableViewCell";
+NSString *const kRepTableViewCell = @"RepTableViewCell";
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 NSString *const kAvenirNextMedium = @"AvenirNext-Medium";
