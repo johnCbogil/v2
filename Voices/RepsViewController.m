@@ -29,8 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
-@property (strong, nonatomic) EmptyRepTableViewCell *repsEmptyStateView;
-
+@property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 
 @end
 
@@ -120,7 +119,7 @@
     self.tableView.allowsSelection = NO;
     
     // TODO: NOT SURE THIS SHOULD HAPPEN HERE
-    self.repsEmptyStateView = [[EmptyRepTableViewCell alloc]init];
+    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
 - (void)turnZeroStateOn {
@@ -128,8 +127,8 @@
         self.tableView.backgroundView.alpha = 1;
     }];
     if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
-        [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
-        [self.repsEmptyStateView updateImage];
+        [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
+        [self.emptyRepTableViewCell updateImage];
     }
 }
 
@@ -197,7 +196,7 @@
     }
     else {
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
-        emptyStateCell.backgroundView = self.repsEmptyStateView;
+        emptyStateCell.backgroundView = self.emptyRepTableViewCell;
         cell = emptyStateCell;
     }
     return cell;
