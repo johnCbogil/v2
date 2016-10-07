@@ -1,5 +1,5 @@
 //
-//  RepsEmptyState.h
+//  EmptyRepTableViewCell.h
 //  Voices
 //
 //  Created by Bogil, John on 8/4/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepsEmptyState : UITableViewCell
+@interface EmptyRepTableViewCell : UITableViewCell
 
 - (instancetype)init;
 - (void)updateLabels:(NSString *)top bottom:(NSString *)bottom;

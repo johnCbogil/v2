@@ -13,7 +13,6 @@
 @interface StateRepresentative : Representative
 
 @property (strong, nonatomic) NSString *address;
-@property (strong, nonatomic) NSString *chamber;
 @property (strong, nonatomic) NSString *upperChamber;
 @property (strong, nonatomic) NSString *lowerChamber;
 

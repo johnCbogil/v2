@@ -11,9 +11,7 @@
 
 @implementation VoicesConstants
 
-NSString *const kFederalRepresentativeTableViewCell = @"FederalRepresentativeTableViewCell";
-NSString *const kStateRepresentativeTableViewCell = @"StateRepresentativeTableViewCell";
-NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCell";
+NSString *const kRepTableViewCell = @"RepTableViewCell";
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 NSString *const kAvenirNextMedium = @"AvenirNext-Medium";

@@ -54,11 +54,11 @@
 - (void)formatTitle:(NSString*)data {
     if ([data isEqualToString:@"Sen"]) {
         self.title = @"Senator";
-        self.shortTitle = @"Sen";
+        self.shortTitle = @"Sen.";
     }
     else {
         self.title = @"Representative";
-        self.shortTitle = @"Rep";
+        self.shortTitle = @"Rep.";
     }
 }
 

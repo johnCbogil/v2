@@ -7,15 +7,13 @@
 //
 
 #import "RepsViewController.h"
-#import "FederalRepresentativeTableViewCell.h"
-#import "StateRepresentativeTableViewCell.h"
-#import "NYCRepresentativeTableViewCell.h"
+#import "RepTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NetworkManager.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
-#import "RepsEmptyState.h"
+#import "EmptyRepTableViewCell.h"
 #import "RepDetailViewController.h"
 
 @interface RepsViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
@@ -31,8 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
-@property (strong, nonatomic) RepsEmptyState *repsEmptyStateView;
-
+@property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 
 @end
 
@@ -115,15 +112,14 @@
 - (void)configureTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:kStateRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kStateRepresentativeTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:kNYCRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kNYCRepresentativeTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
     
-    self.repsEmptyStateView = [[RepsEmptyState alloc]init];
+    // TODO: NOT SURE THIS SHOULD HAPPEN HERE
+    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
 - (void)turnZeroStateOn {
@@ -131,8 +127,8 @@
         self.tableView.backgroundView.alpha = 1;
     }];
     if (self.index == 2 && [RepManager sharedInstance].listOfFederalRepresentatives.count > 0) {
-        [self.repsEmptyStateView updateLabels:kLocalRepsMissing bottom:@""];
-        [self.repsEmptyStateView updateImage];
+        [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
+        [self.emptyRepTableViewCell updateImage];
     }
 }
 
@@ -193,21 +189,14 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell;
     if(self.tableViewDataSource.count > 0) {
-        if (self.index == 0) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kFederalRepresentativeTableViewCell];
-        }
-        if (self.index == 1) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kStateRepresentativeTableViewCell];
-        }
-        if (self.index == 2) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kNYCRepresentativeTableViewCell];
-        }
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
         
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else {
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
-        emptyStateCell.backgroundView = self.repsEmptyStateView;
+        emptyStateCell.backgroundView = self.emptyRepTableViewCell;
         cell = emptyStateCell;
     }
     return cell;
