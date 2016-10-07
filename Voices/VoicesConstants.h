@@ -11,7 +11,7 @@
 
 @interface VoicesConstants : NSObject
 
-extern NSString *const kRepresentativeTableViewCell;
+extern NSString *const kRepsTableViewCell;
 
 extern NSString *const kAvenirNextRegular;
 extern NSString *const kAvenirNextMedium;

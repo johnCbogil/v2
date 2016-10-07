@@ -7,7 +7,7 @@
 //
 
 #import "RepsViewController.h"
-#import "RepresentativeTableViewCell.h"
+#import "RepsTableViewCell.h"
 #import "RepManager.h"
 #import "LocationService.h"
 #import "NetworkManager.h"
@@ -113,7 +113,7 @@
 - (void)configureTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:kRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kRepresentativeTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kRepsTableViewCell bundle:nil]forCellReuseIdentifier:kRepsTableViewCell];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -190,7 +190,7 @@
     id cell;
     if(self.tableViewDataSource.count > 0) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:kRepresentativeTableViewCell];
+        cell = [tableView dequeueReusableCellWithIdentifier:kRepsTableViewCell];
         
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }

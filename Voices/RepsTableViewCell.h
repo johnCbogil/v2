@@ -1,5 +1,5 @@
 //
-//  RepresentativeTableViewCell.h
+//  RepsTableViewCell.h
 //  v3
 //
 //  Created by John Bogil on 9/14/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepresentativeTableViewCell : UITableViewCell
+@interface RepsTableViewCell : UITableViewCell
 
 - (void)initWithRep:(id)rep;
 

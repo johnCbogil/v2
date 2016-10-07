@@ -1,12 +1,12 @@
 //
-//  RepresentativeTableViewCell.h
+//  RepsTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 9/14/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "RepresentativeTableViewCell.h"
+#import "RepsTableViewCell.h"
 #import "RepManager.h"
 #import "UIImageView+AFNetworking.h"
 #import "Representative.h"
@@ -15,7 +15,7 @@
 
 @import FirebaseAnalytics;
 
-@interface RepresentativeTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface RepsTableViewCell() <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Representative *representative;
 @property (weak, nonatomic) IBOutlet UILabel *name;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation RepresentativeTableViewCell
+@implementation RepsTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

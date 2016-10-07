@@ -10,7 +10,7 @@
 		17560CD1A006795877B8FCB9 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B117A45B252CA574D86425 /* libPods-Voices.a */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		521C7FF91B715C8600D6CE1F /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C7FF81B715C8600D6CE1F /* PageViewController.m */; };
-		5235B07E1BA732EA00CF43F9 /* RepresentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepresentativeTableViewCell.xib */; };
+		5235B07E1BA732EA00CF43F9 /* RepsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepsTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* RepresentativeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepresentativeTableViewCell.m */; };
 		52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 52361C9C1D3076ED00589827 /* PolicyPosition.m */; };
 		524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */; };
@@ -83,8 +83,8 @@
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		521C7FF71B715C8600D6CE1F /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		521C7FF81B715C8600D6CE1F /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
-		5235B07D1BA732EA00CF43F9 /* RepresentativeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepresentativeTableViewCell.xib; sourceTree = "<group>"; };
-		5235B07F1BA735A500CF43F9 /* RepresentativeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentativeTableViewCell.h; sourceTree = "<group>"; };
+		5235B07D1BA732EA00CF43F9 /* RepsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepsTableViewCell.xib; sourceTree = "<group>"; };
+		5235B07F1BA735A500CF43F9 /* RepsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* RepresentativeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepresentativeTableViewCell.m; sourceTree = "<group>"; };
 		52361C9B1D3076ED00589827 /* PolicyPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyPosition.h; sourceTree = "<group>"; };
 		52361C9C1D3076ED00589827 /* PolicyPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyPosition.m; sourceTree = "<group>"; };
@@ -396,9 +396,9 @@
 			isa = PBXGroup;
 			children = (
 				52BB34381B6160CA00BB9FFD /* Reps.storyboard */,
-				5235B07F1BA735A500CF43F9 /* RepresentativeTableViewCell.h */,
+				5235B07F1BA735A500CF43F9 /* RepsTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* RepresentativeTableViewCell.m */,
-				5235B07D1BA732EA00CF43F9 /* RepresentativeTableViewCell.xib */,
+				5235B07D1BA732EA00CF43F9 /* RepsTableViewCell.xib */,
 				7E133DB51D53A50900F128CC /* RepsEmptyState.h */,
 				7E133DB61D53A50900F128CC /* RepsEmptyState.m */,
 				7E160FF01D53E37300B8AED6 /* RepsEmptyState.xib */,
@@ -569,7 +569,7 @@
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
-				5235B07E1BA732EA00CF43F9 /* RepresentativeTableViewCell.xib in Resources */,
+				5235B07E1BA732EA00CF43F9 /* RepsTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
 				7E160FF11D53E37300B8AED6 /* RepsEmptyState.xib in Resources */,
