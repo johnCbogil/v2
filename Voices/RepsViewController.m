@@ -13,7 +13,7 @@
 #import "NetworkManager.h"
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
-#import "RepsEmptyState.h"
+#import "EmptyRepTableViewCell.h"
 #import "RepDetailViewController.h"
 
 @interface RepsViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *zeroStateContainer;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
-@property (strong, nonatomic) RepsEmptyState *repsEmptyStateView;
+@property (strong, nonatomic) EmptyRepTableViewCell *repsEmptyStateView;
 
 
 @end
@@ -119,7 +119,8 @@
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
     
-    self.repsEmptyStateView = [[RepsEmptyState alloc]init];
+    // TODO: NOT SURE THIS SHOULD HAPPEN HERE
+    self.repsEmptyStateView = [[EmptyRepTableViewCell alloc]init];
 }
 
 - (void)turnZeroStateOn {
