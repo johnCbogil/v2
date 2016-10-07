@@ -1,5 +1,5 @@
 //
-//  FederalRepresentativeTableViewCell.m
+//  RepresentativeTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 9/14/15.

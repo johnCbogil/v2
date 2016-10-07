@@ -113,7 +113,7 @@
 - (void)configureTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:kFederalRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kFederalRepresentativeTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kRepresentativeTableViewCell bundle:nil]forCellReuseIdentifier:kRepresentativeTableViewCell];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

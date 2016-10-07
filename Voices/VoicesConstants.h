@@ -11,9 +11,7 @@
 
 @interface VoicesConstants : NSObject
 
-extern NSString *const kFederalRepresentativeTableViewCell;
-extern NSString *const kStateRepresentativeTableViewCell;
-extern NSString *const kNYCRepresentativeTableViewCell;
+extern NSString *const kRepresentativeTableViewCell;
 
 extern NSString *const kAvenirNextRegular;
 extern NSString *const kAvenirNextMedium;
@@ -25,7 +23,7 @@ extern NSString *const kSFCongress;
 extern NSString *const kSFState;
 extern NSString *const kGoogMaps;
 
-extern NSString *const kRepresentativeTableViewCell;
+extern NSString *const kFederalRepresentative;
 extern NSString *const kStateRepresentative;
 extern NSString *const kNYCRepresentative;
 
