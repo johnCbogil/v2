@@ -188,7 +188,9 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                [self.listOfFollowedGroups addObject:group];
+                if (!group.debug) {
+                    [self.listOfFollowedGroups addObject:group];
+                }
                 successBlock(self.listOfFollowedGroups);
                 
 //                self.listOfFollowedGroups = groupsArray;
