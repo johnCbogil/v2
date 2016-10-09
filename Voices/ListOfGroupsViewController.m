@@ -11,7 +11,7 @@
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 #import "Group.h"
-
+#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -84,7 +84,9 @@
         NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
-            [groupsArray addObject:group];
+            if (!group.debug) {
+                [groupsArray addObject:group];
+            }
         }];
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groupsArray];
         [weakSelf.tableView reloadData];
@@ -114,9 +116,6 @@
     groupDetailViewController.group = self.listOfGroups[indexPath.row];
     groupDetailViewController.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
-
-    
-//    [self followGroup:self.listOfGroups[indexPath.row]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
