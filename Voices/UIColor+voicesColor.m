@@ -23,6 +23,7 @@
     return [[UIColor blackColor]colorWithAlphaComponent:0.5];
 }
 
+// HEX #d2d2d2, RGB(210,210,210), CMYK(0,0,0,18)
 + (UIColor *)voicesLightGray {
     return [[UIColor grayColor]colorWithAlphaComponent:0.5];
 }
