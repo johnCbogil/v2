@@ -98,7 +98,7 @@
 
 - (IBAction)callButtonDidPress:(id)sender {
     
-    if (self.representative.phone) {
+    if (self.representative.phone.length) {
         NSString *confirmCallMessage;
         if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
             confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.representative.nickname];
@@ -118,7 +118,7 @@
 
 - (IBAction)emailButtonDidPress:(id)sender {
     
-    if (self.representative.email) {
+    if (self.representative.email.length) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {
