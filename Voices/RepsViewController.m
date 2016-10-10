@@ -207,7 +207,7 @@
         return 140;
     }
     else {
-        return 700;
+        return 400;
     }
 }
 

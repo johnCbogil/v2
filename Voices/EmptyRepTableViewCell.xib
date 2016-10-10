@@ -10,7 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmptyRepTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To See Your Representatives" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-xO-8Nf">
@@ -57,6 +57,7 @@
                 <constraint firstItem="exQ-xO-8Nf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="pH5-84-Adk"/>
                 <constraint firstItem="1zO-Cy-elk" firstAttribute="bottom" secondItem="EL4-ok-BSg" secondAttribute="bottom" constant="31" id="pkH-mw-3sz"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
                 <outlet property="missingRepImageView" destination="1zO-Cy-elk" id="FLj-JP-7cd"/>
@@ -64,6 +65,7 @@
                 <outlet property="swipeDownImageView" destination="EL4-ok-BSg" id="YN4-PP-MKo"/>
                 <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
             </connections>
+            <point key="canvasLocation" x="-20.5" y="69.5"/>
         </view>
     </objects>
     <resources>
