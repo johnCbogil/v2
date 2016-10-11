@@ -42,7 +42,8 @@
         
         [self createInitialReferences];
         
-        self.listOfFollowedGroups = @{}.mutableCopy;
+        self.listOfFollowedGroups = @[].mutableCopy;
+        self.listOfActions = @[].mutableCopy;
         
         if ([FIRAuth auth].currentUser.uid) {
             [self createUserReferences];

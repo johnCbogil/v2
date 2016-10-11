@@ -15,5 +15,6 @@
 - (void)followGroup:(NSString *)groupKey WithCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
+@property (strong, nonatomic) NSMutableArray *listOfActions;
 
 @end
