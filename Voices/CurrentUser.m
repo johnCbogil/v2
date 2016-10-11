@@ -216,6 +216,41 @@
 
 - (void)fetchGroupForKey:(NSString *)key WithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
     
+    [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
+//            [self toggleActivityIndicatorOff];
+            return;
+        }
+        
+        // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
+        NSInteger index = [[CurrentUser sharedInstance].listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+            if ([group.key isEqualToString:key]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+            
+        }];
+        if (index != NSNotFound) {
+            // We already have this group in our table
+//            [self toggleActivityIndicatorOff];
+            return;
+        }
+        
+        Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
+        
+        [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
+//        [self.tableView reloadData];
+        
+        // Retrieve the actions for this group
+        if(!snapshot.value[@"actions"]) {
+            return;
+        }
+        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
+        for (NSString *actionKey in actionKeys) {
+//            [self fetchActionsForActionKey:actionKey];
+        }
+    }];
 }
 
 
