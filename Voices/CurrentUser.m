@@ -214,6 +214,10 @@
     
 }
 
+- (void)fetchGroupForKey:(NSString *)key WithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+}
+
 
 
 
