@@ -40,9 +40,10 @@
     self = [super init];
     if(self != nil) {
         
-        
         [self createInitialReferences];
-                
+        
+        self.listOfFollowedGroups = @{}.mutableCopy;
+        
         if ([FIRAuth auth].currentUser.uid) {
             [self createUserReferences];
         }

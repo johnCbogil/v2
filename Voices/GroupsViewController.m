@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
+//@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
 @property (strong, nonatomic) NSMutableArray <Action *> *listOfActions;
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.listOfFollowedGroups = @[].mutableCopy;
+//    [CurrentUser sharedInstance].listOfFollowedGroups = @[].mutableCopy;
     self.listOfActions = @[].mutableCopy;
     
     [self configureTableView];
@@ -134,7 +134,7 @@
             }
         }
         else {
-            if (!self.listOfFollowedGroups.count) {
+            if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
                 self.tableView.backgroundView.hidden = NO;
             }
             else {
@@ -166,7 +166,7 @@
     [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userId WithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
-
+        [self.tableView reloadData];
         for (Group *group in listOfFollowedGroups) {
             [self fetchGroupWithKey:group.key];
         }
@@ -184,7 +184,7 @@
         }
         
         // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-        NSInteger index = [self.listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+        NSInteger index = [[CurrentUser sharedInstance].listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
             if ([group.key isEqualToString:groupKey]) {
                 *stop = YES;
                 return YES;
@@ -200,7 +200,7 @@
         
         Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
         
-        [self.listOfFollowedGroups addObject:group];
+        [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
         [self.tableView reloadData];
         
         // Retrieve the actions for this group
@@ -257,14 +257,14 @@
 - (void)removeGroup:(Group *)group {
     
     // Remove group from local array
-    [self.listOfFollowedGroups removeObject:group];
+    [[CurrentUser sharedInstance].listOfFollowedGroups removeObject:group];
     NSMutableArray *discardedGroups = [NSMutableArray array];
-    for (Group *g in self.listOfFollowedGroups) {
+    for (Group *g in [CurrentUser sharedInstance].listOfFollowedGroups) {
         if ([g.key isEqualToString:group.key]) {
             [discardedGroups addObject:g];
         }
     }
-    [self.listOfFollowedGroups removeObjectsInArray:discardedGroups];
+    [[CurrentUser sharedInstance].listOfFollowedGroups removeObjectsInArray:discardedGroups];
     
     // Remove group from user's groups
     [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key]removeValue];
@@ -308,7 +308,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.selectedSegment) {
-        return self.listOfFollowedGroups.count;
+        return [CurrentUser sharedInstance].listOfFollowedGroups.count;
     }
     else {
         return self.listOfActions.count;
@@ -325,7 +325,7 @@
     }
     else {
         GroupTableViewCell *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
-        Group *group = self.listOfFollowedGroups[indexPath.row];
+        Group *group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         [cell initWithGroup:group];
         return cell;
     }
@@ -342,7 +342,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Group *currGroup = self.listOfFollowedGroups[indexPath.row];
+        Group *currGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         [self removeGroup:currGroup];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:currGroup.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
         [alert show];
@@ -356,7 +356,7 @@
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     if (self.segmentControl.selectedSegmentIndex) {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-        groupDetailViewController.group = self.listOfFollowedGroups[indexPath.row];
+        groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         groupDetailViewController.currentUserID = self.currentUserID;
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
