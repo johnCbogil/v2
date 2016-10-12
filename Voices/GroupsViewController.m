@@ -214,7 +214,8 @@
         }
         NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
         for (NSString *actionKey in actionKeys) {
-            [self fetchActionsForActionKey:actionKey];
+//            [self fetchActionsForActionKey:actionKey];
+            
         }
     }];
 }
