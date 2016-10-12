@@ -248,14 +248,14 @@
             return;
         }
         NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
-        for (NSString *actionKey in actionKeys) {
-            
-            [self fetchActionsForActionKey:actionKey WithCompletion:^(NSArray *listOfActions) {
-                
-            } onError:^(NSError *error) {
-                
-            }];
-        }
+//        for (NSString *actionKey in actionKeys) {
+//            
+//            [self fetchActionsForActionKey:actionKey WithCompletion:^(NSArray *listOfActions) {
+//                
+//            } onError:^(NSError *error) {
+//                
+//            }];
+//        }
     }];
 }
 
@@ -292,6 +292,10 @@
 //        [self toggleActivityIndicatorOff];
     }];
 }
+
+// fetchActions (accepts nothing), does have completion block
+    // loops through action keys and creates actions
+    // completion when iterated thru all keys
 
 
 @end

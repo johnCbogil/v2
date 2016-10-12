@@ -82,7 +82,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.currentUserID) {
-        [self fetchFollowedGroupsForUserId:self.currentUserID];
+        [self fetchFollowedGroupsForUserID:self.currentUserID];
     }
     else {
         self.tableView.backgroundView.hidden = NO;
@@ -152,18 +152,18 @@
         return;
     }
     self.isUserAuthInProgress = YES;
-    NSString *userId = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-    if (userId) {
-        [self fetchFollowedGroupsForUserId:userId];
+    NSString *userID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
+    if (userID) {
+        [self fetchFollowedGroupsForUserID:userID];
     }
 }
 
-- (void)fetchFollowedGroupsForUserId:(NSString *)userId {
+- (void)fetchFollowedGroupsForUserID:(NSString *)userID {
     
     self.isUserAuthInProgress = NO;
     [self toggleActivityIndicatorOn];
     
-    [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userId WithCompletion:^(NSArray *listOfFollowedGroups) {
+    [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userID WithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
@@ -178,6 +178,12 @@
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
+}
+
+- (void)fetchActionsForUserID:(NSString *)userID {
+    
+    
+    
 }
 
 - (void)fetchGroupWithKey:(NSString *)groupKey {
@@ -212,11 +218,10 @@
         if(!snapshot.value[@"actions"]) {
             return;
         }
-        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
-        for (NSString *actionKey in actionKeys) {
+//        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
+//        for (NSString *actionKey in actionKeys) {
 //            [self fetchActionsForActionKey:actionKey];
-            
-        }
+//        }
     }];
 }
 
@@ -392,7 +397,7 @@
     self.segmentControl = (UISegmentedControl *) sender;
     self.selectedSegment = self.segmentControl.selectedSegmentIndex;
     if (self.currentUserID) {
-        [self fetchFollowedGroupsForUserId:self.currentUserID];
+        [self fetchFollowedGroupsForUserID:self.currentUserID];
     } else {
         [self userAuth];
     }
