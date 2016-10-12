@@ -167,14 +167,14 @@
         [self toggleActivityIndicatorOff];
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
-        for (Group *group in listOfFollowedGroups) {
+//        for (Group *group in listOfFollowedGroups) {
 //            [self fetchGroupWithKey:group.key];
-            [[CurrentUser sharedInstance]fetchGroupForKey:group.key WithCompletion:^(NSArray *listOfActions) {
-                
-            } onError:^(NSError *error) {
-                
-            }];
-        }
+//            [[CurrentUser sharedInstance]fetchGroupForKey:group.key WithCompletion:^(NSArray *listOfActions) {
+//                
+//            } onError:^(NSError *error) {
+//                
+//            }];
+//        }
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
