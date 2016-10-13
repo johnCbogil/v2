@@ -196,7 +196,7 @@
                 if (!group.debug) {
                     [self.listOfFollowedGroups addObject:group];
                 }
-                successBlock(self.listOfFollowedGroups);
+//                successBlock(self.listOfFollowedGroups);
                 
 //                self.listOfFollowedGroups = groupsArray;
 //                [self.tableView reloadData];
