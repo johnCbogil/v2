@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
 //@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
-@property (strong, nonatomic) NSMutableArray <Action *> *listOfActions;
+//@property (strong, nonatomic) NSMutableArray <Action *> *listOfActions;
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -44,7 +44,7 @@
     [super viewDidLoad];
     
 //    [CurrentUser sharedInstance].listOfFollowedGroups = @[].mutableCopy;
-    self.listOfActions = @[].mutableCopy;
+//    self.listOfActions = @[].mutableCopy;
     
     [self configureTableView];
     [self createActivityIndicator];
@@ -126,7 +126,7 @@
         
         // TODO: THIS IS NOT DRY
         if (self.selectedSegment == 0) {
-            if (!self.listOfActions.count) {
+            if (![CurrentUser sharedInstance].listOfActions.count) {
                 self.tableView.backgroundView.hidden = NO;
             }
             else {
@@ -167,6 +167,12 @@
         [self toggleActivityIndicatorOff];
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
+        
+        [[CurrentUser sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
+            [self.tableView reloadData];
+        } onError:^(NSError *error) {
+            
+        }];
 //        for (Group *group in listOfFollowedGroups) {
 //            [self fetchGroupWithKey:group.key];
 //            [[CurrentUser sharedInstance]fetchGroupForKey:group.key WithCompletion:^(NSArray *listOfActions) {
@@ -180,50 +186,46 @@
     }];
 }
 
-- (void)fetchActionsForUserID:(NSString *)userID {
-    
-    
-    
-}
 
-- (void)fetchGroupWithKey:(NSString *)groupKey {
-    
-    [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
-            [self toggleActivityIndicatorOff];
-            return;
-        }
-        
-        // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-        NSInteger index = [[CurrentUser sharedInstance].listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-            if ([group.key isEqualToString:groupKey]) {
-                *stop = YES;
-                return YES;
-            }
-            return NO;
-            
-        }];
-        if (index != NSNotFound) {
-            // We already have this group in our table
-            [self toggleActivityIndicatorOff];
-            return;
-        }
-        
-        Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
-        
-        [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
-        [self.tableView reloadData];
-        
-        // Retrieve the actions for this group
-        if(!snapshot.value[@"actions"]) {
-            return;
-        }
-//        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
-//        for (NSString *actionKey in actionKeys) {
-//            [self fetchActionsForActionKey:actionKey];
+//- (void)fetchGroupWithKey:(NSString *)groupKey {
+//    
+//    [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
+//            [self toggleActivityIndicatorOff];
+//            return;
 //        }
-    }];
-}
+//        
+//        // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
+//        NSInteger index = [[CurrentUser sharedInstance].listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
+//            if ([group.key isEqualToString:groupKey]) {
+//                *stop = YES;
+//                return YES;
+//            }
+//            return NO;
+//            
+//        }];
+//        if (index != NSNotFound) {
+//            // We already have this group in our table
+//            [self toggleActivityIndicatorOff];
+//            return;
+//        }
+//        
+//        Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+//        
+//        [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
+//        [self.tableView reloadData];
+//        
+//        // Retrieve the actions for this group
+//        if(!snapshot.value[@"actions"]) {
+//            return;
+//        }
+//        [[CurrentUser sharedInstance]fetchActionsForUserID];
+////        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
+////        for (NSString *actionKey in actionKeys) {
+////            [self fetchActionsForActionKey:actionKey];
+////        }
+//    }];
+//}
 
 - (void)fetchActionsForActionKey:(NSString *)actionKey {
     [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -232,7 +234,7 @@
         }
         
         // Check to see if the action key is in the listOfActions
-        NSInteger index = [self.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
             if ([action.key isEqualToString:actionKey]) {
                 *stop = YES;
                 return YES;
@@ -250,7 +252,7 @@
         double currentTimeUnix = currentTime.timeIntervalSince1970;
         
         if(newAction.timestamp < currentTimeUnix) {
-            [self.listOfActions addObject:newAction];
+            [[CurrentUser sharedInstance].listOfActions addObject:newAction];
             [self.tableView reloadData];
             [self sortActionsByTime];
         }
@@ -262,7 +264,7 @@
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    self.listOfActions = [self.listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
 }
 
 - (void)removeGroup:(Group *)group {
@@ -289,12 +291,12 @@
     
     // Remove associated actions
     NSMutableArray *discardedActions = [NSMutableArray array];
-    for (Action *action in self.listOfActions) {
+    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
         if ([action.groupKey isEqualToString:group.key]) {
             [discardedActions addObject:action];
         }
     }
-    [self.listOfActions removeObjectsInArray:discardedActions];
+    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
@@ -311,7 +313,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-    actionDetailViewController.action = self.listOfActions[indexPath.row];
+    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
 
@@ -322,7 +324,7 @@
         return [CurrentUser sharedInstance].listOfFollowedGroups.count;
     }
     else {
-        return self.listOfActions.count;
+        return [CurrentUser sharedInstance].listOfActions.count;
     }
 }
 
@@ -330,7 +332,7 @@
     if (self.selectedSegment == 0) {
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-        Action *action = self.listOfActions[indexPath.row];
+        Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         [cell initWithAction:action];
         return cell;
     }
@@ -373,7 +375,7 @@
     }
     else {
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        actionDetailViewController.action = self.listOfActions[indexPath.row];
+        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
