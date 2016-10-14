@@ -260,12 +260,12 @@
 //    }];
 //}
 
-- (void)sortActionsByTime {
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-}
+//- (void)sortActionsByTime {
+//    
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+//}
 
 - (void)removeGroup:(Group *)group {
     
