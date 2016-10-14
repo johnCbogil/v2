@@ -251,8 +251,9 @@
             
             if(newAction.timestamp < currentTimeUnix) {
                 [self.listOfActions addObject:newAction];
+                [self sortActionsByTime];
+                successBlock(self.listOfActions);
                 //                [self.tableView reloadData];
-                //                [self sortActionsByTime];
             }
             //            [self toggleActivityIndicatorOff];
         }];
@@ -260,7 +261,13 @@
     }
     successBlock(self.listOfActions);
     
+}
+
+- (void)sortActionsByTime {
     
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
 }
 
 //- (void)fetchGroupForKey:(NSString *)key WithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {

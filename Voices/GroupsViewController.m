@@ -227,38 +227,38 @@
 //    }];
 //}
 
-- (void)fetchActionsForActionKey:(NSString *)actionKey {
-    [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        if (snapshot.value == [NSNull null]) {
-            return ;
-        }
-        
-        // Check to see if the action key is in the listOfActions
-        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-            if ([action.key isEqualToString:actionKey]) {
-                *stop = YES;
-                return YES;
-            }
-            return NO;
-        }];
-        if (index != NSNotFound) {
-            // We already have this group in our table
-            return;
-        }
-        NSLog(@"%@", snapshot.value);
-        Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-        
-        NSDate *currentTime = [NSDate date];
-        double currentTimeUnix = currentTime.timeIntervalSince1970;
-        
-        if(newAction.timestamp < currentTimeUnix) {
-            [[CurrentUser sharedInstance].listOfActions addObject:newAction];
-            [self.tableView reloadData];
-            [self sortActionsByTime];
-        }
-        [self toggleActivityIndicatorOff];
-    }];
-}
+//- (void)fetchActionsForActionKey:(NSString *)actionKey {
+//    [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        if (snapshot.value == [NSNull null]) {
+//            return ;
+//        }
+//        
+//        // Check to see if the action key is in the listOfActions
+//        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+//            if ([action.key isEqualToString:actionKey]) {
+//                *stop = YES;
+//                return YES;
+//            }
+//            return NO;
+//        }];
+//        if (index != NSNotFound) {
+//            // We already have this group in our table
+//            return;
+//        }
+//        NSLog(@"%@", snapshot.value);
+//        Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+//        
+//        NSDate *currentTime = [NSDate date];
+//        double currentTimeUnix = currentTime.timeIntervalSince1970;
+//        
+//        if(newAction.timestamp < currentTimeUnix) {
+//            [[CurrentUser sharedInstance].listOfActions addObject:newAction];
+//            [self.tableView reloadData];
+//            [self sortActionsByTime];
+//        }
+//        [self toggleActivityIndicatorOff];
+//    }];
+//}
 
 - (void)sortActionsByTime {
     
