@@ -207,6 +207,7 @@
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
                 [self fetchActionsWithCompletion:^(NSArray *listOfActions) {
+                    self.actionKeys = @[].mutableCopy;
                     successBlock(listOfActions);
                 } onError:^(NSError *error) {
                     
