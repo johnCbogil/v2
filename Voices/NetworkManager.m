@@ -53,7 +53,7 @@
         NSLog(@"Error: %@", error);
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         if (error.code == -1009) {
-            alert.message = @"The internet connection appears to be offline";
+            alert.message = @"The internet connection appears to be offline.";
         }
         else {
             alert.message = @"It appears there was a server error";
