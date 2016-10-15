@@ -74,7 +74,6 @@
     [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
         if (error) {
             NSLog(@"UserAuth error: %@", error);
-//            self.isUserAuthInProgress = NO;
             return;
         }
         
@@ -88,7 +87,6 @@
         [self.usersRef updateChildValues:@{self.userID : @{@"userID" : self.userID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             if (error) {
                 NSLog(@"Error adding user to database: %@", error);
-//                self.isUserAuthInProgress = NO;
                 return;
             }
             NSLog(@"Created user %@ in database", self.userID);
@@ -147,33 +145,23 @@
 }
 
 - (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock {
- 
-//    self.isUserAuthInProgress = NO;
-    
-//    [self toggleActivityIndicatorOn];
-//    __weak GroupsViewController *weakSelf = self;
+
     self.listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
     [[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         // This is happening once per group
         if ([snapshot.value isKindOfClass:[NSNull class]]) {
-//            [weakSelf toggleActivityIndicatorOff];
             successBlock(nil);
             return;
         }
-        // Retrieve this group's key
-        
         NSDictionary *groupsKeys = snapshot.value;
         NSArray *keys = groupsKeys.allKeys;
 
         for (NSString *key in keys) {
             // Go to the groups table
-//            [weakSelf fetchGroupWithKey:key groupsArray:groupsArray];
-            
             [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
-//                    [self toggleActivityIndicatorOff];
                     return;
                 }
                 // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
@@ -187,7 +175,6 @@
                 }];
                 if (index != NSNotFound) {
                     // We already have this group in our table
-//                    [self toggleActivityIndicatorOff];
                     return;
                 }
                 
@@ -196,10 +183,6 @@
                 if (!group.debug) {
                     [self.listOfFollowedGroups addObject:group];
                 }
-//                successBlock(self.listOfFollowedGroups);
-                
-//                self.listOfFollowedGroups = groupsArray;
-//                [self.tableView reloadData];
                 
                 // Retrieve the actions for this group
                 if(!snapshot.value[@"actions"]) {
@@ -212,16 +195,12 @@
                 } onError:^(NSError *error) {
                     
                 }];
-//                for (NSString *actionKey in actionKeys) {
-//                    [self fetchActionsForActionKey:actionKey];
-//                }
             }];
 
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
-    
 }
 
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
@@ -261,7 +240,6 @@
         
     }
     successBlock(self.listOfActions);
-    
 }
 
 - (void)sortActionsByTime {
@@ -270,89 +248,5 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
 }
-
-//- (void)fetchGroupForKey:(NSString *)key WithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
-//    
-//    [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
-////            [self toggleActivityIndicatorOff];
-//            return;
-//        }
-//        
-//        // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-//        NSInteger index = [[CurrentUser sharedInstance].listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-//            if ([group.key isEqualToString:key]) {
-//                *stop = YES;
-//                return YES;
-//            }
-//            return NO;
-//            
-//        }];
-//        if (index != NSNotFound) {
-//            // We already have this group in our table
-////            [self toggleActivityIndicatorOff];
-//            return;
-//        }
-//        
-//        Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
-//        
-//        [self.listOfFollowedGroups addObject:group];
-////        [self.tableView reloadData];
-//        
-//        // Retrieve the actions for this group
-//        if(!snapshot.value[@"actions"]) {
-//            return;
-//        }
-//        self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
-////        for (NSString *actionKey in actionKeys) {
-////            
-////            [self fetchActionsForActionKey:actionKey WithCompletion:^(NSArray *listOfActions) {
-////                
-////            } onError:^(NSError *error) {
-////                
-////            }];
-////        }
-//    }];
-//}
-
-//- (void)fetchActionsForActionKey:(NSString *)actionKey WithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
-//
-//    [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        if (snapshot.value == [NSNull null]) {
-//            return ;
-//        }
-//        
-//        // Check to see if the action key is in the listOfActions
-//        NSInteger index = [self.listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-//            if ([action.key isEqualToString:actionKey]) {
-//                *stop = YES;
-//                return YES;
-//            }
-//            return NO;
-//        }];
-//        if (index != NSNotFound) {
-//            // We already have this group in our table
-//            return;
-//        }
-//        NSLog(@"%@", snapshot.value);
-//        Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-//        
-//        NSDate *currentTime = [NSDate date];
-//        double currentTimeUnix = currentTime.timeIntervalSince1970;
-//        
-//        if(newAction.timestamp < currentTimeUnix) {
-//            [self.listOfActions addObject:newAction];
-////            [self.tableView reloadData];
-////            [self sortActionsByTime];
-//        }
-////        [self toggleActivityIndicatorOff];
-//    }];
-//}
-
-// fetchActions (accepts nothing), does have completion block
-    // loops through action keys and creates actions
-    // completion when iterated thru all keys
-
-
 
 @end

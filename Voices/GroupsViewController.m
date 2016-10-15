@@ -26,8 +26,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (nonatomic) NSInteger selectedSegment;
-//@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
-//@property (strong, nonatomic) NSMutableArray <Action *> *listOfActions;
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -42,9 +40,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [CurrentUser sharedInstance].listOfFollowedGroups = @[].mutableCopy;
-//    self.listOfActions = @[].mutableCopy;
     
     [self configureTableView];
     [self createActivityIndicator];
@@ -173,99 +168,10 @@
         } onError:^(NSError *error) {
             
         }];
-//        for (Group *group in listOfFollowedGroups) {
-//            [self fetchGroupWithKey:group.key];
-//            [[CurrentUser sharedInstance]fetchGroupForKey:group.key WithCompletion:^(NSArray *listOfActions) {
-//                
-//            } onError:^(NSError *error) {
-//                
-//            }];
-//        }
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
 }
-
-
-//- (void)fetchGroupWithKey:(NSString *)groupKey {
-//    
-//    [[self.groupsRef child:groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
-//            [self toggleActivityIndicatorOff];
-//            return;
-//        }
-//        
-//        // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-//        NSInteger index = [[CurrentUser sharedInstance].listOfFollowedGroups indexOfObjectPassingTest:^BOOL(Group *group, NSUInteger idx, BOOL *stop) {
-//            if ([group.key isEqualToString:groupKey]) {
-//                *stop = YES;
-//                return YES;
-//            }
-//            return NO;
-//            
-//        }];
-//        if (index != NSNotFound) {
-//            // We already have this group in our table
-//            [self toggleActivityIndicatorOff];
-//            return;
-//        }
-//        
-//        Group *group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
-//        
-//        [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
-//        [self.tableView reloadData];
-//        
-//        // Retrieve the actions for this group
-//        if(!snapshot.value[@"actions"]) {
-//            return;
-//        }
-//        [[CurrentUser sharedInstance]fetchActionsForUserID];
-////        NSArray *actionKeys = [snapshot.value[@"actions"] allKeys];
-////        for (NSString *actionKey in actionKeys) {
-////            [self fetchActionsForActionKey:actionKey];
-////        }
-//    }];
-//}
-
-//- (void)fetchActionsForActionKey:(NSString *)actionKey {
-//    [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        if (snapshot.value == [NSNull null]) {
-//            return ;
-//        }
-//        
-//        // Check to see if the action key is in the listOfActions
-//        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-//            if ([action.key isEqualToString:actionKey]) {
-//                *stop = YES;
-//                return YES;
-//            }
-//            return NO;
-//        }];
-//        if (index != NSNotFound) {
-//            // We already have this group in our table
-//            return;
-//        }
-//        NSLog(@"%@", snapshot.value);
-//        Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-//        
-//        NSDate *currentTime = [NSDate date];
-//        double currentTimeUnix = currentTime.timeIntervalSince1970;
-//        
-//        if(newAction.timestamp < currentTimeUnix) {
-//            [[CurrentUser sharedInstance].listOfActions addObject:newAction];
-//            [self.tableView reloadData];
-//            [self sortActionsByTime];
-//        }
-//        [self toggleActivityIndicatorOff];
-//    }];
-//}
-
-//- (void)sortActionsByTime {
-//    
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-//}
 
 - (void)removeGroup:(Group *)group {
     
