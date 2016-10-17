@@ -246,7 +246,40 @@
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+    self.listOfActions = [self.listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
 }
+
+- (void)removeGroup:(Group *)group {
+    
+    // Remove group from local array
+    [self.listOfFollowedGroups removeObject:group];
+    NSMutableArray *discardedGroups = [NSMutableArray array];
+    for (Group *g in self.listOfFollowedGroups) {
+        if ([g.key isEqualToString:group.key]) {
+            [discardedGroups addObject:g];
+        }
+    }
+    [self.listOfFollowedGroups removeObjectsInArray:discardedGroups];
+    
+    // Remove group from user's groups
+    [[[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:group.key]removeValue];
+    
+    // Remove user from group's users
+    [[[[self.groupsRef child:group.key]child:@"followers"]child:[FIRAuth auth].currentUser.uid]removeValue];
+    
+    // Remove group from user's subscriptions
+    [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
+    NSLog(@"User unsubscribed to %@", group.key);
+    
+    // Remove associated actions
+    NSMutableArray *discardedActions = [NSMutableArray array];
+    for (Action *action in self.listOfActions) {
+        if ([action.groupKey isEqualToString:group.key]) {
+            [discardedActions addObject:action];
+        }
+    }
+    [self.listOfActions removeObjectsInArray:discardedActions];
+}
+
 
 @end

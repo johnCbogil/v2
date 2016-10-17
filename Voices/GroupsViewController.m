@@ -55,13 +55,6 @@
     self.actionsRef = [self.rootRef child:@"actions"];
     self.currentUserID = [FIRAuth auth].currentUser.uid;
     self.isUserAuthInProgress = NO;
-    
-    // TODO: Change this to a delegate, or perhaps this can be addressed by firebase manager refactor
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
-}
-
-- (void)removeGroupFromDetailViewController:(NSNotification *)notification {
-    [self removeGroup:notification.object];
 }
 
 - (void)configureEmptyState {
@@ -173,38 +166,6 @@
     }];
 }
 
-- (void)removeGroup:(Group *)group {
-    
-    // Remove group from local array
-    [[CurrentUser sharedInstance].listOfFollowedGroups removeObject:group];
-    NSMutableArray *discardedGroups = [NSMutableArray array];
-    for (Group *g in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        if ([g.key isEqualToString:group.key]) {
-            [discardedGroups addObject:g];
-        }
-    }
-    [[CurrentUser sharedInstance].listOfFollowedGroups removeObjectsInArray:discardedGroups];
-    
-    // Remove group from user's groups
-    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key]removeValue];
-    
-    // Remove user from group's users
-    [[[[self.groupsRef child:group.key]child:@"followers"]child:self.currentUserID]removeValue];
-    
-    // Remove group from user's subscriptions
-    [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
-    NSLog(@"User unsubscribed to %@", group.key);
-    
-    // Remove associated actions
-    NSMutableArray *discardedActions = [NSMutableArray array];
-    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        if ([action.groupKey isEqualToString:group.key]) {
-            [discardedActions addObject:action];
-        }
-    }
-    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
-}
-
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
     
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
@@ -261,9 +222,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Group *currGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        [self removeGroup:currGroup];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:currGroup.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
+        Group *currentGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
+        [[CurrentUser sharedInstance]removeGroup:currentGroup];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:currentGroup.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
         [alert show];
         
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

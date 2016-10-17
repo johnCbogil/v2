@@ -149,8 +149,9 @@
                                       actionWithTitle:@"Unfollow"
                                       style:UIAlertActionStyleDestructive
                                       handler:^(UIAlertAction * action) {
+                                          
                                           // Remove group
-                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:self.group];
+                                          [[CurrentUser sharedInstance]removeGroup:self.group];
                                           
                                           // read the value once to see if group key exists
                                           [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
