@@ -87,19 +87,39 @@
 
 - (IBAction)didPressCallButton:(id)sender {
     if (self.representative.phone) {
-        NSString *confirmCallMessage;
-
-        confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.repName.text];
         
-        UIAlertView *confirmCallAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ %@", self.repTitle.text,self.repName.text]  message:confirmCallMessage delegate:nil cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-        [confirmCallAlert show];
-        confirmCallAlert.delegate = self;
+        NSString *confirmCallMessage = [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.repName.text];
+        
+        UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@ %@", self.repTitle.text,self.repName.text] message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
+        
+        //button 0 action
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
+        }]];
+        
+        //button 1 action
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            //        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.repName.text, kFIRParameterValue : @1}];
+            
+            NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
+            if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
+                
+                [[UIApplication sharedApplication] openURL:callUrl];
+            }
+            else {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number, try tweeting at them instead."  preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+            }
+        }]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:nil];
     }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number, try tweeting at them instead." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+    else{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number"  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
-
 }
 
 - (IBAction)didPressEmailButton:(id)sender {
@@ -107,8 +127,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." delegate:nil cancelButtonTitle:@"Good Idea" otherButtonTitles:nil, nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Good Idea" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
 
@@ -120,14 +141,16 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead." delegate:nil cancelButtonTitle:@"Good Idea" otherButtonTitles:nil, nil];
-            [alert show];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their Twitter handle, try calling instead."preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Good Idea" style:UIAlertActionStyleDefault handler:nil]];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
         }
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please install Twitter first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Please install Twitter first."preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+        }
 }
 
 -(void)createWithRepresentative{
@@ -151,28 +174,6 @@
     
     if(self.representative.districtFullName && ![self.representative.title  isEqual: @"Senator"]){
         self.repPartyDistrict.text = [self.repPartyDistrict.text stringByAppendingString:[NSString stringWithFormat:@" %@",self.representative.districtFullName]];
-    }
-}
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
-    }
-    else if (buttonIndex == 1) {
-        
-        //[FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.repName.text, kFIRParameterValue : @1}];
-        
-        NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.representative.phone]];
-        if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
-            
-            [[UIApplication sharedApplication] openURL:callUrl];
-            
-        }
-        else {
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Oops" message:@"This representative hasn't given us their phone number"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
     }
 }
 
