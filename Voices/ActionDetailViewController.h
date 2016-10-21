@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Action.h"
+#import "ActionWebViewController.h"
 
-@interface ActionDetailViewController : UIViewController
+@interface ActionDetailViewController : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) Action *action;
 
