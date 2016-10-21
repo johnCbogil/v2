@@ -263,8 +263,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Group *currGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         [self removeGroup:currGroup];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:currGroup.name message:@"You will no longer receive actions from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-        [alert show];
+       
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currGroup.name  message:@"You will no longer receive actions from this group" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
         
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
