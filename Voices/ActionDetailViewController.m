@@ -10,7 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 
 
-@interface ActionDetailViewController ()
+@interface ActionDetailViewController()
 
 @property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
@@ -31,6 +31,7 @@
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
     self.actionBodyTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.actionBodyTextView.delegate = self;
     
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
@@ -81,5 +82,14 @@
     NSNumber *level = [NSNumber numberWithInt:self.action.level];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];
 }
+
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
+    webVC.linkURL = URL;
+    [self.navigationController pushViewController:webVC animated:YES];
+    return NO;
+}
+
+
 
 @end

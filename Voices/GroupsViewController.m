@@ -40,28 +40,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self configureTableView];
     [self createActivityIndicator];
-    
+
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    
+
     self.segmentControl.tintColor = [UIColor voicesOrange];
-    
+
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
     self.actionsRef = [self.rootRef child:@"actions"];
     self.currentUserID = [FIRAuth auth].currentUser.uid;
     self.isUserAuthInProgress = NO;
-    
-    // TODO: Change this to a delegate, or perhaps this can be addressed by firebase manager refactor
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeGroupFromDetailViewController:) name:@"removeGroup" object:nil];
-}
-
-- (void)removeGroupFromDetailViewController:(NSNotification *)notification {
-    [self removeGroup:notification.object];
 }
 
 - (void)configureEmptyState {
@@ -82,12 +75,12 @@
     else {
         self.tableView.backgroundView.hidden = NO;
     }
-    
+
     [self.tableView reloadData];
 }
 
 - (void)configureTableView {
-    
+
     self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
     if (!self.isUserAuthInProgress) {
@@ -116,9 +109,9 @@
 }
 
 - (void)toggleActivityIndicatorOff {
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+
         // TODO: THIS IS NOT DRY
         if (self.selectedSegment == 0) {
             if (![CurrentUser sharedInstance].listOfActions.count) {
@@ -154,59 +147,27 @@
 }
 
 - (void)fetchFollowedGroupsForUserID:(NSString *)userID {
-    
+
     self.isUserAuthInProgress = NO;
     [self toggleActivityIndicatorOn];
-    
+
     [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userID WithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
-        
+
         [[CurrentUser sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
             [self.tableView reloadData];
         } onError:^(NSError *error) {
-            
+
         }];
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
 }
 
-- (void)removeGroup:(Group *)group {
-    
-    // Remove group from local array
-    [[CurrentUser sharedInstance].listOfFollowedGroups removeObject:group];
-    NSMutableArray *discardedGroups = [NSMutableArray array];
-    for (Group *g in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        if ([g.key isEqualToString:group.key]) {
-            [discardedGroups addObject:g];
-        }
-    }
-    [[CurrentUser sharedInstance].listOfFollowedGroups removeObjectsInArray:discardedGroups];
-    
-    // Remove group from user's groups
-    [[[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key]removeValue];
-    
-    // Remove user from group's users
-    [[[[self.groupsRef child:group.key]child:@"followers"]child:self.currentUserID]removeValue];
-    
-    // Remove group from user's subscriptions
-    [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
-    NSLog(@"User unsubscribed to %@", group.key);
-    
-    // Remove associated actions
-    NSMutableArray *discardedActions = [NSMutableArray array];
-    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        if ([action.groupKey isEqualToString:group.key]) {
-            [discardedActions addObject:action];
-        }
-    }
-    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
-}
-
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
-    
+
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
     viewControllerB.currentUserID = self.currentUserID;
@@ -214,7 +175,7 @@
 }
 
 - (void)learnMoreButtonDidPress:(UIButton*)sender {
-    
+
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
@@ -261,19 +222,21 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Group *currGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        [self removeGroup:currGroup];
-       
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currGroup.name  message:@"You will no longer receive actions from this group" preferredStyle:UIAlertControllerStyleAlert];
+        // Group *currGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
+        // [self removeGroup:currGroup];
+        Group *currentGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
+        [[CurrentUser sharedInstance]removeGroup:currentGroup];
+
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currentGroup.name  message:@"You will no longer receive actions from this group" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-        
+  
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     if (self.segmentControl.selectedSegmentIndex) {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
@@ -290,7 +253,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (self.selectedSegment) {
         return 75.0;
     }
