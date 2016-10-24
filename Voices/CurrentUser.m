@@ -120,9 +120,7 @@
                     NSLog(@"write error: %@", error);
                 }
                 else {
-                    //                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now receive updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-                    //                    [alert show];
-                    NSLog(@"Added user to group via deeplink succesfully");
+                     NSLog(@"Added user to group via deeplink succesfully");
                 }
             }];
             
