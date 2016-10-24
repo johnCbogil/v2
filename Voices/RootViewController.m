@@ -63,6 +63,7 @@
     [self configureSearchBar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(<#selector#>) name:@"refreshSearchText" object:nil];
 
 }
 
@@ -372,6 +373,10 @@
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
 
     }
+}
+
+- (void)refreshSearchText:(NSNotification *)notification {
+    
 }
 
 
