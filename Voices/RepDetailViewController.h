@@ -13,7 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 
 
-@interface RepDetailViewController : UIViewController <UIAlertViewDelegate>
+@interface RepDetailViewController : UIViewController  
 
 
 @property (strong, nonatomic) Representative *representative;
