@@ -95,6 +95,7 @@
 
 - (void)pullToRefresh {
     [[RepManager sharedInstance]startUpdatingLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchText" object:nil];
 }
 
 - (void)addObservers {

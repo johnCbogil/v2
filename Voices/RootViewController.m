@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (strong, nonatomic) CLGeocoder *geocoder;
 //@property (strong, nonatomic) UIView *tapView;
 
 @end
@@ -63,8 +64,6 @@
     [self configureSearchBar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(<#selector#>) name:@"refreshSearchText" object:nil];
-
 }
 
 - (void)viewDidLayoutSubviews {
@@ -192,6 +191,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
@@ -367,18 +367,15 @@
     }
     else if (pageNumber == 1) {
         [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-
     }
     else if (pageNumber == 2) {
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-
     }
 }
 
-- (void)refreshSearchText:(NSNotification *)notification {
-    
+- (void)refreshSearchText {
+    self.searchTextField.text = @"Current Location";
 }
-
 
 
 @end
