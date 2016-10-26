@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
-@property (strong, nonatomic) CLGeocoder *geocoder;
 //@property (strong, nonatomic) UIView *tapView;
 
 @end
@@ -380,7 +379,7 @@
 }
 
 - (void)refreshSearchText {
-    self.searchTextField.text = @"Current Location";
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 
