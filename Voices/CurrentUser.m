@@ -184,6 +184,7 @@
                 
                 // Retrieve the actions for this group
                 if(!snapshot.value[@"actions"]) {
+                    successBlock(nil);
                     return;
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
