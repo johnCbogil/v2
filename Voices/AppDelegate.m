@@ -23,13 +23,9 @@
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
     [self setInitialViewController];
     [self setCache];
@@ -37,12 +33,7 @@
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
-    
-    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-    
-    if (notificationPayload) {
-        
-    }
+    [CurrentUser sharedInstance];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
@@ -52,7 +43,6 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     
-    [CurrentUser sharedInstance];
     
     return YES;
 }
@@ -192,8 +182,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
-    
-    
 }
 
 - (void)setCache {
