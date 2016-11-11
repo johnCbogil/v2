@@ -32,9 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aON-K2-CgG">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aON-K2-CgG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JaX-wC-lyB">
                                     <size key="itemSize" width="50" height="50"/>
@@ -55,6 +54,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aON-K2-CgG" firstAttribute="bottom" secondItem="wcF-oG-GrQ" secondAttribute="top" id="0Na-nl-1Pb"/>
+                            <constraint firstAttribute="trailing" secondItem="aON-K2-CgG" secondAttribute="trailing" id="3GQ-7d-Pfj"/>
+                            <constraint firstItem="aON-K2-CgG" firstAttribute="leading" secondItem="uv7-4j-etL" secondAttribute="leading" id="M1o-WB-fJa"/>
+                            <constraint firstItem="aON-K2-CgG" firstAttribute="top" secondItem="uv7-4j-etL" secondAttribute="top" id="Xhs-oR-Dpn"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvL-yr-qKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
