@@ -7,6 +7,7 @@
 //
 
 #import "RepsCollectionViewController.h"
+#import "RepsCollectionViewCell.h"
 
 @interface RepsCollectionViewController ()
 
@@ -20,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.collectionView registerClass:[YourCustomCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[RepsCollectionViewCell class] forCellWithReuseIdentifier:@"RepsCollectionViewController"];
 
 }
 

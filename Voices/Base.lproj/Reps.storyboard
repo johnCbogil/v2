@@ -10,16 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Page View Controller-->
-        <scene sceneID="uVc-Za-bd9">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="4qp-9N-d7b" customClass="PageViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Z7g-wp-Sgv"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="29y-Ps-2Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1118" y="192"/>
-        </scene>
         <!--Reps Collection View Controller-->
         <scene sceneID="NHe-k4-6Hz">
             <objects>
@@ -29,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wcF-oG-GrQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uv7-4j-etL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aON-K2-CgG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="450"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JaX-wC-lyB">
                                     <size key="itemSize" width="50" height="50"/>
@@ -67,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvL-yr-qKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="289"/>
+            <point key="canvasLocation" x="1116" y="289"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="8Rm-bo-BwP">
@@ -117,7 +107,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-MQ-THZ">
                                 <rect key="frame" x="0.0" y="150" width="600" height="450"/>
                                 <connections>
-                                    <segue destination="4qp-9N-d7b" kind="embed" id="cWc-ff-RWx"/>
+                                    <segue destination="uTI-OG-QE8" kind="embed" id="UkZ-7s-XmT"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pPG-hc-XD3" userLabel="PageIndicatorView">
