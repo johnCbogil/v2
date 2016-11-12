@@ -10,6 +10,8 @@
 
 @interface RepsCollectionViewController ()
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @end
 
 @implementation RepsCollectionViewController
@@ -17,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.collectionView registerClass:[YourCustomCell class] forCellWithReuseIdentifier:reuseIdentifier];
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="1118" y="192"/>
         </scene>
-        <!--Reps View Controller-->
+        <!--Reps Collection View Controller-->
         <scene sceneID="NHe-k4-6Hz">
             <objects>
-                <viewController storyboardIdentifier="RepsViewController" id="uTI-OG-QE8" customClass="RepsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepsViewController" id="uTI-OG-QE8" customClass="RepsCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7uZ-Cc-R2W"/>
                         <viewControllerLayoutGuide type="bottom" id="wcF-oG-GrQ"/>
@@ -61,10 +61,13 @@
                             <constraint firstItem="aON-K2-CgG" firstAttribute="top" secondItem="uv7-4j-etL" secondAttribute="top" id="Xhs-oR-Dpn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="aON-K2-CgG" id="zkM-Wa-Fp6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvL-yr-qKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2157.5999999999999" y="310.79460269865069"/>
+            <point key="canvasLocation" x="2020" y="289"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="8Rm-bo-BwP">
