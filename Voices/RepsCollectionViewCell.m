@@ -13,6 +13,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.backgroundColor = [UIColor redColor];
 }
 @end
