@@ -34,7 +34,12 @@
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
  
-    self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:self.index];
+}
+
+- (void)initWithIndex:(NSInteger)index {
+    self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
+    [self.tableView reloadData];
+
 }
 
 #pragma mark - UITableView Delegate Methods

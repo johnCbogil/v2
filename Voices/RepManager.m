@@ -41,7 +41,7 @@
             return self.listOfFederalRepresentatives;
         }
         else {
-            [[LocationService sharedInstance]startUpdatingLocation];
+//            [[LocationService sharedInstance]startUpdatingLocation];
         }
     }
     else if (index == 1) {
