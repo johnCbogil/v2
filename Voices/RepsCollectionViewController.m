@@ -19,11 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-//    [self.collectionView registerClass:[RepsCollectionViewCell class] forCellWithReuseIdentifier:@"RepsCollectionViewCell"];
-    self.tempArray = @[@"federal", @"state", @"local"];
-    
+        
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -41,16 +37,15 @@
     return 1;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.tempArray.count;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
-    cell.label.text = [self.tempArray objectAtIndex:indexPath.row];
+    cell.index = indexPath.row;
     
     return cell;
 }
@@ -59,7 +54,6 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
- 
     return CGSizeMake(375, 517);
 }
 
