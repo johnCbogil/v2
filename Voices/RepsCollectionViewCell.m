@@ -10,4 +10,9 @@
 
 @implementation RepsCollectionViewCell
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+}
 @end

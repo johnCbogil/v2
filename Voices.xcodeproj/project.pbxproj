@@ -415,9 +415,9 @@
 				7E133DB51D53A50900F128CC /* EmptyRepTableViewCell.h */,
 				7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */,
 				7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */,
-				52BF3EBE1DD7C9F10041349B /* RepsCollectionViewCell.xib */,
 				52BF3EC01DD7CA400041349B /* RepsCollectionViewCell.h */,
 				52BF3EC11DD7CA400041349B /* RepsCollectionViewCell.m */,
+				52BF3EBE1DD7C9F10041349B /* RepsCollectionViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";

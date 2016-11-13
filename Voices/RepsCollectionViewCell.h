@@ -10,4 +10,7 @@
 
 @interface RepsCollectionViewCell : UICollectionViewCell
 
+
+@property (weak, nonatomic) IBOutlet UILabel *label;
+
 @end
