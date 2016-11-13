@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) NSArray *tableViewDataSource;
 @property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
