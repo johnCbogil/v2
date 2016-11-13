@@ -28,8 +28,7 @@
     self.collectionView.dataSource = self;
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"RepsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"RepsCollectionViewCell"];
-
-    
+    self.collectionView.pagingEnabled = YES;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -49,6 +48,14 @@
     cell.label.text = [self.tempArray objectAtIndex:indexPath.row];
     
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+ 
+    return CGSizeMake(375, 517);
 }
 
 @end
