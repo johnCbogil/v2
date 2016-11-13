@@ -7,6 +7,9 @@
 //
 
 #import "NewManager.h"
+#import "NetworkManager.h"
+#import "FederalRepresentative.h"
+
 
 @interface NewManager()
 
@@ -47,4 +50,27 @@
     }
     else return @[];
 }
+
+#pragma mark - Create Federal Representatives
+
+- (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
+                                         onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+        
+        // THIS FEELS REDUNDANT
+        NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
+        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
+            FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
+            [listOfFederalRepresentatives addObject:federalRepresentative];
+            self.fedReps = listOfFederalRepresentatives;
+            successBlock();
+        }
+        
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+
 @end

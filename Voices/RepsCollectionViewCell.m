@@ -10,7 +10,7 @@
 #import "RepTableViewCell.h"
 #import "EmptyRepTableViewCell.h"
 #import "RepManager.h"
-
+#import "NewManager.h"
 @interface RepsCollectionViewCell()
 
 @property (strong, nonatomic) NSArray *tableViewDataSource;
@@ -33,13 +33,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
+
  
-}
-
-- (void)initWithIndex:(NSInteger)index {
-    self.tableViewDataSource = [[RepManager sharedInstance]createRepsForIndex:index];
-    [self.tableView reloadData];
-
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -79,6 +76,11 @@
     else {
         return 400;
     }
+}
+
+- (void)reloadTableView {
+    self.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:self.index];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

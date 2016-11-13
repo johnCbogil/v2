@@ -17,6 +17,7 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
+#import "NewManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -143,7 +144,7 @@
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
-        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+        [[NewManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
             NSLog(@"%@", locationResults);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {

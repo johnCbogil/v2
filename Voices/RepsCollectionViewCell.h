@@ -10,6 +10,6 @@
 
 @interface RepsCollectionViewCell : UICollectionViewCell <UITableViewDelegate, UITableViewDataSource>
 
-- (void)initWithIndex:(NSInteger)integer;
+@property (nonatomic)NSInteger index;
 
 @end
