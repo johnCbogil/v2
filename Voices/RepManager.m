@@ -135,7 +135,7 @@
     }];
 }
 
--(StateRepresentative *)createGovernors:(NSString *)stateCode {
+- (StateRepresentative *)createGovernors:(NSString *)stateCode {
     
     StateRepresentative *governorRepresentative;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"stateGovernors" ofType:@"json"];

@@ -151,7 +151,7 @@
             [error localizedDescription];
         }];
         
-        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+        [[NewManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             [error localizedDescription];

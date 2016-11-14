@@ -11,5 +11,6 @@
 @interface RepsCollectionViewCell : UICollectionViewCell <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic)NSInteger index;
+@property (strong, nonatomic) NSArray *tableViewDataSource;
 
 @end

@@ -8,8 +8,9 @@
 
 #import "RepsCollectionViewController.h"
 #import "RepsCollectionViewCell.h"
+#import "NewManager.h"
 
-@interface RepsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface RepsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSArray *tempArray;
 
@@ -32,6 +33,8 @@
     
     self.tempArray = @[@"federal", @"state", @"local"];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
+    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -47,6 +50,18 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
+    
+//    cell.tableViewDataSource = @[];
+    
+    if (indexPath.item == 0) {
+        cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:0];
+    }
+    else if (indexPath.item == 1) {
+        cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:1];
+    }
+    else if (indexPath.item == 2) {
+        cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:2];
+    }
     cell.index = indexPath.item;
     
     return cell;
@@ -57,6 +72,17 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     return CGSizeMake(375, 517);
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSLog(@"%ld",indexPath.item);
+    }
+}
+
+- (void)reloadCollectionView {
+    [self.collectionView reloadData];
 }
 
 @end

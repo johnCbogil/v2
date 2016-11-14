@@ -9,7 +9,7 @@
 #import "NewManager.h"
 #import "NetworkManager.h"
 #import "FederalRepresentative.h"
-
+#import "StateRepresentative.h"
 
 @interface NewManager()
 
@@ -71,6 +71,57 @@
         errorBlock(error);
     }];
 }
+
+#pragma mark - Create State Representatives
+
+-(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
+    
+    [[NetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+        NSMutableArray *listOfStateRepresentatives = [[NSMutableArray alloc]init];
+        
+        BOOL firstRun = true;
+        
+        for (NSDictionary *resultDict in results) {
+            StateRepresentative *stateRepresentative = [[StateRepresentative alloc] initWithData:resultDict];
+            if (firstRun) {
+                NSString *stateCode = stateRepresentative.stateCode;
+                if (stateCode) {
+                    StateRepresentative *governor = [self createGovernors:stateCode];
+                    if (governor) {
+                        [listOfStateRepresentatives addObject:governor];
+                        firstRun = false;
+                    }
+                }
+            }
+            
+            if (successBlock) {
+                [listOfStateRepresentatives addObject:stateRepresentative];
+                self.stateReps = listOfStateRepresentatives;
+                successBlock();
+            }
+        }
+        
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+- (StateRepresentative *)createGovernors:(NSString *)stateCode {
+    
+    StateRepresentative *governorRepresentative;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"stateGovernors" ofType:@"json"];
+    NSData *governorJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+    NSDictionary *governorDataDictionary = [NSJSONSerialization JSONObjectWithData:governorJSONData options:NSJSONReadingAllowFragments error:nil];
+    for (NSDictionary *governor in governorDataDictionary) {
+        if ([[governor valueForKey:@"state"]caseInsensitiveCompare:stateCode] == NSOrderedSame) {
+            governorRepresentative = [[StateRepresentative alloc] initGovWithData:governor];
+            break;
+        }
+    }
+    return governorRepresentative;
+}
+
+
 
 
 @end

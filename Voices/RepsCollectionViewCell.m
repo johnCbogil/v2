@@ -13,7 +13,6 @@
 #import "NewManager.h"
 @interface RepsCollectionViewCell()
 
-@property (strong, nonatomic) NSArray *tableViewDataSource;
 @property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -23,8 +22,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
-    self.backgroundColor = [UIColor redColor];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -35,8 +32,8 @@
     self.tableView.allowsSelection = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
-
- 
+    
+//    self.tableViewDataSource = @[];
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -79,7 +76,6 @@
 }
 
 - (void)reloadTableView {
-    self.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:self.index];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
