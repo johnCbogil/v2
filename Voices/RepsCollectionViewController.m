@@ -44,7 +44,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.tempArray.count;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,6 +55,7 @@
     
     if (indexPath.item == 0) {
         cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:0];
+        
     }
     else if (indexPath.item == 1) {
         cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:1];
@@ -63,7 +64,7 @@
         cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:2];
     }
     cell.index = indexPath.item;
-    
+    [cell reloadTableView];
     return cell;
 }
 
@@ -71,7 +72,7 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    return CGSizeMake(375, 517);
+    return CGSizeMake(375, 517); //collectionview.frame.height, view.width
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -80,6 +81,7 @@
         NSLog(@"%ld",indexPath.item);
     }
 }
+
 
 - (void)reloadCollectionView {
     [self.collectionView reloadData];

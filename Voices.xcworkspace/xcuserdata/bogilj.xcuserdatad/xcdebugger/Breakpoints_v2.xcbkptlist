@@ -4,32 +4,35 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
+            filePath = "Voices/RootViewController.m"
+            timestampString = "500851680.246515"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-textFieldShouldReturn:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Voices/GroupsViewController.m"
-            timestampString = "498430084.471199"
+            filePath = "Voices/RepsCollectionViewController.m"
+            timestampString = "500851942.394556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "323"
-            endingLineNumber = "323">
-=======
-            startingLineNumber = "284"
-            endingLineNumber = "284">
->>>>>>> origin/develop
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-reloadCollectionView"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
