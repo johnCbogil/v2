@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepsCollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface RepsCollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @end

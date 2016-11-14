@@ -10,12 +10,6 @@
 #import "RepsCollectionViewCell.h"
 #import "NewManager.h"
 
-@interface RepsCollectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
-
-@property (strong, nonatomic) NSArray *tempArray;
-
-@end
-
 @implementation RepsCollectionViewController
 
 - (void)viewDidLoad {
@@ -30,8 +24,6 @@
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     flowLayout.minimumLineSpacing = 0.0;
     self.collectionView.collectionViewLayout = flowLayout;
-    
-    self.tempArray = @[@"federal", @"state", @"local"];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     
@@ -51,8 +43,6 @@
     
     RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
     
-//    cell.tableViewDataSource = @[];
-    
     if (indexPath.item == 0) {
         cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:0];
         
@@ -63,8 +53,11 @@
     else if (indexPath.item == 2) {
         cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:2];
     }
+    
     cell.index = indexPath.item;
+    
     [cell reloadTableView];
+    
     return cell;
 }
 

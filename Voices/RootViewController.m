@@ -121,8 +121,6 @@
     magnifyingGlass.contentMode = UIViewContentModeCenter;
     self.searchTextField.leftView = magnifyingGlass;
     
-    
-    
     // Create shadow
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor whiteColor];
@@ -157,12 +155,11 @@
             [error localizedDescription];
         }];
         
-        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        [[NewManager sharedInstance]createNYCRepsFromLocation:locationResults];
         
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
-    
     
     return NO;
 }

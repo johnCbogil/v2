@@ -30,10 +30,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:@"reloadData" object:nil];
-    
-//    self.tableViewDataSource = @[];
 }
 
 #pragma mark - UITableView Delegate Methods

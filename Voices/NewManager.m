@@ -10,12 +10,15 @@
 #import "NetworkManager.h"
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
+#import "NYCRepresentative.h"
 
 @interface NewManager()
 
 @property (strong, nonatomic) NSArray *fedReps;
 @property (strong, nonatomic) NSArray *stateReps;
-@property (strong, nonatomic) NSArray *localReps;
+@property (strong, nonatomic) NSMutableArray *localReps;
+@property (strong, nonatomic) NSString *currentCouncilDistrict;
+
 
 @end
 
@@ -119,6 +122,103 @@
         }
     }
     return governorRepresentative;
+}
+
+#pragma mark - Create NYC Representatives
+
+- (void)createNYCRepsFromLocation:(CLLocation *)location {
+    
+    self.localReps = @[].mutableCopy;
+        
+    BOOL isLocationWithinPath = false;
+    
+    for (NSDictionary *district in self.nycDistricts) {
+        CGMutablePathRef path = CGPathCreateMutable();
+        [self drawNYCDistrictPath:path fromDictionary:district];
+        isLocationWithinPath = [self isLocation:location withinPath:path];
+        CGPathRelease(path);
+        if (isLocationWithinPath) {
+            break;
+        }
+    }
+    
+    if (!isLocationWithinPath) {
+        self.localReps = nil;
+    }
+}
+
+- (void)drawNYCDistrictPath:(CGMutablePathRef)path fromDictionary: (NSDictionary *)district {
+    
+    // Parse out the council district from the data
+    self.currentCouncilDistrict = [[district valueForKey:@"properties"]valueForKey:@"coundist"];
+    NSLog(@"%@", self.currentCouncilDistrict);
+    // Parse out the geometry
+    NSDictionary *geometry = [district valueForKey:@"geometry"];
+    // Parse the polygons from the data
+    NSArray *coordinateObjects = [geometry valueForKey:@"coordinates"];
+    // For each polygon
+    for (NSArray *array in coordinateObjects) {
+        // The counter is here to check if its the initial point or not
+        int counter = 0;
+        for (NSArray *subArray in array) {
+            for (NSArray *subSubArray in subArray) {
+                double latitude = [subSubArray[1]doubleValue];
+                double longitude = [subSubArray[0]doubleValue];
+                if (counter == 0) {
+                    CGPathMoveToPoint(path, nil, latitude, longitude);
+                } else {
+                    CGPathAddLineToPoint(path, nil, latitude, longitude);
+                }
+                counter++;
+            }
+        }
+    }
+    CGPathCloseSubpath(path);
+}
+
+- (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
+    
+    BOOL isLocationWithinPath = NO;
+    
+    // Grab the latitude and longitude
+    double currentLatitude = location.coordinate.latitude;
+    double currentLongitude = location.coordinate.longitude;
+    if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
+        NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+        NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
+        
+        for (int i = 0; i < districts.count; i++) {
+            if (i + 1 == [self.currentCouncilDistrict intValue]) {
+                isLocationWithinPath = YES;
+                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
+                [self.localReps addObject:nycRep];
+                [self createExtraNYCReps];
+                return isLocationWithinPath;
+            }
+        }
+    }
+    return isLocationWithinPath;
+}
+
+- (void)createExtraNYCReps {
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:kNYCExtraRepsJSON ofType:@"json"];
+    NSData *nycExtraRepsData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+    NSDictionary *nycExtraRepsDict = [NSJSONSerialization JSONObjectWithData:nycExtraRepsData options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *reps = [nycExtraRepsDict objectForKey:@"reps"];
+    for (id repData in reps) {
+        NYCRepresentative *rep = [[NYCRepresentative alloc]initWithData:reps[repData]];
+        [self.localReps addObject:rep];
+    }
+}
+
+- (NYCRepresentative *)createBillDeBlasio {
+    
+    NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
+    NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
+    return billDeBlasio;
 }
 
 
