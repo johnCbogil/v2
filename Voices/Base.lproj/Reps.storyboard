@@ -147,9 +147,9 @@
         <!--Reps Collection View Controller-->
         <scene sceneID="gyt-Xk-KDD">
             <objects>
-                <collectionViewController storyboardIdentifier="RepsCollectionViewController" id="9AV-M6-iIg" customClass="RepsCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="RepsCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" id="9AV-M6-iIg" customClass="RepsCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="4XX-BO-1bW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vXV-Rd-hxC">
@@ -164,10 +164,12 @@
                             <outlet property="delegate" destination="9AV-M6-iIg" id="RYT-YC-LsI"/>
                         </connections>
                     </collectionView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="384" height="512"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ii3-Nc-2sl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="357"/>
+            <point key="canvasLocation" x="998" y="359"/>
         </scene>
     </scenes>
     <resources>
