@@ -18,13 +18,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FuE-1R-ibn">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FuE-1R-ibn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="FuE-1R-ibn" firstAttribute="top" secondItem="j1v-31-XgN" secondAttribute="top" id="3gw-Cz-RVi"/>
+                <constraint firstAttribute="trailing" secondItem="FuE-1R-ibn" secondAttribute="trailing" id="9Xq-8X-XYe"/>
+                <constraint firstItem="FuE-1R-ibn" firstAttribute="leading" secondItem="j1v-31-XgN" secondAttribute="leading" id="HLc-ad-UAy"/>
+                <constraint firstAttribute="bottom" secondItem="FuE-1R-ibn" secondAttribute="bottom" id="rPJ-NL-kaW"/>
+            </constraints>
             <connections>
                 <outlet property="tableView" destination="FuE-1R-ibn" id="WIT-Nl-bK7"/>
             </connections>
