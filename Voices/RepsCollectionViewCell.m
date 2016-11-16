@@ -44,7 +44,7 @@
     
     self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 
-    
+    self.tableView.backgroundColor = [UIColor redColor];    
 }
 
 #pragma mark - UITableView Delegate Methods
