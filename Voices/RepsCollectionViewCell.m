@@ -9,12 +9,14 @@
 #import "RepsCollectionViewCell.h"
 #import "RepTableViewCell.h"
 #import "EmptyRepTableViewCell.h"
-#import "RepManager.h"
+
 #import "NewManager.h"
+#import "LocationService.h"
 @interface RepsCollectionViewCell()
 
 @property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -30,6 +32,16 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelection = NO;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.bounds = CGRectMake(self.refreshControl.bounds.origin.x,
+                                       15,
+                                       self.refreshControl.bounds.size.width,
+                                       self.refreshControl.bounds.size.height);
+
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -59,6 +71,7 @@
         emptyStateCell.backgroundView = self.emptyRepTableViewCell;
         cell = emptyStateCell;
     }
+    [self.refreshControl endRefreshing];
     return cell;
 }
 
@@ -73,6 +86,16 @@
 
 - (void)reloadTableView {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)pullToRefresh {
+//    [[RepManager sharedInstance]startUpdatingLocation];
+    [[LocationService sharedInstance]startUpdatingLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchText" object:nil];
+}
+
+- (void)endRefreshing {
+    [self.refreshControl endRefreshing];
 }
 
 @end

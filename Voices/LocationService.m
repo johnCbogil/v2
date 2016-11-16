@@ -8,6 +8,7 @@
 
 #import "LocationService.h"
 #import "NetworkManager.h"
+#import "NewManager.h"
 
 @implementation LocationService
 
@@ -45,8 +46,33 @@
     self.locationManager = nil;
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude %+.6f, Longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
+    
+    // TODO: THIS IS NOT DRY
     self.currentLocation = location;
     self.requestedLocation = location;
+    
+    
+    
+    [[NewManager sharedInstance] createFederalRepresentativesFromLocation:self.currentLocation WithCompletion:^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+    } onError:^(NSError *error){
+        NSLog(@"%@",[error localizedDescription]);
+    }];
+    
+    [[NewManager sharedInstance] createStateRepresentativesFromLocation:self.currentLocation WithCompletion:^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+    } onError:^(NSError *error) {
+        NSLog(@"%@",[error localizedDescription]);
+    }];
+    
+    [[NewManager sharedInstance] createNYCRepsFromLocation:self.currentLocation];
+
+    
+    
+    
+    
+    
+    
 }
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
