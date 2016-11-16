@@ -42,6 +42,9 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
+    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
+
+    
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -89,7 +92,6 @@
 }
 
 - (void)pullToRefresh {
-//    [[RepManager sharedInstance]startUpdatingLocation];
     [[LocationService sharedInstance]startUpdatingLocation];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchText" object:nil];
 }
