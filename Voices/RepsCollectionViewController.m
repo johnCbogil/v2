@@ -26,7 +26,6 @@
     self.collectionView.collectionViewLayout = flowLayout;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
-    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -65,16 +64,8 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    return CGSizeMake(375, 517); //collectionview.frame.height, view.width
+    return self.view.frame.size;
 }
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-        NSLog(@"%ld",indexPath.item);
-    }
-}
-
 
 - (void)reloadCollectionView {
     [self.collectionView reloadData];
