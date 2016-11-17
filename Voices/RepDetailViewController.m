@@ -180,7 +180,6 @@
 }
 
 
-
 -(void)registerCallStateNotification {
     
     //Register for notification
