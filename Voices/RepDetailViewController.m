@@ -183,38 +183,46 @@
 
 -(void)registerCallStateNotification {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(CallStateDidChange:) name:@"CTCallStateDidChange" object:nil];
+    //Register for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
     
-    self.callCenter = [[CTCallCenter alloc] init];
+    //Instantiate call center
+    CTCallCenter *callCenter = [[CTCallCenter alloc] init];
+    self.callCenter = callCenter;
     
     self.callCenter.callEventHandler = ^(CTCall* call) {
-        // announce that we've had a state change in our call center
+        
+        //Announce that we've had a state change in CallCenter
         NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
     };
 }
 
 
-- (void)CallStateDidChange:(NSNotification *)notification {
+- (void)callStateDidChange:(NSNotification *)notification {
+    
+    //Log the notification
     NSLog(@"Notification : %@", notification);
+    
     NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
     if([callInfo isEqualToString: CTCallStateDialing]) {
+        
         //The call state, before connection is established, when the user initiates the call.
-        NSLog(@"******CALL_IS_DIALING******");
+        NSLog(@"****** call is dialing ******");
     }
     if([callInfo isEqualToString: CTCallStateIncoming]) {
+        
         //The call state, before connection is established, when a call is incoming but not yet answered by the user.
-        NSLog(@"*****CALL_IS_INCOMING******");
+        NSLog(@"***** call is incoming ******");
     }
     if([callInfo isEqualToString: CTCallStateConnected]) {
+        
         //The call state when the call is fully established for all parties involved.
-        NSLog(@"*****CALL_CONNECTED*****");
+        NSLog(@"***** call connected *****");
         
     }
     if([callInfo isEqualToString: CTCallStateDisconnected]) {
+        
         //the call state has ended
-        NSLog(@"*****CALL_ENDED*****");
+        NSLog(@"***** call ended *****");
     }
-}
-
-
-@end
+}@end

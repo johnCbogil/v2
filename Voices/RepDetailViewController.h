@@ -29,8 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (nonatomic) CTCallCenter *callCenter;
-@property (nonatomic) CTCall *call;
-
+ 
 
 
 -(void)fillInData;
