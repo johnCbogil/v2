@@ -15,6 +15,9 @@
 #import "FBShimmeringLayer.h"
 #import "EmptyRepTableViewCell.h"
 #import "RepDetailViewController.h"
+#import <CallKit/CXCallObserver.h>
+#import <CallKit/CXCall.h>
+
 
 @interface RepsViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 
@@ -30,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringViewTwo;
 @property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
-@property (strong, nonatomic) CXCallObserver *callObserver;
 
 @end
 
@@ -42,8 +44,6 @@
     [self configureTableView];
     [self createRefreshControl];
     [self createShimmer];
-    CXCallObserver *callObserver = [[CXCallObserver alloc] init];
-    [callObserver setDelegate:self queue:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -222,16 +222,6 @@
 //    [self.navigationController pushViewController:repDetailViewController animated:YES];
 //}
 
-#pragma mark - CXCallObserver Delegate Methods
-
-
-- (void)callObserver:(CXCallObserver *)callObserver callChanged:(CXCall *)call {
-    if (call.hasConnected) {
-        NSLog(@"********** voice call connected **********/n");
-    } else if(call.hasEnded) {
-        NSLog(@"********** voice call disconnected **********/n");
-    }
-}
 
 
 @end

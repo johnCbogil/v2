@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CallKit/CXCallObserver.h>
-#import <CallKit/CXCall.h>
+ 
 
 
-@interface RepsViewController : UIViewController<CXCallObserverDelegate>
+@interface RepsViewController : UIViewController
 @property (assign, nonatomic) NSInteger index;
 @end
