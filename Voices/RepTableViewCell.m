@@ -11,6 +11,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "Representative.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @import FirebaseAnalytics;
 
@@ -22,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+@property (nonatomic) CTCallCenter *callCenter;
+
+
 
 @end
 
@@ -34,7 +39,9 @@
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
     [self setFont];
+    [self registerCallStateNotification];
 }
+
 
 - (void)setFont {
     self.name.font = self.name.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
@@ -94,7 +101,8 @@
         //button1
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.representative.fullName, kFIRParameterValue : @1}];
-            NSURL* callUrl=[NSURL URLWithString:[NSString   stringWithFormat:@"tel:%@", self.representative.phone]];
+            NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
+ 
             if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 
                 [[UIApplication sharedApplication] openURL:callUrl];
@@ -145,6 +153,53 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Please install Twitter first." preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
+
+-(void)registerCallStateNotification {
+    
+    //Register for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
+    
+    //Instantiate call center
+    CTCallCenter *callCenter = [[CTCallCenter alloc] init];
+    self.callCenter = callCenter;
+    
+    self.callCenter.callEventHandler = ^(CTCall* call) {
+        
+        //Announce that we've had a state change in CallCenter
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+    };
+}
+
+
+- (void)callStateDidChange:(NSNotification *)notification {
+    
+    //Log the notification
+    NSLog(@"Notification : %@", notification);
+    
+    NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
+    if([callInfo isEqualToString: CTCallStateDialing]) {
+        
+        //The call state, before connection is established, when the user initiates the call.
+        NSLog(@"****** call is dialing ******");
+    }
+    if([callInfo isEqualToString: CTCallStateIncoming]) {
+        
+        //The call state, before connection is established, when a call is incoming but not yet answered by the user.
+        NSLog(@"***** call is incoming ******");
+    }
+    if([callInfo isEqualToString: CTCallStateConnected]) {
+        
+        //The call state when the call is fully established for all parties involved.
+        NSLog(@"***** call connected *****");
+        
+    }
+    if([callInfo isEqualToString: CTCallStateDisconnected]) {
+        
+        //the call state has ended
+        NSLog(@"***** call ended *****");
     }
 }
 

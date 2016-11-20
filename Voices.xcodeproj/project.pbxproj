@@ -64,6 +64,7 @@
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
+		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
 		AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */; };
 		B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */ = {isa = PBXBuildFile; fileRef = B89EB1E81D8EE37300C130A8 /* Representative.m */; };
 		C0A87038D5F61A314ADE7039 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */; };
@@ -175,6 +176,7 @@
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
 		9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionWebViewController.m; sourceTree = "<group>"; };
+		A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AA2C2E4D1D6F385A009989C9 /* RepDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepDetailViewController.h; sourceTree = "<group>"; };
 		AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepDetailViewController.m; sourceTree = "<group>"; };
 		AA7506DE1D6644EC00DADD93 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */,
 				17560CD1A006795877B8FCB9 /* libPods-Voices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +213,7 @@
 		1BCE4CFB4D84510D3B5DFA55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */,
 				D0B117A45B252CA574D86425 /* libPods-Voices.a */,
 				FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */,
 			);

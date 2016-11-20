@@ -11,7 +11,8 @@
 #import "StateRepresentative.h"
 #import "NYCRepresentative.h"
 #import "UIImageView+AFNetworking.h"
-
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @interface RepDetailViewController : UIViewController  
 
@@ -27,6 +28,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+@property (nonatomic) CTCallCenter *callCenter;
+ 
+
 
 -(void)fillInData;
 - (IBAction)didPressCallButton:(id)sender;
