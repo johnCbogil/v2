@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -42,16 +42,8 @@
     
     RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
     
-    if (indexPath.item == 0) {
-        cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:0];
-        
-    }
-    else if (indexPath.item == 1) {
-        cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:1];
-    }
-    else if (indexPath.item == 2) {
-        cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:2];
-    }
+    cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:indexPath.item];
+    
     
     cell.index = indexPath.item;
     
@@ -63,7 +55,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     return self.view.frame.size;
 }
 
