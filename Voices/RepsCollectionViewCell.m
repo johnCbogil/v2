@@ -43,6 +43,7 @@
     [self.tableView addSubview:self.refreshControl];
     
     self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
+    
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -73,6 +74,7 @@
         cell = emptyStateCell;
     }
     [self.refreshControl endRefreshing];
+    [self toggleZeroState];
     return cell;
 }
 
@@ -96,6 +98,31 @@
 
 - (void)endRefreshing {
     [self.refreshControl endRefreshing];
+}
+
+- (void)toggleZeroState {
+    if (self.tableViewDataSource.count == 0) {
+        [self turnZeroStateOn];
+    }
+    else {
+        [self turnZeroStateOff];
+    }
+}
+
+- (void)turnZeroStateOn {
+    [UIView animateWithDuration:.25 animations:^{
+        self.tableView.backgroundView.alpha = 1;
+    }];
+    if (self.index == 2) {
+        [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
+        [self.emptyRepTableViewCell updateImage];
+    }
+}
+
+- (void)turnZeroStateOff {
+    [UIView animateWithDuration:.25 animations:^{
+        self.tableView.backgroundView.alpha = 0;
+    }];
 }
 
 @end

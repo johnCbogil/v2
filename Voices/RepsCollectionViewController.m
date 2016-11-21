@@ -49,7 +49,6 @@
     
     cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:indexPath.item];
     
-    
     cell.index = indexPath.item;
     
     [cell reloadTableView];
