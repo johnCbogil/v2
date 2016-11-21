@@ -17,9 +17,7 @@
 
 @property (strong, nonatomic) NSArray *fedReps;
 @property (strong, nonatomic) NSArray *stateReps;
-@property (strong, nonatomic) NSMutableArray *localReps;
 @property (strong, nonatomic) NSString *currentCouncilDistrict;
-
 
 @end
 
@@ -38,6 +36,7 @@
     self = [super init];
     if(self != nil) {
         [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+        self.isLocalRepsAvailable = YES;
     }
     return self;
 }
@@ -201,6 +200,7 @@
 - (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
     
     BOOL isLocationWithinPath = NO;
+    self.isLocalRepsAvailable = NO;
     
     // Grab the latitude and longitude
     double currentLatitude = location.coordinate.latitude;
@@ -214,9 +214,11 @@
         for (int i = 0; i < districts.count; i++) {
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
+                self.isLocalRepsAvailable = YES;
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
                 [self.localReps addObject:nycRep];
                 [self createExtraNYCReps];
+                
                 return isLocationWithinPath;
             }
         }

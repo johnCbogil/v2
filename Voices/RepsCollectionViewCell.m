@@ -100,6 +100,8 @@
     [self.refreshControl endRefreshing];
 }
 
+#pragma mark - ZeroState Logic
+
 - (void)toggleZeroState {
     if (self.tableViewDataSource.count == 0) {
         [self turnZeroStateOn];
@@ -113,7 +115,7 @@
     [UIView animateWithDuration:.25 animations:^{
         self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2) {
+    if (self.index == 2 && ![NewManager sharedInstance].isLocalRepsAvailable) {
         [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
         [self.emptyRepTableViewCell updateImage];
     }
