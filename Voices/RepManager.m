@@ -29,7 +29,7 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+//        [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }

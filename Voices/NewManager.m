@@ -11,6 +11,7 @@
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
 #import "NYCRepresentative.h"
+#import "LocationService.h"
 
 @interface NewManager()
 
@@ -36,7 +37,7 @@
 - (id)init {
     self = [super init];
     if(self != nil) {
-
+        [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
@@ -52,6 +53,27 @@
         return self.localReps;
     }
     else return @[];
+}
+
+#pragma mark - Location Monitor
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if([keyPath isEqualToString:@"currentLocation"]) {
+        
+        [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error){
+            NSLog(@"%@",[error localizedDescription]);
+        }];
+        
+        [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        } onError:^(NSError *error) {
+            NSLog(@"%@",[error localizedDescription]);
+        }];
+        
+        [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
+    }
 }
 
 #pragma mark - Create Federal Representatives
@@ -220,8 +242,5 @@
     NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
     return billDeBlasio;
 }
-
-
-
 
 @end
