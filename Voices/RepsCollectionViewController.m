@@ -26,6 +26,8 @@
     self.collectionView.collectionViewLayout = flowLayout;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -33,6 +35,7 @@
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
+#pragma mark - CollectionView Delegate Methods
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return 1;
@@ -65,6 +68,11 @@
 
 - (void)reloadCollectionView {
     [self.collectionView reloadData];
+}
+
+- (void)changePage:(NSNotification *)notification {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[notification.object integerValue] inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 @end
