@@ -9,6 +9,8 @@
 #import "RepsCollectionViewController.h"
 #import "RepsCollectionViewCell.h"
 #import "NewManager.h"
+#import "RootViewController.h"
+
 
 @implementation RepsCollectionViewController
 
@@ -27,7 +29,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,5 +76,32 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[notification.object integerValue] inSection:0];
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+   
+    NSArray *cellArray = self.collectionView.visibleCells;
+    
+    CGFloat viewHalfWidth = self.view.frame.size.width / 2;
+    CGFloat midX = self.collectionView.contentOffset.x + viewHalfWidth;
+    
+    UICollectionViewCell *closestCell = self.collectionView.visibleCells.firstObject;
+    CGFloat closestCellDistance = CGFLOAT_MAX;
+    
+    for (UICollectionViewCell *cell in cellArray) {
+        CGFloat distance = fabs(cell.frame.origin.x + viewHalfWidth - midX);
+        if (distance < closestCellDistance) {
+            closestCellDistance = distance;
+            closestCell = cell;
+        }
+    }
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:closestCell];
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"changePage" object:indexPath];
+    
+    RootViewController *rootVC = (RootViewController *)self.parentViewController;
+    [rootVC updateTabForIndex:indexPath];
+
+    
+}
+
 
 @end
