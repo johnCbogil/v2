@@ -106,6 +106,25 @@
     self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
 }
 
+- (void)updateTabForIndex:(NSIndexPath *)indexPath {
+    if (self.selectedIndexPath != indexPath) {
+        
+        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
+        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
+        
+        [newButton.layer removeAllAnimations];
+        [lastButton.layer removeAllAnimations];
+        
+        [UIView animateWithDuration:.25 animations:^{
+            
+            newButton.tintColor = [UIColor voicesBlue];
+            lastButton.tintColor = [UIColor voicesLightGray];
+            
+        }];
+        self.selectedIndexPath = indexPath;
+    }
+}
+
 #pragma mark - Custom Search Bar Methods
 
 - (void)configureSearchBar {
@@ -189,7 +208,6 @@
 #pragma mark - NSNotifications
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"changePage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
@@ -215,29 +233,6 @@
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
     //[self.tapView removeFromSuperview];
-}
-
-// TODO: CHANGE THIS TO DELEGATE PATTERN
-- (void)changePage:(NSNotification *)notification {
-    
-    NSIndexPath *indexPath = notification.object;
-    
-//    // TODO: THIS IS NOT DRY
-//    if (indexPath.item == 0) {
-//        self.federalButton.tintColor = [UIColor voicesBlue];
-//        self.stateButton.tintColor = [UIColor voicesLightGray];
-//        self.localButton.tintColor = [UIColor voicesLightGray];
-//    }
-//    else if (indexPath.item == 1) {
-//        self.federalButton.tintColor = [UIColor voicesLightGray];
-//        self.stateButton.tintColor = [UIColor voicesBlue];
-//        self.localButton.tintColor = [UIColor voicesLightGray];
-//    }
-//    else {
-//        self.federalButton.tintColor = [UIColor voicesLightGray];
-//        self.stateButton.tintColor = [UIColor voicesLightGray];
-//        self.localButton.tintColor = [UIColor voicesBlue];
-//    }
 }
 
 #pragma mark - FB Shimmer methods
@@ -342,23 +337,14 @@
 
 - (IBAction)federalPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
-    self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (IBAction)statePageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
-    self.federalButton.tintColor = [UIColor voicesLightGray];
-    self.stateButton.tintColor = [UIColor voicesBlue];
-    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
-    self.federalButton.tintColor = [UIColor voicesLightGray];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesBlue];
 }
 
 - (void)setPageIndicator:(NSNotification *)notification {
@@ -377,31 +363,5 @@
 - (void)refreshSearchText {
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
-
-- (void)updateTabForIndex:(NSIndexPath *)indexPath {
-    if (self.selectedIndexPath != indexPath) {
-        
-        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
-        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
-
-        [newButton.layer removeAllAnimations];
-        [lastButton.layer removeAllAnimations];
-        
-        [UIView animateWithDuration:.25 animations:^{
-            
-            newButton.tintColor = [UIColor voicesBlue];
-            lastButton.tintColor = [UIColor voicesLightGray];
-            
-            
-        }];
-        
-        self.selectedIndexPath = indexPath;
-        
-        
-    }
-    
-    
-}
-
 
 @end
