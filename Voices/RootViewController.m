@@ -10,7 +10,6 @@
 #import "NetworkManager.h"
 #import "RepManager.h"
 #import "StateRepresentative.h"
-#import "PageViewController.h"
 #import "LocationService.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
@@ -25,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
-@property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *shadowView;
@@ -157,12 +155,6 @@
     //    if([self.tapView respondsToSelector:@selector(removeFromSuperview)]){
     //        [self.tapView removeFromSuperview];
     //    }
-    
-    for (id vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[UIPageViewController class]]) {
-            self.pageVC = vc;
-        }
-    }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
