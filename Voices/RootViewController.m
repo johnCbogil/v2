@@ -15,7 +15,7 @@
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
-#import "NewManager.h"
+#import "RepsManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -157,20 +157,20 @@
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
-        [[NewManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+        [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
             NSLog(@"%@", locationResults);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             [error localizedDescription];
         }];
         
-        [[NewManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+        [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             [error localizedDescription];
         }];
         
-        [[NewManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
         
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);

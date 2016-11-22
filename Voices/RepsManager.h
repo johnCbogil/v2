@@ -1,5 +1,5 @@
 //
-//  NewManager.h
+//  RepsManager.h
 //  Voices
 //
 //  Created by John Bogil on 11/13/16.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-@interface NewManager : NSObject
+@interface RepsManager : NSObject
 
-+(NewManager *) sharedInstance;
++(RepsManager *) sharedInstance;
 - (NSArray *)fetchRepsForIndex:(NSInteger)index;
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock;

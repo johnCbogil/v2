@@ -10,7 +10,7 @@
 #import "RepTableViewCell.h"
 #import "EmptyRepTableViewCell.h"
 
-#import "NewManager.h"
+#import "RepsManager.h"
 #import "LocationService.h"
 @interface RepsCollectionViewCell()
 
@@ -115,7 +115,7 @@
     [UIView animateWithDuration:.25 animations:^{
         self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2 && ![NewManager sharedInstance].isLocalRepsAvailable) {
+    if (self.index == 2 && ![RepsManager sharedInstance].isLocalRepsAvailable) {
         [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
         [self.emptyRepTableViewCell updateImage];
     }

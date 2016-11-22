@@ -8,7 +8,7 @@
 
 #import "RepsCollectionViewController.h"
 #import "RepsCollectionViewCell.h"
-#import "NewManager.h"
+#import "RepsManager.h"
 #import "RootViewController.h"
 
 
@@ -52,7 +52,7 @@
     
     RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
     
-    cell.tableViewDataSource = [[NewManager sharedInstance]fetchRepsForIndex:indexPath.item];
+    cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
     
     cell.index = indexPath.item;
     

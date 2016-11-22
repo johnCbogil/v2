@@ -46,7 +46,7 @@
 		52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */; };
 		52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */; };
 		52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */; };
-		52CA3D8B1DD8D5FD00437E83 /* NewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA3D8A1DD8D5FD00437E83 /* NewManager.m */; };
+		52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
 		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
@@ -145,8 +145,8 @@
 		52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionTableViewCell.xib; sourceTree = "<group>"; };
 		52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionTableViewCell.h; sourceTree = "<group>"; };
 		52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionTableViewCell.m; sourceTree = "<group>"; };
-		52CA3D891DD8D5FD00437E83 /* NewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewManager.h; sourceTree = "<group>"; };
-		52CA3D8A1DD8D5FD00437E83 /* NewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewManager.m; sourceTree = "<group>"; };
+		52CA3D891DD8D5FD00437E83 /* RepsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsManager.h; sourceTree = "<group>"; };
+		52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsManager.m; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 				52A6107E1B66ACD400B041FF /* NetworkManager.m */,
 				52B51B081B61B789006DF423 /* LocationService.h */,
 				52B51B091B61B789006DF423 /* LocationService.m */,
-				52CA3D891DD8D5FD00437E83 /* NewManager.h */,
-				52CA3D8A1DD8D5FD00437E83 /* NewManager.m */,
+				52CA3D891DD8D5FD00437E83 /* RepsManager.h */,
+				52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -731,7 +731,7 @@
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
 				52B2CA521D3889A6005FE0D6 /* NotiOnboardingViewController.m in Sources */,
-				52CA3D8B1DD8D5FD00437E83 /* NewManager.m in Sources */,
+				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,

@@ -1,19 +1,19 @@
 //
-//  NewManager.m
+//  RepsManager.m
 //  Voices
 //
 //  Created by John Bogil on 11/13/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "NewManager.h"
+#import "RepsManager.h"
 #import "NetworkManager.h"
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
 #import "NYCRepresentative.h"
 #import "LocationService.h"
 
-@interface NewManager()
+@interface RepsManager()
 
 @property (strong, nonatomic) NSArray *fedReps;
 @property (strong, nonatomic) NSArray *stateReps;
@@ -21,10 +21,10 @@
 
 @end
 
-@implementation NewManager
+@implementation RepsManager
 
-+ (NewManager *) sharedInstance {
-    static NewManager *instance = nil;
++ (RepsManager *) sharedInstance {
+    static RepsManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc]init];
