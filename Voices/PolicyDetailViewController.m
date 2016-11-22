@@ -21,24 +21,25 @@
     [super viewDidLoad];
     
     [self setFont];
-
     
     self.title = self.policyPosition.key;
-
     
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
     
     self.contactRepsButton.layer.cornerRadius = kButtonCornerRadius;
 }
 
+
 - (void)setFont {
     self.policyPositionTextView.font = [UIFont voicesFontWithSize:19];
     self.contactRepsButton.titleLabel.font = [UIFont voicesFontWithSize:21];
 }
 
+
 - (void)viewDidLayoutSubviews {
     [self.policyPositionTextView setContentOffset:CGPointZero animated:NO];
 }
+
 
 - (IBAction)contactRepsButtonDidPress:(id)sender {
     self.tabBarController.selectedIndex = 0;

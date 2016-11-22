@@ -201,6 +201,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="rae-Hk-IwV"/>
                     <connections>
                         <outlet property="actionBodyTextView" destination="vEa-wq-RJR" id="c7B-pq-oDh"/>
                         <outlet property="actionTitleLabel" destination="feY-TM-O5W" id="fLh-HY-kqo"/>
