@@ -7,7 +7,6 @@
 //
 
 #import "RepTableViewCell.h"
-#import "RepManager.h"
 #import "UIImageView+AFNetworking.h"
 #import "Representative.h"
 #import <MessageUI/MFMailComposeViewController.h>
