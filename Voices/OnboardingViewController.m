@@ -34,7 +34,7 @@
     self.startButton.titleLabel.minimumScaleFactor = 0.75;
 
     self.introLabel.font = [UIFont voicesFontWithSize:25.0];
-    self.introLabel.text = @"Voices helps you take action for the causes you care about.";
+    self.introLabel.text = @"Voices helps you take action to support the causes you care about.";
 }
 
 @end
