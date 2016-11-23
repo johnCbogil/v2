@@ -1,24 +1,30 @@
 //
-//  RepManager.m
+//  RepsManager.m
 //  Voices
 //
-//  Created by John Bogil on 7/27/15.
-//  Copyright (c) 2015 John Bogil. All rights reserved.
+//  Created by John Bogil on 11/13/16.
+//  Copyright © 2016 John Bogil. All rights reserved.
 //
-#import <UIKit/UIKit.h>
-#import "RepManager.h"
+
+#import "RepsManager.h"
 #import "NetworkManager.h"
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
 #import "NYCRepresentative.h"
 #import "LocationService.h"
-#import "AppDelegate.h"
 
+@interface RepsManager()
 
-@implementation RepManager
+@property (strong, nonatomic) NSArray *fedReps;
+@property (strong, nonatomic) NSArray *stateReps;
+@property (strong, nonatomic) NSString *currentCouncilDistrict;
 
-+ (RepManager *)sharedInstance {
-    static RepManager *instance = nil;
+@end
+
+@implementation RepsManager
+
++ (RepsManager *) sharedInstance {
+    static RepsManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc]init];
@@ -28,34 +34,27 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if(self != nil) {
         [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+        self.isLocalRepsAvailable = YES;
     }
     return self;
 }
 
-- (NSArray *)createRepsForIndex:(NSInteger)index {
+- (NSArray *)fetchRepsForIndex:(NSInteger)index {
     if (index == 0) {
-        
-        if (self.listOfFederalRepresentatives.count > 0) {
-            return self.listOfFederalRepresentatives;
-        }
-        else {
-            [[LocationService sharedInstance]startUpdatingLocation];
-        }
+        return self.fedReps;
     }
     else if (index == 1) {
-        
-        if (self.listOfStateRepresentatives.count > 0) {
-            return self.listOfStateRepresentatives;
-        }
+        return self.stateReps;
     }
     else if (index == 2) {
-        return self.listOfNYCRepresentatives;
-        
+        return self.localReps;
     }
-    return nil;
+    else return @[];
 }
+
+#pragma mark - Location Monitor
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
@@ -76,10 +75,6 @@
     }
 }
 
-- (void)startUpdatingLocation {
-    [[LocationService sharedInstance]startUpdatingLocation];
-}
-
 #pragma mark - Create Federal Representatives
 
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
@@ -92,7 +87,7 @@
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [listOfFederalRepresentatives addObject:federalRepresentative];
-            self.listOfFederalRepresentatives = listOfFederalRepresentatives;
+            self.fedReps = listOfFederalRepresentatives;
             successBlock();
         }
         
@@ -107,25 +102,25 @@
     
     [[NetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
         NSMutableArray *listOfStateRepresentatives = [[NSMutableArray alloc]init];
-
+        
         BOOL firstRun = true;
         
         for (NSDictionary *resultDict in results) {
             StateRepresentative *stateRepresentative = [[StateRepresentative alloc] initWithData:resultDict];
-           if (firstRun) {
-               NSString *stateCode = stateRepresentative.stateCode;
+            if (firstRun) {
+                NSString *stateCode = stateRepresentative.stateCode;
                 if (stateCode) {
                     StateRepresentative *governor = [self createGovernors:stateCode];
-                        if (governor) {
-                            [listOfStateRepresentatives addObject:governor];
-                            firstRun = false;
-                      }
-                  }
-              }
-
+                    if (governor) {
+                        [listOfStateRepresentatives addObject:governor];
+                        firstRun = false;
+                    }
+                }
+            }
+            
             if (successBlock) {
                 [listOfStateRepresentatives addObject:stateRepresentative];
-                self.listOfStateRepresentatives = listOfStateRepresentatives;
+                self.stateReps = listOfStateRepresentatives;
                 successBlock();
             }
         }
@@ -135,7 +130,7 @@
     }];
 }
 
--(StateRepresentative *)createGovernors:(NSString *)stateCode {
+- (StateRepresentative *)createGovernors:(NSString *)stateCode {
     
     StateRepresentative *governorRepresentative;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"stateGovernors" ofType:@"json"];
@@ -154,8 +149,8 @@
 
 - (void)createNYCRepsFromLocation:(CLLocation *)location {
     
-    self.listOfNYCRepresentatives = @[].mutableCopy;
-    
+    self.localReps = @[].mutableCopy;
+        
     BOOL isLocationWithinPath = false;
     
     for (NSDictionary *district in self.nycDistricts) {
@@ -169,9 +164,8 @@
     }
     
     if (!isLocationWithinPath) {
-        self.listOfNYCRepresentatives = nil;
+        self.localReps = nil;
     }
-    
 }
 
 - (void)drawNYCDistrictPath:(CGMutablePathRef)path fromDictionary: (NSDictionary *)district {
@@ -206,6 +200,7 @@
 - (BOOL)isLocation:(CLLocation *)location withinPath:(CGMutablePathRef)path {
     
     BOOL isLocationWithinPath = NO;
+    self.isLocalRepsAvailable = NO;
     
     // Grab the latitude and longitude
     double currentLatitude = location.coordinate.latitude;
@@ -219,21 +214,16 @@
         for (int i = 0; i < districts.count; i++) {
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
+                self.isLocalRepsAvailable = YES;
                 NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
-                [self.listOfNYCRepresentatives addObject:nycRep];
+                [self.localReps addObject:nycRep];
                 [self createExtraNYCReps];
+                
                 return isLocationWithinPath;
             }
         }
     }
     return isLocationWithinPath;
-}
-
-- (NYCRepresentative *)createBillDeBlasio {
-    
-    NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
-    NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
-    return billDeBlasio;
 }
 
 - (void)createExtraNYCReps {
@@ -244,8 +234,15 @@
     NSDictionary *reps = [nycExtraRepsDict objectForKey:@"reps"];
     for (id repData in reps) {
         NYCRepresentative *rep = [[NYCRepresentative alloc]initWithData:reps[repData]];
-        [self.listOfNYCRepresentatives addObject:rep];
+        [self.localReps addObject:rep];
     }
+}
+
+- (NYCRepresentative *)createBillDeBlasio {
+    
+    NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
+    NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
+    return billDeBlasio;
 }
 
 @end

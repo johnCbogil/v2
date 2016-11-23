@@ -7,16 +7,15 @@
 //
 
 #import "AppDelegate.h"
-#import "PageViewController.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
 #import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
-#import "RepManager.h"
 #import "GroupsViewController.h"
 #import "TabBarViewController.h"
 #import "CurrentUser.h"
+#import "RepsManager.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -190,7 +189,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)unzipNYCDataSet {
     
     if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
-        [RepManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
+        [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
         
     }
     else {
@@ -215,7 +214,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         [[NSUserDefaults standardUserDefaults]setObject:jsonDataDict forKey:kCityCouncilZip];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
-        [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+        [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
     }
 }
 

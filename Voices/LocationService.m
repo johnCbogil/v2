@@ -45,7 +45,11 @@
     self.locationManager = nil;
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude %+.6f, Longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
+    
+    // TODO: THIS IS NOT DRY
     self.currentLocation = location;
+    self.requestedLocation = location;
+  
 }
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
@@ -63,6 +67,7 @@
             CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
             CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             NSLog(@"%@", location);
+            self.requestedLocation = location;
             successBlock(location);
         }
     } onError:^(NSError *error) {

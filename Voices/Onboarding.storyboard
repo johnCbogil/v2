@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,13 +23,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
+                                <rect key="frame" x="174" y="28" width="250" height="250"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DT0-Pw-P0G" secondAttribute="height" multiplier="1:1" id="oOy-gC-ole"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices is an advocacy tool. It's the smart way to make your voice heard." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Voices is an advocacy tool. It's the smart way to make your voice heard." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6n-tv-dL9">
+                                <rect key="frame" x="20" y="286" width="560" height="199"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="199" id="hDT-A7-8Em"/>
                                     <constraint firstAttribute="height" constant="112" id="r7w-ro-Way"/>
@@ -40,7 +45,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bPg-AL-k8o">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bPg-AL-k8o">
+                                <rect key="frame" x="187" y="493" width="225" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="CMS-MD-sXe"/>
@@ -96,7 +102,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on location services so Voices can show you who represents your community." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Turn on location services so Voices can show you who represents your community." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-mU-GOF">
+                                <rect key="frame" x="20" y="28" width="560" height="99"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="vLi-tc-xHC"/>
                                 </constraints>
@@ -109,7 +116,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LocationOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="Yqw-4L-8Su">
+                                <rect key="frame" x="166" y="144" width="269" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yqw-4L-8Su" secondAttribute="height" multiplier="269:311" id="2rb-Ke-YcW"/>
                                     <constraint firstAttribute="width" constant="269" id="B5Z-gS-PEB"/>
@@ -125,7 +133,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3U-sj-t8K" userLabel="SingleLineView">
+                            <view alpha="0.25" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X3U-sj-t8K" userLabel="SingleLineView">
+                                <rect key="frame" x="25" y="464" width="550" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="B7b-Md-a47"/>
@@ -137,7 +146,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-5f-JQc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-5f-JQc">
+                                <rect key="frame" x="188" y="493" width="225" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9gN-kI-PGe"/>
@@ -161,7 +171,8 @@
                                     <action selector="permitLocationUseButtonDidPress:" destination="zfO-9H-wcq" eventType="touchUpInside" id="t4D-5c-L5j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-Zt-HNP">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-Zt-HNP">
+                                <rect key="frame" x="238" y="551" width="124" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="Ddl-c4-YtZ"/>
                                     <constraint firstAttribute="height" constant="41" id="QSs-aZ-V0U"/>
@@ -234,7 +245,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on notifications so Voices can send you relevant and timely updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-yB-sZN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Turn on notifications so Voices can send you actions from advocacy groups." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-yB-sZN">
+                                <rect key="frame" x="20" y="28" width="560" height="99"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="eLU-gd-TOj"/>
                                 </constraints>
@@ -247,7 +259,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="ruW-m4-7F3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="ruW-m4-7F3">
+                                <rect key="frame" x="166" y="144" width="269" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="311" id="3K8-t9-B4v"/>
                                     <constraint firstAttribute="width" secondItem="ruW-m4-7F3" secondAttribute="height" multiplier="269:311" id="C18-ki-uR6"/>
@@ -263,7 +276,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOt-Sh-FuP" userLabel="SingleLineView">
+                            <view alpha="0.25" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOt-Sh-FuP" userLabel="SingleLineView">
+                                <rect key="frame" x="25" y="464" width="550" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="p4b-Q4-wK8"/>
@@ -275,7 +289,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbt-Xc-Oa6">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbt-Xc-Oa6">
+                                <rect key="frame" x="188" y="493" width="225" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="IoB-zp-AFX"/>
@@ -300,7 +315,8 @@
                                     <action selector="turnOnNotiButtonDidPress:" destination="B0a-h2-Dsp" eventType="touchUpInside" id="SPE-19-gYU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q" userLabel="Defer">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-3q-q5q" userLabel="Defer">
+                                <rect key="frame" x="188" y="551" width="225" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="OOC-Qw-0L5"/>
                                     <constraint firstAttribute="width" constant="225" id="wCo-wa-ANt"/>

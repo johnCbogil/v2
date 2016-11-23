@@ -13,24 +13,5 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Voices/GroupsViewController.m"
-            timestampString = "498430084.471199"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
-            startingLineNumber = "323"
-            endingLineNumber = "323">
-=======
-            startingLineNumber = "284"
-            endingLineNumber = "284">
->>>>>>> origin/develop
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
