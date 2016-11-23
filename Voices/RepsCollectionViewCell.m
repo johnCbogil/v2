@@ -43,7 +43,6 @@
     [self.tableView addSubview:self.refreshControl];
     
     self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
-    
 }
 
 #pragma mark - UITableView Delegate Methods

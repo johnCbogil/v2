@@ -125,6 +125,9 @@
 #pragma mark - Custom Search Bar Methods
 
 - (void)configureSearchBar {
+    
+    self.searchView.layer.cornerRadius = kButtonCornerRadius;
+    
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];

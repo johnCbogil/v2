@@ -17,6 +17,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configureCollectionView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
+- (void)configureCollectionView {
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -27,14 +40,6 @@
     flowLayout.minimumLineSpacing = 0.0;
     self.collectionView.collectionViewLayout = flowLayout;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 #pragma mark - CollectionView Delegate Methods
