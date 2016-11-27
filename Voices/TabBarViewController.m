@@ -44,7 +44,7 @@
     
     if (self.tabBar.items.count > 1) {
         UITabBarItem *groupsTab = [self.tabBar.items objectAtIndex:1];
-        groupsTab.title = @"Groups";
+        groupsTab.title = @"Take Action";
         groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
     }
     
