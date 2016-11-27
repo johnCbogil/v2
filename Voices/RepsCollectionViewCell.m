@@ -9,9 +9,10 @@
 #import "RepsCollectionViewCell.h"
 #import "RepTableViewCell.h"
 #import "EmptyRepTableViewCell.h"
-
+#import "RepDetailViewController.h"
 #import "RepsManager.h"
 #import "LocationService.h"
+
 @interface RepsCollectionViewCell()
 
 @property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
@@ -84,6 +85,15 @@
     else {
         return 400;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // CREATE DETAIL VIEW
+    RepDetailViewController *repDetailVC = [[RepDetailViewController alloc]init];
+    // ASSIGN REP TO DETAIL VIEW
+    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
+    // TODO: PUSH TO DETAIL VIEW
+    
 }
 
 - (void)reloadTableView {

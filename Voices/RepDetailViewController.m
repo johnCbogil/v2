@@ -32,7 +32,7 @@
     [self registerCallStateNotification];
 }
 
--(void)setImage {
+- (void)setImage {
     UIImage *placeholderImage;
     if(self.representative.gender){
         if ([self.representative.gender isEqualToString:@"M"]) {
