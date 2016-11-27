@@ -33,8 +33,8 @@
     self.startButton.backgroundColor = [UIColor voicesOrange];
     self.startButton.titleLabel.minimumScaleFactor = 0.75;
 
-    self.introLabel.font = [UIFont voicesFontWithSize:25.0];
-    self.introLabel.text = @"Voices helps you take action to support the causes you care about.";
+    self.introLabel.font = [UIFont voicesFontWithSize:30];
+    self.introLabel.text = @"Support the groups and causes you care about";
 }
 - (IBAction)getStartedButtonDidPress:(id)sender {
     
