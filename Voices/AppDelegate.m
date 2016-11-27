@@ -10,7 +10,6 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
 #import "GroupsViewController.h"
 #import "TabBarViewController.h"
