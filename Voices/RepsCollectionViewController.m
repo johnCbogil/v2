@@ -100,7 +100,6 @@
         }
     }
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:closestCell];
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"changePage" object:indexPath];
     
     RootViewController *rootVC = (RootViewController *)self.parentViewController;
     [rootVC updateTabForIndex:indexPath];
