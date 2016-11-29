@@ -32,7 +32,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.allowsSelection = NO;
+    self.tableView.allowsSelection = YES;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.bounds = CGRectMake(self.refreshControl.bounds.origin.x,
@@ -93,8 +93,10 @@
     // ASSIGN REP TO DETAIL VIEW
     repDetailVC.representative = self.tableViewDataSource[indexPath.row];
     // TODO: PUSH TO DETAIL VIEW
+    [self.delegate pushToDetailVC:repDetailVC];
     
 }
+
 
 - (void)reloadTableView {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];

@@ -7,12 +7,11 @@
 //
 
 #import "RepsCollectionViewController.h"
-#import "RepsCollectionViewCell.h"
 #import "RepsManager.h"
 #import "RootViewController.h"
 
 
-@implementation RepsCollectionViewController
+@implementation RepsCollectionViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +61,7 @@
     cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
     
     cell.index = indexPath.item;
-    
+    cell.delegate = self;
     [cell reloadTableView];
     
     return cell;
@@ -105,8 +104,11 @@
     
     RootViewController *rootVC = (RootViewController *)self.parentViewController;
     [rootVC updateTabForIndex:indexPath];
+}
 
+- (void)pushToDetailVC: (RepDetailViewController*) repVC {
     
+    [self.parentViewController.navigationController pushViewController:repVC animated:YES];
 }
 
 
