@@ -32,7 +32,9 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.allowsSelection = YES;
+    
+    // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
+    self.tableView.allowsSelection = NO;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.bounds = CGRectMake(self.refreshControl.bounds.origin.x,
