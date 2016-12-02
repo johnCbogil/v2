@@ -61,7 +61,7 @@
     cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
     
     cell.index = indexPath.item;
-    cell.delegate = self;
+    cell.repDetailDelegate = self;
     [cell reloadTableView];
     
     return cell;

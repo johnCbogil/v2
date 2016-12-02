@@ -17,7 +17,7 @@
 
 @interface RepsCollectionViewCell : UICollectionViewCell <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) id<RepCellDelegate> delegate;
+@property (weak, nonatomic) id <RepCellDelegate> repDetailDelegate;
 @property (nonatomic)NSInteger index;
 @property (strong, nonatomic) NSArray *tableViewDataSource; // rename
 - (void)reloadTableView;
