@@ -32,6 +32,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
     self.tableView.allowsSelection = NO;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -88,13 +90,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // CREATE DETAIL VIEW
-    RepDetailViewController *repDetailVC = [[RepDetailViewController alloc]init];
-    // ASSIGN REP TO DETAIL VIEW
-    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
-    // TODO: PUSH TO DETAIL VIEW
+
+// TODO: UNCOMMENT WHEN REP DETAIL VIEWS ARE READY
     
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+//    RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
+//    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
+//    [self.repDetailDelegate pushToDetailVC:repDetailVC];
 }
+
 
 - (void)reloadTableView {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];

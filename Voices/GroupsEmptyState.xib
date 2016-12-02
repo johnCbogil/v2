@@ -72,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="groupsEmptyState" width="33" height="33"/>
+        <image name="groupsEmptyState" width="341" height="341"/>
     </resources>
 </document>
