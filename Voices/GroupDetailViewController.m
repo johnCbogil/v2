@@ -10,6 +10,7 @@
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
+#import "CurrentUser.h"
 
 @import Firebase;
 
@@ -42,7 +43,7 @@
     self.groupsRef = [self.rootRef child:@"groups"];
     self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
     
-    [self configureTableView];
+    [self configureTableView]; //tableview method
     [self fetchPolicyPositions];
     [self setFont];
     
@@ -111,6 +112,7 @@
     }];
 }
 
+//tableview method
 - (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -123,47 +125,26 @@
 
 - (IBAction)followGroupButtonDidPress:(id)sender {
     
-    [self followGroup:self.group];
-}
+    // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
+    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
 
-- (void)followGroup:(Group *)group {
     
-    // Check if the current user already belongs to selected group or not
-    FIRDatabaseReference *currentUserRef = [[[self.usersRef child:self.currentUserID]child:@"groups"]child:group.key];
-    [currentUserRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSString *result = snapshot.value == [NSNull null] ? @"is not" : @"is";
-        NSLog(@"User %@ a member of selected group", result);
-        if (snapshot.value == [NSNull null]) {
+    NSString *groupKey = self.group.key;
+
+    [[CurrentUser sharedInstance]followGroup:groupKey WithCompletion:^(BOOL isUserFollowingGroup) {
+        
+        if (!isUserFollowingGroup) {
             
-            // Add group to user's groups
-            [[[self.usersRef child:_currentUserID]child:@"groups"] updateChildValues:@{group.key :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                if (error) {
-                    NSLog(@"write error: %@", error);
-                }
-            }];
-            
-            // Add user to group's users
-            [[[self.groupsRef child:group.key]child:@"followers"] updateChildValues:@{self.currentUserID :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                if (error) {
-                    NSLog(@"write error: %@", error);
-                }
-                else {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:group.name message:@"You will now receive updates from this group" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles: nil];
-                    [alert show];
-                }
-            }];
-            
-            // Add group to user's subscriptions
-            NSString *topic = [group.key stringByReplacingOccurrencesOfString:@" " withString:@""];
-            [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
-            NSLog(@"User subscribed to %@", group.key);
+            NSLog(@"User subscribed to %@", groupKey);
         }
         else {
             
-            
             UIAlertController *alert = [UIAlertController
                                         alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
-                                        message:@"Would you like to stop helping this group?"
+                                        message:@"Would you like to stop supporting this group?"
                                         preferredStyle:UIAlertControllerStyleActionSheet];
             
             UIAlertAction *button0 = [UIAlertAction
@@ -176,8 +157,9 @@
                                       actionWithTitle:@"Unfollow"
                                       style:UIAlertActionStyleDestructive
                                       handler:^(UIAlertAction * action) {
+                                          
                                           // Remove group
-                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"removeGroup" object:group];
+                                          [[CurrentUser sharedInstance]removeGroup:self.group];
                                           
                                           // read the value once to see if group key exists
                                           [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -195,7 +177,7 @@
             [alert addAction:button1];
             [self presentViewController:alert animated:YES completion:nil];
         }
-    } withCancelBlock:^(NSError * _Nonnull error) {
+    } onError:^(NSError *error) {
         NSLog(@"%@", error);
     }];
 }
@@ -233,7 +215,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Allows centering of the nav bar title by making an empty back button
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
     policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];

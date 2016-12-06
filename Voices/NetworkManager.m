@@ -12,7 +12,7 @@
 
 @implementation NetworkManager
 
-+(NetworkManager *) sharedInstance {
++ (NetworkManager *) sharedInstance {
     static NetworkManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -51,14 +51,18 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oops" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        NSString *message;
         if (error.code == -1009) {
-            alert.message = @"The internet connection appears to be offline";
+            message = @"The internet connection appears to be offline.";
         }
         else {
-            alert.message = @"It appears there was a server error";
+            message = @"It appears there was a server error";
         }
-        [alert show];
+
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }];
     [operation start];
 }
@@ -92,7 +96,7 @@
                                onError:(void(^)(NSError *error))errorBlock {
     
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", searchText, kGoogMaps];
-    NSString *encodedURL = [formattedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:encodedURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -105,8 +109,11 @@
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
+       
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    
         NSLog(@"Error: %@", error);
     }];
     

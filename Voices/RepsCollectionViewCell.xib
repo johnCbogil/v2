@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RepsCollectionViewCell" id="j1v-31-XgN" customClass="RepsCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FuE-1R-ibn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="FuE-1R-ibn" firstAttribute="top" secondItem="j1v-31-XgN" secondAttribute="top" id="3gw-Cz-RVi"/>
+                <constraint firstAttribute="trailing" secondItem="FuE-1R-ibn" secondAttribute="trailing" id="9Xq-8X-XYe"/>
+                <constraint firstItem="FuE-1R-ibn" firstAttribute="leading" secondItem="j1v-31-XgN" secondAttribute="leading" id="HLc-ad-UAy"/>
+                <constraint firstAttribute="bottom" secondItem="FuE-1R-ibn" secondAttribute="bottom" id="rPJ-NL-kaW"/>
+            </constraints>
+            <connections>
+                <outlet property="tableView" destination="FuE-1R-ibn" id="WIT-Nl-bK7"/>
+            </connections>
+            <point key="canvasLocation" x="-291.5" y="165.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

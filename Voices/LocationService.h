@@ -14,6 +14,7 @@
 +(LocationService *) sharedInstance;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *currentLocation;
+@property (strong, nonatomic) CLLocation *requestedLocation;
 @property (strong, nonatomic) NSMutableArray *observers;
 - (void)startUpdatingLocation;
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock

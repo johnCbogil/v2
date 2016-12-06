@@ -8,16 +8,14 @@
 
 #import "RootViewController.h"
 #import "NetworkManager.h"
-#import "RepManager.h"
 #import "StateRepresentative.h"
-#import "PageViewController.h"
 #import "LocationService.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
-#import "SMPageControl.h"
+#import "RepsManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -25,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
-@property (strong, nonatomic) PageViewController *pageVC;
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *shadowView;
@@ -34,6 +31,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+@property (strong, nonatomic) NSDictionary *buttonDictionary;
+//@property (strong, nonatomic) UIView *tapView;
 
 @end
 
@@ -51,13 +51,25 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
+    
     [self addObservers];
     [self setFont];
     [self setColors];
     [self configureSearchBar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    
+    self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -82,7 +94,7 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-//    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    //    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
@@ -95,9 +107,31 @@
     self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
 }
 
+- (void)updateTabForIndex:(NSIndexPath *)indexPath {
+    if (self.selectedIndexPath != indexPath) {
+        
+        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
+        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
+        
+        [newButton.layer removeAllAnimations];
+        [lastButton.layer removeAllAnimations];
+        
+        [UIView animateWithDuration:.25 animations:^{
+            
+            newButton.tintColor = [UIColor voicesBlue];
+            lastButton.tintColor = [UIColor voicesLightGray];
+            
+        }];
+        self.selectedIndexPath = indexPath;
+    }
+}
+
 #pragma mark - Custom Search Bar Methods
 
 - (void)configureSearchBar {
+    
+    self.searchView.layer.cornerRadius = kButtonCornerRadius;
+    
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -115,14 +149,6 @@
     magnifyingGlass.contentMode = UIViewContentModeCenter;
     self.searchTextField.leftView = magnifyingGlass;
     
-    // Set the clear button
-    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
-    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
-    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    self.searchTextField.rightView = clearButton;
-    
     // Create shadow
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor whiteColor];
@@ -132,35 +158,43 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
-    for (id vc in self.childViewControllers) {
-        if ([vc isKindOfClass:[UIPageViewController class]]) {
-            self.pageVC = vc;
-        }
-    }
+    //    if([self.tapView respondsToSelector:@selector(removeFromSuperview)]){
+    //        [self.tapView removeFromSuperview];
+    //    }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
-        [[RepManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+        [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
             NSLog(@"%@", locationResults);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             [error localizedDescription];
         }];
         
-        [[RepManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+        [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             [error localizedDescription];
         }];
         
-        [[RepManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
         
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
     
-    
     return NO;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    // Set the clear button
+    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.rightView = clearButton;
 }
 
 - (void)clearSearchBar {
@@ -172,10 +206,10 @@
 #pragma mark - NSNotifications
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"changePage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
@@ -185,43 +219,18 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
-    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.containerView addGestureRecognizer:self.tap];
+    //    self.tapView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    //    self.tapView.backgroundColor = [UIColor clearColor];
+    //    [self.view addSubview:self.tapView];
+    //    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    //    [self.tapView addGestureRecognizer:self.tap];
 }
+
 
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-}
-
-// TODO: CHANGE THIS TO DELEGATE PATTERN
-- (void)changePage:(NSNotification *)notification {
-    NSDictionary* userInfo = notification.object;
-    NSString *currentPageString = userInfo[@"currentPage"];
-    if (currentPageString.length > 0) {
-        //        self.legislatureLevel.text = currentPageString;
-    }
-    
-    [UIView animateWithDuration:.15 animations:^{
-        [self.view layoutIfNeeded];
-    }];
-    
-    // TODO: THIS IS NOT DRY
-    if ([currentPageString isEqualToString:@"Federal"]) {
-        self.federalButton.tintColor = [UIColor voicesBlue];
-        self.stateButton.tintColor = [UIColor voicesLightGray];
-        self.localButton.tintColor = [UIColor voicesLightGray];
-    }
-    else if ([currentPageString isEqualToString:@"State"]) {
-        self.federalButton.tintColor = [UIColor voicesLightGray];
-        self.stateButton.tintColor = [UIColor voicesBlue];
-        self.localButton.tintColor = [UIColor voicesLightGray];
-    }
-    else {
-        self.federalButton.tintColor = [UIColor voicesLightGray];
-        self.stateButton.tintColor = [UIColor voicesLightGray];
-        self.localButton.tintColor = [UIColor voicesBlue];
-    }
+    //[self.tapView removeFromSuperview];
 }
 
 #pragma mark - FB Shimmer methods
@@ -250,30 +259,36 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    UIAlertView *alert;
+    
+    NSString *title;
+    NSString *message;
+    
     switch (result) {
         case MFMailComposeResultCancelled:
         {
             break;
         }
         case MFMailComposeResultSaved:
-            alert = [[UIAlertView alloc] initWithTitle:@"Draft Saved" message:@"Composed Mail is saved in draft." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+            title = @"Draft Saved";
+            message = @"Composed Mail is saved in draft.";
             break;
         case MFMailComposeResultSent:
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-            
+            title = @"Success";
+            message = @"";
             break;
         }
         case MFMailComposeResultFailed:
-            alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Sorry! Failed to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+            title = @"Failed";
+            message = @"Sorry! Failed to send.";
             break;
         default:
             break;
     }
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -308,7 +323,7 @@
     [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedIn:[STPopupNavigationBar class], nil] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
 }
 
@@ -320,23 +335,14 @@
 
 - (IBAction)federalPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
-    self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (IBAction)statePageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
-    self.federalButton.tintColor = [UIColor voicesLightGray];
-    self.stateButton.tintColor = [UIColor voicesBlue];
-    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
-    self.federalButton.tintColor = [UIColor voicesLightGray];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesBlue];
 }
 
 - (void)setPageIndicator:(NSNotification *)notification {
@@ -346,14 +352,14 @@
     }
     else if (pageNumber == 1) {
         [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-
     }
     else if (pageNumber == 2) {
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-
     }
 }
 
-
+- (void)refreshSearchText {
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
 
 @end
