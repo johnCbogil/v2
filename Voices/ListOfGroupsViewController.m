@@ -123,14 +123,8 @@
     groupDetailCollectionViewController.group = self.listOfGroups[indexPath.row];
     groupDetailCollectionViewController.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:groupDetailCollectionViewController animated:YES];
-    
-// BELOW IS OLD PUSH TO GROUPDETAILVIEWCONTROLLER
-//    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-//    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-//    groupDetailViewController.group = self.listOfGroups[indexPath.row];
-//    groupDetailViewController.currentUserID = self.currentUserID;
-//    [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 75;

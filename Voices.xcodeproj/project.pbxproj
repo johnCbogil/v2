@@ -68,6 +68,7 @@
 		A716FEE71DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A716FEE51DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib */; };
 		A716FEEB1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A716FEE91DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m */; };
 		A716FEEC1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A716FEEA1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib */; };
+		A716FEEF1DF7C9E6000BF4AC /* VCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A716FEEE1DF7C9E6000BF4AC /* VCollectionViewLayout.m */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
 		AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */; };
 		B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */ = {isa = PBXBuildFile; fileRef = B89EB1E81D8EE37300C130A8 /* Representative.m */; };
@@ -185,6 +186,8 @@
 		A716FEE81DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionCollectionViewCell.h; sourceTree = "<group>"; };
 		A716FEE91DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionCollectionViewCell.m; sourceTree = "<group>"; };
 		A716FEEA1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDescriptionCollectionViewCell.xib; sourceTree = "<group>"; };
+		A716FEED1DF7C9E6000BF4AC /* VCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCollectionViewLayout.h; sourceTree = "<group>"; };
+		A716FEEE1DF7C9E6000BF4AC /* VCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCollectionViewLayout.m; sourceTree = "<group>"; };
 		A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AA2C2E4D1D6F385A009989C9 /* RepDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepDetailViewController.h; sourceTree = "<group>"; };
 		AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepDetailViewController.m; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsCollectionViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsCollectionViewController.m */,
+				A716FEED1DF7C9E6000BF4AC /* VCollectionViewLayout.h */,
+				A716FEEE1DF7C9E6000BF4AC /* VCollectionViewLayout.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -732,6 +737,7 @@
 			files = (
 				B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */,
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
+				A716FEEF1DF7C9E6000BF4AC /* VCollectionViewLayout.m in Sources */,
 				7E6CB2DF1DD658B20027D11B /* RepsCollectionViewController.m in Sources */,
 				A716FEE21DF5C3E9000BF4AC /* GroupDetailCollectionViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,

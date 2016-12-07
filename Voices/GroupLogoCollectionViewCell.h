@@ -10,12 +10,24 @@
 #import "Group.h"
 #import "UIImageView+AFNetworking.h"
 #import "CurrentUser.h"
-
 @import Firebase;
 
-@interface GroupLogoCollectionViewCell : UICollectionViewCell
 
+@class GroupLogoCollectionViewCell;
+
+@protocol FollowGroupDelegate <NSObject>
+
+- (IBAction)followGroupButtonDidPress:(GroupLogoCollectionViewCell *)cell;
+
+@end
+
+
+@interface GroupLogoCollectionViewCell : UICollectionViewCell<FollowGroupDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
 @property (strong, nonatomic) Group *group;
 @property (strong, nonatomic) NSString *currentUserID;
+@property (nonatomic, weak) id <FollowGroupDelegate> followGroupDelegate;
+- (void)initWithGroup:(Group *)group;
 
 @end

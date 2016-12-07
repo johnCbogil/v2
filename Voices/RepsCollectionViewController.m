@@ -9,7 +9,7 @@
 #import "RepsCollectionViewController.h"
 #import "RepsManager.h"
 #import "RootViewController.h"
-
+#import "VCollectionViewLayout.h"
 
 @implementation RepsCollectionViewController 
 
@@ -37,8 +37,9 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"RepsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"RepsCollectionViewCell"];
     self.collectionView.pagingEnabled = YES;
     
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    flowLayout.minimumLineSpacing = 0.0;
+//    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+//    flowLayout.minimumLineSpacing = 0.0;
+    VCollectionViewLayout *flowLayout = [[VCollectionViewLayout alloc]init];
     self.collectionView.collectionViewLayout = flowLayout;
     
 }
