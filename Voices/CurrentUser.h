@@ -12,7 +12,11 @@
 @interface CurrentUser : NSObject
 
 + (CurrentUser *) sharedInstance;
-@property (strong, nonatomic) NSMutableArray <Group *> *listOfFollowedGroups;
-- (void)followGroup:(NSString *)groupKey;
+- (void)followGroup:(NSString *)groupKey WithCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)removeGroup:(Group *)group;
+@property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
+@property (strong, nonatomic) NSMutableArray *listOfActions;
 
 @end

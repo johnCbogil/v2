@@ -7,29 +7,23 @@
 //
 
 #import "AppDelegate.h"
-#import "PageViewController.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
-#import "NotiOnboardingViewController.h"
 #import "SSZipArchive.h"
-#import "RepManager.h"
 #import "GroupsViewController.h"
 #import "TabBarViewController.h"
 #import "CurrentUser.h"
+#import "RepsManager.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
     [self setInitialViewController];
     [self setCache];
@@ -37,60 +31,68 @@
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
-    
-    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-    
-    if (notificationPayload) {
-        
-    }
+    [CurrentUser sharedInstance];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
-    
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    
-    [CurrentUser sharedInstance];
-    
-    return YES;
+       return YES;
 }
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+ restorationHandler:(void (^)(NSArray *))restorationHandler {
     
     BOOL handled = [[FIRDynamicLinks dynamicLinks]
                     handleUniversalLink:userActivity.webpageURL
                     completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                  NSError * _Nullable error) {
-                        if (dynamicLink.url) {
-                            [self handleDynamicLink:dynamicLink];
-                        }
-                        else if (error) {
-                            NSLog(@"%@", error);
-                        }
+                        // ...
                     }];
+    
+    
     return handled;
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks]dynamicLinkFromCustomSchemeURL:url];
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    
+    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
+    
     if (dynamicLink) {
-        NSLog(@"I am handling a link through the openURL method");
+        // Handle the deep link. For example, show the deep-linked content or
+        // apply a promotional offer to the user's account.
+        // ...
+        
         [self handleDynamicLink:dynamicLink];
+        
         return YES;
     }
-    else {
-        return NO;
-    }
+    
+    return NO;
 }
+
+
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
     NSLog(@"%@", dynamicLink.url);
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
-    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString];
+    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
+        
+        if (!result) {
+        NSLog(@"User subscribed to %@ via deeplink", groupKey);
+        }
+        else {
+         NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
+        }
+    } onError:^(NSError *error) {
+        NSLog(@"There has been an error attempting to subscribe via deeplink: %@", error);
+    }];
 }
 
 
@@ -121,7 +123,6 @@
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
-    // TODO: Handle data of notification
     
     // Print message ID.
     NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
@@ -183,8 +184,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
-    
-    
 }
 
 - (void)setCache {
@@ -197,7 +196,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)unzipNYCDataSet {
     
     if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
-        [RepManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
+        [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
         
     }
     else {
@@ -215,7 +214,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
         }
         
-        // TODO: SHOULD THIS BE SELF.DATASETCOMPONENT
         NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
         NSError *error =  nil;
         NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -223,7 +221,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         [[NSUserDefaults standardUserDefaults]setObject:jsonDataDict forKey:kCityCouncilZip];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
-        [RepManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+        [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
     }
 }
 

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *groupDescription;
 @property (strong, nonatomic) NSString *groupType;
 @property (strong, nonatomic) NSURL *groupImageURL;
+@property BOOL debug;
 
 
 - (instancetype)initWithKey:(NSString *)key groupDictionary:(NSDictionary *)dictionary;

@@ -11,7 +11,7 @@
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 #import "Group.h"
-
+#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -84,7 +84,9 @@
         NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
-            [groupsArray addObject:group];
+            if (!group.debug) {
+                [groupsArray addObject:group];
+            }
         }];
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groupsArray];
         [weakSelf.tableView reloadData];
@@ -108,15 +110,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Allows centering of the nav bar title by making an empty back button
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.listOfGroups[indexPath.row];
     groupDetailViewController.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
-
-    
-//    [self followGroup:self.listOfGroups[indexPath.row]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

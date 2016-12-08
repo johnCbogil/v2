@@ -45,7 +45,11 @@
     self.locationManager = nil;
     CLLocation *location = [locations lastObject];
     NSLog(@"Latitude %+.6f, Longitude %+.6f\n", location.coordinate.latitude, location.coordinate.longitude);
+    
+    // TODO: THIS IS NOT DRY
     self.currentLocation = location;
+    self.requestedLocation = location;
+  
 }
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
@@ -53,14 +57,17 @@
     [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
             NSLog(@"theres beena google maps mistake!");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
         }
         else {
             CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
             CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
             CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             NSLog(@"%@", location);
+            self.requestedLocation = location;
             successBlock(location);
         }
     } onError:^(NSError *error) {
@@ -72,8 +79,10 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         NSLog(@"location authorization denied");
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Turn on location services in your Settings app or use the search bar above." delegate:nil cancelButtonTitle:@"Alright" otherButtonTitles:nil, nil];
-        [alert show];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Turn on location services in your Settings app or use the search bar above." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Alright" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
     else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         NSLog(@"Starting location updates");

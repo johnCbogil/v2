@@ -11,9 +11,7 @@
 
 @implementation VoicesConstants
 
-NSString *const kFederalRepresentativeTableViewCell = @"FederalRepresentativeTableViewCell";
-NSString *const kStateRepresentativeTableViewCell = @"StateRepresentativeTableViewCell";
-NSString *const kNYCRepresentativeTableViewCell = @"NYCRepresentativeTableViewCell";
+NSString *const kRepTableViewCell = @"RepTableViewCell";
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 NSString *const kAvenirNextMedium = @"AvenirNext-Medium";
@@ -45,7 +43,7 @@ NSString *const kActionEmptyStateBottomLabel = @"To receive actions from advocac
 NSString *const kGroupEmptyStateTopLabel = @"You don't follow any groups yet.";
 NSString *const kGroupEmptyStateBottomLabel = @"To follow groups, tap the + button above.";
 
-NSString *const kLocalRepsMissing = @"Local officials are not available in your area yet.";
+NSString *const kLocalRepsMissing = @"Local officials are not available in this area yet.";
 
 NSString *const kGroupDefaultImage = @"VoicesIcon";
 NSString *const kRepDefaultImageMale = @"MissingRepMale";

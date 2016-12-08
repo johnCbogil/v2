@@ -7,7 +7,7 @@
 //
 
 #import "OnboardingViewController.h"
-
+#import "TabBarViewController.h"
 
 @interface OnboardingViewController ()
 
@@ -33,8 +33,15 @@
     self.startButton.backgroundColor = [UIColor voicesOrange];
     self.startButton.titleLabel.minimumScaleFactor = 0.75;
 
-    self.introLabel.font = [UIFont voicesFontWithSize:25.0];
-    self.introLabel.text = @"Voices is an advocacy tool for the people who care.";
+    self.introLabel.font = [UIFont voicesFontWithSize:30];
+    self.introLabel.text = @"Support the groups and causes you care about";
+}
+- (IBAction)getStartedButtonDidPress:(id)sender {
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+    [self.navigationController pushViewController:tabVC animated:YES];
+
 }
 
 @end
