@@ -84,9 +84,9 @@
         NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
-//            if (!group.debug) {
+            if (!group.debug) {
                 [groupsArray addObject:group];
-//            }
+            }
         }];
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groupsArray];
         [weakSelf.tableView reloadData];
