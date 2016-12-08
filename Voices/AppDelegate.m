@@ -41,33 +41,41 @@
        return YES;
 }
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
+- (BOOL)application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+ restorationHandler:(void (^)(NSArray *))restorationHandler {
     
     BOOL handled = [[FIRDynamicLinks dynamicLinks]
                     handleUniversalLink:userActivity.webpageURL
                     completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                  NSError * _Nullable error) {
-                        if (dynamicLink.url) {
-                            [self handleDynamicLink:dynamicLink];
-                        }
-                        else if (error) {
-                            NSLog(@"%@", error);
-                        }
+                        // ...
                     }];
+    
+    
     return handled;
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks]dynamicLinkFromCustomSchemeURL:url];
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    
+    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
+    
     if (dynamicLink) {
-        NSLog(@"I am handling a link through the openURL method");
+        // Handle the deep link. For example, show the deep-linked content or
+        // apply a promotional offer to the user's account.
+        // ...
+        
         [self handleDynamicLink:dynamicLink];
+        
         return YES;
     }
-    else {
-        return NO;
-    }
+    
+    return NO;
 }
+
+
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
