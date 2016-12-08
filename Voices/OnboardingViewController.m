@@ -7,7 +7,7 @@
 //
 
 #import "OnboardingViewController.h"
-#import "TabBarViewController.h"
+#import "NotiOnboardingViewController.h"
 
 @interface OnboardingViewController ()
 
@@ -36,12 +36,12 @@
     self.introLabel.font = [UIFont voicesFontWithSize:30];
     self.introLabel.text = @"Support the groups and causes you care about";
 }
+
 - (IBAction)getStartedButtonDidPress:(id)sender {
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+    NotiOnboardingViewController *tabVC = (NotiOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"NotiOnboardingViewController"];
     [self.navigationController pushViewController:tabVC animated:YES];
-
 }
 
 @end

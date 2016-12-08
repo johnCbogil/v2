@@ -58,7 +58,6 @@
                                 </state>
                                 <connections>
                                     <action selector="getStartedButtonDidPress:" destination="Xtm-GA-w2V" eventType="touchUpInside" id="8N6-zT-T3m"/>
-                                    <segue destination="r7r-cN-ObZ" kind="show" id="vxZ-t4-KDq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -121,8 +120,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Turn on notifications so Voices can send you actions from advocacy groups." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH3-rx-4n1">
-                                <rect key="frame" x="20" y="28" width="560" height="99"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on notifications so Voices can send you actions from advocacy groups." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH3-rx-4n1">
+                                <rect key="frame" x="16" y="28" width="343" height="133"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="LIA-v1-nLR"/>
                                 </constraints>
@@ -135,8 +134,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-c9-mcO">
-                                <rect key="frame" x="166" y="144" width="269" height="311"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-c9-mcO">
+                                <rect key="frame" x="53.5" y="178" width="269" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mhz-c9-mcO" secondAttribute="height" multiplier="269:311" id="9E3-Ig-vO7"/>
                                     <constraint firstAttribute="width" constant="269" id="SEk-aV-C4l"/>
@@ -146,14 +145,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="c7i-03-dPw"/>
                                         <exclude reference="9E3-Ig-vO7"/>
+                                        <exclude reference="c7i-03-dPw"/>
                                         <exclude reference="v1v-oR-JAJ"/>
                                     </mask>
                                 </variation>
                             </imageView>
-                            <view alpha="0.25" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93J-47-QUZ" userLabel="SingleLineView">
-                                <rect key="frame" x="25" y="464" width="550" height="1"/>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93J-47-QUZ" userLabel="SingleLineView">
+                                <rect key="frame" x="21" y="498" width="333" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="CIz-Yr-Uax"/>
@@ -165,8 +164,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dx-sd-90M">
-                                <rect key="frame" x="188" y="493" width="225" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dx-sd-90M">
+                                <rect key="frame" x="75.5" y="560" width="225" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="24x-4p-RPP"/>
@@ -181,8 +180,8 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="DhZ-sa-3bo"/>
                                         <exclude reference="24x-4p-RPP"/>
+                                        <exclude reference="DhZ-sa-3bo"/>
                                         <exclude reference="XiJ-8u-kPi"/>
                                     </mask>
                                 </variation>
@@ -190,14 +189,14 @@
                                     <action selector="turnOnNotiButtonDidPress:" destination="r7r-cN-ObZ" eventType="touchUpInside" id="hfO-AT-uq1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esx-Ko-eFf" userLabel="Defer">
-                                <rect key="frame" x="188" y="551" width="225" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esx-Ko-eFf" userLabel="Defer">
+                                <rect key="frame" x="75.5" y="618" width="225" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="Ijv-wK-tei"/>
                                     <constraint firstAttribute="height" constant="33" id="UoW-GE-3Yf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="Skip">
                                     <color key="titleColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
