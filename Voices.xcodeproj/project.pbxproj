@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17560CD1A006795877B8FCB9 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B117A45B252CA574D86425 /* libPods-Voices.a */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
+		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepTableViewCell.m */; };
 		52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 52361C9C1D3076ED00589827 /* PolicyPosition.m */; };
@@ -51,9 +52,7 @@
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
-		52DEF4C01DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json in Resources */ = {isa = PBXBuildFile; fileRef = 52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */ = {isa = PBXBuildFile; fileRef = 52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
@@ -83,6 +82,7 @@
 /* Begin PBXFileReference section */
 		158C0BA4129B1DD8E1DCD6C0 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
+		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepTableViewCell.xib; sourceTree = "<group>"; };
 		5235B07F1BA735A500CF43F9 /* RepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* RepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepTableViewCell.m; sourceTree = "<group>"; };
@@ -152,10 +152,8 @@
 		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
 		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
-		52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json"; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
-		52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Voices-ae779cfd4221.json"; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
@@ -306,9 +304,8 @@
 				52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */,
 				524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */,
 				52BB34301B6160CA00BB9FFD /* main.m */,
-				52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */,
 				5202418E1D70A16000B4A9FB /* nycExtraReps.json */,
-				52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */,
+				52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -567,12 +564,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
-				52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
-				52DEF4C01DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */,
+				52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */,
 				525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
@@ -612,7 +608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:1073657114728:ios:4cd690a7b995db5d\n\n# Replace the /Path/To/ServiceAccount.json with the path to the key you just downloaded\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"./Voices/voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json\"";
 		};
 		65E37E33A3447ED70FDB1E37 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
