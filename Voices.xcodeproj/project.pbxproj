@@ -51,6 +51,7 @@
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
+		52DEF4C01DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json in Resources */ = {isa = PBXBuildFile; fileRef = 52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */ = {isa = PBXBuildFile; fileRef = 52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
@@ -151,6 +152,7 @@
 		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
 		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
+		52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json"; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Voices-ae779cfd4221.json"; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				52BB34301B6160CA00BB9FFD /* main.m */,
 				52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */,
 				5202418E1D70A16000B4A9FB /* nycExtraReps.json */,
+				52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
+				52DEF4C01DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */,
 				525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */,
@@ -608,7 +612,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=./Voices/Voices-ae779cfd4221.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:1073657114728:ios:4cd690a7b995db5d\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
+			shellScript = "";
 		};
 		65E37E33A3447ED70FDB1E37 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

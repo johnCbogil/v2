@@ -32,6 +32,8 @@
 	<false/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:1073657114728:ios:4cd690a7b995db5d</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>DATABASE_URL</key>
 	<string>https://voices-430ae.firebaseio.com</string>
 </dict>
