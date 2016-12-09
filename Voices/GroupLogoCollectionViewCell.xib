@@ -30,8 +30,8 @@
                             <action selector="followGroupButtonDidPress:" destination="gTV-IL-0wX" eventType="touchUpInside" id="li1-42-q9L"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHD-XC-pvY">
-                        <frame key="frameInset" minX="41" minY="177" width="292" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHD-XC-pvY">
+                        <frame key="frameInset" minX="8" minY="177" width="344" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <nil key="textColor"/>
@@ -45,7 +45,7 @@
                 <outlet property="groupImageView" destination="otf-LM-4DR" id="BK5-R4-ctZ"/>
                 <outlet property="groupName" destination="IHD-XC-pvY" id="mBR-Px-OHb"/>
             </connections>
-            <point key="canvasLocation" x="69.5" y="52"/>
+            <point key="canvasLocation" x="69" y="51.5"/>
         </collectionViewCell>
     </objects>
 </document>
