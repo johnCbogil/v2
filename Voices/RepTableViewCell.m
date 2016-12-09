@@ -12,6 +12,8 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
+#import "ScriptManager.h"
+#import "AFHTTPRequestOperation.h"
 
 @import FirebaseAnalytics;
 
@@ -103,6 +105,28 @@
             NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
  
             if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
+                
+                NSString *actionKey = [ScriptManager sharedInstance].lastAction.key;
+                
+                NSString *dataUrl = [NSString stringWithFormat:@"https://script.google.com/macros/s/AKfycbxBK6HTkA6tTXU09sRF5PHHCq2LpBOFdx4ZH7E4ORf3sG374iU/exec?eventType=CALL_EVENT&previousAction=%@", actionKey];
+                NSURL *url = [NSURL URLWithString:dataUrl];
+                NSLog(@"%@", url);
+                NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                
+                AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+                operation.responseSerializer = [AFJSONResponseSerializer serializer];
+                
+                [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    // NSLog(@"%@", responseObject);
+
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
+                    NSLog(@"Error: %@", error);
+                }];
+                [operation start];
+                
+                
                 
                 [[UIApplication sharedApplication] openURL:callUrl];
                 

@@ -8,7 +8,7 @@
 
 #import "ActionDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "ScriptManager.h"
 
 @interface ActionDetailViewController()
 
@@ -78,6 +78,9 @@
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
+    
+    [ScriptManager sharedInstance].lastAction = self.action;
+    
     self.tabBarController.selectedIndex = 0;
     NSNumber *level = [NSNumber numberWithInt:self.action.level];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];

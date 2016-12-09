@@ -62,6 +62,7 @@
 		7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */; };
 		7E6CB2DF1DD658B20027D11B /* RepsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsCollectionViewController.m */; };
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
+		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
@@ -171,6 +172,8 @@
 		7EA49CE31D6C9B4B002449CC /* Voices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Voices.entitlements; sourceTree = "<group>"; };
 		7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyDetailViewController.h; sourceTree = "<group>"; };
 		7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDetailViewController.m; sourceTree = "<group>"; };
+		7ED3E7CD1DFB431300C1391C /* ScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptManager.h; sourceTree = "<group>"; };
+		7ED3E7CE1DFB431300C1391C /* ScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptManager.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
 				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
 				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
+				7ED3E7CD1DFB431300C1391C /* ScriptManager.h */,
+				7ED3E7CE1DFB431300C1391C /* ScriptManager.m */,
 				52D8929D1CC471AA004FBEA3 /* GroupsTab */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
@@ -724,6 +729,7 @@
 				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
+				7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */,
 				5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */,
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
