@@ -9,6 +9,7 @@
 #import "ReportingManager.h"
 #import "AFHTTPRequestOperation.h"
 #import "CurrentUser.h"
+#import "AppDelegate.h"
 
 @implementation ReportingManager
 
@@ -29,17 +30,18 @@
     return self;
 }
 
-- (void)reportEvent {
+- (void)reportEvent:(NSString *)eventType eventFocus:(NSString *)eventFocus eventData:(NSString *)eventData {
     
-    NSString *eventType;
-    NSString *eventFocus;
+#ifdef DEBUG
+    
+    RETURN;
+    
+#endif
+    
     NSString *eventLoggerID;
-    NSString *eventData;
-    NSString *os;
+    NSString *osVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
     
-    NSString *reportingURL = [NSString stringWithFormat:@"%@&"];
-    
-    // IF DEBUG, APPEND DEBUG TO REPORTING URL STRING
+    NSString *reportingURL = [NSString stringWithFormat:@"%@&%@&%@&%@&%@", eventType, eventFocus, eventData, eventLoggerID, osVersion];
     
     NSURL *url = [NSURL URLWithString:reportingURL];
     
