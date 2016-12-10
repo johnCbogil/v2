@@ -228,7 +228,7 @@
             NSDate *currentTime = [NSDate date];
             double currentTimeUnix = currentTime.timeIntervalSince1970;
             
-            if(newAction.timestamp > currentTimeUnix) {
+            if(newAction.timestamp < currentTimeUnix) {
                 [self.listOfActions addObject:newAction];
                 [self sortActionsByTime];
                 successBlock(self.listOfActions);
