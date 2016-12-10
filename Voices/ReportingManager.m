@@ -7,6 +7,8 @@
 //
 
 #import "ReportingManager.h"
+#import "AFHTTPRequestOperation.h"
+#import "CurrentUser.h"
 
 @implementation ReportingManager
 
@@ -29,6 +31,33 @@
 
 - (void)reportEvent {
     
+    NSString *eventType;
+    NSString *eventFocus;
+    NSString *eventLoggerID;
+    NSString *eventData;
+    NSString *os;
+    
+    NSString *reportingURL = [NSString stringWithFormat:@"%@&"];
+    
+    // IF DEBUG, APPEND DEBUG TO REPORTING URL STRING
+    
+    NSURL *url = [NSURL URLWithString:reportingURL];
+    
+    NSLog(@"%@", url);
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // NSLog(@"%@", responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
+        NSLog(@"Error: %@", error);
+    }];
+    [operation start];
 }
 
 @end
