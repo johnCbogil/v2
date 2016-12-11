@@ -16,6 +16,8 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import "RepsManager.h"
+#import "ReportingManager.h"
+#import "ScriptManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -275,7 +277,9 @@
             break;
         case MFMailComposeResultSent:
         {
+            
             title = @"Success";
+            [[ReportingManager sharedInstance]reportEvent:kEMAIL_EVENT eventFocus:self.representativeEmail eventData:[ScriptManager sharedInstance].lastAction.key];
             message = @"";
             break;
         }
@@ -306,6 +310,8 @@
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
+                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
+
                     break;
                 default:
                     break;
