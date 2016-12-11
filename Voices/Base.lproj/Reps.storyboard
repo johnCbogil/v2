@@ -30,7 +30,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
                                         <rect key="frame" x="310" y="11" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="TVY-ev-WIl"/>
@@ -203,7 +203,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RepsNavCtrl" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZD4-vA-xZR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HZT-0C-JCX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HZT-0C-JCX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -218,6 +218,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SpeechBubble" width="176" height="176"/>
+        <image name="SpeechBubble" width="341" height="341"/>
     </resources>
 </document>
