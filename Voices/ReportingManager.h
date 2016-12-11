@@ -11,5 +11,5 @@
 @interface ReportingManager : NSObject
 
 + (ReportingManager *) sharedInstance;
-
+- (void)reportEvent:(NSString *)eventType eventFocus:(NSString *)eventFocus eventData:(NSString *)eventData;
 @end

@@ -10,6 +10,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "CurrentUser.h"
 #import "AppDelegate.h"
+@import Firebase;
 
 @implementation ReportingManager
 
@@ -32,20 +33,23 @@
 
 - (void)reportEvent:(NSString *)eventType eventFocus:(NSString *)eventFocus eventData:(NSString *)eventData {
     
-#ifdef DEBUG
-    
-    RETURN;
-    
-#endif
-    
-    NSString *eventLoggerID;
+    NSString *eventLoggerID = [FIRAuth auth].currentUser.uid;
+    NSString *platform = @"iOS";
     NSString *osVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
+#ifdef DEBUG
+    eventType = [@"DEBUG_" stringByAppendingString:eventType];
+#endif
+    NSString *params = [NSString stringWithFormat:@"eventType=%@&eventFocus=%@&eventData=%@&eventLoggerId=%@&platform=%@&osVersion=%@", eventType, eventFocus, eventData, eventLoggerID, platform, osVersion];
+    NSString *reportingString = [NSString stringWithFormat:@"%@%@", kEVENT_DATABASE, params];
     
-    NSString *reportingURL = [NSString stringWithFormat:@"%@&%@&%@&%@&%@", eventType, eventFocus, eventData, eventLoggerID, osVersion];
+    NSMutableCharacterSet *alphaNumSymbols = [NSMutableCharacterSet characterSetWithCharactersInString:@"~!@#$&*()-_+=[]:;',/?."];
+    [alphaNumSymbols formUnionWithCharacterSet:[NSCharacterSet alphanumericCharacterSet]];
     
-    NSURL *url = [NSURL URLWithString:reportingURL];
+    reportingString = [reportingString stringByAddingPercentEncodingWithAllowedCharacters:alphaNumSymbols];
     
-    NSLog(@"%@", url);
+    NSURL *url = [NSURL URLWithString: reportingString];
+    
+    NSLog(@"Reporting URL: %@", url);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     

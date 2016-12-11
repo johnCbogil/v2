@@ -49,5 +49,14 @@ NSString *const kGroupDefaultImage = @"VoicesIcon";
 NSString *const kRepDefaultImageMale = @"MissingRepMale";
 NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
 
+#pragma mark - Reporting
+
+NSString *const kEVENT_DATABASE = @"https://script.google.com/macros/s/AKfycbxBK6HTkA6tTXU09sRF5PHHCq2LpBOFdx4ZH7E4ORf3sG374iU/exec?";
+NSString *const kCALL_EVENT = @"CALL_REPRESENTATIVES_EVENT";
+NSString *const kTWEET_EVENT = @"TWEET_REPRESENTATIVES_EVENT";
+NSString *const kEMAIL_EVENT = @"EMAIL_REPRESENTATIVES_EVENT";
+NSString *const kSUBSCRIBE_EVENT = @"SUBSCRIBE_EVENT";
+NSString *const kUNSUBSCRIBE_EVENT = @"UNSUBSCRIBE_EVENT";
+
 
 @end
