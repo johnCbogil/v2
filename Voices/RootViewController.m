@@ -90,16 +90,8 @@
     self.shadowView.layer.shadowOpacity = 0.125f;
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
     
-//    Make the hitbox twice the size of the infoButtons Image
-    if (self.didLayoutCounter < 2) {
-        CGRect initialFrame = self.infoButton.frame;
-        CGFloat initialHeight = initialFrame.size.height/2;
-        CGFloat initialWidth = initialFrame.size.width/2;
-        self.infoButton.frame = CGRectMake(initialFrame.origin.x - initialWidth, initialFrame.origin.y - initialHeight, initialFrame.size.width * 2, initialFrame.size.height * 2);
-        self.infoButton.contentEdgeInsets = UIEdgeInsetsMake(initialHeight, initialWidth, initialHeight, initialWidth);
-        [self.infoButton layoutSubviews];
-        self.didLayoutCounter++;
-    }
+    [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
+
 }
 
 #pragma mark - Custom accessor methods
