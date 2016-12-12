@@ -49,4 +49,11 @@ extern NSString *const kGroupDefaultImage;
 extern NSString *const kRepDefaultImageMale;
 extern NSString *const kRepDefaultImageFemale;
 
+extern NSString *const kEVENT_DATABASE;
+extern NSString *const kCALL_EVENT;
+extern NSString *const kTWEET_EVENT;
+extern NSString *const kEMAIL_EVENT;
+extern NSString *const kSUBSCRIBE_EVENT;
+extern NSString *const kUNSUBSCRIBE_EVENT;
+
 @end
