@@ -35,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
-@property int didLayoutCounter;
 //@property (strong, nonatomic) UIView *tapView;
 
 @end
