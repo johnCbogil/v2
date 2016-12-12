@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
+@property int didLayoutCounter;
 //@property (strong, nonatomic) UIView *tapView;
 
 @end
@@ -67,7 +68,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
     self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -91,6 +91,9 @@
     self.shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     self.shadowView.layer.shadowOpacity = 0.125f;
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
+    
+    [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
+
 }
 
 #pragma mark - Custom accessor methods
