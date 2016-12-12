@@ -70,7 +70,7 @@
         if (snapshot.value != [NSNull null]) {
             
             if ([self.followGroupButton.titleLabel.text isEqualToString:@"Following ▾"]) {
-                [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
+                [self.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
             }
             else {
                 [self.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
@@ -165,7 +165,7 @@
                                           [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                                               if (snapshot.value == [NSNull null]) {
                                                   
-                                                  [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
+                                                  [self.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
                                                   
                                               }
                                           } withCancelBlock:^(NSError * _Nonnull error) {

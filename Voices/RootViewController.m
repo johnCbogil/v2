@@ -16,6 +16,8 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import "RepsManager.h"
+#import "ReportingManager.h"
+#import "ScriptManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -65,10 +67,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
     self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
 }
 
@@ -88,6 +90,9 @@
     self.shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     self.shadowView.layer.shadowOpacity = 0.125f;
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
+    
+    [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
+
 }
 
 #pragma mark - Custom accessor methods
@@ -274,7 +279,9 @@
             break;
         case MFMailComposeResultSent:
         {
+            
             title = @"Success";
+            [[ReportingManager sharedInstance]reportEvent:kEMAIL_EVENT eventFocus:self.representativeEmail eventData:[ScriptManager sharedInstance].lastAction.key];
             message = @"";
             break;
         }
@@ -305,6 +312,8 @@
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
+                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
+
                     break;
                 default:
                     break;

@@ -13,7 +13,6 @@
 
 @interface CurrentUser()
 
-@property (strong, nonatomic) NSString *userID;
 @property (strong, nonatomic) NSMutableArray *actionKeys;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
@@ -279,6 +278,8 @@
     }
     [self.listOfActions removeObjectsInArray:discardedActions];
 }
+
+
 
 
 @end

@@ -26,14 +26,14 @@
                                 <rect key="frame" x="16" y="40" width="343" height="47"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-gw-JY9">
-                                        <rect key="frame" x="8" y="9" width="294" height="30"/>
+                                        <rect key="frame" x="8" y="8.5" width="294" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
-                                        <rect key="frame" x="310" y="11" width="25" height="25"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fh-nE-Bwo">
+                                        <rect key="frame" x="303" y="0.0" width="40" height="47"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="TVY-ev-WIl"/>
+                                            <constraint firstAttribute="width" constant="40" id="TVY-ev-WIl"/>
                                         </constraints>
                                         <state key="normal" image="SpeechBubble"/>
                                         <connections>
@@ -44,11 +44,11 @@
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="9Fh-nE-Bwo" firstAttribute="centerY" secondItem="ZVD-bZ-YzX" secondAttribute="centerY" id="ERR-26-KWP"/>
-                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" constant="11" id="eZR-Fi-WIs"/>
+                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="top" secondItem="ZVD-bZ-YzX" secondAttribute="top" id="eZR-Fi-WIs"/>
                                     <constraint firstItem="aNS-gw-JY9" firstAttribute="centerY" secondItem="9Fh-nE-Bwo" secondAttribute="centerY" id="hDc-66-TBg"/>
-                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="leading" secondItem="aNS-gw-JY9" secondAttribute="trailing" constant="8" symbolic="YES" id="m2x-GA-PuH"/>
+                                    <constraint firstItem="9Fh-nE-Bwo" firstAttribute="leading" secondItem="aNS-gw-JY9" secondAttribute="trailing" constant="1" id="m2x-GA-PuH"/>
                                     <constraint firstItem="aNS-gw-JY9" firstAttribute="leading" secondItem="ZVD-bZ-YzX" secondAttribute="leadingMargin" id="pfD-DG-Tiz"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" constant="8" id="wp1-X1-vw1"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Fh-nE-Bwo" secondAttribute="trailing" id="wp1-X1-vw1"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-DT-SYB" customClass="FBShimmeringView">
@@ -203,7 +203,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RepsNavCtrl" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZD4-vA-xZR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HZT-0C-JCX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HZT-0C-JCX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -218,6 +218,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SpeechBubble" width="176" height="176"/>
+        <image name="SpeechBubble" width="341" height="341"/>
     </resources>
 </document>
