@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
+@property int didLayoutCounter;
 //@property (strong, nonatomic) UIView *tapView;
 
 @end
@@ -65,7 +66,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
     self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -90,12 +90,16 @@
     self.shadowView.layer.shadowOpacity = 0.125f;
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
     
-    //Make the hitbox twice the size of the infoButtons Image
-    CGRect initialFrame = self.infoButton.frame;
-    CGFloat initialHeight = initialFrame.size.height/2;
-    CGFloat initialWidth = initialFrame.size.width/2;
-    self.infoButton.frame = CGRectMake(initialFrame.origin.x - initialWidth, initialFrame.origin.y - initialHeight, initialFrame.size.width * 2, initialFrame.size.height * 2);
-    self.infoButton.contentEdgeInsets = UIEdgeInsetsMake(initialHeight, initialWidth, initialHeight, initialWidth);
+//    Make the hitbox twice the size of the infoButtons Image
+    if (self.didLayoutCounter < 2) {
+        CGRect initialFrame = self.infoButton.frame;
+        CGFloat initialHeight = initialFrame.size.height/2;
+        CGFloat initialWidth = initialFrame.size.width/2;
+        self.infoButton.frame = CGRectMake(initialFrame.origin.x - initialWidth, initialFrame.origin.y - initialHeight, initialFrame.size.width * 2, initialFrame.size.height * 2);
+        self.infoButton.contentEdgeInsets = UIEdgeInsetsMake(initialHeight, initialWidth, initialHeight, initialWidth);
+        [self.infoButton layoutSubviews];
+        self.didLayoutCounter++;
+    }
 }
 
 #pragma mark - Custom accessor methods
