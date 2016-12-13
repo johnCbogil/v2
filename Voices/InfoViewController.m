@@ -35,6 +35,9 @@
     self.contentSizeInPopup = CGSizeMake(300, 315);
     self.closeWindowButton.layer.cornerRadius = kButtonCornerRadius;
     self.closeWindowButton.backgroundColor = [UIColor voicesOrange];
+    
+    self.scriptTextView.editable = NO;
+    
     if ([ScriptManager sharedInstance].lastAction.script.length > 0) {
         self.scriptTextView.text = [ScriptManager sharedInstance].lastAction.script;
     }
@@ -44,13 +47,19 @@
     [self.scriptTextView sizeToFit];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.scriptTextView.text];
-    NSRange yourNameRange = [self.scriptTextView.text rangeOfString:@"[your name]"];
-    NSRange positionRange = [self.scriptTextView.text rangeOfString:@"[support/oppose]"];
-    NSRange issueRange = [self.scriptTextView.text rangeOfString:@"[an issue that you care about]"];
+    NSRange yourNameRange = [self.scriptTextView.text rangeOfString:@"your name"];
+    NSRange positionRange = [self.scriptTextView.text rangeOfString:@"support/oppose"];
+    NSRange issueRange = [self.scriptTextView.text rangeOfString:@"an issue that you care about"];
 
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:yourNameRange];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:positionRange];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:issueRange];
+
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.minimumLineHeight = 35.0f;
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
+
 
     [attributedString addAttribute:NSFontAttributeName value:[UIFont voicesFontWithSize:21] range:NSMakeRange(0, attributedString.length)];
 
