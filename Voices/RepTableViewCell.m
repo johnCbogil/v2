@@ -74,7 +74,11 @@
                                               timeoutInterval:60];
     
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        self.photo.image = image;
+        
+        // TODO: ADD FADE HERE
+        [UIView animateWithDuration:.25 animations:^{
+            self.photo.image = image;
+        }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
