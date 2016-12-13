@@ -132,6 +132,7 @@
             isUserFollowingGroup = NO;
             
             // TODO: REPORT SUBSCRIBE EVENT HERE
+            [[ReportingManager sharedInstance]reportEvent:kSUBSCRIBE_EVENT eventFocus:groupKey eventData:[FIRAuth auth].currentUser.uid];
             
             successBlock(isUserFollowingGroup);
         }
@@ -282,7 +283,6 @@
     }
     [self.listOfActions removeObjectsInArray:discardedActions];
     
-    // TODO: REPORT UNSUBSCRIBE HERE
     [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
 
 }
