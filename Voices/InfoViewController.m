@@ -24,7 +24,6 @@
     if (self = [super init]) {
         self.contentSizeInPopup = CGSizeMake(300, 315);
         
-        // TODO: Set font sizes
     }
     return self;
 }
@@ -42,10 +41,25 @@
     else {
         self.scriptTextView.text = kGenericScript;
     }
-    self.scriptTextView.font = [UIFont voicesFontWithSize:21];
     [self.scriptTextView sizeToFit];
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.scriptTextView.text];
+    NSRange yourNameRange = [self.scriptTextView.text rangeOfString:@"[your name]"];
+    NSRange positionRange = [self.scriptTextView.text rangeOfString:@"[support/oppose]"];
+    NSRange issueRange = [self.scriptTextView.text rangeOfString:@"[an issue that you care about]"];
 
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:yourNameRange];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:positionRange];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:issueRange];
+
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont voicesFontWithSize:21] range:NSMakeRange(0, attributedString.length)];
+
+    self.scriptTextView.attributedText = attributedString;
+    
+    
 }
+
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
