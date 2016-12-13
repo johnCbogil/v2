@@ -43,7 +43,7 @@
     self.groupsRef = [self.rootRef child:@"groups"];
     self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
     
-    [self configureTableView];
+    [self configureTableView]; //tableview method
     [self fetchPolicyPositions];
     [self setFont];
     
@@ -112,6 +112,7 @@
     }];
 }
 
+//tableview method
 - (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

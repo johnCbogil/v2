@@ -66,6 +66,11 @@
 		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
+		A716FEE21DF5C3E9000BF4AC /* GroupDetailCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A716FEE11DF5C3E9000BF4AC /* GroupDetailCollectionViewController.m */; };
+		A716FEE61DF5C681000BF4AC /* GroupLogoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A716FEE41DF5C681000BF4AC /* GroupLogoCollectionViewCell.m */; };
+		A716FEE71DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A716FEE51DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib */; };
+		A716FEEB1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A716FEE91DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m */; };
+		A716FEEC1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A716FEEA1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
 		AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */; };
 		B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */ = {isa = PBXBuildFile; fileRef = B89EB1E81D8EE37300C130A8 /* Representative.m */; };
@@ -181,6 +186,14 @@
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
 		9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionWebViewController.m; sourceTree = "<group>"; };
+		A716FEE01DF5C3E9000BF4AC /* GroupDetailCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailCollectionViewController.h; sourceTree = "<group>"; };
+		A716FEE11DF5C3E9000BF4AC /* GroupDetailCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailCollectionViewController.m; sourceTree = "<group>"; };
+		A716FEE31DF5C681000BF4AC /* GroupLogoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLogoCollectionViewCell.h; sourceTree = "<group>"; };
+		A716FEE41DF5C681000BF4AC /* GroupLogoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLogoCollectionViewCell.m; sourceTree = "<group>"; };
+		A716FEE51DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupLogoCollectionViewCell.xib; sourceTree = "<group>"; };
+		A716FEE81DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionCollectionViewCell.h; sourceTree = "<group>"; };
+		A716FEE91DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionCollectionViewCell.m; sourceTree = "<group>"; };
+		A716FEEA1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDescriptionCollectionViewCell.xib; sourceTree = "<group>"; };
 		A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AA2C2E4D1D6F385A009989C9 /* RepDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepDetailViewController.h; sourceTree = "<group>"; };
 		AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepDetailViewController.m; sourceTree = "<group>"; };
@@ -434,6 +447,8 @@
 				9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */,
 				525EC5A41D2C9C2E007F3C13 /* GroupDetailViewController.h */,
 				525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */,
+				A716FEE01DF5C3E9000BF4AC /* GroupDetailCollectionViewController.h */,
+				A716FEE11DF5C3E9000BF4AC /* GroupDetailCollectionViewController.m */,
 				7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */,
 				7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */,
 			);
@@ -454,6 +469,12 @@
 				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
 				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
 				525475951D31C40C00A894BA /* GroupsEmptyState.xib */,
+				A716FEE31DF5C681000BF4AC /* GroupLogoCollectionViewCell.h */,
+				A716FEE41DF5C681000BF4AC /* GroupLogoCollectionViewCell.m */,
+				A716FEE51DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib */,
+				A716FEE81DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.h */,
+				A716FEE91DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m */,
+				A716FEEA1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -590,10 +611,12 @@
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
+				A716FEE71DF5C681000BF4AC /* GroupLogoCollectionViewCell.xib in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
 				7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */,
+				A716FEEC1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.xib in Resources */,
 				527871C51D3C443200CD29BB /* Info.xib in Resources */,
 				52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
@@ -726,6 +749,7 @@
 				B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */,
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
 				7E6CB2DF1DD658B20027D11B /* RepsCollectionViewController.m in Sources */,
+				A716FEE21DF5C3E9000BF4AC /* GroupDetailCollectionViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
@@ -752,12 +776,14 @@
 				9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
+				A716FEE61DF5C681000BF4AC /* GroupLogoCollectionViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */,
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
+				A716FEEB1DF5C69E000BF4AC /* GroupDescriptionCollectionViewCell.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);

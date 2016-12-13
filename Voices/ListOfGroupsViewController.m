@@ -8,6 +8,7 @@
 
 #import "ListOfGroupsViewController.h"
 #import "GroupDetailViewController.h"
+#import "GroupDetailCollectionViewController.h"
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
 #import "Group.h"
@@ -118,11 +119,12 @@
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-    groupDetailViewController.group = self.listOfGroups[indexPath.row];
-    groupDetailViewController.currentUserID = self.currentUserID;
-    [self.navigationController pushViewController:groupDetailViewController animated:YES];
+    GroupDetailCollectionViewController *groupDetailCollectionViewController = (GroupDetailCollectionViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailCollectionViewController"];
+    groupDetailCollectionViewController.group = self.listOfGroups[indexPath.row];
+    groupDetailCollectionViewController.currentUserID = self.currentUserID;
+    [self.navigationController pushViewController:groupDetailCollectionViewController animated:YES];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 75;

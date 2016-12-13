@@ -1,4 +1,4 @@
-//
+    //
 //  GroupsViewController.m
 //  Voices
 //
@@ -13,6 +13,7 @@
 #import "ListOfGroupsViewController.h"
 #import "ActionDetailViewController.h"
 #import "GroupDetailViewController.h"
+#import "GroupDetailCollectionViewController.h"
 #import "Group.h"
 #import "Action.h"
 #import "GroupsEmptyState.h"
@@ -251,14 +252,15 @@
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-
+    
     if (self.segmentControl.selectedSegmentIndex) {
-        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-        groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        groupDetailViewController.currentUserID = self.currentUserID;
-        [self.navigationController pushViewController:groupDetailViewController animated:YES];
-    }
-    else {
+        
+        GroupDetailCollectionViewController *gdcViewController = (GroupDetailCollectionViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailCollectionViewController"];
+        gdcViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
+        gdcViewController.currentUserID = self.currentUserID;
+        [self.navigationController pushViewController:gdcViewController animated:YES];
+        
+    }else{
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
