@@ -8,6 +8,7 @@
 
 #import "CurrentUser.h"
 #import "Action.h"
+#import "ReportingManager.h"
 
 @import Firebase;
 
@@ -282,6 +283,8 @@
     [self.listOfActions removeObjectsInArray:discardedActions];
     
     // TODO: REPORT UNSUBSCRIBE HERE
+    [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
+
 }
 
 
