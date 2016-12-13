@@ -10,6 +10,8 @@
 
 @implementation ScriptManager
 
+// TODO: EXPLORE IF THE PURPOSE OF THIS CLASS SHOULD BE REPLACED BY A DELEGATE
+
 
 + (ScriptManager *) sharedInstance {
     static ScriptManager *instance = nil;

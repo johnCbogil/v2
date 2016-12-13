@@ -49,5 +49,7 @@ NSString *const kGroupDefaultImage = @"VoicesIcon";
 NSString *const kRepDefaultImageMale = @"MissingRepMale";
 NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
 
+NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support/oppose] [an issue that you care about].";
+
 
 @end

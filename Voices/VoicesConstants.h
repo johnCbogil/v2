@@ -49,4 +49,6 @@ extern NSString *const kGroupDefaultImage;
 extern NSString *const kRepDefaultImageMale;
 extern NSString *const kRepDefaultImageFemale;
 
+extern NSString *const kGenericScript;
+
 @end
