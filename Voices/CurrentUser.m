@@ -129,6 +129,9 @@
             NSLog(@"User subscribed to %@", groupKey);
             
             isUserFollowingGroup = NO;
+            
+            // TODO: REPORT SUBSCRIBE EVENT HERE
+            
             successBlock(isUserFollowingGroup);
         }
         else {
@@ -277,6 +280,8 @@
         }
     }
     [self.listOfActions removeObjectsInArray:discardedActions];
+    
+    // TODO: REPORT UNSUBSCRIBE HERE
 }
 
 
