@@ -55,8 +55,10 @@
                                               timeoutInterval:60];
     
     [self.repImageView setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        self.repImageView.image = image;
-      
+
+        [UIView animateWithDuration:.25 animations:^{
+            self.repImageView.image = image;
+        }];
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
     }];

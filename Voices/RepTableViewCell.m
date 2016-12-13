@@ -14,6 +14,7 @@
 #import <CoreTelephony/CTCall.h>
 #import "ScriptManager.h"
 #import "AFHTTPRequestOperation.h"
+#import "ReportingManager.h"
 
 @import FirebaseAnalytics;
 
@@ -73,7 +74,11 @@
                                               timeoutInterval:60];
     
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        self.photo.image = image;
+        
+        // TODO: ADD FADE HERE
+        [UIView animateWithDuration:.25 animations:^{
+            self.photo.image = image;
+        }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
@@ -106,27 +111,7 @@
  
             if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 
-                NSString *actionKey = [ScriptManager sharedInstance].lastAction.key;
-                
-                NSString *dataUrl = [NSString stringWithFormat:@"https://script.google.com/macros/s/AKfycbxBK6HTkA6tTXU09sRF5PHHCq2LpBOFdx4ZH7E4ORf3sG374iU/exec?eventType=CALL_EVENT&previousAction=%@", actionKey];
-                NSURL *url = [NSURL URLWithString:dataUrl];
-                NSLog(@"%@", url);
-                NSURLRequest *request = [NSURLRequest requestWithURL:url];
-                
-                AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-                operation.responseSerializer = [AFJSONResponseSerializer serializer];
-                
-                [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    // NSLog(@"%@", responseObject);
-
-                    
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
-                    NSLog(@"Error: %@", error);
-                }];
-                [operation start];
-                
-                
+                [[ReportingManager sharedInstance]reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
                 
                 [[UIApplication sharedApplication] openURL:callUrl];
                 

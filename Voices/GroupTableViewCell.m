@@ -52,7 +52,11 @@
                                               timeoutInterval:60];
     
     [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        self.groupImage.image = image;
+        
+        [UIView animateWithDuration:.25 animations:^{
+            self.groupImage.image = image;
+        }];
+        
         NSLog(@"Group image success");
 
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
