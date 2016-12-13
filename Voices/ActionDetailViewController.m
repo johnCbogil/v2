@@ -41,6 +41,10 @@
     self.groupImage.backgroundColor = [UIColor clearColor];
     [self setGroupImageFromURL:self.action.groupImageURL];
     
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
+    
     [self setFont];
 }
 
