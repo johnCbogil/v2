@@ -357,6 +357,8 @@
     else if (pageNumber == 2) {
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
+    [self presentInfoViewController];
+
 }
 
 - (void)refreshSearchText {
