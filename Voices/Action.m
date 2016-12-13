@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
     _subject = dictionary[@"subject"];
     _timestamp = [dictionary[@"timestamp"]intValue];
     _level = [dictionary[@"level"]intValue];
+    _script = dictionary[@"script"];
     return self;
 }
 

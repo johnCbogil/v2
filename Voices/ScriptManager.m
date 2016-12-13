@@ -23,7 +23,7 @@
 - (id)init {
     self = [super init];
     if(self != nil) {
-
+        self.script = self.lastAction.script;
     }
     return self;
 }

@@ -14,6 +14,6 @@
 + (ScriptManager *) sharedInstance;
 
 @property (strong, nonatomic) Action *lastAction;
-
+@property (strong, nonatomic) NSString *script;
 
 @end
