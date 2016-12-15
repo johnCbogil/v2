@@ -260,6 +260,16 @@
         //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
         [mailViewController setToRecipients:@[self.representativeEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
+    }else{
+        NSLog(@"***** no Mail account set up, will attempt to open Gmail *****");
+        NSString *customURL = @"googlegmail:///co?subject=Hello&body=Hi";
+        if ([[UIApplication sharedApplication]
+             canOpenURL:[NSURL URLWithString:customURL]]){
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:customURL]];
+        }else{
+            //Gmail failed to open, show popup for a user or an error
+            NSLog(@"***** could not open Gmail *****");
+        }
     }
 }
 
