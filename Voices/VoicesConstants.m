@@ -50,7 +50,7 @@ NSString *const kRepDefaultImageMale = @"MissingRepMale";
 NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
 
 #pragma mark - Reporting
-NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support/oppose] [an issue that you care about].";
+NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support / oppose] [an issue that you care about].";
 
 NSString *const kEVENT_DATABASE = @"https://script.google.com/macros/s/AKfycbxBK6HTkA6tTXU09sRF5PHHCq2LpBOFdx4ZH7E4ORf3sG374iU/exec?";
 NSString *const kCALL_EVENT = @"CALL_REPRESENTATIVES_EVENT";

@@ -65,10 +65,11 @@
 
     self.scriptTextView.attributedText = attributedString;
     
-    
 }
 
-
+- (void)viewDidLayoutSubviews {
+    [self.scriptTextView setContentOffset:CGPointZero animated:NO];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
