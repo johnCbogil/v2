@@ -8,12 +8,12 @@
 
 #import "CurrentUser.h"
 #import "Action.h"
+#import "ReportingManager.h"
 
 @import Firebase;
 
 @interface CurrentUser()
 
-@property (strong, nonatomic) NSString *userID;
 @property (strong, nonatomic) NSMutableArray *actionKeys;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
@@ -130,6 +130,9 @@
             NSLog(@"User subscribed to %@", groupKey);
             
             isUserFollowingGroup = NO;
+            
+            [[ReportingManager sharedInstance]reportEvent:kSUBSCRIBE_EVENT eventFocus:groupKey eventData:[FIRAuth auth].currentUser.uid];
+            
             successBlock(isUserFollowingGroup);
         }
         else {
@@ -278,7 +281,12 @@
         }
     }
     [self.listOfActions removeObjectsInArray:discardedActions];
+    
+    [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
+
 }
+
+
 
 
 @end

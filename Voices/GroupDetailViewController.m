@@ -70,7 +70,7 @@
         if (snapshot.value != [NSNull null]) {
             
             if ([self.followGroupButton.titleLabel.text isEqualToString:@"Following ▾"]) {
-                [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
+                [self.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
             }
             else {
                 [self.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
@@ -105,7 +105,10 @@
     
     [self.groupImageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
-        self.groupImageView.image = image;
+
+        [UIView animateWithDuration:.25 animations:^{
+            self.groupImageView.image = image;
+        }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Action image failure");
@@ -164,7 +167,7 @@
                                           [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                                               if (snapshot.value == [NSNull null]) {
                                                   
-                                                  [self.followGroupButton setTitle:@"Follow This Group" forState:UIControlStateNormal];
+                                                  [self.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
                                                   
                                               }
                                           } withCancelBlock:^(NSError * _Nonnull error) {

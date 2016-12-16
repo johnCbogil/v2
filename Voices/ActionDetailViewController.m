@@ -8,7 +8,7 @@
 
 #import "ActionDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "ScriptManager.h"
 
 @interface ActionDetailViewController()
 
@@ -41,6 +41,10 @@
     self.groupImage.backgroundColor = [UIColor clearColor];
     [self setGroupImageFromURL:self.action.groupImageURL];
     
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
+    
     [self setFont];
 }
 
@@ -70,7 +74,11 @@
     
     [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
-        self.groupImage.image = image;
+        
+        [UIView animateWithDuration:.25 animations:^{
+            self.groupImage.image = image;
+        }];
+
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Action image failure");
@@ -78,6 +86,9 @@
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
+    
+    [ScriptManager sharedInstance].lastAction = self.action;
+    
     self.tabBarController.selectedIndex = 0;
     NSNumber *level = [NSNumber numberWithInt:self.action.level];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];

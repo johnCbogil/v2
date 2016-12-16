@@ -18,5 +18,6 @@
 - (void)removeGroup:(Group *)group;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
 @property (strong, nonatomic) NSMutableArray *listOfActions;
+@property (strong, nonatomic) NSString *userID;
 
 @end
