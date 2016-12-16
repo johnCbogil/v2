@@ -249,13 +249,27 @@
 
 - (void)presentEmailViewController:(NSNotification*)notification {
     self.representativeEmail = [notification object];
-    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    
+    // Open 'Compose' in Mail app - if no Mail app, open Gmail
     if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         //        [mailViewController setSubject:@"Subject Goes Here."];
         //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
         [mailViewController setToRecipients:@[self.representativeEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
+    }
+    else {
+        NSString *gmailURL = [NSString stringWithFormat:@"googlegmail:///co?to=%@", self.representativeEmail];
+        if ([[UIApplication sharedApplication]
+             canOpenURL:[NSURL URLWithString:gmailURL]]){
+            [[UIApplication sharedApplication]  openURL: [NSURL URLWithString:gmailURL]];
+        }
+        else {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No mail accounts" message:@"Please set up a Mail account or a Gmail account in order to send email." preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+        }
     }
 }
 
