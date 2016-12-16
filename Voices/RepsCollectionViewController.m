@@ -40,7 +40,6 @@
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     flowLayout.minimumLineSpacing = 0.0;
     self.collectionView.collectionViewLayout = flowLayout;
-    
 }
 
 #pragma mark - CollectionView Delegate Methods

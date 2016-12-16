@@ -95,6 +95,9 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    // Make a back button just an arrow, with no title
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
     ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
     webVC.linkURL = URL;
     [self.navigationController pushViewController:webVC animated:YES];
