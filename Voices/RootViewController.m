@@ -67,6 +67,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
     self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
