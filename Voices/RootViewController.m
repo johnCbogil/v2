@@ -118,6 +118,10 @@
         UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
         UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
         
+        if (newButton == lastButton) {
+            return;
+        }
+        
         [newButton.layer removeAllAnimations];
         [lastButton.layer removeAllAnimations];
         
