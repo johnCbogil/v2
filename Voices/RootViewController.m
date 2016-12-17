@@ -92,7 +92,6 @@
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
     
     [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
-
 }
 
 #pragma mark - Custom accessor methods

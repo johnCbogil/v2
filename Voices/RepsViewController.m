@@ -1,23 +1,23 @@
 //
-//  RepsCollectionViewController.m
+//  RepsViewController.m
 //  Voices
 //
 //  Created by Bogil, John on 11/11/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "RepsCollectionViewController.h"
+#import "RepsViewController.h"
 #import "RepsManager.h"
 #import "RootViewController.h"
 
-@interface RepsCollectionViewController()
+@interface RepsViewController()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
 
-@implementation RepsCollectionViewController 
+@implementation RepsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
