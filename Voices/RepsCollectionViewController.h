@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RepsCollectionViewCell.h"
 
-@interface RepsCollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, RepCellDelegate>
+@interface RepsCollectionViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, RepCellDelegate>
 
 @end

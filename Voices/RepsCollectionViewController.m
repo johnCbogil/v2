@@ -10,6 +10,12 @@
 #import "RepsManager.h"
 #import "RootViewController.h"
 
+@interface RepsCollectionViewController()
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@end
+
 
 @implementation RepsCollectionViewController 
 
