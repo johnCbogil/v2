@@ -48,7 +48,7 @@
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.scriptTextView.text];
     NSRange yourNameRange = [self.scriptTextView.text rangeOfString:@"your name"];
-    NSRange positionRange = [self.scriptTextView.text rangeOfString:@"support/oppose"];
+    NSRange positionRange = [self.scriptTextView.text rangeOfString:@"support / oppose"];
     NSRange issueRange = [self.scriptTextView.text rangeOfString:@"an issue that you care about"];
 
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:yourNameRange];
