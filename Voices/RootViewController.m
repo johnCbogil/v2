@@ -35,7 +35,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
-//@property (strong, nonatomic) UIView *tapView;
+@property (strong, nonatomic) UIView *tapView;
 
 @end
 
@@ -171,9 +171,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
-    //    if([self.tapView respondsToSelector:@selector(removeFromSuperview)]){
-    //        [self.tapView removeFromSuperview];
-    //    }
+        if([self.tapView respondsToSelector:@selector(removeFromSuperview)]){
+            [self.tapView removeFromSuperview];
+        }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
@@ -224,6 +224,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
@@ -232,18 +233,18 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
-    //    self.tapView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    //    self.tapView.backgroundColor = [UIColor clearColor];
-    //    [self.view addSubview:self.tapView];
-    //    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    //    [self.tapView addGestureRecognizer:self.tap];
+        self.tapView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+        self.tapView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:self.tapView];
+        self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+        [self.tapView addGestureRecognizer:self.tap];
 }
 
-
+// TODO: MIGHT BE SOME REDUNDANT CODE HERE
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-    //[self.tapView removeFromSuperview];
+    [self.tapView removeFromSuperview];
 }
 
 #pragma mark - FB Shimmer methods
