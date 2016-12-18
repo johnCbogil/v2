@@ -206,10 +206,13 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedSegment == 0) {
+        
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        [cell initWithAction:action];
+        NSString *currentUserID = self.currentUserID;
+        Group *currentGroup = [self findGroupByAction:action];
+        [cell initWithCurrentUserID:currentUserID andGroup:currentGroup andAction:action];
         return cell;
     }
     else {
@@ -261,6 +264,8 @@
     else {
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+        Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
+        actionDetailViewController.currentUserID = self.currentUserID;        actionDetailViewController.group = currentGroup;
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -275,6 +280,20 @@
         self.tableView.estimatedRowHeight = 255.0;
         return self.tableView.rowHeight = UITableViewAutomaticDimension;
     }
+}
+
+#pragma mark - Find Group By Action
+
+- (Group *)findGroupByAction:(Action *)action {
+    
+    // When in Action Table View section, group and userID is needed to push to Group page if user presses the Group logo imageView - if either condition match return group 
+    Group *group;
+    for (Group *currentGroup in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        if([currentGroup.name isEqualToString:action.groupName]||[currentGroup.key isEqualToString:action.groupKey]){
+            group = currentGroup;
+        }
+    }
+    return group;
 }
 
 #pragma mark - Segment Control

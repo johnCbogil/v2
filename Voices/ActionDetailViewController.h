@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Action.h"
 #import "ActionWebViewController.h"
+#import "Group.h"
 
 @interface ActionDetailViewController : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) Action *action;
+@property (strong, nonatomic) Group *group;
+@property (strong, nonatomic) NSString *currentUserID;
 
 @end

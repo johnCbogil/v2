@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Action.h"
+#import "Group.h"
 
 @interface ActionTableViewCell : UITableViewCell
 
-- (void)initWithAction:(Action *)action;
+- (void)initWithCurrentUserID:(NSString *)currentUserID andGroup:(Group *)group andAction:(Action *)action;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 
 

@@ -8,7 +8,7 @@
 
 #import "ActionDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "GroupDetailViewController.h"
 
 @interface ActionDetailViewController()
 
@@ -40,12 +40,27 @@
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupImage.backgroundColor = [UIColor clearColor];
     [self setGroupImageFromURL:self.action.groupImageURL];
-    
+    self.groupImage.userInteractionEnabled = true;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(groupImageTapped)];
+    [self.groupImage addGestureRecognizer:tap];
     [self setFont];
 }
 
 - (void)viewDidLayoutSubviews {
     [self.actionBodyTextView setContentOffset:CGPointZero animated:NO];
+}
+
+- (void)groupImageTapped {
+    
+    // Allows centering of the nav bar title by making an empty back button
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    
+    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    groupDetailViewController.group = self.group;
+    groupDetailViewController.currentUserID = self.currentUserID;
+    [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
 - (void)setFont {

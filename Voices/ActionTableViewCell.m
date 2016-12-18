@@ -15,7 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
-
+@property (nonatomic) Group *group;
+@property (nonatomic) NSString *currentUserID;
 @end
 
 @implementation ActionTableViewCell
@@ -50,8 +51,10 @@
     [self.actionTitleTextView setContentOffset:CGPointZero animated:NO];
 }
 
-- (void)initWithAction:(Action *)action {
+- (void)initWithCurrentUserID:(NSString *)currentUserID andGroup:(Group *)group andAction:(Action *)action {
     
+    self.group = group;
+    self.currentUserID = currentUserID;
     self.groupNameLabel.text = action.groupName;
     self.actionTitleTextView.text = action.title;
     self.actionSubjectLabel.text = action.subject;
