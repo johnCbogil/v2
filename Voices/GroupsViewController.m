@@ -258,7 +258,6 @@
     if (self.segmentControl.selectedSegmentIndex) {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
         groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        groupDetailViewController.currentUserID = self.currentUserID;
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     else {

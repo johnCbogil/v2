@@ -120,7 +120,6 @@
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.listOfGroups[indexPath.row];
-    groupDetailViewController.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 

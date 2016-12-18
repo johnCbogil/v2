@@ -39,7 +39,7 @@
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupImage.backgroundColor = [UIColor clearColor];
-    [self setGroupImageFromURL:self.action.groupImageURL];
+    [self setGroupImageFromURL:self.group.groupImageURL];
     self.groupImage.userInteractionEnabled = true;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(groupImageTapped)];
     [self.groupImage addGestureRecognizer:tap];
@@ -54,14 +54,12 @@
 
 - (void)groupImageTapped {
     
-    // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.group;
-    groupDetailViewController.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
