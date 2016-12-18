@@ -12,6 +12,9 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
+#import "ScriptManager.h"
+#import "AFHTTPRequestOperation.h"
+#import "ReportingManager.h"
 
 @import FirebaseAnalytics;
 
@@ -71,7 +74,11 @@
                                               timeoutInterval:60];
     
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        self.photo.image = image;
+        
+        // TODO: ADD FADE HERE
+        [UIView animateWithDuration:.25 animations:^{
+            self.photo.image = image;
+        }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Federal image failure");
@@ -103,6 +110,8 @@
             NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
  
             if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
+                
+                [[ReportingManager sharedInstance]reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
                 
                 [[UIApplication sharedApplication] openURL:callUrl];
                 

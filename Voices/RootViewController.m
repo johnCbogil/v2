@@ -16,6 +16,8 @@
 #import "FBShimmeringView.h"
 #import "FBShimmeringLayer.h"
 #import "RepsManager.h"
+#import "ReportingManager.h"
+#import "ScriptManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -33,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
-//@property (strong, nonatomic) UIView *tapView;
 
 @end
 
@@ -66,6 +67,10 @@
     
     self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -89,6 +94,8 @@
     self.shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     self.shadowView.layer.shadowOpacity = 0.125f;
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
+    
+    [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
 }
 
 #pragma mark - Custom accessor methods
@@ -113,6 +120,10 @@
         
         UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
         UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
+        
+        if (newButton == lastButton) {
+            return;
+        }
         
         [newButton.layer removeAllAnimations];
         [lastButton.layer removeAllAnimations];
@@ -158,10 +169,6 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    
-    //    if([self.tapView respondsToSelector:@selector(removeFromSuperview)]){
-    //        [self.tapView removeFromSuperview];
-    //    }
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
@@ -212,6 +219,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingOperationDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
@@ -220,18 +228,16 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
-    //    self.tapView = [[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    //    self.tapView.backgroundColor = [UIColor clearColor];
-    //    [self.view addSubview:self.tapView];
-    //    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    //    [self.tapView addGestureRecognizer:self.tap];
+
+        self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+
 }
 
-
+// TODO: MIGHT BE SOME REDUNDANT CODE HERE
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-    //[self.tapView removeFromSuperview];
+
 }
 
 #pragma mark - FB Shimmer methods
@@ -249,13 +255,27 @@
 
 - (void)presentEmailViewController:(NSNotification*)notification {
     self.representativeEmail = [notification object];
-    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    
+    // Open 'Compose' in Mail app - if no Mail app, open Gmail
     if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         //        [mailViewController setSubject:@"Subject Goes Here."];
         //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
         [mailViewController setToRecipients:@[self.representativeEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
+    }
+    else {
+        NSString *gmailURL = [NSString stringWithFormat:@"googlegmail:///co?to=%@", self.representativeEmail];
+        if ([[UIApplication sharedApplication]
+             canOpenURL:[NSURL URLWithString:gmailURL]]){
+            [[UIApplication sharedApplication]  openURL: [NSURL URLWithString:gmailURL]];
+        }
+        else {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No mail accounts" message:@"Please set up a Mail account or a Gmail account in order to send email." preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+        }
     }
 }
 
@@ -275,7 +295,9 @@
             break;
         case MFMailComposeResultSent:
         {
+            
             title = @"Success";
+            [[ReportingManager sharedInstance]reportEvent:kEMAIL_EVENT eventFocus:self.representativeEmail eventData:[ScriptManager sharedInstance].lastAction.key];
             message = @"";
             break;
         }
@@ -306,6 +328,8 @@
                     break;
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
+                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
+
                     break;
                 default:
                     break;
@@ -357,6 +381,8 @@
     else if (pageNumber == 2) {
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
+    [self presentInfoViewController];
+
 }
 
 - (void)refreshSearchText {

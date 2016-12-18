@@ -108,8 +108,135 @@
             </objects>
             <point key="canvasLocation" x="596" y="329"/>
         </scene>
+        <!--Noti Onboarding View Controller-->
+        <scene sceneID="bve-zI-R2S">
+            <objects>
+                <viewController storyboardIdentifier="NotiOnboardingViewController" id="r7r-cN-ObZ" customClass="NotiOnboardingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cDf-Yp-YuW"/>
+                        <viewControllerLayoutGuide type="bottom" id="x05-HT-XqA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xnV-d7-1CG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on notifications so Voices can send you actions from advocacy groups." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH3-rx-4n1">
+                                <rect key="frame" x="16" y="28" width="343" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="LIA-v1-nLR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LIA-v1-nLR"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-c9-mcO">
+                                <rect key="frame" x="53.5" y="178" width="269" height="311"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mhz-c9-mcO" secondAttribute="height" multiplier="269:311" id="9E3-Ig-vO7"/>
+                                    <constraint firstAttribute="width" constant="269" id="SEk-aV-C4l"/>
+                                    <constraint firstAttribute="height" constant="311" id="c7i-03-dPw"/>
+                                    <constraint firstAttribute="width" secondItem="mhz-c9-mcO" secondAttribute="height" multiplier="269:311" id="hgi-BZ-fWp"/>
+                                    <constraint firstAttribute="width" secondItem="mhz-c9-mcO" secondAttribute="height" multiplier="269:311" id="v1v-oR-JAJ"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9E3-Ig-vO7"/>
+                                        <exclude reference="c7i-03-dPw"/>
+                                        <exclude reference="v1v-oR-JAJ"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93J-47-QUZ" userLabel="SingleLineView">
+                                <rect key="frame" x="21" y="498" width="333" height="1"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="CIz-Yr-Uax"/>
+                                    <constraint firstAttribute="width" constant="300" id="adu-PL-Zq6"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="adu-PL-Zq6"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dx-sd-90M">
+                                <rect key="frame" x="75.5" y="560" width="225" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="24x-4p-RPP"/>
+                                    <constraint firstAttribute="height" constant="50" id="DhZ-sa-3bo"/>
+                                    <constraint firstAttribute="height" constant="50" id="ObZ-L4-bNY"/>
+                                    <constraint firstAttribute="width" constant="225" id="ViP-P5-EFM"/>
+                                    <constraint firstAttribute="width" secondItem="0dx-sd-90M" secondAttribute="height" multiplier="9:2" id="XiJ-8u-kPi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Turn On Notifications">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="24x-4p-RPP"/>
+                                        <exclude reference="DhZ-sa-3bo"/>
+                                        <exclude reference="XiJ-8u-kPi"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="turnOnNotiButtonDidPress:" destination="r7r-cN-ObZ" eventType="touchUpInside" id="hfO-AT-uq1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esx-Ko-eFf" userLabel="Defer">
+                                <rect key="frame" x="75.5" y="618" width="225" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="225" id="Ijv-wK-tei"/>
+                                    <constraint firstAttribute="height" constant="33" id="UoW-GE-3Yf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deferNotiButtonDidPress:" destination="r7r-cN-ObZ" eventType="touchUpInside" id="0Qy-y0-EYY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0dx-sd-90M" firstAttribute="centerX" secondItem="Esx-Ko-eFf" secondAttribute="centerX" id="8lK-PR-bhd"/>
+                            <constraint firstItem="mhz-c9-mcO" firstAttribute="centerY" secondItem="xnV-d7-1CG" secondAttribute="centerY" id="8pY-Pf-vlp"/>
+                            <constraint firstItem="93J-47-QUZ" firstAttribute="top" secondItem="mhz-c9-mcO" secondAttribute="bottom" constant="9" id="9cr-qy-erP"/>
+                            <constraint firstItem="DH3-rx-4n1" firstAttribute="leading" secondItem="xnV-d7-1CG" secondAttribute="leadingMargin" id="BFI-yY-vkj"/>
+                            <constraint firstItem="mhz-c9-mcO" firstAttribute="centerX" secondItem="93J-47-QUZ" secondAttribute="centerX" id="Fqa-cR-XMe"/>
+                            <constraint firstItem="mhz-c9-mcO" firstAttribute="top" secondItem="DH3-rx-4n1" secondAttribute="bottom" constant="17" id="VS4-q2-EWa"/>
+                            <constraint firstItem="Esx-Ko-eFf" firstAttribute="top" secondItem="0dx-sd-90M" secondAttribute="bottom" constant="8" id="kKi-jh-f2S"/>
+                            <constraint firstItem="mhz-c9-mcO" firstAttribute="width" secondItem="mhz-c9-mcO" secondAttribute="height" multiplier="269:311" id="mi5-aS-Hu2"/>
+                            <constraint firstItem="DH3-rx-4n1" firstAttribute="trailing" secondItem="xnV-d7-1CG" secondAttribute="trailingMargin" id="pTI-5D-CQA"/>
+                            <constraint firstItem="x05-HT-XqA" firstAttribute="top" secondItem="Esx-Ko-eFf" secondAttribute="bottom" constant="16" id="puN-jw-kKJ"/>
+                            <constraint firstItem="DH3-rx-4n1" firstAttribute="centerX" secondItem="mhz-c9-mcO" secondAttribute="centerX" id="qrm-5D-lDD"/>
+                            <constraint firstItem="DH3-rx-4n1" firstAttribute="top" secondItem="cDf-Yp-YuW" secondAttribute="bottom" constant="8" symbolic="YES" id="sad-FO-6Gd"/>
+                            <constraint firstItem="93J-47-QUZ" firstAttribute="leading" secondItem="xnV-d7-1CG" secondAttribute="leadingMargin" constant="5" id="xjB-HV-9Nu"/>
+                            <constraint firstItem="93J-47-QUZ" firstAttribute="centerX" secondItem="0dx-sd-90M" secondAttribute="centerX" id="yND-BC-qo5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deferNotiButton" destination="Esx-Ko-eFf" id="cuQ-UE-uAb"/>
+                        <outlet property="notiOnboardingImageView" destination="mhz-c9-mcO" id="G3Q-6r-h9Z"/>
+                        <outlet property="singleLineView" destination="93J-47-QUZ" id="5Ep-Xp-iQ3"/>
+                        <outlet property="turnOnNotiLabel" destination="DH3-rx-4n1" id="p9w-WW-Dsl"/>
+                        <outlet property="turnOnNotificationsButton" destination="0dx-sd-90M" id="O9r-B9-hZW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bEK-da-OzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2225" y="329"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="NotiOnboarding" width="341" height="341"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>

@@ -23,6 +23,7 @@
     webView.scalesPageToFit = YES;
     webView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:webView];
+    
 }
 
 

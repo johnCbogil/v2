@@ -39,7 +39,7 @@
 - (void)createTabBarButtons {
     
     UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];
-    repsTab.title = @"Reps";
+    repsTab.title = @"Find Reps";
     repsTab.image = [UIImage imageNamed:@"Triangle"];
     
     if (self.tabBar.items.count > 1) {

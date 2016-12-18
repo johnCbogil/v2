@@ -9,6 +9,8 @@
 #import "ActionDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "GroupDetailViewController.h"
+#import "ScriptManager.h"
+
 
 @interface ActionDetailViewController()
 
@@ -32,10 +34,8 @@
     self.actionBodyTextView.text = self.action.body;
     self.actionBodyTextView.dataDetectorTypes = UIDataDetectorTypeAll;
     self.actionBodyTextView.delegate = self;
-    
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
-    
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupImage.backgroundColor = [UIColor clearColor];
@@ -43,6 +43,8 @@
     self.groupImage.userInteractionEnabled = true;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(groupImageTapped)];
     [self.groupImage addGestureRecognizer:tap];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
     [self setFont];
 }
 
@@ -73,6 +75,7 @@
     self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
+
 - (void)setGroupImageFromURL:(NSURL *)url {
     
     self.groupImage.contentMode = UIViewContentModeScaleToFill;
@@ -85,7 +88,11 @@
     
     [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
-        self.groupImage.image = image;
+        
+        [UIView animateWithDuration:.25 animations:^{
+            self.groupImage.image = image;
+        }];
+
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         NSLog(@"Action image failure");
@@ -93,6 +100,9 @@
 }
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
+    
+    [ScriptManager sharedInstance].lastAction = self.action;
+    
     self.tabBarController.selectedIndex = 0;
     NSNumber *level = [NSNumber numberWithInt:self.action.level];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];

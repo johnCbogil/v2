@@ -24,7 +24,7 @@
     
     self.title = self.policyPosition.key;
     
-    self.policyPositionTextView.text = self.policyPosition.policyPosition; // NOT GOOD NAMING
+    self.policyPositionTextView.text = self.policyPosition.policyPosition; // TODO: NOT GOOD NAMING
     
     self.contactRepsButton.layer.cornerRadius = kButtonCornerRadius;
 }
@@ -37,7 +37,7 @@
 
 
 - (void)viewDidLayoutSubviews {
-    [self.policyPositionTextView setContentOffset:CGPointZero animated:NO];
+    [self.policyPositionTextView setContentOffset:CGPointZero animated:NO]; // This is here to ensure the scrollview starts from the top
 }
 
 

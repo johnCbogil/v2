@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		17560CD1A006795877B8FCB9 /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B117A45B252CA574D86425 /* libPods-Voices.a */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
+		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepTableViewCell.m */; };
 		52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 52361C9C1D3076ED00589827 /* PolicyPosition.m */; };
 		524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */; };
 		524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */; };
 		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
+		525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 525397D91DFC640F00C12686 /* ReportingManager.m */; };
 		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
 		525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525475951D31C40C00A894BA /* GroupsEmptyState.xib */; };
 		5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254759B1D31C57F00A894BA /* GroupsEmptyState.m */; };
@@ -51,17 +53,17 @@
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
-		52DEF4C01DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json in Resources */ = {isa = PBXBuildFile; fileRef = 52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */ = {isa = PBXBuildFile; fileRef = 52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
-		7E6CB2DF1DD658B20027D11B /* RepsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsCollectionViewController.m */; };
+		7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */; };
+		7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsViewController.m */; };
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
+		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
@@ -83,6 +85,7 @@
 /* Begin PBXFileReference section */
 		158C0BA4129B1DD8E1DCD6C0 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
+		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepTableViewCell.xib; sourceTree = "<group>"; };
 		5235B07F1BA735A500CF43F9 /* RepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepTableViewCell.h; sourceTree = "<group>"; };
 		5235B0801BA735A500CF43F9 /* RepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepTableViewCell.m; sourceTree = "<group>"; };
@@ -93,6 +96,8 @@
 		524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		525306601CC8571800982CC8 /* ListOfGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfGroupsViewController.h; sourceTree = "<group>"; };
 		525306611CC8571800982CC8 /* ListOfGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfGroupsViewController.m; sourceTree = "<group>"; };
+		525397D81DFC640F00C12686 /* ReportingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportingManager.h; sourceTree = "<group>"; };
+		525397D91DFC640F00C12686 /* ReportingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportingManager.m; sourceTree = "<group>"; };
 		5253FB4C1BCB32F1001A5328 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		525475951D31C40C00A894BA /* GroupsEmptyState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsEmptyState.xib; sourceTree = "<group>"; };
@@ -152,10 +157,8 @@
 		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
 		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
-		52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json"; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
-		52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Voices-ae779cfd4221.json"; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
@@ -165,11 +168,15 @@
 		7E133DB51D53A50900F128CC /* EmptyRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyRepTableViewCell.h; sourceTree = "<group>"; };
 		7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyRepTableViewCell.m; sourceTree = "<group>"; };
 		7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyRepTableViewCell.xib; sourceTree = "<group>"; };
-		7E6CB2DD1DD658B20027D11B /* RepsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsCollectionViewController.h; sourceTree = "<group>"; };
-		7E6CB2DE1DD658B20027D11B /* RepsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsCollectionViewController.m; sourceTree = "<group>"; };
+		7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiOnboardingViewController.h; sourceTree = "<group>"; };
+		7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiOnboardingViewController.m; sourceTree = "<group>"; };
+		7E6CB2DD1DD658B20027D11B /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
+		7E6CB2DE1DD658B20027D11B /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
 		7EA49CE31D6C9B4B002449CC /* Voices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Voices.entitlements; sourceTree = "<group>"; };
 		7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyDetailViewController.h; sourceTree = "<group>"; };
 		7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDetailViewController.m; sourceTree = "<group>"; };
+		7ED3E7CD1DFB431300C1391C /* ScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptManager.h; sourceTree = "<group>"; };
+		7ED3E7CE1DFB431300C1391C /* ScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptManager.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
@@ -288,8 +295,12 @@
 				52D892961CC45F47004FBEA3 /* Main.storyboard */,
 				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
 				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
-				52D8929D1CC471AA004FBEA3 /* GroupsTab */,
+				7ED3E7CD1DFB431300C1391C /* ScriptManager.h */,
+				7ED3E7CE1DFB431300C1391C /* ScriptManager.m */,
+				525397D81DFC640F00C12686 /* ReportingManager.h */,
+				525397D91DFC640F00C12686 /* ReportingManager.m */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
+				52D8929D1CC471AA004FBEA3 /* GroupsTab */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
@@ -306,9 +317,8 @@
 				52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */,
 				524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */,
 				52BB34301B6160CA00BB9FFD /* main.m */,
-				52EFF8611D3C38CC0003E2E0 /* Voices-ae779cfd4221.json */,
 				5202418E1D70A16000B4A9FB /* nycExtraReps.json */,
-				52DEF4BF1DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json */,
+				52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -360,6 +370,8 @@
 				52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */,
 				52FC68F91C37657000E29B7A /* OnboardingViewController.h */,
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
+				7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */,
+				7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -371,8 +383,8 @@
 				52C6532F1B75120900EA6FFD /* RootViewController.m */,
 				AA2C2E4D1D6F385A009989C9 /* RepDetailViewController.h */,
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
-				7E6CB2DD1DD658B20027D11B /* RepsCollectionViewController.h */,
-				7E6CB2DE1DD658B20027D11B /* RepsCollectionViewController.m */,
+				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
+				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -567,12 +579,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
-				52EFF8621D3C38CC0003E2E0 /* Voices-ae779cfd4221.json in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
-				52DEF4C01DF90DD600C749E1 /* voices-430ae-firebase-adminsdk-rfbmo-02c352d0d8.json in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */,
+				52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */,
 				525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
@@ -612,7 +623,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:1073657114728:ios:4cd690a7b995db5d\n\n# Replace the /Path/To/ServiceAccount.json with the path to the key you just downloaded\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym \"./Voices/voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json\"";
 		};
 		65E37E33A3447ED70FDB1E37 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -711,17 +722,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */,
 				B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */,
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
-				7E6CB2DF1DD658B20027D11B /* RepsCollectionViewController.m in Sources */,
+				7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
+				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
+				7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */,
 				5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */,
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
