@@ -14,7 +14,8 @@
 
 @interface ActionDetailViewController()
 
-@property (weak, nonatomic) IBOutlet UIImageView *groupImage;
+@property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
+//@property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
@@ -38,11 +39,7 @@
     self.title = @"TAKE ACTION";
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
-    self.groupImage.backgroundColor = [UIColor clearColor];
     [self setGroupImageFromURL:self.group.groupImageURL];
-    self.groupImage.userInteractionEnabled = true;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(groupImageTapped)];
-    [self.groupImage addGestureRecognizer:tap];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     [self setFont];
@@ -52,16 +49,7 @@
     [self.actionBodyTextView setContentOffset:CGPointZero animated:NO];
 }
 
-- (void)groupImageTapped {
-    
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
-    
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-    groupDetailViewController.group = self.group;
-    [self.navigationController pushViewController:groupDetailViewController animated:YES];
-}
+ 
 
 - (void)setFont {
     self.groupNameLabel.font = [UIFont voicesFontWithSize:24];
@@ -76,19 +64,19 @@
 
 - (void)setGroupImageFromURL:(NSURL *)url {
     
-    self.groupImage.contentMode = UIViewContentModeScaleToFill;
-    self.groupImage.layer.cornerRadius = kButtonCornerRadius;
-    self.groupImage.clipsToBounds = YES;
+    self.groupImageButton.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.groupImageButton.imageView.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImageButton.imageView.clipsToBounds = YES;
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     
-    [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+    [self.groupImageButton.imageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
         
         [UIView animateWithDuration:.25 animations:^{
-            self.groupImage.image = image;
+            [self.groupImageButton setBackgroundImage:image forState:UIControlStateNormal];
         }];
 
         
@@ -113,6 +101,14 @@
     return NO;
 }
 
-
-
+- (IBAction)groupImagePressed:(id)sender {
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    
+    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    groupDetailViewController.group = self.group;
+    [self.navigationController pushViewController:groupDetailViewController animated:YES];
+}
 @end

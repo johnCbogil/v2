@@ -210,9 +210,8 @@
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        NSString *currentUserID = self.currentUserID;
         Group *currentGroup = [self findGroupByAction:action];
-        [cell initWithCurrentUserID:currentUserID andGroup:currentGroup andAction:action];
+        [cell initWithGroup:currentGroup andAction:action];
         return cell;
     }
     else {
@@ -264,7 +263,7 @@
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
-        actionDetailViewController.currentUserID = self.currentUserID;        actionDetailViewController.group = currentGroup;
+        actionDetailViewController.group = currentGroup;
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

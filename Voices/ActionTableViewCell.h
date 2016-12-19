@@ -12,8 +12,8 @@
 
 @interface ActionTableViewCell : UITableViewCell
 
-- (void)initWithCurrentUserID:(NSString *)currentUserID andGroup:(Group *)group andAction:(Action *)action;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
+- (void)initWithGroup:(Group *)group andAction:(Action *)action;
 
 
 @end
