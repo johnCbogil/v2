@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Action.h"
+#import "Group.h"
 
 @interface ActionTableViewCell : UITableViewCell
 
-- (void)initWithAction:(Action *)action;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
+- (void)initWithGroup:(Group *)group andAction:(Action *)action;
 
 
 @end

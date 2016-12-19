@@ -65,7 +65,7 @@
 
 - (void)observeFollowStatus {
     
-    [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         if (snapshot.value != [NSNull null]) {
             
@@ -164,7 +164,7 @@
                                           [[CurrentUser sharedInstance]removeGroup:self.group];
                                           
                                           // read the value once to see if group key exists
-                                          [[[[self.usersRef child:self.currentUserID] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                          [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                                               if (snapshot.value == [NSNull null]) {
                                                   
                                                   [self.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
