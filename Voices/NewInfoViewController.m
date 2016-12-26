@@ -37,7 +37,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"InfoTableViewCell" bundle:nil]forCellReuseIdentifier:@"InfoTableViewCell"];
     
-    self.title = @"More Info";
+    self.title = @"Pro Tips";
     self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width * .85, self.view.frame.size.height * .65);
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -60,20 +60,18 @@
     infoTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"InfoTableViewCell"];
     if (indexPath.row == 0) {
         infoTableViewCell.titleLabel.text = @"Why Call";
-        infoTableViewCell.descriptionLabel.text = @"Calling the district office of your Congressional rep is the most effective way to get government to listen to you, according to political staffers. Calls are taken more seriously and make a greater impact than emails or written letters. Because your Congressional rep serves fewer constituents than a Senator, a call to your rep is more likely to be answered and carries more relative weight.";
+        infoTableViewCell.descriptionLabel.text = @"Calling your representatives is the most effective way to get government to listen to you, according to political staffers. Calls are taken more seriously and have a greater impact than emails or written letters.";
 
     }
     else if (indexPath.row == 1) {
         infoTableViewCell.titleLabel.text = @"What to Say";
-        infoTableViewCell.descriptionLabel.text = @"Hi, my name is [your name] and I'm a constituent from [your town/city]. I'm calling because [express your opinion on an issue here]. Please tell [rep name] to [support/oppose/speak out against] [your issue]. Thank you for your time.";
+        infoTableViewCell.descriptionLabel.text = kGenericScript;
         
     }
     else if (indexPath.row == 2) {
         infoTableViewCell.titleLabel.text = @"What to Expect";
-        infoTableViewCell.descriptionLabel.text = @"You will likely talk to an intern or Congressional staffer dedicated to constituent services. They will take down your name, opinion and relay that information for your representative. Many offices tally the number of constituents that call to support or oppose various issues.";
-
+        infoTableViewCell.descriptionLabel.text = @"You will likely talk to an intern or staffer dedicated to constituent services. They will take down your name, opinion and relay that information to your representative. Many offices tally the number of constituents that call to support or oppose various issues.";
     }
-    
     
     return infoTableViewCell;
 }
