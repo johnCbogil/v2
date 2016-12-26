@@ -57,5 +57,7 @@ extern NSString *const kSUBSCRIBE_EVENT;
 extern NSString *const kUNSUBSCRIBE_EVENT;
 
 extern NSString *const kGenericScript;
+extern NSString *const kWhyCall;
+extern NSString *const kWhatToExpect;
 
 @end

@@ -58,20 +58,31 @@
 
     InfoTableViewCell *infoTableViewCell = [[InfoTableViewCell alloc]init];
     infoTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"InfoTableViewCell"];
+    
+    NSMutableAttributedString *attributedString;
+    
     if (indexPath.row == 0) {
         infoTableViewCell.titleLabel.text = @"Why Call";
-        infoTableViewCell.descriptionLabel.text = @"Calling is the most effective way to get government to listen to you, according to political staffers. Calls are taken more seriously and have a greater impact than emails or written letters.";
+        
+        attributedString = [[NSMutableAttributedString alloc] initWithString:kWhyCall];
+    
 
     }
     else if (indexPath.row == 1) {
         infoTableViewCell.titleLabel.text = @"What to Say";
-        infoTableViewCell.descriptionLabel.text = kGenericScript;
+        attributedString = [[NSMutableAttributedString alloc] initWithString:kGenericScript];
         
     }
     else if (indexPath.row == 2) {
         infoTableViewCell.titleLabel.text = @"What to Expect";
-        infoTableViewCell.descriptionLabel.text = @"You will likely talk to an intern or staffer dedicated to constituent services. They will take down your name, opinion and relay that information to your representative. Many offices tally the number of constituents that call to support or oppose various issues.";
+        attributedString = [[NSMutableAttributedString alloc] initWithString:kWhatToExpect];
     }
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:7.5];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributedString length])];
+    infoTableViewCell.descriptionLabel.attributedText = attributedString;
+
     
     return infoTableViewCell;
 }
