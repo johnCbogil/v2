@@ -49,8 +49,6 @@
     [self.actionBodyTextView setContentOffset:CGPointZero animated:NO];
 }
 
- 
-
 - (void)setFont {
     self.groupNameLabel.font = [UIFont voicesFontWithSize:24];
     self.groupNameLabel.minimumScaleFactor = 0.75;

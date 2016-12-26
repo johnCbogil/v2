@@ -352,6 +352,21 @@
     [popupController presentInViewController:self];
 }
 
+- (void)presentScriptDialog {
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    popupController.containerView.layer.cornerRadius = 10;
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    popupController.transitionStyle = STPopupTransitionStyleFade;
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+    [popupController presentInViewController:self];
+    
+}
+
+
 #pragma mark - IBActions
 
 - (IBAction)infoButtonDidPress:(id)sender {
@@ -381,7 +396,7 @@
     else if (pageNumber == 2) {
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
-    [self presentInfoViewController];
+    [self presentScriptDialog];
 
 }
 
