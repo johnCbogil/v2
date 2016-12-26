@@ -17,14 +17,14 @@
 		524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */; };
 		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
 		525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 525397D91DFC640F00C12686 /* ReportingManager.m */; };
-		5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* InfoViewController.m */; };
+		5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* ScriptDialogViewController.m */; };
 		525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525475951D31C40C00A894BA /* GroupsEmptyState.xib */; };
 		5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254759B1D31C57F00A894BA /* GroupsEmptyState.m */; };
 		525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */; };
 		525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EE80E1D2AB2690047211F /* ActionDetailViewController.m */; };
 		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
 		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
-		527871C51D3C443200CD29BB /* Info.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* Info.xib */; };
+		527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* ScriptDialog.xib */; };
 		52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52911CE51D7DF25D00FCD267 /* CurrentUser.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
 		52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* NetworkManager.m */; };
@@ -34,7 +34,7 @@
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
 		52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */; };
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
-		52B958961E118703006472DF /* NewInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B958951E118703006472DF /* NewInfoViewController.m */; };
+		52B958961E118703006472DF /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B958951E118703006472DF /* InfoViewController.m */; };
 		52B958981E11873B006472DF /* NewInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B958971E11873B006472DF /* NewInfo.xib */; };
 		52B9589A1E1188BE006472DF /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B958991E1188BE006472DF /* InfoTableViewCell.xib */; };
 		52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9589C1E118A3F006472DF /* InfoTableViewCell.m */; };
@@ -102,8 +102,8 @@
 		525306611CC8571800982CC8 /* ListOfGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfGroupsViewController.m; sourceTree = "<group>"; };
 		525397D81DFC640F00C12686 /* ReportingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportingManager.h; sourceTree = "<group>"; };
 		525397D91DFC640F00C12686 /* ReportingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportingManager.m; sourceTree = "<group>"; };
-		5253FB4C1BCB32F1001A5328 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		5253FB4D1BCB32F1001A5328 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		5253FB4C1BCB32F1001A5328 /* ScriptDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDialogViewController.h; sourceTree = "<group>"; };
+		5253FB4D1BCB32F1001A5328 /* ScriptDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDialogViewController.m; sourceTree = "<group>"; };
 		525475951D31C40C00A894BA /* GroupsEmptyState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsEmptyState.xib; sourceTree = "<group>"; };
 		5254759A1D31C57F00A894BA /* GroupsEmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsEmptyState.h; sourceTree = "<group>"; };
 		5254759B1D31C57F00A894BA /* GroupsEmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsEmptyState.m; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		525EE80D1D2AB2690047211F /* ActionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDetailViewController.h; sourceTree = "<group>"; };
 		525EE80E1D2AB2690047211F /* ActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailViewController.m; sourceTree = "<group>"; };
 		5261CF6A1D14F121007B122B /* stateGovernors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stateGovernors.json; sourceTree = "<group>"; };
-		527871C41D3C443200CD29BB /* Info.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Info.xib; sourceTree = "<group>"; };
+		527871C41D3C443200CD29BB /* ScriptDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScriptDialog.xib; sourceTree = "<group>"; };
 		52911CE41D7DF25D00FCD267 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		52911CE51D7DF25D00FCD267 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
 		52939A331D1A29C00076F878 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesColor.m"; sourceTree = "<group>"; };
 		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
-		52B958941E118703006472DF /* NewInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewInfoViewController.h; sourceTree = "<group>"; };
-		52B958951E118703006472DF /* NewInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewInfoViewController.m; sourceTree = "<group>"; };
+		52B958941E118703006472DF /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		52B958951E118703006472DF /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		52B958971E11873B006472DF /* NewInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewInfo.xib; sourceTree = "<group>"; };
 		52B958991E1188BE006472DF /* InfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
 		52B9589B1E118A3F006472DF /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
@@ -238,11 +238,11 @@
 		5204038B1BCC137F00016768 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				527871C41D3C443200CD29BB /* Info.xib */,
-				5253FB4C1BCB32F1001A5328 /* InfoViewController.h */,
-				5253FB4D1BCB32F1001A5328 /* InfoViewController.m */,
-				52B958941E118703006472DF /* NewInfoViewController.h */,
-				52B958951E118703006472DF /* NewInfoViewController.m */,
+				527871C41D3C443200CD29BB /* ScriptDialog.xib */,
+				5253FB4C1BCB32F1001A5328 /* ScriptDialogViewController.h */,
+				5253FB4D1BCB32F1001A5328 /* ScriptDialogViewController.m */,
+				52B958941E118703006472DF /* InfoViewController.h */,
+				52B958951E118703006472DF /* InfoViewController.m */,
 				52B958971E11873B006472DF /* NewInfo.xib */,
 				52B958991E1188BE006472DF /* InfoTableViewCell.xib */,
 				52B9589B1E118A3F006472DF /* InfoTableViewCell.h */,
@@ -612,7 +612,7 @@
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
 				7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */,
-				527871C51D3C443200CD29BB /* Info.xib in Resources */,
+				527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */,
 				52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
 				52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */,
@@ -759,14 +759,14 @@
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
-				5253FB4E1BCB32F1001A5328 /* InfoViewController.m in Sources */,
+				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */,
-				52B958961E118703006472DF /* NewInfoViewController.m in Sources */,
+				52B958961E118703006472DF /* InfoViewController.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
 				9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */,
 				52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */,

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="BJh-ue-XvV" customClass="NewInfoViewController">
+        <viewController id="BJh-ue-XvV" customClass="InfoViewController">
             <layoutGuides>
                 <viewControllerLayoutGuide type="top" id="sg7-Pf-5yY"/>
                 <viewControllerLayoutGuide type="bottom" id="DTj-EU-rC0"/>

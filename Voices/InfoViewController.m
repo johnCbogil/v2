@@ -1,28 +1,29 @@
 //
-//  InfoViewController.m
+//  InfoViewController.h
 //  Voices
 //
-//  Created by John Bogil on 10/11/15.
-//  Copyright © 2015 John Bogil. All rights reserved.
+//  Created by John Bogil on 12/26/16.
+//  Copyright © 2016 John Bogil. All rights reserved.
 //
 
 #import "InfoViewController.h"
+#import "InfoTableViewCell.h"
 #import <STPopup/STPopup.h>
-#import "ScriptManager.h"
 
-@interface InfoViewController ()
+@interface InfoViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIButton *closeWindowButton;
-@property (weak, nonatomic) IBOutlet UILabel *scriptLabel;
-@property (weak, nonatomic) IBOutlet UITextView *scriptTextView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation InfoViewController
 
+// TODO: MOVE TEXT TO CONSTANTS
+
+
 - (instancetype)init {
     if (self = [super init]) {
-        self.contentSizeInPopup = CGSizeMake(300, 315);
+   //     self.contentSizeInPopup = CGSizeMake(300, 315);
         
     }
     return self;
@@ -30,53 +31,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerNib:[UINib nibWithNibName:@"InfoTableViewCell" bundle:nil]forCellReuseIdentifier:@"InfoTableViewCell"];
+    
+    self.title = @"Pro Tips";
+    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width * .85, self.view.frame.size.height * .65);
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 140;    
+}
 
-    self.title = @"Here's what to say";
-    self.contentSizeInPopup = CGSizeMake(300, 315);
-    self.closeWindowButton.layer.cornerRadius = kButtonCornerRadius;
-    self.closeWindowButton.backgroundColor = [UIColor voicesOrange];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    self.scriptTextView.editable = NO;
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if ([ScriptManager sharedInstance].lastAction.script.length > 0) {
-        self.scriptTextView.text = [ScriptManager sharedInstance].lastAction.script;
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    InfoTableViewCell *infoTableViewCell = [[InfoTableViewCell alloc]init];
+    infoTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"InfoTableViewCell"];
+    if (indexPath.row == 0) {
+        infoTableViewCell.titleLabel.text = @"Why Call";
+        infoTableViewCell.descriptionLabel.text = @"Calling is the most effective way to get government to listen to you, according to political staffers. Calls are taken more seriously and have a greater impact than emails or written letters.";
+
     }
-    else {
-        self.scriptTextView.text = kGenericScript;
+    else if (indexPath.row == 1) {
+        infoTableViewCell.titleLabel.text = @"What to Say";
+        infoTableViewCell.descriptionLabel.text = kGenericScript;
+        
     }
-    [self.scriptTextView sizeToFit];
+    else if (indexPath.row == 2) {
+        infoTableViewCell.titleLabel.text = @"What to Expect";
+        infoTableViewCell.descriptionLabel.text = @"You will likely talk to an intern or staffer dedicated to constituent services. They will take down your name, opinion and relay that information to your representative. Many offices tally the number of constituents that call to support or oppose various issues.";
+    }
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.scriptTextView.text];
-    NSRange yourNameRange = [self.scriptTextView.text rangeOfString:@"your name"];
-    NSRange positionRange = [self.scriptTextView.text rangeOfString:@"support / oppose"];
-    NSRange issueRange = [self.scriptTextView.text rangeOfString:@"an issue that you care about"];
-
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:yourNameRange];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:positionRange];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:issueRange];
-
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.minimumLineHeight = 35.0f;
-    
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
-
-
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont voicesFontWithSize:21] range:NSMakeRange(0, attributedString.length)];
-
-    self.scriptTextView.attributedText = attributedString;
-    
+    return infoTableViewCell;
 }
 
-- (void)viewDidLayoutSubviews {
-    [self.scriptTextView setContentOffset:CGPointZero animated:NO];
-}
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-}
 
-- (IBAction)closeWindowButtonDidPress:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end
