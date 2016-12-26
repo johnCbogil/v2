@@ -36,6 +36,8 @@
 		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
 		52B958961E118703006472DF /* NewInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B958951E118703006472DF /* NewInfoViewController.m */; };
 		52B958981E11873B006472DF /* NewInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B958971E11873B006472DF /* NewInfo.xib */; };
+		52B9589A1E1188BE006472DF /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B958991E1188BE006472DF /* InfoTableViewCell.xib */; };
+		52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9589C1E118A3F006472DF /* InfoTableViewCell.m */; };
 		52BB34311B6160CA00BB9FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34301B6160CA00BB9FFD /* main.m */; };
 		52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB34331B6160CA00BB9FFD /* AppDelegate.m */; };
 		52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52BB34381B6160CA00BB9FFD /* Reps.storyboard */; };
@@ -130,6 +132,9 @@
 		52B958941E118703006472DF /* NewInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewInfoViewController.h; sourceTree = "<group>"; };
 		52B958951E118703006472DF /* NewInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewInfoViewController.m; sourceTree = "<group>"; };
 		52B958971E11873B006472DF /* NewInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewInfo.xib; sourceTree = "<group>"; };
+		52B958991E1188BE006472DF /* InfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
+		52B9589B1E118A3F006472DF /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		52B9589C1E118A3F006472DF /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		52BB342B1B6160C900BB9FFD /* Voices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB342F1B6160C900BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB34301B6160CA00BB9FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -239,6 +244,9 @@
 				52B958941E118703006472DF /* NewInfoViewController.h */,
 				52B958951E118703006472DF /* NewInfoViewController.m */,
 				52B958971E11873B006472DF /* NewInfo.xib */,
+				52B958991E1188BE006472DF /* InfoTableViewCell.xib */,
+				52B9589B1E118A3F006472DF /* InfoTableViewCell.h */,
+				52B9589C1E118A3F006472DF /* InfoTableViewCell.m */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -590,6 +598,7 @@
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
+				52B9589A1E1188BE006472DF /* InfoTableViewCell.xib in Resources */,
 				52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */,
 				52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */,
 				525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */,
@@ -760,6 +769,7 @@
 				52B958961E118703006472DF /* NewInfoViewController.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
 				9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */,
+				52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
