@@ -38,16 +38,16 @@ NSString *const kNYCExtraRepsJSON = @"nycExtraReps";
 
 CGFloat const kButtonCornerRadius = 3.f;
 
+NSString *const kGroupDefaultImage = @"VoicesIcon";
+NSString *const kRepDefaultImageMale = @"MissingRepMale";
+NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
+
+#pragma mark - Empty State Labels
 NSString *const kActionEmptyStateTopLabel = @"You haven't received any actions yet.";
 NSString *const kActionEmptyStateBottomLabel = @"To receive actions from advocacy groups, tap the + button above to follow groups.";
 NSString *const kGroupEmptyStateTopLabel = @"You don't follow any groups yet.";
 NSString *const kGroupEmptyStateBottomLabel = @"To follow groups, tap the + button above.";
-
 NSString *const kLocalRepsMissing = @"Local officials are not available in this area yet.";
-
-NSString *const kGroupDefaultImage = @"VoicesIcon";
-NSString *const kRepDefaultImageMale = @"MissingRepMale";
-NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
 
 #pragma mark - Info Text
 NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support / oppose] [an issue that you care about] and I will be voting in November.";
