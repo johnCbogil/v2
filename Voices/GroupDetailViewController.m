@@ -120,7 +120,6 @@
     self.tableView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
 }
 
 #pragma mark - Firebase methods
