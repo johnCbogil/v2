@@ -7,11 +7,12 @@
 //
 
 #import "ListOfGroupsViewController.h"
+
+#import "CurrentUser.h"
+#import "Group.h"
 #import "GroupDetailViewController.h"
 #import "GroupTableViewCell.h"
 #import "GroupsViewController.h"
-#import "Group.h"
-#import "CurrentUser.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -51,6 +52,8 @@
     self.tableView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50.f;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
 }
 
@@ -110,7 +113,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Allows centering of the nav bar title by making an empty back button
@@ -121,10 +123,6 @@
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.listOfGroups[indexPath.row];
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 75;
 }
 
 @end

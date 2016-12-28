@@ -7,16 +7,16 @@
 //
 
 #import "GroupsViewController.h"
-#import "GroupTableViewCell.h"
-#import "ActionTableViewCell.h"
-#import "GroupTableViewCell.h"
-#import "ListOfGroupsViewController.h"
-#import "ActionDetailViewController.h"
-#import "GroupDetailViewController.h"
-#import "Group.h"
+
 #import "Action.h"
-#import "GroupsEmptyState.h"
+#import "ActionDetailViewController.h"
+#import "ActionTableViewCell.h"
 #import "CurrentUser.h"
+#import "Group.h"
+#import "GroupDetailViewController.h"
+#import "GroupTableViewCell.h"
+#import "GroupsEmptyState.h"
+#import "ListOfGroupsViewController.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -92,6 +92,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50.f;
 }
 
 - (void)createActivityIndicator {
@@ -269,16 +271,6 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (self.selectedSegment) {
-        return 75.0;
-    }
-    else {
-        self.tableView.estimatedRowHeight = 255.0;
-        return self.tableView.rowHeight = UITableViewAutomaticDimension;
-    }
-}
 
 #pragma mark - Find Group By Action
 
