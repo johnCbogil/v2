@@ -233,16 +233,21 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Group *currGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        // [self removeGroup:currGroup];
         Group *currentGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        [[CurrentUser sharedInstance]removeGroup:currentGroup];
 
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currentGroup.name  message:@"You will no longer receive actions from this group" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-  
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currentGroup.name
+                                                                                 message:@"Are you sure you would like to stop supporting this group?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [[CurrentUser sharedInstance] removeGroup:currentGroup];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [tableView setEditing:NO animated:YES];
+        }];
+        [alertController addAction:yesAction];
+        [alertController addAction:cancel];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
