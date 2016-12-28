@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Group.h"
+
+@class Group;
 
 @interface GroupTableViewCell : UITableViewCell
 
