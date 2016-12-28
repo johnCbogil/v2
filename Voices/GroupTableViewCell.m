@@ -7,6 +7,8 @@
 //
 
 #import "GroupTableViewCell.h"
+
+#import "Group.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface GroupTableViewCell()
