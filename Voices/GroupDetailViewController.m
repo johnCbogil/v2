@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *groupDescriptionTextview;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
+@property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
+
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -34,6 +36,10 @@
 @end
 
 @implementation GroupDetailViewController
+
+- (void)dealloc {
+    self.feedbackGenerator = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +67,16 @@
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
     
     [self observeFollowStatus];
+    
+    NSOperatingSystemVersion version;
+    version.majorVersion = 10;
+    version.minorVersion = 0;
+    version.patchVersion = 0;
+
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:version]) {
+        self.feedbackGenerator = [[UISelectionFeedbackGenerator alloc] init];;
+        [self.feedbackGenerator prepare];
+    }
 }
 
 - (void)observeFollowStatus {
@@ -127,6 +143,7 @@
 #pragma mark - Firebase methods
 
 - (IBAction)followGroupButtonDidPress:(id)sender {
+    [self.feedbackGenerator selectionChanged];
     
     // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
     UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
