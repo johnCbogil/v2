@@ -120,6 +120,8 @@
     self.tableView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.estimatedRowHeight = 50.f;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 #pragma mark - Firebase methods
@@ -210,6 +212,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
     cell.textLabel.font = [UIFont voicesFontWithSize:19];
+    cell.textLabel.numberOfLines = 0;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
