@@ -164,6 +164,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
 }
 
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    if (notificationSettings.types) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationsRegistered" object:nil];
+    }
+}
+
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //
 //
