@@ -87,7 +87,19 @@
         NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
-            if (!group.debug) {
+            
+            BOOL debug;
+            
+#if DEBUG
+            debug = YES;
+#endif
+            
+            // if app is in debug, add all groups
+            if (debug) {
+                [groupsArray addObject:group];
+            }
+            // if app is not in debug, add only non-debug groups
+            else if (!group.debug) {
                 [groupsArray addObject:group];
             }
         }];

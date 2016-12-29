@@ -120,7 +120,7 @@
                     NSLog(@"write error: %@", error);
                 }
                 else {
-                     NSLog(@"Added user to group via deeplink succesfully");
+                    NSLog(@"Added user to group via deeplink succesfully");
                 }
             }];
             
@@ -136,7 +136,7 @@
             successBlock(isUserFollowingGroup);
         }
         else {
-
+            
             isUserFollowingGroup = YES;
             successBlock(isUserFollowingGroup);
         }
@@ -146,7 +146,7 @@
 }
 
 - (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock {
-
+    
     self.listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
@@ -158,7 +158,7 @@
         }
         NSDictionary *groupsKeys = snapshot.value;
         NSArray *keys = groupsKeys.allKeys;
-
+        
         for (NSString *key in keys) {
             // Go to the groups table
             [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -181,7 +181,22 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                if (!group.debug) {
+                //                if (!group.debug) {
+                //                    [self.listOfFollowedGroups addObject:group];
+                //                }
+                
+                BOOL debug;
+                
+#if DEBUG
+                debug = YES;
+#endif
+                
+                // if app is in debug, add all groups
+                if (debug) {
+                    [self.listOfFollowedGroups addObject:group];
+                }
+                // if app is not in debug, add only non-debug groups
+                else if (!group.debug) {
                     [self.listOfFollowedGroups addObject:group];
                 }
                 
@@ -198,7 +213,6 @@
                     
                 }];
             }];
-
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
@@ -206,7 +220,7 @@
 }
 
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
-
+    
     for (NSString *actionKey in self.actionKeys) {
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value == [NSNull null]) {
@@ -283,7 +297,7 @@
     [self.listOfActions removeObjectsInArray:discardedActions];
     
     [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
-
+    
 }
 
 
