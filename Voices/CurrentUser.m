@@ -181,10 +181,6 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                //                if (!group.debug) {
-                //                    [self.listOfFollowedGroups addObject:group];
-                //                }
-                
                 BOOL debug;
                 
 #if DEBUG
