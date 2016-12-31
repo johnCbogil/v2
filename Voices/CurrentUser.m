@@ -239,15 +239,14 @@
             Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             NSDate *currentTime = [NSDate date];
-            double currentTimeUnix = currentTime.timeIntervalSince1970;
+            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*5]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
-            if(newAction.timestamp < currentTimeUnix) {
+            if(newAction.timestamp < newDate.timeIntervalSince1970) {
                 [self.listOfActions addObject:newAction];
                 [self sortActionsByTime];
                 successBlock(self.listOfActions);
-                //                [self.tableView reloadData];
+
             }
-            //            [self toggleActivityIndicatorOff];
         }];
         
     }
