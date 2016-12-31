@@ -36,10 +36,12 @@
     NSString *eventLoggerID = [FIRAuth auth].currentUser.uid;
     NSString *platform = @"iOS";
     NSString *osVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
+    NSString *currentTime = [self getCurrentTime];
+
 #ifdef DEBUG
     eventType = [@"DEBUG_" stringByAppendingString:eventType];
 #endif
-    NSString *params = [NSString stringWithFormat:@"eventType=%@&eventFocus=%@&eventData=%@&eventLoggerId=%@&platform=%@&osVersion=%@", eventType, eventFocus, eventData, eventLoggerID, platform, osVersion];
+    NSString *params = [NSString stringWithFormat:@"eventType=%@&eventFocus=%@&eventData=%@&eventLoggerId=%@&platform=%@&osVersion=%@&eventTime=%@", eventType, eventFocus, eventData, eventLoggerID, platform, osVersion, currentTime];
     NSString *reportingString = [NSString stringWithFormat:@"%@%@", kEVENT_DATABASE, params];
     
     NSMutableCharacterSet *alphaNumSymbols = [NSMutableCharacterSet characterSetWithCharactersInString:@"~!@#$&*()-_+=[]:;',/?."];
@@ -57,13 +59,22 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // NSLog(@"%@", responseObject);
-        
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         NSLog(@"Error: %@", error);
     }];
     [operation start];
+}
+
+- (NSString *)getCurrentTime {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"HH:mm:ss"];
+    NSTimeZone *timeZone = [NSTimeZone localTimeZone];
+    NSString *timeZoneName = [timeZone localizedName:NSTimeZoneNameStyleShortStandard locale:[NSLocale currentLocale]];
+    NSString *dateString = [NSString stringWithFormat:@"%@ %@",[dateFormat stringFromDate:[NSDate date]],timeZoneName];
+    return dateString;
 }
 
 @end
