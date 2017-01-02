@@ -129,7 +129,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"%@", userInfo);
     
     if (userInfo[@"action"]) {
-        NSLog(@"ACTION: %@", userInfo[@"action"]);
+        NSLog(@"ACTION VIA NOTI: %@", userInfo[@"action"]);
     }
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
@@ -137,6 +137,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     self.window.rootViewController = tabVC;
     tabVC.selectedIndex = 1;
     [self.window makeKeyAndVisible];
+    
+//    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+//    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+//    Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
+//    actionDetailViewController.group = currentGroup;
+//    [self.navigationController pushViewController:actionDetailViewController animated:YES];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
