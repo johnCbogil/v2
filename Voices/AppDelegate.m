@@ -151,17 +151,21 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             }
             
             // CREATE ROOTVC
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+            self.window.rootViewController = tabVC;
+            tabVC.selectedIndex = 1;
             
             //PRESENT ROOTVC
-            
+            [self.window makeKeyAndVisible];
             // CREATE ACTION
             Action *newAction = [[Action alloc] initWithKey:userInfo[@"action"] actionDictionary:snapshot.value];
             
             // ASSIGN ACTION TO ACTIONDETAILVC
             actionDetailViewController.action = newAction;
-            // DISPLAY ACTIONDETAILVC
-            self.window.rootViewController = actionDetailViewController;
-            [self.window makeKeyAndVisible];
+            
+            // PUSH ACTIONDETAILVC
+            [self.window.rootViewController.navigationController pushViewController:actionDetailViewController animated:YES];
             
         }];
     }
