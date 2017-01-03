@@ -132,38 +132,35 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     if (userInfo[@"action"]) {
         NSLog(@"ACTION VIA NOTI: %@", userInfo[@"action"]);
-    }
-    
+        
         // CREATE STORYBOARD
         UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
         
         // CREATE ACTIONDETAILVIEWCONTROLLER
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-    
-    
+        
+        // CREATE ACTION REFs
+        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+        FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
+        FIRDatabaseReference *actionRef = [actionsRef child:userInfo[@"action"]];
+        
         //  FETCH ACTION
-    
-            // CREATE ACTION REF
-    
-    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *usersRef = [rootRef child:@"users"];
-    FIRDatabaseReference *groupsRef = [rootRef child:@"groups"];
-    FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
-    FIRDatabaseReference *actionRef = [actionRef child:userInfo[@"action"]];
-
-    
-        // CREATE ACTION
-//        Action *action = [[CurrentUser sharedInstance].listOfActions valueForKey:userInfo[@"action"]]; // listOfActions is coming in nil
-    
-        // ASSIGN ACTION TO ACTIONDETAILVC
-        actionDetailViewController.action = action;
-        
-        // DISPLAY ACTIONDETAILVC
-        self.window.rootViewController = actionDetailViewController;
-        [self.window makeKeyAndVisible];
-        
-
-   
+        [actionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                return ;
+            }
+            
+            // CREATE ACTION
+            Action *newAction = [[Action alloc] initWithKey:userInfo[@"action"] actionDictionary:snapshot.value];
+            
+            // ASSIGN ACTION TO ACTIONDETAILVC
+            actionDetailViewController.action = newAction;
+            // DISPLAY ACTIONDETAILVC
+            self.window.rootViewController = actionDetailViewController;
+            [self.window makeKeyAndVisible];
+            
+        }];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
