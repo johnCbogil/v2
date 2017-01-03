@@ -15,6 +15,8 @@
 #import "TabBarViewController.h"
 #import "CurrentUser.h"
 #import "RepsManager.h"
+#import "ActionDetailViewController.h"
+#import "Action.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -38,7 +40,7 @@
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
-       return YES;
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
@@ -83,10 +85,10 @@
     [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
         
         if (!result) {
-        NSLog(@"User subscribed to %@ via deeplink", groupKey);
+            NSLog(@"User subscribed to %@ via deeplink", groupKey);
         }
         else {
-         NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
+            NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
         }
     } onError:^(NSError *error) {
         NSLog(@"There has been an error attempting to subscribe via deeplink: %@", error);
@@ -132,18 +134,36 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         NSLog(@"ACTION VIA NOTI: %@", userInfo[@"action"]);
     }
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-    self.window.rootViewController = tabVC;
-    tabVC.selectedIndex = 1;
-    [self.window makeKeyAndVisible];
+        // CREATE STORYBOARD
+        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        
+        // CREATE ACTIONDETAILVIEWCONTROLLER
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     
-//    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-//    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-//    Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
-//    actionDetailViewController.group = currentGroup;
-//    [self.navigationController pushViewController:actionDetailViewController animated:YES];
+    
+        //  FETCH ACTION
+    
+            // CREATE ACTION REF
+    
+    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+    FIRDatabaseReference *usersRef = [rootRef child:@"users"];
+    FIRDatabaseReference *groupsRef = [rootRef child:@"groups"];
+    FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
+    FIRDatabaseReference *actionRef = [actionRef child:userInfo[@"action"]];
 
+    
+        // CREATE ACTION
+//        Action *action = [[CurrentUser sharedInstance].listOfActions valueForKey:userInfo[@"action"]]; // listOfActions is coming in nil
+    
+        // ASSIGN ACTION TO ACTIONDETAILVC
+        actionDetailViewController.action = action;
+        
+        // DISPLAY ACTIONDETAILVC
+        self.window.rootViewController = actionDetailViewController;
+        [self.window makeKeyAndVisible];
+        
+
+   
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -185,7 +205,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //}
 
 - (void)setInitialViewController {
- 
+    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         NSLog(@"First launch");
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];

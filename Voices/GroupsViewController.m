@@ -190,6 +190,8 @@
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    
+    // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
@@ -269,6 +271,8 @@
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     else {
+        
+        // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
