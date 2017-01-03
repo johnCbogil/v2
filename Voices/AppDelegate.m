@@ -150,6 +150,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
                 return ;
             }
             
+            // CREATE ROOTVC
+            
+            //PRESENT ROOTVC
+            
             // CREATE ACTION
             Action *newAction = [[Action alloc] initWithKey:userInfo[@"action"] actionDictionary:snapshot.value];
             
