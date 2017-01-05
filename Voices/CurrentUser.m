@@ -296,6 +296,22 @@
 }
 
 
+// TODO: THERE IS PROBABLY A BETTER WAY TO RETURN GROUP IMAGE FOR ACTIONS
+#pragma mark - Find Group By Action
+
+- (Group *)findGroupByAction:(Action *)action {
+    
+    // When in Action Table View section, group and userID is needed to push to Group page if user presses the Group logo imageView - if either condition match return group
+    Group *group;
+    for (Group *currentGroup in self.listOfFollowedGroups) {
+        if([currentGroup.name isEqualToString:action.groupName]||[currentGroup.key isEqualToString:action.groupKey]){
+            group = currentGroup;
+        }
+    }
+    return group;
+}
+
+
 
 
 @end

@@ -194,7 +194,7 @@
     // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-    Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
+    Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
     actionDetailViewController.group = currentGroup;
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
@@ -216,7 +216,7 @@
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [self findGroupByAction:action];
+        Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:action];
         [cell initWithGroup:currentGroup andAction:action];
         return cell;
     }
@@ -275,7 +275,7 @@
         // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [self findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
+        Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
         actionDetailViewController.group = currentGroup;
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
@@ -283,19 +283,7 @@
 }
 
 
-#pragma mark - Find Group By Action
 
-- (Group *)findGroupByAction:(Action *)action {
-    
-    // When in Action Table View section, group and userID is needed to push to Group page if user presses the Group logo imageView - if either condition match return group 
-    Group *group;
-    for (Group *currentGroup in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        if([currentGroup.name isEqualToString:action.groupName]||[currentGroup.key isEqualToString:action.groupKey]){
-            group = currentGroup;
-        }
-    }
-    return group;
-}
 
 #pragma mark - Segment Control
 

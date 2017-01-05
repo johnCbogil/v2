@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Group.h"
+#import "Action.h"
 
 @interface CurrentUser : NSObject
 
@@ -16,6 +17,7 @@
 - (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)removeGroup:(Group *)group;
+- (Group *)findGroupByAction:(Action *)action;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
 @property (strong, nonatomic) NSMutableArray *listOfActions;
 @property (strong, nonatomic) NSString *userID;
