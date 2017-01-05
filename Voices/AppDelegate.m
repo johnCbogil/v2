@@ -23,6 +23,12 @@
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
 
+@interface AppDelegate()
+
+@property (strong, nonatomic) NSString *actionKey;
+
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
@@ -131,43 +137,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"%@", userInfo);
     
     if (userInfo[@"action"]) {
-        NSLog(@"ACTION VIA NOTI: %@", userInfo[@"action"]);
         
-        // CREATE STORYBOARD
-        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-        
-        // CREATE ACTIONDETAILVIEWCONTROLLER
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        
-        // CREATE ACTION REFs
-        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-        FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
-        FIRDatabaseReference *actionRef = [actionsRef child:userInfo[@"action"]];
-        
-        //  FETCH ACTION
-        [actionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value == [NSNull null]) {
-                return ;
-            }
-            
-            // CREATE ROOTVC
-            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-            self.window.rootViewController = tabVC;
-            tabVC.selectedIndex = 1;
-            
-            //PRESENT ROOTVC
-            [self.window makeKeyAndVisible];
-            // CREATE ACTION
-            Action *newAction = [[Action alloc] initWithKey:userInfo[@"action"] actionDictionary:snapshot.value];
-            
-            // ASSIGN ACTION TO ACTIONDETAILVC
-            actionDetailViewController.action = newAction;
-            
-            // PUSH ACTIONDETAILVC
-            [self.window.rootViewController.navigationController pushViewController:actionDetailViewController animated:YES];
-            
-        }];
+        self.actionKey = userInfo[@"action"];
     }
 }
 
@@ -188,6 +159,56 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [self connectToFcm];
+    
+    if (self.actionKey.length) {
+        NSLog(@"ACTION VIA NOTI: %@", self.actionKey);
+        
+        // CREATE STORYBOARD
+        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        
+        // CREATE ACTIONDETAILVIEWCONTROLLER
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        
+        // CREATE ACTION REFs
+        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+        FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
+        FIRDatabaseReference *actionRef = [actionsRef child:self.actionKey];
+        
+        //  FETCH ACTION
+        [actionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                return ;
+            }
+            
+            // CREATE ROOTVC
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+            self.window.rootViewController = tabVC;
+            
+            for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
+                // CREATE ACTION
+                Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
+                
+                // ASSIGN ACTION TO ACTIONDETAILVC
+                actionDetailViewController.action = newAction;
+                [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
+                tabVC.selectedIndex = 1;
+
+                [navCtrl pushViewController:actionDetailViewController animated:YES];
+                
+                //PRESENT ROOTVC
+                [self.window makeKeyAndVisible];
+                
+            }
+            
+  
+            
+            
+            // PUSH ACTIONDETAILVC
+//            [self.window.rootViewController.navigationController pushViewController:actionDetailViewController animated:YES];
+            
+        }];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
