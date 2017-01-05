@@ -39,7 +39,10 @@
     self.title = @"TAKE ACTION";
     [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
-    [self setGroupImageFromURL:self.action.groupImageURL];
+    
+    // TODO: IF THERE IS NO SELF.GROUP.GROUPIMAGEURL, THEN FETCH FROM FB
+    
+    [self setGroupImageFromURL:self.group.groupImageURL];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     [self setFont];

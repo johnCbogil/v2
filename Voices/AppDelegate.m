@@ -187,6 +187,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
                 
                 actionDetailViewController.action = newAction;
+                actionDetailViewController.group = [[CurrentUser sharedInstance]findGroupByAction:newAction];
+                
+                
                 [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
                 tabVC.selectedIndex = 1;
 
