@@ -163,50 +163,35 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     if (self.actionKey.length) {
         NSLog(@"ACTION VIA NOTI: %@", self.actionKey);
         
-        // CREATE STORYBOARD
         UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
         
-        // CREATE ACTIONDETAILVIEWCONTROLLER
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         
-        // CREATE ACTION REFs
         FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
         FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
         FIRDatabaseReference *actionRef = [actionsRef child:self.actionKey];
         
-        //  FETCH ACTION
         [actionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value == [NSNull null]) {
                 return ;
             }
             
-            // CREATE ROOTVC
             UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
             TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
             self.window.rootViewController = tabVC;
             
             for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
-                // CREATE ACTION
+
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
                 
-                // ASSIGN ACTION TO ACTIONDETAILVC
                 actionDetailViewController.action = newAction;
                 [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
                 tabVC.selectedIndex = 1;
 
                 [navCtrl pushViewController:actionDetailViewController animated:YES];
                 
-                //PRESENT ROOTVC
-                [self.window makeKeyAndVisible];
-                
+                [self.window makeKeyAndVisible];                
             }
-            
-  
-            
-            
-            // PUSH ACTIONDETAILVC
-//            [self.window.rootViewController.navigationController pushViewController:actionDetailViewController animated:YES];
-            
         }];
     }
 }
