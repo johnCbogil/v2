@@ -41,7 +41,6 @@
     [FIRApp configure];
     [CurrentUser sharedInstance];
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
@@ -160,6 +159,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 // TODO: A LOT OF THIS LOGIC SHOULD PROBABLY BE MOVED AWAY FROM APP DELEGATE 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     [self connectToFcm];
     
