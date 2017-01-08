@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
 @property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
-//@property (weak, nonatomic) IBOutlet UITextView *groupDescriptionTextview;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (nonatomic, weak) id<ExpandingCellDelegate>expandingCellDelegate;
 @property (nonatomic,weak) id<PolicyPositionsDelegate>policypositionsDelegate;
@@ -63,10 +62,8 @@
     
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupTypeLabel.text = self.group.groupType;
-//    self.groupDescriptionTextview.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
     
-//    self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
     self.groupImageView.backgroundColor = [UIColor clearColor];
     self.lineView.backgroundColor = [UIColor voicesOrange];
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
@@ -146,17 +143,6 @@
         self.tableView.rowHeight = UITableViewAutomaticDimension;
 
 }
-
-
-// Policy Positions TableView
-//- (void)configureTableView {
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-//    self.tableView.estimatedRowHeight = 50.f;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-//}
 
 #pragma mark - Firebase methods
 
@@ -293,39 +279,5 @@
         return cell;
     }
 }
-
-
-// Policy Positions TableView
-
-//#pragma mark - UITableView methods
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.listOfPolicyPositions.count;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//    cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
-//    cell.textLabel.font = [UIFont voicesFontWithSize:19];
-//    cell.textLabel.numberOfLines = 0;
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    
-//    return cell;
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    
-//    // Allows centering of the nav bar title by making an empty back button
-//    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-//    [self.navigationItem setBackBarButtonItem:backButtonItem];
-//
-//    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-//    PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
-//    policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
-//    [self.navigationController pushViewController:policyDetailViewController animated:YES];
-//    
-//}
 
 @end

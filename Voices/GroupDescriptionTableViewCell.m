@@ -34,11 +34,9 @@
 {
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self.textView setFrame:frame];
-//    self.textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
     [self getTextViewLineCountWithContents:contents];
     // Does not allow for font size > 17 due to magic number values in the button size
     self.textView.font = [UIFont voicesFontWithSize:16];
-//    self.backgroundColor = [UIColor lightGrayColor];
     self.textView.textColor = [UIColor blackColor];
     self.textView.scrollsToTop = true;
     self.textView.scrollEnabled = false;
@@ -94,8 +92,6 @@
     [expandButton addTarget:self action:@selector(expandButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
     expandButton.titleLabel.font = [UIFont voicesFontWithSize:16];
     [expandButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-//    expandButton.layer.cornerRadius = 3.0;
-//    expandButton.layer.masksToBounds = true;
     self.buttonHeightInset = 13.0;
     self.buttonWidth = 55.0;    // Positions button at the end of the textview text
     self.buttonHeight = 20.0;
