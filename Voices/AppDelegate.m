@@ -189,12 +189,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
                 
                 [[[[rootRef child:@"groups"]child:newAction.groupKey]child:@"imageURL"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                     
-                    if (snapshot.value == [NSNull null]) {
-                        return ;
+                    if (snapshot.value != [NSNull null]) {
+                        NSURL *url = [NSURL URLWithString:snapshot.value];
+                        newAction.groupImageURL = url;
                     }
                     
-                    NSURL *url = [NSURL URLWithString:snapshot.value];
-                    newAction.groupImageURL = url;
                     actionDetailViewController.action = newAction;
 
                     [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
