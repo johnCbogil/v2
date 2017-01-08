@@ -186,16 +186,21 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
                 
-                actionDetailViewController.action = newAction;
-                actionDetailViewController.group = [[CurrentUser sharedInstance]findGroupByAction:newAction];
-                
-                
-                [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
-                tabVC.selectedIndex = 1;
+                // FETCH THE IMAGEURL
+                [[[[rootRef child:@"groups"]child:newAction.groupKey]child:@"imageURL"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                    
+                    NSURL *url = [NSURL URLWithString:snapshot.value];
+                    newAction.groupImageURL = url;
+                    actionDetailViewController.action = newAction;
 
-                [navCtrl pushViewController:actionDetailViewController animated:YES];
-                
-                [self.window makeKeyAndVisible];                
+                    [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
+                    tabVC.selectedIndex = 1;
+                    
+                    [navCtrl pushViewController:actionDetailViewController animated:YES];
+                    
+                    [self.window makeKeyAndVisible];
+                    
+                }];
             }
         }];
     }
