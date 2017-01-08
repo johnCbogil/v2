@@ -160,6 +160,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 // TODO: A LOT OF THIS LOGIC SHOULD PROBABLY BE MOVED AWAY FROM APP DELEGATE 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
     [self connectToFcm];
     
     if (self.actionKey.length) {
@@ -186,8 +187,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
                 
-                // FETCH THE IMAGEURL
                 [[[[rootRef child:@"groups"]child:newAction.groupKey]child:@"imageURL"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                    
+                    if (snapshot.value == [NSNull null]) {
+                        return ;
+                    }
                     
                     NSURL *url = [NSURL URLWithString:snapshot.value];
                     newAction.groupImageURL = url;
