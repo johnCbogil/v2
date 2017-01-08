@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Action : NSObject
 
 @property int level;
+@property BOOL debug;
 @property (readonly, nonatomic, copy) NSString *key;
 @property (readonly, nonatomic, copy) NSString *body;
 @property (readonly, nonatomic, copy) NSString *title;
