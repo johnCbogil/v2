@@ -242,7 +242,22 @@
             NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*5]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
             if(newAction.timestamp < newDate.timeIntervalSince1970) {
-                [self.listOfActions addObject:newAction];
+                
+                BOOL debug;
+                
+#if DEBUG
+                debug = YES;
+#endif
+                
+                // if app is in debug, add all groups
+                if (debug) {
+                    [self.listOfActions addObject:newAction];
+                }
+                // if app is not in debug, add only non-debug groups
+                else if (!newAction.debug) {
+                    [self.listOfActions addObject:newAction];
+                }
+                
                 [self sortActionsByTime];
                 successBlock(self.listOfActions);
 
