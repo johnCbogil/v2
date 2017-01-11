@@ -188,11 +188,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
                 
-                [[[[rootRef child:@"groups"]child:newAction.groupKey]child:@"imageURL"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                [[[rootRef child:@"groups"]child:newAction.groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                     
                     if (snapshot.value != [NSNull null]) {
-                        NSURL *url = [NSURL URLWithString:snapshot.value];
-                        newAction.groupImageURL = url;
+                        Group *group = [[Group alloc]initWithKey:newAction.groupKey groupDictionary:snapshot.value];
+                        actionDetailViewController.group = group;
                     }
                     
                     actionDetailViewController.action = newAction;
