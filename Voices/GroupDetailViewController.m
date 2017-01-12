@@ -11,19 +11,23 @@
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
 #import "CurrentUser.h"
+#import "GroupDescriptionTableViewCell.h"
+#import "PolicyPositionsTableViewCell.h"
+
 
 @import Firebase;
 
-@interface GroupDetailViewController ()  <UITableViewDataSource, UITableViewDelegate>
+@interface GroupDetailViewController ()  
 
 @property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
 @property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
-@property (weak, nonatomic) IBOutlet UITextView *groupDescriptionTextview;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-
+@property (nonatomic, weak) id<ExpandingCellDelegate>expandingCellDelegate;
+@property (nonatomic,weak) id<PolicyPositionsDelegate>policypositionsDelegate;
+@property (nonatomic)NSUInteger totalLines;
+@property (nonatomic)NSUInteger lineLimit;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
@@ -58,10 +62,8 @@
     
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupTypeLabel.text = self.group.groupType;
-    self.groupDescriptionTextview.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
     
-    self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
     self.groupImageView.backgroundColor = [UIColor clearColor];
     self.lineView.backgroundColor = [UIColor voicesOrange];
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
@@ -99,14 +101,14 @@
 
 - (void)setFont {
     
-    self.groupDescriptionTextview.font = [UIFont voicesFontWithSize:17];
+//    self.groupDescriptionTextview.font = [UIFont voicesFontWithSize:17];
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:17];
     self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.policyPositionsLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
 - (void)viewDidLayoutSubviews {
-    [self.groupDescriptionTextview setContentOffset:CGPointZero animated:NO];
+//    [self.groupDescriptionTextview setContentOffset:CGPointZero animated:NO];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -131,13 +133,15 @@
     }];
 }
 
-- (void)configureTableView {
+- (void)configureTableView
+{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.estimatedRowHeight = 50.f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.expandingCellDelegate = self;
+    self.policypositionsDelegate = self;
+    self.tableView.estimatedRowHeight = 150.f;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+
 }
 
 #pragma mark - Firebase methods
@@ -219,35 +223,61 @@
     }];
 }
 
-#pragma mark - UITableView methods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.listOfPolicyPositions.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
-    cell.textLabel.font = [UIFont voicesFontWithSize:19];
-    cell.textLabel.numberOfLines = 0;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+- (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath
+{
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-
+    
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
     policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
     [self.navigationController pushViewController:policyDetailViewController animated:YES];
-    
+}
+
+#pragma mark - Expanding Cell Delegate 
+
+- (void)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell
+{
+    [self.tableView reloadData];
+}
+
+#pragma mark - TableView Delegate Methods
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if(indexPath.row == 0)
+    {
+        static NSString *CellIdentifier = @"GroupDescriptionTableViewCell";
+        GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[GroupDescriptionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.expandingCellDelegate = self;   // Expanding textview delegate
+        [cell configureTextViewWithContents:self.group.groupDescription];
+        return cell;
+    }
+    else{
+        static NSString *CellIdentifier = @"PolicyPositionsTableViewCell";
+        PolicyPositionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(cell == nil){
+            cell = [[PolicyPositionsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.policyPositionsDelegate = self;
+        
+        return cell;
+    }
 }
 
 @end

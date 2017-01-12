@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Group.h"
+#import "ExpandingCellDelegate.h"
+#import "PolicyPositionsTableViewCell.h"
 
-@interface GroupDetailViewController : UIViewController
+@interface GroupDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,ExpandingCellDelegate,PolicyPositionsDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) Group *group;
+
 
 @end
