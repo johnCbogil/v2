@@ -102,8 +102,8 @@
 - (void)setFont {
     
 //    self.groupDescriptionTextview.font = [UIFont voicesFontWithSize:17];
-    self.groupTypeLabel.font = [UIFont voicesFontWithSize:17];
-    self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:21];
+    self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
+    self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:23];
     self.policyPositionsLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
