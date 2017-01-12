@@ -206,9 +206,7 @@
 }
 
 - (void)clearSearchBar {
-    self.searchTextField.text = @"";
-    [self.searchTextField resignFirstResponder];
-    self.searchTextField.rightViewMode = UITextFieldViewModeNever;
+    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 #pragma mark - NSNotifications
@@ -401,6 +399,7 @@
 }
 
 - (void)refreshSearchText {
+    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
