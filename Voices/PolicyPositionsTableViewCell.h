@@ -7,23 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class PolicyPositionsTableViewCell;
-
-@protocol PolicyPositionsDelegate <NSObject>
-
-@required
-
-- (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath;
-
-@end
-
+#import "PolicyPositionsDelegate.h"
 
 @interface PolicyPositionsTableViewCell : UITableViewCell <UITableViewDataSource,UITableViewDelegate,PolicyPositionsDelegate>
 
-@property (nonatomic)UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic)NSMutableArray *listOfPolicyPositions;
 @property (nonatomic,weak)id<PolicyPositionsDelegate>policyPositionsDelegate;
+- (void)configureCellWithPolicyPositions:(NSMutableArray *)listOfPolicyPositions;
 
 
 @end

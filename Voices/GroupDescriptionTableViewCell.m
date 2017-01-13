@@ -10,6 +10,8 @@
 
 @interface GroupDescriptionTableViewCell ()
 
+@property (nonatomic)UIFont *font;
+@property (nonatomic)int fontSize;
 @property (nonatomic)BOOL isExpanded;
 @property (nonatomic)NSUInteger totalLines;
 @property (nonatomic)NSUInteger lineLimit;
@@ -18,7 +20,7 @@
 @property (nonatomic)CGFloat buttonHeight;
 @property (nonatomic)CGFloat buttonXPosition;
 @property (nonatomic)CGFloat buttonYPosition;
-
+ 
 @end
 
 @implementation GroupDescriptionTableViewCell
@@ -32,23 +34,19 @@
 
 - (void)configureTextViewWithContents:(NSString *)contents
 {
-    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    [self.textView setFrame:frame];
-    [self getTextViewLineCountWithContents:contents];
-    // Does not allow for font size > 17 due to magic number values in the button size
-    self.textView.font = [UIFont voicesFontWithSize:16];
+    self.textView.text = contents;
+    self.fontSize = 21;
+    self.font = [UIFont voicesFontWithSize:self.fontSize];
+//    [self getTextViewLineCountWithContents:contents];
+    self.textView.font = self.font;
     self.textView.textColor = [UIColor blackColor];
     self.textView.scrollsToTop = true;
-    self.textView.scrollEnabled = false;
-    [self.textView setEditable:false];
-    [self.textView setSelectable:false];
+    [self.textView setShowsVerticalScrollIndicator:true];
+//    [self.textView setScrollEnabled:false];
+//    [self.textView setEditable:false];
+//    [self.textView setSelectable:false];
+    self.textView.textContainer.maximumNumberOfLines = 3;
     [self.textView sizeToFit];
-    if(self.totalLines > self.lineLimit){
-        if(self.expandButton == nil){
-            self.expandButton = [self makeExpandButton];
-        }
-        [self positionButton];
-    }
 }
 
 - (void)getTextViewLineCountWithContents:(NSString *)contents
@@ -62,7 +60,7 @@
         self.textView.textContainer.maximumNumberOfLines = self.lineLimit;
     }
     else{
-        self.textView.textContainer.maximumNumberOfLines = self.totalLines +1;
+        self.textView.textContainer.maximumNumberOfLines = self.totalLines;
     }
 }
 
@@ -79,62 +77,35 @@
     }
     return totalNumberOfLines;
 }
-       
-#pragma mark - expand button methods
-       
-- (UIButton *)makeExpandButton
-{
-    UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [expandButton setTitle:@"...more" forState:UIControlStateNormal];
-    [expandButton setBackgroundColor:[UIColor whiteColor]];
-    [expandButton setTitleColor:[UIColor voicesOrange] forState:UIControlStateNormal];
-    [expandButton showsTouchWhenHighlighted];
-    [expandButton addTarget:self action:@selector(expandButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-    expandButton.titleLabel.font = [UIFont voicesFontWithSize:16];
-    [expandButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    self.buttonHeightInset = 13.0;
-    self.buttonWidth = 55.0;    // Positions button at the end of the textview text
-    self.buttonHeight = 20.0;
-    self.buttonXPosition = self.textView.frame.size.width - self.buttonWidth;
-    return expandButton;
-}
-
-- (void)positionButton
-{
-    // Repositions button Y axis only
-    self.buttonYPosition = self.textView.frame.size.height - self.buttonHeight - self.buttonHeightInset;
-    [self.expandButton setFrame:CGRectMake(self.buttonXPosition, self.buttonYPosition, self.buttonWidth, self.buttonHeight + self.buttonHeightInset)];
-    [self.textView addSubview:self.expandButton];
-}
 
 #pragma mark - Expanding Cell delegate methods
 
-- (void)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell
+- (IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell
 {
     if(self.isExpanded == false){
-        [self expandTextView];
-    }
+        [self expandTextView];        
+     }
     else{
         [self contractTextView];
     }
-    [self positionButton];
     [self.expandingCellDelegate expandButtonDidPress:self];
 }
 
-
 - (void)expandTextView
 {
+    self.textView.textContainer.maximumNumberOfLines = 0;
+
     self.isExpanded = true;
-    [self.expandButton setTitle:@"" forState:UIControlStateNormal];
-    [self.expandButton setBackgroundColor:[UIColor clearColor]];
+    [self.expandButton setTitle:@"...less" forState:UIControlStateNormal];
+//    [self.expandButton setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)contractTextView
 {
     self.isExpanded = false;
     [self.expandButton setTitle:@"...more" forState:UIControlStateNormal];
-    [self.expandButton setBackgroundColor:[UIColor whiteColor]];
-}
+//    [self.expandButton setBackgroundColor:[UIColor whiteColor]];
+ }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

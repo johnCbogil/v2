@@ -19,15 +19,16 @@
 
 @interface GroupDetailViewController ()  
 
+@property (nonatomic)CGFloat currentCellHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
 @property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
 @property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (nonatomic, weak) id<ExpandingCellDelegate>expandingCellDelegate;
-@property (nonatomic,weak) id<PolicyPositionsDelegate>policypositionsDelegate;
-@property (nonatomic)NSUInteger totalLines;
-@property (nonatomic)NSUInteger lineLimit;
+@property (nonatomic,weak) id<PolicyPositionsDelegate>policyPositionsDelegate;
+//@property (nonatomic)NSUInteger totalLines;
+//@property (nonatomic)NSUInteger lineLimit;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
 
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
@@ -138,9 +139,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.expandingCellDelegate = self;
-    self.policypositionsDelegate = self;
+    self.policyPositionsDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsTableViewCell"bundle:nil]forCellReuseIdentifier:@"PolicyPositionsTableViewCell"];
+
 
 }
 
@@ -223,12 +227,13 @@
     }];
 }
 
+
 - (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath
 {
+    // Called by selecting PolicyPositionsDetailCell in the PolicyPositionsTableViewCell
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-    
     UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
     PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
     policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
@@ -262,22 +267,46 @@
         static NSString *CellIdentifier = @"GroupDescriptionTableViewCell";
         GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[GroupDescriptionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            // Load the top-level objects from the custom cell XIB.
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDescriptionTableViewCell" owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
         }
         cell.expandingCellDelegate = self;   // Expanding textview delegate
         [cell configureTextViewWithContents:self.group.groupDescription];
+        self.currentCellHeight = cell.textView.frame.size.height;
+        NSLog(@"*** %@ ***", self.group.groupDescription);
+        NSLog(@"*** cel h - %f***", self.currentCellHeight);
         return cell;
     }
     else{
         static NSString *CellIdentifier = @"PolicyPositionsTableViewCell";
         PolicyPositionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(cell == nil){
-            cell = [[PolicyPositionsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if (cell == nil) {
+            // Load the top-level objects from the custom cell XIB.
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsTableViewCell" owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
         }
         cell.policyPositionsDelegate = self;
-        
+        [cell configureCellWithPolicyPositions:self.listOfPolicyPositions];
         return cell;
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 0){
+        if(self.currentCellHeight){
+            return self.currentCellHeight;
+        }
+        else{
+            return UITableViewAutomaticDimension;
+        }
+    }
+    else{
+        //Policy Positions Tableview 
+        return 250;
+    }
+}
+
 
 @end

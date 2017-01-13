@@ -7,6 +7,7 @@
 //
 
 #import "PolicyPositionsTableViewCell.h"
+#import "PolicyPositionsDetailCell.h"
 
 @implementation PolicyPositionsTableViewCell
 
@@ -15,19 +16,25 @@
     // Initialization code
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier :(NSMutableArray *)listOfPolicyPositions{
-    
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
-        _listOfPolicyPositions = listOfPolicyPositions; //commentsTableDataSource is property holding comments array
-        
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        //        [_tableView reloadData];
-        [self configureTableView];
-    }
-    return self;
+- (void)configureCellWithPolicyPositions:(NSMutableArray *)listOfPolicyPositions
+{
+    self.listOfPolicyPositions = listOfPolicyPositions;
+    [self configureTableView];
 }
+//
+//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andPolicyPositions:(NSMutableArray *)policyPositions
+//{
+//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+//        
+//        _listOfPolicyPositions = policyPositions; //commentsTableDataSource is property holding comments array
+//        
+//        _tableView.delegate = self;
+//        _tableView.dataSource = self;
+//        //        [_tableView reloadData];
+//        [self configureTableView];
+//    }
+//    return self;
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -38,33 +45,46 @@
 // from GroupDetailViewController
 - (void)configureTableView
 {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.estimatedRowHeight = 50.f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 50.f;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - UITableView methods
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.listOfPolicyPositions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
-    cell.textLabel.font = [UIFont voicesFontWithSize:19];
-    cell.textLabel.numberOfLines = 0;
+    static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
+    PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        // Load the top-level objects from the custom cell XIB.
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
+    }
+    cell.policyLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
+    cell.policyLabel.font = [UIFont voicesFontWithSize:19];
+    cell.policyLabel.numberOfLines = 0;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     [self presentPolicyDetailViewController:indexPath];
-    
 }
 
 - (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath
