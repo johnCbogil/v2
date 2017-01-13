@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Action : NSObject
 
 @property int level;
+@property BOOL debug;
 @property (readonly, nonatomic, copy) NSString *key;
 @property (readonly, nonatomic, copy) NSString *body;
 @property (readonly, nonatomic, copy) NSString *title;
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic, copy) NSString *subject;
 @property (readonly, nonatomic, copy) NSString *script;
 @property (readonly) int long timestamp;
-@property (readonly, nonatomic, copy) NSURL *groupImageURL;
+@property (strong, nonatomic) NSURL *groupImageURL;
 
 - (instancetype)initWithKey:(NSString *)key actionDictionary:(NSDictionary *)dictionary;
 

@@ -242,7 +242,22 @@
             NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*5]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
             if(newAction.timestamp < newDate.timeIntervalSince1970) {
-                [self.listOfActions addObject:newAction];
+                
+                BOOL debug;
+                
+#if DEBUG
+                debug = YES;
+#endif
+                
+                // if app is in debug, add all groups
+                if (debug) {
+                    [self.listOfActions addObject:newAction];
+                }
+                // if app is not in debug, add only non-debug groups
+                else if (!newAction.debug) {
+                    [self.listOfActions addObject:newAction];
+                }
+                
                 [self sortActionsByTime];
                 successBlock(self.listOfActions);
 
@@ -293,6 +308,22 @@
     
     [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
     
+}
+
+
+// TODO: THERE IS PROBABLY A BETTER WAY TO RETURN GROUP IMAGE FOR ACTIONS
+#pragma mark - Find Group By Action
+
+- (Group *)findGroupByAction:(Action *)action {
+    
+    // When in Action Table View section, group and userID is needed to push to Group page if user presses the Group logo imageView - if either condition match return group
+    Group *group;
+    for (Group *currentGroup in self.listOfFollowedGroups) {
+        if([currentGroup.name isEqualToString:action.groupName]||[currentGroup.key isEqualToString:action.groupKey]){
+            group = currentGroup;
+        }
+    }
+    return group;
 }
 
 
