@@ -33,11 +33,19 @@
     self.textView.textColor = [UIColor blackColor];
     self.textView.scrollsToTop = true;
     [self.textView setShowsVerticalScrollIndicator:true];
-    self.textView.textContainer.maximumNumberOfLines = 3;
+    [self maxLines];
     [self.textView sizeToFit];
 }
 
 #pragma mark - Expanding Cell delegate methods
+
+- (void)maxLines {
+    if(self.isExpanded == false){
+    self.textView.textContainer.maximumNumberOfLines = 3;
+     }else{
+         self.textView.textContainer.maximumNumberOfLines = 0;
+     }
+}
 
 - (IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell {
     if(self.isExpanded == false){
@@ -49,13 +57,14 @@
 }
 
 - (void)expandTextView {
-    self.textView.textContainer.maximumNumberOfLines = 0;
     self.isExpanded = true;
+    [self maxLines];
     [self.expandButton setTitle:@"       ⌃" forState:UIControlStateNormal];
 }
 
 - (void)contractTextView {
     self.isExpanded = false;
+    [self maxLines];
     [self.expandButton setTitle:@"       ⌄" forState:UIControlStateNormal];
 }
 
