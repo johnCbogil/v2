@@ -388,9 +388,9 @@
 		52D8929D1CC471AA004FBEA3 /* GroupsTab */ = {
 			isa = PBXGroup;
 			children = (
+				7EEDF30F1CF8DABC006E0696 /* Model */,
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
-				7EEDF30F1CF8DABC006E0696 /* Model */,
 			);
 			name = GroupsTab;
 			sourceTree = "<group>";

@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,21 +15,19 @@
             <rect key="frame" x="0.0" y="0.0" width="335" height="308"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyx-Vw-99d">
-                    <frame key="frameInset" width="335" height="308"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyx-Vw-99d">
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="308"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBC-xj-5O6" userLabel="Bottom Line">
+                    <rect key="frame" x="0.0" y="307" width="335" height="2"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="2" id="Ok5-v2-ILi"/>
-                    </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cM0-gw-WgL">
+                    <rect key="frame" x="267" y="259" width="73" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
                     <state key="normal" title="       ⌄">
@@ -39,11 +40,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="qBC-xj-5O6" secondAttribute="trailing" id="0Th-Uq-bqj"/>
-                <constraint firstItem="qBC-xj-5O6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9qr-FE-pPN"/>
-                <constraint firstAttribute="bottom" secondItem="qBC-xj-5O6" secondAttribute="bottom" constant="-1" id="Ou2-ZX-OSv"/>
-                <constraint firstItem="cM0-gw-WgL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="267" id="VMM-2V-x9D"/>
-                <constraint firstAttribute="bottom" secondItem="cM0-gw-WgL" secondAttribute="bottom" id="by2-Er-dx4"/>
+                <constraint firstItem="qBC-xj-5O6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="307" id="0lw-mT-VFv"/>
+                <constraint firstAttribute="trailing" secondItem="cM0-gw-WgL" secondAttribute="trailing" constant="-5" id="1z4-5K-jgR"/>
+                <constraint firstAttribute="bottom" secondItem="qBC-xj-5O6" secondAttribute="bottom" constant="-1" id="6KP-wD-fGs"/>
+                <constraint firstItem="Xyx-Vw-99d" firstAttribute="bottom" secondItem="cM0-gw-WgL" secondAttribute="bottom" id="7b0-Tx-WTf"/>
+                <constraint firstItem="Xyx-Vw-99d" firstAttribute="trailing" secondItem="qBC-xj-5O6" secondAttribute="trailing" id="De1-ra-hrn"/>
+                <constraint firstItem="Xyx-Vw-99d" firstAttribute="leading" secondItem="qBC-xj-5O6" secondAttribute="leading" id="WK2-1a-otJ"/>
+                <constraint firstItem="Xyx-Vw-99d" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dcH-eE-z2A"/>
+                <constraint firstAttribute="trailing" secondItem="Xyx-Vw-99d" secondAttribute="trailing" id="lLW-ha-d2q"/>
+                <constraint firstItem="Xyx-Vw-99d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="onc-lV-0oQ"/>
+                <constraint firstAttribute="bottom" secondItem="Xyx-Vw-99d" secondAttribute="bottom" id="ztd-hX-Fbq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
