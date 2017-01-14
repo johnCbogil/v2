@@ -14,7 +14,6 @@
 @interface GroupDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,ExpandingCellDelegate,PolicyPositionsDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (strong, nonatomic) Group *group;
 
 

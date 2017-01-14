@@ -16,54 +16,32 @@
     // Initialization code
 }
 
-- (void)configureCellWithPolicyPositions:(NSMutableArray *)listOfPolicyPositions
-{
+- (void)configureCellWithPolicyPositions:(NSMutableArray *)listOfPolicyPositions {
     self.listOfPolicyPositions = listOfPolicyPositions;
     [self configureTableView];
 }
-//
-//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andPolicyPositions:(NSMutableArray *)policyPositions
-//{
-//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//        
-//        _listOfPolicyPositions = policyPositions; //commentsTableDataSource is property holding comments array
-//        
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//        //        [_tableView reloadData];
-//        [self configureTableView];
-//    }
-//    return self;
-//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
 // from GroupDetailViewController
-- (void)configureTableView
-{
+- (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-//    self.tableView.estimatedRowHeight = 50.f;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView reloadData];
-    
 }
 
 #pragma mark - UITableView methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.listOfPolicyPositions.count;
 }
 
@@ -82,13 +60,12 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self presentPolicyDetailViewController:indexPath];
 }
 
-- (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath
-{
+- (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath{
     [self.policyPositionsDelegate presentPolicyDetailViewController:indexPath];
 }
 

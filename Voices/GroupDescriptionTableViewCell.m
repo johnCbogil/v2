@@ -25,8 +25,7 @@
 
 #pragma mark - set up textview
 
-- (void)configureTextViewWithContents:(NSString *)contents
-{
+- (void)configureTextViewWithContents:(NSString *)contents {
     self.textView.text = contents;
     self.fontSize = 21;
     self.font = [UIFont voicesFontWithSize:self.fontSize];
@@ -40,30 +39,24 @@
 
 #pragma mark - Expanding Cell delegate methods
 
-- (IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell
-{
-     if(self.isExpanded == false){
-        [self expandTextView];        
-     }
-    else{
+- (IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell {
+    if(self.isExpanded == false){
+        [self expandTextView];
+    }else{
         [self contractTextView];
     }
     [self.expandingCellDelegate expandButtonDidPress:self];
 }
 
-- (void)expandTextView
-{
+- (void)expandTextView {
     self.textView.textContainer.maximumNumberOfLines = 0;
-
     self.isExpanded = true;
-    [self.expandButton setTitle:@"     " forState:UIControlStateNormal];
-    [self.expandButton setBackgroundColor:[UIColor clearColor]];
+    [self.expandButton setTitle:@"       ⌃" forState:UIControlStateNormal];
 }
 
-- (void)contractTextView
-{
+- (void)contractTextView {
     self.isExpanded = false;
-    [self.expandButton setTitle:@"...more" forState:UIControlStateNormal];
+    [self.expandButton setTitle:@"       ⌄" forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
