@@ -21,7 +21,7 @@
                 <constraint firstItem="f2p-re-axX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TVs-sl-rqS"/>
                 <constraint firstItem="f2p-re-axX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="c7q-fD-nmL"/>
                 <constraint firstAttribute="trailing" secondItem="f2p-re-axX" secondAttribute="trailing" id="f9B-aI-aQq"/>
-                <constraint firstAttribute="bottom" secondItem="f2p-re-axX" secondAttribute="bottom" constant="34" id="mCQ-bw-K93"/>
+                <constraint firstAttribute="bottom" secondItem="f2p-re-axX" secondAttribute="bottom" constant="30" id="mCQ-bw-K93"/>
             </constraints>
             <connections>
                 <outlet property="tableView" destination="f2p-re-axX" id="vSQ-Q9-kJP"/>

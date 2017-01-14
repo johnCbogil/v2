@@ -274,8 +274,6 @@
         cell.expandingCellDelegate = self;   // Expanding textview delegate
         [cell configureTextViewWithContents:self.group.groupDescription];
         self.currentCellHeight = cell.textView.frame.size.height;
-        NSLog(@"*** %@ ***", self.group.groupDescription);
-        NSLog(@"*** cel h - %f***", self.currentCellHeight);
         return cell;
     }
     else{
@@ -298,7 +296,7 @@
         if(self.currentCellHeight){
             return self.currentCellHeight;
         }
-        else{
+        else{ // never should be used
             return UITableViewAutomaticDimension;
         }
     }
