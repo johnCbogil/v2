@@ -71,8 +71,6 @@
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
 		A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */; };
-		A77809F01E201A6B0001E825 /* PolicyPositionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A77809EF1E201A6B0001E825 /* PolicyPositionsTableViewCell.m */; };
-		A7C833E61E295DB0006C86E1 /* PolicyPositionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833E51E295DB0006C86E1 /* PolicyPositionsTableViewCell.xib */; };
 		A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */; };
 		A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */; };
 		A7C833EF1E296504006C86E1 /* PolicyPositionsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */; };
@@ -199,15 +197,11 @@
 		9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionWebViewController.m; sourceTree = "<group>"; };
 		A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionTableViewCell.h; sourceTree = "<group>"; };
 		A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionTableViewCell.m; sourceTree = "<group>"; };
-		A77809EE1E201A6B0001E825 /* PolicyPositionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyPositionsTableViewCell.h; sourceTree = "<group>"; };
-		A77809EF1E201A6B0001E825 /* PolicyPositionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyPositionsTableViewCell.m; sourceTree = "<group>"; };
 		A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingCellDelegate.h; sourceTree = "<group>"; };
-		A7C833E51E295DB0006C86E1 /* PolicyPositionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PolicyPositionsTableViewCell.xib; sourceTree = "<group>"; };
 		A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyPositionsDetailCell.h; sourceTree = "<group>"; };
 		A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyPositionsDetailCell.m; sourceTree = "<group>"; };
 		A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PolicyPositionsDetailCell.xib; sourceTree = "<group>"; };
-		A7C833F01E296D81006C86E1 /* PolicyPositionsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyPositionsDelegate.h; sourceTree = "<group>"; };
 		A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AA2C2E4D1D6F385A009989C9 /* RepDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepDetailViewController.h; sourceTree = "<group>"; };
 		AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepDetailViewController.m; sourceTree = "<group>"; };
@@ -480,9 +474,6 @@
 				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
 				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
 				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
-				A77809EE1E201A6B0001E825 /* PolicyPositionsTableViewCell.h */,
-				A77809EF1E201A6B0001E825 /* PolicyPositionsTableViewCell.m */,
-				A7C833E51E295DB0006C86E1 /* PolicyPositionsTableViewCell.xib */,
 				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
 				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
 				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
@@ -510,7 +501,6 @@
 				52361C9B1D3076ED00589827 /* PolicyPosition.h */,
 				52361C9C1D3076ED00589827 /* PolicyPosition.m */,
 				A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */,
-				A7C833F01E296D81006C86E1 /* PolicyPositionsDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -625,7 +615,6 @@
 				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
-				A7C833E61E295DB0006C86E1 /* PolicyPositionsTableViewCell.xib in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
 				52B9589A1E1188BE006472DF /* InfoTableViewCell.xib in Resources */,
@@ -812,7 +801,6 @@
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* NetworkManager.m in Sources */,
-				A77809F01E201A6B0001E825 /* PolicyPositionsTableViewCell.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

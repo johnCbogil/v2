@@ -32,7 +32,11 @@
     self.textView.font = self.font;
     self.textView.textColor = [UIColor blackColor];
     self.textView.scrollsToTop = true;
-    [self.textView setShowsVerticalScrollIndicator:true];
+    [self.textView setTextContainerInset:UIEdgeInsetsMake(8, 2, 8, 2)];
+    [self.textView setShowsVerticalScrollIndicator:false];
+    [self.textView setUserInteractionEnabled:false];
+    [self.textView setScrollEnabled:false];
+    [self.textView setContentOffset:CGPointZero animated:YES];
     [self maxLines];
     [self.textView sizeToFit];
 }
@@ -41,10 +45,10 @@
 
 - (void)maxLines {
     if(self.isExpanded == false){
-    self.textView.textContainer.maximumNumberOfLines = 3;
-     }else{
-         self.textView.textContainer.maximumNumberOfLines = 0;
-     }
+        self.textView.textContainer.maximumNumberOfLines = 3;
+    }else{
+        self.textView.textContainer.maximumNumberOfLines = 0;
+    }
 }
 
 - (IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell {

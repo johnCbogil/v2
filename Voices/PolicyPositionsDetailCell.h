@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PolicyPositionsDetailCell : UITableViewCell
+@interface PolicyPositionsDetailCell : UITableViewCell 
 
 
 @property (strong, nonatomic) IBOutlet UILabel *policyLabel;
-
 @end
+
+ 

@@ -12,7 +12,7 @@
 #import "PolicyPosition.h"
 #import "CurrentUser.h"
 #import "GroupDescriptionTableViewCell.h"
-#import "PolicyPositionsTableViewCell.h"
+#import "PolicyPositionsDetailCell.h"
 
 
 @import Firebase;
@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (nonatomic, weak) id<ExpandingCellDelegate>expandingCellDelegate;
-@property (nonatomic,weak) id<PolicyPositionsDelegate>policyPositionsDelegate;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -76,6 +75,11 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 - (void)observeFollowStatus {
     
     [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -122,11 +126,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.expandingCellDelegate = self;
-    self.policyPositionsDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsTableViewCell"bundle:nil]forCellReuseIdentifier:@"PolicyPositionsTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
 }
 
 #pragma mark - Firebase methods
@@ -196,6 +199,8 @@
     [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *policyPositionsDict = snapshot.value;
         NSMutableArray *policyPositionsArray = [NSMutableArray array];
+        PolicyPosition *placeholderObject = [[PolicyPosition alloc]init]; // the tableview data must reserve the 0th index for the GroupDescriptionTableViewCell.
+        [policyPositionsArray addObject:placeholderObject];
         [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
             [policyPositionsArray addObject:policyPosition];
@@ -205,19 +210,6 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
-}
-
-#pragma mark - Policy Positions Delegate 
-
-- (void)presentPolicyDetailViewController:(NSIndexPath *)indexPath {
-    // Called via policy positions delegate by selecting PolicyPositionsDetailCell in the PolicyPositionsTableViewCell
-    // Allows centering of the nav bar title by making an empty back button
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
-    policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
-    [self.navigationController pushViewController:policyDetailViewController animated:YES];
 }
 
 #pragma mark - Expanding Cell Delegate
@@ -234,7 +226,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.listOfPolicyPositions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -251,15 +243,18 @@
         self.currentCellHeight = cell.textView.frame.size.height;
         return cell;
     }else{
-        static NSString *CellIdentifier = @"PolicyPositionsTableViewCell";
-        PolicyPositionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
+        PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             // Load the top-level objects from the custom cell XIB.
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsTableViewCell" owner:self options:nil];
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
             cell = [topLevelObjects objectAtIndex:0];
         }
-        cell.policyPositionsDelegate = self;
-        [cell configureCellWithPolicyPositions:self.listOfPolicyPositions];
+        NSLog(@"%lu***", (unsigned long)self.listOfPolicyPositions.count);
+        cell.policyLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
+        cell.policyLabel.font = [UIFont voicesFontWithSize:19];
+        cell.policyLabel.numberOfLines = 0;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
 }
@@ -269,14 +264,25 @@
         if(self.currentCellHeight){
             return self.currentCellHeight;
         }
-        else{ // never should be used
+        else{ // should never be used
             return UITableViewAutomaticDimension;
         }
     }else{
-        //Policy Positions Tableview
-        return 250;
+        return UITableViewAutomaticDimension;
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.row > 0){
+        // Allows centering of the nav bar title by making an empty back button
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationItem setBackBarButtonItem:backButtonItem];
+        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
+        policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
+        [self.navigationController pushViewController:policyDetailViewController animated:YES];
+    }
+}
 
 @end
