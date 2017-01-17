@@ -18,11 +18,8 @@
 
 @optional
 
+- (void)maxLines;
 - (void)configureTextViewWithContents:(NSString *)contents;
-- (void)getTextViewLineCountWithContents:(NSString *)contents;
-- (UIButton *)makeExpandButton;
-- (void)positionButton;
-- (NSUInteger)getTotalNumberOfLines;
 - (void)expandTextView;
 - (void)contractTextView;
 
