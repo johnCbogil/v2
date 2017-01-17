@@ -10,9 +10,8 @@
 
 @interface GroupDescriptionTableViewCell ()
 
-@property (nonatomic)UIFont *font;
-@property (nonatomic)int fontSize;
 @property (nonatomic)BOOL isExpanded;
+@property (strong, nonatomic) IBOutlet UIButton *expandButton;
 
 @end
 
@@ -27,9 +26,7 @@
 
 - (void)configureTextViewWithContents:(NSString *)contents {
     self.textView.text = contents;
-    self.fontSize = 21;
-    self.font = [UIFont voicesFontWithSize:self.fontSize];
-    self.textView.font = self.font;
+    self.textView.font = [UIFont voicesFontWithSize:21];
     self.textView.textColor = [UIColor blackColor];
     self.textView.scrollsToTop = true;
     [self.textView setTextContainerInset:UIEdgeInsetsMake(8, 2, 8, 2)];

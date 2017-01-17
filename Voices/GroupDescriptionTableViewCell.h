@@ -12,9 +12,8 @@
 @interface GroupDescriptionTableViewCell : UITableViewCell<ExpandingCellDelegate>
 
 @property (strong, nonatomic)IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet UIButton *expandButton;
 @property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
-- (IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell;
-- (void)configureTextViewWithContents:(NSString *)contents;
+-(IBAction)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell;
+-(void)configureTextViewWithContents:(NSString *)contents;
 
 @end

@@ -44,7 +44,7 @@
                 <constraint firstItem="Xyx-Vw-99d" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Mg9-Pl-qnW"/>
                 <constraint firstItem="Xyx-Vw-99d" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="SdY-Tm-4Gc"/>
                 <constraint firstItem="Xyx-Vw-99d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XGw-AP-hyV"/>
-                <constraint firstAttribute="trailing" secondItem="cM0-gw-WgL" secondAttribute="trailing" id="aeU-GQ-zLF"/>
+                <constraint firstAttribute="trailing" secondItem="cM0-gw-WgL" secondAttribute="trailing" constant="-3" id="aeU-GQ-zLF"/>
                 <constraint firstAttribute="bottom" secondItem="cM0-gw-WgL" secondAttribute="bottom" id="by2-Er-dx4"/>
                 <constraint firstAttribute="trailing" secondItem="Xyx-Vw-99d" secondAttribute="trailing" id="gM2-f1-aTS"/>
             </constraints>

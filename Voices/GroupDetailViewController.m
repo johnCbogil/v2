@@ -13,19 +13,17 @@
 #import "CurrentUser.h"
 #import "GroupDescriptionTableViewCell.h"
 #import "PolicyPositionsDetailCell.h"
-
-
 @import Firebase;
 
 @interface GroupDetailViewController ()
 
+@property (weak, nonatomic)IBOutlet UITableView *tableView;
 @property (nonatomic)CGFloat currentCellHeight;
-@property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
-@property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
-@property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
-@property (weak, nonatomic) IBOutlet UIView *lineView;
-@property (nonatomic, weak) id<ExpandingCellDelegate>expandingCellDelegate;
+@property (weak, nonatomic)IBOutlet UIImageView *groupImageView;
+@property (weak, nonatomic)IBOutlet UILabel *groupTypeLabel;
+@property (weak, nonatomic)IBOutlet UIButton *followGroupButton;
+@property (weak, nonatomic)IBOutlet UIView *lineView;
+@property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
@@ -52,6 +50,11 @@
     [self fetchPolicyPositions];
     [self setFont];
     self.title = self.group.name;
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    titleLabel.text = self.navigationItem.title;
+    [titleLabel setAdjustsFontSizeToFitWidth:true];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];       
+    self.navigationItem.titleView = titleLabel;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
@@ -100,7 +103,6 @@
 - (void)setFont {
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
     self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:23];
-    self.policyPositionsLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -130,6 +132,8 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
+    [self.tableView setShowsVerticalScrollIndicator:false];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - Firebase methods
@@ -142,7 +146,6 @@
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
     
     NSString *groupKey = self.group.key;
     
@@ -250,7 +253,6 @@
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
             cell = [topLevelObjects objectAtIndex:0];
         }
-        NSLog(@"%lu***", (unsigned long)self.listOfPolicyPositions.count);
         cell.policyLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
         cell.policyLabel.font = [UIFont voicesFontWithSize:19];
         cell.policyLabel.numberOfLines = 0;
