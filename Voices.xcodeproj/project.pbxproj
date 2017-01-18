@@ -70,6 +70,10 @@
 		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
+		A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */; };
+		A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */; };
+		A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */; };
+		A7C833EF1E296504006C86E1 /* PolicyPositionsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
 		AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */; };
 		B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */ = {isa = PBXBuildFile; fileRef = B89EB1E81D8EE37300C130A8 /* Representative.m */; };
@@ -191,6 +195,13 @@
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
 		9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionWebViewController.m; sourceTree = "<group>"; };
+		A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionTableViewCell.h; sourceTree = "<group>"; };
+		A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionTableViewCell.m; sourceTree = "<group>"; };
+		A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingCellDelegate.h; sourceTree = "<group>"; };
+		A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyPositionsDetailCell.h; sourceTree = "<group>"; };
+		A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyPositionsDetailCell.m; sourceTree = "<group>"; };
+		A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PolicyPositionsDetailCell.xib; sourceTree = "<group>"; };
 		A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AA2C2E4D1D6F385A009989C9 /* RepDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepDetailViewController.h; sourceTree = "<group>"; };
 		AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepDetailViewController.m; sourceTree = "<group>"; };
@@ -371,9 +382,9 @@
 		52D8929D1CC471AA004FBEA3 /* GroupsTab */ = {
 			isa = PBXGroup;
 			children = (
+				7EEDF30F1CF8DABC006E0696 /* Model */,
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
-				7EEDF30F1CF8DABC006E0696 /* Model */,
 			);
 			name = GroupsTab;
 			sourceTree = "<group>";
@@ -460,6 +471,12 @@
 			isa = PBXGroup;
 			children = (
 				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
+				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
+				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
+				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
+				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
+				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
+				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
 				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
 				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */,
@@ -483,6 +500,7 @@
 				7EEDF30D1CF8DAB8006E0696 /* Group.m */,
 				52361C9B1D3076ED00589827 /* PolicyPosition.h */,
 				52361C9C1D3076ED00589827 /* PolicyPosition.m */,
+				A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -595,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
+				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
 				52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */,
@@ -617,6 +636,7 @@
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
 				52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */,
 				5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */,
+				A7C833EF1E296504006C86E1 /* PolicyPositionsDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +778,7 @@
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
+				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
@@ -772,6 +793,7 @@
 				52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
+				A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */,
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,

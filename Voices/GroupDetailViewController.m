@@ -11,26 +11,24 @@
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
 #import "CurrentUser.h"
-
+#import "GroupDescriptionTableViewCell.h"
+#import "PolicyPositionsDetailCell.h"
 @import Firebase;
 
-@interface GroupDetailViewController ()  <UITableViewDataSource, UITableViewDelegate>
+@interface GroupDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
-@property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *policyPositionsLabel;
-@property (weak, nonatomic) IBOutlet UITextView *groupDescriptionTextview;
-@property (weak, nonatomic) IBOutlet UIView *lineView;
-
+@property (weak, nonatomic)IBOutlet UITableView *tableView;
+@property (nonatomic)CGFloat currentCellHeight;
+@property (weak, nonatomic)IBOutlet UIImageView *groupImageView;
+@property (weak, nonatomic)IBOutlet UILabel *groupTypeLabel;
+@property (weak, nonatomic)IBOutlet UIButton *followGroupButton;
+@property (weak, nonatomic)IBOutlet UIView *lineView;
+@property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
-
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *policyPositionsRef;
-
 @property (strong, nonatomic) NSMutableArray *listOfPolicyPositions;
 
 @end
@@ -48,20 +46,21 @@
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
     self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
-    
     [self configureTableView];
     [self fetchPolicyPositions];
     [self setFont];
-    
     self.title = self.group.name;
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    titleLabel.text = self.navigationItem.title;
+    [titleLabel setAdjustsFontSizeToFitWidth:true];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];       
+    self.navigationItem.titleView = titleLabel;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupTypeLabel.text = self.group.groupType;
-    self.groupDescriptionTextview.text = self.group.groupDescription;
     [self setGroupImageFromURL:self.group.groupImageURL];
     
-    self.groupDescriptionTextview.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
     self.groupImageView.backgroundColor = [UIColor clearColor];
     self.lineView.backgroundColor = [UIColor voicesOrange];
     self.lineView.layer.cornerRadius = kButtonCornerRadius;
@@ -72,11 +71,16 @@
     version.majorVersion = 10;
     version.minorVersion = 0;
     version.patchVersion = 0;
-
+    
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:version]) {
         self.feedbackGenerator = [[UISelectionFeedbackGenerator alloc] init];;
         [self.feedbackGenerator prepare];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)observeFollowStatus {
@@ -87,8 +91,7 @@
             
             if ([self.followGroupButton.titleLabel.text isEqualToString:@"Following ▾"]) {
                 [self.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
-            }
-            else {
+            }else{
                 [self.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
             }
         }
@@ -98,30 +101,20 @@
 }
 
 - (void)setFont {
-    
-    self.groupDescriptionTextview.font = [UIFont voicesFontWithSize:17];
-    self.groupTypeLabel.font = [UIFont voicesFontWithSize:17];
-    self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:21];
-    self.policyPositionsLabel.font = [UIFont voicesMediumFontWithSize:17];
-}
-
-- (void)viewDidLayoutSubviews {
-    [self.groupDescriptionTextview setContentOffset:CGPointZero animated:NO];
+    self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
+    self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:23];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
-    
     self.groupImageView.contentMode = UIViewContentModeScaleToFill;
     self.groupImageView.layer.cornerRadius = kButtonCornerRadius;
     self.groupImageView.clipsToBounds = YES;
-    
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
-    
     [self.groupImageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
-
+        
         [UIView animateWithDuration:.25 animations:^{
             self.groupImageView.image = image;
         }];
@@ -134,10 +127,13 @@
 - (void)configureTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.estimatedRowHeight = 50.f;
+    self.expandingCellDelegate = self;
+    self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
+    [self.tableView setShowsVerticalScrollIndicator:false];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - Firebase methods
@@ -150,10 +146,9 @@
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-
     
     NSString *groupKey = self.group.key;
-
+    
     [[CurrentUser sharedInstance]followGroup:groupKey WithCompletion:^(BOOL isUserFollowingGroup) {
         
         if (!isUserFollowingGroup) {
@@ -203,11 +198,12 @@
 }
 
 - (void)fetchPolicyPositions {
-    
     __weak GroupDetailViewController *weakSelf = self;
     [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *policyPositionsDict = snapshot.value;
         NSMutableArray *policyPositionsArray = [NSMutableArray array];
+        PolicyPosition *placeholderObject = [[PolicyPosition alloc]init]; // the tableview data must reserve the 0th index for the GroupDescriptionTableViewCell.
+        [policyPositionsArray addObject:placeholderObject];
         [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
             [policyPositionsArray addObject:policyPosition];
@@ -219,35 +215,76 @@
     }];
 }
 
-#pragma mark - UITableView methods
+#pragma mark - Expanding Cell Delegate
+
+- (void)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell {
+    [self.tableView reloadData];
+}
+
+#pragma mark - TableView Delegate Methods
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.listOfPolicyPositions.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
-    cell.textLabel.font = [UIFont voicesFontWithSize:19];
-    cell.textLabel.numberOfLines = 0;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if(indexPath.row == 0) {
+        static NSString *CellIdentifier = @"GroupDescriptionTableViewCell";
+        GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            // Load the top-level objects from the custom cell XIB.
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDescriptionTableViewCell" owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.expandingCellDelegate = self;   // Expanding textview delegate
+        [cell configureTextViewWithContents:self.group.groupDescription];
+        self.currentCellHeight = cell.textView.frame.size.height;
+        return cell;
+    }else{
+        static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
+        PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            // Load the top-level objects from the custom cell XIB.
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.policyLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
+        cell.policyLabel.font = [UIFont voicesFontWithSize:19];
+        cell.policyLabel.numberOfLines = 0;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // Allows centering of the nav bar title by making an empty back button
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row == 0){
+        if(self.currentCellHeight){
+            return self.currentCellHeight;
+        }
+        else{ // should never be used
+            return UITableViewAutomaticDimension;
+        }
+    }else{
+        return UITableViewAutomaticDimension;
+    }
+}
 
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
-    policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
-    [self.navigationController pushViewController:policyDetailViewController animated:YES];
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.row > 0){
+        // Allows centering of the nav bar title by making an empty back button
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationItem setBackBarButtonItem:backButtonItem];
+        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
+        policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
+        [self.navigationController pushViewController:policyDetailViewController animated:YES];
+    }
 }
 
 @end

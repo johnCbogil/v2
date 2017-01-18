@@ -15,11 +15,19 @@
 #import "TabBarViewController.h"
 #import "CurrentUser.h"
 #import "RepsManager.h"
+#import "ActionDetailViewController.h"
+#import "Action.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
+
+@interface AppDelegate()
+
+@property (strong, nonatomic) NSString *actionKey;
+
+@end
 
 @implementation AppDelegate
 
@@ -33,17 +41,14 @@
     [FIRApp configure];
     [CurrentUser sharedInstance];
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
-       return YES;
+    return YES;
 }
 
-- (BOOL)application:(UIApplication *)application
-continueUserActivity:(NSUserActivity *)userActivity
- restorationHandler:(void (^)(NSArray *))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
     
     BOOL handled = [[FIRDynamicLinks dynamicLinks]
                     handleUniversalLink:userActivity.webpageURL
@@ -85,10 +90,10 @@ continueUserActivity:(NSUserActivity *)userActivity
     [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
         
         if (!result) {
-        NSLog(@"User subscribed to %@ via deeplink", groupKey);
+            NSLog(@"User subscribed to %@ via deeplink", groupKey);
         }
         else {
-         NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
+            NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
         }
     } onError:^(NSError *error) {
         NSLog(@"There has been an error attempting to subscribe via deeplink: %@", error);
@@ -130,11 +135,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Pring full message.
     NSLog(@"%@", userInfo);
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-    self.window.rootViewController = tabVC;
-    tabVC.selectedIndex = 1;
-    [self.window makeKeyAndVisible];
+    if (userInfo[@"action"]) {
+        
+        self.actionKey = userInfo[@"action"];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -151,9 +155,59 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+
+// TODO: A LOT OF THIS LOGIC SHOULD PROBABLY BE MOVED AWAY FROM APP DELEGATE 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     [self connectToFcm];
+    
+    if (self.actionKey.length) {
+        NSLog(@"ACTION VIA NOTI: %@", self.actionKey);
+        
+        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        
+        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+        FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
+        FIRDatabaseReference *actionRef = [actionsRef child:self.actionKey];
+        
+        [actionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                return ;
+            }
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+            self.window.rootViewController = tabVC;
+            
+            for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
+
+                Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
+                
+                [[[rootRef child:@"groups"]child:newAction.groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                    
+                    if (snapshot.value != [NSNull null]) {
+                        Group *group = [[Group alloc]initWithKey:newAction.groupKey groupDictionary:snapshot.value];
+                        actionDetailViewController.group = group;
+                    }
+                    
+                    actionDetailViewController.action = newAction;
+
+                    [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
+                    tabVC.selectedIndex = 1;
+                    
+                    [navCtrl pushViewController:actionDetailViewController animated:YES];
+                    
+                    [self.window makeKeyAndVisible];
+                    
+                }];
+            }
+        }];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -170,13 +224,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     }
 }
 
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//
-//
-//}
-
 - (void)setInitialViewController {
- 
+    
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         NSLog(@"First launch");
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
