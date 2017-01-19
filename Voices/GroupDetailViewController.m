@@ -280,8 +280,8 @@
         // Allows centering of the nav bar title by making an empty back button
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationItem setBackBarButtonItem:backButtonItem];
-        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-        PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
+        UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+        PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
         policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
         [self.navigationController pushViewController:policyDetailViewController animated:YES];
     }

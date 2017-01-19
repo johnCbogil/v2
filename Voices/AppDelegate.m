@@ -11,7 +11,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "OnboardingNavigationController.h"
 #import "SSZipArchive.h"
-#import "GroupsViewController.h"
+#import "TakeActionViewController.h"
 #import "TabBarViewController.h"
 #import "CurrentUser.h"
 #import "RepsManager.h"
@@ -167,9 +167,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     if (self.actionKey.length) {
         NSLog(@"ACTION VIA NOTI: %@", self.actionKey);
         
-        UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+        UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
         
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         
         FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
         FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];

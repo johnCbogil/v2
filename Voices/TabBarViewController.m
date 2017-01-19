@@ -7,7 +7,7 @@
 //
 
 #import "TabBarViewController.h"
-#import "GroupsViewController.h"
+#import "TakeActionViewController.h"
 #import "RootViewController.h"
 
 @interface TabBarViewController ()
@@ -27,11 +27,11 @@
 
 - (void)createViewControllers {
     
-    UIStoryboard *groupsSB = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle:nil];
     
     UIViewController *rootVC = (UIViewController *)[repsSB instantiateViewControllerWithIdentifier: @"RepsNavCtrl"];
-    GroupsViewController *groupsVC = (GroupsViewController *)[groupsSB instantiateViewControllerWithIdentifier: @"GroupsNavigationViewController"];
+    TakeActionViewController *groupsVC = (TakeActionViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"TakeActionNavigationViewController"];
     
     self.viewControllers = @[rootVC, groupsVC];
 }

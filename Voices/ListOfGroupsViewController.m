@@ -12,7 +12,7 @@
 #import "Group.h"
 #import "GroupDetailViewController.h"
 #import "GroupTableViewCell.h"
-#import "GroupsViewController.h"
+#import "TakeActionViewController.h"
 
 @import Firebase;
 @import FirebaseMessaging;
@@ -131,8 +131,8 @@
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.listOfGroups[indexPath.row];
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }

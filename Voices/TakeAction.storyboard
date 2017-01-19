@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Groups View Controller-->
+        <!--Take Action View Controller-->
         <scene sceneID="SMQ-F2-XmO">
             <objects>
-                <viewController storyboardIdentifier="GroupsViewController" automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="GroupsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TakeActionViewController" automaticallyAdjustsScrollViewInsets="NO" id="eRD-AU-WhC" customClass="TakeActionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cez-2e-cd4"/>
                         <viewControllerLayoutGuide type="bottom" id="WFz-Rb-9DG"/>
@@ -254,7 +254,7 @@
                                         <rect key="frame" x="0.0" y="28" width="335" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RE0-sc-wJn" id="hoC-RN-tGO">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="101"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -262,7 +262,7 @@
                                         <rect key="frame" x="0.0" y="129" width="335" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cV7-O3-JdA" id="eCq-2K-SU2">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -363,7 +363,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Rf8-ep-UmH">
             <objects>
-                <navigationController storyboardIdentifier="GroupsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TakeActionNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

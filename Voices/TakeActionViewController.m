@@ -1,12 +1,12 @@
 //
-//  GroupsViewController.m
+//  TakeActionViewController.m
 //  Voices
 //
 //  Created by John Bogil on 12/19/15.
 //  Copyright © 2015 John Bogil. All rights reserved.
 //
 
-#import "GroupsViewController.h"
+#import "TakeActionViewController.h"
 
 #import "Action.h"
 #import "ActionDetailViewController.h"
@@ -21,7 +21,7 @@
 @import Firebase;
 @import FirebaseMessaging;
 
-@interface GroupsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -36,7 +36,7 @@
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 @end
 
-@implementation GroupsViewController
+@implementation TakeActionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -174,8 +174,8 @@
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
-    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
     viewControllerB.currentUserID = self.currentUserID;
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
@@ -189,10 +189,10 @@
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
-    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
     actionDetailViewController.group = currentGroup;
@@ -259,21 +259,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    UIStoryboard *groupsStoryboard = [UIStoryboard storyboardWithName:@"Groups" bundle: nil];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 
     if (self.segmentControl.selectedSegmentIndex) {
-        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
         groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     else {
         
         // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[groupsStoryboard instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
         actionDetailViewController.group = currentGroup;

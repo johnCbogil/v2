@@ -1,5 +1,5 @@
 //
-//  GroupsViewController.h
+//  TakeActionViewController.h
 //  Voices
 //
 //  Created by John Bogil on 4/17/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupsViewController : UIViewController
+@interface TakeActionViewController : UIViewController
 @property (strong, nonatomic) NSString *currentUserID;
 
 @end

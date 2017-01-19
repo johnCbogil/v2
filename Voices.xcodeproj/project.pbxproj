@@ -14,7 +14,7 @@
 		5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepTableViewCell.m */; };
 		52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 52361C9C1D3076ED00589827 /* PolicyPosition.m */; };
 		524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */; };
-		524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */; };
+		524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524FF1E01D14ECA600C4BE89 /* TakeActionViewController.m */; };
 		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
 		525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 525397D91DFC640F00C12686 /* ReportingManager.m */; };
 		5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* ScriptDialogViewController.m */; };
@@ -22,7 +22,7 @@
 		5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254759B1D31C57F00A894BA /* GroupsEmptyState.m */; };
 		525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */; };
 		525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EE80E1D2AB2690047211F /* ActionDetailViewController.m */; };
-		5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */; };
+		5261CF691D14EE98007B122B /* TakeActionViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 524FF1DF1D14ECA600C4BE89 /* TakeActionViewController.h */; };
 		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
 		527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* ScriptDialog.xib */; };
 		52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52911CE51D7DF25D00FCD267 /* CurrentUser.m */; };
@@ -53,7 +53,7 @@
 		52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */; };
 		52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */; };
 		52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892961CC45F47004FBEA3 /* Main.storyboard */; };
-		52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* Groups.storyboard */; };
+		52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* TakeAction.storyboard */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
@@ -100,8 +100,8 @@
 		52361C9B1D3076ED00589827 /* PolicyPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyPosition.h; sourceTree = "<group>"; };
 		52361C9C1D3076ED00589827 /* PolicyPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyPosition.m; sourceTree = "<group>"; };
 		524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = CouncilDistrictsJSON.zip; sourceTree = "<group>"; };
-		524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
-		524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		524FF1DF1D14ECA600C4BE89 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
+		524FF1E01D14ECA600C4BE89 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
 		525306601CC8571800982CC8 /* ListOfGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfGroupsViewController.h; sourceTree = "<group>"; };
 		525306611CC8571800982CC8 /* ListOfGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfGroupsViewController.m; sourceTree = "<group>"; };
 		525397D81DFC640F00C12686 /* ReportingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportingManager.h; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		52CA3D891DD8D5FD00437E83 /* RepsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsManager.h; sourceTree = "<group>"; };
 		52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsManager.m; sourceTree = "<group>"; };
 		52D892961CC45F47004FBEA3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		52D892981CC463C2004FBEA3 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
+		52D892981CC463C2004FBEA3 /* TakeAction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TakeAction.storyboard; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 				525397D81DFC640F00C12686 /* ReportingManager.h */,
 				525397D91DFC640F00C12686 /* ReportingManager.m */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
-				52D8929D1CC471AA004FBEA3 /* GroupsTab */,
+				52D8929D1CC471AA004FBEA3 /* TakeActionTab */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
@@ -379,14 +379,14 @@
 			name = RepsTab;
 			sourceTree = "<group>";
 		};
-		52D8929D1CC471AA004FBEA3 /* GroupsTab */ = {
+		52D8929D1CC471AA004FBEA3 /* TakeActionTab */ = {
 			isa = PBXGroup;
 			children = (
 				7EEDF30F1CF8DABC006E0696 /* Model */,
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
 			);
-			name = GroupsTab;
+			name = TakeActionTab;
 			sourceTree = "<group>";
 		};
 		52FC68FF1C3765AB00E29B7A /* Onboarding */ = {
@@ -451,8 +451,8 @@
 		7EEDF30A1CF8DA87006E0696 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				524FF1DF1D14ECA600C4BE89 /* GroupsViewController.h */,
-				524FF1E01D14ECA600C4BE89 /* GroupsViewController.m */,
+				524FF1DF1D14ECA600C4BE89 /* TakeActionViewController.h */,
+				524FF1E01D14ECA600C4BE89 /* TakeActionViewController.m */,
 				525306601CC8571800982CC8 /* ListOfGroupsViewController.h */,
 				525306611CC8571800982CC8 /* ListOfGroupsViewController.m */,
 				525EE80D1D2AB2690047211F /* ActionDetailViewController.h */,
@@ -470,7 +470,7 @@
 		7EEDF30B1CF8DA95006E0696 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				52D892981CC463C2004FBEA3 /* Groups.storyboard */,
+				52D892981CC463C2004FBEA3 /* TakeAction.storyboard */,
 				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
 				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
 				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
@@ -612,7 +612,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5261CF691D14EE98007B122B /* GroupsViewController.h in Resources */,
+				5261CF691D14EE98007B122B /* TakeActionViewController.h in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
@@ -626,7 +626,7 @@
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
-				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
+				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
@@ -782,7 +782,7 @@
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
-				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
+				524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
