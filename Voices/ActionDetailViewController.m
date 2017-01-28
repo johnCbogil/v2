@@ -94,10 +94,32 @@
 
 - (IBAction)shareActionButtonDidPress:(id)sender {
     
-    NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@.\n\nhttps://tryvoices.com/", self.action.groupName, self.action.title];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
-    activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
-    [self presentViewController:activityViewController animated:YES completion:nil];
+    
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
+                                message:@"There is no substitue for direct action. Have you contacted your reps already?"
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *button0 = [UIAlertAction
+                              actionWithTitle:@"Not Yet"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                              }];
+    UIAlertAction *button1 = [UIAlertAction
+                              actionWithTitle:@"Yes"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@.\n\nhttps://tryvoices.com/", self.action.groupName, self.action.title];
+                                  UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
+                                  activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
+                                  [self presentViewController:activityViewController animated:YES completion:nil];
+                              }];
+    [alert addAction:button0];
+    [alert addAction:button1];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
