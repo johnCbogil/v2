@@ -15,5 +15,7 @@
 
 @property (strong, nonatomic) Action *lastAction;
 @property (strong, nonatomic) NSString *script;
+@property (strong, nonatomic) NSString *twitterScript;
+@property (strong, nonatomic) NSString *emailScript;
 
 @end
