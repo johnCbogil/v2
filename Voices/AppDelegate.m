@@ -41,7 +41,6 @@
     [FIRApp configure];
     [CurrentUser sharedInstance];
     
-    
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
