@@ -18,6 +18,8 @@
 #import "RepsManager.h"
 #import "ReportingManager.h"
 #import "ScriptManager.h"
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -35,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
+@property (strong, nonatomic) CTCallCenter *callCenter;
 
 @end
 
@@ -136,6 +139,17 @@
         }];
         self.selectedIndexPath = indexPath;
     }
+}
+
+#pragma mark - Setup CallCenter
+
+- (void)setupCallCenter {
+    self.callCenter = [[CTCallCenter alloc] init];
+    self.callCenter.callEventHandler = ^void(CTCall *call) {
+        if (call.callState == CTCallStateDisconnected) {
+            NSLog(@"Call Ended");
+        }
+    };
 }
 
 #pragma mark - Custom Search Bar Methods

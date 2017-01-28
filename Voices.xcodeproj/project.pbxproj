@@ -69,6 +69,8 @@
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
 		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
+		9CBD5C211E3C21BB0022CA7B /* ThankYouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CBD5C201E3C21BB0022CA7B /* ThankYouViewController.xib */; };
+		9CBD5C261E3C22570022CA7B /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD5C251E3C22570022CA7B /* ThankYouViewController.m */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
 		AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */; };
@@ -189,6 +191,9 @@
 		7ED3E7CE1DFB431300C1391C /* ScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptManager.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		9CBD5C201E3C21BB0022CA7B /* ThankYouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYouViewController.xib; sourceTree = "<group>"; };
+		9CBD5C241E3C22570022CA7B /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
+		9CBD5C251E3C22570022CA7B /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
 		9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionWebViewController.m; sourceTree = "<group>"; };
 		A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -401,6 +406,9 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
+				9CBD5C201E3C21BB0022CA7B /* ThankYouViewController.xib */,
+				9CBD5C241E3C22570022CA7B /* ThankYouViewController.h */,
+				9CBD5C251E3C22570022CA7B /* ThankYouViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -555,6 +563,7 @@
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4Y3GGL46D2;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -607,6 +616,7 @@
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
+				9CBD5C211E3C21BB0022CA7B /* ThankYouViewController.xib in Resources */,
 				52D892991CC463C2004FBEA3 /* Groups.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
@@ -762,6 +772,7 @@
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* GroupsViewController.m in Sources */,
+				9CBD5C261E3C22570022CA7B /* ThankYouViewController.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
@@ -914,6 +925,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -927,6 +939,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -937,6 +951,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -951,6 +966,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
