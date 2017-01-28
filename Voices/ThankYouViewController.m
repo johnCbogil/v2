@@ -7,6 +7,7 @@
 //
 
 #import "ThankYouViewController.h"
+#import <STPopup/STPopup.h>
 
 @interface ThankYouViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *thankYouTextView;
@@ -19,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Thank you for calling!";
+    self.title = @"Thank you!";
+    self.contentSizeInPopup = CGSizeMake(300, 315);
     
 }
 
