@@ -92,6 +92,9 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];
 }
 
+- (IBAction)shareActionButtonDidPress:(id)sender {
+}
+
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
     ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
     webVC.linkURL = URL;
