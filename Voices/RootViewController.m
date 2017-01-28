@@ -65,7 +65,6 @@
     [self setFont];
     [self setColors];
     [self configureSearchBar];
-    [self setupCallCenterToPresentThankYouViewController];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
@@ -221,6 +220,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentThankYouViewController) name:@"CTCallStateDidChangeCallEnd" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:UIKeyboardDidHideNotification object:nil];
@@ -241,7 +241,6 @@
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-
 }
 
 #pragma mark - FB Shimmer methods
@@ -351,22 +350,8 @@
     [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
 }
 
-- (void)setupCallCenterToPresentThankYouViewController {
-    self.callCenter = [[CTCallCenter alloc] init];
-    __weak RootViewController *weakself = self;
-    self.callCenter.callEventHandler = ^void(CTCall *call) {
-        if (call.callState == CTCallStateDisconnected) {
-            NSLog(@"Call Ended");
-            [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
-        }
-    };
-}
-
-- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(RootViewController *)viewController  {
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-    [self configureSTPopupControllerAndNavBar:popupController];
-    [popupController presentInViewController:viewController];
+- (void)presentThankYouViewController {
+    [self setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:self];
 }
 
 - (void)configureSTPopupControllerAndNavBar:(STPopupController *)popupController {
@@ -378,6 +363,23 @@
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
 }
+
+- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(RootViewController *)viewController  {
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    if (!popupController.topViewController.isBeingPresented) {
+        popupController.containerView.layer.cornerRadius = 10;
+        [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+        [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+        [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+        [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+        popupController.transitionStyle = STPopupTransitionStyleFade;
+        [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+        [popupController presentInViewController:viewController];
+    }
+}
+
+
 
 #pragma mark - IBActions
 

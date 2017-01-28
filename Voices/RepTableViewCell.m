@@ -176,8 +176,13 @@
     
     self.callCenter.callEventHandler = ^(CTCall* call) {
         
-        //Announce that we've had a state change in CallCenter
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+        if (call.callState == CTCallStateDisconnected) {
+            
+            NSLog(@"Call Ended");
+            
+            NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChangeCallEnd" object:nil userInfo:dict];
+        }
     };
 }
 

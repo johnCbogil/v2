@@ -19,34 +19,10 @@
             <view key="view" contentMode="scaleToFill" id="3aw-S1-HHP">
                 <rect key="frame" x="0.0" y="0.0" width="300" height="315"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVv-Fc-Z5A">
-                        <rect key="frame" x="20" y="264" width="79" height="32"/>
-                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="Q8k-pc-icY"/>
-                            <constraint firstAttribute="width" constant="79" id="acw-eN-PLq"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                        <state key="normal" title="Close">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="closeWindowButtonDidPress:" destination="fje-Ye-Kce" eventType="touchUpInside" id="3C4-Pd-X0G"/>
-                        </connections>
-                    </button>
-                </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                <constraints>
-                    <constraint firstItem="TDV-Fe-gIa" firstAttribute="top" secondItem="JVv-Fc-Z5A" secondAttribute="bottom" constant="19" id="5ta-gA-QHS"/>
-                    <constraint firstItem="JVv-Fc-Z5A" firstAttribute="leading" secondItem="3aw-S1-HHP" secondAttribute="leading" constant="20" id="VBN-Qq-m2S"/>
-                </constraints>
             </view>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <size key="freeformSize" width="300" height="315"/>
-            <connections>
-                <outlet property="closeWindowButton" destination="JVv-Fc-Z5A" id="giO-LC-YRE"/>
-            </connections>
             <point key="canvasLocation" x="465" y="967.5"/>
         </viewController>
     </objects>
