@@ -65,6 +65,7 @@
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    [self configureCallCenter];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
@@ -220,7 +221,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentThankYouViewController) name:@"CTCallStateDidChangeCallEnd" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:UIKeyboardDidHideNotification object:nil];
@@ -350,8 +350,15 @@
     [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
 }
 
-- (void)presentThankYouViewController {
-    [self setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:self];
+- (void)configureCallCenter {
+    self.callCenter = [[CTCallCenter alloc] init];
+    __weak RootViewController *weakself = self;
+    self.callCenter.callEventHandler = ^(CTCall* call) {
+        if (call.callState == CTCallStateDisconnected) {
+            [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+        }
+    };
+
 }
 
 - (void)configureSTPopupControllerAndNavBar:(STPopupController *)popupController {
@@ -364,7 +371,7 @@
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
 }
 
-- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(RootViewController *)viewController  {
+- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
     UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     if (!popupController.topViewController.isBeingPresented) {
