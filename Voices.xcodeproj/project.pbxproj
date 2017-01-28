@@ -252,6 +252,9 @@
 				52B958991E1188BE006472DF /* InfoTableViewCell.xib */,
 				52B9589B1E118A3F006472DF /* InfoTableViewCell.h */,
 				52B9589C1E118A3F006472DF /* InfoTableViewCell.m */,
+				9CBD5C201E3C21BB0022CA7B /* ThankYouViewController.xib */,
+				9CBD5C241E3C22570022CA7B /* ThankYouViewController.h */,
+				9CBD5C251E3C22570022CA7B /* ThankYouViewController.m */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -406,9 +409,6 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
-				9CBD5C201E3C21BB0022CA7B /* ThankYouViewController.xib */,
-				9CBD5C241E3C22570022CA7B /* ThankYouViewController.h */,
-				9CBD5C251E3C22570022CA7B /* ThankYouViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -562,8 +562,9 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4Y3GGL46D2;
+						DevelopmentTeam = 333ZQT9JWC;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -575,6 +576,7 @@
 					};
 					52BB34431B6160CA00BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 52BB342A1B6160C900BB9FFD;
 					};
 				};
@@ -929,7 +931,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4Y3GGL46D2;
+				DEVELOPMENT_TEAM = 333ZQT9JWC;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
@@ -955,7 +957,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4Y3GGL46D2;
+				DEVELOPMENT_TEAM = 333ZQT9JWC;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -976,6 +978,9 @@
 			baseConfigurationReference = DED23F55EEF97C97C906394B /* Pods-VoicesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -994,6 +999,9 @@
 			baseConfigurationReference = E03E106B4017E31EDA824EDF /* Pods-VoicesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VoicesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

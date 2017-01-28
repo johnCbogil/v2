@@ -6,8 +6,8 @@
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "STPopupController.m"
+#import <UIKit/UIKit.h>
 
-@interface ThankYouViewController : STPopupContainerViewController
+@interface ThankYouViewController : UIViewController
 
 @end

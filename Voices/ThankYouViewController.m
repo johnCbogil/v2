@@ -9,6 +9,8 @@
 #import "ThankYouViewController.h"
 
 @interface ThankYouViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *thankYouTextView;
+@property (weak, nonatomic) IBOutlet UIButton *closeWindowButton;
 
 @end
 
@@ -16,14 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"Thank you for calling!";
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)closeWindowButtonDidPress:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 /*
 #pragma mark - Navigation
 
