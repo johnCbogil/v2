@@ -93,6 +93,11 @@
 }
 
 - (IBAction)shareActionButtonDidPress:(id)sender {
+    
+    NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@.\n\nhttps://tryvoices.com/", self.action.groupName, self.action.title];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
