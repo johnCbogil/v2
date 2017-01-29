@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
-@property (nonatomic) CTCallCenter *callCenter;
 
 
 
@@ -41,7 +40,6 @@
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
     [self setFont];
-    [self registerCallStateNotification];
 }
 
 
@@ -162,23 +160,6 @@
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
-}
-
-
--(void)registerCallStateNotification {
-    
-    //Register for notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
-    
-    //Instantiate call center
-    CTCallCenter *callCenter = [[CTCallCenter alloc] init];
-    self.callCenter = callCenter;
-    
-    self.callCenter.callEventHandler = ^(CTCall* call) {
-        
-        //Announce that we've had a state change in CallCenter
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
-    };
 }
 
 

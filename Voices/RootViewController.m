@@ -18,6 +18,8 @@
 #import "RepsManager.h"
 #import "ReportingManager.h"
 #import "ScriptManager.h"
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -35,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
+@property (strong, nonatomic) CTCallCenter *callCenter;
 
 @end
 
@@ -62,6 +65,7 @@
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    [self configureCallCenter];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
@@ -237,7 +241,6 @@
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-
 }
 
 #pragma mark - FB Shimmer methods
@@ -340,21 +343,25 @@
 }
 
 - (void)presentInfoViewController {
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"NewInfo" owner:self options:nil] objectAtIndex:0];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-    popupController.containerView.layer.cornerRadius = 10;
-    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
-    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
-    popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:self];
+    [self setupAndPresentSTPopupControllerWithNibNamed:@"NewInfo" inViewController:self];
 }
 
 - (void)presentScriptDialog {
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
+}
+
+- (void)configureCallCenter {
+    self.callCenter = [[CTCallCenter alloc] init];
+    __weak RootViewController *weakself = self;
+    self.callCenter.callEventHandler = ^(CTCall* call) {
+        if (call.callState == CTCallStateDisconnected) {
+            [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+        }
+    };
+
+}
+
+- (void)configureSTPopupControllerAndNavBar:(STPopupController *)popupController {
     popupController.containerView.layer.cornerRadius = 10;
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
@@ -362,9 +369,23 @@
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:self];
-    
 }
+
+- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    if (!popupController.topViewController.isBeingPresented) {
+        popupController.containerView.layer.cornerRadius = 10;
+        [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+        [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+        [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+        [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+        popupController.transitionStyle = STPopupTransitionStyleFade;
+        [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+        [popupController presentInViewController:viewController];
+    }
+}
+
 
 
 #pragma mark - IBActions
@@ -397,7 +418,6 @@
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
     [self presentScriptDialog];
-
 }
 
 - (void)refreshSearchText {
