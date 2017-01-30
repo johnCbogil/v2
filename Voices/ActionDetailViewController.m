@@ -139,4 +139,5 @@
     groupDetailViewController.group = self.group;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
+
 @end
