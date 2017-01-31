@@ -18,12 +18,15 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 
+//import UserNotifications
+
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
+@import UserNotifications;
 
-@interface AppDelegate()
+@interface AppDelegate() <UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) NSString *actionKey;
 
@@ -44,6 +47,8 @@
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    
+    [self scheduleNotification];
     return YES;
 }
 
@@ -311,5 +316,60 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         }
     }
 }
+
+- (void)scheduleNotification {
+    
+    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *date = [NSDate date];
+    NSDateComponents *components = [calendar componentsInTimeZone:[NSTimeZone localTimeZone] fromDate:date];
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"test gang";
+    content.body = @"waht u know";
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center removeAllDeliveredNotifications];
+    [center addNotificationRequest:request withCompletionHandler:nil];
+    
+    
+
+}
+
+//func scheduleNotification(at date: Date) {
+//    let calendar = Calendar(identifier: .gregorian)
+//    let components = calendar.dateComponents(in: .current, from: date)
+//    let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
+//    
+//    let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
+//    
+//    let content = UNMutableNotificationContent()
+//    content.title = "Tutorial Reminder"
+//    content.body = "Just a reminder to read your tutorial over at appcoda.com!"
+//    content.sound = UNNotificationSound.default()
+//    content.categoryIdentifier = "myCategory"
+//    
+//    if let path = Bundle.main.path(forResource: "logo", ofType: "png") {
+//        let url = URL(fileURLWithPath: path)
+//        
+//        do {
+//            let attachment = try UNNotificationAttachment(identifier: "logo", url: url, options: nil)
+//            content.attachments = [attachment]
+//        } catch {
+//            print("The attachment was not loaded.")
+//        }
+//    }
+//    
+//    let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
+//    
+//    UNUserNotificationCenter.current().delegate = self
+//    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+//    UNUserNotificationCenter.current().add(request) {(error) in
+//        if let error = error {
+//            print("Uh oh! We had an error: \(error)")
+//        }
+//    }
+//}
+
 
 @end
