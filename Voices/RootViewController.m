@@ -20,6 +20,7 @@
 #import "ScriptManager.h"
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
+#import "ThankYouViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -217,6 +218,7 @@
 
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
@@ -227,6 +229,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
@@ -234,6 +237,7 @@
         self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
 
 }
+
 
 // TODO: MIGHT BE SOME REDUNDANT CODE HERE
 - (void)dismissKeyboard {
@@ -347,18 +351,6 @@
 
 - (void)presentScriptDialog {
     [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
-    
-}
-
-- (void)setupCallCenterToPresentThankYou {
-    __weak RootViewController *weakself = self;
-    self.callCenter = [[CTCallCenter alloc] init];
-    self.callCenter.callEventHandler = ^void(CTCall *call) {
-        if (call.callState == CTCallStateDisconnected) {
-            NSLog(@"Call Ended");
-            [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
-        }
-    };
 }
 
 - (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
@@ -380,7 +372,49 @@
     
 }
 
+#pragma mark Call Center methods
+- (void)setupCallCenterToPresentThankYou {
+    __weak RootViewController *weakself = self;
+    self.callCenter = [[CTCallCenter alloc] init];
+    self.callCenter.callEventHandler = ^void(CTCall *call) {
+        if (call.callState == CTCallStateDisconnected) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+                //Announce that we've had a state change in CallCenter
+                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+            });
+        }
+    };
+}
 
+- (void)callStateDidChange:(NSNotification *)notification {
+    
+    //Log the notification
+    NSLog(@"Notification : %@", notification);
+    
+    NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
+    if([callInfo isEqualToString: CTCallStateDialing]) {
+        
+        //The call state, before connection is established, when the user initiates the call.
+        NSLog(@"****** call is dialing ******");
+    }
+    if([callInfo isEqualToString: CTCallStateIncoming]) {
+        
+        //The call state, before connection is established, when a call is incoming but not yet answered by the user.
+        NSLog(@"***** call is incoming ******");
+    }
+    if([callInfo isEqualToString: CTCallStateConnected]) {
+        
+        //The call state when the call is fully established for all parties involved.
+        NSLog(@"***** call connected *****");
+        
+    }
+    if([callInfo isEqualToString: CTCallStateDisconnected]) {
+        
+        //the call state has ended
+        NSLog(@"***** call ended *****");
+    }
+}
 
 #pragma mark - IBActions
 

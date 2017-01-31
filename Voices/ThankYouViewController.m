@@ -10,7 +10,6 @@
 #import <STPopup.h>
 
 @interface ThankYouViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
