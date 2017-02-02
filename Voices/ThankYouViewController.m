@@ -30,7 +30,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"thankYouViewControllerDismissed" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"thankYouViewControllerDismissed" object:nil];
 }
 
 /*

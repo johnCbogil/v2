@@ -387,14 +387,14 @@
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
-    __weak RootViewController *weakself = self;
+   // __weak RootViewController *weakself = self;
     self.callCenter = [[CTCallCenter alloc] init];
     self.callCenter.callEventHandler = ^void(CTCall *call) {
         if (call.callState == CTCallStateDisconnected) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+               // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
                 //Announce that we've had a state change in CallCenter
-                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+//                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
             });
         }
     };
