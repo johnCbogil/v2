@@ -15,12 +15,11 @@
 @interface ActionDetailViewController()
 
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
-//@property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 @property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
+@property (weak, nonatomic) IBOutlet UIButton *shareActionButton;
 
 @end
 
@@ -30,15 +29,16 @@
     [super viewDidLoad];
 
     self.groupNameLabel.text = self.action.groupName;
-    self.actionSubjectLabel.text = self.action.subject;
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
     self.actionBodyTextView.dataDetectorTypes = UIDataDetectorTypeAll;
     self.actionBodyTextView.delegate = self;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"TAKE ACTION";
-    [self.takeActionButton setTitle:@"Contact My Representatives" forState:UIControlStateNormal];
+    [self.takeActionButton setTitle:@"Contact Reps" forState:UIControlStateNormal];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
+    self.shareActionButton.layer.cornerRadius = kButtonCornerRadius;
+    [self.shareActionButton setTitle:@"Share Action" forState:UIControlStateNormal];
     [self setGroupImageFromURL:self.action.groupImageURL ? self.action.groupImageURL : self.group.groupImageURL];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
@@ -54,9 +54,9 @@
     self.groupNameLabel.minimumScaleFactor = 0.75;
     [self.groupNameLabel sizeToFit];
     
-    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:17];
     self.actionTitleLabel.font = [UIFont voicesMediumFontWithSize:19];
     self.takeActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
+    self.shareActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
 
@@ -92,6 +92,36 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"actionPageJump" object:level];
 }
 
+- (IBAction)shareActionButtonDidPress:(id)sender {
+    
+    
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
+                                message:@"There is no substitue for direct action. Have you contacted your reps already?"
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *button0 = [UIAlertAction
+                              actionWithTitle:@"Not Yet"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                              }];
+    UIAlertAction *button1 = [UIAlertAction
+                              actionWithTitle:@"Yes"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@.\n\nhttps://tryvoices.com/", self.action.groupName, self.action.title];
+                                  UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
+                                  activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
+                                  [self presentViewController:activityViewController animated:YES completion:nil];
+                              }];
+    [alert addAction:button0];
+    [alert addAction:button1];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
     ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
     webVC.linkURL = URL;
@@ -109,4 +139,5 @@
     groupDetailViewController.group = self.group;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
+
 @end

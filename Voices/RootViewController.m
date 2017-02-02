@@ -270,8 +270,18 @@
 
 - (void)presentEmailViewController:(NSNotification*)notification {
     self.representativeEmail = [notification object];
-    
-    // Open 'Compose' in Mail app - if no Mail app, open Gmail
+    if(self.representativeEmail != nil){
+        [self selectMailApp];
+    }
+    else{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"A message is required" message:@"Please enter a message" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
+- (void)selectMailApp {
+    // try Mail app
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
@@ -280,7 +290,7 @@
         [mailViewController setToRecipients:@[self.representativeEmail]];
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
-    else {
+    else { // try Gmail
         NSString *gmailURL = [NSString stringWithFormat:@"googlegmail:///co?to=%@", self.representativeEmail];
         if ([[UIApplication sharedApplication]
              canOpenURL:[NSURL URLWithString:gmailURL]]){
