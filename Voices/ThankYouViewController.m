@@ -28,6 +28,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"thankYouViewControllerDismissed" object:nil];
+}
+
 /*
 #pragma mark - Navigation
 
