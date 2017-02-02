@@ -214,6 +214,7 @@
     self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
+
 #pragma mark - NSNotifications
 
 - (void)addObservers {
@@ -222,6 +223,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adjustToStatusBarChange) name:@"thankYouViewControllerDismissed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
@@ -230,6 +232,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     
+}
+
+- (void)adjustToStatusBarChange {
+    UIWindow *window = [UIApplication sharedApplication].windows[0];
+    for (UIView *view in window.subviews) {
+        view.frame = window.bounds;
+    }
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
@@ -366,11 +375,6 @@
 - (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
     UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-    [self configureSTPopupControllerAndNavBar:popupController];
-    [popupController presentInViewController:viewController];
-}
-
-- (void)configureSTPopupControllerAndNavBar:(STPopupController *)popupController {
     popupController.containerView.layer.cornerRadius = 10;
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
@@ -378,8 +382,7 @@
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:self];
-    
+    [popupController presentInViewController:viewController];
 }
 
 #pragma mark Call Center methods
