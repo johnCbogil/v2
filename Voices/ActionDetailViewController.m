@@ -25,6 +25,7 @@
 
 @implementation ActionDetailViewController
 
+#pragma mark - VC Lifecycle methods
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -49,6 +50,9 @@
     [self.actionBodyTextView setContentOffset:CGPointZero animated:NO];
 }
 
+#pragma mark - Set up methods
+
+
 - (void)setFont {
     self.groupNameLabel.font = [UIFont voicesFontWithSize:24];
     self.groupNameLabel.minimumScaleFactor = 0.75;
@@ -59,6 +63,7 @@
     self.shareActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
+
 
 - (void)setGroupImageFromURL:(NSURL *)url {
     
@@ -82,6 +87,8 @@
         NSLog(@"Action image failure");
     }];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
     

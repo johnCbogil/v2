@@ -17,6 +17,7 @@
 #import "RepsManager.h"
 #import "ActionDetailViewController.h"
 #import "Action.h"
+#import "ShareCollectionViewController.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -32,18 +33,22 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
-    
-    [self setInitialViewController];
-    [self setCache];
-    [self enableFeedbackAndReporting];
-    [self unzipNYCDataSet];
-    [self excludeGeoJSONFromCloudBackup];
-    [FIRApp configure];
-    [CurrentUser sharedInstance];
-    
-    // Add observer for InstanceID token refresh callback.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
-                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    ShareCollectionViewController *shareVC = [[ShareCollectionViewController alloc] initWithNibName:@"ShareCollectionViewController" bundle:nil];
+    shareVC.shareString = @"Please Share";
+    self.window.rootViewController = shareVC;
+    [self.window makeKeyAndVisible];
+
+//    [self setInitialViewController];
+//    [self setCache];
+//    [self enableFeedbackAndReporting];
+//    [self unzipNYCDataSet];
+//    [self excludeGeoJSONFromCloudBackup];
+//    [FIRApp configure];
+//    [CurrentUser sharedInstance];
+//    
+//    // Add observer for InstanceID token refresh callback.
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
+//                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
     return YES;
 }
 
