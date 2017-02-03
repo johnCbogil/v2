@@ -20,4 +20,17 @@
         [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];    
 }
 
++ (STPopupController *)dn_popupControllerWithNibNamed:(NSString *) name withStyle:(STPopupStyle) style {
+    UIViewController *rootViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] objectAtIndex:0];
+    STPopupController *popupController = [STPopupController dn_popupControllerWithViewController:rootViewController withStyle:style];
+    return popupController;
+}
+
++ (STPopupController *) dn_popupControllerWithViewController:(UIViewController *)rootViewController withStyle:(STPopupStyle)style {
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:rootViewController];
+    [popupController dn_configureForVoicesWithStyle:style];
+    return popupController;
+}
+
+
 @end

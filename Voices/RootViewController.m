@@ -21,7 +21,6 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
-#import "UIViewController+PresentSTPopup.h"
 #import "STPopupController+Voices.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
@@ -367,11 +366,13 @@
 }
 
 - (void)presentInfoViewController {
-    [self dn_setupAndPresentSTPopupControllerWithNibNamed:@"NewInfo" inViewController:self withStyle:STPopupStyleFormSheet];
+    STPopupController *popupController = [STPopupController dn_popupControllerWithNibNamed:@"NewInfo" withStyle:STPopupStyleFormSheet];
+    [popupController presentInViewController:self];
 }
 
 - (void)presentScriptDialog {
-    [self dn_setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self withStyle:STPopupStyleFormSheet];
+    STPopupController *popupController = [STPopupController dn_popupControllerWithNibNamed:@"ScriptDialog" withStyle:STPopupStyleFormSheet];
+    [popupController presentInViewController:self];
 }
 
 #pragma mark Call Center methods
@@ -381,7 +382,7 @@
     self.callCenter.callEventHandler = ^void(CTCall *call) {
         if (call.callState == CTCallStateDisconnected) {
             dispatch_async(dispatch_get_main_queue(), ^{
-               // [weakself dn_setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself withStyle:STPopupStyleFormSheet];
+               // [STPopupController dn_setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself withStyle:STPopupStyleFormSheet];
                 //Announce that we've had a state change in CallCenter
 //                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
             });

@@ -12,7 +12,6 @@
 #import "ScriptManager.h"
 #import "ShareCollectionViewController.h"
 #import <STPopup.h>
-#import "UIViewController+PresentSTPopup.h"
 #import "STPopupController+Voices.h"
 
 
@@ -157,9 +156,8 @@ NSString *const shortenedShareString = @"Help me support %@!";
     
     shareVC.shareString = [NSString stringWithFormat:shareString, self.group.name, self.action.title];
     shareVC.shortenedShareString = [NSString stringWithFormat:shortenedShareString, self.group.name];
-    self.sharePopupController = [[STPopupController alloc] initWithRootViewController:shareVC];
-    [self.sharePopupController dn_configureForVoicesWithStyle:STPopupStyleBottomSheet];
-    [self.sharePopupController presentInViewController:viewController];
+    self.sharePopupController = [STPopupController dn_popupControllerWithViewController:shareVC withStyle:STPopupStyleBottomSheet];
+    [self.sharePopupController presentInViewController:self];
 }
 
 @end

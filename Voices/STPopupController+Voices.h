@@ -7,7 +7,10 @@
 //
 
 #import <STPopup/STPopup.h>
-
+@class STPopupController;
 @interface STPopupController (Voices)
 - (void)dn_configureForVoicesWithStyle:(STPopupStyle) style;
++ (STPopupController *)dn_popupControllerWithNibNamed:(NSString *) name withStyle:(STPopupStyle) style;
++ (STPopupController *) dn_popupControllerWithViewController:(UIViewController *)rootViewController withStyle:(STPopupStyle)style;
+
 @end
