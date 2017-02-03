@@ -33,22 +33,17 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
-    ShareCollectionViewController *shareVC = [[ShareCollectionViewController alloc] initWithNibName:@"ShareCollectionViewController" bundle:nil];
-    shareVC.shareString = @"Please Share";
-    self.window.rootViewController = shareVC;
-    [self.window makeKeyAndVisible];
-
-//    [self setInitialViewController];
-//    [self setCache];
-//    [self enableFeedbackAndReporting];
-//    [self unzipNYCDataSet];
-//    [self excludeGeoJSONFromCloudBackup];
-//    [FIRApp configure];
-//    [CurrentUser sharedInstance];
-//    
-//    // Add observer for InstanceID token refresh callback.
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
-//                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    [self setInitialViewController];
+    [self setCache];
+    [self enableFeedbackAndReporting];
+    [self unzipNYCDataSet];
+    [self excludeGeoJSONFromCloudBackup];
+    [FIRApp configure];
+    [CurrentUser sharedInstance];
+    
+    // Add observer for InstanceID token refresh callback.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
+                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
     return YES;
 }
 

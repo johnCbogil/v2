@@ -17,22 +17,23 @@ typedef enum {
     SMS,
     FBMessenger
 } InstalledApp;
-@interface ShareCollectionViewController () <MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
+@interface ShareCollectionViewController () <MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray <NSNumber *> *installedApps;
 @end
 
 @implementation ShareCollectionViewController
 
 static NSString * const reuseIdentifier = @"ShareCell";
+static CGFloat const cellHeight = 80;
 
 #pragma mark - Lifecycle VC methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.collectionView registerClass:[ShareCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ShareCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.title = @"Pro Tips";
-    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width * .9, self.view.frame.size.height * .65);
-
+    self.title = @"Share";
+    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width * .9, cellHeight + 10);
     [self setAvailableApps];
 }
 
@@ -79,19 +80,19 @@ static NSString * const reuseIdentifier = @"ShareCell";
     }
 }
 
-- (UIImage*)imageForApp:(InstalledApp) app{
+- (UIImage*)iconForApp:(InstalledApp) app{
     switch (app) {
         case Facebook:
-            return [UIImage new];
+            return [UIImage imageNamed:@"fb-icon"];
             break;
         case FBMessenger:
-            return [UIImage new];
+            return [UIImage imageNamed:@""];
             break;
         case Twitter:
-            return [UIImage new];
+            return [UIImage imageNamed:@"twitter-icon"];
             break;
         case SMS:
-            return [UIImage new];
+            return [UIImage imageNamed:@"sms-icon"];
             break;
     }
 }
@@ -118,8 +119,9 @@ static NSString * const reuseIdentifier = @"ShareCell";
             NSString *serviceType = [self serviceTypeForApp:app];
             if (serviceType) {
                 SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:serviceType];
+                composeViewController.completionHandler = nil;
                 [composeViewController setInitialText:self.shareString];
-                [self.navigationController presentViewController:composeViewController animated:YES completion:nil];
+                [self presentViewController:composeViewController animated:YES completion:nil];
             }
             break;
         }
@@ -130,7 +132,7 @@ static NSString * const reuseIdentifier = @"ShareCell";
             MFMessageComposeViewController *composeViewController = [[MFMessageComposeViewController alloc] init];
             composeViewController.delegate = self;
             composeViewController.body = self.shareString;
-            [self.navigationController presentViewController:composeViewController animated:YES completion:nil];
+            [self presentViewController:composeViewController animated:YES completion:nil];
             break;
         }
     }
@@ -160,8 +162,14 @@ static NSString * const reuseIdentifier = @"ShareCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    UIImage * iconImage = [self imageForApp:self.installedApps[indexPath.row].intValue];
-    cell.appIcon = [[UIImageView alloc] initWithImage:iconImage];
+    UIImage * iconImage = [self iconForApp:self.installedApps[indexPath.row].intValue];
+    if (!iconImage) {
+        NSLog(@"No image for cell");
+    }
+    cell.appIcon.image = iconImage;
+    if (!cell.appIcon.image) {
+        NSLog(@"appIcon image view not intialized");
+    }
     return cell;
 }
 

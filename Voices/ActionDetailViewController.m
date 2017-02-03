@@ -10,6 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "GroupDetailViewController.h"
 #import "ScriptManager.h"
+#import "ShareCollectionViewController.h"
+#import <STPopup.h>
+#import "UIViewController+PresentSTPopup.h"
 
 
 @interface ActionDetailViewController()
@@ -107,22 +110,20 @@
                                 message:@"There is no substitue for direct action. Have you contacted your reps already?"
                                 preferredStyle:UIAlertControllerStyleAlert];
     
+    __weak ActionDetailViewController *weakself = self;
     UIAlertAction *button0 = [UIAlertAction
                               actionWithTitle:@"Not Yet"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                  [weakself dismissViewControllerAnimated:YES completion:nil];
                               }];
     UIAlertAction *button1 = [UIAlertAction
                               actionWithTitle:@"Yes"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@.\n\nhttps://tryvoices.com/", self.action.groupName, self.action.title];
-                                  UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
-                                  activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
-                                  [self presentViewController:activityViewController animated:YES completion:nil];
+                                  [weakself presentSharePopupInViewController:weakself];
                               }];
     [alert addAction:button0];
     [alert addAction:button1];
@@ -145,6 +146,16 @@
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.group;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
+}
+
+- (void)presentSharePopupInViewController: (UIViewController *)viewController {
+    ShareCollectionViewController *shareVC = (ShareCollectionViewController *) [[[NSBundle mainBundle] loadNibNamed:@"ShareCollectionViewController" owner:viewController options:nil] objectAtIndex:0];
+    shareVC.shareString = @"Please Share";
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:shareVC];
+    popupController.style = STPopupStyleBottomSheet;
+    [viewController dn_configurePopupControllerForVoices:popupController];
+    [popupController presentInViewController:viewController];
+
 }
 
 @end

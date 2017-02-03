@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShareCollectionViewController : UICollectionViewController 
+@interface ShareCollectionViewController : UIViewController
 @property (strong, nonatomic) NSString *shareString;
 @end

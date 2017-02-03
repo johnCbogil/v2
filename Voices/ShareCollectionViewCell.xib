@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="56" height="57"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MissingRepMale" translatesAutoresizingMaskIntoConstraints="NO" id="LJC-wE-Dbb">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb-icon" translatesAutoresizingMaskIntoConstraints="NO" id="LJC-wE-Dbb">
                         <rect key="frame" x="0.0" y="0.0" width="56" height="57"/>
                     </imageView>
                 </subviews>
@@ -37,6 +37,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="MissingRepMale" width="16" height="16"/>
+        <image name="fb-icon" width="103" height="101"/>
     </resources>
 </document>
