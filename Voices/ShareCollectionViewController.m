@@ -11,15 +11,14 @@
 #import <STPopup.h>
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
-typedef enum {
-    Facebook = 1,
-    Twitter,
-    SMS,
-    FBMessenger
-} InstalledApp;
-@interface ShareCollectionViewController () <MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+
+
+
+@interface ShareCollectionViewController () <MFMessageComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ShareCollectionViewCellDelegate>
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray <NSNumber *> *installedApps;
+
 @end
 
 @implementation ShareCollectionViewController
@@ -33,7 +32,7 @@ static CGFloat const cellHeight = 80;
     [self.collectionView registerNib:[UINib nibWithNibName:@"ShareCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.title = @"Share";
-    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width * .9, cellHeight + 10);
+    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width * .9, cellHeight + 16);
     [self setAvailableApps];
 }
 
@@ -45,13 +44,101 @@ static CGFloat const cellHeight = 80;
 #pragma mark - Setup methods
 - (void)setAvailableApps {
     self.installedApps = [NSMutableArray arrayWithObject:@(SMS)];
-    NSArray *appURLPaths = @[@"fb://", @"twitter://", @"fb-messenger://"];
+    // Add @"fb-messenger://" for fb messenger
+    NSArray *appURLPaths = @[@"fb://", @"twitter://"];
     for (NSString *path in appURLPaths) {
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:path]]) {
             InstalledApp app = [self appForURLPath:path];
             [self.installedApps addObject:@(app)];
         }
     }
+}
+
+#pragma mark - Delegate methods
+#pragma mark <UICollectionViewDataSource>
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.installedApps.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    ShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    InstalledApp app = self.installedApps[indexPath.row].intValue;
+    cell.app = app;
+    cell.delegate = self;
+    UIImage * iconImage = [self iconForApp: app];
+    [cell.appIconButton setImage:iconImage forState:UIControlStateNormal];
+    return cell;
+}
+
+#pragma mark <UICollectionViewDelegate>
+//- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    [self presentActionViewControllerForApp: self.installedApps[indexPath.row].intValue];
+//}
+
+#pragma mark <MFMessageComposeViewControllerDelegate>
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark <ShareCollectionViewCellDelegate>
+- (void) shareCollectionViewCell:(ShareCollectionViewCell *)sender didPressApp:(InstalledApp)app {
+    switch (app) {
+        case Twitter:
+        case Facebook:
+        {
+            NSString *serviceType = [self serviceTypeForApp:app];
+            if (serviceType) {
+                SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:serviceType];
+                if (composeViewController) {
+                    composeViewController.completionHandler = nil;
+                    BOOL willSetText = [composeViewController setInitialText:self.shareString];
+                    if (!willSetText) {
+                        willSetText = [composeViewController setInitialText:self.shortenedShareString];
+                        if (!willSetText) { NSLog(@"Will not set initial text: %@", self.shortenedShareString); }
+                    }
+                    [self presentViewController:composeViewController animated:YES completion:^{
+                        [sender hideWaitingView];
+                    }];
+                } else {
+                    [sender hideWaitingView];
+                    [self showShareErrorForApp:app];
+                }
+            }
+            break;
+        }
+        case FBMessenger:
+            break;
+        case SMS:
+        {
+            MFMessageComposeViewController *composeViewController = [[MFMessageComposeViewController alloc] init];
+            if (composeViewController) {
+                composeViewController.messageComposeDelegate = self;
+                composeViewController.body = self.shareString;
+                [self presentViewController:composeViewController animated:YES completion:^{
+                    [sender hideWaitingView];
+                }];
+            } else {
+                [sender hideWaitingView];
+            }
+            break;
+        }
+    }
+}
+
+- (void)showShareErrorForApp:(InstalledApp) app {
+    NSString *appName = [self nameForApp:app];
+    if (!appName) { return; }
+    NSString *title = [NSString stringWithFormat:@"Unable to open %@", appName];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:confirm];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - InstalledApp enum methods
@@ -101,86 +188,25 @@ static CGFloat const cellHeight = 80;
     switch (app) {
         case Facebook:
             return SLServiceTypeFacebook;
-            break;
         case Twitter:
             return SLServiceTypeTwitter;
-            break;
         default:
             return nil;
     }
 }
 
-
-- (void)presentActionViewControllerForApp: (InstalledApp) app {
+- (NSString *)nameForApp: (InstalledApp) app {
     switch (app) {
-        case Twitter:
         case Facebook:
-        {
-            NSString *serviceType = [self serviceTypeForApp:app];
-            if (serviceType) {
-                SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:serviceType];
-                composeViewController.completionHandler = nil;
-                [composeViewController setInitialText:self.shareString];
-                [self presentViewController:composeViewController animated:YES completion:nil];
-            }
-            break;
-        }
+            return @"Facebook";
+        case Twitter:
+            return @"Twitter";
         case FBMessenger:
-            break;
+            return @"Facebook Messenger";
         case SMS:
-        {
-            MFMessageComposeViewController *composeViewController = [[MFMessageComposeViewController alloc] init];
-            composeViewController.delegate = self;
-            composeViewController.body = self.shareString;
-            [self presentViewController:composeViewController animated:YES completion:nil];
-            break;
-        }
+            return @"Messages";
+        default:
+            return nil;
     }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.installedApps.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    UIImage * iconImage = [self iconForApp:self.installedApps[indexPath.row].intValue];
-    if (!iconImage) {
-        NSLog(@"No image for cell");
-    }
-    cell.appIcon.image = iconImage;
-    if (!cell.appIcon.image) {
-        NSLog(@"appIcon image view not intialized");
-    }
-    return cell;
-}
-
-#pragma mark <UICollectionViewDelegate>
-- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self presentActionViewControllerForApp: self.installedApps[indexPath.row].intValue];
-}
-
-#pragma mark <MFMessageComposeViewControllerDelegate>
-- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    
-}
-
 @end

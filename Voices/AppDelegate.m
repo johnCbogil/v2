@@ -17,7 +17,6 @@
 #import "RepsManager.h"
 #import "ActionDetailViewController.h"
 #import "Action.h"
-#import "ShareCollectionViewController.h"
 
 @import Firebase;
 @import FirebaseInstanceID;

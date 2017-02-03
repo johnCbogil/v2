@@ -13,6 +13,7 @@
 #import "ShareCollectionViewController.h"
 #import <STPopup.h>
 #import "UIViewController+PresentSTPopup.h"
+#import "STPopupController+Voices.h"
 
 
 @interface ActionDetailViewController()
@@ -23,10 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 @property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
 @property (weak, nonatomic) IBOutlet UIButton *shareActionButton;
+@property (strong, nonatomic) STPopupController *sharePopupController;
 
 @end
 
 @implementation ActionDetailViewController
+
+NSString *const shareString = @"Help me support %@! %@";
+NSString *const shortenedShareString = @"Help me support %@!";
 
 #pragma mark - VC Lifecycle methods
 - (void)viewDidLoad {
@@ -110,20 +115,19 @@
                                 message:@"There is no substitue for direct action. Have you contacted your reps already?"
                                 preferredStyle:UIAlertControllerStyleAlert];
     
-    __weak ActionDetailViewController *weakself = self;
     UIAlertAction *button0 = [UIAlertAction
                               actionWithTitle:@"Not Yet"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  [weakself dismissViewControllerAnimated:YES completion:nil];
+                                  [self dismissViewControllerAnimated:YES completion:nil];
                               }];
     UIAlertAction *button1 = [UIAlertAction
                               actionWithTitle:@"Yes"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  [weakself presentSharePopupInViewController:weakself];
+                                  [self presentSharePopupInViewController:self];
                               }];
     [alert addAction:button0];
     [alert addAction:button1];
@@ -150,12 +154,12 @@
 
 - (void)presentSharePopupInViewController: (UIViewController *)viewController {
     ShareCollectionViewController *shareVC = (ShareCollectionViewController *) [[[NSBundle mainBundle] loadNibNamed:@"ShareCollectionViewController" owner:viewController options:nil] objectAtIndex:0];
-    shareVC.shareString = @"Please Share";
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:shareVC];
-    popupController.style = STPopupStyleBottomSheet;
-    [viewController dn_configurePopupControllerForVoices:popupController];
-    [popupController presentInViewController:viewController];
-
+    
+    shareVC.shareString = [NSString stringWithFormat:shareString, self.group.name, self.action.title];
+    shareVC.shortenedShareString = [NSString stringWithFormat:shortenedShareString, self.group.name];
+    self.sharePopupController = [[STPopupController alloc] initWithRootViewController:shareVC];
+    [self.sharePopupController dn_configureForVoicesWithStyle:STPopupStyleBottomSheet];
+    [self.sharePopupController presentInViewController:viewController];
 }
 
 @end

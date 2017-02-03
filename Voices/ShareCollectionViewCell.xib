@@ -18,22 +18,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="56" height="57"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb-icon" translatesAutoresizingMaskIntoConstraints="NO" id="LJC-wE-Dbb">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPK-SD-EzR">
                         <rect key="frame" x="0.0" y="0.0" width="56" height="57"/>
-                    </imageView>
+                        <state key="normal" title="Button" image="fb-icon"/>
+                        <connections>
+                            <action selector="didPressAppIcon:" destination="gTV-IL-0wX" eventType="touchUpInside" id="5dk-LE-uag"/>
+                        </connections>
+                    </button>
+                    <view hidden="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9l-GK-cBw">
+                        <rect key="frame" x="0.0" y="0.0" width="56" height="57"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QPq-Ev-uXU">
+                                <rect key="frame" x="18" y="18" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QPq-Ev-uXU" firstAttribute="centerY" secondItem="n9l-GK-cBw" secondAttribute="centerY" id="WRe-hg-ShV"/>
+                            <constraint firstItem="QPq-Ev-uXU" firstAttribute="centerX" secondItem="n9l-GK-cBw" secondAttribute="centerX" id="bzg-A8-nck"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="LJC-wE-Dbb" secondAttribute="trailing" id="0WW-zh-X3i"/>
-                <constraint firstItem="LJC-wE-Dbb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5WD-DA-AKa"/>
-                <constraint firstAttribute="bottom" secondItem="LJC-wE-Dbb" secondAttribute="bottom" id="kmH-3a-RdM"/>
-                <constraint firstItem="LJC-wE-Dbb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="s0h-dR-Hmg"/>
+                <constraint firstItem="n9l-GK-cBw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6RS-Pz-f8w"/>
+                <constraint firstItem="zPK-SD-EzR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Bk3-1J-Xkn"/>
+                <constraint firstAttribute="bottom" secondItem="n9l-GK-cBw" secondAttribute="bottom" id="Kxx-xq-z2U"/>
+                <constraint firstAttribute="bottom" secondItem="zPK-SD-EzR" secondAttribute="bottom" id="RsJ-Ra-vI1"/>
+                <constraint firstItem="zPK-SD-EzR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="UO8-tD-79M"/>
+                <constraint firstAttribute="trailing" secondItem="n9l-GK-cBw" secondAttribute="trailing" id="Vnj-RC-NeW"/>
+                <constraint firstItem="n9l-GK-cBw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ugw-64-CFG"/>
+                <constraint firstAttribute="trailing" secondItem="zPK-SD-EzR" secondAttribute="trailing" id="z2T-F8-yRE"/>
             </constraints>
             <size key="customSize" width="56" height="57"/>
             <connections>
-                <outlet property="appIcon" destination="LJC-wE-Dbb" id="nQv-wy-hOX"/>
+                <outlet property="activityIndicator" destination="QPq-Ev-uXU" id="F0p-Hh-CJL"/>
+                <outlet property="appIconButton" destination="zPK-SD-EzR" id="UWx-1W-bo7"/>
+                <outlet property="waitingView" destination="n9l-GK-cBw" id="fPi-rm-4RE"/>
             </connections>
-            <point key="canvasLocation" x="59" y="62.5"/>
+            <point key="canvasLocation" x="55" y="63"/>
         </collectionViewCell>
     </objects>
     <resources>

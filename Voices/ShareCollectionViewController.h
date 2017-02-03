@@ -10,4 +10,12 @@
 
 @interface ShareCollectionViewController : UIViewController
 @property (strong, nonatomic) NSString *shareString;
+@property (strong, nonatomic) NSString *shortenedShareString;
 @end
+
+typedef enum {
+    Facebook = 1,
+    Twitter,
+    SMS,
+    FBMessenger
+} InstalledApp;

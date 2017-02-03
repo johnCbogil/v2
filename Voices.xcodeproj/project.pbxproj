@@ -71,6 +71,7 @@
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9C4E2BE11E44376600C4982E /* ShareCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4E2BE01E44376600C4982E /* ShareCollectionViewController.xib */; };
 		9C4E2BE41E444E5B00C4982E /* UIViewController+PresentSTPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2BE31E444E5B00C4982E /* UIViewController+PresentSTPopup.m */; };
+		9C4E2BE71E44DF6C00C4982E /* STPopupController+Voices.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4E2BE61E44DF6C00C4982E /* STPopupController+Voices.m */; };
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
 		9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */; };
 		9CC7BF7F1E4412E70085D87D /* ShareCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC7BF7D1E4412E70085D87D /* ShareCollectionViewController.m */; };
@@ -204,6 +205,8 @@
 		9C4E2BE01E44376600C4982E /* ShareCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCollectionViewController.xib; sourceTree = "<group>"; };
 		9C4E2BE21E444E5B00C4982E /* UIViewController+PresentSTPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentSTPopup.h"; sourceTree = "<group>"; };
 		9C4E2BE31E444E5B00C4982E /* UIViewController+PresentSTPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentSTPopup.m"; sourceTree = "<group>"; };
+		9C4E2BE51E44DF6C00C4982E /* STPopupController+Voices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STPopupController+Voices.h"; sourceTree = "<group>"; };
+		9C4E2BE61E44DF6C00C4982E /* STPopupController+Voices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STPopupController+Voices.m"; sourceTree = "<group>"; };
 		9CA1E3301E405AC5001106F9 /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYouViewController.xib; sourceTree = "<group>"; };
@@ -287,12 +290,14 @@
 		52AD33961BE5CA2B00EC0468 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9C4E2BE21E444E5B00C4982E /* UIViewController+PresentSTPopup.h */,
 				52AD33901BE5C73D00EC0468 /* UIFont+voicesFont.h */,
 				52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */,
 				52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */,
 				52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */,
-				9C4E2BE21E444E5B00C4982E /* UIViewController+PresentSTPopup.h */,
 				9C4E2BE31E444E5B00C4982E /* UIViewController+PresentSTPopup.m */,
+				9C4E2BE51E44DF6C00C4982E /* STPopupController+Voices.h */,
+				9C4E2BE61E44DF6C00C4982E /* STPopupController+Voices.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -410,7 +415,6 @@
 				7EEDF30F1CF8DABC006E0696 /* Model */,
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
-				9CC7BF811E4413770085D87D /* Share */,
 			);
 			name = TakeActionTab;
 			sourceTree = "<group>";
@@ -496,6 +500,7 @@
 		7EEDF30B1CF8DA95006E0696 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9CC7BF811E4413770085D87D /* Share */,
 				52D892981CC463C2004FBEA3 /* TakeAction.storyboard */,
 				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
 				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
@@ -819,6 +824,7 @@
 				5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */,
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
+				9C4E2BE71E44DF6C00C4982E /* STPopupController+Voices.m in Sources */,
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
@@ -990,7 +996,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
 				INFOPLIST_FILE = Voices/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dnom.voices;
 				PRODUCT_NAME = Voices;
@@ -1014,7 +1020,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
 				INFOPLIST_FILE = Voices/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dnom.voices;
 				PRODUCT_NAME = Voices;

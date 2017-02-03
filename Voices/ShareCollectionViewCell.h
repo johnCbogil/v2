@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShareCollectionViewController.h"
+
+@class ShareCollectionViewCell;
+@protocol ShareCollectionViewCellDelegate <NSObject>
+- (void)shareCollectionViewCell:(ShareCollectionViewCell *)sender didPressApp:(InstalledApp)app;
+@end
 
 @interface ShareCollectionViewCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *appIcon;
-
+@property (weak, nonatomic) IBOutlet UIButton *appIconButton;
+@property (weak, nonatomic) id <ShareCollectionViewCellDelegate> delegate;
+@property (nonatomic) InstalledApp app;
+- (void)hideWaitingView;
 @end
+
+
