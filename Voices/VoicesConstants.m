@@ -35,6 +35,7 @@ NSString *const kCityCouncilZip = @"CouncilDistrictsJSON";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
 NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
 NSString *const kNYCExtraRepsJSON = @"nycExtraReps";
+NSString *const kRepContactFormsJSON = @"repContactForms";
 
 CGFloat const kButtonCornerRadius = 3.f;
 

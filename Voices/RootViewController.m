@@ -21,6 +21,7 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
+#import "ActionWebViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -231,6 +232,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
+    
+    
     
 }
 
@@ -267,6 +271,15 @@
 }
 
 #pragma mark - Presentation Controllers
+
+- (void)presentWebViewController:(NSNotification *)notifiaction {
+    
+    NSURL *url = notifiaction.object;
+    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
+    webVC.linkURL = url;
+    [self.navigationController pushViewController:webVC animated:YES];
+    
+}
 
 - (void)presentEmailViewController:(NSNotification*)notification {
     self.representativeEmail = [notification object];
