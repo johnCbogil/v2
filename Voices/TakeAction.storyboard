@@ -37,7 +37,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C3e-7W-weW" id="2X9-Tk-ag4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -102,7 +102,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QLh-yg-ofC" id="Zr7-RN-dhJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -170,19 +170,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8H-Lq-KAX">
-                                <rect key="frame" x="16" y="136" width="168" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="168" id="lCd-BP-PgL"/>
-                                </constraints>
-                                <state key="normal" title="CONTACT REPS">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="takeActionButtonDidPress:" destination="fHj-Lv-qI7" eventType="touchUpInside" id="1Gn-0x-KsU"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vEa-wq-RJR">
                                 <rect key="frame" x="16" y="264" width="343" height="403"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -197,8 +184,8 @@
                                     <constraint firstAttribute="height" constant="2" id="VM0-M5-248"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nu5-ZL-etD">
-                                <rect key="frame" x="192" y="136" width="167" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nu5-ZL-etD">
+                                <rect key="frame" x="191" y="136" width="168" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="SHARE ACTION">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -207,27 +194,39 @@
                                     <action selector="shareActionButtonDidPress:" destination="fHj-Lv-qI7" eventType="touchUpInside" id="l9g-du-cBx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8H-Lq-KAX">
+                                <rect key="frame" x="16" y="136" width="168" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="CONTACT REPS">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="takeActionButtonDidPress:" destination="fHj-Lv-qI7" eventType="touchUpInside" id="1Gn-0x-KsU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8wG-Mz-Og7" firstAttribute="top" secondItem="Nu5-ZL-etD" secondAttribute="bottom" constant="8" id="0s1-p3-aYg"/>
                             <constraint firstItem="vEa-wq-RJR" firstAttribute="leading" secondItem="sIx-BJ-vgw" secondAttribute="leadingMargin" id="2in-VE-ERp"/>
-                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="top" secondItem="6IR-Ye-KVo" secondAttribute="bottom" constant="8" symbolic="YES" id="47v-Uo-n4L"/>
+                            <constraint firstItem="Nu5-ZL-etD" firstAttribute="leading" secondItem="o8H-Lq-KAX" secondAttribute="trailing" constant="7" id="6OR-Hx-TCr"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="top" secondItem="8wG-Mz-Og7" secondAttribute="bottom" id="7Nj-Td-VZa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Nu5-ZL-etD" secondAttribute="trailing" id="7ca-nT-RCD"/>
                             <constraint firstItem="8wG-Mz-Og7" firstAttribute="leading" secondItem="sIx-BJ-vgw" secondAttribute="leading" constant="16" id="8kC-U6-JdZ"/>
+                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="leading" secondItem="sIx-BJ-vgw" secondAttribute="leading" constant="16" id="BVo-gw-m5n"/>
                             <constraint firstItem="vEa-wq-RJR" firstAttribute="top" secondItem="feY-TM-O5W" secondAttribute="bottom" constant="8" symbolic="YES" id="DCP-kb-bHX"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="trailing" secondItem="8wG-Mz-Og7" secondAttribute="trailing" id="MGq-vE-u5l"/>
-                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="leading" secondItem="sIx-BJ-vgw" secondAttribute="leadingMargin" id="Un6-qB-KYA"/>
-                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="baseline" secondItem="Nu5-ZL-etD" secondAttribute="baseline" id="XHi-VE-0py"/>
+                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="top" secondItem="6IR-Ye-KVo" secondAttribute="bottom" constant="8" id="Pf8-6Q-ZuU"/>
                             <constraint firstAttribute="trailing" secondItem="8wG-Mz-Og7" secondAttribute="trailing" constant="16" id="XMU-DY-iZl"/>
-                            <constraint firstItem="8wG-Mz-Og7" firstAttribute="top" secondItem="o8H-Lq-KAX" secondAttribute="bottom" constant="8" id="eC7-5w-6rc"/>
+                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="width" secondItem="Nu5-ZL-etD" secondAttribute="width" id="Zp4-QU-Wvm"/>
                             <constraint firstItem="OFt-fB-va1" firstAttribute="top" secondItem="yLj-wz-TAC" secondAttribute="bottom" constant="8" id="fGn-r7-bb3"/>
                             <constraint firstItem="OFt-fB-va1" firstAttribute="leading" secondItem="6IR-Ye-KVo" secondAttribute="trailing" constant="8" id="gDh-Yu-3RC"/>
                             <constraint firstItem="OFt-fB-va1" firstAttribute="trailing" secondItem="sIx-BJ-vgw" secondAttribute="trailingMargin" id="mgm-CP-r3F"/>
                             <constraint firstItem="vEa-wq-RJR" firstAttribute="trailing" secondItem="sIx-BJ-vgw" secondAttribute="trailingMargin" id="oTv-PG-NGd"/>
                             <constraint firstItem="6IR-Ye-KVo" firstAttribute="top" secondItem="yLj-wz-TAC" secondAttribute="bottom" constant="8" id="pHq-qS-fjr"/>
                             <constraint firstItem="vW2-AM-kDQ" firstAttribute="top" secondItem="vEa-wq-RJR" secondAttribute="bottom" id="pah-sv-iAg"/>
-                            <constraint firstItem="Nu5-ZL-etD" firstAttribute="leading" secondItem="o8H-Lq-KAX" secondAttribute="trailing" constant="8" symbolic="YES" id="sst-vK-nkp"/>
+                            <constraint firstItem="8wG-Mz-Og7" firstAttribute="top" secondItem="o8H-Lq-KAX" secondAttribute="bottom" constant="8" id="q89-cj-MlR"/>
+                            <constraint firstAttribute="trailing" secondItem="Nu5-ZL-etD" secondAttribute="trailing" constant="16" id="svt-ja-FPR"/>
+                            <constraint firstItem="o8H-Lq-KAX" firstAttribute="height" secondItem="Nu5-ZL-etD" secondAttribute="height" id="ypJ-C4-OHB"/>
                             <constraint firstItem="feY-TM-O5W" firstAttribute="leading" secondItem="8wG-Mz-Og7" secondAttribute="leading" id="yyb-oy-jK2"/>
                             <constraint firstItem="6IR-Ye-KVo" firstAttribute="leading" secondItem="sIx-BJ-vgw" secondAttribute="leadingMargin" id="zD4-eu-INg"/>
                         </constraints>
@@ -279,7 +278,7 @@
                                         <rect key="frame" x="0.0" y="28" width="335" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RE0-sc-wJn" id="hoC-RN-tGO">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -287,7 +286,7 @@
                                         <rect key="frame" x="0.0" y="129" width="335" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cV7-O3-JdA" id="eCq-2K-SU2">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

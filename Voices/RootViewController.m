@@ -18,6 +18,9 @@
 #import "RepsManager.h"
 #import "ReportingManager.h"
 #import "ScriptManager.h"
+#import <CoreTelephony/CTCallCenter.h>
+#import <CoreTelephony/CTCall.h>
+#import "ThankYouViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -35,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
+@property (strong, nonatomic) CTCallCenter *callCenter;
 
 @end
 
@@ -62,6 +66,7 @@
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    [self setupCallCenterToPresentThankYou];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     
@@ -209,13 +214,16 @@
     self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
+
 #pragma mark - NSNotifications
 
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailViewController:) name:@"presentEmailVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposer:)name:@"presentTweetComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchText" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adjustToStatusBarChange) name:@"thankYouViewControllerDismissed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingOperationDidStartNotification object:nil];
@@ -223,6 +231,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    
+}
+
+- (void)adjustToStatusBarChange {
+    UIWindow *window = [UIApplication sharedApplication].windows[0];
+    for (UIView *view in window.subviews) {
+        view.frame = window.bounds;
+    }
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
@@ -230,6 +246,7 @@
         self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
 
 }
+
 
 // TODO: MIGHT BE SOME REDUNDANT CODE HERE
 - (void)dismissKeyboard {
@@ -348,20 +365,15 @@
 }
 
 - (void)presentInfoViewController {
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"NewInfo" owner:self options:nil] objectAtIndex:0];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-    popupController.containerView.layer.cornerRadius = 10;
-    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
-    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
-    popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:self];
+    [self setupAndPresentSTPopupControllerWithNibNamed:@"NewInfo" inViewController:self];
 }
 
 - (void)presentScriptDialog {
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
+    [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
+}
+
+- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.containerView.layer.cornerRadius = 10;
     [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
@@ -370,10 +382,52 @@
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:self];
-    
+    [popupController presentInViewController:viewController];
 }
 
+#pragma mark Call Center methods
+- (void)setupCallCenterToPresentThankYou {
+   // __weak RootViewController *weakself = self;
+    self.callCenter = [[CTCallCenter alloc] init];
+    self.callCenter.callEventHandler = ^void(CTCall *call) {
+        if (call.callState == CTCallStateDisconnected) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+               // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+                //Announce that we've had a state change in CallCenter
+//                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+            });
+        }
+    };
+}
+
+- (void)callStateDidChange:(NSNotification *)notification {
+    
+    //Log the notification
+    NSLog(@"Notification : %@", notification);
+    
+    NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
+    if([callInfo isEqualToString: CTCallStateDialing]) {
+        
+        //The call state, before connection is established, when the user initiates the call.
+        NSLog(@"****** call is dialing ******");
+    }
+    if([callInfo isEqualToString: CTCallStateIncoming]) {
+        
+        //The call state, before connection is established, when a call is incoming but not yet answered by the user.
+        NSLog(@"***** call is incoming ******");
+    }
+    if([callInfo isEqualToString: CTCallStateConnected]) {
+        
+        //The call state when the call is fully established for all parties involved.
+        NSLog(@"***** call connected *****");
+        
+    }
+    if([callInfo isEqualToString: CTCallStateDisconnected]) {
+        
+        //the call state has ended
+        NSLog(@"***** call ended *****");
+    }
+}
 
 #pragma mark - IBActions
 
