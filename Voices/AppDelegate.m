@@ -318,10 +318,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 }
 
 - (void)scheduleNotification {
-    
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDate *date = [NSDate date];
-    NSDateComponents *components = [calendar componentsInTimeZone:[NSTimeZone localTimeZone] fromDate:date];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:5];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
+                                                                             NSCalendarUnitMonth + NSCalendarUnitDay +
+                                                                             NSCalendarUnitHour + NSCalendarUnitMinute +
+                                                                             NSCalendarUnitSecond)
+                                                                   fromDate:date];
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
     content.title = @"test gang";
@@ -331,9 +333,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     center.delegate = self;
     [center removeAllDeliveredNotifications];
     [center addNotificationRequest:request withCompletionHandler:nil];
-    
-    
-
 }
 
 //func scheduleNotification(at date: Date) {
