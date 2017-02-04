@@ -35,7 +35,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
-    
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];

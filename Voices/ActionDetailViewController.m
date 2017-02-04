@@ -10,6 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "GroupDetailViewController.h"
 #import "ScriptManager.h"
+#import "ShareCollectionViewController.h"
+#import <STPopup.h>
+#import "STPopupController+Voices.h"
 
 
 @interface ActionDetailViewController()
@@ -20,11 +23,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 @property (weak, nonatomic) IBOutlet UITextView *actionBodyTextView;
 @property (weak, nonatomic) IBOutlet UIButton *shareActionButton;
+@property (strong, nonatomic) STPopupController *sharePopupController;
 
 @end
 
 @implementation ActionDetailViewController
 
+NSString *const shareString = @"Help me support %@! %@";
+NSString *const shortenedShareString = @"Help me support %@!";
+
+#pragma mark - VC Lifecycle methods
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -49,6 +57,9 @@
     [self.actionBodyTextView setContentOffset:CGPointZero animated:NO];
 }
 
+#pragma mark - Set up methods
+
+
 - (void)setFont {
     self.groupNameLabel.font = [UIFont voicesFontWithSize:24];
     self.groupNameLabel.minimumScaleFactor = 0.75;
@@ -59,6 +70,7 @@
     self.shareActionButton.titleLabel.font = [UIFont voicesFontWithSize:21];
     self.actionBodyTextView.font = [UIFont voicesFontWithSize:19];
 }
+
 
 - (void)setGroupImageFromURL:(NSURL *)url {
     
@@ -81,6 +93,8 @@
         NSLog(@"Action image failure");
     }];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)takeActionButtonDidPress:(id)sender {
     
@@ -111,10 +125,7 @@
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@.\n\nhttps://tryvoices.com/", self.action.groupName, self.action.title];
-                                  UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
-                                  activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
-                                  [self presentViewController:activityViewController animated:YES completion:nil];
+                                  [self presentSharePopupInViewController:self];
                               }];
     [alert addAction:button0];
     [alert addAction:button1];
@@ -136,6 +147,15 @@
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.group;
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
+}
+
+- (void)presentSharePopupInViewController: (UIViewController *)viewController {
+    ShareCollectionViewController *shareVC = (ShareCollectionViewController *) [[[NSBundle mainBundle] loadNibNamed:@"ShareCollectionViewController" owner:viewController options:nil] objectAtIndex:0];
+    
+    shareVC.shareString = [NSString stringWithFormat:shareString, self.group.name, self.action.title];
+    shareVC.shortenedShareString = [NSString stringWithFormat:shortenedShareString, self.group.name];
+    self.sharePopupController = [STPopupController dn_popupControllerWithViewController:shareVC withStyle:STPopupStyleBottomSheet];
+    [self.sharePopupController presentInViewController:self];
 }
 
 @end

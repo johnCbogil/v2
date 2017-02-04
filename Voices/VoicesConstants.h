@@ -37,6 +37,8 @@ extern NSString *const kCouncilMemberDataJSON;
 extern NSString *const kNYCExtraRepsJSON;
 
 extern CGFloat const kButtonCornerRadius;
+extern CGFloat const kShareCollectionViewCellRadius;
+
 
 extern NSString *const kActionEmptyStateTopLabel;
 extern NSString *const kActionEmptyStateBottomLabel;

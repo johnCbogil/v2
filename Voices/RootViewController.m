@@ -21,6 +21,7 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
+#import "STPopupController+Voices.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -365,34 +366,23 @@
 }
 
 - (void)presentInfoViewController {
-    [self setupAndPresentSTPopupControllerWithNibNamed:@"NewInfo" inViewController:self];
+    STPopupController *popupController = [STPopupController dn_popupControllerWithNibNamed:@"NewInfo" withStyle:STPopupStyleFormSheet];
+    [popupController presentInViewController:self];
 }
 
 - (void)presentScriptDialog {
-    [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
-}
-
-- (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-    popupController.containerView.layer.cornerRadius = 10;
-    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
-    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
-    popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:viewController];
+    STPopupController *popupController = [STPopupController dn_popupControllerWithNibNamed:@"ScriptDialog" withStyle:STPopupStyleFormSheet];
+    [popupController presentInViewController:self];
 }
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
-   // __weak RootViewController *weakself = self;
+//    __weak typeof(self) weakself = self;
     self.callCenter = [[CTCallCenter alloc] init];
     self.callCenter.callEventHandler = ^void(CTCall *call) {
         if (call.callState == CTCallStateDisconnected) {
             dispatch_async(dispatch_get_main_queue(), ^{
-               // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+               // [STPopupController dn_setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself withStyle:STPopupStyleFormSheet];
                 //Announce that we've had a state change in CallCenter
 //                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
             });
