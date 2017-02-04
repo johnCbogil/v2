@@ -79,7 +79,7 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
 }
@@ -277,8 +277,8 @@
     NSURL *url = notifiaction.object;
     ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
     webVC.linkURL = url;
+    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:webVC animated:YES];
-    
 }
 
 - (void)presentEmailViewController:(NSNotification*)notification {
