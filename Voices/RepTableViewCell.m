@@ -7,16 +7,18 @@
 //
 
 #import "RepTableViewCell.h"
-#import "UIImageView+AFNetworking.h"
-#import "Representative.h"
-#import <MessageUI/MFMailComposeViewController.h>
-#import <CoreTelephony/CTCallCenter.h>
-#import <CoreTelephony/CTCall.h>
-#import "ScriptManager.h"
 #import "AFHTTPRequestOperation.h"
 #import "ReportingManager.h"
+#import "Representative.h"
+#import "ScriptManager.h"
+#import "UIImageView+AFNetworking.h"
+
+#import <CoreTelephony/CTCall.h>
+#import <CoreTelephony/CTCallCenter.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @import FirebaseAnalytics;
+@import UserNotifications;
 
 @interface RepTableViewCell() <MFMailComposeViewControllerDelegate>
 
@@ -28,11 +30,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (nonatomic) CTCallCenter *callCenter;
 
-
-
 @end
 
 @implementation RepTableViewCell
+
+#pragma mark - Lifecycle events
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -40,13 +42,8 @@
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = 5;
     self.photo.clipsToBounds = YES;
-    [self setFont];
-}
-
-
-- (void)setFont {
-    self.name.font = self.name.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
-    self.name.textColor = [UIColor voicesBlack];
+    [self setupFont];
+    [self registerCallStateNotification];
 }
 
 - (void)initWithRep:(id)rep {
@@ -56,11 +53,17 @@
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
-    [self setImage];
+    [self setupImage];
 }
 
-- (void)setImage {
-    
+#pragma mark - Helper methods
+
+- (void)setupFont {
+    self.name.font = self.name.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
+    self.name.textColor = [UIColor voicesBlack];
+}
+
+- (void)setupImage {
     UIImage *placeholderImage;
     if ([self.representative.gender isEqualToString:@"M"]) {
         placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
@@ -84,11 +87,9 @@
     }];
 }
 
-
 #pragma mark - User Actions
 
 - (IBAction)callButtonDidPress:(id)sender {
-    
     if (self.representative.phone.length) {
         NSString *confirmCallMessage;
         if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
@@ -107,13 +108,11 @@
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.representative.fullName, kFIRParameterValue : @1}];
             NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
- 
+            
             if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 
                 [[ReportingManager sharedInstance]reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
-                
                 [[UIApplication sharedApplication] openURL:callUrl];
-                
             }
             else {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This representative hasn't given us their phone number." preferredStyle:UIAlertControllerStyleAlert];
@@ -131,7 +130,6 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
-    
     if (self.representative.email.length) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
@@ -143,7 +141,6 @@
 }
 
 - (IBAction)tweetButtonDidPress:(id)sender {
-    
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
         if (self.representative.twitter) {
@@ -161,6 +158,66 @@
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
+}
+
+#pragma mark - NSNotifications
+
+-(void)registerCallStateNotification {
+    //Register for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
+    
+    //Instantiate call center
+    CTCallCenter *callCenter = [[CTCallCenter alloc] init];
+    self.callCenter = callCenter;
+    
+    self.callCenter.callEventHandler = ^(CTCall* call) {
+        
+        //Announce that we've had a state change in CallCenter
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+    };
+}
+
+- (void)callStateDidChange:(NSNotification *)notification {
+    //Log the notification
+    NSLog(@"Notification : %@", notification);
+    NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
+    if ([callInfo isEqualToString: CTCallStateDialing]) {
+        //The call state, before connection is established, when the user initiates the call.
+        NSLog(@"****** call is dialing ******");
+        [self scheduleNotification];
+    }
+    if ([callInfo isEqualToString: CTCallStateIncoming]) {
+        //The call state, before connection is established, when a call is incoming but not yet answered by the user.
+        NSLog(@"***** call is incoming ******");
+    }
+    if ([callInfo isEqualToString: CTCallStateConnected]) {
+        //The call state when the call is fully established for all parties involved.
+        NSLog(@"***** call connected *****");
+    }
+    if ([callInfo isEqualToString: CTCallStateDisconnected]) {
+        //the call state has ended
+        NSLog(@"***** call ended *****");
+    }
+}
+
+#pragma mark - UNNotifications
+
+- (void)scheduleNotification {
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.f];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
+                                                                             NSCalendarUnitMonth + NSCalendarUnitDay +
+                                                                             NSCalendarUnitHour + NSCalendarUnitMinute +
+                                                                             NSCalendarUnitSecond)
+                                                                   fromDate:date];
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"Swipe down for full message";
+    content.body = kGenericScript;
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    //center.delegate = self;
+    [center removeAllDeliveredNotifications];
+    [center addNotificationRequest:request withCompletionHandler:nil];
 }
 
 @end

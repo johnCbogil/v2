@@ -96,7 +96,6 @@
         
         //button 0 action
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
         }]];
         

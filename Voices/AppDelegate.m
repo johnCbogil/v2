@@ -18,12 +18,15 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 
+//import UserNotifications
+
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
+@import UserNotifications;
 
-@interface AppDelegate()
+@interface AppDelegate() <UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) NSString *actionKey;
 
