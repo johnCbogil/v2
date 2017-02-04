@@ -21,6 +21,7 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
+#import "ActionWebViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -78,8 +79,10 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
     [self.navigationController.navigationBar setHidden:YES];
 }
 
@@ -231,6 +234,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOn) name:AFNetworkingTaskDidResumeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
+    
+    
     
 }
 
@@ -268,76 +274,13 @@
 
 #pragma mark - Presentation Controllers
 
-- (void)presentEmailViewController:(NSNotification*)notification {
-    self.representativeEmail = [notification object];
-    if(self.representativeEmail != nil){
-        [self selectMailApp];
-    }
-    else{
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"A message is required" message:@"Please enter a message" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-    }
-}
-
-- (void)selectMailApp {
-    // try Mail app
-    if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-        mailViewController.mailComposeDelegate = self;
-        //        [mailViewController setSubject:@"Subject Goes Here."];
-        //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
-        [mailViewController setToRecipients:@[self.representativeEmail]];
-        [self presentViewController:mailViewController animated:YES completion:nil];
-    }
-    else { // try Gmail
-        NSString *gmailURL = [NSString stringWithFormat:@"googlegmail:///co?to=%@", self.representativeEmail];
-        if ([[UIApplication sharedApplication]
-             canOpenURL:[NSURL URLWithString:gmailURL]]){
-            [[UIApplication sharedApplication]  openURL: [NSURL URLWithString:gmailURL]];
-        }
-        else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No mail accounts" message:@"Please set up a Mail account or a Gmail account in order to send email." preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-        }
-    }
-}
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+- (void)presentWebViewController:(NSNotification *)notifiaction {
     
-    NSString *title;
-    NSString *message;
-    
-    switch (result) {
-        case MFMailComposeResultCancelled:
-        {
-            break;
-        }
-        case MFMailComposeResultSaved:
-            title = @"Draft Saved";
-            message = @"Composed Mail is saved in draft.";
-            break;
-        case MFMailComposeResultSent:
-        {
-            
-            title = @"Success";
-            [[ReportingManager sharedInstance]reportEvent:kEMAIL_EVENT eventFocus:self.representativeEmail eventData:[ScriptManager sharedInstance].lastAction.key];
-            message = @"";
-            break;
-        }
-        case MFMailComposeResultFailed:
-            title = @"Failed";
-            message = @"Sorry! Failed to send.";
-            break;
-        default:
-            break;
-    }
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSURL *url = notifiaction.object;
+    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
+    webVC.linkURL = url;
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {

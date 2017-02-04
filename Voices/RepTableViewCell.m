@@ -130,14 +130,14 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
-    if (self.representative.email.length) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
-    }
-    else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-    }
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
+    NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+    NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
+    
+    NSURL *contactFormURL = [NSURL URLWithString:[contactFormsDict valueForKey:self.representative.bioguide]];
+
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:contactFormURL];
 }
 
 - (IBAction)tweetButtonDidPress:(id)sender {

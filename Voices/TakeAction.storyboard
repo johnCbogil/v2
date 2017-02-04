@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" id="5nS-Vg-Mh9">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="wkW-V5-Dv1">
-                            <rect key="frame" x="107" y="8" width="161" height="29"/>
+                            <rect key="frame" x="107" y="7.5" width="161" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Actions"/>

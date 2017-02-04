@@ -10,6 +10,7 @@
 
 @interface Representative : NSObject
 
+@property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
