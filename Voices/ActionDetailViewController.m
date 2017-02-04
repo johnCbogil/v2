@@ -69,16 +69,15 @@
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
-    
     [self.groupImageButton.imageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         NSLog(@"Action image success");
-        
         [UIView animateWithDuration:.25 animations:^{
             [self.groupImageButton setBackgroundImage:image forState:UIControlStateNormal];
         }];
-
-        
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
+        [UIView animateWithDuration:.25 animations:^{
+            [self.groupImageButton setBackgroundImage:[UIImage imageNamed:kGroupDefaultImage] forState:UIControlStateNormal];
+        }];
         NSLog(@"Action image failure");
     }];
 }
@@ -130,7 +129,6 @@
 }
 
 - (IBAction)groupImagePressed:(id)sender {
-    
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
