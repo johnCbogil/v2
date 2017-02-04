@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"TAKE ACTION";
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     UIWebView *webView = [[UIWebView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.linkURL];
     [webView loadRequest:urlRequest];
@@ -31,6 +33,5 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
-
 
 @end

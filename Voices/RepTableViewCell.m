@@ -28,8 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 @property (nonatomic) CTCallCenter *callCenter;
 
-
-
 @end
 
 @implementation RepTableViewCell

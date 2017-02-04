@@ -12,7 +12,6 @@
 
 @interface FederalRepresentative : Representative
 
-@property (strong, nonatomic) NSString *bioguide;
 @property (strong, nonatomic) NSString *termEnd;
 - (id)initWithData:(NSDictionary *)data;
 
