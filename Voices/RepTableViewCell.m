@@ -107,13 +107,12 @@
         //button1
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.representative.fullName, kFIRParameterValue : @1}];
-            //NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
-            NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", @"1800MATTRESS"]];
+            NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
+            
             if([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 
                 [[ReportingManager sharedInstance]reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
                 [[UIApplication sharedApplication] openURL:callUrl];
-                [self scheduleNotification];
             }
             else {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This representative hasn't given us their phone number." preferredStyle:UIAlertControllerStyleAlert];
@@ -185,6 +184,7 @@
     if ([callInfo isEqualToString: CTCallStateDialing]) {
         //The call state, before connection is established, when the user initiates the call.
         NSLog(@"****** call is dialing ******");
+        [self scheduleNotification];
     }
     if ([callInfo isEqualToString: CTCallStateIncoming]) {
         //The call state, before connection is established, when a call is incoming but not yet answered by the user.
@@ -203,7 +203,7 @@
 #pragma mark - UNNotifications
 
 - (void)scheduleNotification {
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:5];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.f];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
                                                                              NSCalendarUnitMonth + NSCalendarUnitDay +
                                                                              NSCalendarUnitHour + NSCalendarUnitMinute +
@@ -211,8 +211,8 @@
                                                                    fromDate:date];
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    content.title = @"test gang";
-    content.body = @"waht u know";
+    content.title = @"Swipe down for full message";
+    content.body = kGenericScript;
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     //center.delegate = self;
