@@ -124,6 +124,18 @@
     }
 }
 
+// TODO: THIS DOES NOT TAKE INTO ACCOUNT THE FEDS WHO DONT HAVE EMAILS
+- (IBAction)didPressEmailButton:(id)sender {
+    if (self.representative.email) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
+    }
+    else {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Good Idea" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
 - (IBAction)didPressTweetButton:(id)sender {
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
