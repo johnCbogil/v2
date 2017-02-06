@@ -11,13 +11,13 @@
 
 @class ShareCollectionViewCell;
 @protocol ShareCollectionViewCellDelegate <NSObject>
-- (void)shareCollectionViewCell:(ShareCollectionViewCell *)sender didPressApp:(InstalledApp)app;
+- (void)shareCollectionViewCell:(ShareCollectionViewCell *)sender didPressApp:(SocialMediaApp)app;
 @end
 
 @interface ShareCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIButton *appIconButton;
 @property (weak, nonatomic) id <ShareCollectionViewCellDelegate> delegate;
-@property (nonatomic) InstalledApp app;
+@property (nonatomic) SocialMediaApp app;
 - (void)hideWaitingView;
 @end
 

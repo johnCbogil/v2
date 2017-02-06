@@ -17,7 +17,7 @@
 @interface ShareCollectionViewController () <MFMessageComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ShareCollectionViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) NSMutableArray <NSNumber *> *installedApps;
+@property (strong, nonatomic) NSMutableArray <NSNumber *> *socialMediaApps;
 
 @end
 
@@ -43,13 +43,13 @@ static CGFloat const cellHeight = 80;
 
 #pragma mark - Setup methods
 - (void)setAvailableApps {
-    self.installedApps = [NSMutableArray arrayWithObject:@(SMS)];
-    // Add @"fb-messenger://" for fb messenger
-    NSArray *appURLPaths = @[@"fb://", @"twitter://"];
-    for (NSString *path in appURLPaths) {
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:path]]) {
-            InstalledApp app = [self appForURLPath:path];
-            [self.installedApps addObject:@(app)];
+    self.socialMediaApps = [NSMutableArray arrayWithObject:@(SMS)];
+    
+    NSArray *serviceStrings = @[SLServiceTypeFacebook, SLServiceTypeTwitter];
+    for (NSString *serviceType in serviceStrings) {
+        if ([SLComposeViewController isAvailableForServiceType:serviceType]) {
+            SocialMediaApp app = [self appForServiceType:serviceType];
+            [self.socialMediaApps addObject:@(app)];
         }
     }
 }
@@ -63,12 +63,12 @@ static CGFloat const cellHeight = 80;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.installedApps.count;
+    return self.socialMediaApps.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ShareCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    InstalledApp app = self.installedApps[indexPath.row].intValue;
+    SocialMediaApp app = self.socialMediaApps[indexPath.row].intValue;
     cell.app = app;
     cell.delegate = self;
     UIImage * iconImage = [self iconForApp: app];
@@ -87,7 +87,7 @@ static CGFloat const cellHeight = 80;
 }
 
 #pragma mark <ShareCollectionViewCellDelegate>
-- (void) shareCollectionViewCell:(ShareCollectionViewCell *)sender didPressApp:(InstalledApp)app {
+- (void) shareCollectionViewCell:(ShareCollectionViewCell *)sender didPressApp:(SocialMediaApp)app {
     switch (app) {
         case Twitter:
         case Facebook:
@@ -131,7 +131,7 @@ static CGFloat const cellHeight = 80;
     }
 }
 
-- (void)showShareErrorForApp:(InstalledApp) app {
+- (void)showShareErrorForApp:(SocialMediaApp) app {
     NSString *appName = [self nameForApp:app];
     if (!appName) { return; }
     NSString *title = [NSString stringWithFormat:@"Unable to open %@", appName];
@@ -142,7 +142,7 @@ static CGFloat const cellHeight = 80;
 }
 
 #pragma mark - InstalledApp enum methods
-- (NSString*)urlPathForApp:(InstalledApp) app {
+- (NSString*)urlPathForApp:(SocialMediaApp) app {
     switch (app) {
         case Facebook:
             return @"fb://";
@@ -155,7 +155,7 @@ static CGFloat const cellHeight = 80;
     }
 }
 
-- (InstalledApp)appForURLPath:(NSString *) path {
+- (SocialMediaApp)appForURLPath:(NSString *) path {
     if ([path isEqualToString:@"fb-messenger://"]) {
         return FBMessenger;
     } else if ([path isEqualToString:@"fb://"]) {
@@ -167,7 +167,7 @@ static CGFloat const cellHeight = 80;
     }
 }
 
-- (UIImage*)iconForApp:(InstalledApp) app{
+- (UIImage*)iconForApp:(SocialMediaApp) app{
     switch (app) {
         case Facebook:
             return [UIImage imageNamed:@"fb-icon"];
@@ -184,7 +184,7 @@ static CGFloat const cellHeight = 80;
     }
 }
 
-- (NSString *)serviceTypeForApp: (InstalledApp) app {
+- (NSString *)serviceTypeForApp: (SocialMediaApp) app {
     switch (app) {
         case Facebook:
             return SLServiceTypeFacebook;
@@ -195,7 +195,17 @@ static CGFloat const cellHeight = 80;
     }
 }
 
-- (NSString *)nameForApp: (InstalledApp) app {
+- (SocialMediaApp) appForServiceType:(NSString *) serviceType {
+    if ([serviceType isEqualToString:SLServiceTypeTwitter]) {
+        return Twitter;
+    } else if ([serviceType isEqualToString:SLServiceTypeFacebook]){
+        return Facebook;
+    } else {
+        return 0;
+    }
+}
+
+- (NSString *)nameForApp: (SocialMediaApp) app {
     switch (app) {
         case Facebook:
             return @"Facebook";

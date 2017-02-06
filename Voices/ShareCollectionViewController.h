@@ -18,4 +18,4 @@ typedef enum {
     Twitter,
     SMS,
     FBMessenger
-} InstalledApp;
+} SocialMediaApp;
