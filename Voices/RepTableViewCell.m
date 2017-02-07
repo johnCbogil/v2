@@ -200,7 +200,6 @@
     }
     if ([callInfo isEqualToString: CTCallStateConnected]) {
         //The call state when the call is fully established for all parties involved.
-        [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
         NSLog(@"***** call connected *****");
     }
     if ([callInfo isEqualToString: CTCallStateDisconnected]) {
