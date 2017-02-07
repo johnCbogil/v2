@@ -220,7 +220,7 @@
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
     content.title = @"Swipe down for full message";
-    content.body = kGenericScript;
+    content.body = [ScriptManager sharedInstance].lastAction.script.length ? [ScriptManager sharedInstance].lastAction.script : kGenericScript;
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     //center.delegate = self;
