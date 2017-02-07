@@ -106,6 +106,7 @@
         }]];
         //button1
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
             NSURL* callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
             if ([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 [[UIApplication sharedApplication] openURL:callUrl];
@@ -199,8 +200,8 @@
     }
     if ([callInfo isEqualToString: CTCallStateConnected]) {
         //The call state when the call is fully established for all parties involved.
-        NSLog(@"***** call connected *****");
         [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
+        NSLog(@"***** call connected *****");
     }
     if ([callInfo isEqualToString: CTCallStateDisconnected]) {
         //the call state has ended

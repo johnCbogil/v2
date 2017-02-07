@@ -7,6 +7,8 @@
 //
 
 #import "RepDetailViewController.h"
+#import "ReportingManager.h"
+#import "ScriptManager.h"
 
 @implementation RepDetailViewController
 
@@ -102,6 +104,8 @@
         //button 1 action
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             //        [FIRAnalytics logEventWithName:@"phoneCall" parameters:@{@"name" : self.repName.text, kFIRParameterValue : @1}];
+            [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
+
             
             NSURL* callUrl=[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
  
