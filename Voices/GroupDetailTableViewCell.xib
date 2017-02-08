@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDetailTableViewCell" rowHeight="240" id="KGk-i7-Jjw" customClass="GroupDetailTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="239.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QQI-th-dEK" userLabel="Group Image View">
+                        <rect key="frame" x="125" y="28" width="125" height="125"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="125" id="FRC-UE-DyD"/>
+                            <constraint firstAttribute="width" constant="125" id="mgM-dG-FrZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Type Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G22-l9-T0o">
+                        <rect key="frame" x="20" y="158" width="335" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="335" id="OE3-Vf-BAJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhE-EB-CSH">
+                        <rect key="frame" x="20" y="187" width="335" height="38"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="Follow Group">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="followGroupButtonDidPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E6Y-EW-FvZ"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="G22-l9-T0o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="5EA-wW-pou"/>
+                    <constraint firstItem="QQI-th-dEK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="117" id="Q6i-wr-v8N"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="G22-l9-T0o" secondAttribute="trailing" constant="12" id="QMu-Qa-uIy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QQI-th-dEK" secondAttribute="trailing" constant="117" id="bY5-IQ-XBc"/>
+                    <constraint firstItem="G22-l9-T0o" firstAttribute="top" secondItem="QQI-th-dEK" secondAttribute="bottom" constant="5" id="f31-KM-byB"/>
+                    <constraint firstItem="QQI-th-dEK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="xno-S8-jdx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="followGroupButton" destination="EhE-EB-CSH" id="McX-sS-eEh"/>
+                <outlet property="groupImageView" destination="QQI-th-dEK" id="OFZ-01-P7Z"/>
+                <outlet property="groupTypeLabel" destination="G22-l9-T0o" id="BaI-20-9w4"/>
+            </connections>
+            <point key="canvasLocation" x="100.5" y="-112"/>
+        </tableViewCell>
+    </objects>
+</document>
