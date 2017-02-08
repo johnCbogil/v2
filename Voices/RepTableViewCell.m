@@ -20,7 +20,7 @@
 @import FirebaseAnalytics;
 @import UserNotifications;
 
-@interface RepTableViewCell() <MFMailComposeViewControllerDelegate>
+@interface RepTableViewCell() <MFMailComposeViewControllerDelegate, UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) Representative *representative;
 @property (weak, nonatomic) IBOutlet UILabel *name;
@@ -211,6 +211,10 @@
 #pragma mark - UNNotifications
 
 - (void)scheduleNotification {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center removeAllDeliveredNotifications];
+    NSLog(@"LOCAL NOTI FIRED-----------");
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.f];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
                                                                              NSCalendarUnitMonth + NSCalendarUnitDay +
@@ -222,9 +226,7 @@
     content.title = @"Swipe down for full message";
     content.body = [ScriptManager sharedInstance].lastAction.script.length ? [ScriptManager sharedInstance].lastAction.script : kGenericScript;
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    //center.delegate = self;
-    [center removeAllDeliveredNotifications];
+    
     [center addNotificationRequest:request withCompletionHandler:nil];
 }
 
