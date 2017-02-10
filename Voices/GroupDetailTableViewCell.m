@@ -19,11 +19,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self configureViews];
+}
+
+- (void)configureViews {
     self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:23];
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupImageView.backgroundColor = [UIColor clearColor];
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -20,10 +20,6 @@
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
 @property (nonatomic)CGFloat currentCellHeight;
-//@property (weak, nonatomic)IBOutlet UIImageView *groupImageView;
-//@property (weak, nonatomic)IBOutlet UILabel *groupTypeLabel;
-//@property (weak, nonatomic)IBOutlet UIButton *followGroupButton;
-//@property (weak, nonatomic)IBOutlet UIView *lineView;
 @property (weak, nonatomic)id<ExpandingCellDelegate>expandingCellDelegate;
 @property (weak, nonatomic)id<FollowGroupDelegate>followGroupDelegate;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
@@ -44,31 +40,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
     self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
     [self configureTableView];
     [self fetchPolicyPositions];
-//    [self setFont]; // moved to groupdetailcell
-    self.title = self.group.name;
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
-    titleLabel.text = self.navigationItem.title;
-    [titleLabel setAdjustsFontSizeToFitWidth:true];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];       
-    self.navigationItem.titleView = titleLabel;
+    [self configureTitleLabel];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    
-//    self.followGroupButton.layer.cornerRadius = kButtonCornerRadius; // moved to groupdetailcell
-//    self.groupTypeLabel.text = self.group.groupType; // moved tableview cellforrowatindexpath
-//    [self setGroupImageFromURL:self.group.groupImageURL];
-    
-    //self.groupImageView.backgroundColor = [UIColor clearColor]; //moved to groupdetailcell
-//    self.lineView.backgroundColor = [UIColor voicesOrange];
-//    self.lineView.layer.cornerRadius = kButtonCornerRadius;
-    
-//    [self observeFollowStatus]; // moved to tableviewcell
-    
     NSOperatingSystemVersion version;
     version.majorVersion = 10;
     version.minorVersion = 0;
@@ -85,8 +65,18 @@
     [self.tableView reloadData];
 }
 
+- (void)configureTitleLabel {
+    self.title = self.group.name;
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    titleLabel.text = self.navigationItem.title;
+    [titleLabel setAdjustsFontSizeToFitWidth:true];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    self.navigationItem.titleView = titleLabel;
+}
+
 - (void)observeFollowStatus:(GroupDetailTableViewCell *)cell {
     
+     // Action originates in GroupDetailTableViewCell. When button is pressed the view calls this method via the followGroupDelegate
     [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         if (snapshot.value != [NSNull null]) {
@@ -101,11 +91,6 @@
     
     [cell.followGroupButton.titleLabel setTextAlignment: NSTextAlignmentCenter];
 }
-
-//- (void)setFont { // moved to groupedetailcell
-//    self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
-//    self.followGroupButton.titleLabel.font = [UIFont voicesFontWithSize:23];
-//}
 
 - (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupDetailTableViewCell *)cell {
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
@@ -143,6 +128,7 @@
 #pragma mark - Firebase methods
 
 - (IBAction)followGroupButtonDidPress:(GroupDetailTableViewCell *)cell {
+    // Action originates in GroupDetailTableViewCell. When button is pressed the view calls this method via the followGroupDelegate
     [self.feedbackGenerator selectionChanged];
     
     // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
@@ -249,6 +235,7 @@
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDetailTableViewCell" owner:self options:nil];
             cell = [topLevelObjects objectAtIndex:0];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.followGroupDelegate = self;
         [self observeFollowStatus:cell];
         cell.groupTypeLabel.text = self.group.groupType;
@@ -262,6 +249,7 @@
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDescriptionTableViewCell" owner:self options:nil];
             cell = [topLevelObjects objectAtIndex:0];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.expandingCellDelegate = self;   // Expanding textview delegate
         [cell configureTextViewWithContents:self.group.groupDescription];
         self.currentCellHeight = cell.textView.frame.size.height;

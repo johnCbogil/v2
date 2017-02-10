@@ -37,7 +37,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C3e-7W-weW" id="2X9-Tk-ag4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -102,7 +102,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QLh-yg-ofC" id="Zr7-RN-dhJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -257,31 +257,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-4C-Ixt">
-                                <rect key="frame" x="20" y="0.0" width="335" height="668"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qEi-4C-Ixt">
+                                <rect key="frame" x="16" y="28" width="339" height="640"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDetailTableViewCell" id="rts-MS-rcJ" customClass="GroupDetailTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="101"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDetailTableViewCell" rowHeight="80" id="rts-MS-rcJ" customClass="GroupDetailTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="339" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rts-MS-rcJ" id="UMo-Si-Fos">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="339" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupDescriptionTableViewCell" id="RE0-sc-wJn" customClass="GroupDescriptionTableViewCell">
-                                        <rect key="frame" x="0.0" y="129" width="335" height="101"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupDescriptionTableViewCell" rowHeight="98" id="RE0-sc-wJn" customClass="GroupDescriptionTableViewCell">
+                                        <rect key="frame" x="0.0" y="108" width="339" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RE0-sc-wJn" id="hoC-RN-tGO">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="339" height="97.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PolicyPositionsDetailCell" rowHeight="47" id="cV7-O3-JdA" customClass="PolicyPositonsDetailCell">
-                                        <rect key="frame" x="0.0" y="230" width="335" height="47"/>
+                                        <rect key="frame" x="0.0" y="206" width="339" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cV7-O3-JdA" id="eCq-2K-SU2">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="339" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -290,8 +290,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qEi-4C-Ixt" firstAttribute="top" secondItem="wti-XY-ZOH" secondAttribute="bottom" constant="-20" id="CF7-xa-43Y"/>
-                            <constraint firstItem="qEi-4C-Ixt" firstAttribute="leading" secondItem="7i0-zL-Pbe" secondAttribute="leadingMargin" constant="4" id="oU7-pJ-vqk"/>
+                            <constraint firstItem="qEi-4C-Ixt" firstAttribute="top" secondItem="wti-XY-ZOH" secondAttribute="bottom" constant="8" id="CF7-xa-43Y"/>
+                            <constraint firstItem="qEi-4C-Ixt" firstAttribute="leading" secondItem="7i0-zL-Pbe" secondAttribute="leadingMargin" id="oU7-pJ-vqk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qEi-4C-Ixt" secondAttribute="trailing" constant="4" id="z1j-zj-UAU"/>
                             <constraint firstItem="hHB-Nc-LQR" firstAttribute="top" secondItem="qEi-4C-Ixt" secondAttribute="bottom" constant="-1" id="zDw-sz-Y7q"/>
                         </constraints>
@@ -302,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5I-QN-OqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="1069.1154422788607"/>
+            <point key="canvasLocation" x="1967.2" y="1067.3163418290856"/>
         </scene>
         <!--Policy Detail View Controller-->
         <scene sceneID="vbW-NV-yGa">
