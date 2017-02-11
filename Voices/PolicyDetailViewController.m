@@ -7,8 +7,9 @@
 //
 
 #import "PolicyDetailViewController.h"
+#import "ActionWebViewController.h"
 
-@interface PolicyDetailViewController ()
+@interface PolicyDetailViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *contactRepsButton;
 @property (weak, nonatomic) IBOutlet UITextView *policyPositionTextView;
@@ -21,28 +22,33 @@
     [super viewDidLoad];
     
     [self setFont];
-    
     self.title = self.policyPosition.key;
-    
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // TODO: NOT GOOD NAMING
-    
+    self.policyPositionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.policyPositionTextView.delegate = self;
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
     self.contactRepsButton.layer.cornerRadius = kButtonCornerRadius;
 }
-
 
 - (void)setFont {
     self.policyPositionTextView.font = [UIFont voicesFontWithSize:19];
     self.contactRepsButton.titleLabel.font = [UIFont voicesFontWithSize:21];
 }
 
-
 - (void)viewDidLayoutSubviews {
     [self.policyPositionTextView setContentOffset:CGPointZero animated:NO]; // This is here to ensure the scrollview starts from the top
 }
 
-
 - (IBAction)contactRepsButtonDidPress:(id)sender {
     self.tabBarController.selectedIndex = 0;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
+    webVC.linkURL = URL;
+    [self.navigationController pushViewController:webVC animated:YES];
+    return NO;
 }
 
 @end
