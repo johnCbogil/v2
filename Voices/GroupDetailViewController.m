@@ -18,7 +18,6 @@
 @interface GroupDetailViewController ()
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
-@property (nonatomic)CGFloat currentCellHeight;
 @property (weak, nonatomic)IBOutlet UIImageView *groupImageView;
 @property (weak, nonatomic)IBOutlet UILabel *groupTypeLabel;
 @property (weak, nonatomic)IBOutlet UIButton *followGroupButton;
@@ -203,7 +202,7 @@
     [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *policyPositionsDict = snapshot.value;
         NSMutableArray *policyPositionsArray = [NSMutableArray array];
-//        [policyPositionsArray addObject:@"Policy Positions"];
+        [policyPositionsArray insertObject:@"Policy Positions" atIndex:0];
         PolicyPosition *placeholderObject = [[PolicyPosition alloc]init]; // the tableview data must reserve the 0th index for the GroupDescriptionTableViewCell.
         [policyPositionsArray addObject:placeholderObject];
         [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
@@ -245,7 +244,6 @@
         }
         cell.expandingCellDelegate = self;   // Expanding textview delegate
         [cell configureTextViewWithContents:self.group.groupDescription];
-        self.currentCellHeight = cell.textView.frame.size.height;
         return cell;
     }
     else if (indexPath.row == 1) {
@@ -278,6 +276,8 @@
         cell.policyLabel.text = [self.listOfPolicyPositions[indexPath.row]key];
         cell.policyLabel.font = [UIFont voicesFontWithSize:19];
         cell.policyLabel.numberOfLines = 0;
+        cell.userInteractionEnabled = YES;
+        cell.policyLabel.textAlignment = NSTextAlignmentLeft;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }
