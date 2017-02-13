@@ -15,3 +15,6 @@ v3/Voices.xcworkspace/xcuserdata/davidweissler.xcuserdatad/UserInterfaceState.xc
 v3/Voices.xcworkspace/xcuserdata/davidweissler.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 .DS_Store
 *xcuserdata/
+Pods/Pods.xcodeproj/xcuserdata/perrincloutier.xcuserdatad/xcschemes/xcschememanagement.plist
+Voices/.DS_Store
+
