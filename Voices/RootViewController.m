@@ -118,9 +118,9 @@
 }
 
 - (void)setFont {
-    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
-    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
-    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
 }
 
 - (void)updateTabForIndex:(NSIndexPath *)indexPath {
@@ -154,7 +154,8 @@
     
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.font = [UIFont voicesFontWithSize:27];
     [self.searchTextField.layer setBorderWidth:2.0f];
     self.searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.searchTextField.layer.borderColor = [UIColor searchBarBackground].CGColor;
@@ -236,8 +237,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     
-    
-    
 }
 
 - (void)adjustToStatusBarChange {
@@ -248,9 +247,9 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
-
-        self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-
+    
+    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
 }
 
 
@@ -258,7 +257,7 @@
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-
+    
 }
 
 #pragma mark - FB Shimmer methods
@@ -369,7 +368,7 @@
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
                     [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
-
+                    
                     break;
                 default:
                     break;
@@ -402,14 +401,14 @@
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
-   // __weak RootViewController *weakself = self;
+    // __weak RootViewController *weakself = self;
     self.callCenter = [[CTCallCenter alloc] init];
     self.callCenter.callEventHandler = ^void(CTCall *call) {
         if (call.callState == CTCallStateDisconnected) {
             dispatch_async(dispatch_get_main_queue(), ^{
-               // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+                // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
                 //Announce that we've had a state change in CallCenter
-//                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+                //                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
             });
         }
     };
@@ -474,7 +473,7 @@
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
     [self presentScriptDialog];
-
+    
 }
 
 - (void)refreshSearchText {
