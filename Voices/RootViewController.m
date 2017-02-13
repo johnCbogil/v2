@@ -205,6 +205,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     // Set the clear button
     UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
     [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
@@ -216,8 +217,12 @@
 
 - (void)clearSearchBar {
     self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self.searchTextField resignFirstResponder];
 }
 
+- (void)onKeyboardHide {
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
 
 #pragma mark - NSNotifications
 
@@ -236,7 +241,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 - (void)adjustToStatusBarChange {
