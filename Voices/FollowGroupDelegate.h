@@ -14,6 +14,7 @@
 
 @required
 
-- (void)followGroupButtonDidPress:(GroupDetailTableViewCell *)cell;
-
+- (void)followGroupButtonDidPress;
+- (void)observeFollowGroupStatus;
+- (void)followGroupStatusDidChange;
 @end

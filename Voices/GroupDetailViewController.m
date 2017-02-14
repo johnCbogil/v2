@@ -27,6 +27,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) FIRDatabaseReference *policyPositionsRef;
 @property (strong, nonatomic) NSMutableArray *listOfPolicyPositions;
+@property (strong, nonatomic) NSString *followGroupStatus;
 
 
 @end
@@ -47,6 +48,7 @@
     [self configureTableView];
     [self fetchPolicyPositions];
     [self configureTitleLabel];
+    [self observeFollowGroupStatus];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     NSOperatingSystemVersion version;
     version.majorVersion = 10;
@@ -105,24 +107,28 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)setFollowButtonTitle:(GroupDetailTableViewCell *)cell {
-    NSString *groupKey = self.group.key;
-    BOOL isFollowedGroup = false;
-    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        if(group.key == groupKey){
-            isFollowedGroup = true;
-        }
-    }
-    if (isFollowedGroup == true) {
-        [cell.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
+
+- (void)observeFollowGroupStatus {
+    if([[CurrentUser sharedInstance].listOfFollowedGroups containsObject:self.group] == true) {
+        self.followGroupStatus = @"Following ▾";
     }else{
-        [cell.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
+        self.followGroupStatus = @"Follow Group";
+
     }
+}
+
+- (void)followGroupStatusDidChange {
+    if([self.followGroupStatus isEqualToString:@"Following ▾"] == true){
+        self.followGroupStatus = @"Follow Group";
+    }else{
+        self.followGroupStatus = @"Following ▾";
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Firebase methods
 
-- (IBAction)followGroupButtonDidPress:(GroupDetailTableViewCell *)cell {
+- (IBAction)followGroupButtonDidPress {
     // Action originates in GroupDetailTableViewCell. When button is pressed the view calls this method via the followGroupDelegate
     [self.feedbackGenerator selectionChanged];
     
@@ -139,7 +145,6 @@
         if (!isUserFollowingGroup) {
             
             NSLog(@"User subscribed to %@", groupKey);
-            [cell.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
         }
         else {
             
@@ -166,7 +171,7 @@
                                           [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                                               if (snapshot.value == [NSNull null]) {
                                                   
-                                                  [cell.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
+                                                  self.followGroupStatus = @"Follow Group";
                                                   
                                               }
                                           } withCancelBlock:^(NSError * _Nonnull error) {
@@ -215,13 +220,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(20, 8, 320, 30);
+    titleLabel.frame = CGRectMake(20, 8, 300, 30);
     titleLabel.font = [UIFont voicesFontWithSize:20];
     titleLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    UIView *headerView = [[UIView alloc] init];
-    [headerView addSubview:titleLabel];
-    return headerView;
+    return titleLabel;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -266,7 +269,7 @@
             }
             groupDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
             groupDetailCell.followGroupDelegate = self;
-            [self setFollowButtonTitle:groupDetailCell];
+            [groupDetailCell setTitleForButton:self.followGroupStatus];
             groupDetailCell.groupTypeLabel.text = self.group.groupType;
             [self setGroupImageFromURL:self.group.groupImageURL inCell:groupDetailCell];
             cell = groupDetailCell;

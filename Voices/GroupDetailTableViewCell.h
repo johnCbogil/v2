@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
 - (IBAction)followGroupButtonDidPress:(id)sender;
+- (void)setTitleForButton:(NSString *)title;
 
 @end

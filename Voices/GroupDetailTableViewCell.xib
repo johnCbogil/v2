@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,8 +30,7 @@
                         <rect key="frame" x="105" y="1" width="125" height="125"/>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="125" id="Xc3-Bg-i2c"/>
-                            <constraint firstAttribute="height" constant="125" id="mum-oh-HFY"/>
+                            <constraint firstAttribute="height" secondItem="r8l-aa-G1a" secondAttribute="width" multiplier="1:1" id="d3e-pb-1AZ"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJq-jc-ZRY">
@@ -50,14 +50,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="SX7-Qv-hbN" secondAttribute="trailing" constant="10" id="0fo-hU-4Ss"/>
+                    <constraint firstItem="r8l-aa-G1a" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="2ch-Rp-R1t"/>
                     <constraint firstItem="SX7-Qv-hbN" firstAttribute="top" secondItem="r8l-aa-G1a" secondAttribute="bottom" constant="8" id="6zc-PM-rIp"/>
                     <constraint firstItem="SX7-Qv-hbN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="A7w-7L-8Xi"/>
                     <constraint firstItem="r8l-aa-G1a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-7" id="Ovo-gF-VwO"/>
-                    <constraint firstItem="r8l-aa-G1a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="97" id="TUi-1g-NGP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kJq-jc-ZRY" secondAttribute="trailing" constant="10" id="VSf-Sx-lfz"/>
                     <constraint firstItem="kJq-jc-ZRY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="XDz-SB-Dul"/>
                     <constraint firstItem="kJq-jc-ZRY" firstAttribute="top" secondItem="SX7-Qv-hbN" secondAttribute="bottom" constant="8" id="bpl-W8-qxh"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="r8l-aa-G1a" secondAttribute="trailing" constant="97" id="qFI-vo-E1T"/>
+                    <constraint firstItem="r8l-aa-G1a" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="125:209" id="fhx-vb-rrF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
