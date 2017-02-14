@@ -105,19 +105,17 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)setFollowButtonTitle:(GroupDetailTableViewCell *)cell {
-    NSString *groupKey = self.group.key;
-    BOOL isFollowedGroup = false;
+- (NSString *)createFollowButtonTitleFrom:(NSString *)groupKey {
+    
     for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        if(group.key == groupKey){
-            isFollowedGroup = true;
+        if ([group.key isEqualToString:groupKey]){
+            return @"Following ▾";
+        }
+        else {
+            return @"Follow Group";
         }
     }
-    if (isFollowedGroup == true) {
-        [cell.followGroupButton setTitle:@"Following ▾" forState:UIControlStateNormal];
-    }else{
-        [cell.followGroupButton setTitle:@"Follow Group" forState:UIControlStateNormal];
-    }
+    return @"Follow Group";
 }
 
 #pragma mark - Firebase methods
@@ -266,7 +264,7 @@
             }
             groupDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
             groupDetailCell.followGroupDelegate = self;
-            [self setFollowButtonTitle:groupDetailCell];
+            groupDetailCell.followGroupButton.titleLabel.text = [self createFollowButtonTitleFrom:self.group.key];
             groupDetailCell.groupTypeLabel.text = self.group.groupType;
             [self setGroupImageFromURL:self.group.groupImageURL inCell:groupDetailCell];
             cell = groupDetailCell;
