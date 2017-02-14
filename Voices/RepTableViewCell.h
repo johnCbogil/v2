@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepTableViewCell : UITableViewCell
+@class RepTableViewCell;
+@protocol RepTableViewCellDelegate
+- (void)repTableViewCellDidTapEmailButton:(RepTableViewCell *) cell;
+@end
 
+@interface RepTableViewCell : UITableViewCell
 - (void)initWithRep:(id)rep;
+@property (weak, nonatomic) id <RepTableViewCellDelegate> delegate;
 
 @end
+
