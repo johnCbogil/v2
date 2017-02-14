@@ -76,7 +76,6 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -235,9 +234,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
-    
-    
-    
 }
 
 - (void)adjustToStatusBarChange {
@@ -273,6 +269,12 @@
 }
 
 #pragma mark - Presentation Controllers
+
+- (void)presentWebViewController:(NSNotification *)notification {
+    NSURL *url = notification.object;
+    ActionWebViewController *webVC = [[ActionWebViewController alloc]initWithURL:url];
+    [self.navigationController pushViewController:webVC animated:YES];
+}
 
 - (void)presentEmailViewController:(NSNotification*)notification {
     self.representativeEmail = [notification object];
@@ -344,15 +346,6 @@
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)presentWebViewController:(NSNotification *)notifiaction {
-    
-    NSURL *url = notifiaction.object;
-    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
-    webVC.linkURL = url;
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {

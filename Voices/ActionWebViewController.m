@@ -12,29 +12,46 @@
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) NSURL *linkURL;
 @end
 
 @implementation ActionWebViewController
+- (instancetype)initWithURL:(NSURL *) url {
+    if (self != nil) {
+        self.linkURL = url;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"TAKE ACTION";
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    self.webView = [[UIWebView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self setupWebView];
+    [self createActivityIndicator];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)setupWebView {
+    self.webView = [[UIWebView alloc]initWithFrame:self.view.frame];
     self.webView.delegate = self;
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.linkURL];
     [self.webView loadRequest:urlRequest];
     self.webView.scalesPageToFit = YES;
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.webView];
-    [self createActivityIndicator];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0];
+    [NSLayoutConstraint activateConstraints:@[topConstraint, bottomConstraint, leftConstraint, rightConstraint]];
 }
 
 - (void)createActivityIndicator {
@@ -45,6 +62,10 @@
     [self.view addSubview:self.activityIndicatorView];
     self.activityIndicatorView.hidden = NO;
     [self toggleActivityIndicatorOn];
+    self.activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *verticalConstraint = [NSLayoutConstraint constraintWithItem:self.activityIndicatorView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.webView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    NSLayoutConstraint *horizontalConstraint = [NSLayoutConstraint constraintWithItem:self.activityIndicatorView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.webView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+    [NSLayoutConstraint activateConstraints:@[verticalConstraint, horizontalConstraint]];
 }
 
 - (void)toggleActivityIndicatorOn {

@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ActionWebViewController : UIViewController
-
-@property (strong, nonatomic) NSURL *linkURL;
-
+- (instancetype)initWithURL:(NSURL *) url;
 @end
