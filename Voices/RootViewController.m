@@ -118,9 +118,21 @@
 }
 
 - (void)setFont {
-    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
-    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
-    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+    
+    double screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    CGFloat fontsize;
+    
+    if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone) {
+        if (screenHeight == 568) {
+            NSLog(@"iPhone 5/5S/SE");
+            fontsize = 23;
+        } else if (screenHeight == 667) {
+            fontsize = 25;
+        }
+    }
+    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:fontsize];
+    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:fontsize];
+    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:fontsize];
 }
 
 - (void)updateTabForIndex:(NSIndexPath *)indexPath {
