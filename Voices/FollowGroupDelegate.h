@@ -15,6 +15,5 @@
 @required
 
 - (void)followGroupButtonDidPress;
-- (void)observeFollowGroupStatus;
-- (void)followGroupStatusDidChange;
+
 @end

@@ -29,13 +29,13 @@
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
 }
 
-- (void)setTitleForButton:(NSString *)title {
+- (void)setTitleForFollowGroupButton:(NSString *)title {
+    
     [self.followGroupButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (IBAction)followGroupButtonDidPress:(id)sender {
     [self.followGroupDelegate followGroupButtonDidPress];
-    [self.followGroupDelegate followGroupStatusDidChange];
 }
 
 @end
