@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) NSURL *linkURL;
+@property (strong, nonatomic) UIColor *originalBackgroundColor;
 @end
 
 @implementation ActionWebViewController
@@ -31,10 +32,13 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [self setupWebView];
     [self createActivityIndicator];
+    self.originalBackgroundColor = self.tabBarController.tabBar.backgroundColor;
+    self.tabBarController.tabBar.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.tabBarController.tabBar.backgroundColor = self.originalBackgroundColor;
 }
 
 - (void)setupWebView {
