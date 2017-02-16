@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -63,6 +63,39 @@
             </objects>
             <point key="canvasLocation" x="2853.5999999999999" y="259.52023988005999"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="BEl-WS-0AA">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="VF6-MC-1Jm" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="miO-ql-sAO"/>
+                        <viewControllerLayoutGuide type="bottom" id="bSz-og-Knf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UaY-dQ-MGJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Act-5c-aNH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Act-5c-aNH" firstAttribute="leading" secondItem="UaY-dQ-MGJ" secondAttribute="leading" id="N8Y-eA-h99"/>
+                            <constraint firstAttribute="trailing" secondItem="Act-5c-aNH" secondAttribute="trailing" id="hsO-yv-95q"/>
+                            <constraint firstItem="Act-5c-aNH" firstAttribute="bottom" secondItem="bSz-og-Knf" secondAttribute="top" id="r3p-Cw-VZP"/>
+                            <constraint firstItem="Act-5c-aNH" firstAttribute="top" secondItem="UaY-dQ-MGJ" secondAttribute="top" id="zg8-JV-CQM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Act-5c-aNH" id="JTG-un-v67"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8MR-yX-VFo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3589.5999999999999" y="669.71514242878561"/>
+        </scene>
         <!--Rep Detail View Controller-->
         <scene sceneID="WUy-Ja-xNQ">
             <objects>
@@ -88,7 +121,8 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l6-mk-iLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3838" y="338"/>
+            <point key="canvasLocation" x="3575" y="10"/>
+
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="neH-3y-iPh">

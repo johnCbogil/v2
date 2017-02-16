@@ -82,8 +82,6 @@
     return NO;
 }
 
-
-
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
     NSLog(@"%@", dynamicLink.url);
@@ -158,15 +156,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 }
 
 
-// TODO: A LOT OF THIS LOGIC SHOULD PROBABLY BE MOVED AWAY FROM APP DELEGATE 
+// TODO: A LOT OF THIS LOGIC SHOULD PROBABLY BE MOVED AWAY FROM APP DELEGATE
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     [self connectToFcm];
     
     if (self.actionKey.length) {
+        
         NSLog(@"ACTION VIA NOTI: %@", self.actionKey);
         
         UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
@@ -187,7 +185,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             self.window.rootViewController = tabVC;
             
             for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
-
+                
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
                 
                 [[[rootRef child:@"groups"]child:newAction.groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -198,7 +196,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
                     }
                     
                     actionDetailViewController.action = newAction;
-
+                    
                     [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
                     tabVC.selectedIndex = 1;
                     
@@ -234,6 +232,16 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
+    }
+    else if ([UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
+        
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+        self.window.rootViewController = tabVC;
+        [self.window makeKeyAndVisible];
+        tabVC.selectedIndex = 1;
+
     }
 }
 

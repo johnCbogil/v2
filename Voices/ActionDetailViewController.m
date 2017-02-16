@@ -10,7 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "GroupDetailViewController.h"
 #import "ScriptManager.h"
-
+#import "WebViewController.h"
 
 @interface ActionDetailViewController()
 
@@ -96,7 +96,7 @@
     
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
-                                message:@"There is no substitue for direct action. Have you contacted your reps already?"
+                                message:@"There is no substitute for direct action. Have you contacted your reps already?"
                                 preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *button0 = [UIAlertAction
@@ -111,7 +111,7 @@
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@\n\nhttps://tryvoices.com/%@", self.action.groupName, self.action.title, self.action.groupKey];
+                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@\n\nhttps://tryvoices.com/%@", self.action.groupName, self.action.title, self.action.groupKey.lowercaseString];
                                   UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
                                   activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
                                   [self presentViewController:activityViewController animated:YES completion:nil];
@@ -122,9 +122,11 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
-    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
-    webVC.linkURL = URL;
-    [self.navigationController pushViewController:webVC animated:YES];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = URL;
+    webViewController.title = @"TAKE ACTION";
+    [self.navigationController pushViewController:webViewController animated:YES];
     return NO;
 }
 
