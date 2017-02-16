@@ -111,7 +111,7 @@
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@\n\nhttps://tryvoices.com/%@", self.action.groupName, self.action.title, self.action.groupKey];
+                                  NSString *shareString = [NSString stringWithFormat:@"Please support %@: %@\n\nhttps://tryvoices.com/%@", self.action.groupName, self.action.title, self.action.groupKey.lowercaseString];
                                   UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[shareString] applicationActivities:nil];
                                   activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
                                   [self presentViewController:activityViewController animated:YES completion:nil];
