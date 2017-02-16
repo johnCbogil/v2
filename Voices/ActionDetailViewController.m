@@ -10,7 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "GroupDetailViewController.h"
 #import "ScriptManager.h"
-
+#import "ActionWebViewController.h"
 
 @interface ActionDetailViewController()
 
@@ -122,8 +122,7 @@
 }
 
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
-    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
-    webVC.linkURL = URL;
+    ActionWebViewController *webVC = [[ActionWebViewController alloc] initWithURL:URL];
     [self.navigationController pushViewController:webVC animated:YES];
     return NO;
 }

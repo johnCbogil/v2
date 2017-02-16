@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RepTableViewCell : UITableViewCell
-
 - (void)initWithRep:(id)rep;
-
 @end
+
