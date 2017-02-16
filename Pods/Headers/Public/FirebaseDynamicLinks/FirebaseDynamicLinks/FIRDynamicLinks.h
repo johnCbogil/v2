@@ -1,1 +1,1 @@
-../../../../FirebaseDynamicLinks/Frameworks/frameworks/FirebaseDynamicLinks.framework/Headers/FIRDynamicLinks.h
+../../../../FirebaseDynamicLinks/Frameworks/FirebaseDynamicLinks.framework/Headers/FIRDynamicLinks.h
