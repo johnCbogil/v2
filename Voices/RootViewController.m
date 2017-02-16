@@ -348,11 +348,12 @@
 
 - (void)presentWebViewController:(NSNotification *)notifiaction {
     
-   // NSURL *url = notifiaction.object;
-    WebViewController *webVC = [[WebViewController alloc]init];
-    //webVC.linkURL = url;
+    NSURL *url = notifiaction.object;
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = url;
     self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:webVC animated:YES];
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {

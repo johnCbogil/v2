@@ -8,7 +8,10 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()
+@interface WebViewController () <UIWebViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -16,24 +19,56 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.title = @"TAKE ACTION";
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBarHidden = NO;
+    self.webView.delegate = self;
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url];
+    [self.webView loadRequest:urlRequest];
+    self.webView.scalesPageToFit = YES;
+    self.webView.contentMode = UIViewContentModeScaleAspectFit;
+    [self createActivityIndicator];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)createActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center = self.view.center;
+    [self.view addSubview:self.activityIndicatorView];
+    self.activityIndicatorView.hidden = NO;
+    [self toggleActivityIndicatorOn];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.activityIndicatorView.hidden = NO;
+        [self.activityIndicatorView startAnimating];
+    });
 }
-*/
+
+- (void)toggleActivityIndicatorOff {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.activityIndicatorView.hidden = YES;
+        [self.activityIndicatorView stopAnimating];
+    });
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    //Check here if still webview is loding the content
+    if (webView.isLoading) {
+        return;
+    }
+    
+    [self toggleActivityIndicatorOff];
+    
+}
 
 @end
