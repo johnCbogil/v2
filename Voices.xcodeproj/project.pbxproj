@@ -282,6 +282,27 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
+		5264E8561E554EAC00C2DDD8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				52EEC2751E55376D00CE12AF /* WebViewController.h */,
+				52EEC2761E55376D00CE12AF /* WebViewController.m */,
+				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
+				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
+				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
+				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
+				AA7506DE1D6644EC00DADD93 /* PrefixHeader.pch */,
+				52D892961CC45F47004FBEA3 /* Main.storyboard */,
+				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
+				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
+				7ED3E7CD1DFB431300C1391C /* ScriptManager.h */,
+				7ED3E7CE1DFB431300C1391C /* ScriptManager.m */,
+				525397D81DFC640F00C12686 /* ReportingManager.h */,
+				525397D91DFC640F00C12686 /* ReportingManager.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 		52AD33961BE5CA2B00EC0468 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,18 +355,7 @@
 				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
 				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
-				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
-				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
-				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
-				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
-				AA7506DE1D6644EC00DADD93 /* PrefixHeader.pch */,
-				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
-				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
-				7ED3E7CD1DFB431300C1391C /* ScriptManager.h */,
-				7ED3E7CE1DFB431300C1391C /* ScriptManager.m */,
-				525397D81DFC640F00C12686 /* ReportingManager.h */,
-				525397D91DFC640F00C12686 /* ReportingManager.m */,
+				5264E8561E554EAC00C2DDD8 /* Shared */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52D8929D1CC471AA004FBEA3 /* TakeActionTab */,
 				52FC68FF1C3765AB00E29B7A /* Onboarding */,
@@ -434,8 +444,6 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
-				52EEC2751E55376D00CE12AF /* WebViewController.h */,
-				52EEC2761E55376D00CE12AF /* WebViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -508,12 +516,12 @@
 				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
 				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */,
 				52939A331D1A29C00076F878 /* GroupTableViewCell.xib */,
-				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
-				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
-				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
 				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
 				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
 				525475951D31C40C00A894BA /* GroupsEmptyState.xib */,
+				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
+				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
+				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
