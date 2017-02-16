@@ -96,7 +96,7 @@
     
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
-                                message:@"There is no substitue for direct action. Have you contacted your reps already?"
+                                message:@"There is no substitute for direct action. Have you contacted your reps already?"
                                 preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *button0 = [UIAlertAction
