@@ -59,6 +59,7 @@
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
+		52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEC2761E55376D00CE12AF /* WebViewController.m */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
@@ -178,6 +179,8 @@
 		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
+		52EEC2751E55376D00CE12AF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		52EEC2761E55376D00CE12AF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 				7E5CC8261C909034005E8F45 /* Controller */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
+				52EEC2751E55376D00CE12AF /* WebViewController.h */,
+				52EEC2761E55376D00CE12AF /* WebViewController.m */,
 			);
 			name = RepsTab;
 			sourceTree = "<group>";
@@ -810,6 +815,7 @@
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
 				A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */,
+				52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */,
 				52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */,
 				525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */,
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,

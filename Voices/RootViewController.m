@@ -21,7 +21,7 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
-#import "ActionWebViewController.h"
+#import "WebViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
@@ -348,9 +348,9 @@
 
 - (void)presentWebViewController:(NSNotification *)notifiaction {
     
-    NSURL *url = notifiaction.object;
-    ActionWebViewController *webVC = [[ActionWebViewController alloc]init];
-    webVC.linkURL = url;
+   // NSURL *url = notifiaction.object;
+    WebViewController *webVC = [[WebViewController alloc]init];
+    //webVC.linkURL = url;
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:webVC animated:YES];
 }
