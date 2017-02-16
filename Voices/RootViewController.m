@@ -348,10 +348,12 @@
 
 - (void)presentWebViewController:(NSNotification *)notifiaction {
     
-    NSURL *url = notifiaction.object;
+    NSURL *url = notifiaction.object[@"contactFormURL"];
+    NSString *fullName = notifiaction.object[@"fullName"];
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
+    webViewController.title = fullName;
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:webViewController animated:YES];
 }

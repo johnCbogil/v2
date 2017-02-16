@@ -134,8 +134,9 @@
         NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
         
         NSURL *contactFormURL = [NSURL URLWithString:[contactFormsDict valueForKey:self.representative.bioguide]];
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:contactFormURL];
+        NSDictionary *notiDict = @{@"contactFormURL" : contactFormURL, @"fullName": [NSString stringWithFormat:@"%@ %@", self.representative.title, self.representative.fullName]};
+    
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
     else if (self.representative.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];

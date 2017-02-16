@@ -20,21 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"TAKE ACTION";
+//    self.title = @"TAKE ACTION";
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = NO;
     self.webView.delegate = self;
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:urlRequest];
-    self.webView.scalesPageToFit = YES;
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     [self createActivityIndicator];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
-}
 
 - (void)createActivityIndicator {
     self.activityIndicatorView = [[UIActivityIndicatorView alloc]
