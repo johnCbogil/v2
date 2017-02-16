@@ -282,9 +282,11 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
-		5264E8561E554EAC00C2DDD8 /* Shared */ = {
+		5264E8561E554EAC00C2DDD8 /* SharedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				52194F531E3C519400EBF461 /* DLog.h */,
+				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52EEC2751E55376D00CE12AF /* WebViewController.h */,
 				52EEC2761E55376D00CE12AF /* WebViewController.m */,
 				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
@@ -300,7 +302,7 @@
 				525397D81DFC640F00C12686 /* ReportingManager.h */,
 				525397D91DFC640F00C12686 /* ReportingManager.m */,
 			);
-			name = Shared;
+			name = SharedClasses;
 			sourceTree = "<group>";
 		};
 		52AD33961BE5CA2B00EC0468 /* Categories */ = {
@@ -355,13 +357,11 @@
 				52BB34321B6160CA00BB9FFD /* AppDelegate.h */,
 				52BB34331B6160CA00BB9FFD /* AppDelegate.m */,
 				52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */,
-				5264E8561E554EAC00C2DDD8 /* Shared */,
+				52FC68FF1C3765AB00E29B7A /* Onboarding */,
+				5264E8561E554EAC00C2DDD8 /* SharedClasses */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52D8929D1CC471AA004FBEA3 /* TakeActionTab */,
-				52FC68FF1C3765AB00E29B7A /* Onboarding */,
-				52AD33961BE5CA2B00EC0468 /* Categories */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
-				52194F531E3C519400EBF461 /* DLog.h */,
 			);
 			path = Voices;
 			sourceTree = "<group>";

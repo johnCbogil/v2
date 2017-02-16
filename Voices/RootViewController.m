@@ -40,6 +40,7 @@
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
+@property (nonatomic) double searchBarFontSize;
 
 @end
 
@@ -119,17 +120,15 @@
 
 - (void)setFont {
     
-//    double screenHeight = [[UIScreen mainScreen] bounds].size.height;
-//    CGFloat fontsize;
-//    
-//    if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone) {
-//        if (screenHeight == 568) {
-//            NSLog(@"iPhone 5/5S/SE");
-//            fontsize = 23;
-//        } else if (screenHeight == 667) {
-//            fontsize = 25;
-//        }
-//    }
+    double screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone) {
+        if (screenHeight == 568) {
+            self.searchBarFontSize = 20;
+        } else if (screenHeight == 667) {
+            self.searchBarFontSize = 27;
+        }
+    }
     self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
     self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
     self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
@@ -166,8 +165,8 @@
     
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.searchTextField.font = [UIFont voicesFontWithSize:27];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize],NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.font = [UIFont voicesFontWithSize:self.searchBarFontSize];
     [self.searchTextField.layer setBorderWidth:2.0f];
     self.searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.searchTextField.layer.borderColor = [UIColor searchBarBackground].CGColor;
@@ -217,7 +216,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     // Set the clear button
     UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
     [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
@@ -228,12 +227,12 @@
 }
 
 - (void)clearSearchBar {
-    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [self.searchTextField resignFirstResponder];
 }
 
 - (void)onKeyboardHide {
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 #pragma mark - NSNotifications
@@ -498,8 +497,8 @@
 }
 
 - (void)refreshSearchText {
-    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedText = nil;
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
 }
 
 @end
