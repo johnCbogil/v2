@@ -391,8 +391,6 @@
 				7E5CC8261C909034005E8F45 /* Controller */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
-				52EEC2751E55376D00CE12AF /* WebViewController.h */,
-				52EEC2761E55376D00CE12AF /* WebViewController.m */,
 			);
 			name = RepsTab;
 			sourceTree = "<group>";
@@ -430,6 +428,8 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
+				52EEC2751E55376D00CE12AF /* WebViewController.h */,
+				52EEC2761E55376D00CE12AF /* WebViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

@@ -20,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    self.title = @"TAKE ACTION";
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = NO;
     self.webView.delegate = self;

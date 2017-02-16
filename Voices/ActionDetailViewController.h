@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Action.h"
-#import "ActionWebViewController.h"
 #import "Group.h"
 
 @interface ActionDetailViewController : UIViewController <UITextViewDelegate>
