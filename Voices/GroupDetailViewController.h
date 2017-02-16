@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 #import "ExpandingCellDelegate.h"
+#import "FollowGroupDelegate.h"
+
  
-@interface GroupDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,ExpandingCellDelegate>
+@interface GroupDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,ExpandingCellDelegate, FollowGroupDelegate>
 
 @property (strong, nonatomic) Group *group;
 

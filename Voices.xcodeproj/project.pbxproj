@@ -74,6 +74,8 @@
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
 		9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */; };
 		9EE743751DBAD23F00B5B2EA /* ActionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */; };
+		A775E36B1E52142D00CFAF27 /* GroupDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A775E3691E52142D00CFAF27 /* GroupDetailTableViewCell.m */; };
+		A775E36C1E52142D00CFAF27 /* GroupDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A775E36A1E52142D00CFAF27 /* GroupDetailTableViewCell.xib */; };
 		A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */; };
 		A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */; };
 		A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */; };
@@ -206,6 +208,10 @@
 		9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYouViewController.xib; sourceTree = "<group>"; };
 		9EE743731DBAD23F00B5B2EA /* ActionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionWebViewController.h; sourceTree = "<group>"; };
 		9EE743741DBAD23F00B5B2EA /* ActionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionWebViewController.m; sourceTree = "<group>"; };
+		A775E3681E52142D00CFAF27 /* GroupDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailTableViewCell.h; sourceTree = "<group>"; };
+		A775E3691E52142D00CFAF27 /* GroupDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailTableViewCell.m; sourceTree = "<group>"; };
+		A775E36A1E52142D00CFAF27 /* GroupDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailTableViewCell.xib; sourceTree = "<group>"; };
+		A775E36D1E52144700CFAF27 /* FollowGroupDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowGroupDelegate.h; sourceTree = "<group>"; };
 		A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionTableViewCell.h; sourceTree = "<group>"; };
 		A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionTableViewCell.m; sourceTree = "<group>"; };
 		A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingCellDelegate.h; sourceTree = "<group>"; };
@@ -489,6 +495,9 @@
 			isa = PBXGroup;
 			children = (
 				52D892981CC463C2004FBEA3 /* TakeAction.storyboard */,
+				A775E3681E52142D00CFAF27 /* GroupDetailTableViewCell.h */,
+				A775E3691E52142D00CFAF27 /* GroupDetailTableViewCell.m */,
+				A775E36A1E52142D00CFAF27 /* GroupDetailTableViewCell.xib */,
 				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
 				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
 				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
@@ -519,6 +528,7 @@
 				52361C9B1D3076ED00589827 /* PolicyPosition.h */,
 				52361C9C1D3076ED00589827 /* PolicyPosition.m */,
 				A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */,
+				A775E36D1E52144700CFAF27 /* FollowGroupDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -650,6 +660,7 @@
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
+				A775E36C1E52142D00CFAF27 /* GroupDetailTableViewCell.xib in Resources */,
 				7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */,
 				527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */,
 				52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */,
@@ -784,6 +795,7 @@
 				B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */,
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
 				7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */,
+				A775E36B1E52142D00CFAF27 /* GroupDetailTableViewCell.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
