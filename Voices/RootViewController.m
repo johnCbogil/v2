@@ -40,6 +40,7 @@
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
+@property (nonatomic) double searchBarFontSize;
 
 @end
 
@@ -118,9 +119,19 @@
 }
 
 - (void)setFont {
-    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
-    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
-    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+    
+    double screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    
+    if (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPhone) {
+        if (screenHeight == 568) {
+            self.searchBarFontSize = 20;
+        } else if (screenHeight == 667) {
+            self.searchBarFontSize = 27;
+        }
+    }
+    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
 }
 
 - (void)updateTabForIndex:(NSIndexPath *)indexPath {
@@ -154,7 +165,8 @@
     
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search By Address" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize],NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.font = [UIFont voicesFontWithSize:self.searchBarFontSize];
     [self.searchTextField.layer setBorderWidth:2.0f];
     self.searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.searchTextField.layer.borderColor = [UIColor searchBarBackground].CGColor;
@@ -204,6 +216,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     // Set the clear button
     UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
     [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
@@ -214,9 +227,13 @@
 }
 
 - (void)clearSearchBar {
-    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [self.searchTextField resignFirstResponder];
 }
 
+- (void)onKeyboardHide {
+//    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
 
 #pragma mark - NSNotifications
 
@@ -235,9 +252,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidSuspendNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
-    
-    
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 - (void)adjustToStatusBarChange {
@@ -248,9 +264,9 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)note {
-
-        self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-
+    
+    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
 }
 
 
@@ -258,7 +274,7 @@
 - (void)dismissKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.containerView removeGestureRecognizer:self.tap];
-
+    
 }
 
 #pragma mark - FB Shimmer methods
@@ -372,7 +388,7 @@
                 case SLComposeViewControllerResultDone:
                     NSLog(@"Twitter Post Sucessful");
                     [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
-
+                    
                     break;
                 default:
                     break;
@@ -405,14 +421,14 @@
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
-   // __weak RootViewController *weakself = self;
+    // __weak RootViewController *weakself = self;
     self.callCenter = [[CTCallCenter alloc] init];
     self.callCenter.callEventHandler = ^void(CTCall *call) {
         if (call.callState == CTCallStateDisconnected) {
             dispatch_async(dispatch_get_main_queue(), ^{
-               // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
+                // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
                 //Announce that we've had a state change in CallCenter
-//                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+                //                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
             });
         }
     };
@@ -477,12 +493,12 @@
         [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
     [self presentScriptDialog];
-
+    
 }
 
 - (void)refreshSearchText {
-    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedText = nil;
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
 }
 
 @end
