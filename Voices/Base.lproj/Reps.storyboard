@@ -206,7 +206,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isi-1L-mIi">
-                                        <rect key="frame" x="107" y="3" width="99" height="42"/>
+                                        <rect key="frame" x="103" y="3" width="99" height="42"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="State"/>
                                         <connections>
@@ -225,9 +225,9 @@
                                 <constraints>
                                     <constraint firstItem="ren-g7-23T" firstAttribute="leading" secondItem="Tfh-8V-iDn" secondAttribute="leading" constant="9" id="EKy-br-FLc"/>
                                     <constraint firstItem="isi-1L-mIi" firstAttribute="centerY" secondItem="Tfh-8V-iDn" secondAttribute="centerY" id="GnG-bc-Ea6"/>
-                                    <constraint firstItem="isi-1L-mIi" firstAttribute="leading" secondItem="ren-g7-23T" secondAttribute="trailing" constant="8" id="Uh2-CE-twJ"/>
+                                    <constraint firstItem="isi-1L-mIi" firstAttribute="leading" secondItem="ren-g7-23T" secondAttribute="trailing" constant="4" id="Uh2-CE-twJ"/>
                                     <constraint firstAttribute="trailing" secondItem="wJw-sL-tFt" secondAttribute="trailing" constant="8" id="YKg-f8-X8p"/>
-                                    <constraint firstItem="wJw-sL-tFt" firstAttribute="leading" secondItem="isi-1L-mIi" secondAttribute="trailing" constant="8" id="f01-Io-pVO"/>
+                                    <constraint firstItem="wJw-sL-tFt" firstAttribute="leading" secondItem="isi-1L-mIi" secondAttribute="trailing" constant="12" id="f01-Io-pVO"/>
                                     <constraint firstItem="ren-g7-23T" firstAttribute="centerY" secondItem="Tfh-8V-iDn" secondAttribute="centerY" id="igi-Vz-Zm5"/>
                                     <constraint firstItem="wJw-sL-tFt" firstAttribute="centerY" secondItem="Tfh-8V-iDn" secondAttribute="centerY" id="mto-dc-4Qm"/>
                                 </constraints>
