@@ -44,7 +44,7 @@
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
-    [GMSPlacesClient provideAPIKey:@"YOUR_API_KEY"];
+    [GMSPlacesClient provideAPIKey:kAutocomplete];
 
     [CurrentUser sharedInstance];
     

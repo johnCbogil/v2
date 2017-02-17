@@ -23,7 +23,9 @@
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
 
-@interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
+@import GooglePlaces;
+
+@interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -41,6 +43,7 @@
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
+@property (strong, nonatomic) GMSPlacesClient *placesClient;
 
 @end
 
@@ -78,7 +81,38 @@
     
     [self.view addGestureRecognizer:tap];
     
+    
+    _placesClient = [[GMSPlacesClient alloc] init];
+    
 }
+
+#pragma mark - Autocomplete methods ---------------------------------
+
+- (void)placeAutocomplete:(NSString *)searchText {
+    
+    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
+    filter.type = kGMSPlacesAutocompleteTypeFilterRegion;
+    
+    [_placesClient autocompleteQuery:searchText
+                              bounds:nil
+                              filter:filter
+                            callback:^(NSArray *results, NSError *error) {
+                                if (error != nil) {
+                                    NSLog(@"Autocomplete error %@", [error localizedDescription]);
+                                    return;
+                                }
+                                
+                                for (GMSAutocompletePrediction* result in results) {
+                                    NSLog(@"Result '%@' with placeID %@", result.attributedFullText.string, result.placeID);
+                                }
+                            }];
+}
+
+- (void)textFieldDidChange:(UITextField *)theTextField{
+    [self placeAutocomplete:theTextField.text];
+}
+
+#pragma mark ---------------------------------------------------------
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -253,7 +287,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
-
+    [self.searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)adjustToStatusBarChange {
