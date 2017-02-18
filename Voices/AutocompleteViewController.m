@@ -30,8 +30,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
-    
+    // TODO: SET THE BACK BUTTON TO BE ORANGE
     self.resultsArray = @[];
+    self.searchBar.placeholder = @"Search By Address";
 
 }
 
@@ -41,7 +42,7 @@
     
     
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
-    filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
+    filter.country = @"US";
     
     [_placesClient autocompleteQuery:searchText
                               bounds:nil
@@ -77,6 +78,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (IBAction)currentLocationButtonDidPress:(id)sender {
 }
+
 @end
