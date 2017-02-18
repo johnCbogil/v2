@@ -24,7 +24,6 @@
 #import "WebViewController.h"
 #import "AutocompleteViewController.h"
 
-@import GooglePlaces;
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -44,7 +43,6 @@
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
-@property (strong, nonatomic) GMSPlacesClient *placesClient;
 
 @end
 
@@ -83,34 +81,7 @@
     [self.view addGestureRecognizer:tap];
     
     
-    _placesClient = [[GMSPlacesClient alloc] init];
     
-}
-
-#pragma mark - Autocomplete methods ---------------------------------
-
-- (void)placeAutocomplete:(NSString *)searchText {
-    
-    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
-    filter.type = kGMSPlacesAutocompleteTypeFilterRegion;
-    
-    [_placesClient autocompleteQuery:searchText
-                              bounds:nil
-                              filter:filter
-                            callback:^(NSArray *results, NSError *error) {
-                                if (error != nil) {
-                                    NSLog(@"Autocomplete error %@", [error localizedDescription]);
-                                    return;
-                                }
-                                
-                                for (GMSAutocompletePrediction* result in results) {
-                                    NSLog(@"Result '%@' with placeID %@", result.attributedFullText.string, result.placeID);
-                                }
-                            }];
-}
-
-- (void)textFieldDidChange:(UITextField *)theTextField{
-    [self placeAutocomplete:theTextField.text];
 }
 
 #pragma mark ---------------------------------------------------------
