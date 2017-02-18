@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
-@property (strong, nonatomic) NSMutableArray *resultsArray;
+@property (strong, nonatomic) NSArray *resultsArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -31,7 +31,7 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     
-    self.resultsArray = @[].mutableCopy;
+    self.resultsArray = @[];
 
 }
 
@@ -39,7 +39,6 @@
 
 - (void)placeAutocomplete:(NSString *)searchText {
     
-//    self.resultsArray = nil;
     
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
     filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
@@ -52,12 +51,13 @@
                                     NSLog(@"Autocomplete error %@", [error localizedDescription]);
                                     return;
                                 }
-                                
+                                NSMutableArray *tempArray = @[].mutableCopy;
                                 for (GMSAutocompletePrediction* result in results) {
                                     NSLog(@"Result '%@'", result.attributedFullText.string);
-                                    [self.resultsArray addObject:result.attributedFullText];
-                                    [self.tableView reloadData];
+                                    [tempArray addObject:result.attributedFullText];
                                 }
+                                self.resultsArray = tempArray;
+                                [self.tableView reloadData];
                             }];
 }
 
