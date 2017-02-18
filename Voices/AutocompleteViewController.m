@@ -29,6 +29,8 @@
     _placesClient = [[GMSPlacesClient alloc] init];
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
+    
+    self.resultsArray = @[].mutableCopy;
 
 }
 
