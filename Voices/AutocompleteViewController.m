@@ -8,7 +8,7 @@
 
 #import "AutocompleteViewController.h"
 
-@interface AutocompleteViewController ()
+@interface AutocompleteViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
 }
 
 @end

@@ -22,6 +22,7 @@
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
+#import "AutocompleteViewController.h"
 
 @import GooglePlaces;
 
@@ -250,14 +251,20 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    // Set the clear button
-    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
-    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
-    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
-    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-    self.searchTextField.rightView = clearButton;
+    // PUSH TO NEW VC
+    AutocompleteViewController *autocompleteVC = [[[NSBundle mainBundle] loadNibNamed:@"AutocompleteViewController" owner:self options:nil] objectAtIndex:0];
+    [self.navigationController pushViewController:autocompleteVC animated:YES];
+    
+    
+    
+//    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//    // Set the clear button
+//    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+//    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+//    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+//    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+//    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+//    self.searchTextField.rightView = clearButton;
 }
 
 - (void)clearSearchBar {
