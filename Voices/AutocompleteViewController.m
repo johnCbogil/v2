@@ -13,10 +13,10 @@
 @interface AutocompleteViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UITextViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
 @property (strong, nonatomic) NSMutableArray *resultsArray;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -28,6 +28,7 @@
     self.title = @"Find Your Reps";
     _placesClient = [[GMSPlacesClient alloc] init];
     self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     
     self.resultsArray = @[].mutableCopy;

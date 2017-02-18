@@ -141,7 +141,7 @@
                     <connections>
                         <outlet property="currentLocationButton" destination="p0A-3s-vxs" id="dSJ-aN-rJK"/>
                         <outlet property="searchBar" destination="Pa8-Gu-46u" id="Wzi-RA-Noe"/>
-                        <outlet property="tableView" destination="IUu-A7-2cn" id="Jvh-F9-Ht7"/>
+                        <outlet property="tableView" destination="IUu-A7-2cn" id="l46-br-qeg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOQ-67-1b8" userLabel="First Responder" sceneMemberID="firstResponder"/>
