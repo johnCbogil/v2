@@ -252,7 +252,8 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
     // PUSH TO NEW VC
-    AutocompleteViewController *autocompleteVC = [[[NSBundle mainBundle] loadNibNamed:@"AutocompleteViewController" owner:self options:nil] objectAtIndex:0];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    AutocompleteViewController *autocompleteVC = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AutocompleteViewController"];
     [self.navigationController pushViewController:autocompleteVC animated:YES];
     
     
