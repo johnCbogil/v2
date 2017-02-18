@@ -69,7 +69,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
             endingLineNumber = "168"
-            landmarkName = "-configureSearchBar"
+            landmarkName = "-setFont"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -85,7 +85,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
             endingLineNumber = "219"
-            landmarkName = "-textFieldDidBeginEditing:"
+            landmarkName = "-configureSearchBar"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

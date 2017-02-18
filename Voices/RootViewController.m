@@ -268,7 +268,7 @@
 }
 
 - (void)clearSearchBar {
-//    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [self.searchTextField resignFirstResponder];
 }
 
