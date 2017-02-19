@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = NO;
+    
     self.title = @"Find Your Reps";
     _placesClient = [[GMSPlacesClient alloc] init];
     self.tableView.delegate = self;
@@ -34,6 +34,11 @@
     self.resultsArray = @[];
     self.searchBar.placeholder = @"Search By Address";
 
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark - Autocomplete methods ---------------------------------
