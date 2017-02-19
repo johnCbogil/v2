@@ -200,19 +200,21 @@
 - (void)fetchPolicyPositions {
     __weak GroupDetailViewController *weakSelf = self;
     [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *policyPositionsDict = snapshot.value;
-        NSMutableArray *policyPositionsArray = [NSMutableArray array];
-        [policyPositionsArray insertObject:@"Policy Positions" atIndex:0];
-        PolicyPosition *placeholderObject = [[PolicyPosition alloc]init]; // the tableview data must reserve the 0th index for the GroupDescriptionTableViewCell.
-        [policyPositionsArray addObject:placeholderObject];
-        [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
-            [policyPositionsArray addObject:policyPosition];
-        }];
-        weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
-        [weakSelf.tableView reloadData];
+        if ([snapshot exists] && [snapshot hasChildren]) {
+            NSDictionary *policyPositionsDict = snapshot.value;
+            NSMutableArray *policyPositionsArray = [NSMutableArray array];
+            [policyPositionsArray insertObject:@"Policy Positions" atIndex:0];
+            PolicyPosition *placeholderObject = [[PolicyPosition alloc]init]; // the tableview data must reserve the 0th index for the GroupDescriptionTableViewCell.
+            [policyPositionsArray addObject:placeholderObject];
+            [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
+                [policyPositionsArray addObject:policyPosition];
+            }];
+            weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
+            [weakSelf.tableView reloadData];
+        }
     } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
+        NSLog(@"Error fetching policy positions: %@", error.localizedDescription);
     }];
 }
 
