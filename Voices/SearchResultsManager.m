@@ -1,45 +1,52 @@
 //
-//  AutocompleteViewController.m
+//  SearchResultsManager
 //  Voices
 //
 //  Created by John Bogil on 2/16/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "AutocompleteViewController.h"
+#import "SearchResultsManager.h"
 
 @import GooglePlaces;
 
-@interface AutocompleteViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UITextViewDelegate, UITextFieldDelegate>
+@interface SearchResultsManager () 
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIButton *currentLocationButton;
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
-@property (strong, nonatomic) NSArray *resultsArray;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation AutocompleteViewController
+@implementation SearchResultsManager
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.title = @"Find Your Reps";
-    _placesClient = [[GMSPlacesClient alloc] init];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.searchBar.delegate = self;
-    // TODO: SET THE BACK BUTTON TO BE ORANGE
-    self.resultsArray = @[];
-    self.searchBar.placeholder = @"Search By Address";
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//
+//    self.title = @"Find Your Reps";
+//    _placesClient = [[GMSPlacesClient alloc] init];
+//    self.resultsArray = @[];
+//
+//}
 
++ (SearchResultsManager *) sharedInstance {
+    static SearchResultsManager *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc]init];
+    });
+    return instance;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+- (id)init {
+    self = [super init];
+    if(self != nil) {
+        
+        _placesClient = [[GMSPlacesClient alloc] init];
+        self.resultsArray = @[];
+    }
+    return self;
 }
+
+
 
 #pragma mark - Autocomplete methods ---------------------------------
 
@@ -63,13 +70,10 @@
                                     [tempArray addObject:result.attributedFullText];
                                 }
                                 self.resultsArray = tempArray;
-                                [self.tableView reloadData];
+                                //                                [self.tableView reloadData];
                             }];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [self placeAutocomplete:searchText];
-}
 
 #pragma mark - Tableview delegate methods
 
@@ -85,9 +89,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-}
-
-- (IBAction)currentLocationButtonDidPress:(id)sender {
 }
 
 @end

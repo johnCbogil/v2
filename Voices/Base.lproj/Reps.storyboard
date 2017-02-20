@@ -96,68 +96,6 @@
             </objects>
             <point key="canvasLocation" x="3574" y="669"/>
         </scene>
-        <!--Autocomplete View Controller-->
-        <scene sceneID="mZV-k3-kKP">
-            <objects>
-                <viewController storyboardIdentifier="AutocompleteViewController" id="3mp-I1-Y0k" customClass="AutocompleteViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kkk-6b-vOE"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zyn-v3-oqX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rGt-43-twd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Pa8-Gu-46u">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IUu-A7-2cn">
-                                <rect key="frame" x="0.0" y="102" width="320" height="466"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="cxj-Or-7vf">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxj-Or-7vf" id="PX1-Df-DHD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0A-3s-vxs">
-                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
-                                <state key="normal" title="Current Location"/>
-                                <connections>
-                                    <action selector="currentLocationButtonDidPress:" destination="3mp-I1-Y0k" eventType="touchUpInside" id="Lc1-hA-TXk"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="IUu-A7-2cn" firstAttribute="top" secondItem="p0A-3s-vxs" secondAttribute="bottom" constant="8" symbolic="YES" id="1Y2-4j-LMx"/>
-                            <constraint firstItem="Pa8-Gu-46u" firstAttribute="top" secondItem="Kkk-6b-vOE" secondAttribute="bottom" id="PwY-vd-rbI"/>
-                            <constraint firstItem="p0A-3s-vxs" firstAttribute="top" secondItem="Pa8-Gu-46u" secondAttribute="bottom" id="TcJ-BU-EM5"/>
-                            <constraint firstItem="p0A-3s-vxs" firstAttribute="trailing" secondItem="IUu-A7-2cn" secondAttribute="trailing" id="UdX-Oc-BE3"/>
-                            <constraint firstItem="Pa8-Gu-46u" firstAttribute="trailing" secondItem="p0A-3s-vxs" secondAttribute="trailing" id="VcG-zA-hgf"/>
-                            <constraint firstItem="Pa8-Gu-46u" firstAttribute="leading" secondItem="p0A-3s-vxs" secondAttribute="leading" id="c52-WF-V9W"/>
-                            <constraint firstItem="IUu-A7-2cn" firstAttribute="bottom" secondItem="Zyn-v3-oqX" secondAttribute="top" id="dBP-fw-411"/>
-                            <constraint firstItem="p0A-3s-vxs" firstAttribute="leading" secondItem="IUu-A7-2cn" secondAttribute="leading" id="fHQ-tX-6xm"/>
-                            <constraint firstAttribute="trailing" secondItem="Pa8-Gu-46u" secondAttribute="trailing" id="hse-Q7-m9r"/>
-                            <constraint firstItem="Pa8-Gu-46u" firstAttribute="leading" secondItem="rGt-43-twd" secondAttribute="leading" id="kwe-Na-EC2"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="currentLocationButton" destination="p0A-3s-vxs" id="dSJ-aN-rJK"/>
-                        <outlet property="searchBar" destination="Pa8-Gu-46u" id="Wzi-RA-Noe"/>
-                        <outlet property="tableView" destination="IUu-A7-2cn" id="l46-br-qeg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oOQ-67-1b8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2791.875" y="62.323943661971832"/>
-        </scene>
         <!--Rep Detail View Controller-->
         <scene sceneID="WUy-Ja-xNQ">
             <objects>
@@ -256,6 +194,10 @@
                                     <segue destination="RaT-JB-7Ja" kind="embed" id="GeH-dQ-6k0"/>
                                 </connections>
                             </containerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ely-1P-I86">
+                                <rect key="frame" x="40" y="115" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfh-8V-iDn" userLabel="PageIndicatorView">
                                 <rect key="frame" x="16" y="132" width="288" height="48"/>
                                 <subviews>
@@ -307,7 +249,10 @@
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" id="Keg-Jn-39k"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="64" id="OS6-EF-O83"/>
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="17" id="QsZ-Z6-KPR"/>
+                            <constraint firstItem="ely-1P-I86" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="40" id="SpD-Or-1wM"/>
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="centerX" secondItem="iCg-1k-HG3" secondAttribute="centerX" id="W61-MG-XTh"/>
+                            <constraint firstAttribute="trailing" secondItem="ely-1P-I86" secondAttribute="trailing" constant="40" id="Xkk-4P-nAV"/>
+                            <constraint firstItem="yql-Ix-qR9" firstAttribute="top" secondItem="ely-1P-I86" secondAttribute="bottom" constant="325" id="cD1-Gn-TBn"/>
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="bottom" secondItem="ohY-vD-AGg" secondAttribute="bottom" id="eKt-7t-kwq"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leadingMargin" id="eXq-pf-5q5"/>
                             <constraint firstAttribute="trailing" secondItem="ohY-vD-AGg" secondAttribute="trailing" id="fcI-mW-ckh"/>
@@ -317,6 +262,7 @@
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="281" id="pf4-Sb-Sxg"/>
                             <constraint firstItem="IHf-wb-gWQ" firstAttribute="centerX" secondItem="ohY-vD-AGg" secondAttribute="centerX" id="q3E-HK-wQY"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="Tfh-8V-iDn" secondAttribute="bottom" constant="-1" id="wXV-2f-JKO"/>
+                            <constraint firstItem="ely-1P-I86" firstAttribute="top" secondItem="IHf-wb-gWQ" secondAttribute="bottom" id="xCQ-Gy-5BT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -333,6 +279,7 @@
                         <outlet property="infoButton" destination="usD-En-vUP" id="qNm-Xz-9MH"/>
                         <outlet property="localButton" destination="wJw-sL-tFt" id="6hs-wx-Hpt"/>
                         <outlet property="pageIndicatorView" destination="Tfh-8V-iDn" id="8jz-kC-XWT"/>
+                        <outlet property="searchResultsTableView" destination="ely-1P-I86" id="mQ3-TB-ZtI"/>
                         <outlet property="searchTextField" destination="ARA-4W-JcE" id="HuC-sP-CJ8"/>
                         <outlet property="searchView" destination="IHf-wb-gWQ" id="41W-Lo-pnd"/>
                         <outlet property="shimmeringView" destination="iCg-1k-HG3" id="OsN-w8-Q0B"/>

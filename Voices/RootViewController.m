@@ -22,8 +22,7 @@
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
-#import "AutocompleteViewController.h"
-
+#import "SearchResultsManager.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -43,6 +42,7 @@
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
+@property (weak, nonatomic) IBOutlet UITableView *searchResultsTableView;
 
 @end
 
@@ -70,6 +70,7 @@
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    [self configureSearchResultsTableView];
     [self setupCallCenterToPresentThankYou];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
@@ -83,8 +84,6 @@
     
     
 }
-
-#pragma mark ---------------------------------------------------------
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -111,6 +110,16 @@
     self.shadowView.layer.shadowPath = shadowPath.CGPath;
     
     [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
+}
+
+- (void)configureSearchResultsTableView {
+    
+    self.searchResultsTableView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.searchResultsTableView.layer.borderWidth = 2.0f;
+    self.searchResultsTableView.layer.cornerRadius = kButtonCornerRadius;
+    self.searchResultsTableView.delegate = [SearchResultsManager sharedInstance];
+    self.searchResultsTableView.dataSource = [SearchResultsManager sharedInstance];
+    
 }
 
 #pragma mark - Custom accessor methods
@@ -222,10 +231,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    // PUSH TO NEW VC
-    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    AutocompleteViewController *autocompleteVC = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AutocompleteViewController"];
-    [self.navigationController pushViewController:autocompleteVC animated:YES];
+    // PRESENT TABLEVIEW
     
     
     
@@ -266,7 +272,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
-    [self.searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)adjustToStatusBarChange {
