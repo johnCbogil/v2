@@ -10,22 +10,13 @@
 
 @import GooglePlaces;
 
-@interface SearchResultsManager () 
+@interface SearchResultsManager () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
 
 @end
 
 @implementation SearchResultsManager
-
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//
-//    self.title = @"Find Your Reps";
-//    _placesClient = [[GMSPlacesClient alloc] init];
-//    self.resultsArray = @[];
-//
-//}
 
 + (SearchResultsManager *) sharedInstance {
     static SearchResultsManager *instance = nil;
@@ -41,12 +32,10 @@
     if(self != nil) {
         
         _placesClient = [[GMSPlacesClient alloc] init];
-        self.resultsArray = @[];
+        self.resultsArray = @[@"one", @"two", @"three"];
     }
     return self;
 }
-
-
 
 #pragma mark - Autocomplete methods ---------------------------------
 
@@ -83,7 +72,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.attributedText = self.resultsArray[indexPath.row];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.textLabel.text = self.resultsArray[indexPath.row];
     return cell;
 }
 

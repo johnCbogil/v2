@@ -119,6 +119,8 @@
     self.searchResultsTableView.layer.cornerRadius = kButtonCornerRadius;
     self.searchResultsTableView.delegate = [SearchResultsManager sharedInstance];
     self.searchResultsTableView.dataSource = [SearchResultsManager sharedInstance];
+    self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
+    self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
     
 }
 
