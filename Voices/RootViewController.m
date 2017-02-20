@@ -112,23 +112,10 @@
     [self.infoButton setImageEdgeInsets:UIEdgeInsetsMake(11, 7, 11, 8)];
 }
 
-- (void)configureSearchResultsTableView {
-    
-    self.searchResultsTableView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.searchResultsTableView.layer.borderWidth = 2.0f;
-    self.searchResultsTableView.layer.cornerRadius = kButtonCornerRadius;
-    self.searchResultsTableView.delegate = [SearchResultsManager sharedInstance];
-    self.searchResultsTableView.dataSource = [SearchResultsManager sharedInstance];
-    self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
-    self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
-    
-}
-
 #pragma mark - Custom accessor methods
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    //    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
@@ -178,8 +165,8 @@
 
 - (void)configureSearchBar {
     
+    [self.searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.searchView.layer.cornerRadius = kButtonCornerRadius;
-    
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize],NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -202,6 +189,23 @@
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor whiteColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
+}
+
+- (void)configureSearchResultsTableView {
+    
+    self.searchResultsTableView.hidden = YES;
+    self.searchResultsTableView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.searchResultsTableView.layer.borderWidth = 2.0f;
+    self.searchResultsTableView.layer.cornerRadius = kButtonCornerRadius;
+    self.searchResultsTableView.delegate = [SearchResultsManager sharedInstance];
+    self.searchResultsTableView.dataSource = [SearchResultsManager sharedInstance];
+    self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
+    self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
+    // TODO: BLUR BACKGROUND
+    // TODO: ANIMATE PRESENTATION
+    // TODO: REMOVE BORDER
+    // TODO: PRESSING CLEAR BUTTON HIDES THE TABLEVIEW
+    // TODO: PRESSING OUTSIDE OF TABLEVIEW HIDES THE TABLEVIEW
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -233,18 +237,20 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    // PRESENT TABLEVIEW
-    
-    
-    
-//    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-//    // Set the clear button
-//    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
-//    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
-//    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
-//    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
-//    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
-//    self.searchTextField.rightView = clearButton;
+    self.searchResultsTableView.hidden = NO;
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    // Set the clear button
+    UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateNormal];
+    [clearButton setImage:[UIImage imageNamed:@"ClearButton"] forState:UIControlStateHighlighted];
+    [clearButton addTarget:self action:@selector(clearSearchBar) forControlEvents:UIControlEventTouchUpInside];
+    self.searchTextField.rightViewMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.rightView = clearButton;
+}
+
+- (void)textFieldDidChange:(UITextField *)textfield {
+    [[SearchResultsManager sharedInstance]placeAutocomplete:textfield.text];
+    [self.searchResultsTableView reloadData];
 }
 
 - (void)clearSearchBar {
@@ -274,6 +280,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 - (void)adjustToStatusBarChange {

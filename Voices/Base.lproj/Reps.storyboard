@@ -233,14 +233,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ely-1P-I86">
-                                <rect key="frame" x="40" y="115" width="240" height="128"/>
+                                <rect key="frame" x="16" y="115" width="238" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="560-hY-bpz">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="50" id="560-hY-bpz">
+                                        <rect key="frame" x="0.0" y="28" width="238" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="560-hY-bpz" id="Flq-sH-I3u">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -259,9 +259,9 @@
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" id="Keg-Jn-39k"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="64" id="OS6-EF-O83"/>
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="17" id="QsZ-Z6-KPR"/>
-                            <constraint firstItem="ely-1P-I86" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="40" id="SpD-Or-1wM"/>
+                            <constraint firstItem="ely-1P-I86" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="16" id="SpD-Or-1wM"/>
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="centerX" secondItem="iCg-1k-HG3" secondAttribute="centerX" id="W61-MG-XTh"/>
-                            <constraint firstAttribute="trailing" secondItem="ely-1P-I86" secondAttribute="trailing" constant="40" id="Xkk-4P-nAV"/>
+                            <constraint firstAttribute="trailing" secondItem="ely-1P-I86" secondAttribute="trailing" constant="66" id="Xkk-4P-nAV"/>
                             <constraint firstItem="yql-Ix-qR9" firstAttribute="top" secondItem="ely-1P-I86" secondAttribute="bottom" constant="325" id="cD1-Gn-TBn"/>
                             <constraint firstItem="Tfh-8V-iDn" firstAttribute="bottom" secondItem="ohY-vD-AGg" secondAttribute="bottom" id="eKt-7t-kwq"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leadingMargin" id="eXq-pf-5q5"/>
@@ -298,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0H-PU-P60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1982" y="289"/>
+            <point key="canvasLocation" x="1981.875" y="288.38028169014086"/>
         </scene>
     </scenes>
     <resources>

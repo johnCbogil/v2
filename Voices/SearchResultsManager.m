@@ -32,7 +32,7 @@
     if(self != nil) {
         
         _placesClient = [[GMSPlacesClient alloc] init];
-        self.resultsArray = @[@"one", @"two", @"three"];
+        self.resultsArray = @[];
     }
     return self;
 }
@@ -59,7 +59,6 @@
                                     [tempArray addObject:result.attributedFullText];
                                 }
                                 self.resultsArray = tempArray;
-                                //                                [self.tableView reloadData];
                             }];
 }
 
@@ -73,7 +72,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.text = self.resultsArray[indexPath.row];
+    cell.textLabel.attributedText = self.resultsArray[indexPath.row];
     return cell;
 }
 
