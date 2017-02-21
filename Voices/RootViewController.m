@@ -203,9 +203,8 @@
     self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
     // TODO: BLUR BACKGROUND
     // TODO: ANIMATE PRESENTATION
+    // TODO: ANIMATE HIDING
     // TODO: REMOVE BORDER
-    // TODO: PRESSING CLEAR BUTTON HIDES THE TABLEVIEW
-    // TODO: PRESSING OUTSIDE OF TABLEVIEW HIDES THE TABLEVIEW
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -260,6 +259,7 @@
 
 - (void)onKeyboardHide {
 //    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchResultsTableView.hidden = YES;
 }
 
 #pragma mark - NSNotifications
