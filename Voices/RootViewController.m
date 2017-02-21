@@ -202,7 +202,7 @@
     self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
     self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
     // TODO: BLUR BACKGROUND
-    // TODO: ANIMATE PRESENTATION
+
     // TODO: ANIMATE HIDING
     // TODO: REMOVE BORDER
 }
@@ -236,7 +236,17 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    self.searchResultsTableView.hidden = NO;
+    // TODO: ANIMATE PRESENTATION
+    [UIView animateWithDuration:.15
+                     animations:^{
+                         self.searchResultsTableView.hidden = NO;
+                         CGRect frame = self.searchResultsTableView.frame;
+                         frame.size.height += 430.0;
+                         self.searchResultsTableView.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         // whatever you need to do when animations are complete
+                     }];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     // Set the clear button
     UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
