@@ -7,6 +7,7 @@
 //
 
 #import "SearchResultsManager.h"
+#import "LocationService.h"
 
 @import GooglePlaces;
 
@@ -70,13 +71,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Current Location";
+    }
+    
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.textLabel.attributedText = self.resultsArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        // TODO: TRIGGER CURRENT LOCATION
+        [[LocationService sharedInstance]startUpdatingLocation];
+        // TODO: HIDE KEYBOARD
+
+    }
     
 }
 

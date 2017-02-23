@@ -202,7 +202,8 @@
     self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
     self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
     // TODO: BLUR BACKGROUND
-
+    // TODO: IMPLEMENT SEARCH
+        // TODO: HIDE KEYBOARD
     // TODO: ANIMATE HIDING
     // TODO: REMOVE BORDER
 }
