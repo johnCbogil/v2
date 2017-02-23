@@ -34,6 +34,7 @@
         
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
+        
     }
     return self;
 }
@@ -67,7 +68,12 @@
 #pragma mark - Tableview delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.resultsArray.count;
+    if (self.resultsArray.count) {
+        return self.resultsArray.count;
+    }
+    else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,16 +82,19 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Current Location";
     }
+    else {
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.attributedText = self.resultsArray[indexPath.row];
+        return cell;
+    }
     
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.attributedText = self.resultsArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        // TODO: TRIGGER CURRENT LOCATION
+
         [[LocationService sharedInstance]startUpdatingLocation];
         // TODO: HIDE KEYBOARD
 
