@@ -224,14 +224,16 @@
 - (void)fetchPolicyPositions {
     __weak GroupDetailViewController *weakSelf = self;
     [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *policyPositionsDict = snapshot.value;
-        NSMutableArray *policyPositionsArray = [NSMutableArray array];
-        [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
-            [policyPositionsArray addObject:policyPosition];
-        }];
-        weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
-        [weakSelf.tableView reloadData];
+        if ([snapshot exists] && [snapshot hasChildren]) {
+            NSDictionary *policyPositionsDict = snapshot.value;
+            NSMutableArray *policyPositionsArray = [NSMutableArray array];
+            [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
+                [policyPositionsArray addObject:policyPosition];
+            }];
+            weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
+            [weakSelf.tableView reloadData];
+        }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
