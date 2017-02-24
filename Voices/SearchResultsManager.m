@@ -8,6 +8,8 @@
 
 #import "SearchResultsManager.h"
 #import "LocationService.h"
+#import "RepsManager.h"
+#import "ResultsTableViewCell.h"
 
 @import GooglePlaces;
 
@@ -35,6 +37,7 @@
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
         
+        
     }
     return self;
 }
@@ -58,7 +61,7 @@
                                 NSMutableArray *tempArray = @[].mutableCopy;
                                 for (GMSAutocompletePrediction* result in results) {
                                     NSLog(@"Result '%@'", result.attributedFullText.string);
-                                    [tempArray addObject:result.attributedFullText];
+                                    [tempArray addObject:result.attributedFullText.string];
                                 }
                                 self.resultsArray = tempArray;
                             }];
@@ -78,26 +81,54 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Current Location";
+        ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
+        cell.result.text = @"Current Location";
+        cell.icon.image = [UIImage imageNamed:@"gpsArrow"];
+        return cell;
+        
     }
     else {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.attributedText = self.resultsArray[indexPath.row];
+        cell.textLabel.font = [UIFont voicesFontWithSize:17];
+        cell.textLabel.text = self.resultsArray[indexPath.row-1];
         return cell;
     }
     
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // TODO: SELECTED TEXT SHOULD APPEAR IN SEARCH BAR
+
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"dismissKeyboard" object:nil];
+
     if (indexPath.row == 0) {
-
         [[LocationService sharedInstance]startUpdatingLocation];
-        // TODO: HIDE KEYBOARD
-
+    }
+    else {
+        [[LocationService sharedInstance]getCoordinatesFromSearchText:self.resultsArray[indexPath.row-1] withCompletion:^(CLLocation *locationResults) {
+            
+            [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+                NSLog(@"%@", locationResults);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+            
+        } onError:^(NSError *googleMapsError) {
+            NSLog(@"%@", [googleMapsError localizedDescription]);
+        }];
     }
     
 }

@@ -61,6 +61,8 @@
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEC2761E55376D00CE12AF /* WebViewController.m */; };
+		52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */; };
+		52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */; };
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
@@ -185,6 +187,9 @@
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52EEC2751E55376D00CE12AF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		52EEC2761E55376D00CE12AF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsTableViewCell.xib; sourceTree = "<group>"; };
+		52F31EDA1E5FA642008BCC2A /* ResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableViewCell.h; sourceTree = "<group>"; };
+		52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableViewCell.m; sourceTree = "<group>"; };
 		52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CouncilMemberData.json; sourceTree = "<group>"; };
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
@@ -478,6 +483,9 @@
 				52BF3EC01DD7CA400041349B /* RepsCollectionViewCell.h */,
 				52BF3EC11DD7CA400041349B /* RepsCollectionViewCell.m */,
 				52BF3EBE1DD7C9F10041349B /* RepsCollectionViewCell.xib */,
+				52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */,
+				52F31EDA1E5FA642008BCC2A /* ResultsTableViewCell.h */,
+				52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -663,6 +671,7 @@
 				52B958981E11873B006472DF /* NewInfo.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
+				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
@@ -805,6 +814,7 @@
 				7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */,
 				A775E36B1E52142D00CFAF27 /* GroupDetailTableViewCell.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
+				52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,

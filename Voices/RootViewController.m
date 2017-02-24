@@ -43,6 +43,7 @@
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
 @property (weak, nonatomic) IBOutlet UITableView *searchResultsTableView;
+@property (weak, nonatomic) IBOutlet UIView *darkView;
 
 @end
 
@@ -58,8 +59,7 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.containerView addGestureRecognizer:tap];
-
+    [self.darkView addGestureRecognizer:tap];
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -70,6 +70,8 @@
     self.shadowView.backgroundColor = [UIColor whiteColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
     
+    self.darkView.hidden = YES;
+    
     [self addObservers];
     [self setFont];
     [self setColors];
@@ -77,11 +79,7 @@
     [self configureSearchResultsTableView];
     [self setupCallCenterToPresentThankYou];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
-    
-    self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
-    
+    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
     
 }
 
@@ -194,18 +192,14 @@
 - (void)configureSearchResultsTableView {
     
     self.searchResultsTableView.hidden = YES;
-    self.searchResultsTableView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.searchResultsTableView.layer.borderWidth = 2.0f;
     self.searchResultsTableView.layer.cornerRadius = kButtonCornerRadius;
     self.searchResultsTableView.delegate = [SearchResultsManager sharedInstance];
     self.searchResultsTableView.dataSource = [SearchResultsManager sharedInstance];
     self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
     self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
-    // TODO: BLUR BACKGROUND
-    // TODO: IMPLEMENT SEARCH
-        // TODO: HIDE KEYBOARD
-    // TODO: ANIMATE HIDING
-    // TODO: REMOVE BORDER
+    [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"ResultsTableViewCell" bundle:nil]forCellReuseIdentifier:@"ResultsTableViewCell"];
+    [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -235,9 +229,10 @@
     return NO;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+
+    self.darkView.hidden = NO;
     
-    // TODO: ANIMATE PRESENTATION
     [UIView animateWithDuration:.15
                      animations:^{
                          self.searchResultsTableView.hidden = NO;
@@ -246,7 +241,6 @@
                          self.searchResultsTableView.frame = frame;
                      }
                      completion:^(BOOL finished){
-                         // whatever you need to do when animations are complete
                      }];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     // Set the clear button
@@ -269,6 +263,7 @@
 }
 
 - (void)onKeyboardHide {
+    self.darkView.hidden = YES;
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
     self.searchResultsTableView.hidden = YES;
 }
@@ -291,7 +286,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:@"dismissKeyboard" object:nil];
 }
 
 - (void)adjustToStatusBarChange {
@@ -304,13 +300,12 @@
 - (void)keyboardDidShow:(NSNotification *)note {
     
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    
 }
 
-
 - (void)dismissKeyboard {
+    self.darkView.hidden = YES;
     [self.searchTextField resignFirstResponder];
-    [self.containerView removeGestureRecognizer:self.tap];
+    [self.darkView removeGestureRecognizer:self.tap];
 }
 
 #pragma mark - FB Shimmer methods
