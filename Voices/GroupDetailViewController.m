@@ -37,6 +37,7 @@
 @end
 
 NSString *const actionCellReuse = @"ActionTableViewCell";
+
 @implementation GroupDetailViewController
 
 
@@ -267,12 +268,14 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
             return [[UIView alloc] initWithFrame:CGRectZero];
         case 1: {
             if (!self.segmentControl) {
-                NSArray *items = @[@"Policy Positiions", @"Actions"];
+                NSArray *items = @[@"Policy Positions", @"Actions"];
                 self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
                 self.segmentControl.tintColor = [UIColor voicesOrange];
                 [self.segmentControl addTarget:self.tableView action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
                 [self.segmentControl setSelectedSegmentIndex:0];
                 self.segmentControl.backgroundColor = [UIColor whiteColor];
+                self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
+                [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
             }
             return self.segmentControl;
         }
@@ -374,7 +377,7 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section > 0){
-        // Allows centering of the nav bar title by making an empty back button
+        // Allows centering of the nav bar title by making an empty back button.
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationItem setBackBarButtonItem:backButtonItem];
         switch (self.segmentControl.selectedSegmentIndex) {
