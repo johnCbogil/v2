@@ -37,7 +37,8 @@
     self.closeWindowButton.backgroundColor = [UIColor voicesOrange];
     
     self.scriptTextView.editable = NO;
-    
+    self.scriptTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+
     if ([ScriptManager sharedInstance].lastAction.script.length > 0) {
         self.scriptTextView.text = [ScriptManager sharedInstance].lastAction.script;
     }

@@ -64,6 +64,16 @@ PODS:
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
+    - GoogleMaps/Base
+  - GooglePlacePicker (2.2.0):
+    - GoogleMaps (= 2.2.0)
+    - GooglePlaces (= 2.2.0)
+  - GooglePlaces (2.2.0):
+    - GoogleMaps/Base (= 2.2.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -90,6 +100,9 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/DynamicLinks
   - Firebase/Messaging
+  - GoogleMaps
+  - GooglePlacePicker
+  - GooglePlaces
   - Shimmer
   - SSZipArchive
   - STPopup
@@ -105,6 +118,9 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: f0d025dd29a1d70418c003344813b67ab748ffb9
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseMessaging: df8267f378580a24174ce7861233aa11d5c90109
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
+  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
@@ -112,6 +128,6 @@ SPEC CHECKSUMS:
   SSZipArchive: 63f8e11cfcc33e03e4cd666b4359ea8bd6facd0c
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
 
-PODFILE CHECKSUM: 01e9ef6c2e7accc6eaba0f771812b5691e5375af
+PODFILE CHECKSUM: aff95c23451e31bd411b8d778e8cd5f66c5f260a
 
 COCOAPODS: 1.1.1

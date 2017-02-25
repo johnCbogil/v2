@@ -18,6 +18,7 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 
+
 //import UserNotifications
 
 @import Firebase;
@@ -25,6 +26,7 @@
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
 @import UserNotifications;
+@import GooglePlaces;
 
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
 
@@ -42,6 +44,8 @@
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
+    [GMSPlacesClient provideAPIKey:kAutocomplete];
+
     [CurrentUser sharedInstance];
     
     // Add observer for InstanceID token refresh callback.
