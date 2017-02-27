@@ -36,7 +36,6 @@
 
 @end
 
-NSString *const actionCellReuse = @"ActionTableViewCell";
 @implementation GroupDetailViewController
 
 
@@ -53,9 +52,6 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
     self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
     [self configureTableView];
     [self fetchPolicyPositions];
-    [[CurrentUser sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
-        self.listOfGroupActions = listOfActions;
-    }];
     [self configureTitleLabel];
     [self observeFollowGroupStatus];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
@@ -114,7 +110,7 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupDetailTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:actionCellReuse bundle:nil] forCellReuseIdentifier:actionCellReuse];
+    [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -229,6 +225,8 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
     }];
 }
 
+
+
 // TODO: MOVE TO A TAKEACTION NETWORK MANAGER
 - (void)fetchPolicyPositions {
     __weak GroupDetailViewController *weakSelf = self;
@@ -264,13 +262,13 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return [[UIView alloc] initWithFrame:CGRectZero];
+            return nil;
         case 1: {
             if (!self.segmentControl) {
-                NSArray *items = @[@"Policy Positiions", @"Actions"];
+                NSArray *items = @[@"Policy Positions", @"Actions"];
                 self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
                 self.segmentControl.tintColor = [UIColor voicesOrange];
-                [self.segmentControl addTarget:self.tableView action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
+                [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
                 [self.segmentControl setSelectedSegmentIndex:0];
                 self.segmentControl.backgroundColor = [UIColor whiteColor];
             }
@@ -281,6 +279,12 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return 0;
+        case 1:
+            return 40.0f;
+    }
     return 40.0f;
 }
 
@@ -352,7 +356,7 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
                 return cell;
             }
             case 1: {
-                ActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:actionCellReuse forIndexPath:indexPath];
+                ActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kActionCellReuse forIndexPath:indexPath];
                 [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
                 return cell;
             }
@@ -388,6 +392,7 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
             case 1: {
                 ActionDetailViewController *actionDetailVC = (ActionDetailViewController*) [self.storyboard instantiateViewControllerWithIdentifier:@"ActionDetailViewController"];
                 actionDetailVC.action = self.listOfGroupActions[indexPath.row];
+                actionDetailVC.group = self.group;
                 [self.navigationController pushViewController:actionDetailVC animated:true];
              }
                 
@@ -395,6 +400,17 @@ NSString *const actionCellReuse = @"ActionTableViewCell";
                 break;
         }
     }
+}
+
+#pragma mark - Segment Control 
+- (void)segmentControlDidChangeValue {
+    if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
+        [[CurrentUser sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
+            self.listOfGroupActions = listOfActions;
+            [self.tableView reloadData];
+        }];
+    }
+    [self.tableView reloadData];
 }
 
 @end

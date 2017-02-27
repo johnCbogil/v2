@@ -261,7 +261,6 @@
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
     NSMutableArray *actions = [NSMutableArray array];
-    int i = 1;
     for (NSString *actionKey in group.actionKeys) {
         dispatch_group_enter(actionsGroup);
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -273,9 +272,8 @@
             [actions addObject:action];
             dispatch_group_leave(actionsGroup);
         }];
-        i++;
     }
-    dispatch_group_notify(actionsGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
         successBlock(actions);
     });
 }
