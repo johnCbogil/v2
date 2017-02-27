@@ -22,8 +22,9 @@
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
+#import "SearchResultsManager.h"
 
-@interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate>
+@interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -41,6 +42,8 @@
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
+@property (weak, nonatomic) IBOutlet UITableView *searchResultsTableView;
+@property (weak, nonatomic) IBOutlet UIView *darkView;
 
 @end
 
@@ -55,6 +58,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.darkView addGestureRecognizer:tap];
+    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -64,19 +70,16 @@
     self.shadowView.backgroundColor = [UIColor whiteColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
     
+    self.darkView.hidden = YES;
+    
     [self addObservers];
     [self setFont];
     [self setColors];
     [self configureSearchBar];
+    [self configureSearchResultsTableView];
     [self setupCallCenterToPresentThankYou];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
-    
-    self.buttonDictionary = @{ @0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    
-    [self.view addGestureRecognizer:tap];
+    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
     
 }
 
@@ -111,7 +114,6 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    //    self.magnifyingGlassImageView.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
@@ -161,8 +163,8 @@
 
 - (void)configureSearchBar {
     
+    [self.searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.searchView.layer.cornerRadius = kButtonCornerRadius;
-    
     self.searchTextField.delegate = self;
     self.searchTextField.backgroundColor = [UIColor searchBarBackground];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize],NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -185,6 +187,19 @@
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor whiteColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
+}
+
+- (void)configureSearchResultsTableView {
+    
+    self.searchResultsTableView.hidden = YES;
+    self.searchResultsTableView.layer.cornerRadius = kButtonCornerRadius;
+    self.searchResultsTableView.delegate = [SearchResultsManager sharedInstance];
+    self.searchResultsTableView.dataSource = [SearchResultsManager sharedInstance];
+    self.searchResultsTableView.backgroundColor = [UIColor whiteColor];
+    self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
+    [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"ResultsTableViewCell" bundle:nil]forCellReuseIdentifier:@"ResultsTableViewCell"];
+    [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -214,8 +229,19 @@
     return NO;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+
+    self.darkView.hidden = NO;
     
+    [UIView animateWithDuration:.15
+                     animations:^{
+                         self.searchResultsTableView.hidden = NO;
+                         CGRect frame = self.searchResultsTableView.frame;
+                         frame.size.height += 430.0;
+                         self.searchResultsTableView.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                     }];
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Address" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     // Set the clear button
     UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, 30.0f)];
@@ -226,13 +252,20 @@
     self.searchTextField.rightView = clearButton;
 }
 
+- (void)textFieldDidChange:(UITextField *)textfield {
+    [[SearchResultsManager sharedInstance]placeAutocomplete:textfield.text];
+    [self.searchResultsTableView reloadData];
+}
+
 - (void)clearSearchBar {
-//    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [self.searchTextField resignFirstResponder];
 }
 
 - (void)onKeyboardHide {
-//    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    self.darkView.hidden = YES;
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Find Your Reps" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
+    self.searchResultsTableView.hidden = YES;
 }
 
 #pragma mark - NSNotifications
@@ -253,7 +286,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleShimmerOff) name:AFNetworkingTaskDidCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:@"dismissKeyboard" object:nil];
 }
 
 - (void)adjustToStatusBarChange {
@@ -266,15 +300,12 @@
 - (void)keyboardDidShow:(NSNotification *)note {
     
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    
 }
 
-
-// TODO: MIGHT BE SOME REDUNDANT CODE HERE
 - (void)dismissKeyboard {
+    self.darkView.hidden = YES;
     [self.searchTextField resignFirstResponder];
-    [self.containerView removeGestureRecognizer:self.tap];
-    
+    [self.darkView removeGestureRecognizer:self.tap];
 }
 
 #pragma mark - FB Shimmer methods

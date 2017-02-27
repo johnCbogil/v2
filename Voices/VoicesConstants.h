@@ -23,6 +23,7 @@ extern NSString *const kOpenSans;
 extern NSString *const kSFCongress;
 extern NSString *const kSFState;
 extern NSString *const kGoogMaps;
+extern NSString *const kAutocomplete;
 
 extern NSString *const kFederalRepresentative;
 extern NSString *const kStateRepresentative;

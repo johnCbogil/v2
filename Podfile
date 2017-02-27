@@ -15,6 +15,9 @@ target 'Voices' do
     pod 'Firebase/Messaging'
     pod 'Firebase/Crash'
     pod 'Firebase/DynamicLinks'
+    pod 'GooglePlaces'
+    pod 'GooglePlacePicker'
+    pod 'GoogleMaps'
 
 
 end

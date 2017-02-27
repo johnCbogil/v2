@@ -271,6 +271,8 @@
                 [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
                 [self.segmentControl setSelectedSegmentIndex:0];
                 self.segmentControl.backgroundColor = [UIColor whiteColor];
+                self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
+                [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
             }
             return self.segmentControl;
         }
@@ -378,7 +380,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section > 0){
-        // Allows centering of the nav bar title by making an empty back button
+        // Allows centering of the nav bar title by making an empty back button.
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationItem setBackBarButtonItem:backButtonItem];
         switch (self.segmentControl.selectedSegmentIndex) {
