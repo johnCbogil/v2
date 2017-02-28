@@ -17,7 +17,6 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-@import FirebaseAnalytics;
 @import UserNotifications;
 
 @interface RepTableViewCell() <MFMailComposeViewControllerDelegate, UNUserNotificationCenterDelegate>
