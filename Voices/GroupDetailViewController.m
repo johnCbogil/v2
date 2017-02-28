@@ -14,6 +14,8 @@
 #import "GroupDescriptionTableViewCell.h"
 #import "PolicyPositionsDetailCell.h"
 #import "GroupDetailTableViewCell.h"
+#import "ActionTableViewCell.h"
+#import "ActionDetailViewController.h"
 @import Firebase;
 
 @interface GroupDetailViewController ()
@@ -28,11 +30,14 @@
 @property (strong, nonatomic) FIRDatabaseReference *policyPositionsRef;
 @property (strong, nonatomic) NSMutableArray *listOfPolicyPositions;
 @property (strong, nonatomic) NSString *followGroupStatus;
-
+@property (strong, nonatomic) UISegmentedControl *segmentControl;
+@property (strong, nonatomic) NSArray *listOfGroupActions;
+@property (strong, nonatomic) NSString *const actionTBVReuse;
 
 @end
 
 @implementation GroupDetailViewController
+
 
 - (void)dealloc {
     self.feedbackGenerator = nil;
@@ -76,7 +81,6 @@
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupDetailTableViewCell *)cell {
-    
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
     cell.groupImageView.layer.cornerRadius = kButtonCornerRadius;
     cell.groupImageView.clipsToBounds = YES;
@@ -106,6 +110,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupDetailTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -220,6 +225,8 @@
     }];
 }
 
+
+
 // TODO: MOVE TO A TAKEACTION NETWORK MANAGER
 - (void)fetchPolicyPositions {
     __weak GroupDetailViewController *weakSelf = self;
@@ -253,42 +260,51 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(20, 8, 300, 30);
-    titleLabel.font = [UIFont voicesFontWithSize:20];
-    titleLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    return titleLabel;
+    switch (section) {
+        case 0:
+            return nil;
+        case 1: {
+            if (!self.segmentControl) {
+                NSArray *items = @[@"Issues", @"Actions"];
+                self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
+                self.segmentControl.tintColor = [UIColor voicesOrange];
+                [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
+                [self.segmentControl setSelectedSegmentIndex:0];
+                self.segmentControl.backgroundColor = [UIColor whiteColor];
+                self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
+                [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
+            }
+            return self.segmentControl;
+        }
+    }
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return 0;
+        case 1:
+            return 40.0f;
+    }
     return 40.0f;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    NSString *result;
-    
-    switch (section) {
-        case 0:
-            break;
-        case 1:
-            result = @"Policy Positions";
-            break;
-    }
-    return result;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     NSInteger numberOfRows = 0;
-    
     switch (section) {
         case 0:
             numberOfRows = 2;
             break;
         case 1:
-            numberOfRows = self.listOfPolicyPositions.count;
+            switch (self.segmentControl.selectedSegmentIndex) {
+                case 0:
+                    numberOfRows = self.listOfPolicyPositions.count;
+                    break;
+                case 1:
+                    numberOfRows = self.listOfGroupActions.count;
+                    break;
+            }
             break;
     }
     return numberOfRows;
@@ -326,18 +342,27 @@
         }
     }
     else{
-        static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
-        PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+        switch (self.segmentControl.selectedSegmentIndex) {
+            case 0: {
+                static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
+                PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
+                    cell = [topLevelObjects objectAtIndex:0];
+                }
+                NSString *policy = [self.listOfPolicyPositions[indexPath.row]key];
+                cell.policyLabel.text = policy;
+                cell.policyLabel.font = [UIFont voicesFontWithSize:19];
+                cell.policyLabel.numberOfLines = 0;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                return cell;
+            }
+            case 1: {
+                ActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kActionCellReuse forIndexPath:indexPath];
+                [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
+                return cell;
+            }
         }
-        NSString *policy = [self.listOfPolicyPositions[indexPath.row]key];
-        cell.policyLabel.text = policy;
-        cell.policyLabel.font = [UIFont voicesFontWithSize:19];
-        cell.policyLabel.numberOfLines = 0;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
     }
     return nil;
 }
@@ -355,14 +380,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section > 0){
-        // Allows centering of the nav bar title by making an empty back button
+        // Allows centering of the nav bar title by making an empty back button.
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationItem setBackBarButtonItem:backButtonItem];
-        UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-        PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
-        policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
-        [self.navigationController pushViewController:policyDetailViewController animated:YES];
+        switch (self.segmentControl.selectedSegmentIndex) {
+            case 0: {
+                UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+                PolicyDetailViewController *policyDetailViewController = (PolicyDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"PolicyDetailViewController"];
+                policyDetailViewController.policyPosition = self.listOfPolicyPositions[indexPath.row];
+                [self.navigationController pushViewController:policyDetailViewController animated:YES];
+                break;
+            }
+            case 1: {
+                ActionDetailViewController *actionDetailVC = (ActionDetailViewController*) [self.storyboard instantiateViewControllerWithIdentifier:@"ActionDetailViewController"];
+                actionDetailVC.action = self.listOfGroupActions[indexPath.row];
+                actionDetailVC.group = self.group;
+                [self.navigationController pushViewController:actionDetailVC animated:true];
+             }
+                
+            default:
+                break;
+        }
     }
+}
+
+#pragma mark - Segment Control 
+- (void)segmentControlDidChangeValue {
+    if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
+        [[CurrentUser sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
+            self.listOfGroupActions = listOfActions;
+            [self.tableView reloadData];
+        }];
+    }
+    [self.tableView reloadData];
 }
 
 @end

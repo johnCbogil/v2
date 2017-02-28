@@ -15,7 +15,6 @@
 @interface CurrentUser()
 
 @property (strong, nonatomic) NSMutableArray *actionKeys;
-
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -181,12 +180,7 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                BOOL debug;
-                
-#if DEBUG
-                debug = YES;
-#endif
-                
+                BOOL debug = [self isInDebugMode];
                 // if app is in debug, add all groups
                 if (debug) {
                     [self.listOfFollowedGroups addObject:group];
@@ -220,7 +214,7 @@
     for (NSString *actionKey in self.actionKeys) {
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value == [NSNull null]) {
-                return ;
+                return;
             }
             
             // Check to see if the action key is in the listOfActions
@@ -243,12 +237,7 @@
             
             if(newAction.timestamp < newDate.timeIntervalSince1970) {
                 
-                BOOL debug;
-                
-#if DEBUG
-                debug = YES;
-#endif
-                
+                BOOL debug = [self isInDebugMode];
                 // if app is in debug, add all groups
                 if (debug) {
                     [self.listOfActions addObject:newAction];
@@ -267,6 +256,28 @@
     }
     successBlock(self.listOfActions);
 }
+
+- (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
+    //Need dispatch group to wait for all action keys calls to finish
+    dispatch_group_t actionsGroup = dispatch_group_create();
+    NSMutableArray *actions = [NSMutableArray array];
+    for (NSString *actionKey in group.actionKeys) {
+        dispatch_group_enter(actionsGroup);
+        [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                dispatch_group_leave(actionsGroup);
+                return;
+            }
+            Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+            [actions addObject:action];
+            dispatch_group_leave(actionsGroup);
+        }];
+    }
+    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
+        successBlock(actions);
+    });
+}
+
 
 - (void)sortActionsByTime {
     
@@ -326,7 +337,13 @@
     return group;
 }
 
-
+- (BOOL)isInDebugMode {
+#if DEBUG
+    return YES;
+#else 
+    return NO;
+#endif
+}
 
 
 @end
