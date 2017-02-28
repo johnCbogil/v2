@@ -19,7 +19,6 @@
 #import "ListOfGroupsViewController.h"
 
 @import Firebase;
-@import FirebaseMessaging;
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate>
 
