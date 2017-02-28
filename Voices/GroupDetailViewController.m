@@ -265,7 +265,7 @@
             return nil;
         case 1: {
             if (!self.segmentControl) {
-                NSArray *items = @[@"Policy Positions", @"Actions"];
+                NSArray *items = @[@"Issues", @"Actions"];
                 self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
                 self.segmentControl.tintColor = [UIColor voicesOrange];
                 [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
