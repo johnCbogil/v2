@@ -9,7 +9,6 @@
 #import "NotiOnboardingViewController.h"
 #import "TabBarViewController.h"
 
-@import FirebaseMessaging;
 
 @interface NotiOnboardingViewController ()
 
