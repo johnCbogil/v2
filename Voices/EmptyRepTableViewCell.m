@@ -42,7 +42,7 @@
     self.topLabel.font = [UIFont voicesMediumFontWithSize:23];
     self.bottomLabel.font = [UIFont voicesFontWithSize:21];
 
-    self.swipeDownImageView.alpha = 0.15f;
+    self.swipeDownImageView.alpha = 0.10f;
     self.jonLennonImageView.layer.cornerRadius = kButtonCornerRadius;
     self.malalaImageView.layer.cornerRadius = kButtonCornerRadius;
     self.jonLennonImageView.clipsToBounds = YES;

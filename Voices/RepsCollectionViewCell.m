@@ -106,8 +106,8 @@
 }
 
 - (void)pullToRefresh {
-    [[LocationService sharedInstance]startUpdatingLocation];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchText" object:nil];
+//    [[LocationService sharedInstance]startUpdatingLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentPullToRefreshAlert" object:nil];
 }
 
 - (void)endRefreshing {

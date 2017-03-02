@@ -288,6 +288,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissKeyboard) name:@"dismissKeyboard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
+
 }
 
 - (void)adjustToStatusBarChange {
@@ -448,6 +450,35 @@
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:viewController];
+}
+
+- (void)presentPullToRefreshAlert {
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Reps For Current Location"
+                                message:@"Please enable location services when asked."
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *button0 = [UIAlertAction
+                              actionWithTitle:@"Not now"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                              }];
+    UIAlertAction *button1 = [UIAlertAction
+                              actionWithTitle:@"Alright"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [[LocationService sharedInstance]startUpdatingLocation];
+                                  [self refreshSearchText];
+                                
+
+                                  
+                              }];
+    [alert addAction:button0];
+    [alert addAction:button1];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark Call Center methods
