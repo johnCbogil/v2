@@ -466,7 +466,7 @@
                                   [self dismissViewControllerAnimated:YES completion:nil];
                               }];
     UIAlertAction *button1 = [UIAlertAction
-                              actionWithTitle:@"Alright"
+                              actionWithTitle:@"OK"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
