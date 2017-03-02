@@ -17,6 +17,7 @@
 #import "RepsManager.h"
 #import "ActionDetailViewController.h"
 #import "Action.h"
+#import "FirebaseManager.h"
 
 
 //import UserNotifications
@@ -47,6 +48,7 @@
     [GMSPlacesClient provideAPIKey:kAutocomplete];
 
     [CurrentUser sharedInstance];
+    [FirebaseManager sharedInstance];
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)

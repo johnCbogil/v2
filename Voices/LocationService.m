@@ -7,7 +7,7 @@
 //
 
 #import "LocationService.h"
-#import "NetworkManager.h"
+#import "RepsNetworkManager.h"
 
 @implementation LocationService
 
@@ -54,7 +54,7 @@
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock {
-    [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
+    [[RepsNetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
             NSLog(@"theres beena google maps mistake!");
             

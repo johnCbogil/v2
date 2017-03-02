@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //  AIzaSyBGpp2MpyG6zmf7gHcXqNro2bom1roCfVQ
 
-#import "NetworkManager.h"
+#import "RepsNetworkManager.h"
 #import "LocationService.h"
 
 
-@implementation NetworkManager
+@implementation RepsNetworkManager
 
-+ (NetworkManager *) sharedInstance {
-    static NetworkManager *instance = nil;
++ (RepsNetworkManager *) sharedInstance {
+    static RepsNetworkManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc]init];
