@@ -12,6 +12,7 @@
 
 @property (nonatomic)BOOL isExpanded;
 @property (strong, nonatomic) IBOutlet UIButton *expandButton;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImage;
 
 @end
 
@@ -60,13 +61,13 @@
 - (void)expandTextView {
     self.isExpanded = true;
     [self maxLines];
-    [self.expandButton setTitle:@"       ⌃" forState:UIControlStateNormal];
-}
+    [self.arrowImage setImage:[UIImage imageNamed:@"collapseArrow"]];
+ }
 
 - (void)contractTextView {
     self.isExpanded = false;
     [self maxLines];
-    [self.expandButton setTitle:@"       ⌄" forState:UIControlStateNormal];
+    [self.arrowImage setImage:[UIImage imageNamed:@"expandArrow"]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
