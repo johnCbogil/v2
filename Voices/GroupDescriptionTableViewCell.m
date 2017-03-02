@@ -21,6 +21,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.arrowImage.tintColor = [UIColor voicesOrange];
+
 }
 
 #pragma mark - set up textview
@@ -61,13 +63,15 @@
 - (void)expandTextView {
     self.isExpanded = true;
     [self maxLines];
-    [self.arrowImage setImage:[UIImage imageNamed:@"collapseArrow"]];
+    UIImage *collapseArrow = [UIImage imageNamed:@"upArrow2"];
+    [self.arrowImage setImage: collapseArrow];
  }
 
 - (void)contractTextView {
     self.isExpanded = false;
     [self maxLines];
-    [self.arrowImage setImage:[UIImage imageNamed:@"expandArrow"]];
+    UIImage *expandArrow = [UIImage imageNamed:@"downArrow2"];
+    [self.arrowImage setImage: expandArrow];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
