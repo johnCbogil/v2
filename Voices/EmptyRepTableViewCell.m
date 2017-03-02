@@ -41,9 +41,8 @@
     
     self.topLabel.font = [UIFont voicesMediumFontWithSize:23];
     self.bottomLabel.font = [UIFont voicesFontWithSize:21];
-    
-    CGAffineTransform rotateTransform = CGAffineTransformRotate(CGAffineTransformIdentity,RADIANS(-15.0));
-    self.swipeDownImageView.transform = rotateTransform;
+
+    self.swipeDownImageView.alpha = 0.15f;
     self.jonLennonImageView.layer.cornerRadius = kButtonCornerRadius;
     self.malalaImageView.layer.cornerRadius = kButtonCornerRadius;
     self.jonLennonImageView.clipsToBounds = YES;
