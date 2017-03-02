@@ -12,6 +12,7 @@
 
 @property (nonatomic)BOOL isExpanded;
 @property (strong, nonatomic) IBOutlet UIButton *expandButton;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImage;
 
 @end
 
@@ -20,6 +21,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.arrowImage.tintColor = [UIColor voicesOrange];
+
 }
 
 #pragma mark - set up textview
@@ -60,13 +63,15 @@
 - (void)expandTextView {
     self.isExpanded = true;
     [self maxLines];
-    [self.expandButton setTitle:@"       ⌃" forState:UIControlStateNormal];
-}
+    UIImage *collapseArrow = [UIImage imageNamed:@"upArrow2"];
+    [self.arrowImage setImage: collapseArrow];
+ }
 
 - (void)contractTextView {
     self.isExpanded = false;
     [self maxLines];
-    [self.expandButton setTitle:@"       ⌄" forState:UIControlStateNormal];
+    UIImage *expandArrow = [UIImage imageNamed:@"downArrow2"];
+    [self.arrowImage setImage: expandArrow];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
