@@ -38,10 +38,10 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.bounds = CGRectMake(self.refreshControl.bounds.origin.x,
-                                       15,
-                                       self.refreshControl.bounds.size.width,
-                                       self.refreshControl.bounds.size.height);
-
+                                            15,
+                                            self.refreshControl.bounds.size.width,
+                                            self.refreshControl.bounds.size.height);
+    
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
@@ -90,14 +90,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-// TODO: UNCOMMENT WHEN REP DETAIL VIEWS ARE READY
     
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-//    RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
-//    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
-//    [self.repDetailDelegate pushToDetailVC:repDetailVC];
+    // TODO: UNCOMMENT WHEN REP DETAIL VIEWS ARE READY
+    
+    //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //    UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    //    RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
+    //    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
+    //    [self.repDetailDelegate pushToDetailVC:repDetailVC];
 }
 
 
@@ -106,8 +106,14 @@
 }
 
 - (void)pullToRefresh {
-    [[LocationService sharedInstance]startUpdatingLocation];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchText" object:nil];
+    if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
+        [[LocationService sharedInstance]startUpdatingLocation];
+        
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentPullToRefreshAlert" object:nil];
+    }
+    
 }
 
 - (void)endRefreshing {

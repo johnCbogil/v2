@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,17 +17,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyx-Vw-99d">
-                    <rect key="frame" x="0.0" y="0.0" width="335" height="308"/>
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="283"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow2" translatesAutoresizingMaskIntoConstraints="NO" id="mWw-nE-rPG">
+                    <rect key="frame" x="152" y="276" width="25" height="25"/>
+                    <color key="tintColor" red="0.99215686270000003" green="0.41960784309999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="OKl-rT-PjR"/>
+                        <constraint firstAttribute="height" constant="25" id="mAX-0U-leq"/>
+                    </constraints>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cM0-gw-WgL">
-                    <rect key="frame" x="265" y="259" width="73" height="49"/>
+                    <rect key="frame" x="84" y="259" width="168" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
-                    <state key="normal" title="       ⌄">
+                    <state key="normal">
                         <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
@@ -36,20 +45,27 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Xyx-Vw-99d" secondAttribute="bottom" id="1n1-F9-Tyi"/>
+                <constraint firstAttribute="bottom" secondItem="Xyx-Vw-99d" secondAttribute="bottom" constant="25" id="1n1-F9-Tyi"/>
+                <constraint firstItem="mWw-nE-rPG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-3" id="Mbc-ph-Raf"/>
                 <constraint firstItem="Xyx-Vw-99d" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Mg9-Pl-qnW"/>
-                <constraint firstItem="Xyx-Vw-99d" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="SdY-Tm-4Gc"/>
+                <constraint firstItem="Xyx-Vw-99d" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" constant="-25" id="SdY-Tm-4Gc"/>
+                <constraint firstItem="cM0-gw-WgL" firstAttribute="width" secondItem="Xyx-Vw-99d" secondAttribute="width" multiplier="1:2" id="Wqu-Q8-1ud"/>
                 <constraint firstItem="Xyx-Vw-99d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XGw-AP-hyV"/>
-                <constraint firstAttribute="trailing" secondItem="cM0-gw-WgL" secondAttribute="trailing" constant="-3" id="aeU-GQ-zLF"/>
                 <constraint firstAttribute="bottom" secondItem="cM0-gw-WgL" secondAttribute="bottom" id="by2-Er-dx4"/>
                 <constraint firstAttribute="trailing" secondItem="Xyx-Vw-99d" secondAttribute="trailing" id="gM2-f1-aTS"/>
+                <constraint firstItem="cM0-gw-WgL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="n2A-c7-eoa"/>
+                <constraint firstItem="mWw-nE-rPG" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-7" id="zpg-hv-bBD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="arrowImage" destination="mWw-nE-rPG" id="vuA-dh-HeC"/>
                 <outlet property="expandButton" destination="cM0-gw-WgL" id="cpd-4t-FvJ"/>
                 <outlet property="textView" destination="Xyx-Vw-99d" id="DST-Ua-F2M"/>
             </connections>
             <point key="canvasLocation" x="71.5" y="-21"/>
         </view>
     </objects>
+    <resources>
+        <image name="downArrow2" width="104" height="104"/>
+    </resources>
 </document>
