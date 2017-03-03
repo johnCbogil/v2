@@ -7,7 +7,7 @@
 //
 
 #import "RepsManager.h"
-#import "NetworkManager.h"
+#import "RepsNetworkManager.h"
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
 #import "NYCRepresentative.h"
@@ -80,7 +80,7 @@
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock {
     
-    [[NetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+    [[RepsNetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
         
         // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
@@ -100,7 +100,7 @@
 
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
     
-    [[NetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+    [[RepsNetworkManager sharedInstance]getStateRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
         NSMutableArray *listOfStateRepresentatives = [[NSMutableArray alloc]init];
         
         BOOL firstRun = true;
