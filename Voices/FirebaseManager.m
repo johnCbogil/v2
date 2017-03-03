@@ -14,6 +14,7 @@
 @import Firebase;
 
 @interface FirebaseManager()
+
 @property (strong, nonatomic) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) FIRDatabaseReference *usersRef;
 @property (strong, nonatomic) FIRDatabaseReference *groupsRef;
@@ -27,7 +28,7 @@
 @implementation FirebaseManager
 
 #pragma mark - Initialization
-+(FirebaseManager *) sharedInstance {
++ (FirebaseManager *) sharedInstance {
     static FirebaseManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -53,6 +54,7 @@
 }
 
 - (void)createInitialReferences {
+    
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
     self.groupsRef = [self.rootRef child:@"groups"];
@@ -60,12 +62,14 @@
 }
 
 - (void)createUserReferences {
+    
     [CurrentUser sharedInstance].firebaseUserID = [FIRAuth auth].currentUser.uid;
     self.currentUserRef = [self.usersRef child:[CurrentUser sharedInstance].firebaseUserID];
     self.currentUsersGroupsRef = [self.currentUserRef child:@"groups"];
 }
 
 - (void)createUser {
+    
     [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
         if (error) {
             NSLog(@"UserAuth error: %@", error);
@@ -141,6 +145,7 @@
 }
 
 - (void)fetchAllGroupsWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
+    
     [self.groupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *groups = snapshot.value;
         NSMutableArray *groupsArray = [NSMutableArray array];
@@ -165,6 +170,7 @@
 }
 
 - (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
+    
     [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
@@ -370,7 +376,6 @@
         }];
     }
 }
-
 
 #pragma mark - Private methods
 
