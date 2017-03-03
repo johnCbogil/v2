@@ -11,12 +11,21 @@
 #import "Action.h"
 
 @interface FirebaseManager : NSObject
-@property (strong, nonatomic) NSString *userID;
 +(FirebaseManager *) sharedInstance;
-- (void)followGroup:(NSString *)groupKey WithCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock;
-- (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock;
+
+//Group methods
+- (void)followGroup:(NSString *)groupKey withCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)fetchFollowedGroupsForCurrentUserWithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)fetchAllGroupsWithCompletion:(void(^)(NSArray *groups))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)removeGroup:(Group *)group;
+- (void)fetchGroupWithKey:(NSString *)groupKey withCompletion:(void(^)(Group *group))successBlock onError:(void(^)(NSError *error))errorBlock;
+
+//Action methods
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock;
+
+//Policy Positions
+- (void)fetchPolicyPositionsForGroup:(Group *)group withCompletion:(void(^)(NSArray *positions))successBlock onError:(void(^)(NSError *error))errorBlock;
+
 
 @end

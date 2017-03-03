@@ -93,7 +93,7 @@
     NSLog(@"%@", dynamicLink.url);
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
-    [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
+    [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
         
         if (!result) {
             NSLog(@"User subscribed to %@ via deeplink", groupKey);
@@ -176,7 +176,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
         
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        
         FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
         FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
         FIRDatabaseReference *actionRef = [actionsRef child:self.actionKey];
@@ -190,6 +189,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
             self.window.rootViewController = tabVC;
             
+            
+            //TODO: Maybe switch for loop with navCtrl = self.window.rootViewController.navController
             for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
                 
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];

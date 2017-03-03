@@ -9,6 +9,7 @@
 #import "FirebaseManager.h"
 #import "CurrentUser.h"
 #import "ReportingManager.h"
+#import "PolicyPosition.h"
 
 @import Firebase;
 
@@ -33,7 +34,6 @@
         instance = [[self alloc]init];
     });
     return instance;
-
 }
 
 - (id)init {
@@ -51,6 +51,7 @@
     }
     return self;
 }
+
 - (void)createInitialReferences {
     self.rootRef = [[FIRDatabase database] reference];
     self.usersRef = [self.rootRef child:@"users"];
@@ -59,8 +60,8 @@
 }
 
 - (void)createUserReferences {
-    self.userID = [FIRAuth auth].currentUser.uid;
-    self.currentUserRef = [self.usersRef child:self.userID];
+    [CurrentUser sharedInstance].firebaseUserID = [FIRAuth auth].currentUser.uid;
+    self.currentUserRef = [self.usersRef child:[CurrentUser sharedInstance].firebaseUserID];
     self.currentUsersGroupsRef = [self.currentUserRef child:@"groups"];
 }
 
@@ -73,22 +74,22 @@
         
         [self createUserReferences];
         
-        NSLog(@"Created a new userID: %@", self.userID);
+        NSLog(@"Created a new userID: %@", [CurrentUser sharedInstance].firebaseUserID);
         
         // Add user to list of users
-        [self.usersRef updateChildValues:@{self.userID : @{@"userID" : self.userID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        [self.usersRef updateChildValues:@{[CurrentUser sharedInstance].firebaseUserID : @{@"userID" : [CurrentUser sharedInstance].firebaseUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             if (error) {
                 NSLog(@"Error adding user to database: %@", error);
                 return;
             }
-            NSLog(@"Created user %@ in database", self.userID);
+            NSLog(@"Created user %@ in database", [CurrentUser sharedInstance].firebaseUserID);
         }];
     }];
 }
 
 
 #pragma mark - Group
-- (void)followGroup:(NSString *)groupKey WithCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock {
+- (void)followGroup:(NSString *)groupKey withCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock {
     
     FIRDatabaseReference *currentUserRef = [[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:groupKey];
     
@@ -139,8 +140,31 @@
     }];
 }
 
-- (void)fetchFollowedGroupsForUserID:(NSString *)userID WithCompletion:(void(^)(NSArray *listOfFollowedGroups))successBlock onError:(void(^)(NSError *error))errorBlock {
-    
+- (void)fetchAllGroupsWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
+    [self.groupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSDictionary *groups = snapshot.value;
+        NSMutableArray *groupsArray = [NSMutableArray array];
+        [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
+            
+            BOOL debug = [self isInDebugMode];
+            // if app is in debug, add all groups
+            if (debug) {
+                [groupsArray addObject:group];
+            }
+            // if app is not in debug, add only non-debug groups
+            else if (!group.debug) {
+                [groupsArray addObject:group];
+            }
+        }];
+        successBlock(groupsArray);
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        errorBlock(error);
+    }];
+
+}
+
+- (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
@@ -203,6 +227,57 @@
         NSLog(@"%@", error.localizedDescription);
     }];
 }
+
+- (void)removeGroup:(Group *)group {
+    
+    // Remove group from local array
+    [[CurrentUser sharedInstance].listOfFollowedGroups removeObject:group];
+    NSMutableArray *discardedGroups = [NSMutableArray array];
+    for (Group *g in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        if ([g.key isEqualToString:group.key]) {
+            [discardedGroups addObject:g];
+        }
+    }
+    [[CurrentUser sharedInstance].listOfFollowedGroups removeObjectsInArray:discardedGroups];
+    
+    // Remove group from user's groups
+    [[[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:group.key]removeValue];
+    
+    // Remove user from group's users
+    [[[[self.groupsRef child:group.key]child:@"followers"]child:[FIRAuth auth].currentUser.uid]removeValue];
+    
+    // Remove group from user's subscriptions
+    [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
+    NSLog(@"User unsubscribed to %@", group.key);
+    
+    // Remove associated actions
+    NSMutableArray *discardedActions = [NSMutableArray array];
+    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
+        if ([action.groupKey isEqualToString:group.key]) {
+            [discardedActions addObject:action];
+        }
+    }
+    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
+    
+    [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
+    
+}
+- (void)fetchGroupWithKey:(NSString *)groupKey withCompletion:(void (^)(Group *))successBlock onError:(void (^)(NSError *))errorBlock {
+    [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child: groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        Group *group;
+        if (snapshot.value != [NSNull null]) {
+            group = [[Group alloc] initWithKey:groupKey groupDictionary:snapshot.value];
+            
+        }
+        successBlock(group);
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        errorBlock(error);
+    }];
+    
+}
+
+
+#pragma mark - Action
 
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
     
@@ -274,41 +349,27 @@
     });
 }
 
-- (void)removeGroup:(Group *)group {
+#pragma mark - Policy Positions
+- (void) fetchPolicyPositionsForGroup:(Group *)group withCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     
-    // Remove group from local array
-    [[CurrentUser sharedInstance].listOfFollowedGroups removeObject:group];
-    NSMutableArray *discardedGroups = [NSMutableArray array];
-    for (Group *g in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        if ([g.key isEqualToString:group.key]) {
-            [discardedGroups addObject:g];
+    FIRDatabaseReference *policyPositionsRef = [[self.groupsRef child:group.key]child:@"policyPositions"];
+    [policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if ([snapshot exists] && [snapshot hasChildren]) {
+            NSDictionary *policyPositionsDict = snapshot.value;
+            NSMutableArray *policyPositionsArray = [NSMutableArray array];
+            [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
+                [policyPositionsArray addObject:policyPosition];
+            }];
+            successBlock(policyPositionsArray);
         }
-    }
-    [[CurrentUser sharedInstance].listOfFollowedGroups removeObjectsInArray:discardedGroups];
-    
-    // Remove group from user's groups
-    [[[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:group.key]removeValue];
-    
-    // Remove user from group's users
-    [[[[self.groupsRef child:group.key]child:@"followers"]child:[FIRAuth auth].currentUser.uid]removeValue];
-    
-    // Remove group from user's subscriptions
-    [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
-    NSLog(@"User unsubscribed to %@", group.key);
-    
-    // Remove associated actions
-    NSMutableArray *discardedActions = [NSMutableArray array];
-    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        if ([action.groupKey isEqualToString:group.key]) {
-            [discardedActions addObject:action];
-        }
-    }
-    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
-    
-    [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
-    
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        errorBlock(error);
+    }];
 }
 
+
+#pragma mark - Private methods
 
 - (BOOL)isInDebugMode {
 #if DEBUG
@@ -317,7 +378,5 @@
     return NO;
 #endif
 }
-
-#pragma mark - Action
 
 @end

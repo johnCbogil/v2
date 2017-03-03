@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TakeActionViewController : UIViewController
-@property (strong, nonatomic) NSString *currentUserID;
 
 @end

@@ -17,7 +17,6 @@
 #import "ActionTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
-@import Firebase;
 
 @interface GroupDetailViewController ()
 
@@ -25,10 +24,6 @@
 @property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
 @property (weak, nonatomic)id<FollowGroupDelegate>followGroupDelegate;
 @property (nonatomic, nullable) UISelectionFeedbackGenerator *feedbackGenerator;
-@property (strong, nonatomic) FIRDatabaseReference *rootRef;
-@property (strong, nonatomic) FIRDatabaseReference *usersRef;
-@property (strong, nonatomic) FIRDatabaseReference *groupsRef;
-@property (strong, nonatomic) FIRDatabaseReference *policyPositionsRef;
 @property (strong, nonatomic) NSMutableArray *listOfPolicyPositions;
 @property (strong, nonatomic) NSString *followGroupStatus;
 @property (strong, nonatomic) UISegmentedControl *segmentControl;
@@ -47,10 +42,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.rootRef = [[FIRDatabase database] reference];
-    self.usersRef = [self.rootRef child:@"users"];
-    self.groupsRef = [self.rootRef child:@"groups"];
-    self.policyPositionsRef = [[self.groupsRef child:self.group.key]child:@"policyPositions"];
     [self configureTableView];
     [self fetchPolicyPositions];
     [self configureTitleLabel];
@@ -175,12 +166,13 @@
     
     NSString *groupKey = self.group.key;
     
-    [[FirebaseManager sharedInstance]followGroup:groupKey WithCompletion:^(BOOL isUserFollowingGroup) {
+    __weak typeof(self) weakSelf = self;
+    [[FirebaseManager sharedInstance]followGroup:groupKey withCompletion:^(BOOL isUserFollowingGroup) {
         
         if (!isUserFollowingGroup) {
             
             // Reflect follow status in UI
-            [self followGroup];
+            [weakSelf followGroup];
             NSLog(@"User subscribed to %@", groupKey);
         }
         else {
@@ -202,19 +194,16 @@
                                       handler:^(UIAlertAction * action) {
                                           
                                           // Remove group
-                                          [[FirebaseManager sharedInstance]removeGroup:self.group];
+                                          [[FirebaseManager sharedInstance]removeGroup:weakSelf.group];
                                           
-                                          // read the value once to see if group key exists
-                                          [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                                              if (snapshot.value == [NSNull null]) {
-                                                  
-                                                  // Reflect follow status in UI
-                                                  [self unFollowGroup];
-                                                  
+                                          [[FirebaseManager sharedInstance] fetchGroupWithKey:weakSelf.group.key withCompletion:^(Group *group) {
+                                              if (!group) {
+                                                  [weakSelf unFollowGroup];
                                               }
-                                          } withCancelBlock:^(NSError * _Nonnull error) {
-                                              NSLog(@"%@", error.localizedDescription);
+                                          } onError:^(NSError *error) {
+                                              NSLog(@"Error fetching group with key: %@. Error: %@", groupKey, error.localizedDescription);
                                           }];
+                                          // read the value once to see if group key exists
                                       }];
             
             [alert addAction:button0];
@@ -231,19 +220,11 @@
 // TODO: MOVE TO A TAKEACTION NETWORK MANAGER
 - (void)fetchPolicyPositions {
     __weak GroupDetailViewController *weakSelf = self;
-    [self.policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        if ([snapshot exists] && [snapshot hasChildren]) {
-            NSDictionary *policyPositionsDict = snapshot.value;
-            NSMutableArray *policyPositionsArray = [NSMutableArray array];
-            [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
-                [policyPositionsArray addObject:policyPosition];
-            }];
-            weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:policyPositionsArray];
-            [weakSelf.tableView reloadData];
-        }
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
+    [[FirebaseManager sharedInstance] fetchPolicyPositionsForGroup:self.group withCompletion:^(NSArray *positions) {
+        weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
+        [weakSelf.tableView reloadData];
+    } onError:^(NSError *error) {
+        NSLog(@"Error fetching policy position for group: %@. Error message: %@", self.group.name, error.localizedDescription);
     }];
 }
 

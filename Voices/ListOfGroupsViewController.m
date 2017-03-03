@@ -13,18 +13,13 @@
 #import "GroupDetailViewController.h"
 #import "GroupTableViewCell.h"
 #import "TakeActionViewController.h"
-
-@import Firebase;
-@import FirebaseMessaging;
+#import "FirebaseManager.h"
 
 @interface ListOfGroupsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *listOfGroups;
 @property (strong, nonatomic) NSArray *listOfFollowedGroups;
-@property (strong, nonatomic) FIRDatabaseReference *rootRef;
-@property (strong, nonatomic) FIRDatabaseReference *usersRef;
-@property (strong, nonatomic) FIRDatabaseReference *groupsRef;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
@@ -36,10 +31,6 @@
     
     self.title = @"Select A Group To Learn More";
     
-    self.rootRef = [[FIRDatabase database] reference];
-    self.usersRef = [self.rootRef child:@"users"];
-    self.groupsRef = [self.rootRef child:@"groups"];
-
     [self configureTableView];
     [self createActivityIndicator];
     [self retrieveGroups];
@@ -82,32 +73,13 @@
 - (void)retrieveGroups {
     [self toggleActivityIndicatorOn];
     __weak ListOfGroupsViewController *weakSelf = self;
-    [self.groupsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *groups = snapshot.value;
-        NSMutableArray *groupsArray = [NSMutableArray array];
-        [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
-            
-            BOOL debug;
-            
-#if DEBUG
-            debug = YES;
-#endif
-            
-            // if app is in debug, add all groups
-            if (debug) {
-                [groupsArray addObject:group];
-            }
-            // if app is not in debug, add only non-debug groups
-            else if (!group.debug) {
-                [groupsArray addObject:group];
-            }
-        }];
-        weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groupsArray];
+    [[FirebaseManager sharedInstance] fetchAllGroupsWithCompletion:^(NSArray *groups) {
+        weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groups];
         [weakSelf.tableView reloadData];
         [self toggleActivityIndicatorOff];
-    } withCancelBlock:^(NSError * _Nonnull error) {
+    } onError:^(NSError *error) {
         NSLog(@"%@", error.localizedDescription);
+
     }];
 }
 
