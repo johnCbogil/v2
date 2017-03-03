@@ -60,6 +60,7 @@
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
+		52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE4EBE1E69024700A22513 /* SearchViewController.m */; };
 		52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEC2761E55376D00CE12AF /* WebViewController.m */; };
 		52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */; };
 		52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */; };
@@ -185,6 +186,8 @@
 		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
+		52EE4EBD1E69024700A22513 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		52EE4EBE1E69024700A22513 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		52EEC2751E55376D00CE12AF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		52EEC2761E55376D00CE12AF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsTableViewCell.xib; sourceTree = "<group>"; };
@@ -451,6 +454,8 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
+				52EE4EBD1E69024700A22513 /* SearchViewController.h */,
+				52EE4EBE1E69024700A22513 /* SearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -817,6 +822,7 @@
 				52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
+				52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,

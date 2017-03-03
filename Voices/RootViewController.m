@@ -23,6 +23,7 @@
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
 #import "SearchResultsManager.h"
+#import "SearchViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -408,6 +409,7 @@
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {
+    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
@@ -432,14 +434,17 @@
 }
 
 - (void)presentInfoViewController {
+    
     [self setupAndPresentSTPopupControllerWithNibNamed:@"NewInfo" inViewController:self];
 }
 
 - (void)presentScriptDialog {
+    
     [self setupAndPresentSTPopupControllerWithNibNamed:@"ScriptDialog" inViewController:self];
 }
 
 - (void)setupAndPresentSTPopupControllerWithNibNamed:(NSString *) name inViewController:(UIViewController *)viewController  {
+    
     UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:name owner:viewController options:nil] objectAtIndex:0];
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
     popupController.containerView.layer.cornerRadius = 10;
@@ -453,6 +458,7 @@
 }
 
 - (void)presentPullToRefreshAlert {
+    
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Reps For Current Location"
                                 message:@"Please enable location services when asked."
@@ -479,6 +485,13 @@
     [alert addAction:button0];
     [alert addAction:button1];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)presentSearchViewController {
+    
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
 #pragma mark Call Center methods

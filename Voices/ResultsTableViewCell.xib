@@ -20,32 +20,49 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bOX-5T-hBA">
-                        <rect key="frame" x="8" y="9" width="25" height="25"/>
+                        <rect key="frame" x="8" y="9" width="25" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="25" id="tvK-pl-MLq"/>
+                            <constraint firstAttribute="width" constant="25" id="Kzv-fe-h9R"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCt-7W-Qaa">
-                        <rect key="frame" x="41" y="11" width="326" height="21"/>
+                        <rect key="frame" x="41" y="12" width="283" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-gJ-G8h">
+                        <rect key="frame" x="332" y="7" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="CwI-Gc-Zv5"/>
+                        </constraints>
+                        <state key="normal" image="Edit"/>
+                        <connections>
+                            <action selector="editButtonDidPress:" destination="gZ3-hm-Xtz" eventType="touchUpInside" id="GQU-3S-H3T"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bOX-5T-hBA" firstAttribute="centerY" secondItem="DB4-p7-QvO" secondAttribute="centerY" id="2de-oQ-xuL"/>
-                    <constraint firstItem="bOX-5T-hBA" firstAttribute="leading" secondItem="DB4-p7-QvO" secondAttribute="leadingMargin" id="2ym-lh-Jof"/>
-                    <constraint firstItem="NCt-7W-Qaa" firstAttribute="leading" secondItem="bOX-5T-hBA" secondAttribute="trailing" constant="8" symbolic="YES" id="7Ex-vd-BpB"/>
-                    <constraint firstItem="bOX-5T-hBA" firstAttribute="centerY" secondItem="NCt-7W-Qaa" secondAttribute="centerY" id="ThF-Ls-q0w"/>
-                    <constraint firstItem="bOX-5T-hBA" firstAttribute="top" secondItem="DB4-p7-QvO" secondAttribute="topMargin" constant="1" id="iI9-Q0-iC7"/>
-                    <constraint firstItem="NCt-7W-Qaa" firstAttribute="trailing" secondItem="DB4-p7-QvO" secondAttribute="trailingMargin" id="yPj-v5-KR0"/>
+                    <constraint firstItem="bOX-5T-hBA" firstAttribute="top" secondItem="DB4-p7-QvO" secondAttribute="topMargin" constant="1" id="CVB-2F-u85"/>
+                    <constraint firstItem="cbx-gJ-G8h" firstAttribute="top" secondItem="DB4-p7-QvO" secondAttribute="topMargin" constant="-1" id="Qtp-Ui-IiW"/>
+                    <constraint firstItem="cbx-gJ-G8h" firstAttribute="leading" secondItem="NCt-7W-Qaa" secondAttribute="trailing" constant="8" symbolic="YES" id="aLQ-Wv-LJn"/>
+                    <constraint firstItem="cbx-gJ-G8h" firstAttribute="trailing" secondItem="DB4-p7-QvO" secondAttribute="trailingMargin" id="bfW-Z6-STU"/>
+                    <constraint firstItem="bOX-5T-hBA" firstAttribute="leading" secondItem="DB4-p7-QvO" secondAttribute="leadingMargin" id="dj0-lf-QIa"/>
+                    <constraint firstItem="bOX-5T-hBA" firstAttribute="bottom" secondItem="NCt-7W-Qaa" secondAttribute="bottom" id="eGo-fR-pbb"/>
+                    <constraint firstItem="NCt-7W-Qaa" firstAttribute="leading" secondItem="bOX-5T-hBA" secondAttribute="trailing" constant="8" symbolic="YES" id="iga-JF-Pxq"/>
+                    <constraint firstItem="bOX-5T-hBA" firstAttribute="centerY" secondItem="DB4-p7-QvO" secondAttribute="centerY" id="unK-vx-VFd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cbx-gJ-G8h" secondAttribute="bottom" constant="-7" id="zc4-6X-sXt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="editButton" destination="cbx-gJ-G8h" id="YWl-J2-K93"/>
                 <outlet property="icon" destination="bOX-5T-hBA" id="wPP-ji-SlS"/>
                 <outlet property="result" destination="NCt-7W-Qaa" id="mx4-6y-vqu"/>
             </connections>
             <point key="canvasLocation" x="-66.5" y="11"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Edit" width="100" height="100"/>
+    </resources>
 </document>

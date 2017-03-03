@@ -16,8 +16,13 @@
 @interface SearchResultsManager () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
+@property (strong, nonatomic) NSString *homeAddress;
 
 @end
+
+// TODO: CREATE SEARCHVC
+// TODO: PUSH TO SEARCHVC
+// TODO: HOME CELL SHOULD CHANGE TEXT WHEN THERE IS AN ADDRESS IN THE SAVED ADDRESS PROPERTY
 
 @implementation SearchResultsManager
 
@@ -36,7 +41,6 @@
         
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
-        
         
     }
     return self;
@@ -67,7 +71,6 @@
                             }];
 }
 
-
 #pragma mark - Tableview delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -75,7 +78,7 @@
         return self.resultsArray.count;
     }
     else {
-        return 1;
+        return 2;
     }
 }
 
@@ -86,8 +89,22 @@
         ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
         cell.result.text = @"Current Location";
         cell.icon.image = [UIImage imageNamed:@"gpsArrow"];
+        [cell.editButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         return cell;
         
+    }
+    else if (indexPath.row == 1) {
+        ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
+        if (self.homeAddress.length) {
+            cell.result.text = @"Home";
+        }
+        else {
+            cell.result.text = @"Add Home Address";
+        }
+        
+        cell.icon.image = [UIImage imageNamed:@"Home"];
+        
+        return cell;
     }
     else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -96,20 +113,22 @@
         cell.textLabel.text = self.resultsArray[indexPath.row-1];
         return cell;
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // TODO: SELECTED TEXT SHOULD APPEAR IN SEARCH BAR
-
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:@"dismissKeyboard" object:nil];
-
+    
     if (indexPath.row == 0) {
         [[LocationService sharedInstance]startUpdatingLocation];
     }
+    else if (indexPath.row == 1) {
+        // TODO: PUSH TO SEARCHVC
+    }
     else {
-        [[LocationService sharedInstance]getCoordinatesFromSearchText:self.resultsArray[indexPath.row-1] withCompletion:^(CLLocation *locationResults) {
+        [[LocationService sharedInstance]getCoordinatesFromSearchText:self.resultsArray[indexPath.row-2] withCompletion:^(CLLocation *locationResults) {
             
             [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
                 NSLog(@"%@", locationResults);
@@ -130,7 +149,6 @@
             NSLog(@"%@", [googleMapsError localizedDescription]);
         }];
     }
-    
 }
 
 @end
