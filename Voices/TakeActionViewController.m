@@ -17,6 +17,7 @@
 #import "GroupTableViewCell.h"
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
+#import "FirebaseManager.h"
 
 @import Firebase;
 
@@ -152,12 +153,12 @@
     self.isUserAuthInProgress = NO;
     [self toggleActivityIndicatorOn];
 
-    [[CurrentUser sharedInstance]fetchFollowedGroupsForUserID:userID WithCompletion:^(NSArray *listOfFollowedGroups) {
+    [[FirebaseManager sharedInstance]fetchFollowedGroupsForUserID:userID WithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
 
-        [[CurrentUser sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
+        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
             [self.tableView reloadData];
         } onError:^(NSError *error) {
 
@@ -193,7 +194,7 @@
     // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-    Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
+    Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
     actionDetailViewController.group = currentGroup;
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
@@ -215,7 +216,7 @@
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:action];
+        Group *currentGroup = [Group groupForAction: action];
         [cell initWithGroup:currentGroup andAction:action];
         return cell;
     }
@@ -243,7 +244,7 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currentGroup.name
                                                                                  message:@"Are you sure you would like to stop supporting this group?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [[CurrentUser sharedInstance] removeGroup:currentGroup];
+            [[FirebaseManager sharedInstance] removeGroup:currentGroup];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -274,7 +275,7 @@
         // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
         ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [[CurrentUser sharedInstance] findGroupByAction:[CurrentUser sharedInstance].listOfActions[indexPath.row]];
+        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
         actionDetailViewController.group = currentGroup;
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }

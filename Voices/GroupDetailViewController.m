@@ -16,6 +16,7 @@
 #import "GroupDetailTableViewCell.h"
 #import "ActionTableViewCell.h"
 #import "ActionDetailViewController.h"
+#import "FirebaseManager.h"
 @import Firebase;
 
 @interface GroupDetailViewController ()
@@ -174,7 +175,7 @@
     
     NSString *groupKey = self.group.key;
     
-    [[CurrentUser sharedInstance]followGroup:groupKey WithCompletion:^(BOOL isUserFollowingGroup) {
+    [[FirebaseManager sharedInstance]followGroup:groupKey WithCompletion:^(BOOL isUserFollowingGroup) {
         
         if (!isUserFollowingGroup) {
             
@@ -201,7 +202,7 @@
                                       handler:^(UIAlertAction * action) {
                                           
                                           // Remove group
-                                          [[CurrentUser sharedInstance]removeGroup:self.group];
+                                          [[FirebaseManager sharedInstance]removeGroup:self.group];
                                           
                                           // read the value once to see if group key exists
                                           [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child:self.group.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -407,7 +408,7 @@
 #pragma mark - Segment Control 
 - (void)segmentControlDidChangeValue {
     if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
-        [[CurrentUser sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
+        [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
             self.listOfGroupActions = listOfActions;
             [self.tableView reloadData];
         }];

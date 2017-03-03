@@ -93,7 +93,7 @@
     NSLog(@"%@", dynamicLink.url);
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
-    [[CurrentUser sharedInstance]followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
+    [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString WithCompletion:^(BOOL result) {
         
         if (!result) {
             NSLog(@"User subscribed to %@ via deeplink", groupKey);
