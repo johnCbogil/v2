@@ -161,7 +161,7 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         errorBlock(error);
     }];
-
+    
 }
 
 - (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
@@ -352,20 +352,23 @@
 #pragma mark - Policy Positions
 - (void) fetchPolicyPositionsForGroup:(Group *)group withCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     
-    FIRDatabaseReference *policyPositionsRef = [[self.groupsRef child:group.key]child:@"policyPositions"];
-    [policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        if ([snapshot exists] && [snapshot hasChildren]) {
-            NSDictionary *policyPositionsDict = snapshot.value;
-            NSMutableArray *policyPositionsArray = [NSMutableArray array];
-            [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
-                [policyPositionsArray addObject:policyPosition];
-            }];
-            successBlock(policyPositionsArray);
-        }
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        errorBlock(error);
-    }];
+    if (group.key.length) {
+        
+        FIRDatabaseReference *policyPositionsRef = [[self.groupsRef child:group.key]child:@"policyPositions"];
+        [policyPositionsRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            if ([snapshot exists] && [snapshot hasChildren]) {
+                NSDictionary *policyPositionsDict = snapshot.value;
+                NSMutableArray *policyPositionsArray = [NSMutableArray array];
+                [policyPositionsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                    PolicyPosition *policyPosition = [[PolicyPosition alloc]initWithKey:key policyPosition:obj];
+                    [policyPositionsArray addObject:policyPosition];
+                }];
+                successBlock(policyPositionsArray);
+            }
+        } withCancelBlock:^(NSError * _Nonnull error) {
+            errorBlock(error);
+        }];
+    }
 }
 
 
