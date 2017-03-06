@@ -390,7 +390,7 @@
 - (void)segmentControlDidChangeValue {
     if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
         [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
-            self.listOfGroupActions = listOfActions;
+            self.listOfGroupActions = [[listOfActions reverseObjectEnumerator] allObjects];
             [self.tableView reloadData];
         }];
     }
