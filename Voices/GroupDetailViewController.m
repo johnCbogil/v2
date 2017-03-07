@@ -29,11 +29,11 @@
 @property (strong, nonatomic) UISegmentedControl *segmentControl;
 @property (strong, nonatomic) NSArray *listOfGroupActions;
 @property (strong, nonatomic) NSString *const actionTBVReuse;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
 @implementation GroupDetailViewController
-
 
 - (void)dealloc {
     self.feedbackGenerator = nil;
@@ -43,6 +43,7 @@
     [super viewDidLoad];
     
     [self configureTableView];
+    [self createActivityIndicator];
     [self fetchPolicyPositions];
     [self configureTitleLabel];
     [self observeFollowGroupStatus];
@@ -107,7 +108,31 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-#pragma mark - Follow Group methods 
+#pragma mark - Indicator 
+
+- (void)createActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.frame = CGRectMake(self.view.center.x -15.0f, self.view.center.y + self.view.frame.size.height/4.0, 30.0f, 30.0f);
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView startAnimating];
+    });
+}
+
+- (void)toggleActivityIndicatorOff {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView stopAnimating];
+    });
+}
+
+
+#pragma mark - Follow Group methods
 
 - (void)observeFollowGroupStatus {
    
@@ -219,8 +244,10 @@
 
 // TODO: MOVE TO A TAKEACTION NETWORK MANAGER
 - (void)fetchPolicyPositions {
+    [self toggleActivityIndicatorOn];
     __weak GroupDetailViewController *weakSelf = self;
     [[FirebaseManager sharedInstance] fetchPolicyPositionsForGroup:self.group withCompletion:^(NSArray *positions) {
+        [self toggleActivityIndicatorOff];
         weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
         [weakSelf.tableView reloadData];
     } onError:^(NSError *error) {
