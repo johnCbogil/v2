@@ -46,7 +46,16 @@
     [self fetchPolicyPositions];
     [self configureTitleLabel];
     [self observeFollowGroupStatus];
+    [self configureHapticFeedback];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
+- (void)configureHapticFeedback {
     NSOperatingSystemVersion version;
     version.majorVersion = 10;
     version.minorVersion = 0;
@@ -55,11 +64,6 @@
         self.feedbackGenerator = [[UISelectionFeedbackGenerator alloc] init];;
         [self.feedbackGenerator prepare];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
 }
 
 - (void)configureTitleLabel {
