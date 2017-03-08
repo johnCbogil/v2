@@ -135,7 +135,6 @@
     });
 }
 
-
 #pragma mark - Follow Group methods
 
 - (void)observeFollowGroupStatus {
