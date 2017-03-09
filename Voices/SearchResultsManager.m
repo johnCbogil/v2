@@ -100,6 +100,7 @@
         }
         else {
             cell.result.text = @"Add Home Address";
+            cell.editButton.hidden = YES;
         }
         
         cell.icon.image = [UIImage imageNamed:@"Home"];
@@ -126,6 +127,7 @@
     }
     else if (indexPath.row == 1) {
         // TODO: PUSH TO SEARCHVC
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
     }
     else {
         [[LocationService sharedInstance]getCoordinatesFromSearchText:self.resultsArray[indexPath.row-2] withCompletion:^(CLLocation *locationResults) {
