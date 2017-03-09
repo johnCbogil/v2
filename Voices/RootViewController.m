@@ -492,6 +492,7 @@
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    searchViewController.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 

@@ -126,7 +126,6 @@
         [[LocationService sharedInstance]startUpdatingLocation];
     }
     else if (indexPath.row == 1) {
-        // TODO: PUSH TO SEARCHVC
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
     }
     else {

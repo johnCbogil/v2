@@ -19,7 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+    self.title = @"Add Home Address";
+    self.searchBar.placeholder = @"Enter address";
 }
 
 
