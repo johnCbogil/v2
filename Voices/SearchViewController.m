@@ -45,12 +45,13 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
     _placesClient = [[GMSPlacesClient alloc] init];
     self.resultsArray = @[];
+    
+    // TODO: OPEN KEYBOARD ON VIEW DID APPEAR
 }
 
 - (void)saveHomeAddress {
     
     [[NSUserDefaults standardUserDefaults]setObject:self.homeAddress forKey:@"homeAddress"];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
