@@ -52,6 +52,7 @@
 - (void)saveHomeAddress {
     
     [[NSUserDefaults standardUserDefaults]setObject:self.homeAddress forKey:@"homeAddress"];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{

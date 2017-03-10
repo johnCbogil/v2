@@ -292,6 +292,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
 
+    
+
 }
 
 - (void)adjustToStatusBarChange {
@@ -495,6 +497,7 @@
     searchViewController.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
+
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
