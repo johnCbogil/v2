@@ -10,6 +10,7 @@
 #import "LocationService.h"
 #import "RepsManager.h"
 #import "ResultsTableViewCell.h"
+#import "SearchResultsManager.h"
 
 @import GooglePlaces;
 
@@ -18,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
-@property (strong, nonatomic) NSString *homeAddress;
 @property (strong, nonatomic) NSArray *resultsArray;
 
 @end
@@ -45,8 +45,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
     _placesClient = [[GMSPlacesClient alloc] init];
     self.resultsArray = @[];
-    
-    // TODO: OPEN KEYBOARD ON VIEW DID APPEAR
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -57,7 +55,8 @@
 
 - (void)saveHomeAddress {
     
-    [[NSUserDefaults standardUserDefaults]setObject:self.homeAddress forKey:@"homeAddress"];
+    [SearchResultsManager sharedInstance].homeAddress = self.searchBar.text;
+    [[NSUserDefaults standardUserDefaults]setObject:[SearchResultsManager sharedInstance].homeAddress forKey:@"homeAddress"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -116,8 +115,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    self.homeAddress = self.resultsArray[indexPath.row];
-    self.searchBar.text = self.homeAddress;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [SearchResultsManager sharedInstance].homeAddress = self.resultsArray[indexPath.row];
+    self.searchBar.text = [SearchResultsManager sharedInstance].homeAddress;
 }
 
 

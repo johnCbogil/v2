@@ -12,6 +12,7 @@
 
 + (SearchResultsManager *) sharedInstance;
 @property (strong, nonatomic) NSArray *resultsArray;
+@property (strong, nonatomic) NSString *homeAddress;
 - (void)placeAutocomplete:(NSString *)searchText;
 
 @end

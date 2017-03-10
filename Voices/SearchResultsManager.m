@@ -16,7 +16,6 @@
 @interface SearchResultsManager () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
-@property (strong, nonatomic) NSString *homeAddress;
 
 @end
 
@@ -41,6 +40,7 @@
         
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
+        self.homeAddress = @"";
         
     }
     return self;
@@ -97,6 +97,8 @@
         ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
         if (self.homeAddress.length) {
             cell.result.text = @"Home";
+            cell.editButton.hidden = NO;
+
         }
         else {
             cell.result.text = @"Add Home Address";
@@ -118,15 +120,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     // TODO: SELECTED TEXT SHOULD APPEAR IN SEARCH BAR
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"dismissKeyboard" object:nil];
-    
+        
     if (indexPath.row == 0) {
         [[LocationService sharedInstance]startUpdatingLocation];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
+
     }
     else if (indexPath.row == 1) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
+        if (self.homeAddress.length) {
+            [[LocationService sharedInstance]getCoordinatesFromSearchText:self.homeAddress withCompletion:^(CLLocation *locationResults) {
+                
+                [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+                    NSLog(@"%@", locationResults);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+                } onError:^(NSError *error) {
+                    [error localizedDescription];
+                }];
+                
+                [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+                } onError:^(NSError *error) {
+                    [error localizedDescription];
+                }];
+                
+                [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+                
+            } onError:^(NSError *googleMapsError) {
+                NSLog(@"%@", [googleMapsError localizedDescription]);
+            }];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
+        }
+        else {
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
+        }
     }
     else {
         [[LocationService sharedInstance]getCoordinatesFromSearchText:self.resultsArray[indexPath.row-2] withCompletion:^(CLLocation *locationResults) {
