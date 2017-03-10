@@ -7,11 +7,19 @@
 //
 
 #import "SearchViewController.h"
+#import "LocationService.h"
+#import "RepsManager.h"
+#import "ResultsTableViewCell.h"
 
-@interface SearchViewController ()
+@import GooglePlaces;
+
+@interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) GMSPlacesClient *placesClient;
+@property (strong, nonatomic) NSString *homeAddress;
+@property (strong, nonatomic) NSArray *resultsArray;
 
 @end
 
@@ -19,12 +27,81 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.title = @"Add Home Address";
     self.searchBar.placeholder = @"Enter address";
+    self.searchBar.delegate  = self;
+    _placesClient = [[GMSPlacesClient alloc] init];
+    self.resultsArray = @[];
+    
 }
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    
+    
+}
+
+#pragma mark - Autocomplete methods ---------------------------------
+
+- (void)placeAutocomplete:(NSString *)searchText {
+    
+    
+    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
+    filter.country = @"US";
+    
+    [_placesClient autocompleteQuery:searchText
+                              bounds:nil
+                              filter:filter
+                            callback:^(NSArray *results, NSError *error) {
+                                if (error != nil) {
+                                    NSLog(@"Autocomplete error %@", [error localizedDescription]);
+                                    return;
+                                }
+                                NSMutableArray *tempArray = @[].mutableCopy;
+                                for (GMSAutocompletePrediction* result in results) {
+                                    NSLog(@"Result '%@'", result.attributedFullText.string);
+                                    [tempArray addObject:result.attributedFullText.string];
+                                }
+                                self.resultsArray = tempArray;
+                            }];
+}
+
+#pragma mark - Tableview delegate methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.resultsArray.count;
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    if (indexPath.row == 0) {
+        ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
+        cell.result.text = @"Current Location";
+        cell.icon.image = [UIImage imageNamed:@"gpsArrow"];
+        [cell.editButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        return cell;
+        
+    }
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont voicesFontWithSize:17];
+        cell.textLabel.text = self.resultsArray[indexPath.row-1];
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+
+}
+
 
 
 @end
