@@ -12,6 +12,7 @@
 @implementation LocationService
 
 + (LocationService *) sharedInstance {
+    
     static LocationService *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -21,6 +22,7 @@
 }
 
 - (id)init {
+    
     self = [super init];
     if(self != nil) {
     }
@@ -28,6 +30,7 @@
 }
 
 - (void)startUpdatingLocation {
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100; // meters
@@ -36,11 +39,13 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
     NSLog(@"Location service failed with error %@", error);
     [[NSNotificationCenter defaultCenter]postNotificationName:AFNetworkingTaskDidSuspendNotification object:nil];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray*)locations {
+    
     [self.locationManager stopUpdatingLocation];
     self.locationManager = nil;
     CLLocation *location = [locations lastObject];
@@ -49,11 +54,11 @@
     // TODO: THIS IS NOT DRY
     self.currentLocation = location;
     self.requestedLocation = location;
-  
 }
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock {
+    
     [[NetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
             NSLog(@"theres beena google maps mistake!");
@@ -76,6 +81,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
         NSLog(@"location authorization denied");
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
@@ -88,5 +94,26 @@
         NSLog(@"Starting location updates");
         [self.locationManager startUpdatingLocation];
     }
+}
+
+- (NSString *)getStreetAddress {
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         if(placemarks && placemarks.count > 0)
+         {
+             CLPlacemark *placemark= [placemarks objectAtIndex:0];
+             
+             address = [NSString stringWithFormat:@"%@ %@,%@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea]];
+             
+             NSLog(@"%@",address);
+         }
+         
+     }];
+    
+    [geocoder release];
+    return address;
+    return @"";
 }
 @end

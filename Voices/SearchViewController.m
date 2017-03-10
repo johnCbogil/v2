@@ -33,6 +33,10 @@
     self.title = @"Add Home Address";
     self.searchBar.placeholder = @"Enter address";
     self.searchBar.delegate  = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"ResultsTableViewCell" bundle:nil]forCellReuseIdentifier:@"ResultsTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
     _placesClient = [[GMSPlacesClient alloc] init];
     self.resultsArray = @[];
     
@@ -40,7 +44,8 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
-    
+    [self placeAutocomplete:searchText];
+    [self.tableView reloadData];
     
 }
 
@@ -74,32 +79,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return self.resultsArray.count;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    if (indexPath.row == 0) {
-        ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
-        cell.result.text = @"Current Location";
-        cell.icon.image = [UIImage imageNamed:@"gpsArrow"];
-        [cell.editButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        return cell;
-        
-    }
-    else {
-        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.font = [UIFont voicesFontWithSize:17];
-        cell.textLabel.text = self.resultsArray[indexPath.row-1];
-        return cell;
-    }
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont voicesFontWithSize:17];
+    cell.textLabel.text = self.resultsArray[indexPath.row-1];
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-
+    
+    
+    
 }
 
 
