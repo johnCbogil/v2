@@ -49,6 +49,12 @@
     // TODO: OPEN KEYBOARD ON VIEW DID APPEAR
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.searchBar becomeFirstResponder];
+}
+
 - (void)saveHomeAddress {
     
     [[NSUserDefaults standardUserDefaults]setObject:self.homeAddress forKey:@"homeAddress"];
