@@ -30,29 +30,45 @@
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Save"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(saveHomeAddress)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.title = @"Add Home Address";
     self.searchBar.placeholder = @"Enter address";
     self.searchBar.delegate  = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"ResultsTableViewCell" bundle:nil]forCellReuseIdentifier:@"ResultsTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
     _placesClient = [[GMSPlacesClient alloc] init];
     self.resultsArray = @[];
+}
+
+- (void)saveHomeAddress {
     
+    [[NSUserDefaults standardUserDefaults]setObject:self.homeAddress forKey:@"homeAddress"];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
+    if (searchBar.text) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+    
     [self placeAutocomplete:searchText];
     [self.tableView reloadData];
-    
 }
 
 #pragma mark - Autocomplete methods ---------------------------------
 
 - (void)placeAutocomplete:(NSString *)searchText {
-    
     
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
     filter.country = @"US";
@@ -86,17 +102,15 @@
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.textLabel.font = [UIFont voicesFontWithSize:17];
-    cell.textLabel.text = self.resultsArray[indexPath.row-1];
+    cell.textLabel.text = self.resultsArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
-    
+    self.homeAddress = self.resultsArray[indexPath.row];
+    self.searchBar.text = self.homeAddress;
 }
-
 
 
 @end

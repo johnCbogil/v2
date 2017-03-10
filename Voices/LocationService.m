@@ -96,24 +96,4 @@
     }
 }
 
-- (NSString *)getStreetAddress {
-    
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
-     {
-         if(placemarks && placemarks.count > 0)
-         {
-             CLPlacemark *placemark= [placemarks objectAtIndex:0];
-             
-             address = [NSString stringWithFormat:@"%@ %@,%@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea]];
-             
-             NSLog(@"%@",address);
-         }
-         
-     }];
-    
-    [geocoder release];
-    return address;
-    return @"";
-}
 @end
