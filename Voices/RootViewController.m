@@ -79,7 +79,7 @@
     [super viewWillAppear:animated];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-    [self.navigationController.navigationBar setHidden:YES];
+    self.navigationController.navigationBar.hidden = YES;
     [self.searchResultsTableView reloadData];
 }
 
@@ -476,10 +476,9 @@
 }
 
 - (void)presentSearchViewController {
-    
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    searchViewController.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
