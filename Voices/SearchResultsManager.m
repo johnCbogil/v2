@@ -39,7 +39,7 @@
     if (self != nil) {
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
-        self.homeAddress = @"";
+        self.homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
     }
     return self;
 }

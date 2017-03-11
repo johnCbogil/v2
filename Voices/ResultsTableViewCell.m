@@ -14,7 +14,7 @@
     [super awakeFromNib];
     
     self.result.font = [UIFont voicesFontWithSize:17];
-    self.editButton.alpha = 0.15;
+    self.editButton.alpha = 0.25;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
