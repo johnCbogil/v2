@@ -126,26 +126,46 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
-    
     if (self.representative.bioguide.length > 0) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
         NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
         NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
         
-        NSURL *contactFormURL = [NSURL URLWithString:[contactFormsDict valueForKey:self.representative.bioguide]];
-        NSDictionary *notiDict = @{@"contactFormURL" : contactFormURL, @"fullName": [NSString stringWithFormat:@"%@ %@", self.representative.title, self.representative.fullName]};
-    
+        NSString *contactFormURLString = [contactFormsDict valueForKey:self.representative.bioguide];
+        if (contactFormURLString.length == 0) {
+            [self showEmailAlert];
+            return;
+        }
+        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+        
+        NSString *title = self.representative.title;
+        NSString *name = self.representative.fullName;
+        NSString *fullName = @"";
+        if (title.length > 0 && name.length > 0) {
+            fullName = [NSString stringWithFormat:@"%@ %@", title, name];
+        }
+        else if (name.length > 0) {
+            fullName = name;
+        }
+        else if (title.length > 0) {
+            fullName = title;
+        }
+        NSDictionary *notiDict = @{@"contactFormURL" : contactFormURL,
+                                   @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
     else if (self.representative.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
-    
     else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+        [self showEmailAlert];
     }
+}
+
+- (void)showEmailAlert {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)tweetButtonDidPress:(id)sender {
