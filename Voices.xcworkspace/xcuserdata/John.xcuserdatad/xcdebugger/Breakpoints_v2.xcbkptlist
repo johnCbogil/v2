@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Voices/SearchViewController.m"
-            timestampString = "510959524.308027"
+            filePath = "Voices/SearchResultsManager.m"
+            timestampString = "510961450.199793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-saveHomeAddress"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-init"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,13 +36,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Voices/SearchResultsManager.m"
-            timestampString = "510959597.3422"
+            timestampString = "510961450.199793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-init"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SearchResultsManager tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "Voices"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/John/Development/voices-ios/Voices/SearchResultsManager.m"
+                  timestampString = "510961342.286949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__58-[SearchResultsManager tableView:didSelectRowAtIndexPath:]_block_invoke"
+                  moduleName = "Voices"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/John/Development/voices-ios/Voices/SearchResultsManager.m"
+                  timestampString = "510961342.288931"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

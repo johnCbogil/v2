@@ -40,6 +40,7 @@
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
         self.homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
+        NSLog(@"HOME ADDRESS: %@", self.homeAddress);
     }
     return self;
 }
@@ -132,8 +133,9 @@
     }
     else if (indexPath.row == 1) {
         if (self.homeAddress.length) {
+            NSLog(@"HOME ADDRESS: %@", self.homeAddress);
             [[LocationService sharedInstance]getCoordinatesFromSearchText:self.homeAddress withCompletion:^(CLLocation *locationResults) {
-                
+                NSLog(@"%@", locationResults);
                 [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
                     NSLog(@"%@", locationResults);
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];

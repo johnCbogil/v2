@@ -56,7 +56,10 @@
 - (void)saveHomeAddress {
     
     [SearchResultsManager sharedInstance].homeAddress = self.searchBar.text;
-    [[NSUserDefaults standardUserDefaults]setObject:[SearchResultsManager sharedInstance].homeAddress forKey:@"homeAddress"];
+    [[NSUserDefaults standardUserDefaults] setObject:[SearchResultsManager sharedInstance].homeAddress forKey:@"homeAddress"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"SRM: %@", [SearchResultsManager sharedInstance].homeAddress);
+    NSLog(@"NSUD: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"homeAddress"]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -125,8 +128,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [SearchResultsManager sharedInstance].homeAddress = self.resultsArray[indexPath.row];
-    self.searchBar.text = [SearchResultsManager sharedInstance].homeAddress;
+    self.searchBar.text = self.resultsArray[indexPath.row];
 }
 
 
