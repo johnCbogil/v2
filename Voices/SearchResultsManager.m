@@ -128,7 +128,6 @@
         
     if (indexPath.row == 0) {
         [[LocationService sharedInstance]startUpdatingLocation];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
 
     }
     else if (indexPath.row == 1) {
@@ -154,7 +153,6 @@
             } onError:^(NSError *googleMapsError) {
                 NSLog(@"%@", [googleMapsError localizedDescription]);
             }];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
         }
         else {
          [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
@@ -182,6 +180,7 @@
             NSLog(@"%@", [googleMapsError localizedDescription]);
         }];
     }
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
 }
 
 @end
