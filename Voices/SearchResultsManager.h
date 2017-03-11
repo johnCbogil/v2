@@ -10,9 +10,12 @@
 
 @interface SearchResultsManager : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-+ (SearchResultsManager *) sharedInstance;
 @property (strong, nonatomic) NSArray *resultsArray;
 @property (strong, nonatomic) NSString *homeAddress;
-- (void)placeAutocomplete:(NSString *)searchText;
+
+- (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock;
+- (void)clearSearchResults;
+
++ (SearchResultsManager *) sharedInstance;
 
 @end

@@ -34,23 +34,19 @@
     return instance;
 }
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
-    if(self != nil) {
-        
+    if (self != nil) {
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
         self.homeAddress = @"";
-        
     }
     return self;
 }
 
 #pragma mark - Autocomplete methods ---------------------------------
 
-- (void)placeAutocomplete:(NSString *)searchText {
-    
-    
+- (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock {
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
     filter.country = @"US";
     
@@ -68,14 +64,21 @@
                                     [tempArray addObject:result.attributedFullText.string];
                                 }
                                 self.resultsArray = tempArray;
+                                if (successBlock) {
+                                    successBlock();
+                                }
                             }];
+}
+
+- (void)clearSearchResults {
+    self.resultsArray = @[];
 }
 
 #pragma mark - Tableview delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.resultsArray.count) {
-        return self.resultsArray.count;
+        return self.resultsArray.count + 2;
     }
     else {
         return 2;
@@ -83,8 +86,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     if (indexPath.row == 0) {
         ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
         cell.result.text = @"Current Location";
@@ -113,7 +114,7 @@
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont voicesFontWithSize:17];
-        cell.textLabel.text = self.resultsArray[indexPath.row-1];
+        cell.textLabel.text = self.resultsArray[indexPath.row - 2];
         return cell;
     }
 }

@@ -233,7 +233,6 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
     self.darkView.hidden = NO;
     
     self.searchResultsTableView.hidden = NO;
@@ -249,11 +248,20 @@
 }
 
 - (void)textFieldDidChange:(UITextField *)textfield {
-    [[SearchResultsManager sharedInstance]placeAutocomplete:textfield.text];
-    [self.searchResultsTableView reloadData];
+    if (textfield.text.length > 0) {
+        [[SearchResultsManager sharedInstance] placeAutocomplete:textfield.text onSuccess:^{
+            [self.searchResultsTableView reloadData];
+        }];
+    }
+    else {
+        [[SearchResultsManager sharedInstance] clearSearchResults];
+        [self.searchResultsTableView reloadData];
+    }
 }
 
 - (void)clearSearchBar {
+    [[SearchResultsManager sharedInstance] clearSearchResults];
+    [self.searchResultsTableView reloadData];
     self.searchTextField.attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [self.searchTextField resignFirstResponder];
 }
@@ -349,7 +357,6 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    
     NSString *title;
     NSString *message;
     

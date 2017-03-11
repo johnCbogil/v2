@@ -69,14 +69,20 @@
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     
-    [self placeAutocomplete:searchText];
-    [self.tableView reloadData];
+    if (searchText.length > 0) {
+        [self placeAutocomplete:searchText onSuccess:^{
+            [self.tableView reloadData];
+        }];
+    }
+    else {
+        self.resultsArray = @[];
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - Autocomplete methods ---------------------------------
 
-- (void)placeAutocomplete:(NSString *)searchText {
-    
+- (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock {
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
     filter.country = @"US";
     
@@ -94,6 +100,9 @@
                                     [tempArray addObject:result.attributedFullText.string];
                                 }
                                 self.resultsArray = tempArray;
+                                if (successBlock) {
+                                    successBlock();
+                                }
                             }];
 }
 
