@@ -127,11 +127,13 @@
     // TODO: SELECTED TEXT SHOULD APPEAR IN SEARCH BAR
     
     if (indexPath.row == 0) {
+        
         [[LocationService sharedInstance]startUpdatingLocation];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
         
     }
     else if (indexPath.row == 1) {
+        
         if (self.homeAddress.length) {
             [self fetchRepsForAddress:self.homeAddress];
         }
