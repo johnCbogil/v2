@@ -84,6 +84,7 @@
 #pragma mark - Autocomplete methods ---------------------------------
 
 - (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock {
+    
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
     filter.country = @"US";
     
