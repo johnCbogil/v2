@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Action.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Group : NSObject
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray <NSString*> *actionKeys;
 @property BOOL debug;
 
-
++ (Group *)groupForAction: (Action*) action;
 - (instancetype)initWithKey:(NSString *)key groupDictionary:(NSDictionary *)dictionary;
 
 @end

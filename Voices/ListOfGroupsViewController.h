@@ -11,6 +11,4 @@
 
 @interface ListOfGroupsViewController : UIViewController
 
-@property (strong, nonatomic) NSString *currentUserID;
-
 @end

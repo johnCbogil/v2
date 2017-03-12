@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (nonatomic) Group *group;
-//@property (nonatomic) NSString *currentUserID;
 @end
 
 @implementation ActionTableViewCell

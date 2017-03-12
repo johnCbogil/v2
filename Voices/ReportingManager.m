@@ -31,6 +31,7 @@
     return self;
 }
 
+//TODO: Maybe move to firebase manager if we end up using multiple Reporting services
 - (void)reportEvent:(NSString *)eventType eventFocus:(NSString *)eventFocus eventData:(NSString *)eventData {
     
     NSString *eventLoggerID = [FIRAuth auth].currentUser.uid;

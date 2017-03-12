@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) Action *action;
 @property (strong, nonatomic) Group *group;
-@property (strong, nonatomic) NSString *currentUserID;
 - (IBAction)groupImagePressed:(id)sender;
 
 @end

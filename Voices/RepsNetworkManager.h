@@ -11,9 +11,9 @@
 #import "AFNetworking.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface NetworkManager : NSObject
+@interface RepsNetworkManager : NSObject
 
-+(NetworkManager *) sharedInstance;
++(RepsNetworkManager *) sharedInstance;
 - (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
