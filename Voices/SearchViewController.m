@@ -40,6 +40,7 @@
     self.title = @"Add Home Address";
     self.searchBar.placeholder = @"Enter address";
     self.searchBar.delegate  = self;
+    [self.searchBar setReturnKeyType:UIReturnKeyDone];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
@@ -63,6 +64,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - UISearchBar Delegate Methods
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
     if (searchBar.text) {
@@ -81,6 +84,10 @@
         self.resultsArray = @[];
         [self.tableView reloadData];
     }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self saveHomeAddress];
 }
 
 // TODO: THIS AUTOCOMPLETE CODE IS REPEATED IN SEARCHRESULTSMANAGER.M
