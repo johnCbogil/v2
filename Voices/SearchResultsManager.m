@@ -39,7 +39,6 @@
     if (self != nil) {
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
-        self.homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
     }
     return self;
 }
@@ -95,8 +94,11 @@
         
     }
     else if (indexPath.row == 1) {
+        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
+        NSLog(@"ADDY: CELLFORROW: %@",homeAddress);
+
         ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
-        if (self.homeAddress.length) {
+        if (homeAddress.length) {
             cell.result.text = @"Home";
             cell.editButton.hidden = NO;
             
@@ -132,9 +134,10 @@
         
     }
     else if (indexPath.row == 1) {
-        
-        if (self.homeAddress.length) {
-            [self fetchRepsForAddress:self.homeAddress];
+        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
+        NSLog(@"ADDY: DIDSELECT: %@",homeAddress);
+        if (homeAddress.length) {
+            [self fetchRepsForAddress:homeAddress];
         }
         else {
             [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];

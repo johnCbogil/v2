@@ -55,9 +55,11 @@
 
 - (void)saveHomeAddress {
     
-    [SearchResultsManager sharedInstance].homeAddress = self.searchBar.text;
-    [[NSUserDefaults standardUserDefaults] setObject:[SearchResultsManager sharedInstance].homeAddress forKey:@"homeAddress"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:@"homeAddress"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
+    NSLog(@"ADDY: SAVE: %@",homeAddress);
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
