@@ -58,8 +58,6 @@
     [SearchResultsManager sharedInstance].homeAddress = self.searchBar.text;
     [[NSUserDefaults standardUserDefaults] setObject:[SearchResultsManager sharedInstance].homeAddress forKey:@"homeAddress"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSLog(@"SRM: %@", [SearchResultsManager sharedInstance].homeAddress);
-    NSLog(@"NSUD: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"homeAddress"]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
