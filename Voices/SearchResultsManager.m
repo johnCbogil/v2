@@ -40,7 +40,6 @@
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
         self.homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
-        NSLog(@"HOME ADDRESS: %@", self.homeAddress);
     }
     return self;
 }

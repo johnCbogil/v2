@@ -81,6 +81,7 @@
     }
 }
 
+// TODO: THIS AUTOCOMPLETE CODE IS REPEATED IN SEARCHRESULTSMANAGER.M
 #pragma mark - Autocomplete methods ---------------------------------
 
 - (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock {
@@ -129,6 +130,5 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.searchBar.text = self.resultsArray[indexPath.row];
 }
-
 
 @end
