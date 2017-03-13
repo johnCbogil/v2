@@ -30,13 +30,8 @@
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Save"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(saveHomeAddress)];
-    self.navigationItem.rightBarButtonItem = saveButton;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
+    self.navigationItem.rightBarButtonItem = privacyButton;
     self.title = @"Add Home Address";
     self.searchBar.placeholder = @"Enter address";
     self.searchBar.delegate  = self;
@@ -54,6 +49,24 @@
     [self.searchBar becomeFirstResponder];
 }
 
+- (void)presentPrivacyAlert {
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Privacy is a human right"
+                                message:@"Voices does not share your address with any third parties."
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *button0 = [UIAlertAction
+                              actionWithTitle:@"✊"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                              }];
+    [alert addAction:button0];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)saveHomeAddress {
     
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:@"homeAddress"];
@@ -67,13 +80,6 @@
 #pragma mark - UISearchBar Delegate Methods
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    
-    if (searchBar.text) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    }
-    else {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
-    }
     
     if (searchText.length > 0) {
         [self placeAutocomplete:searchText onSuccess:^{
