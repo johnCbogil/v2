@@ -29,7 +29,7 @@
 @property (strong, nonatomic) UISegmentedControl *segmentControl;
 @property (strong, nonatomic) NSArray *listOfGroupActions;
 @property (strong, nonatomic) NSString *const actionTBVReuse;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
 
 @end
 
@@ -115,23 +115,30 @@
 #pragma mark - Indicator 
 
 - (void)createActivityIndicator {
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+    self.indicatorView = [[UIActivityIndicatorView alloc]
                                   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicatorView.color = [UIColor grayColor];
-    self.activityIndicatorView.frame = CGRectMake(self.view.center.x -15.0f, self.view.center.y + self.view.frame.size.height/4.0, 30.0f, 30.0f);
-    [self.view addSubview:self.activityIndicatorView];
+    self.indicatorView.color = [UIColor grayColor];
+    self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
+    self.indicatorView.hidden = false;
+    self.indicatorView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:self.indicatorView];
+    
+    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.view.centerXAnchor];
+    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.view.bottomAnchor constant: -self.view.frame.size.height/6];
+    NSArray *constraints = [[NSArray alloc]initWithObjects:horizontalConstraint, verticalConstraint, nil];
+    [NSLayoutConstraint activateConstraints:constraints];
 }
 
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.activityIndicatorView startAnimating];
+        [self.indicatorView startAnimating];
     });
 }
 
 - (void)toggleActivityIndicatorOff {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.activityIndicatorView stopAnimating];
+        [self.indicatorView stopAnimating];
     });
 }
 
@@ -354,6 +361,7 @@
         }
     }
     else{
+
         switch (self.segmentControl.selectedSegmentIndex) {
             case 0: {
                 static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
