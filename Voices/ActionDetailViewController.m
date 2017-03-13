@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.groupNameLabel.text = self.action.groupName;
+    self.groupNameLabel.text = self.group.name;
     self.actionTitleLabel.text = self.action.title;
     self.actionBodyTextView.text = self.action.body;
     self.actionBodyTextView.dataDetectorTypes = UIDataDetectorTypeAll;

@@ -53,7 +53,7 @@
 - (void)initWithGroup:(Group *)group andAction:(Action *)action {
     
     self.group = group;
-    self.groupNameLabel.text = action.groupName;
+    self.groupNameLabel.text = group.name;
     self.actionTitleTextView.text = action.title;
     self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:self.group.groupImageURL];
