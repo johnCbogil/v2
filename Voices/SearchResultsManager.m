@@ -94,7 +94,7 @@
         
     }
     else if (indexPath.row == 1) {
-        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
+        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
         NSLog(@"ADDY: CELLFORROW: %@",homeAddress);
 
         ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
@@ -134,7 +134,7 @@
         
     }
     else if (indexPath.row == 1) {
-        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:@"homeAddress"];
+        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
         NSLog(@"ADDY: DIDSELECT: %@",homeAddress);
         if (homeAddress.length) {
             [self fetchRepsForAddress:homeAddress];

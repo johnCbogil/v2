@@ -63,4 +63,6 @@ extern NSString *const kGenericScript;
 extern NSString *const kWhyCall;
 extern NSString *const kWhatToExpect;
 
+extern NSString *const kHomeAddress;
+
 @end
