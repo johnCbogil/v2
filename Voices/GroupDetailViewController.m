@@ -17,6 +17,7 @@
 #import "ActionTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
+#import "WebViewController.h"
 
 @interface GroupDetailViewController ()
 
@@ -49,6 +50,7 @@
     [self observeFollowGroupStatus];
     [self configureHapticFeedback];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebViewControllerForGroupDetail" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,6 +112,15 @@
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)presentWebViewController:(NSNotification *)notification {
+    
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = notification.object;
+    webViewController.title = @"TAKE ACTION";
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 #pragma mark - Indicator 

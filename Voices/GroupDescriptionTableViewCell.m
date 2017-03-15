@@ -7,8 +7,9 @@
 //
 
 #import "GroupDescriptionTableViewCell.h"
+#import "WebViewController.h"
 
-@interface GroupDescriptionTableViewCell ()
+@interface GroupDescriptionTableViewCell () <UITextViewDelegate>
 
 @property (nonatomic)BOOL isExpanded;
 @property (strong, nonatomic) IBOutlet UIButton *expandButton;
@@ -39,6 +40,16 @@
     [self.textView setContentOffset:CGPointZero animated:YES];
     [self maxLines];
     [self.textView sizeToFit];
+    self.textView.userInteractionEnabled = YES;
+    self.textView.selectable = YES;
+    self.textView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.textView.delegate = self;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+   
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebViewControllerForGroupDetail" object:URL];
+    return NO;
 }
 
 #pragma mark - Expanding Cell delegate methods
