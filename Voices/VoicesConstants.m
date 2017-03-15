@@ -66,5 +66,8 @@ NSString *const kEMAIL_EVENT = @"EMAIL_REPRESENTATIVES_EVENT";
 NSString *const kSUBSCRIBE_EVENT = @"SUBSCRIBE_EVENT";
 NSString *const kUNSUBSCRIBE_EVENT = @"UNSUBSCRIBE_EVENT";
 
+#pragma mark - Home Address
+NSString *const kHomeAddress = @"homeAddress";
+
 
 @end
