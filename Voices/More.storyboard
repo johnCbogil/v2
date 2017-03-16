@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zIW-5H-tpb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--More View Controller-->
         <scene sceneID="wyl-tw-Kex">
             <objects>
-                <viewController id="zIW-5H-tpb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="more" automaticallyAdjustsScrollViewInsets="NO" id="zIW-5H-tpb" customClass="MoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kgd-Be-cmZ"/>
                         <viewControllerLayoutGuide type="bottom" id="ori-eC-tDD"/>
@@ -21,18 +21,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pO5-Iz-4y6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pO5-Iz-4y6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pO5-Iz-4y6" firstAttribute="top" secondItem="kgd-Be-cmZ" secondAttribute="bottom" id="SRv-3f-Tnf"/>
+                            <constraint firstItem="ori-eC-tDD" firstAttribute="top" secondItem="pO5-Iz-4y6" secondAttribute="bottom" id="hDt-ej-euR"/>
+                            <constraint firstItem="pO5-Iz-4y6" firstAttribute="leading" secondItem="K57-nh-e6q" secondAttribute="leading" id="i0S-gP-iPf"/>
+                            <constraint firstAttribute="trailing" secondItem="pO5-Iz-4y6" secondAttribute="trailing" id="pCd-fU-tgJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="moreTableView" destination="pO5-Iz-4y6" id="4ju-MR-84e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gh0-8t-eR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="-282"/>
+            <point key="canvasLocation" x="108" y="-292.80359820089956"/>
         </scene>
     </scenes>
 </document>

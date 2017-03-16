@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoreViewController : UIViewController
+@interface MoreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end

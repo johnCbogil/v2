@@ -24,6 +24,7 @@
 #import "WebViewController.h"
 #import "SearchResultsManager.h"
 #import "SearchViewController.h"
+#import "MoreViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -544,7 +545,15 @@
 #pragma mark - IBActions
 
 - (IBAction)infoButtonDidPress:(id)sender {
-    [self presentInfoViewController];
+//    [self presentInfoViewController];
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"More" bundle:nil];
+
+    MoreViewController* moreVC = [storyboard instantiateViewControllerWithIdentifier:@"more"];
+    
+    [moreVC.navigationItem setTitle:@"More"];
+       
+    [self.navigationController pushViewController:moreVC animated:YES];
 }
 
 - (IBAction)federalPageButtonDidPress:(id)sender {
@@ -578,5 +587,8 @@
     self.searchTextField.attributedText = nil;
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
 }
+
+
+
 
 @end
