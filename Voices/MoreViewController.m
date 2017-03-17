@@ -23,6 +23,7 @@
     
     self.moreTableView.delegate = self;
     self.moreTableView.dataSource = self;
+    
     self.dataArray = [[NSArray alloc] initWithObjects:@"Feedback", @"Share app", @"Rate in app store", @"About", @"FAQ", @"Voter registration", @"Enable location", @"Enable push notification", nil];
 }
 
@@ -39,17 +40,13 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    // If you're serving data from an array, return the length of the array:
     return [self.dataArray count];
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
@@ -59,10 +56,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Set the data for this cell:
-    
     cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
-    //cell.imageView.image = [UIImage imageNamed:@"MissingRepFemale.png"];
     
     return cell;
 }
