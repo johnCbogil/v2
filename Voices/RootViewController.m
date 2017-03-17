@@ -486,6 +486,7 @@
 - (void)presentSearchViewController {
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
@@ -552,7 +553,7 @@
     MoreViewController* moreVC = [storyboard instantiateViewControllerWithIdentifier:@"more"];
     
     [moreVC.navigationItem setTitle:@"More"];
-       
+    
     [self.navigationController pushViewController:moreVC animated:YES];
 }
 
