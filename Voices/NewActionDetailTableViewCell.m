@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) Action *action;
 @property (strong, nonatomic) Group *group;
+@property (strong, nonatomic) NSArray *repsArray;
 
 @end
 
