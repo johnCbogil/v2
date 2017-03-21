@@ -37,7 +37,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C3e-7W-weW" id="2X9-Tk-ag4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -102,7 +102,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QLh-yg-ofC" id="Zr7-RN-dhJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -245,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="1967.2" y="356.67166416791605"/>
         </scene>
-        <!--View Controller-->
+        <!--New Action Detail View Controller-->
         <scene sceneID="sYR-t2-CYL">
             <objects>
-                <viewController id="am9-Ph-zjg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewActionDetailViewController" id="am9-Ph-zjg" customClass="NewActionDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yvy-Nh-nIB"/>
                         <viewControllerLayoutGuide type="bottom" id="hhi-tp-ixk"/>
@@ -295,7 +295,7 @@
                                         <rect key="frame" x="0.0" y="28" width="335" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LvJ-X3-gP3" id="eEJ-kb-kx3">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -303,7 +303,7 @@
                                         <rect key="frame" x="0.0" y="129" width="335" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RE0-sc-wJn" id="hoC-RN-tGO">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -311,7 +311,7 @@
                                         <rect key="frame" x="0.0" y="230" width="335" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cV7-O3-JdA" id="eCq-2K-SU2">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -389,7 +389,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TakeActionNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

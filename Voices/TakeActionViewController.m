@@ -9,8 +9,8 @@
 #import "TakeActionViewController.h"
 
 #import "Action.h"
-#import "ActionDetailViewController.h"
 #import "ActionTableViewCell.h"
+#import "NewActionDetailViewController.h"
 #import "CurrentUser.h"
 #import "Group.h"
 #import "GroupDetailViewController.h"
@@ -178,10 +178,10 @@
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
-    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-    Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-    actionDetailViewController.group = currentGroup;
+    NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
+//    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+//    Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
+//    actionDetailViewController.group = currentGroup;
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
 
@@ -259,10 +259,10 @@
     else {
         
         // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-        actionDetailViewController.group = currentGroup;
+        NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
+//        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+//        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
+//        actionDetailViewController.group = currentGroup;
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
