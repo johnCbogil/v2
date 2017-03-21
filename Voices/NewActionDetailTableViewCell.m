@@ -24,6 +24,9 @@
 @property (strong, nonatomic) Group *group;
 @property (strong, nonatomic) Representative *selectedRep;
 @property (strong, nonatomic) NSMutableArray *listOfRepCells;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
 
 @end
 
@@ -31,18 +34,17 @@
 
 - (void)initWithGroup:(Group *)group andAction:(Action *)action {
     
+    [self configureCollectionView];
     [self fetchGroupLogoForImageURL:group.groupImageURL];
     self.group = group;
     self.action = action;
+    self.actionTitleLabel.text = self.action.title;
     self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
     [self.collectionView reloadData];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
     self.listOfRepCells = @[].mutableCopy;
-    self.collectionView.backgroundColor = [UIColor clearColor];
-//    self.callButton.tintColor = [UIColor voicesOrange];
-//    self.emailButton.tintColor = [UIColor voicesOrange];
-//    self.tweetButton.tintColor = [UIColor voicesOrange];
-
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)awakeFromNib {
@@ -80,7 +82,13 @@
     }];
 }
 
-#pragma mark - UICollectionView Delegate methods
+#pragma mark - UICollectionView methods
+
+- (void)configureCollectionView {
+//    collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
+    self.collectionView.backgroundColor = [UIColor clearColor];
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.repsArray.count;
@@ -97,7 +105,6 @@
     
     if (self.repsArray.count) {
         self.selectedRep = self.repsArray[indexPath.row];
-//        self.chooseRepsLabel.text = [NSString stringWithFormat:@"Select A Rep: %@", self.selectedRep.fullName ];
         ActionRepCollectionViewCell *selectedCell = (ActionRepCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         for (ActionRepCollectionViewCell *cell in self.listOfRepCells) {
             if (selectedCell == cell) {
@@ -109,6 +116,16 @@
             }
         }
     }
+}
+
+#pragma mark - Action Buttons Did Press
+
+- (IBAction)callButtonDidPress:(id)sender {
+}
+
+- (IBAction)emailButtonDidPress:(id)sender {
+}
+- (IBAction)tweetButtonDidPress:(id)sender {
 }
 
 @end

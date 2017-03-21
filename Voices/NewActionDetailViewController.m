@@ -28,6 +28,7 @@
 
 - (void)configureTableview {
     
+    self.tableview.separatorColor = [UIColor clearColor];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];

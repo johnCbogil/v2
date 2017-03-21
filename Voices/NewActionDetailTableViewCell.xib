@@ -21,7 +21,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bw-g0-P7w">
                         <rect key="frame" x="8" y="116" width="359" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -33,16 +33,25 @@
                                 <rect key="frame" x="7.5" y="20.5" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="Phone Filled"/>
+                                <connections>
+                                    <action selector="callButtonDidPress:" destination="fPp-FA-yw3" eventType="touchUpInside" id="5Pm-lr-bLp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irM-wB-IzQ">
                                 <rect key="frame" x="97" y="20.5" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="Message Filled"/>
+                                <connections>
+                                    <action selector="emailButtonDidPress:" destination="fPp-FA-yw3" eventType="touchUpInside" id="bv8-va-GI2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbQ-yY-Hxo">
                                 <rect key="frame" x="188" y="20.5" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="Twitter Filled"/>
+                                <connections>
+                                    <action selector="tweetButtonDidPress:" destination="fPp-FA-yw3" eventType="touchUpInside" id="uHh-J9-7dg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,7 +59,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select A Rep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fus-IO-T4u">
                         <rect key="frame" x="8" y="233" width="359" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -65,7 +74,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sjK-7c-BdX">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sjK-7c-BdX">
                         <rect key="frame" x="8" y="335" width="359" height="109"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,11 +91,14 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionTitleLabel" destination="3bw-g0-P7w" id="IU7-JB-7Rg"/>
+                <outlet property="callButton" destination="lB4-uQ-cOW" id="dGH-Yb-ZKX"/>
                 <outlet property="collectionView" destination="zok-mg-I5X" id="XGc-7b-FLv"/>
                 <outlet property="containerView" destination="3gH-4f-yKN" id="aqx-Vd-uiZ"/>
+                <outlet property="emailButton" destination="irM-wB-IzQ" id="ubF-nh-l7U"/>
                 <outlet property="groupLogo" destination="Msf-R5-idl" id="tew-56-GnK"/>
                 <outlet property="selectRepLabel" destination="Fus-IO-T4u" id="Mvv-46-al6"/>
                 <outlet property="textView" destination="sjK-7c-BdX" id="TJL-ta-drb"/>
+                <outlet property="tweetButton" destination="BbQ-yY-Hxo" id="UaX-Su-E9v"/>
             </connections>
             <point key="canvasLocation" x="-507.5" y="368.5"/>
         </tableViewCell>
