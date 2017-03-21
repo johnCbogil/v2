@@ -170,14 +170,17 @@
 
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    [self pushToActionDetail:indexPath];
+}
+
+- (void)pushToActionDetail:(NSIndexPath *)indexPath {
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-    
-    // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
+
     NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
@@ -256,14 +259,8 @@
         groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
-    else {
-        
-        // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
-        NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
-        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-        actionDetailViewController.group = currentGroup;
-        [self.navigationController pushViewController:actionDetailViewController animated:YES];
+    else {        
+        [self pushToActionDetail:indexPath];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
