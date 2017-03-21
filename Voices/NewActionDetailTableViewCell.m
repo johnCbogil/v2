@@ -8,7 +8,7 @@
 
 #import "NewActionDetailTableViewCell.h"
 
-@interface NewActionDetailTableViewCell()
+@interface NewActionDetailTableViewCell() <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *groupLogo;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
@@ -32,4 +32,14 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - UICollectionView Delegate methods
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell;
+    return cell;
+}
 @end
