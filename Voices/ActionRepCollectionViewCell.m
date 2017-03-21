@@ -1,0 +1,53 @@
+//
+//  ActionRepCollectionViewCell.m
+//  Voices
+//
+//  Created by Bogil, John on 2/15/17.
+//  Copyright © 2017 John Bogil. All rights reserved.
+//
+
+#import "ActionRepCollectionViewCell.h"
+#import "AFHTTPRequestOperation.h"
+#import "UIImageView+AFNetworking.h"
+
+@interface ActionRepCollectionViewCell()
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@end
+
+@implementation ActionRepCollectionViewCell
+
+- (void)initWithRep:(Representative *)rep {
+    
+    self.representative = rep;
+    [self fetchRepImages];
+    self.layer.cornerRadius = kButtonCornerRadius;
+    
+}
+
+- (void)fetchRepImages {
+    
+    self.image.contentMode = UIViewContentModeScaleAspectFill;
+    UIImage *placeholderImage;
+    if ([self.representative.gender isEqualToString:@"M"]) {
+        placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];
+    }
+    else {
+        placeholderImage = [UIImage imageNamed:kRepDefaultImageFemale];
+    }
+    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.representative.photoURL
+                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                              timeoutInterval:60];
+    
+    [self.image setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+        
+        // TODO: ADD FADE HERE
+        [UIView animateWithDuration:.25 animations:^{
+            self.image.image = image;
+        }];
+        
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
+        NSLog(@"Federal image failure");
+    }];
+}
+
+@end

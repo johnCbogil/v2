@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Group.h"
+#import "Action.h"
 
 @interface NewActionDetailViewController : UIViewController
+
+@property (strong, nonatomic) Action *action;
+@property (strong, nonatomic) Group *group;
 
 @end

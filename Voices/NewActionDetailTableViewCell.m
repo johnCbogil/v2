@@ -7,6 +7,7 @@
 //
 
 #import "NewActionDetailTableViewCell.h"
+#import "ActionRepCollectionViewCell.h"
 
 @interface NewActionDetailTableViewCell() <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -28,7 +29,9 @@
     
     self.group = group;
     self.action = action;
-    
+    self.repsArray = @[@"one", @"two", @"three"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
+
 }
 
 - (void)awakeFromNib {
@@ -52,11 +55,12 @@
 #pragma mark - UICollectionView Delegate methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 0;
+    return self.repsArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell;
+    ActionRepCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActionRepCollectionViewCell" forIndexPath:indexPath];
+    // CELL INIT WITH REP
     return cell;
 }
 @end

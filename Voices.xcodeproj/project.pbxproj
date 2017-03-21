@@ -74,6 +74,8 @@
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
 		7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */; };
+		7E525BDD1E819B33007E80A8 /* ActionRepCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E525BDB1E819B33007E80A8 /* ActionRepCollectionViewCell.m */; };
+		7E525BDE1E819B33007E80A8 /* ActionRepCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E525BDC1E819B33007E80A8 /* ActionRepCollectionViewCell.xib */; };
 		7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsViewController.m */; };
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
 		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
@@ -215,6 +217,9 @@
 		7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyRepTableViewCell.xib; sourceTree = "<group>"; };
 		7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiOnboardingViewController.h; sourceTree = "<group>"; };
 		7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiOnboardingViewController.m; sourceTree = "<group>"; };
+		7E525BDA1E819B33007E80A8 /* ActionRepCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRepCollectionViewCell.h; sourceTree = "<group>"; };
+		7E525BDB1E819B33007E80A8 /* ActionRepCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRepCollectionViewCell.m; sourceTree = "<group>"; };
+		7E525BDC1E819B33007E80A8 /* ActionRepCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionRepCollectionViewCell.xib; sourceTree = "<group>"; };
 		7E6CB2DD1DD658B20027D11B /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
 		7E6CB2DE1DD658B20027D11B /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
 		7EA49CE31D6C9B4B002449CC /* Voices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Voices.entitlements; sourceTree = "<group>"; };
@@ -314,6 +319,9 @@
 				52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */,
 				52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */,
 				52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */,
+				7E525BDA1E819B33007E80A8 /* ActionRepCollectionViewCell.h */,
+				7E525BDB1E819B33007E80A8 /* ActionRepCollectionViewCell.m */,
+				7E525BDC1E819B33007E80A8 /* ActionRepCollectionViewCell.xib */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -731,6 +739,7 @@
 				527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */,
 				52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */,
 				52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */,
+				7E525BDE1E819B33007E80A8 /* ActionRepCollectionViewCell.xib in Resources */,
 				52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */,
 				5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */,
 				A7C833EF1E296504006C86E1 /* PolicyPositionsDetailCell.xib in Resources */,
@@ -905,6 +914,7 @@
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				52089CF01E80B82200A32984 /* NewActionDetailTableViewCell.m in Sources */,
+				7E525BDD1E819B33007E80A8 /* ActionRepCollectionViewCell.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
@@ -1052,7 +1062,7 @@
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andy.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1076,7 +1086,7 @@
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andy.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
