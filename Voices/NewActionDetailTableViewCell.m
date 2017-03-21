@@ -16,10 +16,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) Action *action;
+@property (strong, nonatomic) Group *group;
 
 @end
 
 @implementation NewActionDetailTableViewCell
+
+- (void)initWithGroup:(Group *)group andAction:(Action *)action {
+    
+    self.group = group;
+    self.action = action;
+    
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -35,10 +44,14 @@
     // Configure the view for the selected state
 }
 
+- (void)fetchGroupLogoForImageURL:(NSURL *)url {
+    
+}
+
 #pragma mark - UICollectionView Delegate methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

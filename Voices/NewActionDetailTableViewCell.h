@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Group.h"
+#import "Action.h"
 
 @interface NewActionDetailTableViewCell : UITableViewCell
+
+- (void)initWithGroup:(Group *)group andAction:(Action *)action;
 
 @end
