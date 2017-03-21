@@ -51,7 +51,7 @@ NSString *const kActionEmptyStateTopLabel = @"You haven't received any actions y
 NSString *const kActionEmptyStateBottomLabel = @"To receive actions from advocacy groups, tap the + button above to follow groups.";
 NSString *const kGroupEmptyStateTopLabel = @"You don't follow any groups yet.";
 NSString *const kGroupEmptyStateBottomLabel = @"To follow groups, tap the + button above.";
-NSString *const kLocalRepsMissing = @"Local officials are not available in this area yet.";
+NSString *const kLocalRepsMissing = @"Local reps are not available in this area yet.";
 
 #pragma mark - Info Text
 NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support / oppose] [an issue that you care about] and I will be voting in November.";
