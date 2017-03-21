@@ -21,39 +21,51 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self configureTableview];
+    [self fetchRepsForHomeAddress];
+}
 
+- (void)configureTableview {
+    
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];
+}
+
+- (void)fetchRepsForHomeAddress {
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    
     [[LocationService sharedInstance]getCoordinatesFromSearchText:homeAddress withCompletion:^(CLLocation *locationResults) {
         
-        [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            NSLog(@"%@", locationResults);
+        if (self.action.level == 0) {
+            [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+                NSLog(@"%@", locationResults);
+                [self.tableview reloadData];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+        }
+        else if (self.action.level == 1) {
+            [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+                [self.tableview reloadData];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+        }
+        else if (self.action.level == 2) {
+            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
             [self.tableview reloadData];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-            [self.tableview reloadData];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
-        
+        }
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
-
 }
 
 #pragma mark - UITableView Delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return 1;
 }
 
@@ -61,12 +73,11 @@
     
     NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
     [cell initWithGroup:self.group andAction:self.action];
-//    cell.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 1000;
+    return 750;
 }
 @end

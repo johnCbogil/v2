@@ -179,9 +179,9 @@
     
     // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
     NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
-//    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-//    Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-//    actionDetailViewController.group = currentGroup;
+    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+    Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
+    actionDetailViewController.group = currentGroup;
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
 
@@ -260,9 +260,9 @@
         
         // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
         NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
-//        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-//        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-//        actionDetailViewController.group = currentGroup;
+        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
+        actionDetailViewController.group = currentGroup;
         [self.navigationController pushViewController:actionDetailViewController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
