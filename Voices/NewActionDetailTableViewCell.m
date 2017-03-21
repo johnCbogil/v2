@@ -8,6 +8,7 @@
 
 #import "NewActionDetailTableViewCell.h"
 #import "ActionRepCollectionViewCell.h"
+#import "RepsManager.h"
 
 @interface NewActionDetailTableViewCell() <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -19,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) Action *action;
 @property (strong, nonatomic) Group *group;
-@property (strong, nonatomic) NSArray *repsArray;
 
 @end
 
@@ -29,8 +29,13 @@
     
     self.group = group;
     self.action = action;
-    self.repsArray = @[@"one", @"two", @"three"];
+    self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
+    [self.collectionView reloadData];
+//    self.repsArray = @[@"one", @"two", @"three"]; // THIS NEEDS THE REPS FOR THE USER'S HOME ADDY
+    // RN REPSMANAGER IS EMPTY SO WE CANT FETCH
+
     [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
+    
 
 }
 
@@ -61,6 +66,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ActionRepCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActionRepCollectionViewCell" forIndexPath:indexPath];
     // CELL INIT WITH REP
+    [cell initWithRep:self.repsArray[indexPath.row]];
     return cell;
 }
 @end

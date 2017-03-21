@@ -13,5 +13,6 @@
 @interface NewActionDetailTableViewCell : UITableViewCell
 
 - (void)initWithGroup:(Group *)group andAction:(Action *)action;
+@property (strong, nonatomic) NSArray *repsArray;
 
 @end

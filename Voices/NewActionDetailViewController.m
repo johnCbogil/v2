@@ -8,6 +8,8 @@
 
 #import "NewActionDetailViewController.h"
 #import "NewActionDetailTableViewCell.h"
+#import "LocationService.h"
+#import "RepsManager.h"
 
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -23,6 +25,30 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:homeAddress withCompletion:^(CLLocation *locationResults) {
+        
+        [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+            NSLog(@"%@", locationResults);
+            [self.tableview reloadData];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+            [self.tableview reloadData];
+        } onError:^(NSError *error) {
+            [error localizedDescription];
+        }];
+        
+        [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+        
+    } onError:^(NSError *googleMapsError) {
+        NSLog(@"%@", [googleMapsError localizedDescription]);
+    }];
+
 }
 
 #pragma mark - UITableView Delegate methods
@@ -35,6 +61,7 @@
     
     NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
     [cell initWithGroup:self.group andAction:self.action];
+//    cell.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
     return cell;
 }
 
