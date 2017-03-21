@@ -23,7 +23,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
