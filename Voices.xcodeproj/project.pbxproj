@@ -11,6 +11,8 @@
 		5200716E1E56A9B2002CEDA6 /* SearchResultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200716D1E56A9B2002CEDA6 /* SearchResultsManager.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52089CEA1E80B3E900A32984 /* NewActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */; };
+		52089CED1E80B77400A32984 /* NewActionDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */; };
+		52089CF01E80B82200A32984 /* NewActionDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepTableViewCell.m */; };
@@ -110,6 +112,9 @@
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		52089CE81E80B3E900A32984 /* NewActionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailViewController.h; sourceTree = "<group>"; };
 		52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailViewController.m; sourceTree = "<group>"; };
+		52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewActionDetailTableViewCell.xib; sourceTree = "<group>"; };
+		52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailTableViewCell.h; sourceTree = "<group>"; };
+		52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailTableViewCell.m; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
 		52194F531E3C519400EBF461 /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepTableViewCell.xib; sourceTree = "<group>"; };
@@ -306,6 +311,9 @@
 			children = (
 				52089CE81E80B3E900A32984 /* NewActionDetailViewController.h */,
 				52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */,
+				52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */,
+				52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */,
+				52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -714,6 +722,7 @@
 				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
+				52089CED1E80B77400A32984 /* NewActionDetailTableViewCell.xib in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
@@ -895,6 +904,7 @@
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
+				52089CF01E80B82200A32984 /* NewActionDetailTableViewCell.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,

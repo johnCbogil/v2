@@ -7,6 +7,7 @@
 //
 
 #import "NewActionDetailViewController.h"
+#import "NewActionDetailTableViewCell.h"
 
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,12 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
+    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];
 }
 
 #pragma mark - UITableView Delegate methods
@@ -33,7 +32,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell;
+    
+    NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
     return cell;
 }
 
