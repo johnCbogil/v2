@@ -7,7 +7,6 @@
 //
 
 #import "TakeActionViewController.h"
-
 #import "Action.h"
 #import "ActionTableViewCell.h"
 #import "NewActionDetailViewController.h"
@@ -18,7 +17,6 @@
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
-
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -180,7 +178,6 @@
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-
     NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
@@ -259,7 +256,7 @@
         groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
-    else {        
+    else {
         [self pushToActionDetail:indexPath];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

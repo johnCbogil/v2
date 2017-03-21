@@ -23,7 +23,14 @@
     [super viewDidLoad];
     
     [self configureTableview];
-    [self fetchRepsForHomeAddress];
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress) {
+        [self fetchRepsForHomeAddress:homeAddress];
+    }
+    else {
+        // TURN ON EMPTY STATE
+    }
 }
 
 - (void)configureTableview {
@@ -34,10 +41,9 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];
 }
 
-- (void)fetchRepsForHomeAddress {
+- (void)fetchRepsForHomeAddress:(NSString *)address {
     
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:homeAddress withCompletion:^(CLLocation *locationResults) {
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
         
         if (self.action.level == 0) {
             [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
