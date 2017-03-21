@@ -80,6 +80,14 @@
                     </textView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="actionTitleLabel" destination="3bw-g0-P7w" id="IU7-JB-7Rg"/>
+                <outlet property="collectionView" destination="zok-mg-I5X" id="XGc-7b-FLv"/>
+                <outlet property="containerView" destination="3gH-4f-yKN" id="aqx-Vd-uiZ"/>
+                <outlet property="groupLogo" destination="mDb-is-d4O" id="u2V-Jk-eFy"/>
+                <outlet property="selectRepLabel" destination="Fus-IO-T4u" id="Mvv-46-al6"/>
+                <outlet property="textView" destination="sjK-7c-BdX" id="TJL-ta-drb"/>
+            </connections>
             <point key="canvasLocation" x="-507.5" y="368.5"/>
         </tableViewCell>
     </objects>

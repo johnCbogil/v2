@@ -8,6 +8,17 @@
 
 #import "NewActionDetailTableViewCell.h"
 
+@interface NewActionDetailTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *groupLogo;
+@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
+@end
+
 @implementation NewActionDetailTableViewCell
 
 - (void)awakeFromNib {
