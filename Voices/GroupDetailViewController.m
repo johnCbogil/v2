@@ -106,7 +106,7 @@
     self.followGroupDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupDetailTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupFollowTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
@@ -344,7 +344,7 @@
     
     if (indexPath.section == 0){
         if(indexPath.row == 0){
-            static NSString *CellIdentifier = @"GroupDetailTableViewCell";
+            static NSString *CellIdentifier = @"GroupFollowTableViewCell";
             GroupDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(cell == nil){
                 // Load the top-level objects from the custom cell XIB.
