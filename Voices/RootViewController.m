@@ -230,6 +230,8 @@
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
     
+    [self hideSearchResultsTableView];
+    
     return NO;
 }
 
