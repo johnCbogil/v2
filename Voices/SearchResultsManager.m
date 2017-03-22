@@ -124,8 +124,8 @@
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
         self.addressSearched = @"Current Location";
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
     }
     else if (indexPath.row == 1) {
         NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];

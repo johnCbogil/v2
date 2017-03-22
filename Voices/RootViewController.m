@@ -494,16 +494,12 @@
 }
 
 - (void)hideSearchResultsTableView {
+    
     self.searchResultsTableView.hidden = YES;
     self.darkView.hidden = YES;
-    [self setSearchResultsText];
+    self.searchTextField.text = [SearchResultsManager sharedInstance].addressSearched;
     [self.searchTextField resignFirstResponder];
     [self.darkView removeGestureRecognizer:self.tap];
-}
-
-- (void)setSearchResultsText {
-    self.searchTextField.text = [SearchResultsManager sharedInstance].addressSearched;
-    NSLog(@"search results - %@",[SearchResultsManager sharedInstance].addressSearched );
 }
 
 #pragma mark Call Center methods
