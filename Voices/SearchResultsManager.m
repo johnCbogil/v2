@@ -17,12 +17,7 @@
 
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
 
-
 @end
-
-// TODO: CREATE SEARCHVC
-// TODO: PUSH TO SEARCHVC
-// TODO: HOME CELL SHOULD CHANGE TEXT WHEN THERE IS AN ADDRESS IN THE SAVED ADDRESS PROPERTY
 
 @implementation SearchResultsManager
 
@@ -125,20 +120,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // TODO: SELECTED TEXT SHOULD APPEAR IN SEARCH BAR
-    
+        
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
-        
+        self.addressSearched = @"Current Location";
     }
     else if (indexPath.row == 1) {
         NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-        NSLog(@"ADDY: DIDSELECT: %@",homeAddress);
+
         if (homeAddress.length) {
-            self.searchResults = homeAddress;
+            self.addressSearched = homeAddress;
             [self fetchRepsForAddress:homeAddress];
         }
         else {
@@ -146,19 +139,17 @@
         }
     }
     else {
-        self.searchResults = self.resultsArray[indexPath.row - 2];
+        self.addressSearched = self.resultsArray[indexPath.row - 2];
         [self fetchRepsForAddress:self.resultsArray[indexPath.row - 2]];
     }
 }
 
-
-
 - (void)fetchRepsForAddress:(NSString *)address {
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
+        
         NSLog(@"%@", locationResults);
         [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            NSLog(@"%@", locationResults);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             [error localizedDescription];

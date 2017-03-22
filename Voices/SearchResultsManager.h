@@ -11,7 +11,7 @@
 @interface SearchResultsManager : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSArray *resultsArray;
-@property (strong, nonatomic) NSString *searchResults;
+@property (strong, nonatomic) NSString *addressSearched;
 
 - (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock;
 - (void)clearSearchResults;

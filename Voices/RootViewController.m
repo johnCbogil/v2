@@ -502,8 +502,8 @@
 }
 
 - (void)setSearchResultsText {
-    self.searchTextField.text = [SearchResultsManager sharedInstance].searchResults;
-    NSLog(@"search results - %@",[SearchResultsManager sharedInstance].searchResults );
+    self.searchTextField.text = [SearchResultsManager sharedInstance].addressSearched;
+    NSLog(@"search results - %@",[SearchResultsManager sharedInstance].addressSearched );
 }
 
 #pragma mark Call Center methods
@@ -592,8 +592,5 @@
     self.searchTextField.attributedText = nil;
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
 }
-
-
-
 
 @end
