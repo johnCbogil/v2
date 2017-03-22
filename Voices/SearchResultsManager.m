@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) GMSPlacesClient *placesClient;
 
+
 @end
 
 // TODO: CREATE SEARCHVC
@@ -137,6 +138,7 @@
         NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
         NSLog(@"ADDY: DIDSELECT: %@",homeAddress);
         if (homeAddress.length) {
+            self.searchResults = homeAddress;
             [self fetchRepsForAddress:homeAddress];
         }
         else {
@@ -144,10 +146,12 @@
         }
     }
     else {
-        
+        self.searchResults = self.resultsArray[indexPath.row - 2];
         [self fetchRepsForAddress:self.resultsArray[indexPath.row - 2]];
     }
 }
+
+
 
 - (void)fetchRepsForAddress:(NSString *)address {
     
