@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="1003"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fPp-FA-yw3" id="UFY-SH-XUY">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="1002"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="1002.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bw-g0-P7w">
@@ -128,7 +128,13 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionTitleLabel" destination="3bw-g0-P7w" id="IU7-JB-7Rg"/>
+                <outlet property="callButton" destination="Rfn-8P-ieg" id="eVG-i1-muG"/>
+                <outlet property="collectionView" destination="HnG-vv-Sqs" id="OXa-q4-eMb"/>
+                <outlet property="emailButton" destination="pxb-iJ-nMc" id="bgM-KD-Hme"/>
                 <outlet property="groupLogo" destination="Msf-R5-idl" id="tew-56-GnK"/>
+                <outlet property="selectRepLabel" destination="hbm-xq-d8e" id="bzf-o4-KLI"/>
+                <outlet property="textView" destination="aBZ-1a-wO2" id="amh-YS-QBZ"/>
+                <outlet property="tweetButton" destination="Qvo-6O-cXe" id="bmB-na-N7C"/>
             </connections>
             <point key="canvasLocation" x="-507.5" y="368.5"/>
         </tableViewCell>
