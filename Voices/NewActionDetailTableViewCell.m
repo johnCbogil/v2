@@ -38,7 +38,9 @@
     [self fetchGroupLogoForImageURL:group.groupImageURL];
     self.group = group;
     self.action = action;
+    self.actionTitleLabel.numberOfLines = 0;
     self.actionTitleLabel.text = self.action.title;
+    [self.actionTitleLabel sizeToFit];
     self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
     [self.collectionView reloadData];
     self.listOfRepCells = @[].mutableCopy;
