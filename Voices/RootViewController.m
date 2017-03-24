@@ -230,6 +230,8 @@
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
     
+    [self hideSearchResultsTableView];
+    
     return NO;
 }
 
@@ -492,12 +494,13 @@
 }
 
 - (void)hideSearchResultsTableView {
+    
     self.searchResultsTableView.hidden = YES;
     self.darkView.hidden = YES;
+    self.searchTextField.text = [SearchResultsManager sharedInstance].addressSearched;
     [self.searchTextField resignFirstResponder];
     [self.darkView removeGestureRecognizer:self.tap];
 }
-
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
@@ -585,8 +588,5 @@
     self.searchTextField.attributedText = nil;
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Current Location" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
 }
-
-
-
 
 @end
