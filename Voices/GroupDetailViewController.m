@@ -13,7 +13,7 @@
 #import "CurrentUser.h"
 #import "GroupDescriptionTableViewCell.h"
 #import "PolicyPositionsDetailCell.h"
-#import "GroupDetailTableViewCell.h"
+#import "GroupFollowTableViewCell.h"
 #import "ActionTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
@@ -79,7 +79,7 @@
     self.navigationItem.titleView = titleLabel;
 }
 
-- (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupDetailTableViewCell *)cell {
+- (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupFollowTableViewCell *)cell {
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
     cell.groupImageView.layer.cornerRadius = kButtonCornerRadius;
     cell.groupImageView.clipsToBounds = YES;
@@ -106,7 +106,7 @@
     self.followGroupDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupFollowTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GroupFollowTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupFollowTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
@@ -200,7 +200,7 @@
 
 - (IBAction)followGroupButtonDidPress {
     
-    // Action originates in GroupDetailTableViewCell from followGroupButton via the followGroupDelegate
+    // Action originates in GroupFollowTableViewCell from followGroupButton via the followGroupDelegate
     
     [self.feedbackGenerator selectionChanged];
     
@@ -345,10 +345,10 @@
     if (indexPath.section == 0){
         if(indexPath.row == 0){
             static NSString *CellIdentifier = @"GroupFollowTableViewCell";
-            GroupDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            GroupFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(cell == nil){
                 // Load the top-level objects from the custom cell XIB.
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDetailTableViewCell" owner:self options:nil];
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupFollowTableViewCell" owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

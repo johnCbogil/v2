@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class GroupDetailTableViewCell;
+@class GroupFollowTableViewCell;
 
 @protocol FollowGroupDelegate <NSObject>
 

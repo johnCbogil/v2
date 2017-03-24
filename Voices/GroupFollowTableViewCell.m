@@ -1,14 +1,14 @@
 //
-//  GroupDetailTableViewCell.m
+//  GroupFollowTableViewCell.m
 //  Voices
 //
 //  Created by perrin cloutier on 2/13/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "GroupDetailTableViewCell.h"
+#import "GroupFollowTableViewCell.h"
 
-@implementation GroupDetailTableViewCell
+@implementation GroupFollowTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

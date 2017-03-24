@@ -1,5 +1,5 @@
 //
-//  GroupDetailTableViewCell.h
+//  GroupFollowTableViewCell.m
 //  Voices
 //
 //  Created by perrin cloutier on 2/13/17.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FollowGroupDelegate.h"
 
-@interface GroupDetailTableViewCell : UITableViewCell
+@interface GroupFollowTableViewCell : UITableViewCell
 
 @property (nonatomic, weak)id<FollowGroupDelegate>followGroupDelegate;
 @property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
