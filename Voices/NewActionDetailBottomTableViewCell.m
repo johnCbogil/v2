@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.descriptionTextView.backgroundColor = [UIColor redColor];
+    
+    self.descriptionLabel.numberOfLines = 0;
  
 }
 

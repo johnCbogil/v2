@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
