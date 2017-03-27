@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Action.h"
+#import "Group.h"
 
 @interface NewActionDetailTopTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
+@property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
+- (void)initWithAction:(Action *)action andGroup:(Group *)group;
 
 @end

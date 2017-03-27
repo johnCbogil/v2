@@ -10,6 +10,11 @@
 
 @implementation NewActionDetailMiddleTableViewCell
 
+// TODO: SET BUTTON COLORS
+// TODO: SET BUTTON OUTLETS
+// TODO: SET BUTTON DID PRESS OUTLETS
+// TODO: BUTTONS NEED TO KNOW WHO THE SELECTED REP IS
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

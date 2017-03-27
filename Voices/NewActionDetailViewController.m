@@ -87,6 +87,7 @@
     
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell"];
+        [cell initWithAction:self.action andGroup:self.group];
         return cell;
     }
     else if (indexPath.row == 1) {

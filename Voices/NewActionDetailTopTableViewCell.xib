@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w5C-x9-gNu" id="re5-8a-P8B">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="250.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-0W-FIS">
@@ -27,6 +27,9 @@
                             <constraint firstAttribute="width" constant="100" id="uMo-OM-LxJ"/>
                         </constraints>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="groupImageButtonDidPress:" destination="w5C-x9-gNu" eventType="touchUpInside" id="3wL-mo-YGY"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-nQ-Val">
                         <rect key="frame" x="8" y="115" width="359" height="135.5"/>
@@ -45,6 +48,10 @@
                     <constraint firstItem="WrH-0W-FIS" firstAttribute="top" secondItem="re5-8a-P8B" secondAttribute="topMargin" id="glj-OS-3ZE"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="actionTitleLabel" destination="vW5-nQ-Val" id="SlS-Wh-PvV"/>
+                <outlet property="groupImageButton" destination="WrH-0W-FIS" id="IYG-Pc-9A8"/>
+            </connections>
             <point key="canvasLocation" x="-95.5" y="221.5"/>
         </tableViewCell>
     </objects>
