@@ -8,6 +8,7 @@
 
 #import "NewActionDetailViewController.h"
 #import "NewActionDetailTableViewCell.h"
+#import "NewActionDetailTopTableViewCell.h"
 #import "LocationService.h"
 #import "RepsManager.h"
 
@@ -40,6 +41,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
 }
 
 - (void)fetchRepsForHomeAddress:(NSString *)address {
@@ -74,18 +76,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
-    [cell initWithGroup:self.group andAction:self.action];
-    return cell;
+    if (indexPath.row == 0) {
+        NewActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell"];
+        return cell;
+    }
+    else {
+        NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
+        [cell initWithGroup:self.group andAction:self.action];
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 750;
+    if (indexPath.row == 0) {
+        return 400;
+    }
+    else {
+        return 500;
+    }
 }
 @end

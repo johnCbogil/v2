@@ -24,6 +24,8 @@
 		5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5253FB4D1BCB32F1001A5328 /* ScriptDialogViewController.m */; };
 		525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525475951D31C40C00A894BA /* GroupsEmptyState.xib */; };
 		5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254759B1D31C57F00A894BA /* GroupsEmptyState.m */; };
+		525B1D081E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 525B1D071E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.m */; };
+		525B1D0A1E88992E00E5DFB2 /* NewActionDetailTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525B1D091E88992E00E5DFB2 /* NewActionDetailTopTableViewCell.xib */; };
 		525C97D31E465FA400445721 /* repContactForms.json in Resources */ = {isa = PBXBuildFile; fileRef = 525C97D21E465FA400445721 /* repContactForms.json */; };
 		525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */; };
 		525EE80F1D2AB2690047211F /* ActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525EE80E1D2AB2690047211F /* ActionDetailViewController.m */; };
@@ -136,6 +138,9 @@
 		525475951D31C40C00A894BA /* GroupsEmptyState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsEmptyState.xib; sourceTree = "<group>"; };
 		5254759A1D31C57F00A894BA /* GroupsEmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsEmptyState.h; sourceTree = "<group>"; };
 		5254759B1D31C57F00A894BA /* GroupsEmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsEmptyState.m; sourceTree = "<group>"; };
+		525B1D061E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailTopTableViewCell.h; sourceTree = "<group>"; };
+		525B1D071E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailTopTableViewCell.m; sourceTree = "<group>"; };
+		525B1D091E88992E00E5DFB2 /* NewActionDetailTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewActionDetailTopTableViewCell.xib; sourceTree = "<group>"; };
 		525C97D21E465FA400445721 /* repContactForms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repContactForms.json; sourceTree = "<group>"; };
 		525EC5A41D2C9C2E007F3C13 /* GroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailViewController.h; sourceTree = "<group>"; };
 		525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailViewController.m; sourceTree = "<group>"; };
@@ -322,6 +327,9 @@
 				7E525BDA1E819B33007E80A8 /* ActionRepCollectionViewCell.h */,
 				7E525BDB1E819B33007E80A8 /* ActionRepCollectionViewCell.m */,
 				7E525BDC1E819B33007E80A8 /* ActionRepCollectionViewCell.xib */,
+				525B1D061E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.h */,
+				525B1D071E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.m */,
+				525B1D091E88992E00E5DFB2 /* NewActionDetailTopTableViewCell.xib */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -723,6 +731,7 @@
 				52BB343A1B6160CA00BB9FFD /* Reps.storyboard in Resources */,
 				52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */,
 				525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */,
+				525B1D0A1E88992E00E5DFB2 /* NewActionDetailTopTableViewCell.xib in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				52B958981E11873B006472DF /* NewInfo.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
@@ -866,6 +875,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525B1D081E8898E400E5DFB2 /* NewActionDetailTopTableViewCell.m in Sources */,
 				9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */,
 				525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */,
 				B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */,
