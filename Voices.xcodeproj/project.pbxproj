@@ -11,7 +11,6 @@
 		5200716E1E56A9B2002CEDA6 /* SearchResultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200716D1E56A9B2002CEDA6 /* SearchResultsManager.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52089CEA1E80B3E900A32984 /* NewActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */; };
-		52089CED1E80B77400A32984 /* NewActionDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */; };
 		52089CF01E80B82200A32984 /* NewActionDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
@@ -120,7 +119,6 @@
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		52089CE81E80B3E900A32984 /* NewActionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailViewController.h; sourceTree = "<group>"; };
 		52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailViewController.m; sourceTree = "<group>"; };
-		52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewActionDetailTableViewCell.xib; sourceTree = "<group>"; };
 		52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailTableViewCell.h; sourceTree = "<group>"; };
 		52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailTableViewCell.m; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 			children = (
 				52089CE81E80B3E900A32984 /* NewActionDetailViewController.h */,
 				52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */,
-				52089CEC1E80B77400A32984 /* NewActionDetailTableViewCell.xib */,
 				52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */,
 				52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */,
 				7E525BDA1E819B33007E80A8 /* ActionRepCollectionViewCell.h */,
@@ -756,7 +753,6 @@
 				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
-				52089CED1E80B77400A32984 /* NewActionDetailTableViewCell.xib in Resources */,
 				52FECFD41E88A0B200847E7A /* NewActionDetailBottomTableViewCell.xib in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,

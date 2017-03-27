@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,35 +19,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="250.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j4h-9P-Wsm">
-                        <rect key="frame" x="137" y="8" width="100" height="100"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-0W-FIS">
+                        <rect key="frame" x="138" y="8" width="100" height="100"/>
                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="HDA-ix-h77"/>
-                            <constraint firstAttribute="height" constant="100" id="r4o-mK-AxM"/>
+                            <constraint firstAttribute="height" constant="100" id="Ux7-Sx-6oz"/>
+                            <constraint firstAttribute="width" constant="100" id="uMo-OM-LxJ"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8n-yP-jyi">
-                        <rect key="frame" x="8" y="116" width="359" height="134.5"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-nQ-Val">
+                        <rect key="frame" x="8" y="115" width="359" height="135.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Z8n-yP-jyi" secondAttribute="bottom" id="9Cv-LH-vFr"/>
-                    <constraint firstItem="Z8n-yP-jyi" firstAttribute="top" secondItem="j4h-9P-Wsm" secondAttribute="bottom" constant="8" id="L1N-N6-cha"/>
-                    <constraint firstItem="j4h-9P-Wsm" firstAttribute="leading" secondItem="re5-8a-P8B" secondAttribute="leading" constant="137" id="bAq-Kk-Y3Z"/>
-                    <constraint firstAttribute="trailing" secondItem="Z8n-yP-jyi" secondAttribute="trailing" constant="8" id="bvr-Oj-Ylg"/>
-                    <constraint firstItem="Z8n-yP-jyi" firstAttribute="leading" secondItem="re5-8a-P8B" secondAttribute="leading" constant="8" id="fCz-Sy-Z30"/>
-                    <constraint firstItem="j4h-9P-Wsm" firstAttribute="top" secondItem="re5-8a-P8B" secondAttribute="top" constant="8" id="ftS-LH-q7I"/>
-                    <constraint firstAttribute="trailing" secondItem="j4h-9P-Wsm" secondAttribute="trailing" constant="138" id="pzy-m7-Rej"/>
+                    <constraint firstItem="vW5-nQ-Val" firstAttribute="top" secondItem="WrH-0W-FIS" secondAttribute="bottom" constant="7" id="1Tx-tp-k2e"/>
+                    <constraint firstItem="WrH-0W-FIS" firstAttribute="leading" secondItem="re5-8a-P8B" secondAttribute="leadingMargin" constant="130" id="2AV-1B-2hP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WrH-0W-FIS" secondAttribute="trailing" constant="129" id="3jn-sO-V4e"/>
+                    <constraint firstItem="vW5-nQ-Val" firstAttribute="leading" secondItem="re5-8a-P8B" secondAttribute="leading" constant="8" id="Q1b-ec-Qzw"/>
+                    <constraint firstAttribute="bottom" secondItem="vW5-nQ-Val" secondAttribute="bottom" id="Unf-BQ-8WT"/>
+                    <constraint firstAttribute="trailing" secondItem="vW5-nQ-Val" secondAttribute="trailing" constant="8" id="cVl-bl-2KV"/>
+                    <constraint firstItem="WrH-0W-FIS" firstAttribute="top" secondItem="re5-8a-P8B" secondAttribute="topMargin" id="glj-OS-3ZE"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="actionTitleLabel" destination="Z8n-yP-jyi" id="Art-tm-8lV"/>
-                <outlet property="groupImageView" destination="j4h-9P-Wsm" id="zEj-Lb-h2W"/>
-            </connections>
             <point key="canvasLocation" x="-95.5" y="221.5"/>
         </tableViewCell>
     </objects>
