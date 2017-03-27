@@ -10,14 +10,14 @@
 
 @implementation NewActionDetailMiddleTableViewCell
 
-// TODO: SET BUTTON COLORS
-// TODO: SET BUTTON OUTLETS
-// TODO: SET BUTTON DID PRESS OUTLETS
 // TODO: BUTTONS NEED TO KNOW WHO THE SELECTED REP IS
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.tweetButton.tintColor = [UIColor voicesOrange];
 }
 
 
@@ -25,6 +25,15 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (IBAction)callButtonDidPress:(id)sender {
+}
+
+- (IBAction)emailButtonDidPress:(id)sender {
+}
+
+- (IBAction)tweetButtonDidPress:(id)sender {
 }
 
 @end

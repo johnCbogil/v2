@@ -10,4 +10,8 @@
 
 @interface NewActionDetailMiddleTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+
 @end

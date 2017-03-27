@@ -44,9 +44,7 @@
     self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
     [self.collectionView reloadData];
     self.listOfRepCells = @[].mutableCopy;
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
+    
 }
 
 - (void)awakeFromNib {

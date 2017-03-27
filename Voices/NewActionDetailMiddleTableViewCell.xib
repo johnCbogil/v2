@@ -29,6 +29,9 @@
                                     <constraint firstAttribute="width" constant="37" id="Oon-jM-hNc"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Phone Filled"/>
+                                <connections>
+                                    <action selector="callButtonDidPress:" destination="Yw2-Eo-TxQ" eventType="touchUpInside" id="sM1-WJ-c2F"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzq-as-2jt">
                                 <rect key="frame" x="97" y="20" width="40" height="40"/>
@@ -37,6 +40,9 @@
                                     <constraint firstAttribute="height" constant="40" id="xS3-Ud-GjV"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Message Filled"/>
+                                <connections>
+                                    <action selector="emailButtonDidPress:" destination="Yw2-Eo-TxQ" eventType="touchUpInside" id="V3B-Hj-Uh8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySm-P3-UrI">
                                 <rect key="frame" x="188" y="20" width="40" height="40"/>
@@ -45,6 +51,9 @@
                                     <constraint firstAttribute="height" constant="40" id="p7H-Iw-WCC"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Twitter Filled"/>
+                                <connections>
+                                    <action selector="tweetButtonDidPress:" destination="Yw2-Eo-TxQ" eventType="touchUpInside" id="fmn-H1-8Fc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,6 +77,11 @@
                     <constraint firstAttribute="trailing" secondItem="d1J-Id-ANv" secondAttribute="trailing" constant="70" id="lQU-V0-wEE"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="callButton" destination="aqT-2Y-qRW" id="viq-HL-riK"/>
+                <outlet property="emailButton" destination="Gzq-as-2jt" id="wGK-E3-a27"/>
+                <outlet property="tweetButton" destination="ySm-P3-UrI" id="MJH-R2-JW7"/>
+            </connections>
             <point key="canvasLocation" x="-121.5" y="83"/>
         </tableViewCell>
     </objects>
