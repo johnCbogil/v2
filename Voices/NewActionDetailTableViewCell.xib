@@ -18,28 +18,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="493.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNT-CD-wV6" userLabel="ContainerView">
-                        <rect key="frame" x="69" y="8" width="236" height="80"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfn-8P-ieg">
-                                <rect key="frame" x="8" y="20" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="Phone Filled"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxb-iJ-nMc">
-                                <rect key="frame" x="97" y="20" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="Message Filled"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvo-6O-cXe">
-                                <rect key="frame" x="188" y="20" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="Twitter Filled"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select A Rep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbm-xq-d8e">
                         <rect key="frame" x="139" y="96" width="98" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -69,19 +47,11 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="callButton" destination="Rfn-8P-ieg" id="eVG-i1-muG"/>
                 <outlet property="collectionView" destination="HnG-vv-Sqs" id="OXa-q4-eMb"/>
-                <outlet property="emailButton" destination="pxb-iJ-nMc" id="bgM-KD-Hme"/>
                 <outlet property="selectRepLabel" destination="hbm-xq-d8e" id="bzf-o4-KLI"/>
                 <outlet property="textView" destination="aBZ-1a-wO2" id="amh-YS-QBZ"/>
-                <outlet property="tweetButton" destination="Qvo-6O-cXe" id="bmB-na-N7C"/>
             </connections>
             <point key="canvasLocation" x="-507.5" y="114"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Message Filled" width="16" height="16"/>
-        <image name="Phone Filled" width="16" height="16"/>
-        <image name="Twitter Filled" width="16" height="16"/>
-    </resources>
 </document>
