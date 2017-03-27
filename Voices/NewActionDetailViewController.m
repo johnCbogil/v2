@@ -7,7 +7,6 @@
 //
 
 #import "NewActionDetailViewController.h"
-#import "NewActionDetailTableViewCell.h"
 #import "NewActionDetailTopTableViewCell.h"
 #import "LocationService.h"
 #import "RepsManager.h"
@@ -37,10 +36,11 @@
 
 - (void)configureTableview {
     
+    self.tableview.rowHeight = UITableViewAutomaticDimension;
+    self.tableview.estimatedRowHeight = 300;
     self.tableview.separatorColor = [UIColor clearColor];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
 }
 
@@ -76,29 +76,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 2;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0) {
+//    if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell"];
+        cell.actionTitleLabel.text = @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+        
         return cell;
-    }
-    else {
-        NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
-        [cell initWithGroup:self.group andAction:self.action];
-        return cell;
-    }
+//    }
+//    else {
+//        NewActionDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTableViewCell"];
+//        [cell initWithGroup:self.group andAction:self.action];
+//        return cell;
+//    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.row == 0) {
-        return 400;
-    }
-    else {
-        return 500;
-    }
-}
 @end

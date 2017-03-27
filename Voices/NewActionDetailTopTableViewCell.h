@@ -10,4 +10,7 @@
 
 @interface NewActionDetailTopTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
+@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
+
 @end
