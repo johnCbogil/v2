@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.descriptionTextView.backgroundColor = [UIColor redColor];
+ 
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
