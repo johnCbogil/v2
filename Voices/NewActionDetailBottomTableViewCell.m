@@ -16,6 +16,10 @@
 
 // cell 2 delegates to the controller, controller stores the state and can update cell 1
 
+// Send rep.m from bottom cell to viewcontroller
+// delegate is always the first one (the viewcontroller in this case)
+
+
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
@@ -71,6 +75,7 @@
     
     if (self.repsArray.count) {
         self.selectedRep = self.repsArray[indexPath.row];
+        [self selectRepForCurrentAction:self.selectedRep];
         ActionRepCollectionViewCell *selectedCell = (ActionRepCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         for (ActionRepCollectionViewCell *cell in self.listOfRepCells) {
             if (selectedCell == cell) {
@@ -83,4 +88,10 @@
         }
     }
 }
+
+- (void)selectRepForCurrentAction:(Representative *)rep {
+    
+    [self.delegate sendRepToViewController:rep];
+}
+
 @end

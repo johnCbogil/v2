@@ -10,6 +10,12 @@
 #import "Action.h"
 #import "Representative.h"
 
+@protocol SelectRepDelegate <NSObject>
+
+- (void) sendRepToViewController:(Representative *)rep;
+
+@end
+
 @interface NewActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) Representative *selectedRep;
@@ -18,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) id <SelectRepDelegate> delegate;
 - (void)initWithAction:(Action *)action;
 
 @end

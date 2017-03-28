@@ -13,7 +13,7 @@
 #import "LocationService.h"
 #import "RepsManager.h"
 
-@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
@@ -96,9 +96,14 @@
     }
     else {
         NewActionDetailBottomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailBottomTableViewCell"];
+        cell.delegate = self;
         [cell initWithAction:self.action];
         return cell;
     }
+}
+
+- (void)sendRepToViewController:(Representative *)rep {
+    NSLog(@"%@",rep.fullName);
 }
 
 @end
