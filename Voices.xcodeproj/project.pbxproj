@@ -90,6 +90,10 @@
 		C0A87038D5F61A314ADE7039 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */; };
 		E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E860E04D1E79DC7A00055D39 /* More.storyboard */; };
 		E860E0511E79DD3000055D39 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0501E79DD3000055D39 /* MoreViewController.m */; };
+		E860E0551E8AB7C300055D39 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0531E8AB7C300055D39 /* AboutViewController.m */; };
+		E860E0561E8AB7C300055D39 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E860E0541E8AB7C300055D39 /* AboutViewController.xib */; };
+		E860E05B1E8AB87400055D39 /* IssueSurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */; };
+		E860E05C1E8AB87400055D39 /* IssueSurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +249,12 @@
 		E860E04D1E79DC7A00055D39 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E860E04F1E79DD3000055D39 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		E860E0501E79DD3000055D39 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		E860E0521E8AB7C300055D39 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		E860E0531E8AB7C300055D39 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		E860E0541E8AB7C300055D39 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		E860E0581E8AB87400055D39 /* IssueSurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueSurveyViewController.h; sourceTree = "<group>"; };
+		E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueSurveyViewController.m; sourceTree = "<group>"; };
+		E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssueSurveyViewController.xib; sourceTree = "<group>"; };
 		FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -582,8 +592,30 @@
 				E860E04F1E79DD3000055D39 /* MoreViewController.h */,
 				E860E0501E79DD3000055D39 /* MoreViewController.m */,
 				E860E04D1E79DC7A00055D39 /* More.storyboard */,
+				E860E05D1E8AB87700055D39 /* IssueSurvey */,
+				E860E0571E8AB7C800055D39 /* About */,
 			);
 			name = More;
+			sourceTree = "<group>";
+		};
+		E860E0571E8AB7C800055D39 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				E860E0521E8AB7C300055D39 /* AboutViewController.h */,
+				E860E0531E8AB7C300055D39 /* AboutViewController.m */,
+				E860E0541E8AB7C300055D39 /* AboutViewController.xib */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		E860E05D1E8AB87700055D39 /* IssueSurvey */ = {
+			isa = PBXGroup;
+			children = (
+				E860E0581E8AB87400055D39 /* IssueSurveyViewController.h */,
+				E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */,
+				E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */,
+			);
+			name = IssueSurvey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -643,6 +675,7 @@
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = R52DFB482J;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -683,8 +716,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5261CF691D14EE98007B122B /* TakeActionViewController.h in Resources */,
+				E860E0561E8AB7C300055D39 /* AboutViewController.xib in Resources */,
 				E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
+				E860E05C1E8AB87400055D39 /* IssueSurveyViewController.xib in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
@@ -859,6 +894,7 @@
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
+				E860E05B1E8AB87400055D39 /* IssueSurveyViewController.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */,
@@ -871,6 +907,7 @@
 				52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */,
 				9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
+				E860E0551E8AB7C300055D39 /* AboutViewController.m in Sources */,
 				5200716E1E56A9B2002CEDA6 /* SearchResultsManager.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
 				A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */,
@@ -1028,7 +1065,7 @@
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andy.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1052,7 +1089,7 @@
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andy.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

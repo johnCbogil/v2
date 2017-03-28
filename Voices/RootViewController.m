@@ -549,12 +549,12 @@
 #pragma mark - IBActions
 
 - (IBAction)infoButtonDidPress:(id)sender {
-    [self presentInfoViewController];
+//    [self presentInfoViewController];
     
-//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"More" bundle:nil];
-//    MoreViewController* moreVC = [storyboard instantiateViewControllerWithIdentifier:@"more"];
-//    [moreVC.navigationItem setTitle:@"More"];
-//    [self.navigationController pushViewController:moreVC animated:YES];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"More" bundle:nil];
+    MoreViewController* moreVC = [storyboard instantiateViewControllerWithIdentifier:@"more"];
+    [moreVC.navigationItem setTitle:@"More"];
+    [self.navigationController pushViewController:moreVC animated:YES];
 }
 
 - (IBAction)federalPageButtonDidPress:(id)sender {
