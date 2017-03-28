@@ -14,6 +14,8 @@
 // TODO: SET THE DESCRIPTION TEXT
 // TODO: FIND THE REPS
 
+// cell 2 delegates to the controller, controller stores the state and can update cell 1
+
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
@@ -26,7 +28,7 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellEditingStyleNone;
-    
+    self.backgroundColor = [UIColor greenColor];
 }
 
 - (void)configureDescriptionForActionText:(NSString *)text {
@@ -34,7 +36,6 @@
     self.descriptionTextView.font = [UIFont voicesFontWithSize:21];
     self.descriptionTextView.text = text;
     self.descriptionTextView.editable = NO;
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
