@@ -38,29 +38,30 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOG-vU-vIo">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zaV-Ya-ac2">
                         <rect key="frame" x="8" y="122" width="359" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leadingMargin" id="1DL-6l-3ac"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="centerX" secondItem="bRm-y8-98s" secondAttribute="centerX" id="2En-NM-h2x"/>
-                    <constraint firstItem="cOG-vU-vIo" firstAttribute="top" secondItem="bRm-y8-98s" secondAttribute="bottom" constant="8" id="7BN-M7-ks3"/>
+                    <constraint firstItem="zaV-Ya-ac2" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="7JA-se-mBc"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="top" secondItem="SOV-EQ-pWc" secondAttribute="topMargin" id="8ND-dF-NfX"/>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="trailing" secondItem="SOV-EQ-pWc" secondAttribute="trailingMargin" id="CDr-fT-fcM"/>
-                    <constraint firstAttribute="bottom" secondItem="cOG-vU-vIo" secondAttribute="bottom" constant="8.5" id="PsH-6s-WTE"/>
-                    <constraint firstItem="cOG-vU-vIo" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="R3D-1T-REX"/>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="top" secondItem="XQq-2Y-23l" secondAttribute="bottom" constant="8" symbolic="YES" id="Rj9-eC-ZjM"/>
-                    <constraint firstAttribute="trailing" secondItem="cOG-vU-vIo" secondAttribute="trailing" constant="8" id="jI7-Xj-OAH"/>
+                    <constraint firstItem="zaV-Ya-ac2" firstAttribute="top" secondItem="bRm-y8-98s" secondAttribute="bottom" constant="8" id="S7J-jz-oPq"/>
+                    <constraint firstAttribute="trailing" secondItem="zaV-Ya-ac2" secondAttribute="trailing" constant="8" id="U5m-JP-gic"/>
+                    <constraint firstAttribute="bottom" secondItem="zaV-Ya-ac2" secondAttribute="bottom" constant="8" id="hYR-L1-W3W"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="collectionView" destination="bRm-y8-98s" id="E6z-7z-WYK"/>
-                <outlet property="descriptionLabel" destination="cOG-vU-vIo" id="5D1-ot-1N7"/>
-                <outlet property="selectRepLabel" destination="XQq-2Y-23l" id="v3n-Ok-TEO"/>
+                <outlet property="descriptionTextView" destination="zaV-Ya-ac2" id="gZp-14-NNH"/>
+                <outlet property="selectRepLabel" destination="XQq-2Y-23l" id="aKE-Xx-FEo"/>
             </connections>
             <point key="canvasLocation" x="16.5" y="-12"/>
         </tableViewCell>

@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Action.h"
+#import "Representative.h"
 
-@interface NewActionDetailBottomTableViewCell : UITableViewCell
+@interface NewActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (strong, nonatomic) Representative *selectedRep;
+@property (strong, nonatomic) NSMutableArray *listOfRepCells;
+@property (strong, nonatomic) NSArray *repsArray;
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+- (void)initWithAction:(Action *)action;
 
 @end
