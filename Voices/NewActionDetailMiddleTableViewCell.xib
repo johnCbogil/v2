@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yw2-Eo-TxQ" id="DoW-PH-dP3">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="105.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1J-Id-ANv" userLabel="ContainerView">
@@ -61,7 +61,6 @@
                             <constraint firstItem="ySm-P3-UrI" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" id="8YU-Jz-G7F"/>
                             <constraint firstAttribute="height" constant="80" id="Czv-6Q-ein"/>
                             <constraint firstItem="ySm-P3-UrI" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" multiplier="1.8" constant="-4.4000000000000057" id="Kl9-iw-WID"/>
-                            <constraint firstAttribute="width" constant="236" id="NgR-ga-fmz"/>
                             <constraint firstItem="Gzq-as-2jt" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" id="NrP-Mn-doN"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="XpH-jh-Osc"/>
                             <constraint firstItem="aqT-2Y-qRW" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" constant="-1.5" id="fFM-Gf-rqo"/>
