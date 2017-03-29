@@ -10,8 +10,6 @@
 #import "ActionRepCollectionViewCell.h"
 #import "RepsManager.h"
 
-// TODO: FIND THE REPS
-
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
@@ -49,7 +47,7 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    //    collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+//        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
     [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
     self.collectionView.backgroundColor = [UIColor clearColor];
 }
@@ -70,6 +68,7 @@
     
     if (self.repsArray.count) {
         self.selectedRep = self.repsArray[indexPath.row];
+        self.selectRepLabel.text = [NSString stringWithFormat:@"Selected Rep: %@", self.selectedRep.fullName];
         [self selectRepForCurrentAction:self.selectedRep];
         ActionRepCollectionViewCell *selectedCell = (ActionRepCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         for (ActionRepCollectionViewCell *cell in self.listOfRepCells) {
