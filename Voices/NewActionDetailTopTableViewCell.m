@@ -30,6 +30,7 @@
     [super awakeFromNib];
     // Initialization code
     [self.groupImageButton setTitle:nil forState:UIControlStateNormal];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {

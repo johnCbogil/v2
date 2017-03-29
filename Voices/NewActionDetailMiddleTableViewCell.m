@@ -18,6 +18,8 @@
     self.callButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.tweetButton.tintColor = [UIColor voicesOrange];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 

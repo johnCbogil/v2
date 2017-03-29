@@ -32,7 +32,6 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellEditingStyleNone;
-    self.backgroundColor = [UIColor greenColor];
 }
 
 - (void)configureDescriptionForActionText:(NSString *)text {
@@ -40,6 +39,7 @@
     self.descriptionTextView.font = [UIFont voicesFontWithSize:21];
     self.descriptionTextView.text = text;
     self.descriptionTextView.editable = NO;
+    self.descriptionTextView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
