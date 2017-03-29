@@ -8,24 +8,19 @@
 
 #import "NewActionDetailBottomTableViewCell.h"
 #import "ActionRepCollectionViewCell.h"
+#import "RepsManager.h"
 
-// TODO: IMPLEMENT COLLECTIONVIEW DELEGATE
-// TODO: CONFIGURE COLLECTIONVIEW
-// TODO: SET THE DESCRIPTION TEXT
 // TODO: FIND THE REPS
-
-// cell 2 delegates to the controller, controller stores the state and can update cell 1
-
-// Send rep.m from bottom cell to viewcontroller
-// delegate is always the first one (the viewcontroller in this case)
-
 
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
     
+    self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:action.level];
+    self.listOfRepCells = @[].mutableCopy;
+    [self.collectionView reloadData];
     [self configureDescriptionForActionText:action.body];
-    
+    [self configureCollectionView];
 }
 
 - (void)awakeFromNib {
