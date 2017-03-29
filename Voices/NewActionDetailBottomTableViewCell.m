@@ -74,7 +74,7 @@
         for (ActionRepCollectionViewCell *cell in self.listOfRepCells) {
             if (selectedCell == cell) {
                 cell.layer.borderColor = [UIColor greenColor].CGColor;
-                cell.layer.borderWidth = 2.0f;
+                cell.layer.borderWidth = 3.0f;
             }
             else {
                 cell.layer.borderColor = [UIColor clearColor].CGColor;
@@ -82,6 +82,16 @@
         }
     }
 }
+
+// CENTER REPS IN VIEW
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//    
+//    NSInteger numberOfItems = [collectionView numberOfItemsInSection:section];
+//    CGFloat combinedItemWidth = (numberOfItems * collectionViewLayout.itemSize.width) + ((numberOfItems - 1) * collectionViewLayout.minimumInteritemSpacing);
+//    CGFloat padding = (collectionView.frame.size.width - combinedItemWidth) / 2;
+//    
+//    return UIEdgeInsetsMake(0, padding, 0, padding);
+//}
 
 - (void)selectRepForCurrentAction:(Representative *)rep {
     
