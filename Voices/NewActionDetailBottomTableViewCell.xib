@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kPP-oa-OWA" id="SOV-EQ-pWc">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="133.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Rep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQq-2Y-23l">
@@ -44,10 +44,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vpC-P1-acH">
+                        <rect key="frame" x="177" y="44" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="zaV-Ya-ac2" secondAttribute="trailing" constant="8" id="4qc-xP-VD6"/>
                     <constraint firstAttribute="bottom" secondItem="zaV-Ya-ac2" secondAttribute="bottom" constant="7.5" id="9iD-nm-22D"/>
+                    <constraint firstItem="vpC-P1-acH" firstAttribute="centerX" secondItem="bRm-y8-98s" secondAttribute="centerX" id="Cse-bd-wBh"/>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="NuW-kg-Yzn"/>
                     <constraint firstAttribute="trailing" secondItem="XQq-2Y-23l" secondAttribute="trailing" constant="8" id="PLq-hg-r9Y"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="VxF-cd-mcu"/>
@@ -55,12 +59,14 @@
                     <constraint firstItem="zaV-Ya-ac2" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="bzM-Nd-Nsl"/>
                     <constraint firstItem="zaV-Ya-ac2" firstAttribute="top" secondItem="bRm-y8-98s" secondAttribute="bottom" constant="8" id="gBN-dO-Yyg"/>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="top" secondItem="XQq-2Y-23l" secondAttribute="bottom" constant="8" id="mG7-A6-e37"/>
+                    <constraint firstItem="vpC-P1-acH" firstAttribute="centerY" secondItem="bRm-y8-98s" secondAttribute="centerY" id="tig-gM-KoZ"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="top" secondItem="SOV-EQ-pWc" secondAttribute="top" id="x8b-gE-yGM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="collectionView" destination="bRm-y8-98s" id="E6z-7z-WYK"/>
                 <outlet property="descriptionTextView" destination="zaV-Ya-ac2" id="gZp-14-NNH"/>
+                <outlet property="indicatorView" destination="vpC-P1-acH" id="RUY-kO-iMX"/>
                 <outlet property="selectRepLabel" destination="XQq-2Y-23l" id="aKE-Xx-FEo"/>
             </connections>
             <point key="canvasLocation" x="-532.5" y="-596"/>

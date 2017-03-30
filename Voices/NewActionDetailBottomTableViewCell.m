@@ -20,13 +20,12 @@
     
     [self configureCollectionView];
     [self configureActivityIndicator];
-
-
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.indicatorView.hidden = NO;
             [self.indicatorView startAnimating];
         });
         self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:action.level];
@@ -38,6 +37,7 @@
     if (self.repsArray.count > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.indicatorView stopAnimating];
+            self.indicatorView.hidden = YES;
         });
     }
 
@@ -54,13 +54,13 @@
 
 - (void)configureActivityIndicator {
     
-    self.indicatorView = [[UIActivityIndicatorView alloc]
-                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    self.indicatorView = [[UIActivityIndicatorView alloc]
+//                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.indicatorView.color = [UIColor grayColor];
-    self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
+//    self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
     self.indicatorView.hidden = false;
     self.indicatorView.translatesAutoresizingMaskIntoConstraints = false;
-    [self addSubview:self.indicatorView];
+//    [self addSubview:self.indicatorView];
     
 //    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.centerXAnchor];
 //    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.bottomAnchor constant: - self.frame.size.height/6];
