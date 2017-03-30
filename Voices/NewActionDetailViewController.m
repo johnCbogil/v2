@@ -10,6 +10,7 @@
 #import "NewActionDetailTopTableViewCell.h"
 #import "NewActionDetailMiddleTableViewCell.h"
 #import "NewActionDetailBottomTableViewCell.h"
+#import "SearchViewController.h"
 #import "LocationService.h"
 #import "RepsManager.h"
 
@@ -34,6 +35,9 @@
     else {
         // TURN ON EMPTY STATE
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+
 }
 
 - (void)configureTableview {
@@ -110,6 +114,18 @@
 - (void)textViewDidChange:(UITextView *)textView {
     [self.tableview beginUpdates];
     [self.tableview endUpdates];
+}
+
+#pragma mark - Presentation Controllers
+
+- (void)presentSearchViewController {
+    
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:searchViewController animated:YES];
+
 }
 
 @end

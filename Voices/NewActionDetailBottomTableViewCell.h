@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) id <SelectRepDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (weak, nonatomic) IBOutlet UIButton *getRepsButton;
+@property (strong, nonatomic) Action *action;
 - (void)initWithAction:(Action *)action;
+
 
 @end

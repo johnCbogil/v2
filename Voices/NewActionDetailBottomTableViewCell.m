@@ -18,8 +18,21 @@
 
 - (void)initWithAction:(Action *)action {
     
-    [self configureCollectionView];
+    self.action = action;
+    
     [self configureActivityIndicator];
+    [self configureGetRepsButton];
+    [self configureRepSelectionFeature];
+    [self configureDescriptionForActionText:action.body];
+
+
+    self.listOfRepCells = @[].mutableCopy;
+    [self.collectionView reloadData];
+}
+
+- (void)configureRepSelectionFeature {
+    
+    [self configureCollectionView];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length) {
@@ -28,10 +41,10 @@
             self.indicatorView.hidden = NO;
             [self.indicatorView startAnimating];
         });
-        self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:action.level];
+        self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
     }
     else {
-        // DISPLAY EMPTY STATE
+        self.getRepsButton.hidden = NO;
     }
     
     if (self.repsArray.count > 0) {
@@ -40,10 +53,6 @@
             self.indicatorView.hidden = YES;
         });
     }
-
-    self.listOfRepCells = @[].mutableCopy;
-    [self.collectionView reloadData];
-    [self configureDescriptionForActionText:action.body];
 }
 
 - (void)awakeFromNib {
@@ -54,20 +63,15 @@
 
 - (void)configureActivityIndicator {
     
-//    self.indicatorView = [[UIActivityIndicatorView alloc]
-//                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.hidden = YES;
     self.indicatorView.color = [UIColor grayColor];
-//    self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
-    self.indicatorView.hidden = false;
     self.indicatorView.translatesAutoresizingMaskIntoConstraints = false;
-//    [self addSubview:self.indicatorView];
-    
-//    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.centerXAnchor];
-//    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.bottomAnchor constant: - self.frame.size.height/6];
-//    NSArray *constraints = [[NSArray alloc]initWithObjects:horizontalConstraint, verticalConstraint, nil];
-//    [NSLayoutConstraint activateConstraints:constraints];
 }
 
+- (void)configureGetRepsButton {
+    
+    self.getRepsButton.hidden = YES;
+}
 
 - (void)configureDescriptionForActionText:(NSString *)text {
     
@@ -83,6 +87,11 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)getRepsButtonDidPress:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
+    
+}
 # pragma mark - UICollectionView Methods
 
 - (void)configureCollectionView {
@@ -124,16 +133,6 @@
         }
     }
 }
-
-// CENTER REPS IN VIEW
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//
-//    NSInteger numberOfItems = [collectionView numberOfItemsInSection:section];
-//    CGFloat combinedItemWidth = (numberOfItems * collectionViewLayout.itemSize.width) + ((numberOfItems - 1) * collectionViewLayout.minimumInteritemSpacing);
-//    CGFloat padding = (collectionView.frame.size.width - combinedItemWidth) / 2;
-//
-//    return UIEdgeInsetsMake(0, padding, 0, padding);
-//}
 
 - (void)selectRepForCurrentAction:(Representative *)rep {
     

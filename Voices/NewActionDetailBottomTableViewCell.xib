@@ -47,6 +47,13 @@
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vpC-P1-acH">
                         <rect key="frame" x="177" y="44" width="20" height="20"/>
                     </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpw-Yr-ok9">
+                        <rect key="frame" x="8" y="39" width="112" height="30"/>
+                        <state key="normal" title="Get Home Reps"/>
+                        <connections>
+                            <action selector="getRepsButtonDidPress:" destination="kPP-oa-OWA" eventType="touchUpInside" id="ywu-pE-9KL"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="zaV-Ya-ac2" secondAttribute="trailing" constant="8" id="4qc-xP-VD6"/>
@@ -56,9 +63,12 @@
                     <constraint firstAttribute="trailing" secondItem="XQq-2Y-23l" secondAttribute="trailing" constant="8" id="PLq-hg-r9Y"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="VxF-cd-mcu"/>
                     <constraint firstAttribute="trailing" secondItem="bRm-y8-98s" secondAttribute="trailing" constant="8" id="WaA-U7-TOk"/>
+                    <constraint firstItem="vpC-P1-acH" firstAttribute="leading" secondItem="cpw-Yr-ok9" secondAttribute="trailing" constant="57" id="Zu1-rS-4mj"/>
+                    <constraint firstItem="cpw-Yr-ok9" firstAttribute="centerY" secondItem="vpC-P1-acH" secondAttribute="centerY" id="b60-La-5xa"/>
                     <constraint firstItem="zaV-Ya-ac2" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="bzM-Nd-Nsl"/>
                     <constraint firstItem="zaV-Ya-ac2" firstAttribute="top" secondItem="bRm-y8-98s" secondAttribute="bottom" constant="8" id="gBN-dO-Yyg"/>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="top" secondItem="XQq-2Y-23l" secondAttribute="bottom" constant="8" id="mG7-A6-e37"/>
+                    <constraint firstItem="cpw-Yr-ok9" firstAttribute="leading" secondItem="bRm-y8-98s" secondAttribute="leading" id="sit-2W-7wA"/>
                     <constraint firstItem="vpC-P1-acH" firstAttribute="centerY" secondItem="bRm-y8-98s" secondAttribute="centerY" id="tig-gM-KoZ"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="top" secondItem="SOV-EQ-pWc" secondAttribute="top" id="x8b-gE-yGM"/>
                 </constraints>
@@ -66,6 +76,7 @@
             <connections>
                 <outlet property="collectionView" destination="bRm-y8-98s" id="E6z-7z-WYK"/>
                 <outlet property="descriptionTextView" destination="zaV-Ya-ac2" id="gZp-14-NNH"/>
+                <outlet property="getRepsButton" destination="cpw-Yr-ok9" id="ZCf-P8-kSK"/>
                 <outlet property="indicatorView" destination="vpC-P1-acH" id="RUY-kO-iMX"/>
                 <outlet property="selectRepLabel" destination="XQq-2Y-23l" id="aKE-Xx-FEo"/>
             </connections>
