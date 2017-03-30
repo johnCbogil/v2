@@ -37,7 +37,18 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress) {
+        [self fetchRepsForHomeAddress:homeAddress];
+    }
+    else {
+        // TURN ON EMPTY STATE
+    }
 }
 
 - (void)configureTableview {

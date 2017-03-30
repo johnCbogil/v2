@@ -39,6 +39,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
+    
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
