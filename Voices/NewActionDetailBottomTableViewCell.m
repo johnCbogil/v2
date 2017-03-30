@@ -10,16 +10,40 @@
 #import "ActionRepCollectionViewCell.h"
 #import "RepsManager.h"
 
+
+// TODO: HOW TO DISPLAY EMPTY STATE UX
+// TODO: LOADING INDICATOR
+
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
     
-    self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:action.level];
+    [self configureCollectionView];
+    [self configureActivityIndicator];
+
+
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress.length) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.indicatorView startAnimating];
+        });
+        self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:action.level];
+    }
+    else {
+        // DISPLAY EMPTY STATE
+    }
+    
+    if (self.repsArray.count > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.indicatorView stopAnimating];
+        });
+    }
+
     self.listOfRepCells = @[].mutableCopy;
     [self.collectionView reloadData];
     [self configureDescriptionForActionText:action.body];
-    [self configureCollectionView];
-    [self configureActivityIndicator];
 }
 
 - (void)awakeFromNib {
@@ -38,10 +62,10 @@
     self.indicatorView.translatesAutoresizingMaskIntoConstraints = false;
     [self addSubview:self.indicatorView];
     
-    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.centerXAnchor];
-    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.bottomAnchor constant: - self.frame.size.height/6];
-    NSArray *constraints = [[NSArray alloc]initWithObjects:horizontalConstraint, verticalConstraint, nil];
-    [NSLayoutConstraint activateConstraints:constraints];
+//    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.centerXAnchor];
+//    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.bottomAnchor constant: - self.frame.size.height/6];
+//    NSArray *constraints = [[NSArray alloc]initWithObjects:horizontalConstraint, verticalConstraint, nil];
+//    [NSLayoutConstraint activateConstraints:constraints];
 }
 
 
@@ -55,7 +79,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -65,7 +89,7 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-//        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+    //        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
     [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
     self.collectionView.backgroundColor = [UIColor clearColor];
 }
@@ -103,11 +127,11 @@
 
 // CENTER REPS IN VIEW
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//    
+//
 //    NSInteger numberOfItems = [collectionView numberOfItemsInSection:section];
 //    CGFloat combinedItemWidth = (numberOfItems * collectionViewLayout.itemSize.width) + ((numberOfItems - 1) * collectionViewLayout.minimumInteritemSpacing);
 //    CGFloat padding = (collectionView.frame.size.width - combinedItemWidth) / 2;
-//    
+//
 //    return UIEdgeInsetsMake(0, padding, 0, padding);
 //}
 
