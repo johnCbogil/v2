@@ -43,6 +43,7 @@
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
+    [self getRepContactForms];
     [self excludeGeoJSONFromCloudBackup];
     [FIRApp configure];
     [GMSPlacesClient provideAPIKey:kAutocomplete];
@@ -269,7 +270,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
         [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
-        
     }
     else {
         // Get the file path for the zip
@@ -328,6 +328,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [window removeConstraints:window.constraints];
         }
     }
+}
+
+-(void)getRepContactForms {
+    [[RepsManager sharedInstance]getRepContactFormsWithCompletion:^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+    } onError:^ (NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
 }
 
 @end

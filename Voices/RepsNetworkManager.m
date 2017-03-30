@@ -90,8 +90,7 @@
 
 #pragma mark - Get Street Address Method
 
-- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
-                               onError:(void(^)(NSError *error))errorBlock {
+- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock {
     
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", searchText, kGoogMaps];
     NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
@@ -99,7 +98,9 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+    [serializer setReadingOptions:NSJSONReadingAllowFragments];
+    operation.responseSerializer = serializer;
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -117,6 +118,35 @@
     
     [operation start];
 }
+
+#pragma mark - Get Rep Contact Forms 
+
+- (void)getRepContactFormsWithCompletion:(void(^)(NSDictionary *results))successBlock
+                                 onError:(void(^)(NSError *error))errorBlock {
+    NSString *storageReference = @"https://firebasestorage.googleapis.com/v0/b/voices-430ae.appspot.com/o/repContactForms%20copy.json?alt=media&token=cf808323-a266-4ffc-a566-23497912b9f3";
+    NSURL *url = [NSURL URLWithString:storageReference];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+        
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+}
+
+
 
 
 @end

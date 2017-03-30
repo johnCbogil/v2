@@ -245,4 +245,14 @@
     return billDeBlasio;
 }
 
+-(void)getRepContactFormsWithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
+    [[RepsNetworkManager sharedInstance]getRepContactFormsWithCompletion:^(NSDictionary *results) {
+     if (successBlock) {
+          self.repsContactForms = results;
+     }
+    } onError:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
 @end

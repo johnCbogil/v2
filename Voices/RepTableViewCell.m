@@ -45,13 +45,14 @@
     [self registerCallStateNotification];
 }
 
-- (void)initWithRep:(id)rep {
+- (void)initWithRep:(id)rep andRepsContactForms:(NSDictionary *)repsContactForms {
     self.representative = rep;
     NSString *title = self.representative.shortTitle ? self.representative.shortTitle : self.representative.title;
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", title, self.representative.firstName, self.representative.lastName];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
+    self.repsContactForms = repsContactForms;
     [self setupImage];
 }
 
@@ -127,9 +128,8 @@
 
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.representative.bioguide.length > 0) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
-        NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
-        NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
+        
+        NSDictionary *contactFormsDict = self.repsContactForms;
         
         NSString *contactFormURLString = [contactFormsDict valueForKey:self.representative.bioguide];
         if (contactFormURLString.length == 0) {
