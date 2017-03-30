@@ -351,10 +351,10 @@
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupFollowTableViewCell" owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
             }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.followGroupDelegate = self;
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
+            cell.groupWebsiteTextView.text = self.group.website;
             [self setGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }
@@ -396,16 +396,6 @@
         }
     }
     return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGFloat result = UITableViewAutomaticDimension;
-    
-    if((indexPath.section == 0) && (indexPath.row == 0)){
-        result = 220.0f;
-    }
-    return result;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
