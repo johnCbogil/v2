@@ -19,6 +19,7 @@
     [self.collectionView reloadData];
     [self configureDescriptionForActionText:action.body];
     [self configureCollectionView];
+    [self configureActivityIndicator];
 }
 
 - (void)awakeFromNib {
@@ -26,6 +27,23 @@
     
     self.selectionStyle = UITableViewCellEditingStyleNone;
 }
+
+- (void)configureActivityIndicator {
+    
+    self.indicatorView = [[UIActivityIndicatorView alloc]
+                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.color = [UIColor grayColor];
+    self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
+    self.indicatorView.hidden = false;
+    self.indicatorView.translatesAutoresizingMaskIntoConstraints = false;
+    [self addSubview:self.indicatorView];
+    
+    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.centerXAnchor];
+    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.bottomAnchor constant: - self.frame.size.height/6];
+    NSArray *constraints = [[NSArray alloc]initWithObjects:horizontalConstraint, verticalConstraint, nil];
+    [NSLayoutConstraint activateConstraints:constraints];
+}
+
 
 - (void)configureDescriptionForActionText:(NSString *)text {
     

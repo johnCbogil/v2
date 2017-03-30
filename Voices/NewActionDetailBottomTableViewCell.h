@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) id <SelectRepDelegate> delegate;
+@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
 - (void)initWithAction:(Action *)action;
 
 @end
