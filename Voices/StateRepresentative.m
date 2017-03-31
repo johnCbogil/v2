@@ -17,7 +17,11 @@
         self.lastName = [data valueForKey:@"last_name"];
         self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.party = [data valueForKey:@"party"];
-        self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][0];
+        NSArray *offices = [data valueForKey:@"offices"];
+        self.phone = [offices valueForKey:@"phone"][0];
+        if(!self.phone || [self.phone isKindOfClass:[NSNull class]]) {
+            self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][1];
+        }
         self.photoURL = [NSURL URLWithString:[data valueForKey:@"photo_url"]];
         self.email = [data valueForKey:@"email"];
         self.districtNumber = [data valueForKey:@"district"];

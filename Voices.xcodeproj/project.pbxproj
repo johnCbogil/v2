@@ -675,7 +675,6 @@
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4Y3GGL46D2;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
