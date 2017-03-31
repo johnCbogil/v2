@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+
 @end
 
 @implementation RepsCollectionViewCell
@@ -48,6 +49,7 @@
     self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
+
 #pragma mark - UITableView Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -68,7 +70,7 @@
         
         cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
         
-        [cell initWithRep:self.tableViewDataSource[indexPath.row]];
+        [cell initWithRep:self.tableViewDataSource[indexPath.row] andRepsContactForms:[[RepsManager sharedInstance]repsContactForms]];
     }
     else {
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];

@@ -65,7 +65,7 @@
     RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
     
     cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
-    
+        
     cell.index = indexPath.item;
     cell.repDetailDelegate = self;
     [cell reloadTableView];
