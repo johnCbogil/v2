@@ -40,6 +40,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailAlert) name:@"presentEmailComposer" object:nil];
+
 
 }
 
@@ -152,12 +154,9 @@
         }
         
         UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.selectedRep.title,self.selectedRep.firstName, self.selectedRep.lastName]  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
-        //button0
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Back" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
         }]];
-        //button1
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.selectedRep.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
             NSURL* callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.selectedRep.phone]];
@@ -185,6 +184,59 @@
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
+}
+
+- (void)presentEmailComposer {
+    
+    if (self.selectedRep.bioguide.length > 0) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
+        NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+        NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
+        
+        NSString *contactFormURLString = [contactFormsDict valueForKey:self.selectedRep.bioguide];
+        if (contactFormURLString.length == 0) {
+            [self presentEmailAlert];
+            return;
+        }
+        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+        
+        NSString *title = self.selectedRep.title;
+        NSString *name = self.selectedRep.fullName;
+        NSString *fullName = @"";
+        if (title.length > 0 && name.length > 0) {
+            fullName = [NSString stringWithFormat:@"%@ %@", title, name];
+        }
+        else if (name.length > 0) {
+            fullName = name;
+        }
+        else if (title.length > 0) {
+            fullName = title;
+        }
+        NSDictionary *notiDict = @{@"contactFormURL" : contactFormURL,
+                                   @"fullName": fullName};
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
+    }
+    else if (self.selectedRep.email.length > 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.selectedRep.email];
+    }
+    else {
+        [self presentEmailAlert];
+    }
+}
+
+- (void)presentEmailAlert {
+    
+    NSString *message;
+    if (!self.selectedRep) {
+        message = @"This legislator hasn't given us their email address, try calling instead.";
+    }
+    else {
+        message = @"Please select a rep first";
+    }
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

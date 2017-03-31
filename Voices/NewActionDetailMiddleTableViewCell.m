@@ -34,6 +34,8 @@
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentEmailComposer" object:nil];
 }
 
 - (IBAction)tweetButtonDidPress:(id)sender {
