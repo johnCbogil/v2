@@ -155,7 +155,7 @@
                                    @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
-    else if (self.representative.email.length > 0) {
+    else if(!self.representative.email || [self.representative.email isKindOfClass:[NSNull class]]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {
