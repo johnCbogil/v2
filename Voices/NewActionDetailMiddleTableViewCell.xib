@@ -23,10 +23,10 @@
                         <rect key="frame" x="69" y="0.0" width="236" height="80"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqT-2Y-qRW">
-                                <rect key="frame" x="8" y="20" width="37" height="37"/>
+                                <rect key="frame" x="8" y="20" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="IlI-Y2-sCY"/>
-                                    <constraint firstAttribute="width" constant="37" id="Oon-jM-hNc"/>
+                                    <constraint firstAttribute="height" constant="42" id="IlI-Y2-sCY"/>
+                                    <constraint firstAttribute="width" constant="42" id="Oon-jM-hNc"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Phone Filled"/>
                                 <connections>
@@ -34,10 +34,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzq-as-2jt">
-                                <rect key="frame" x="97" y="20" width="40" height="40"/>
+                                <rect key="frame" x="97" y="20" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="IuD-H0-1YI"/>
-                                    <constraint firstAttribute="height" constant="40" id="xS3-Ud-GjV"/>
+                                    <constraint firstAttribute="width" constant="45" id="IuD-H0-1YI"/>
+                                    <constraint firstAttribute="height" constant="45" id="xS3-Ud-GjV"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Message Filled"/>
                                 <connections>
@@ -45,10 +45,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySm-P3-UrI">
-                                <rect key="frame" x="188" y="20" width="40" height="40"/>
+                                <rect key="frame" x="188" y="20" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="npd-FO-ejG"/>
-                                    <constraint firstAttribute="height" constant="40" id="p7H-Iw-WCC"/>
+                                    <constraint firstAttribute="width" constant="45" id="npd-FO-ejG"/>
+                                    <constraint firstAttribute="height" constant="45" id="p7H-Iw-WCC"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Twitter Filled"/>
                                 <connections>
@@ -58,14 +58,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ySm-P3-UrI" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" id="8YU-Jz-G7F"/>
+                            <constraint firstItem="ySm-P3-UrI" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" constant="2.5" id="8YU-Jz-G7F"/>
                             <constraint firstAttribute="height" constant="80" id="Czv-6Q-ein"/>
-                            <constraint firstItem="ySm-P3-UrI" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" multiplier="1.8" constant="-4.4000000000000057" id="Kl9-iw-WID"/>
-                            <constraint firstItem="Gzq-as-2jt" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" id="NrP-Mn-doN"/>
+                            <constraint firstItem="ySm-P3-UrI" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" multiplier="1.8" constant="-1.9000000000000057" id="Kl9-iw-WID"/>
+                            <constraint firstItem="Gzq-as-2jt" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" constant="2.5" id="NrP-Mn-doN"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="XpH-jh-Osc"/>
-                            <constraint firstItem="aqT-2Y-qRW" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" constant="-1.5" id="fFM-Gf-rqo"/>
-                            <constraint firstItem="Gzq-as-2jt" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" constant="-1" id="jBI-5d-u5P"/>
-                            <constraint firstItem="aqT-2Y-qRW" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" multiplier="0.2" constant="2.5999999999999979" id="yOv-hF-OvA"/>
+                            <constraint firstItem="aqT-2Y-qRW" firstAttribute="centerY" secondItem="d1J-Id-ANv" secondAttribute="centerY" constant="1" id="fFM-Gf-rqo"/>
+                            <constraint firstItem="Gzq-as-2jt" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" constant="1.5" id="jBI-5d-u5P"/>
+                            <constraint firstItem="aqT-2Y-qRW" firstAttribute="centerX" secondItem="d1J-Id-ANv" secondAttribute="centerX" multiplier="0.2" constant="5.3999999999999986" id="yOv-hF-OvA"/>
                         </constraints>
                     </view>
                 </subviews>

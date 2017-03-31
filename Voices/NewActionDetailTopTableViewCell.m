@@ -23,7 +23,7 @@
 - (void)configureActionTitleLabelForText:(NSString *)text {
     self.actionTitleLabel.numberOfLines = 0;
     self.actionTitleLabel.text = text;
-    self.actionTitleLabel.font = [UIFont voicesFontWithSize:21];
+    self.actionTitleLabel.font = [UIFont voicesFontWithSize:25];
 }
 
 - (void)awakeFromNib {

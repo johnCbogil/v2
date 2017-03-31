@@ -24,7 +24,12 @@
     [self configureGetRepsButton];
     [self configureRepSelectionFeature];
     [self configureDescriptionForActionText:action.body];
-
+    
+    self.selectRepLabel.font = [UIFont voicesFontWithSize:23];
+    self.getRepsButton.backgroundColor = [UIColor clearColor];
+    self.getRepsButton.titleLabel.font = [UIFont voicesFontWithSize:23];
+    
+    [self.getRepsButton setTitle:@"Add Address To Show Reps" forState:UIControlStateNormal];
 
     self.listOfRepCells = @[].mutableCopy;
     [self.collectionView reloadData];
@@ -45,6 +50,7 @@
     }
     else {
         self.getRepsButton.hidden = NO;
+        self.selectRepLabel.hidden = YES;
     }
     
     if (self.repsArray.count > 0) {
@@ -71,6 +77,7 @@
 - (void)configureGetRepsButton {
     
     self.getRepsButton.hidden = YES;
+    self.selectRepLabel.hidden = NO;
 }
 
 - (void)configureDescriptionForActionText:(NSString *)text {
@@ -98,7 +105,7 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    //        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+    self.collectionViewLayout.minimumLineSpacing = 50.0f;
     [self.collectionView registerNib:[UINib nibWithNibName:@"ActionRepCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ActionRepCollectionViewCell"];
     self.collectionView.backgroundColor = [UIColor clearColor];
 }

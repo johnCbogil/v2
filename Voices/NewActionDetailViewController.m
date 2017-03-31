@@ -32,9 +32,6 @@
     if (homeAddress) {
         [self fetchRepsForHomeAddress:homeAddress];
     }
-    else {
-        // TURN ON EMPTY STATE
-    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
 }

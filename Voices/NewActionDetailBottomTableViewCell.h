@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSArray *repsArray;
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) id <SelectRepDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
