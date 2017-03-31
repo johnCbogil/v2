@@ -15,6 +15,7 @@
 #import "RepsManager.h"
 #import "ReportingManager.h"
 #import "ScriptManager.h"
+#import "WebViewController.h"
 
 // TODO: HOOK UP ACTION BUTTONS
 
@@ -40,9 +41,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailAlert) name:@"presentEmailComposer" object:nil];
-
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailComposer) name:@"presentEmailComposer" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -212,9 +211,11 @@
         else if (title.length > 0) {
             fullName = title;
         }
-        NSDictionary *notiDict = @{@"contactFormURL" : contactFormURL,
+        NSDictionary *dict = @{@"contactFormURL" : contactFormURL,
                                    @"fullName": fullName};
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
+        
+        [self presentWebViewControllerForURL:dict];
+
     }
     else if (self.selectedRep.email.length > 0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.selectedRep.email];
@@ -227,7 +228,7 @@
 - (void)presentEmailAlert {
     
     NSString *message;
-    if (!self.selectedRep) {
+    if (self.selectedRep) {
         message = @"This legislator hasn't given us their email address, try calling instead.";
     }
     else {
@@ -235,8 +236,20 @@
     }
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)presentWebViewControllerForURL:(NSDictionary *)dict {
+    
+    NSURL *url = dict[@"contactFormURL"];
+    NSString *fullName = dict[@"fullName"];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = url;
+    webViewController.title = fullName;
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 @end
