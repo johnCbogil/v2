@@ -43,9 +43,6 @@
     if (homeAddress) {
         [self fetchRepsForHomeAddress:homeAddress];
     }
-    else {
-        // TURN ON EMPTY STATE
-    }
 }
 
 - (void)configureTableview {
