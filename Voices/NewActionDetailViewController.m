@@ -14,6 +14,8 @@
 #import "LocationService.h"
 #import "RepsManager.h"
 
+// TODO: HOOK UP ACTION BUTTONS
+
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;

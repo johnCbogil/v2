@@ -10,7 +10,7 @@
 
 @implementation NewActionDetailMiddleTableViewCell
 
-// TODO: BUTTONS NEED TO KNOW WHO THE SELECTED REP IS
+// TODO: HOOK UP ACTION BUTTONS
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -21,7 +21,6 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -10,8 +10,6 @@
 #import "ActionRepCollectionViewCell.h"
 #import "RepsManager.h"
 
-
-// TODO: HOW TO DISPLAY EMPTY STATE UX
 // TODO: LOADING INDICATOR
 
 @implementation NewActionDetailBottomTableViewCell
