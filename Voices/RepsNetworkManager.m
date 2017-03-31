@@ -119,11 +119,11 @@
     [operation start];
 }
 
-#pragma mark - Get Rep Contact Forms 
+#pragma mark - Download Rep Contact Forms 
 
 - (void)getRepContactFormsWithCompletion:(void(^)(NSDictionary *results))successBlock
                                  onError:(void(^)(NSError *error))errorBlock {
-    NSString *storageReference = @"https://firebasestorage.googleapis.com/v0/b/voices-430ae.appspot.com/o/repContactForms%20copy.json?alt=media&token=cf808323-a266-4ffc-a566-23497912b9f3";
+    NSString *storageReference = kRepsContactFormsRefURL;
     NSURL *url = [NSURL URLWithString:storageReference];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     

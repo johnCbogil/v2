@@ -37,7 +37,6 @@ extern NSString *const kCityCouncilZip;
 extern NSString *const kCityCouncilJSON;
 extern NSString *const kCouncilMemberDataJSON;
 extern NSString *const kNYCExtraRepsJSON;
-extern NSString *const kRepContactFormsJSON;
 
 extern CGFloat const kButtonCornerRadius;
 
@@ -64,5 +63,6 @@ extern NSString *const kWhyCall;
 extern NSString *const kWhatToExpect;
 
 extern NSString *const kHomeAddress;
+extern NSString *const kRepsContactFormsRefURL;
 
 @end
