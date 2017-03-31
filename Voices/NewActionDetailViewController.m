@@ -13,12 +13,15 @@
 #import "SearchViewController.h"
 #import "LocationService.h"
 #import "RepsManager.h"
+#import "ReportingManager.h"
+#import "ScriptManager.h"
 
 // TODO: HOOK UP ACTION BUTTONS
 
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) Representative *selectedRep;
 
 @end
 
@@ -36,6 +39,8 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -116,6 +121,7 @@
 
 - (void)sendRepToViewController:(Representative *)rep {
     NSLog(@"%@",rep.fullName);
+    self.selectedRep = rep;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -132,7 +138,53 @@
     
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
+}
 
+- (void)presentCaller {
+    
+    if (self.selectedRep.phone.length) {
+        NSString *confirmCallMessage;
+        if (self.selectedRep.nickname != nil && ![self.selectedRep.nickname isEqual:[NSNull null]]) {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@. A script will appear when you begin calling.", self.selectedRep.nickname];
+        }
+        else {
+            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@. A script will appear when you begin calling.", self.selectedRep.firstName, self.selectedRep.lastName];
+        }
+        
+        UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.selectedRep.title,self.selectedRep.firstName, self.selectedRep.lastName]  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
+        //button0
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Back" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        //button1
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.selectedRep.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
+            NSURL* callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.selectedRep.phone]];
+            if ([[UIApplication sharedApplication] canOpenURL:callUrl]) {
+                [[UIApplication sharedApplication] openURL:callUrl];
+            }
+            else {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This representative hasn't given us their phone number." preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+            }
+        }]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:nil];
+    }
+    else {
+        
+        NSString *message;
+        if (self.selectedRep) {
+            message = @"This rep hasn't given us their phone number, try tweeting at them instead.";
+        }
+        else {
+            message = @"Please select a rep first. ";
+        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 @end

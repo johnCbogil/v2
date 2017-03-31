@@ -19,16 +19,18 @@
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 - (IBAction)callButtonDidPress:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentCaller" object:nil];
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {
