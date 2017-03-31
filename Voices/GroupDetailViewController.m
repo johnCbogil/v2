@@ -34,6 +34,8 @@
 
 @end
 
+// TODO: MOVE ALL THE CELL FORMATTING INTO THE CELLS
+
 @implementation GroupDetailViewController
 
 - (void)dealloc {
@@ -354,7 +356,7 @@
             cell.followGroupDelegate = self;
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
-            cell.groupWebsiteTextView.text = self.group.website;
+            [cell.websiteButton setTitle:self.group.website forState:UIControlStateNormal];
             [self setGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }

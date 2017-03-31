@@ -44,37 +44,34 @@
                             <action selector="followGroupButtonDidPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HZD-Kf-Uo0"/>
                         </connections>
                     </button>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Group Website" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PiX-Eq-Zpd">
-                        <rect key="frame" x="8" y="192" width="319" height="25"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="25" id="gRS-cS-hS2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                    </textView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJP-fx-lvK">
+                        <rect key="frame" x="8" y="187" width="319" height="30"/>
+                        <state key="normal" title="Website URL"/>
+                        <connections>
+                            <action selector="websiteButtonDidPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="d6B-B4-QPT"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="PiX-Eq-Zpd" firstAttribute="trailing" secondItem="kJq-jc-ZRY" secondAttribute="trailing" id="1V9-j2-UcY"/>
-                    <constraint firstItem="SX7-Qv-hbN" firstAttribute="trailing" secondItem="PiX-Eq-Zpd" secondAttribute="trailing" id="4Ee-kF-Dus"/>
-                    <constraint firstItem="SX7-Qv-hbN" firstAttribute="leading" secondItem="PiX-Eq-Zpd" secondAttribute="leading" id="BuW-AT-agB"/>
+                    <constraint firstItem="kJq-jc-ZRY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="9sN-yU-dL4"/>
+                    <constraint firstAttribute="trailing" secondItem="iJP-fx-lvK" secondAttribute="trailing" constant="8" id="FVO-rX-9Cf"/>
                     <constraint firstItem="SX7-Qv-hbN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="J4B-Hm-Gmg"/>
-                    <constraint firstItem="PiX-Eq-Zpd" firstAttribute="top" secondItem="SX7-Qv-hbN" secondAttribute="bottom" constant="8" symbolic="YES" id="KMk-hr-aQ5"/>
-                    <constraint firstItem="PiX-Eq-Zpd" firstAttribute="leading" secondItem="kJq-jc-ZRY" secondAttribute="leading" id="Ksi-eO-cDy"/>
                     <constraint firstItem="SX7-Qv-hbN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Qbr-kf-yC9"/>
                     <constraint firstItem="SX7-Qv-hbN" firstAttribute="top" secondItem="r8l-aa-G1a" secondAttribute="bottom" constant="8" symbolic="YES" id="WLb-Je-MXv"/>
                     <constraint firstItem="r8l-aa-G1a" firstAttribute="centerX" secondItem="SX7-Qv-hbN" secondAttribute="centerX" id="Xcz-wM-z23"/>
                     <constraint firstAttribute="bottom" secondItem="kJq-jc-ZRY" secondAttribute="bottom" constant="12" id="YIi-wJ-5NK"/>
+                    <constraint firstItem="iJP-fx-lvK" firstAttribute="top" secondItem="SX7-Qv-hbN" secondAttribute="bottom" constant="3" id="eFw-hD-tnj"/>
                     <constraint firstItem="r8l-aa-G1a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="k8f-sk-igD"/>
-                    <constraint firstItem="kJq-jc-ZRY" firstAttribute="top" secondItem="PiX-Eq-Zpd" secondAttribute="bottom" constant="8" symbolic="YES" id="p8d-4Q-DiB"/>
+                    <constraint firstItem="iJP-fx-lvK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="qfW-i6-gEB"/>
+                    <constraint firstAttribute="trailing" secondItem="kJq-jc-ZRY" secondAttribute="trailing" constant="8" id="sH8-Zl-hNV"/>
+                    <constraint firstItem="kJq-jc-ZRY" firstAttribute="top" secondItem="iJP-fx-lvK" secondAttribute="bottom" constant="8" id="saM-Wc-QLi"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="followGroupButton" destination="kJq-jc-ZRY" id="Xxv-WE-3to"/>
                 <outlet property="groupImageView" destination="r8l-aa-G1a" id="i1J-MU-TUT"/>
                 <outlet property="groupTypeLabel" destination="SX7-Qv-hbN" id="2Ke-0C-26l"/>
-                <outlet property="groupWebsiteTextView" destination="PiX-Eq-Zpd" id="WQ3-0J-wwv"/>
+                <outlet property="websiteButton" destination="iJP-fx-lvK" id="g2T-Xc-BgV"/>
             </connections>
             <point key="canvasLocation" x="66.5" y="-81"/>
         </tableViewCell>
