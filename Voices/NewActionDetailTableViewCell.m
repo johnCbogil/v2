@@ -97,7 +97,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ActionRepCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActionRepCollectionViewCell" forIndexPath:indexPath];
-    [cell initWithRep:self.repsArray[indexPath.row]];
+    [cell setupWithRepresentative:self.repsArray[indexPath.row]];
     [self.listOfRepCells addObject:cell];
     return cell;
 }

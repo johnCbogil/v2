@@ -10,8 +10,11 @@
 #import "Representative.h"
 
 @interface ActionRepCollectionViewCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-- (void)initWithRep:(Representative *)rep;
-@property (strong, nonatomic) Representative *representative;
+
+- (void)setupWithRepresentative:(Representative *)rep;
+- (void)configureAsSelected:(BOOL)selected;
+
 @end
 

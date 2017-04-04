@@ -18,7 +18,6 @@
         self.lastName = [data valueForKey:@"last_name"];
         self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.nickname = [data valueForKey:@"nickname"];
-        self.bioguide = [data valueForKey:@"bioguide_id"];
         self.phone = [data valueForKey:@"phone"];
         self.party = [data valueForKey:@"party"];
         self.email = [data valueForKey:@"oc_email"];

@@ -12,6 +12,12 @@
 
 // TODO: LOADING INDICATOR
 
+@interface NewActionDetailBottomTableViewCell()
+
+@property (strong, nonatomic) Representative *selectedRep;
+
+@end
+
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
@@ -29,7 +35,6 @@
     
     [self.getRepsButton setTitle:@"Add Address To Show Reps" forState:UIControlStateNormal];
 
-    self.listOfRepCells = @[].mutableCopy;
     [self.collectionView reloadData];
 }
 
@@ -44,7 +49,7 @@
             self.indicatorView.hidden = NO;
             [self.indicatorView startAnimating];
         });
-        self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
+        self.repsArray = [[RepsManager sharedInstance] fetchRepsForIndex:self.action.level];
     }
     else {
         self.getRepsButton.hidden = NO;
@@ -86,17 +91,12 @@
     self.descriptionTextView.backgroundColor = [UIColor clearColor];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
 - (IBAction)getRepsButtonDidPress:(id)sender {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentSearchViewController" object:nil];
     
 }
+
 # pragma mark - UICollectionView Methods
 
 - (void)configureCollectionView {
@@ -115,8 +115,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ActionRepCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActionRepCollectionViewCell" forIndexPath:indexPath];
-    [cell initWithRep:self.repsArray[indexPath.row]];
-    [self.listOfRepCells addObject:cell];
+    Representative *rep = self.repsArray[indexPath.row];
+    [cell setupWithRepresentative:rep];
+    [cell configureAsSelected:[self.selectedRep.fullName isEqualToString:rep.fullName]];
     return cell;
 }
 
@@ -126,20 +127,15 @@
         self.selectedRep = self.repsArray[indexPath.row];
         self.selectRepLabel.text = [NSString stringWithFormat:@"Selected Rep: %@", self.selectedRep.fullName];
         [self selectRepForCurrentAction:self.selectedRep];
+        
         ActionRepCollectionViewCell *selectedCell = (ActionRepCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        for (ActionRepCollectionViewCell *cell in self.listOfRepCells) {
-            if (selectedCell == cell) {
-                cell.layer.borderColor = [UIColor greenColor].CGColor;
-                cell.layer.borderWidth = 3.0f;
-            }
-            else {
-                cell.layer.borderColor = [UIColor clearColor].CGColor;
-            }
+        for (ActionRepCollectionViewCell *cell in collectionView.visibleCells) {
+            [cell configureAsSelected:[cell isEqual:selectedCell]];
         }
     }
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     // Add inset to the collection view if there are not enough cells to fill the width.
     CGFloat cellSpacing = ((UICollectionViewFlowLayout *) collectionViewLayout).minimumLineSpacing;
     CGFloat cellWidth = ((UICollectionViewFlowLayout *) collectionViewLayout).itemSize.width;
