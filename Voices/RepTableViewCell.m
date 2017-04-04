@@ -129,14 +129,23 @@
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.representative.bioguide.length > 0) {
         
-        NSDictionary *contactFormsDict = self.repsContactForms;
+//        NSDictionary *contactFormsDict = self.repsContactForms;
+//        
+//        NSString *contactFormURLString = [contactFormsDict valueForKey:self.representative.bioguide];
+//        
+//        if (contactFormURLString.length == 0) {
+//            [self showEmailAlert];
+//            return;
+//        }
+//        
+//        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+        NSURL *contactFormURL = self.representative.contactFormURL;
         
-        NSString *contactFormURLString = [contactFormsDict valueForKey:self.representative.bioguide];
-        if (contactFormURLString.length == 0) {
+        if ([contactFormURL absoluteString].length == 0) {
             [self showEmailAlert];
             return;
         }
-        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+            
         
         NSString *title = self.representative.title;
         NSString *name = self.representative.fullName;

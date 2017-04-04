@@ -28,6 +28,7 @@
         [self formatTitle:[data valueForKey:@"title"]];
         self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
         self.gender = [data valueForKey:@"gender"];
+        self.contactFormURL = [self getContactFormURL];
         return self;
     }
     return self;
@@ -60,6 +61,20 @@
         self.title = @"Representative";
         self.shortTitle = @"Rep.";
     }
+}
+
+-(NSURL *)getContactFormURL {
+    NSDictionary *contactFormsDict = // TODO: RepsManager get contact forms
+    
+    NSString *contactFormURLString = [contactFormsDict valueForKey:self.bioguide];
+    
+    if (contactFormURLString.length == 0) {
+        return;
+    }
+    
+    NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+    
+    return contactFormURL;
 }
 
 @end

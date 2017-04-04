@@ -332,7 +332,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 -(void)getRepContactForms {
     [[RepsManager sharedInstance]getRepContactFormsWithCompletion:^{
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        //TODO: set contact forms in federalrep class
     } onError:^ (NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
