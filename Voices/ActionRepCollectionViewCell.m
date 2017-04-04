@@ -11,17 +11,34 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface ActionRepCollectionViewCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (strong, nonatomic) Representative *representative;
+
 @end
 
 @implementation ActionRepCollectionViewCell
 
-- (void)initWithRep:(Representative *)rep {
+- (void)setupWithRepresentative:(Representative *)rep {
     
     self.representative = rep;
     [self fetchRepImages];
     self.layer.cornerRadius = kButtonCornerRadius;
-    
+}
+
+- (void)configureAsSelected:(BOOL)selected {
+    if (selected) {
+        self.layer.borderColor = [UIColor greenColor].CGColor;
+        self.layer.borderWidth = 3.f;
+    }
+    else {
+        self.layer.borderColor = [UIColor clearColor].CGColor;
+        self.layer.borderWidth = 0.f;
+    }
+}
+
+- (void)prepareForReuse {
+    [self configureAsSelected:NO];
 }
 
 - (void)fetchRepImages {

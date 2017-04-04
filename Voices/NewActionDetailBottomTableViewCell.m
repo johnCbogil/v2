@@ -12,6 +12,12 @@
 
 // TODO: LOADING INDICATOR
 
+@interface NewActionDetailBottomTableViewCell()
+
+@property (strong, nonatomic) Representative *selectedRep;
+
+@end
+
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
@@ -44,7 +50,7 @@
             self.indicatorView.hidden = NO;
             [self.indicatorView startAnimating];
         });
-        self.repsArray = [[RepsManager sharedInstance]fetchRepsForIndex:self.action.level];
+        self.repsArray = [[RepsManager sharedInstance] fetchRepsForIndex:self.action.level];
     }
     else {
         self.getRepsButton.hidden = NO;
@@ -115,7 +121,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ActionRepCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActionRepCollectionViewCell" forIndexPath:indexPath];
-    [cell initWithRep:self.repsArray[indexPath.row]];
+    Representative *rep = self.repsArray[indexPath.row];
+    [cell setupWithRepresentative:rep];
+    [cell configureAsSelected:[self.selectedRep.fullName isEqualToString:rep.fullName]];
     [self.listOfRepCells addObject:cell];
     return cell;
 }
@@ -128,13 +136,7 @@
         [self selectRepForCurrentAction:self.selectedRep];
         ActionRepCollectionViewCell *selectedCell = (ActionRepCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         for (ActionRepCollectionViewCell *cell in self.listOfRepCells) {
-            if (selectedCell == cell) {
-                cell.layer.borderColor = [UIColor greenColor].CGColor;
-                cell.layer.borderWidth = 3.0f;
-            }
-            else {
-                cell.layer.borderColor = [UIColor clearColor].CGColor;
-            }
+            [cell configureAsSelected:[selectedCell isEqual:cell]];
         }
     }
 }

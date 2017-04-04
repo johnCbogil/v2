@@ -18,9 +18,8 @@
 
 @interface NewActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (strong, nonatomic) Representative *selectedRep;
 @property (strong, nonatomic) NSMutableArray *listOfRepCells;
-@property (strong, nonatomic) NSArray *repsArray;
+@property (strong, nonatomic) NSArray<Representative *> *repsArray;
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewLayout;
@@ -29,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (weak, nonatomic) IBOutlet UIButton *getRepsButton;
 @property (strong, nonatomic) Action *action;
-- (void)initWithAction:(Action *)action;
 
+- (void)initWithAction:(Action *)action;
 
 @end
