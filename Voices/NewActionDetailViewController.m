@@ -16,6 +16,7 @@
 #import "ReportingManager.h"
 #import "ScriptManager.h"
 #import "WebViewController.h"
+#import <Social/Social.h>
 
 // TODO: HOOK UP ACTION BUTTONS
 
@@ -238,6 +239,31 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)presentTweetComposer:(NSNotification*)notification {
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
+        [tweetSheetOBJ setInitialText:initialText];
+        [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    NSLog(@"Twitter Post Canceled");
+                    
+                    break;
+                case SLComposeViewControllerResultDone:
+                    NSLog(@"Twitter Post Sucessful");
+                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
+                    
+                    break;
+                default:
+                    break;
+            }
+        }];
+        [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
+    }
 }
 
 - (void)presentWebViewControllerForURL:(NSDictionary *)dict {
