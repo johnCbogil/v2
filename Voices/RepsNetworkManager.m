@@ -121,7 +121,7 @@
 
 #pragma mark - Download Rep Contact Forms 
 
-- (void)getRepContactFormsWithCompletion:(void(^)(NSDictionary *results))successBlock
+- (void)downloadRepContactFormsWithCompletion:(void(^)(NSDictionary *results))successBlock
                                  onError:(void(^)(NSError *error))errorBlock {
     NSString *storageReference = kRepsContactFormsRefURL;
     NSURL *url = [NSURL URLWithString:storageReference];
@@ -136,17 +136,10 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-        
         NSLog(@"Error: %@", error);
     }];
     
     [operation start];
 }
-
-
-
 
 @end

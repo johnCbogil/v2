@@ -331,11 +331,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 }
 
 -(void)getRepContactForms {
-    [[RepsManager sharedInstance]getRepContactFormsWithCompletion:^{
-        //TODO: set contact forms in federalrep class
-    } onError:^ (NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }];
+    [[RepsManager sharedInstance]getRepContactForms];
 }
 
 @end

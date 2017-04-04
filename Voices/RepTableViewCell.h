@@ -10,7 +10,6 @@
 
 @interface RepTableViewCell : UITableViewCell
 
-@property(nonatomic)NSDictionary *repsContactForms;
-- (void)initWithRep:(id)rep andRepsContactForms:(NSDictionary *)repsContactForms;
+- (void)initWithRep:(id)rep;
 
 @end

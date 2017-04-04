@@ -85,7 +85,13 @@
         // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
         for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-            FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
+            NSMutableDictionary *resultsDictCopy = [resultDict mutableCopy];
+            NSString *bioguide = [resultsDictCopy valueForKey:@"bioguide_id"];
+            if(bioguide.length > 0){
+                NSString *contactForm = [self getContactFormWithBioguide:bioguide];
+                [resultsDictCopy setValue:contactForm forKey:@"contact_form"];
+            }
+            FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultsDictCopy];
             [listOfFederalRepresentatives addObject:federalRepresentative];
             self.fedReps = listOfFederalRepresentatives;
             successBlock();
@@ -245,14 +251,26 @@
     return billDeBlasio;
 }
 
--(void)getRepContactFormsWithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
-    [[RepsNetworkManager sharedInstance]getRepContactFormsWithCompletion:^(NSDictionary *results) {
-     if (successBlock) {
-          self.repsContactForms = results;
-     }
-    } onError:^(NSError *error) {
-        errorBlock(error);
+- (void)getRepContactForms {
+    [[RepsNetworkManager sharedInstance]downloadRepContactFormsWithCompletion:^(NSDictionary *results) {
+        if (results) {
+            self.repsContactForms = results;
+        }
+    }onError:^(NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
     }];
 }
+
+-(NSString *)getContactFormWithBioguide: (NSString *)bioguide {
+    
+    NSString *contactForm = [self.repsContactForms valueForKey:bioguide];
+    
+    if (contactForm.length == 0) {
+        return nil;
+    } else {
+        return contactForm;
+    }
+}
+
 
 @end

@@ -45,14 +45,13 @@
     [self registerCallStateNotification];
 }
 
-- (void)initWithRep:(id)rep andRepsContactForms:(NSDictionary *)repsContactForms {
+- (void)initWithRep:(id)rep {
     self.representative = rep;
     NSString *title = self.representative.shortTitle ? self.representative.shortTitle : self.representative.title;
     self.name.text = [NSString stringWithFormat:@"%@ %@ %@", title, self.representative.firstName, self.representative.lastName];
     self.tweetButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.callButton.tintColor = [UIColor voicesOrange];
-    self.repsContactForms = repsContactForms;
     [self setupImage];
 }
 
@@ -129,17 +128,7 @@
 
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.representative.bioguide.length > 0) {
-        
-//        NSDictionary *contactFormsDict = self.repsContactForms;
-//        
-//        NSString *contactFormURLString = [contactFormsDict valueForKey:self.representative.bioguide];
-//        
-//        if (contactFormURLString.length == 0) {
-//            [self showEmailAlert];
-//            return;
-//        }
-//        
-//        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+
         NSURL *contactFormURL = self.representative.contactFormURL;
         
         if ([contactFormURL absoluteString].length == 0) {

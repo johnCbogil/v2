@@ -70,7 +70,7 @@
         
         cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
         
-        [cell initWithRep:self.tableViewDataSource[indexPath.row] andRepsContactForms:[[RepsManager sharedInstance]repsContactForms]];
+        [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else {
         UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
