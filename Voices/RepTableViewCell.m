@@ -90,7 +90,8 @@
 #pragma mark - User Actions
 
 - (IBAction)callButtonDidPress:(id)sender {
-    if (self.representative.phone.length) {
+    
+    if (self.representative.phone.length > 0) {
         NSString *confirmCallMessage;
         if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
             confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.representative.nickname];
@@ -163,7 +164,7 @@
                                    @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
-    else if (self.representative.email.length > 0) {
+    else if(!self.representative.email || [self.representative.email isKindOfClass:[NSNull class]]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {

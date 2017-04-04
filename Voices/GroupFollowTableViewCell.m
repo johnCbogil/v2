@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self configureViews];
 }
 
@@ -27,6 +28,7 @@
     self.followGroupButton.layer.cornerRadius = kButtonCornerRadius;
     self.groupImageView.backgroundColor = [UIColor clearColor];
     self.groupTypeLabel.font = [UIFont voicesFontWithSize:19];
+    self.websiteButton.titleLabel.font = [UIFont voicesFontWithSize:19];
 }
 
 - (void)setTitleForFollowGroupButton:(NSString *)title {
@@ -36,6 +38,12 @@
 
 - (IBAction)followGroupButtonDidPress:(id)sender {
     [self.followGroupDelegate followGroupButtonDidPress];
+}
+
+- (IBAction)websiteButtonDidPress:(id)sender {
+    
+    NSURL *url = [NSURL URLWithString:self.websiteButton.titleLabel.text];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebViewControllerForGroupDetail" object:url];
 }
 
 @end

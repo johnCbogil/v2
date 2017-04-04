@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
 @property (weak, nonatomic) IBOutlet UILabel *groupTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followGroupButton;
+@property (weak, nonatomic) IBOutlet UIButton *websiteButton;
 - (IBAction)followGroupButtonDidPress:(id)sender;
 - (void)setTitleForFollowGroupButton:(NSString *)title;
 

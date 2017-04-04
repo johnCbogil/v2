@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.groupDescription = dictionary[@"description"];
     self.debug = [dictionary[@"debug"]intValue];
     self.actionKeys = [dictionary[@"actions"] allKeys];
+    self.website = dictionary[@"website"];
     return self;
 }
 
