@@ -95,7 +95,6 @@
 - (IBAction)getRepsButtonDidPress:(id)sender {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"presentSearchViewController" object:nil];
-    
 }
 
 # pragma mark - UICollectionView Methods

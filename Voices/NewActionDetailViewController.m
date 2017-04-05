@@ -212,10 +212,8 @@
         else if (title.length > 0) {
             fullName = title;
         }
-        NSDictionary *dict = @{@"contactFormURL" : contactFormURL,
-                                   @"fullName": fullName};
         
-        [self presentWebViewControllerForURL:dict];
+        [self presentWebViewControllerForURL:contactFormURL];
 
     }
     else if (self.selectedRep.email.length > 0) {
@@ -266,15 +264,15 @@
     }
 }
 
-- (void)presentWebViewControllerForURL:(NSDictionary *)dict {
+- (void)presentWebViewControllerForURL:(NSURL *)url {
     
-    NSURL *url = dict[@"contactFormURL"];
-    NSString *fullName = dict[@"fullName"];
+    NSString *fullName = self.selectedRep.fullName;
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
     webViewController.title = fullName;
     [self.navigationController pushViewController:webViewController animated:YES];
 }
+
 
 @end
