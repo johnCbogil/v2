@@ -16,6 +16,7 @@
 #import "ReportingManager.h"
 #import "ScriptManager.h"
 #import "WebViewController.h"
+#import "STPopupController.h"
 #import <Social/Social.h>
 #import <CoreTelephony/CTCall.h>
 #import <CoreTelephony/CTCallCenter.h>
@@ -37,6 +38,7 @@
     [super viewDidLoad];
     
     [self registerCallStateNotification];
+    [ScriptManager sharedInstance].lastAction = self.action;
     self.title = self.group.name;
     [self configureTableview];
     
@@ -151,17 +153,20 @@
 - (void)presentCaller {
     
     if (self.selectedRep.phone.length) {
-        NSString *confirmCallMessage;
+        NSString *confirmCallMessage = @"A call script will appear when you begin calling. Would you like to preview it?";
+        NSString *title;
         if (self.selectedRep.nickname != nil && ![self.selectedRep.nickname isEqual:[NSNull null]]) {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@. A script will appear when you begin calling.", self.selectedRep.nickname];
+            title =  [NSString stringWithFormat:@"Call %@", self.selectedRep.nickname];
         }
         else {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@. A script will appear when you begin calling.", self.selectedRep.firstName, self.selectedRep.lastName];
+            title =  [NSString stringWithFormat:@"Call %@ %@", self.selectedRep.firstName, self.selectedRep.lastName];
         }
         
-        UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.selectedRep.title,self.selectedRep.firstName, self.selectedRep.lastName]  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
-        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Back" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            [self dismissViewControllerAnimated:YES completion:nil];
+        UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:title  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Preview" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+
+            [self presentScriptView];
+            
         }]];
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.selectedRep.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
@@ -190,6 +195,21 @@
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
+}
+
+- (void)presentScriptView {
+    
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    popupController.containerView.layer.cornerRadius = 10;
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    popupController.transitionStyle = STPopupTransitionStyleFade;
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+    [popupController presentInViewController:self];
+
 }
 
 - (void)presentEmailComposer {
