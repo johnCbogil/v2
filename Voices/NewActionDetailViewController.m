@@ -274,7 +274,6 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
     webViewController.title = fullName;
-    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 

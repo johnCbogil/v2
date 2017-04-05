@@ -27,9 +27,16 @@
     [self.webView loadRequest:urlRequest];
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     [self createActivityIndicator];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:nil];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.navigationItem setBackBarButtonItem:nil];
+
 }
 
 

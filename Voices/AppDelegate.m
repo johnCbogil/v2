@@ -19,9 +19,6 @@
 #import "Action.h"
 #import "FirebaseManager.h"
 
-
-//import UserNotifications
-
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
@@ -66,7 +63,6 @@
                                  NSError * _Nullable error) {
                         // ...
                     }];
-    
     
     return handled;
 }

@@ -89,6 +89,7 @@
     self.descriptionTextView.text = text;
     self.descriptionTextView.editable = NO;
     self.descriptionTextView.backgroundColor = [UIColor clearColor];
+    self.descriptionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
 }
 
 - (IBAction)getRepsButtonDidPress:(id)sender {

@@ -32,8 +32,8 @@
         self.layer.borderWidth = 3.f;
     }
     else {
-        self.layer.borderColor = [UIColor clearColor].CGColor;
-        self.layer.borderWidth = 0.f;
+        self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        self.layer.borderWidth = 2.f;
     }
 }
 
