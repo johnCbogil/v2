@@ -69,5 +69,10 @@ NSString *const kUNSUBSCRIBE_EVENT = @"UNSUBSCRIBE_EVENT";
 #pragma mark - Home Address
 NSString *const kHomeAddress = @"homeAddress";
 
+#pragma mark - GroupDetailVC Tableview Constants
+NSString *const kGroupFollowTableViewCell = @"GroupFollowTableViewCell";
+NSString *const kGroupDescriptionTableViewCell = @"GroupDescriptionTableViewCell";
+NSString *const kPolicyPositionsDetailCell = @"PolicyPositionsDetailCell";
+
 
 @end
