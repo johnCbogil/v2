@@ -122,11 +122,8 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
-    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
-    webViewController.url = URL;
-    webViewController.title = @"TAKE ACTION";
-    [self.navigationController pushViewController:webViewController animated:YES];
+
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentEmailComposer" object:nil];
     return NO;
 }
 

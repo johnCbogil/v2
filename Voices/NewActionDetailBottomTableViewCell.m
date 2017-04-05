@@ -150,4 +150,10 @@
     [self.delegate sendRepToViewController:rep];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    
+
+    return NO;
+}
+
 @end

@@ -16,7 +16,7 @@
 
 @end
 
-@interface NewActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface NewActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate>
 
 @property (strong, nonatomic) NSArray<Representative *> *repsArray;
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
