@@ -121,7 +121,7 @@
     }
 }
 
-- (void)sendRepToViewController:(Representative *)rep {
+- (void)selectRep:(Representative *)rep {
     NSLog(@"%@",rep.fullName);
     self.selectedRep = rep;
 }

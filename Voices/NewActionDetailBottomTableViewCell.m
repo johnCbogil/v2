@@ -127,7 +127,7 @@
     if (self.repsArray.count) {
         self.selectedRep = self.repsArray[indexPath.row];
         self.selectRepLabel.text = [NSString stringWithFormat:@"Selected Rep: %@", self.selectedRep.fullName];
-        [self selectRepForCurrentAction:self.selectedRep];
+        [self selectRep:self.selectedRep];
         
         ActionRepCollectionViewCell *selectedCell = (ActionRepCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         for (ActionRepCollectionViewCell *cell in collectionView.visibleCells) {
@@ -146,9 +146,9 @@
     return UIEdgeInsetsMake(0.0, inset, 0.0, 0.0);
 }
 
-- (void)selectRepForCurrentAction:(Representative *)rep {
+- (void)selectRep:(Representative *)rep {
     
-    [self.delegate sendRepToViewController:rep];
+    [self.delegate selectRep:rep];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
