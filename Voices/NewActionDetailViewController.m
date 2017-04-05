@@ -100,6 +100,7 @@
     } onError:^(NSError *googleMapsError) {
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
+    [self.tableview reloadData];
 }
 
 #pragma mark - UITableView Delegate methods
