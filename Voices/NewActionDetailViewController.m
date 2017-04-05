@@ -43,6 +43,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailComposer) name:@"presentEmailComposer" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposerInActionDetail) name:@"presentTweetComposerInActionDetail" object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -178,7 +180,7 @@
             message = @"This rep hasn't given us their phone number, try tweeting at them instead.";
         }
         else {
-            message = @"Please select a rep first. ";
+            message = @"Please select a rep first.";
         }
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
@@ -241,28 +243,43 @@
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)presentTweetComposer:(NSNotification*)notification {
+- (void)presentTweetComposerInActionDetail {
     
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
-        [tweetSheetOBJ setInitialText:initialText];
-        [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
-            switch (result) {
-                case SLComposeViewControllerResultCancelled:
-                    NSLog(@"Twitter Post Canceled");
-                    
-                    break;
-                case SLComposeViewControllerResultDone:
-                    NSLog(@"Twitter Post Sucessful");
-                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
-                    
-                    break;
-                default:
-                    break;
-            }
-        }];
-        [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
+    if (self.selectedRep.twitter.length > 0) {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            NSString *initialText = [NSString stringWithFormat:@".@%@", self.selectedRep.twitter];
+            [tweetSheetOBJ setInitialText:initialText];
+            [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
+                switch (result) {
+                    case SLComposeViewControllerResultCancelled:
+                        NSLog(@"Twitter Post Canceled");
+                        
+                        break;
+                    case SLComposeViewControllerResultDone:
+                        NSLog(@"Twitter Post Sucessful");
+                        [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:self.selectedRep.twitter eventData:[ScriptManager sharedInstance].lastAction.key];
+                        
+                        break;
+                    default:
+                        break;
+                }
+            }];
+            [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
+        }
+    }
+    else {
+        
+        NSString *message;
+        if (self.selectedRep) {
+            message = @"This rep hasn't given us their twitter handle, try calling them instead.";
+        }
+        else {
+            message = @"Please select a rep first.";
+        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
 

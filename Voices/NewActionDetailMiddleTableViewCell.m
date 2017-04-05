@@ -39,6 +39,8 @@
 }
 
 - (IBAction)tweetButtonDidPress:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposerInActionDetail" object:nil];
 }
 
 @end
