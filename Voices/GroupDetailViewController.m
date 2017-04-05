@@ -108,9 +108,9 @@
     self.followGroupDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupFollowTableViewCell" bundle:nil]forCellReuseIdentifier:kGroupFollowTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:kGroupDescriptionTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:kPolicyPositionsDetailCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kGroupFollowTableViewCell bundle:nil]forCellReuseIdentifier:kGroupFollowTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kGroupDescriptionTableViewCell bundle:nil]forCellReuseIdentifier:kGroupDescriptionTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kPolicyPositionsDetailCell bundle:nil]  forCellReuseIdentifier:kPolicyPositionsDetailCell];
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -350,7 +350,7 @@
             GroupFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(cell == nil){
                 // Load the top-level objects from the custom cell XIB.
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupFollowTableViewCell" owner:self options:nil];
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kGroupFollowTableViewCell owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
             }
             cell.followGroupDelegate = self;
@@ -365,7 +365,7 @@
             GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 // Load the top-level objects from the custom cell XIB.
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDescriptionTableViewCell" owner:self options:nil];
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kGroupDescriptionTableViewCell owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
             }
             cell.expandingCellDelegate = self;   // Expanding textview delegate
@@ -380,7 +380,7 @@
                 NSString *CellIdentifier = kPolicyPositionsDetailCell;
                 PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (cell == nil) {
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
+                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kPolicyPositionsDetailCell owner:self options:nil];
                     cell = [topLevelObjects objectAtIndex:0];
                 }
                 NSString *policy = [self.listOfPolicyPositions[indexPath.row]key];
