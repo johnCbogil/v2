@@ -213,10 +213,12 @@
             fullName = title;
         }
         
-        [self presentWebViewControllerForURL:contactFormURL];
-
+        [self presentWebViewControllerFromTextView:contactFormURL withTitle:fullName];
+        
     }
     else if (self.selectedRep.email.length > 0) {
+        
+        // TODO: WHY IS THIS POSTING A NOTI? NO NEED.
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.selectedRep.email];
     }
     else {
@@ -264,15 +266,13 @@
     }
 }
 
-- (void)presentWebViewControllerForURL:(NSURL *)url {
+- (void)presentWebViewControllerFromTextView:(NSURL *)url withTitle:(NSString *)title {
     
-    NSString *fullName = self.selectedRep.fullName;
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
-    webViewController.title = fullName;
+    webViewController.title = @"TAKE ACTION";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
-
 
 @end

@@ -13,6 +13,7 @@
 @protocol SelectRepDelegate <NSObject>
 
 - (void) sendRepToViewController:(Representative *)rep;
+- (void)presentWebViewControllerFromTextView:(NSURL *)url withTitle:(NSString *)title;
 
 @end
 

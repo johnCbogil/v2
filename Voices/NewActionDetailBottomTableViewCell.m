@@ -90,6 +90,7 @@
     self.descriptionTextView.editable = NO;
     self.descriptionTextView.backgroundColor = [UIColor clearColor];
     self.descriptionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.descriptionTextView.delegate = self;
 }
 
 - (IBAction)getRepsButtonDidPress:(id)sender {
@@ -152,6 +153,7 @@
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
     
+    [self.delegate presentWebViewControllerFromTextView:URL withTitle:@"TAKE ACTION"];
 
     return NO;
 }
