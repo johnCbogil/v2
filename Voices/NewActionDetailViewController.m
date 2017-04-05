@@ -17,13 +17,17 @@
 #import "ScriptManager.h"
 #import "WebViewController.h"
 #import <Social/Social.h>
+#import <CoreTelephony/CTCall.h>
+#import <CoreTelephony/CTCallCenter.h>
+@import UserNotifications;
 
 // TODO: HOOK UP ACTION BUTTONS
 
-@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate>
+@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate, UNUserNotificationCenterDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) Representative *selectedRep;
+@property (nonatomic) CTCallCenter *callCenter;
 
 @end
 
@@ -32,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self registerCallStateNotification];
     self.title = self.group.name;
     [self configureTableview];
     
@@ -44,7 +49,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailComposer) name:@"presentEmailComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposerInActionDetail) name:@"presentTweetComposerInActionDetail" object:nil];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -290,6 +294,68 @@
     webViewController.url = url;
     webViewController.title = @"TAKE ACTION";
     [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+#pragma mark - NSNotifications
+
+-(void)registerCallStateNotification {
+    //Register for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callStateDidChange:) name:@"CTCallStateDidChange" object:nil];
+    
+    //Instantiate call center
+    CTCallCenter *callCenter = [[CTCallCenter alloc] init];
+    self.callCenter = callCenter;
+    
+    self.callCenter.callEventHandler = ^(CTCall* call) {
+        
+        //Announce that we've had a state change in CallCenter
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
+    };
+}
+
+- (void)callStateDidChange:(NSNotification *)notification {
+    //Log the notification
+    NSLog(@"Notification : %@", notification);
+    NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
+    if ([callInfo isEqualToString: CTCallStateDialing]) {
+        //The call state, before connection is established, when the user initiates the call.
+        NSLog(@"****** call is dialing ******");
+        [self scheduleNotification];
+    }
+    if ([callInfo isEqualToString: CTCallStateIncoming]) {
+        //The call state, before connection is established, when a call is incoming but not yet answered by the user.
+        NSLog(@"***** call is incoming ******");
+    }
+    if ([callInfo isEqualToString: CTCallStateConnected]) {
+        //The call state when the call is fully established for all parties involved.
+        NSLog(@"***** call connected *****");
+    }
+    if ([callInfo isEqualToString: CTCallStateDisconnected]) {
+        //the call state has ended
+        NSLog(@"***** call ended *****");
+    }
+}
+
+#pragma mark - UNNotifications
+
+- (void)scheduleNotification {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center removeAllDeliveredNotifications];
+    NSLog(@"LOCAL NOTI FIRED-----------");
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.5];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
+                                                                             NSCalendarUnitMonth + NSCalendarUnitDay +
+                                                                             NSCalendarUnitHour + NSCalendarUnitMinute +
+                                                                             NSCalendarUnitSecond)
+                                                                   fromDate:date];
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"Swipe down for full message";
+    content.body = [ScriptManager sharedInstance].lastAction.script.length ? [ScriptManager sharedInstance].lastAction.script : kGenericScript;
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
+    
+    [center addNotificationRequest:request withCompletionHandler:nil];
 }
 
 @end
