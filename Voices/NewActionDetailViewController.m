@@ -41,6 +41,7 @@
     [ScriptManager sharedInstance].lastAction = self.action;
     self.title = self.group.name;
     [self configureTableview];
+    [self configureHomeButton];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress) {
@@ -51,6 +52,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailComposer) name:@"presentEmailComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposerInActionDetail) name:@"presentTweetComposerInActionDetail" object:nil];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,6 +75,17 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailMiddleTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailBottomTableViewCell"];
+}
+
+- (void)configureHomeButton {
+    
+    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"Home"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(presentSearchViewController)forControlEvents:UIControlEventTouchUpInside];
+    [button setFrame:CGRectMake(0, 0, 25, 25)];
+    button.tintColor = [UIColor voicesOrange];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = barButton;
 }
 
 - (void)fetchRepsForHomeAddress:(NSString *)address {
@@ -147,6 +161,14 @@
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
     
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress.length > 0) {
+        searchViewController.title = @"Edit Home Address";
+    }
+    else {
+        searchViewController.title = @"Add Home Address";
+    }
+
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
