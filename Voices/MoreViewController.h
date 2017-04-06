@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AboutViewController.h"
+#import "IssueSurveyViewController.h"
 
 @interface MoreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *choiceArray;
+@property (nonatomic, strong) NSArray *subtitleArray;
 
 @end

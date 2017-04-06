@@ -8,48 +8,46 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Voices.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-VoicesTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SSZipArchive.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>STPopup.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Shimmer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -64,22 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>13D7284F0533DD0631ABFBA1B647733A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2534AAEB06074C579E502E54CCB5037C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>34D1296584CD7956A10C601144EC308C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -89,27 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59C17E51A6E0914A2A2C735F00CF3F53</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>609C09A85A564AA91F52DB6FC0F2F43F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>75D5109D9D283320EA7072A41B1F9EE8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8A43F21F1146E15A7D4D4DDF3AD6693F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>92BE1276F34E416D56298423B8DA08EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -124,27 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD0155D60B4B118B8A38AB42DC0E13DA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BE01596687030B8EEB499754ECC0164A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C397A35C5549100471A60ECC18E872ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>DE868725B18AE240E550C5515AE66BC4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F231FD460F9348FEC0DC062420AE24B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

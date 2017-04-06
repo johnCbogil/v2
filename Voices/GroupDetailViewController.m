@@ -13,7 +13,7 @@
 #import "CurrentUser.h"
 #import "GroupDescriptionTableViewCell.h"
 #import "PolicyPositionsDetailCell.h"
-#import "GroupDetailTableViewCell.h"
+#import "GroupFollowTableViewCell.h"
 #import "ActionTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
@@ -33,6 +33,8 @@
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
 
 @end
+
+// TODO: MOVE ALL THE CELL FORMATTING INTO THE CELLS
 
 @implementation GroupDetailViewController
 
@@ -79,7 +81,7 @@
     self.navigationItem.titleView = titleLabel;
 }
 
-- (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupDetailTableViewCell *)cell {
+- (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupFollowTableViewCell *)cell {
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
     cell.groupImageView.layer.cornerRadius = kButtonCornerRadius;
     cell.groupImageView.clipsToBounds = YES;
@@ -106,9 +108,9 @@
     self.followGroupDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDetailTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupDetailTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupDescriptionTableViewCell"bundle:nil]forCellReuseIdentifier:@"GroupDescriptionTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"PolicyPositionsDetailCell" bundle:nil]  forCellReuseIdentifier:@"PolicyPositionsDetailCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:kGroupFollowTableViewCell bundle:nil]forCellReuseIdentifier:kGroupFollowTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kGroupDescriptionTableViewCell bundle:nil]forCellReuseIdentifier:kGroupDescriptionTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kPolicyPositionsDetailCell bundle:nil]  forCellReuseIdentifier:kPolicyPositionsDetailCell];
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -200,7 +202,7 @@
 
 - (IBAction)followGroupButtonDidPress {
     
-    // Action originates in GroupDetailTableViewCell from followGroupButton via the followGroupDelegate
+    // Action originates in GroupFollowTableViewCell from followGroupButton via the followGroupDelegate
     
     [self.feedbackGenerator selectionChanged];
     
@@ -344,26 +346,26 @@
     
     if (indexPath.section == 0){
         if(indexPath.row == 0){
-            static NSString *CellIdentifier = @"GroupDetailTableViewCell";
-            GroupDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            NSString *CellIdentifier = kGroupFollowTableViewCell;
+            GroupFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if(cell == nil){
                 // Load the top-level objects from the custom cell XIB.
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDetailTableViewCell" owner:self options:nil];
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kGroupFollowTableViewCell owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
             }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.followGroupDelegate = self;
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
+            [cell.websiteButton setTitle:self.group.website forState:UIControlStateNormal];
             [self setGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }
         else if(indexPath.row == 1) {
-            static NSString *CellIdentifier = @"GroupDescriptionTableViewCell";
+            NSString *CellIdentifier = kGroupDescriptionTableViewCell;
             GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 // Load the top-level objects from the custom cell XIB.
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GroupDescriptionTableViewCell" owner:self options:nil];
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kGroupDescriptionTableViewCell owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
             }
             cell.expandingCellDelegate = self;   // Expanding textview delegate
@@ -375,10 +377,10 @@
 
         switch (self.segmentControl.selectedSegmentIndex) {
             case 0: {
-                static NSString *CellIdentifier = @"PolicyPositionsDetailCell";
+                NSString *CellIdentifier = kPolicyPositionsDetailCell;
                 PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (cell == nil) {
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PolicyPositionsDetailCell" owner:self options:nil];
+                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kPolicyPositionsDetailCell owner:self options:nil];
                     cell = [topLevelObjects objectAtIndex:0];
                 }
                 NSString *policy = [self.listOfPolicyPositions[indexPath.row]key];
@@ -396,16 +398,6 @@
         }
     }
     return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGFloat result = UITableViewAutomaticDimension;
-    
-    if((indexPath.section == 0) && (indexPath.row == 0)){
-        result = 220.0f;
-    }
-    return result;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

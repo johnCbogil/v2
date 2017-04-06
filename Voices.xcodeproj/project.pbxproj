@@ -11,7 +11,6 @@
 		5200716E1E56A9B2002CEDA6 /* SearchResultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5200716D1E56A9B2002CEDA6 /* SearchResultsManager.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52089CEA1E80B3E900A32984 /* NewActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */; };
-		52089CF01E80B82200A32984 /* NewActionDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepTableViewCell.m */; };
@@ -88,8 +87,7 @@
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
 		9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */; };
 		9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */; };
-		A775E36B1E52142D00CFAF27 /* GroupDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A775E3691E52142D00CFAF27 /* GroupDetailTableViewCell.m */; };
-		A775E36C1E52142D00CFAF27 /* GroupDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A775E36A1E52142D00CFAF27 /* GroupDetailTableViewCell.xib */; };
+		A775E36C1E52142D00CFAF27 /* GroupFollowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A775E36A1E52142D00CFAF27 /* GroupFollowTableViewCell.xib */; };
 		A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */; };
 		A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */; };
 		A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */; };
@@ -100,6 +98,10 @@
 		C0A87038D5F61A314ADE7039 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */; };
 		E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E860E04D1E79DC7A00055D39 /* More.storyboard */; };
 		E860E0511E79DD3000055D39 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0501E79DD3000055D39 /* MoreViewController.m */; };
+		E860E0551E8AB7C300055D39 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0531E8AB7C300055D39 /* AboutViewController.m */; };
+		E860E0561E8AB7C300055D39 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E860E0541E8AB7C300055D39 /* AboutViewController.xib */; };
+		E860E05B1E8AB87400055D39 /* IssueSurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */; };
+		E860E05C1E8AB87400055D39 /* IssueSurveyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +121,6 @@
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		52089CE81E80B3E900A32984 /* NewActionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailViewController.h; sourceTree = "<group>"; };
 		52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailViewController.m; sourceTree = "<group>"; };
-		52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailTableViewCell.h; sourceTree = "<group>"; };
-		52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailTableViewCell.m; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
 		52194F531E3C519400EBF461 /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepTableViewCell.xib; sourceTree = "<group>"; };
@@ -247,9 +247,9 @@
 		9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYouViewController.xib; sourceTree = "<group>"; };
 		9CC1B44A1E6725080025D8E8 /* FirebaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseManager.h; sourceTree = "<group>"; };
 		9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseManager.m; sourceTree = "<group>"; };
-		A775E3681E52142D00CFAF27 /* GroupDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailTableViewCell.h; sourceTree = "<group>"; };
-		A775E3691E52142D00CFAF27 /* GroupDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailTableViewCell.m; sourceTree = "<group>"; };
-		A775E36A1E52142D00CFAF27 /* GroupDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailTableViewCell.xib; sourceTree = "<group>"; };
+		A775E3681E52142D00CFAF27 /* GroupFollowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupFollowTableViewCell.h; sourceTree = "<group>"; };
+		A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFollowTableViewCell.m; sourceTree = "<group>"; };
+		A775E36A1E52142D00CFAF27 /* GroupFollowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupFollowTableViewCell.xib; sourceTree = "<group>"; };
 		A775E36D1E52144700CFAF27 /* FollowGroupDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowGroupDelegate.h; sourceTree = "<group>"; };
 		A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDescriptionTableViewCell.h; sourceTree = "<group>"; };
 		A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDescriptionTableViewCell.m; sourceTree = "<group>"; };
@@ -271,6 +271,12 @@
 		E860E04D1E79DC7A00055D39 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E860E04F1E79DD3000055D39 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		E860E0501E79DD3000055D39 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		E860E0521E8AB7C300055D39 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		E860E0531E8AB7C300055D39 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		E860E0541E8AB7C300055D39 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		E860E0581E8AB87400055D39 /* IssueSurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueSurveyViewController.h; sourceTree = "<group>"; };
+		E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueSurveyViewController.m; sourceTree = "<group>"; };
+		E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssueSurveyViewController.xib; sourceTree = "<group>"; };
 		FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -329,8 +335,6 @@
 			children = (
 				52089CE81E80B3E900A32984 /* NewActionDetailViewController.h */,
 				52089CE91E80B3E900A32984 /* NewActionDetailViewController.m */,
-				52089CEE1E80B82200A32984 /* NewActionDetailTableViewCell.h */,
-				52089CEF1E80B82200A32984 /* NewActionDetailTableViewCell.m */,
 				7E525BDA1E819B33007E80A8 /* ActionRepCollectionViewCell.h */,
 				7E525BDB1E819B33007E80A8 /* ActionRepCollectionViewCell.m */,
 				7E525BDC1E819B33007E80A8 /* ActionRepCollectionViewCell.xib */,
@@ -577,9 +581,9 @@
 			isa = PBXGroup;
 			children = (
 				52D892981CC463C2004FBEA3 /* TakeAction.storyboard */,
-				A775E3681E52142D00CFAF27 /* GroupDetailTableViewCell.h */,
-				A775E3691E52142D00CFAF27 /* GroupDetailTableViewCell.m */,
-				A775E36A1E52142D00CFAF27 /* GroupDetailTableViewCell.xib */,
+				A775E3681E52142D00CFAF27 /* GroupFollowTableViewCell.h */,
+				A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */,
+				A775E36A1E52142D00CFAF27 /* GroupFollowTableViewCell.xib */,
 				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
 				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
 				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
@@ -632,8 +636,30 @@
 				E860E04F1E79DD3000055D39 /* MoreViewController.h */,
 				E860E0501E79DD3000055D39 /* MoreViewController.m */,
 				E860E04D1E79DC7A00055D39 /* More.storyboard */,
+				E860E05D1E8AB87700055D39 /* IssueSurvey */,
+				E860E0571E8AB7C800055D39 /* About */,
 			);
 			name = More;
+			sourceTree = "<group>";
+		};
+		E860E0571E8AB7C800055D39 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				E860E0521E8AB7C300055D39 /* AboutViewController.h */,
+				E860E0531E8AB7C300055D39 /* AboutViewController.m */,
+				E860E0541E8AB7C300055D39 /* AboutViewController.xib */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		E860E05D1E8AB87700055D39 /* IssueSurvey */ = {
+			isa = PBXGroup;
+			children = (
+				E860E0581E8AB87400055D39 /* IssueSurveyViewController.h */,
+				E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */,
+				E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */,
+			);
+			name = IssueSurvey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -704,6 +730,7 @@
 					};
 					52BB34431B6160CA00BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 4Y3GGL46D2;
 						TestTargetID = 52BB342A1B6160C900BB9FFD;
 					};
 				};
@@ -734,8 +761,10 @@
 			files = (
 				52FECFCF1E889F8000847E7A /* NewActionDetailMiddleTableViewCell.xib in Resources */,
 				5261CF691D14EE98007B122B /* TakeActionViewController.h in Resources */,
+				E860E0561E8AB7C300055D39 /* AboutViewController.xib in Resources */,
 				E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
+				E860E05C1E8AB87400055D39 /* IssueSurveyViewController.xib in Resources */,
 				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
@@ -757,7 +786,7 @@
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
 				52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */,
 				52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */,
-				A775E36C1E52142D00CFAF27 /* GroupDetailTableViewCell.xib in Resources */,
+				A775E36C1E52142D00CFAF27 /* GroupFollowTableViewCell.xib in Resources */,
 				7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */,
 				527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */,
 				52C7D4B11CC71EFA00F85902 /* ActionTableViewCell.xib in Resources */,
@@ -896,7 +925,6 @@
 				52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */,
 				7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */,
 				52FECFCD1E889F6C00847E7A /* NewActionDetailMiddleTableViewCell.m in Sources */,
-				A775E36B1E52142D00CFAF27 /* GroupDetailTableViewCell.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
 				52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
@@ -915,6 +943,7 @@
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
+				E860E05B1E8AB87400055D39 /* IssueSurveyViewController.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */,
@@ -929,6 +958,7 @@
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				52089CEA1E80B3E900A32984 /* NewActionDetailViewController.m in Sources */,
 				52FECFD21E88A09F00847E7A /* NewActionDetailBottomTableViewCell.m in Sources */,
+				E860E0551E8AB7C300055D39 /* AboutViewController.m in Sources */,
 				5200716E1E56A9B2002CEDA6 /* SearchResultsManager.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
 				A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */,
@@ -939,7 +969,6 @@
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
-				52089CF01E80B82200A32984 /* NewActionDetailTableViewCell.m in Sources */,
 				7E525BDD1E819B33007E80A8 /* ActionRepCollectionViewCell.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */,
@@ -1124,6 +1153,7 @@
 			baseConfigurationReference = DED23F55EEF97C97C906394B /* Pods-VoicesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1142,6 +1172,7 @@
 			baseConfigurationReference = E03E106B4017E31EDA824EDF /* Pods-VoicesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VoicesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
