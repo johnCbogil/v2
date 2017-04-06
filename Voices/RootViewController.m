@@ -488,7 +488,13 @@
 - (void)presentSearchViewController {
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress.length > 0) {
+        searchViewController.title = @"Edit Home Address";
+    }
+    else {
+        searchViewController.title = @"Add Home Address";
+    }
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }

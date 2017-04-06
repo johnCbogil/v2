@@ -105,6 +105,7 @@
         }
         
         cell.icon.image = [UIImage imageNamed:@"Home"];
+        cell.icon.tintColor = [UIColor blackColor];
         
         return cell;
     }
