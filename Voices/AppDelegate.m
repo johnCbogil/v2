@@ -19,9 +19,6 @@
 #import "Action.h"
 #import "FirebaseManager.h"
 
-
-//import UserNotifications
-
 @import Firebase;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
@@ -38,13 +35,14 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
-    
+        
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
     [self getRepContactForms];
     [self excludeGeoJSONFromCloudBackup];
+    [FIROptions defaultOptions].deepLinkURLScheme = @"com.johnbogil.voices";
     [FIRApp configure];
     [GMSPlacesClient provideAPIKey:kAutocomplete];
 
@@ -65,7 +63,6 @@
                                  NSError * _Nullable error) {
                         // ...
                     }];
-    
     
     return handled;
 }

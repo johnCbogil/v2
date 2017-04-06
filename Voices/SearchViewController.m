@@ -31,7 +31,6 @@
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
     self.navigationItem.rightBarButtonItem = privacyButton;
-    self.title = @"Add Home Address";
     self.searchBar.placeholder = @"Enter address";
     self.searchBar.delegate  = self;
     [self.searchBar setReturnKeyType:UIReturnKeyDone];

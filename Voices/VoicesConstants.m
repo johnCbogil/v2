@@ -53,7 +53,7 @@ NSString *const kGroupEmptyStateBottomLabel = @"To follow groups, tap the + butt
 NSString *const kLocalRepsMissing = @"Local reps are not available in this area yet.";
 
 #pragma mark - Info Text
-NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support / oppose] [an issue that you care about] and I will be voting in November.";
+NSString *const kGenericScript = @"Hello, my name is [your name] and I am a constituent. I am calling to ask the representative to [support / oppose] [an issue that you care about] and I will be voting in the next election.";
 NSString *const kWhyCall = @"Calling is the most effective way to get government to listen to you, according to political staffers. Calls are taken more seriously and have a greater impact than emails or social media.";
 NSString *const kWhatToExpect = @"You will likely talk to an intern or staffer dedicated to constituent services. They will take down your name, opinion and relay that information to your representative. Many offices tally the number of constituents that call to support or oppose various issues.";
 
@@ -70,6 +70,11 @@ NSString *const kHomeAddress = @"homeAddress";
 
 #pragma mark - Reps Contact Forms Firebase Storage URL 
 NSString *const kRepsContactFormsRefURL = @"https://firebasestorage.googleapis.com/v0/b/voices-430ae.appspot.com/o/repContactForms%20copy.json?alt=media&token=cf808323-a266-4ffc-a566-23497912b9f3";
+
+#pragma mark - GroupDetailVC Tableview Constants
+NSString *const kGroupFollowTableViewCell = @"GroupFollowTableViewCell";
+NSString *const kGroupDescriptionTableViewCell = @"GroupDescriptionTableViewCell";
+NSString *const kPolicyPositionsDetailCell = @"PolicyPositionsDetailCell";
 
 
 @end

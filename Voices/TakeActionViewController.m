@@ -7,10 +7,9 @@
 //
 
 #import "TakeActionViewController.h"
-
 #import "Action.h"
-#import "ActionDetailViewController.h"
 #import "ActionTableViewCell.h"
+#import "ActionDetailViewController.h"
 #import "CurrentUser.h"
 #import "Group.h"
 #import "GroupDetailViewController.h"
@@ -18,7 +17,6 @@
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
-
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -170,14 +168,16 @@
 
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    [self pushToActionDetail:indexPath];
+}
+
+- (void)pushToActionDetail:(NSIndexPath *)indexPath {
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-    
-    // TODO: THERE IS REDUNDANT CODE HERE AND BELOW
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
@@ -196,7 +196,7 @@
     }
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedSegment == 0) {
         
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
@@ -257,13 +257,7 @@
         [self.navigationController pushViewController:groupDetailViewController animated:YES];
     }
     else {
-        
-        // TODO: THERE IS REDUNDANT CODE HERE AND ABOVE
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-        actionDetailViewController.group = currentGroup;
-        [self.navigationController pushViewController:actionDetailViewController animated:YES];
+        [self pushToActionDetail:indexPath];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

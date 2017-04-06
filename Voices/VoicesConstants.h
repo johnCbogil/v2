@@ -65,4 +65,8 @@ extern NSString *const kWhatToExpect;
 extern NSString *const kHomeAddress;
 extern NSString *const kRepsContactFormsRefURL;
 
+extern NSString *const kGroupFollowTableViewCell;
+extern NSString *const kGroupDescriptionTableViewCell;
+extern NSString *const kPolicyPositionsDetailCell;
+
 @end
