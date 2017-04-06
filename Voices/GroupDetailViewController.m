@@ -420,7 +420,6 @@
                 actionDetailVC.group = self.group;
                 [self.navigationController pushViewController:actionDetailVC animated:true];
              }
-                
             default:
                 break;
         }
