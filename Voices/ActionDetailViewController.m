@@ -176,7 +176,7 @@
 - (void)presentCaller {
     
     if (self.selectedRep.phone.length) {
-        NSString *confirmCallMessage = @"A call script will appear when you begin calling. Would you like to preview it?";
+        NSString *confirmCallMessage = @"A call script will appear when you begin calling. Would you like to preview it or begin calling?";
         NSString *title;
         if (self.selectedRep.nickname != nil && ![self.selectedRep.nickname isEqual:[NSNull null]]) {
             title =  [NSString stringWithFormat:@"Call %@", self.selectedRep.nickname];
