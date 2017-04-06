@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -68,6 +68,7 @@
                     <constraint firstItem="zaV-Ya-ac2" firstAttribute="leading" secondItem="SOV-EQ-pWc" secondAttribute="leading" constant="8" id="bzM-Nd-Nsl"/>
                     <constraint firstItem="zaV-Ya-ac2" firstAttribute="top" secondItem="bRm-y8-98s" secondAttribute="bottom" constant="8" id="gBN-dO-Yyg"/>
                     <constraint firstItem="bRm-y8-98s" firstAttribute="top" secondItem="XQq-2Y-23l" secondAttribute="bottom" constant="8" id="mG7-A6-e37"/>
+                    <constraint firstItem="cpw-Yr-ok9" firstAttribute="trailing" secondItem="bRm-y8-98s" secondAttribute="trailing" id="sHi-QW-SLV"/>
                     <constraint firstItem="cpw-Yr-ok9" firstAttribute="leading" secondItem="bRm-y8-98s" secondAttribute="leading" id="sit-2W-7wA"/>
                     <constraint firstItem="vpC-P1-acH" firstAttribute="centerY" secondItem="bRm-y8-98s" secondAttribute="centerY" id="tig-gM-KoZ"/>
                     <constraint firstItem="XQq-2Y-23l" firstAttribute="top" secondItem="SOV-EQ-pWc" secondAttribute="top" id="x8b-gE-yGM"/>
