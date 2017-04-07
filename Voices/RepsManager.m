@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSArray *fedReps;
 @property (strong, nonatomic) NSArray *stateReps;
 @property (strong, nonatomic) NSString *currentCouncilDistrict;
-
+@property (strong, nonatomic) NSDictionary *federalRepContactFormURLs;
 @end
 
 @implementation RepsManager
@@ -37,6 +37,7 @@
     if(self != nil) {
         [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
         self.isLocalRepsAvailable = YES;
+        [self createFederalRepContactFormURLS];
     }
     return self;
 }
@@ -94,6 +95,19 @@
     } onError:^(NSError *error) {
         errorBlock(error);
     }];
+}
+
+- (void)createFederalRepContactFormURLS {
+    
+    [[RepsNetworkManager sharedInstance]getFederalContactFormURLSWithCompletion:^(NSDictionary *results) {
+        self.federalRepContactFormURLs = results;
+    } onError:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (NSString *)getContactFormForBioGuide:(NSString *)bioguide {
+    return [self.federalRepContactFormURLs valueForKey:bioguide];
 }
 
 #pragma mark - Create State Representatives

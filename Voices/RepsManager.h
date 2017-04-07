@@ -16,6 +16,7 @@
                                          onError:(void(^)(NSError *error))errorBlock;
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock;
 - (void)createNYCRepsFromLocation:(CLLocation *)location;
+- (NSString *)getContactFormForBioGuide:(NSString *)bioguide;
 @property (strong, nonatomic) NSArray *nycDistricts;
 @property (strong, nonatomic) NSMutableArray *localReps;
 @property BOOL isLocalRepsAvailable;

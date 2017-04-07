@@ -7,6 +7,7 @@
 //
 
 #import "FederalRepresentative.h"
+#import "RepsManager.h"
 
 @implementation FederalRepresentative
 
@@ -20,7 +21,7 @@
         self.nickname = [data valueForKey:@"nickname"];
         self.phone = [data valueForKey:@"phone"];
         self.party = [data valueForKey:@"party"];
-        self.email = [data valueForKey:@"oc_email"];
+        self.email = [[RepsManager sharedInstance]getContactFormForBioGuide:self.bioguide];
         self.twitter = [data valueForKey:@"twitter_id"];
         self.districtNumber = [data valueForKey:@"district"];
         self.stateCode = [data valueForKey:@"state"];

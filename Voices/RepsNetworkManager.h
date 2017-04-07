@@ -18,6 +18,8 @@
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock;
+- (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock
+                                        onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong)UIImage *missingRepresentativePhoto;
 
