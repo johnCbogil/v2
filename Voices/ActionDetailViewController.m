@@ -22,8 +22,6 @@
 #import <CoreTelephony/CTCallCenter.h>
 @import UserNotifications;
 
-// TODO: HOOK UP ACTION BUTTONS
-
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate, UNUserNotificationCenterDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
