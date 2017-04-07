@@ -26,9 +26,8 @@
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:urlRequest];
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
+    self.webView.scrollView.showsHorizontalScrollIndicator = NO;
     [self createActivityIndicator];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:nil];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 

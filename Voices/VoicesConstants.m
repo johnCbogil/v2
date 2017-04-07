@@ -38,7 +38,6 @@ NSString *const kCityCouncilZip = @"CouncilDistrictsJSON";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";
 NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
 NSString *const kNYCExtraRepsJSON = @"nycExtraReps";
-NSString *const kRepContactFormsJSON = @"repContactForms";
 
 CGFloat const kButtonCornerRadius = 3.f;
 
@@ -68,6 +67,9 @@ NSString *const kUNSUBSCRIBE_EVENT = @"UNSUBSCRIBE_EVENT";
 
 #pragma mark - Home Address
 NSString *const kHomeAddress = @"homeAddress";
+
+#pragma mark - Reps Contact Forms Firebase Storage URL 
+NSString *const kRepsContactFormsRefURL = @"https://firebasestorage.googleapis.com/v0/b/voices-430ae.appspot.com/o/repContactForms%20copy.json?alt=media&token=cf808323-a266-4ffc-a566-23497912b9f3";
 
 #pragma mark - GroupDetailVC Tableview Constants
 NSString *const kGroupFollowTableViewCell = @"GroupFollowTableViewCell";

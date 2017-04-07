@@ -128,16 +128,14 @@
 
 - (IBAction)emailButtonDidPress:(id)sender {
     if (self.representative.bioguide.length > 0) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
-        NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
-        NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
+
+        NSURL *contactFormURL = self.representative.contactFormURL;
         
-        NSString *contactFormURLString = [contactFormsDict valueForKey:self.representative.bioguide];
-        if (contactFormURLString.length == 0) {
+        if ([contactFormURL absoluteString].length == 0) {
             [self showEmailAlert];
             return;
         }
-        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+            
         
         NSString *title = self.representative.title;
         NSString *name = self.representative.fullName;

@@ -8,6 +8,7 @@
 
 #import "FederalRepresentative.h"
 
+
 @implementation FederalRepresentative
 
 - (id)initWithData:(NSDictionary *)data {
@@ -28,6 +29,7 @@
         [self formatTitle:[data valueForKey:@"title"]];
         self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
         self.gender = [data valueForKey:@"gender"];
+        [self getContactFormURL: [data valueForKey:@"contact_form"]];
         return self;
     }
     return self;
@@ -59,6 +61,12 @@
     else {
         self.title = @"Representative";
         self.shortTitle = @"Rep.";
+    }
+}
+
+- (void)getContactFormURL:(NSString *)urlString {
+    if(urlString){
+        self.contactFormURL = [NSURL URLWithString:urlString];
     }
 }
 

@@ -90,8 +90,7 @@
 
 #pragma mark - Get Street Address Method
 
-- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
-                               onError:(void(^)(NSError *error))errorBlock {
+- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock onError:(void(^)(NSError *error))errorBlock {
     
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", searchText, kGoogMaps];
     NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
@@ -99,7 +98,9 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+    [serializer setReadingOptions:NSJSONReadingAllowFragments];
+    operation.responseSerializer = serializer;
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -118,5 +119,27 @@
     [operation start];
 }
 
+#pragma mark - Download Rep Contact Forms 
+
+- (void)downloadRepContactFormsWithCompletion:(void(^)(NSDictionary *results))successBlock
+                                 onError:(void(^)(NSError *error))errorBlock {
+    NSString *storageReference = kRepsContactFormsRefURL;
+    NSURL *url = [NSURL URLWithString:storageReference];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [operation start];
+}
 
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+
 @end
 
 @implementation RepsCollectionViewCell
@@ -47,6 +48,7 @@
     
     self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
+
 
 #pragma mark - UITableView Delegate Methods
 
