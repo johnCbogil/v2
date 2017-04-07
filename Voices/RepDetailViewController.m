@@ -128,7 +128,6 @@
     }
 }
 
-// TODO: THIS DOES NOT TAKE INTO ACCOUNT THE FEDS WHO DONT HAVE EMAILS
 - (IBAction)didPressEmailButton:(id)sender {
     if (self.representative.email) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];

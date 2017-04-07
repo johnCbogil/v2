@@ -263,9 +263,7 @@
     }];
 }
 
-
-
-// TODO: MOVE TO A TAKEACTION NETWORK MANAGER
+// TODO: MOVE TO A NETWORK MANAGER
 - (void)fetchPolicyPositions {
     [self toggleActivityIndicatorOn];
     __weak GroupDetailViewController *weakSelf = self;

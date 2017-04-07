@@ -10,8 +10,6 @@
 #import "ActionRepCollectionViewCell.h"
 #import "RepsManager.h"
 
-// TODO: LOADING INDICATOR
-
 @interface NewActionDetailBottomTableViewCell()
 
 @property (strong, nonatomic) Representative *selectedRep;
