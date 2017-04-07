@@ -238,16 +238,11 @@
 - (void)presentEmailComposer {
     
     if (self.selectedRep.bioguide.length > 0) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
-        NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
-        NSDictionary *contactFormsDict = [NSJSONSerialization JSONObjectWithData:contactFormsJSON options:NSJSONReadingAllowFragments error:nil];
-        
-        NSString *contactFormURLString = [contactFormsDict valueForKey:self.selectedRep.bioguide];
-        if (contactFormURLString.length == 0) {
+
+        if (self.selectedRep.contactFormURL == nil) {
             [self presentEmailAlert];
             return;
         }
-        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
         
         NSString *title = self.selectedRep.title;
         NSString *name = self.selectedRep.fullName;
@@ -261,8 +256,9 @@
         else if (title.length > 0) {
             fullName = title;
         }
-        
-        [self presentWebViewControllerFromTextView:contactFormURL withTitle:fullName];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle: @"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationItem setBackBarButtonItem: backButtonItem];
+        [self presentWebViewControllerFromTextView:self.selectedRep.contactFormURL withTitle:fullName];
         
     }
     else if (self.selectedRep.email.length > 0) {
