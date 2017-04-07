@@ -164,7 +164,7 @@
 - (void)createNYCRepsFromLocation:(CLLocation *)location {
     
     self.localReps = @[].mutableCopy;
-        
+    
     BOOL isLocationWithinPath = false;
     
     for (NSDictionary *district in self.nycDistricts) {
