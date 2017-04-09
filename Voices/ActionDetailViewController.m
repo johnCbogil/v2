@@ -80,7 +80,7 @@
 - (void)configureHomeButton {
     
     UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"Home"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"HomeEdit"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(presentSearchViewController)forControlEvents:UIControlEventTouchUpInside];
     [button setFrame:CGRectMake(0, 0, 25, 25)];
     button.tintColor = [UIColor voicesOrange];
