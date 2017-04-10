@@ -1,5 +1,5 @@
 //
-//  NewActionDetailMiddleTableViewCell.h
+//  ActionDetailMiddleTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 3/26/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewActionDetailMiddleTableViewCell : UITableViewCell
+@interface ActionDetailMiddleTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;

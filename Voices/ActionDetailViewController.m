@@ -7,9 +7,9 @@
 //
 
 #import "ActionDetailViewController.h"
-#import "NewActionDetailTopTableViewCell.h"
-#import "NewActionDetailMiddleTableViewCell.h"
-#import "NewActionDetailBottomTableViewCell.h"
+#import "ActionDetailTopTableViewCell.h"
+#import "ActionDetailMiddleTableViewCell.h"
+#import "ActionDetailBottomTableViewCell.h"
 #import "SearchViewController.h"
 #import "LocationService.h"
 #import "RepsManager.h"
@@ -72,9 +72,9 @@
     self.tableview.separatorColor = [UIColor clearColor];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailMiddleTableViewCell"];
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailBottomTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMiddleTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailBottomTableViewCell"];
 }
 
 - (void)configureHomeButton {
@@ -127,16 +127,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        NewActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell"];
+        ActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell"];
         [cell initWithAction:self.action andGroup:self.group];
         return cell;
     }
     else if (indexPath.row == 1) {
-        NewActionDetailMiddleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailMiddleTableViewCell"];
+        ActionDetailMiddleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailMiddleTableViewCell"];
         return cell;
     }
     else {
-        NewActionDetailBottomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailBottomTableViewCell"];
+        ActionDetailBottomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailBottomTableViewCell"];
         cell.delegate = self;
         cell.descriptionTextView.delegate = self;
         [cell initWithAction:self.action];

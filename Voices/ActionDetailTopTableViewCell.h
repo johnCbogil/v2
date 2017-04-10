@@ -1,5 +1,5 @@
 //
-//  NewActionDetailTopTableViewCell.h
+//  ActionDetailTopTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 3/26/17.
@@ -10,7 +10,7 @@
 #import "Action.h"
 #import "Group.h"
 
-@interface NewActionDetailTopTableViewCell : UITableViewCell
+@interface ActionDetailTopTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
