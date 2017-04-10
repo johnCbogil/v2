@@ -344,8 +344,8 @@
     
     if (indexPath.section == 0){
         if(indexPath.row == 0){
-            NSString *CellIdentifier = kGroupFollowTableViewCell;
-            GroupFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            NSString *cellIdentifier = kGroupFollowTableViewCell;
+            GroupFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if(cell == nil){
                 // Load the top-level objects from the custom cell XIB.
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kGroupFollowTableViewCell owner:self options:nil];
@@ -359,8 +359,8 @@
             return cell;
         }
         else if(indexPath.row == 1) {
-            NSString *CellIdentifier = kGroupDescriptionTableViewCell;
-            GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            NSString *cellIdentifier = kGroupDescriptionTableViewCell;
+            GroupDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (cell == nil) {
                 // Load the top-level objects from the custom cell XIB.
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kGroupDescriptionTableViewCell owner:self options:nil];
@@ -375,8 +375,8 @@
 
         switch (self.segmentControl.selectedSegmentIndex) {
             case 0: {
-                NSString *CellIdentifier = kPolicyPositionsDetailCell;
-                PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                NSString *cellIdentifier = kPolicyPositionsDetailCell;
+                PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
                 if (cell == nil) {
                     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kPolicyPositionsDetailCell owner:self options:nil];
                     cell = [topLevelObjects objectAtIndex:0];
