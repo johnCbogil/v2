@@ -1,16 +1,16 @@
 //
-//  NewActionDetailTopTableViewCell.m
+//  ActionDetailTopTableViewCell.m
 //  Voices
 //
 //  Created by John Bogil on 3/26/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "NewActionDetailTopTableViewCell.h"
+#import "ActionDetailTopTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "GroupDetailViewController.h"
 
-@implementation NewActionDetailTopTableViewCell
+@implementation ActionDetailTopTableViewCell
 
 // TODO: PRESSING BUTTON SHOULD BRING YOU TO GROUP
 

@@ -1,22 +1,22 @@
 //
-//  NewActionDetailBottomTableViewCell.m
+//  ActionDetailBottomTableViewCell.m
 //  Voices
 //
 //  Created by John Bogil on 3/26/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "NewActionDetailBottomTableViewCell.h"
+#import "ActionDetailBottomTableViewCell.h"
 #import "ActionRepCollectionViewCell.h"
 #import "RepsManager.h"
 
-@interface NewActionDetailBottomTableViewCell()
+@interface ActionDetailBottomTableViewCell()
 
 @property (strong, nonatomic) Representative *selectedRep;
 
 @end
 
-@implementation NewActionDetailBottomTableViewCell
+@implementation ActionDetailBottomTableViewCell
 
 - (void)initWithAction:(Action *)action {
     

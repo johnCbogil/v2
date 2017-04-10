@@ -1,14 +1,14 @@
 //
-//  NewActionDetailMiddleTableViewCell.m
+//  ActionDetailMiddleTableViewCell.m
 //  Voices
 //
 //  Created by John Bogil on 3/26/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "NewActionDetailMiddleTableViewCell.h"
+#import "ActionDetailMiddleTableViewCell.h"
 
-@implementation NewActionDetailMiddleTableViewCell
+@implementation ActionDetailMiddleTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

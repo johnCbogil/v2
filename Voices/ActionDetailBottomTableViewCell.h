@@ -1,5 +1,5 @@
 //
-//  NewActionDetailBottomTableViewCell.h
+//  ActionDetailBottomTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 3/26/17.
@@ -17,7 +17,7 @@
 
 @end
 
-@interface NewActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate>
+@interface ActionDetailBottomTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate>
 
 @property (strong, nonatomic) NSArray<Representative *> *repsArray;
 @property (weak, nonatomic) IBOutlet UILabel *selectRepLabel;
