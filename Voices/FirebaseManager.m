@@ -285,6 +285,7 @@
 
 #pragma mark - Action
 
+// FETCHES ALL ACTIONS FOR A SINGLE USER
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
     
     for (NSString *actionKey in self.actionKeys) {
@@ -334,6 +335,7 @@
     successBlock([CurrentUser sharedInstance].listOfActions);
 }
 
+// FETHCES ALL ACTIONS FOR A SINGLE GROUP
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
