@@ -261,7 +261,11 @@
         else if (title.length > 0) {
             fullName = title;
         }
-        
+        self.navigationItem.backBarButtonItem =
+        [[UIBarButtonItem alloc] initWithTitle:@""
+                                         style:UIBarButtonItemStylePlain
+                                        target:nil
+                                        action:nil];
         [self presentWebViewControllerFromTextView:contactFormURL withTitle:fullName];
         
     }
