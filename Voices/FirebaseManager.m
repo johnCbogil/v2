@@ -348,7 +348,31 @@
                 return;
             }
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-            [actions addObject:action];
+            
+            NSDate *currentTime = [NSDate date];
+            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*5]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
+            
+            if(action.timestamp < newDate.timeIntervalSince1970) {
+                
+                BOOL debug = [self isInDebugMode];
+                // if app is in debug, add all groups
+                if (debug) {
+                    [[CurrentUser sharedInstance].listOfActions addObject:action];
+                }
+                // if app is not in debug, add only non-debug groups
+                else if (!action.debug) {
+                    [[CurrentUser sharedInstance].listOfActions addObject:action];
+                }
+                
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+                successBlock([CurrentUser sharedInstance].listOfActions);
+                [actions addObject:action];
+
+            }
+            
+            
             dispatch_group_leave(actionsGroup);
         }];
     }
