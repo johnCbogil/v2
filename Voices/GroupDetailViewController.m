@@ -122,11 +122,7 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = notification.object;
     webViewController.title = @"TAKE ACTION";
-    self.navigationItem.backBarButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@""
-                                     style:UIBarButtonItemStylePlain
-                                    target:nil
-                                    action:nil];
+    self.navigationItem.title = @"";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
