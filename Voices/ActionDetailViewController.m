@@ -261,7 +261,7 @@
         else if (title.length > 0) {
             fullName = title;
         }
-        
+        self.navigationItem.title = @"";
         [self presentWebViewControllerFromTextView:contactFormURL withTitle:fullName];
         
     }

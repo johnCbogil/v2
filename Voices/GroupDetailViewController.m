@@ -122,6 +122,7 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = notification.object;
     webViewController.title = @"TAKE ACTION";
+    self.navigationItem.title = @"";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
