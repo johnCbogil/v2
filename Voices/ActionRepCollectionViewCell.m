@@ -57,9 +57,10 @@
     
     [self.image setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         
-        // TODO: ADD FADE HERE
+        self.image.alpha = 0;
         [UIView animateWithDuration:.25 animations:^{
             self.image.image = image;
+            self.image.alpha = 1.0;
         }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {

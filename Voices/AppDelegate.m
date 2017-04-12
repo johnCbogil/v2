@@ -223,7 +223,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
-    if (notificationSettings.types) {
+    
+    if (notificationSettings.types && ![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"] ) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationsRegistered" object:nil];
     }
 }

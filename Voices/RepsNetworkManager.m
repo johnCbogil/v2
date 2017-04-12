@@ -25,6 +25,11 @@
     self = [super init];
     if(self != nil) {
         self.manager = [AFHTTPRequestOperationManager manager];
+        [self getFederalContactFormURLSWithCompletion:^(NSDictionary *results) {
+            
+        } onError:^(NSError *error) {
+            
+        }];
     }
     return self;
 }
@@ -44,6 +49,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //NSLog(@"%@", responseObject);
+        
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -58,6 +64,42 @@
             message = @"It appears there was a server error";
         }
 
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }];
+    
+    [operation start];
+
+}
+
+- (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock
+                          onError:(void(^)(NSError *error))errorBlock {
+    
+    NSURL *url = [NSURL URLWithString:@"https://firebasestorage.googleapis.com/v0/b/voices-430ae.appspot.com/o/repContactForms%20copy.json?alt=media&token=cf808323-a266-4ffc-a566-23497912b9f3"];
+    NSLog(@"%@", url);
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"FED CONTACT FORMS: %@", responseObject);
+//        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
+        NSLog(@"Error: %@", error);
+        
+        NSString *message;
+        if (error.code == -1009) {
+            message = @"The internet connection appears to be offline.";
+        }
+        else {
+            message = @"It appears there was a server error";
+        }
+        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];

@@ -100,7 +100,6 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        // TODO: THIS IS NOT DRY
         if (self.selectedSegment == 0) {
             if (![CurrentUser sharedInstance].listOfActions.count) {
                 self.tableView.backgroundView.hidden = NO;

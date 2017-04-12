@@ -7,9 +7,9 @@
 //
 
 #import "ActionDetailViewController.h"
-#import "NewActionDetailTopTableViewCell.h"
-#import "NewActionDetailMiddleTableViewCell.h"
-#import "NewActionDetailBottomTableViewCell.h"
+#import "ActionDetailTopTableViewCell.h"
+#import "ActionDetailMiddleTableViewCell.h"
+#import "ActionDetailBottomTableViewCell.h"
 #import "SearchViewController.h"
 #import "LocationService.h"
 #import "RepsManager.h"
@@ -20,11 +20,11 @@
 #import <Social/Social.h>
 #import <CoreTelephony/CTCall.h>
 #import <CoreTelephony/CTCallCenter.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 @import UserNotifications;
 
-// TODO: HOOK UP ACTION BUTTONS
-
-@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate, UNUserNotificationCenterDelegate>
+@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, SelectRepDelegate, UITextViewDelegate, UNUserNotificationCenterDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) Representative *selectedRep;
@@ -72,15 +72,15 @@
     self.tableview.separatorColor = [UIColor clearColor];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailMiddleTableViewCell"];
-    [self.tableview registerNib:[UINib nibWithNibName:@"NewActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailBottomTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMiddleTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailBottomTableViewCell"];
 }
 
 - (void)configureHomeButton {
     
     UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"Home"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"HomeEdit"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(presentSearchViewController)forControlEvents:UIControlEventTouchUpInside];
     [button setFrame:CGRectMake(0, 0, 25, 25)];
     button.tintColor = [UIColor voicesOrange];
@@ -127,16 +127,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        NewActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell"];
+        ActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell"];
         [cell initWithAction:self.action andGroup:self.group];
         return cell;
     }
     else if (indexPath.row == 1) {
-        NewActionDetailMiddleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailMiddleTableViewCell"];
+        ActionDetailMiddleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailMiddleTableViewCell"];
         return cell;
     }
     else {
-        NewActionDetailBottomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewActionDetailBottomTableViewCell"];
+        ActionDetailBottomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailBottomTableViewCell"];
         cell.delegate = self;
         cell.descriptionTextView.delegate = self;
         [cell initWithAction:self.action];
@@ -261,18 +261,77 @@
         else if (title.length > 0) {
             fullName = title;
         }
-        
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationItem setBackBarButtonItem:backButtonItem];
         [self presentWebViewControllerFromTextView:contactFormURL withTitle:fullName];
         
     }
     else if (self.selectedRep.email.length > 0) {
         
-        // TODO: WHY IS THIS POSTING A NOTI? NO NEED.
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.selectedRep.email];
+        [self selectMailApp];
     }
     else {
         [self presentEmailAlert];
     }
+}
+
+- (void)selectMailApp {
+    // try Mail app
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        //        [mailViewController setSubject:@"Subject Goes Here."];
+        //        [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
+        [mailViewController setToRecipients:@[self.selectedRep.email]];
+        [self presentViewController:mailViewController animated:YES completion:nil];
+    }
+    else { // try Gmail
+        NSString *gmailURL = [NSString stringWithFormat:@"googlegmail:///co?to=%@", self.selectedRep.email];
+        if ([[UIApplication sharedApplication]
+             canOpenURL:[NSURL URLWithString:gmailURL]]){
+            [[UIApplication sharedApplication]  openURL: [NSURL URLWithString:gmailURL]];
+        }
+        else {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No mail accounts" message:@"Please set up a Mail account or a Gmail account in order to send email." preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+        }
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSString *title;
+    NSString *message;
+    
+    switch (result) {
+        case MFMailComposeResultCancelled:
+        {
+            break;
+        }
+        case MFMailComposeResultSaved:
+            title = @"Draft Saved";
+            message = @"Composed Mail is saved in draft.";
+            break;
+        case MFMailComposeResultSent:
+        {
+            
+            title = @"Success";
+            [[ReportingManager sharedInstance]reportEvent:kEMAIL_EVENT eventFocus:self.selectedRep.email eventData:[ScriptManager sharedInstance].lastAction.key];
+            message = @"";
+            break;
+        }
+        case MFMailComposeResultFailed:
+            title = @"Failed";
+            message = @"Sorry! Failed to send.";
+            break;
+        default:
+            break;
+    }
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)presentEmailAlert {

@@ -309,7 +309,7 @@
             Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             NSDate *currentTime = [NSDate date];
-            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*5]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
+            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*4]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
             if(newAction.timestamp < newDate.timeIntervalSince1970) {
                 

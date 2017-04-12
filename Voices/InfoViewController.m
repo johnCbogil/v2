@@ -18,12 +18,9 @@
 
 @implementation InfoViewController
 
-// TODO: MOVE TEXT TO CONSTANTS
-
-
 - (instancetype)init {
     if (self = [super init]) {
-   //     self.contentSizeInPopup = CGSizeMake(300, 315);
+
         
     }
     return self;
@@ -86,8 +83,5 @@
     
     return infoTableViewCell;
 }
-
-
-
 
 @end

@@ -76,9 +76,10 @@
     
     [self.photo setImageWithURLRequest:imageRequest placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         
-        // TODO: ADD FADE HERE
+        self.photo.alpha = 0;
         [UIView animateWithDuration:.25 animations:^{
             self.photo.image = image;
+            self.photo.alpha = 1.0;
         }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
@@ -155,7 +156,7 @@
                                    @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
-    else if(!self.representative.email || [self.representative.email isKindOfClass:[NSNull class]]) {
+    else if(self.representative.email && ![self.representative.email isKindOfClass:[NSNull class]]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }
     else {

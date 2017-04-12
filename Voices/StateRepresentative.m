@@ -18,9 +18,12 @@
         self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
         self.party = [data valueForKey:@"party"];
         NSArray *offices = [data valueForKey:@"offices"];
-        self.phone = [offices valueForKey:@"phone"][0];
-        if(!self.phone || [self.phone isKindOfClass:[NSNull class]]) {
-            self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][1];
+        NSArray *phones = [offices valueForKey:@"phone"];
+        if (phones.count > 0) {
+            self.phone = [offices valueForKey:@"phone"][0];
+            if(!self.phone || [self.phone isKindOfClass:[NSNull class]]) {
+                self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][1];
+            }
         }
         self.photoURL = [NSURL URLWithString:[data valueForKey:@"photo_url"]];
         self.email = [data valueForKey:@"email"];
