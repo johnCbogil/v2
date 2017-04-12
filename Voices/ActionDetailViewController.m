@@ -434,6 +434,9 @@
     if ([callInfo isEqualToString: CTCallStateDisconnected]) {
         //the call state has ended
         NSLog(@"***** call ended *****");
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Call ended" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
 
