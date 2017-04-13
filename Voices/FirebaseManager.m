@@ -310,9 +310,8 @@
             Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             NSDate *currentTime = [NSDate date];
-            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*4]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
-            if(newAction.timestamp < newDate.timeIntervalSince1970) {
+            if(newAction.timestamp < currentTime.timeIntervalSince1970 - (3600 * 4)) {
                 
                 BOOL debug = [self isInDebugMode];
                 // if app is in debug, add all groups
@@ -330,7 +329,6 @@
                 successBlock([CurrentUser sharedInstance].listOfActions);
             }
         }];
-        
     }
     successBlock([CurrentUser sharedInstance].listOfActions);
 }
@@ -350,9 +348,9 @@
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             NSDate *currentTime = [NSDate date];
-            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*4]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
-            if(action.timestamp < newDate.timeIntervalSince1970) {
+            //
+            if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
                 
                 BOOL debug = [self isInDebugMode];
                 // if app is in debug, add all groups
@@ -371,8 +369,6 @@
                 [actions addObject:action];
 
             }
-            
-            
             dispatch_group_leave(actionsGroup);
         }];
     }
