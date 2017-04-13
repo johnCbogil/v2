@@ -285,6 +285,7 @@
 
 #pragma mark - Action
 
+// FETCHES ALL ACTIONS FOR A SINGLE USER
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
     
     for (NSString *actionKey in self.actionKeys) {
@@ -309,10 +310,10 @@
             Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             NSDate *currentTime = [NSDate date];
-            NSDate *newDate = [currentTime dateByAddingTimeInterval:-3600*4]; // We are subtracting 5 hours bc UTC is 5 hours ahead of EST
             
-            if(newAction.timestamp < newDate.timeIntervalSince1970) {
+            if(newAction.timestamp < currentTime.timeIntervalSince1970 - (3600 * 4)) {
                 
+                // TODO: REPEAT CODE HERE AND BELOW
                 BOOL debug = [self isInDebugMode];
                 // if app is in debug, add all groups
                 if (debug) {
@@ -329,11 +330,11 @@
                 successBlock([CurrentUser sharedInstance].listOfActions);
             }
         }];
-        
     }
     successBlock([CurrentUser sharedInstance].listOfActions);
 }
 
+// FETHCES ALL ACTIONS FOR A SINGLE GROUP
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
@@ -346,7 +347,29 @@
                 return;
             }
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-            [actions addObject:action];
+            
+            NSDate *currentTime = [NSDate date];
+            
+            // TODO: REPEAT CODE HERE AND ABOVE
+            if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
+                
+                BOOL debug = [self isInDebugMode];
+                // if app is in debug, add all groups
+                if (debug) {
+                    [[CurrentUser sharedInstance].listOfActions addObject:action];
+                }
+                // if app is not in debug, add only non-debug groups
+                else if (!action.debug) {
+                    [[CurrentUser sharedInstance].listOfActions addObject:action];
+                }
+                
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+                successBlock([CurrentUser sharedInstance].listOfActions);
+                [actions addObject:action];
+
+            }
             dispatch_group_leave(actionsGroup);
         }];
     }
