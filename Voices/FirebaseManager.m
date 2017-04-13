@@ -313,6 +313,7 @@
             
             if(newAction.timestamp < currentTime.timeIntervalSince1970 - (3600 * 4)) {
                 
+                // TODO: REPEAT CODE HERE AND BELOW
                 BOOL debug = [self isInDebugMode];
                 // if app is in debug, add all groups
                 if (debug) {
@@ -349,7 +350,7 @@
             
             NSDate *currentTime = [NSDate date];
             
-            //
+            // TODO: REPEAT CODE HERE AND ABOVE
             if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
                 
                 BOOL debug = [self isInDebugMode];
