@@ -27,7 +27,6 @@
     [self.webView loadRequest:urlRequest];
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     [self createActivityIndicator];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:nil];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
@@ -36,9 +35,7 @@
     [super viewDidAppear:animated];
     
     [self.navigationItem setBackBarButtonItem:nil];
-
 }
-
 
 - (void)createActivityIndicator {
     self.activityIndicatorView = [[UIActivityIndicatorView alloc]
