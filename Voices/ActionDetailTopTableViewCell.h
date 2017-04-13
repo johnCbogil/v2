@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
-- (void)initWithAction:(Action *)action andGroup:(Group *)group;
+@property (retain, nonatomic) Group *currentGroup;
+@property (retain, nonatomic) UINavigationController *currentNavigationController;
+- (void)initWithAction:(Action *)action andGroup:(Group *)group andNavigation: (UINavigationController *) currentNav;
 
 @end

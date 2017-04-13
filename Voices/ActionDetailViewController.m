@@ -128,7 +128,7 @@
     
     if (indexPath.row == 0) {
         ActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell"];
-        [cell initWithAction:self.action andGroup:self.group];
+        [cell initWithAction:self.action andGroup:self.group andNavigation:self.navigationController];
         return cell;
     }
     else if (indexPath.row == 1) {

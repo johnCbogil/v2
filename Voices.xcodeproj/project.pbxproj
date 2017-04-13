@@ -60,7 +60,6 @@
 		52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D892981CC463C2004FBEA3 /* TakeAction.storyboard */; };
 		52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8929F1CC47990004FBEA3 /* TabBarViewController.m */; };
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
-		52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */ = {isa = PBXBuildFile; fileRef = 52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */; };
 		52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
 		52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE4EBE1E69024700A22513 /* SearchViewController.m */; };
@@ -199,9 +198,7 @@
 		52D892981CC463C2004FBEA3 /* TakeAction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TakeAction.storyboard; sourceTree = "<group>"; };
 		52D8929E1CC47990004FBEA3 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		52D8929F1CC47990004FBEA3 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
-		52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
-		52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
 		52EE4EBD1E69024700A22513 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -275,6 +272,7 @@
 		E860E0581E8AB87400055D39 /* IssueSurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueSurveyViewController.h; sourceTree = "<group>"; };
 		E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueSurveyViewController.m; sourceTree = "<group>"; };
 		E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssueSurveyViewController.xib; sourceTree = "<group>"; };
+		E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -566,9 +564,8 @@
 				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
 				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
 				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
-				52D892A11CC47D07004FBEA3 /* GroupTableViewCell.h */,
+				E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
-				52D892A41CC47DFB004FBEA3 /* GroupTableViewCell.h */,
 				52939A331D1A29C00076F878 /* GroupTableViewCell.xib */,
 				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
 				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
@@ -753,7 +750,6 @@
 				E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
 				E860E05C1E8AB87400055D39 /* IssueSurveyViewController.xib in Resources */,
-				52D892A51CC47DFB004FBEA3 /* GroupTableViewCell.h in Resources */,
 				9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
 				525C97D31E465FA400445721 /* repContactForms.json in Resources */,
