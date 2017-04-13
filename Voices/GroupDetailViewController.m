@@ -53,6 +53,10 @@
     [self configureHapticFeedback];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebViewControllerForGroupDetail" object:nil];
+//    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+//    [self.navigationItem setBackBarButtonItem:backButtonItem];
+//    self.navigationItem.backBarButtonItem.title = @"";
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
