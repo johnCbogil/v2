@@ -10,6 +10,7 @@
 #import "Group.h"
 #import "Action.h"
 #import "ActionDetailTopTableViewCellDelegate.h"
+#import "GroupDetailViewController.h"
 
 @interface ActionDetailViewController : UIViewController <ActionDetailTopTableViewCellDelegate>
 

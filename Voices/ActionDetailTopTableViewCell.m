@@ -63,9 +63,7 @@
     // Configure the view for the selected state
 }
 - (IBAction)groupImageButtonDidPress:(id)sender {
-    NSLog(@"Go to group");
     [self.delegate delegateForCell:self];
-
 }
 
 @end

@@ -548,7 +548,6 @@
 				7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */,
 				52089CE81E80B3E900A32984 /* ActionDetailViewController.h */,
 				52089CE91E80B3E900A32984 /* ActionDetailViewController.m */,
-				E828277F1EA5156F00256F03 /* ActionDetailTopTableViewCellDelegate.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -602,6 +601,7 @@
 				52361C9C1D3076ED00589827 /* PolicyPosition.m */,
 				A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */,
 				A775E36D1E52144700CFAF27 /* FollowGroupDelegate.h */,
+				E828277F1EA5156F00256F03 /* ActionDetailTopTableViewCellDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";

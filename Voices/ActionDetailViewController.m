@@ -158,7 +158,12 @@
 #pragma mark - ActionDetailTopTableViewCell Delegate method
 
 - (void)delegateForCell:(ActionDetailTopTableViewCell *)cell {
-    
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    groupDetailViewController.group = self.group;
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
 

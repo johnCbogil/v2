@@ -6,8 +6,7 @@
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "ActionDetailTopTableViewCell.h"
+@class ActionDetailTopTableViewCell;
 
 @protocol ActionDetailTopTableViewCellDelegate <NSObject>
 
