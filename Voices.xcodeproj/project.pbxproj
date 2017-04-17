@@ -233,6 +233,7 @@
 		7EA49CE31D6C9B4B002449CC /* Voices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Voices.entitlements; sourceTree = "<group>"; };
 		7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyDetailViewController.h; sourceTree = "<group>"; };
 		7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDetailViewController.m; sourceTree = "<group>"; };
+		7EBA50111E9FD40E0054046B /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		7ED3E7CD1DFB431300C1391C /* ScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptManager.h; sourceTree = "<group>"; };
 		7ED3E7CE1DFB431300C1391C /* ScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptManager.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -565,8 +566,13 @@
 				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
 				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
 				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
+<<<<<<< HEAD
 				E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
+=======
+				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
+				7EBA50111E9FD40E0054046B /* GroupTableViewCell.h */,
+>>>>>>> develop
 				52939A331D1A29C00076F878 /* GroupTableViewCell.xib */,
 				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
 				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
