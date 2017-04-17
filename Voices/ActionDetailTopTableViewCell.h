@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Action.h"
 #import "Group.h"
+#import "ActionDetailTopTableViewCellDelegate.h"
 
 @interface ActionDetailTopTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
 @property (retain, nonatomic) Group *currentGroup;
-@property (retain, nonatomic) UINavigationController *currentNavigationController;
-- (void)initWithAction:(Action *)action andGroup:(Group *)group andNavigation: (UINavigationController *) currentNav;
+@property (assign, nonatomic) id <ActionDetailTopTableViewCellDelegate> delegate;
+- (void)initWithAction:(Action *)action andGroup:(Group *)group;
+
 
 @end

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 #import "Action.h"
+#import "ActionDetailTopTableViewCellDelegate.h"
 
-@interface ActionDetailViewController : UIViewController
+@interface ActionDetailViewController : UIViewController <ActionDetailTopTableViewCellDelegate>
 
 @property (strong, nonatomic) Action *action;
 @property (strong, nonatomic) Group *group;

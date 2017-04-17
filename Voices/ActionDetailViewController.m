@@ -128,7 +128,8 @@
     
     if (indexPath.row == 0) {
         ActionDetailTopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell"];
-        [cell initWithAction:self.action andGroup:self.group andNavigation:self.navigationController];
+        [cell initWithAction:self.action andGroup:self.group];
+        [cell setDelegate:self];
         return cell;
     }
     else if (indexPath.row == 1) {
@@ -153,6 +154,13 @@
     [self.tableview beginUpdates];
     [self.tableview endUpdates];
 }
+
+#pragma mark - ActionDetailTopTableViewCell Delegate method
+
+- (void)delegateForCell:(ActionDetailTopTableViewCell *)cell {
+    
+}
+
 
 #pragma mark - Presentation Controllers
 
