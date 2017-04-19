@@ -27,5 +27,7 @@
 //Policy Positions
 - (void)fetchPolicyPositionsForGroup:(Group *)group withCompletion:(void(^)(NSArray *positions))successBlock onError:(void(^)(NSError *error))errorBlock;
 
+//Check Timestamps
+- (BOOL)checkTimeStamp: (NSString *)timeStamp;
 
 @end
