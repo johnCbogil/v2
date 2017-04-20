@@ -209,6 +209,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
+    [SearchResultsManager sharedInstance].searchMethod = textField.text;
+    self.searchTextField.text = [SearchResultsManager sharedInstance].searchMethod;
+    
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
         [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
@@ -295,6 +298,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSearchResultsTableView) name:@"hideSearchResultsTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSearchText) name:@"refreshSearchBarPullToRefresh" object:nil];
 
 }
 
@@ -475,10 +479,9 @@
                               handler:^(UIAlertAction * action)
                               {
                                   [[LocationService sharedInstance]startUpdatingLocation];
-                                  [self refreshSearchText];
-                                  
-                                  
-                                  
+
+                                      [self refreshSearchText];
+ 
                               }];
     [alert addAction:button0];
     [alert addAction:button1];
@@ -503,10 +506,13 @@
     
     self.searchResultsTableView.hidden = YES;
     self.darkView.hidden = YES;
-    self.searchTextField.text = [SearchResultsManager sharedInstance].addressSearched;
+    if([SearchResultsManager sharedInstance].searchMethod != nil){
+        self.searchTextField.text = [SearchResultsManager sharedInstance].searchMethod;
+    }// TODO: searchbar value goes here //[SearchResultsManager sharedInstance].addressSearched;
     [self.searchTextField resignFirstResponder];
     [self.darkView removeGestureRecognizer:self.tap];
 }
+
 
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
