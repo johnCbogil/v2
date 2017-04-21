@@ -309,26 +309,15 @@
             NSLog(@"%@", snapshot.value);
             Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
-            NSDate *currentTime = [NSDate date];
-            
-            if(newAction.timestamp < currentTime.timeIntervalSince1970 - (3600 * 4)) {
-                
-                // TODO: REPEAT CODE HERE AND BELOW
-                BOOL debug = [self isInDebugMode];
-                // if app is in debug, add all groups
-                if (debug) {
-                    [[CurrentUser sharedInstance].listOfActions addObject:newAction];
-                }
-                // if app is not in debug, add only non-debug groups
-                else if (!newAction.debug) {
-                    [[CurrentUser sharedInstance].listOfActions addObject:newAction];
-                }
-                
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                successBlock([CurrentUser sharedInstance].listOfActions);
+            if ([self shouldAddActionToList:newAction]) {
+                [[CurrentUser sharedInstance].listOfActions addObject:newAction];
             }
+            
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+            successBlock([CurrentUser sharedInstance].listOfActions);
+
         }];
     }
     successBlock([CurrentUser sharedInstance].listOfActions);
@@ -348,28 +337,16 @@
             }
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
-            NSDate *currentTime = [NSDate date];
-            
-            // TODO: REPEAT CODE HERE AND ABOVE
-            if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
-                
-                BOOL debug = [self isInDebugMode];
-                // if app is in debug, add all groups
-                if (debug) {
-                    [[CurrentUser sharedInstance].listOfActions addObject:action];
-                }
-                // if app is not in debug, add only non-debug groups
-                else if (!action.debug) {
-                    [[CurrentUser sharedInstance].listOfActions addObject:action];
-                }
-                
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                successBlock([CurrentUser sharedInstance].listOfActions);
-                [actions addObject:action];
-
+            if ([self shouldAddActionToList:action]) {
+                [[CurrentUser sharedInstance].listOfActions addObject:action];
             }
+           
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+            successBlock([CurrentUser sharedInstance].listOfActions);
+            [actions addObject:action];
+            
             dispatch_group_leave(actionsGroup);
         }];
     }
@@ -398,6 +375,25 @@
             errorBlock(error);
         }];
     }
+}
+
+- (BOOL)shouldAddActionToList:(Action *)action {
+    
+    NSDate *currentTime = [NSDate date];
+    
+    if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
+        BOOL debug = [self isInDebugMode];
+        // if app is in debug, add all groups
+        if (debug) {
+            return YES;
+        }
+        // if app is not in debug, add only non-debug groups
+        else if (!action.debug) {
+            return YES;
+        }
+    }
+    
+    return false;
 }
 
 #pragma mark - Private methods
