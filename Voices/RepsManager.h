@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+
 @interface RepsManager : NSObject
+
 
 +(RepsManager *) sharedInstance;
 - (NSArray *)fetchRepsForIndex:(NSInteger)index;

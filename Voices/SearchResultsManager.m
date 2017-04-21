@@ -125,14 +125,16 @@
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
-        self.addressSearched = @"Current Location";
+        self.locationSearched = @"Current Location";
+//        self.searchMethod = self.addressSearched;
         [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
     }
     else if (indexPath.row == 1) {
         NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
 
         if (homeAddress.length) {
-            self.addressSearched = homeAddress;
+            self.locationSearched = homeAddress;
+//            self.searchMethod = self.addressSearched;
             [self fetchRepsForAddress:homeAddress];
         }
         else {
@@ -140,7 +142,9 @@
         }
     }
     else {
-        self.addressSearched = self.resultsArray[indexPath.row - 2];
+        
+        self.locationSearched = self.resultsArray[indexPath.row - 2];
+//        self.searchMethod = self.addressSearched;
         [self fetchRepsForAddress:self.resultsArray[indexPath.row - 2]];
     }
 }
@@ -169,5 +173,9 @@
     }];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
 }
+
+
+
+
 
 @end

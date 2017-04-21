@@ -106,6 +106,8 @@
 }
 
 - (void)pullToRefresh {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchBarPullToRefresh" object:nil];     
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         [[LocationService sharedInstance]startUpdatingLocation];
         

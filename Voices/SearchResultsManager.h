@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface SearchResultsManager : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+
+@property (nonatomic) NSString *locationSearched;
 @property (strong, nonatomic) NSArray *resultsArray;
-@property (strong, nonatomic) NSString *addressSearched;
 
 - (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock;
 - (void)clearSearchResults;
-
 + (SearchResultsManager *) sharedInstance;
+
 
 @end
