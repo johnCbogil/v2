@@ -209,8 +209,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     
-    [SearchResultsManager sharedInstance].searchMethod = textField.text;
-    self.searchTextField.text = [SearchResultsManager sharedInstance].searchMethod;
+    [SearchResultsManager sharedInstance].locationSearched = textField.text;
+    self.searchTextField.text = [SearchResultsManager sharedInstance].locationSearched;
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
         
@@ -506,7 +506,7 @@
     
     self.searchResultsTableView.hidden = YES;
     self.darkView.hidden = YES;
-    self.searchTextField.text = [SearchResultsManager sharedInstance].searchMethod;
+    self.searchTextField.text = [SearchResultsManager sharedInstance].locationSearched;
     [self.searchTextField resignFirstResponder];
     [self.darkView removeGestureRecognizer:self.tap];
 }

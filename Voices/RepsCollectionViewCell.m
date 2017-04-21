@@ -12,8 +12,6 @@
 #import "RepDetailViewController.h"
 #import "RepsManager.h"
 #import "LocationService.h"
-#import "SearchResultsManager.h"
-
 
 @interface RepsCollectionViewCell()
 
