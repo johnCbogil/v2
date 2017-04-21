@@ -329,12 +329,22 @@
 
 - (void)presentEmailViewController:(NSNotification*)notification {
     self.representativeEmail = [notification object];
-    if(self.representativeEmail != nil){
-        [self selectMailApp];
+    if([self.representativeEmail isKindOfClass:[NSString class]] && self.representativeEmail.length){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email Rep" message:@"Would you like to email this rep?" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Not now" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                    {
+                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                    }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                    {
+                                        [self selectMailApp];
+                                    }]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+
     }
     else{
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"A message is required" message:@"Please enter a message" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Good Idea" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
