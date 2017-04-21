@@ -264,6 +264,7 @@
 		DB714B7579D0FC9896DE4497 /* Pods-Voices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.release.xcconfig"; sourceTree = "<group>"; };
 		DED23F55EEF97C97C906394B /* Pods-VoicesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoicesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E03E106B4017E31EDA824EDF /* Pods-VoicesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoicesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoicesTests/Pods-VoicesTests.release.xcconfig"; sourceTree = "<group>"; };
+		E828277F1EA5156F00256F03 /* ActionDetailTopTableViewCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionDetailTopTableViewCellDelegate.h; sourceTree = "<group>"; };
 		E860E04D1E79DC7A00055D39 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E860E04F1E79DD3000055D39 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		E860E0501E79DD3000055D39 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
@@ -273,6 +274,7 @@
 		E860E0581E8AB87400055D39 /* IssueSurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueSurveyViewController.h; sourceTree = "<group>"; };
 		E860E0591E8AB87400055D39 /* IssueSurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueSurveyViewController.m; sourceTree = "<group>"; };
 		E860E05A1E8AB87400055D39 /* IssueSurveyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssueSurveyViewController.xib; sourceTree = "<group>"; };
+		E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
 		FD71CE83098F45B3B86E1848 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -564,8 +566,10 @@
 				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
 				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
 				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
+
+				E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */,
 				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
-				7EBA50111E9FD40E0054046B /* GroupTableViewCell.h */,
+
 				52939A331D1A29C00076F878 /* GroupTableViewCell.xib */,
 				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
 				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
@@ -600,6 +604,7 @@
 				52361C9C1D3076ED00589827 /* PolicyPosition.m */,
 				A77809F11E2023E90001E825 /* ExpandingCellDelegate.h */,
 				A775E36D1E52144700CFAF27 /* FollowGroupDelegate.h */,
+				E828277F1EA5156F00256F03 /* ActionDetailTopTableViewCellDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";

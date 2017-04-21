@@ -15,9 +15,10 @@
 // TODO: PRESSING BUTTON SHOULD BRING YOU TO GROUP
 
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
-    
+    self.currentGroup = group;
     [self fetchGroupLogoForImageURL:group.groupImageURL];
     [self configureActionTitleLabelForText:action.title];
+    self.delegate = nil;
 }
 
 - (void)configureActionTitleLabelForText:(NSString *)text {
@@ -62,8 +63,7 @@
     // Configure the view for the selected state
 }
 - (IBAction)groupImageButtonDidPress:(id)sender {
-    
-
+    [self.delegate pushToGroupDetail];
 }
 
 @end
