@@ -506,9 +506,7 @@
     
     self.searchResultsTableView.hidden = YES;
     self.darkView.hidden = YES;
-    if([SearchResultsManager sharedInstance].searchMethod != nil){
-        self.searchTextField.text = [SearchResultsManager sharedInstance].searchMethod;
-    }// TODO: searchbar value goes here //[SearchResultsManager sharedInstance].addressSearched;
+    self.searchTextField.text = [SearchResultsManager sharedInstance].searchMethod;
     [self.searchTextField resignFirstResponder];
     [self.darkView removeGestureRecognizer:self.tap];
 }
