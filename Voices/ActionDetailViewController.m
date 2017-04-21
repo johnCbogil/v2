@@ -157,7 +157,7 @@
 
 #pragma mark - ActionDetailTopTableViewCell Delegate method
 
-- (void)delegateForCell:(ActionDetailTopTableViewCell *)cell {
+- (void)pushToGroupDetail {
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.group;

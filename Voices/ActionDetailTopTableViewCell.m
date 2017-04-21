@@ -63,7 +63,7 @@
     // Configure the view for the selected state
 }
 - (IBAction)groupImageButtonDidPress:(id)sender {
-    [self.delegate delegateForCell:self];
+    [self.delegate pushToGroupDetail];
 }
 
 @end

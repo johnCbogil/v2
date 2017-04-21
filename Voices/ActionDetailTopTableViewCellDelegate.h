@@ -12,7 +12,7 @@
 
 @optional
 
-- (void)delegateForCell:(ActionDetailTopTableViewCell *)cell;
+- (void)pushToGroupDetail;
 
 
 @end
