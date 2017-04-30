@@ -142,11 +142,11 @@
         NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
 
-        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
-            [self.tableView reloadData];
-        } onError:^(NSError *error) {
-
-        }];
+//        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
+//            [self.tableView reloadData];
+//        } onError:^(NSError *error) {
+//
+//        }];
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];

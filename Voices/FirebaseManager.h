@@ -21,7 +21,7 @@
 - (void)fetchGroupWithKey:(NSString *)groupKey withCompletion:(void(^)(Group *group))successBlock onError:(void(^)(NSError *error))errorBlock;
 
 //Action methods
-- (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock;
+//- (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock;
 
 //Policy Positions

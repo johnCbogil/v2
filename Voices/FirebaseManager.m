@@ -180,10 +180,10 @@
             successBlock(nil);
             return;
         }
-        NSDictionary *groupsKeys = snapshot.value;
-        NSArray *keys = groupsKeys.allKeys;
+        NSDictionary *groupsKeysDict = snapshot.value;
+        NSArray *groupKeys = groupsKeysDict.allKeys;
         
-        for (NSString *key in keys) {
+        for (NSString *key in groupKeys) {
             // Go to the groups table
             [[self.groupsRef child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
@@ -221,11 +221,14 @@
                     return;
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
-                [self fetchActionsWithCompletion:^(NSArray *listOfActions) {
-                    self.actionKeys = @[].mutableCopy;
+                //                [self fetchActionsWithCompletion:^(NSArray *listOfActions) {
+                //                    self.actionKeys = @[].mutableCopy;
+                //                    successBlock(listOfActions);
+                //                } onError:^(NSError *error) {
+                //
+                //                }];
+                [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
                     successBlock(listOfActions);
-                } onError:^(NSError *error) {
-                    
                 }];
             }];
         }
@@ -286,39 +289,49 @@
 #pragma mark - Action
 
 // FETCHES ALL ACTIONS FOR A SINGLE USER
-- (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
-    
-    
-    for (NSString *actionKey in self.actionKeys) {
-        [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value == [NSNull null]) {
-                return;
-            }
-            
-            // Check to see if the action key is in the listOfActions
-            NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-                if ([action.key isEqualToString:actionKey]) {
-                    *stop = YES;
-                    return YES;
-                }
-                return NO;
-            }];
-            if (index != NSNotFound) {
-                // We already have this action in our table
-                return;
-            }
-            NSLog(@"%@", snapshot.value);
-            Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-            
-            if ([self shouldAddActionToList:newAction]) {
-                [[CurrentUser sharedInstance].listOfActions addObject:newAction];
-            }
-            
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-            successBlock([CurrentUser sharedInstance].listOfActions);
+//- (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
+//
+//
+//    for (NSString *actionKey in self.actionKeys) {
+//        [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//            if (snapshot.value == [NSNull null]) {
+//                return;
+//            }
+//
+//            // Check to see if the action key is in the listOfActions
+//            NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+//                if ([action.key isEqualToString:actionKey]) {
+//                    *stop = YES;
+//                    return YES;
+//                }
+//                return NO;
+//            }];
+//            if (index != NSNotFound) {
+//                // We already have this action in our table
+//                return;
+//            }
+//            NSLog(@"%@", snapshot.value);
+//            Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+//
+//            if ([self shouldAddActionToList:newAction]) {
+//                [[CurrentUser sharedInstance].listOfActions addObject:newAction];
+//            }
+//
+//            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+//            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//            [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+//            successBlock([CurrentUser sharedInstance].listOfActions);
+//
+//        }];
+//    }
+//    successBlock([CurrentUser sharedInstance].listOfActions);
+//}
 
+- (void)newFetchActionsForUser:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+            [[CurrentUser sharedInstance].listOfActions addObjectsFromArray:listOfActions];
         }];
     }
     successBlock([CurrentUser sharedInstance].listOfActions);
@@ -381,6 +394,19 @@
     NSDate *currentTime = [NSDate date];
     
     if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
+
+        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
+            if ([action.key isEqualToString:actionInArray.key]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+        }];
+        if (index != NSNotFound) {
+            // We already have this action in our table
+            return NO;
+        }
+        
         BOOL debug = [self isInDebugMode];
         // if app is in debug, add all groups
         if (debug) {
