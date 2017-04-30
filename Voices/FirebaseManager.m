@@ -221,12 +221,7 @@
                     return;
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
-                //                [self fetchActionsWithCompletion:^(NSArray *listOfActions) {
-                //                    self.actionKeys = @[].mutableCopy;
-                //                    successBlock(listOfActions);
-                //                } onError:^(NSError *error) {
-                //
-                //                }];
+
                 [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
                     successBlock(listOfActions);
                 }];
@@ -271,6 +266,7 @@
     [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
     
 }
+
 - (void)fetchGroupWithKey:(NSString *)groupKey withCompletion:(void (^)(Group *))successBlock onError:(void (^)(NSError *))errorBlock {
     [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child: groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         Group *group;
@@ -282,62 +278,11 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         errorBlock(error);
     }];
-    
 }
 
+#pragma mark - Actions
 
-#pragma mark - Action
-
-// FETCHES ALL ACTIONS FOR A SINGLE USER
-//- (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
-//
-//
-//    for (NSString *actionKey in self.actionKeys) {
-//        [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//            if (snapshot.value == [NSNull null]) {
-//                return;
-//            }
-//
-//            // Check to see if the action key is in the listOfActions
-//            NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
-//                if ([action.key isEqualToString:actionKey]) {
-//                    *stop = YES;
-//                    return YES;
-//                }
-//                return NO;
-//            }];
-//            if (index != NSNotFound) {
-//                // We already have this action in our table
-//                return;
-//            }
-//            NSLog(@"%@", snapshot.value);
-//            Action *newAction = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-//
-//            if ([self shouldAddActionToList:newAction]) {
-//                [[CurrentUser sharedInstance].listOfActions addObject:newAction];
-//            }
-//
-//            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-//            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//            [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-//            successBlock([CurrentUser sharedInstance].listOfActions);
-//
-//        }];
-//    }
-//    successBlock([CurrentUser sharedInstance].listOfActions);
-//}
-
-- (void)newFetchActionsForUser:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
-    
-    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
-            [[CurrentUser sharedInstance].listOfActions addObjectsFromArray:listOfActions];
-        }];
-    }
-    successBlock([CurrentUser sharedInstance].listOfActions);
-}
-
-// FETHCES ALL ACTIONS FOR A SINGLE GROUP
+// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
