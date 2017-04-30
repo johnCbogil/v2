@@ -288,6 +288,7 @@
 // FETCHES ALL ACTIONS FOR A SINGLE USER
 - (void)fetchActionsWithCompletion:(void(^)(NSArray *listOfActions))successBlock onError:(void(^)(NSError *error))errorBlock {
     
+    
     for (NSString *actionKey in self.actionKeys) {
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             if (snapshot.value == [NSNull null]) {
@@ -339,14 +340,12 @@
             
             if ([self shouldAddActionToList:action]) {
                 [[CurrentUser sharedInstance].listOfActions addObject:action];
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+                successBlock([CurrentUser sharedInstance].listOfActions);
+                [actions addObject:action];
             }
-           
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-            successBlock([CurrentUser sharedInstance].listOfActions);
-            [actions addObject:action];
-            
             dispatch_group_leave(actionsGroup);
         }];
     }
@@ -393,7 +392,7 @@
         }
     }
     
-    return false;
+    return NO;
 }
 
 #pragma mark - Private methods
