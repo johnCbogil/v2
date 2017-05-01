@@ -18,6 +18,7 @@
 #import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
 #import "WebViewController.h"
+#import "EmptyActionTableViewCell.h"
 
 @interface GroupDetailViewController ()
 
@@ -112,6 +113,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:kGroupDescriptionTableViewCell bundle:nil]forCellReuseIdentifier:kGroupDescriptionTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kPolicyPositionsDetailCell bundle:nil]  forCellReuseIdentifier:kPolicyPositionsDetailCell];
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
+    [self.tableView registerNib:[UINib nibWithNibName:kEmptyActionTableViewCell  bundle:nil] forCellReuseIdentifier: kEmptyActionTableViewCell];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -372,7 +374,7 @@
             return cell;
         }
     }
-    else{
+    else {
 
         switch (self.segmentControl.selectedSegmentIndex) {
             case 0: {
@@ -390,9 +392,28 @@
                 return cell;
             }
             case 1: {
-                ActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kActionCellReuse forIndexPath:indexPath];
-                [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
+                if (self.listOfGroupActions.count == 0) {
+                    NSString *cellIdentifier = kEmptyActionTableViewCell ;
+                    EmptyActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+                    if (cell == nil) {
+                        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kEmptyActionTableViewCell  owner:self options:nil];
+                        cell = [topLevelObjects objectAtIndex: 0];
+                    }
+                    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+                    cell.emptyStateMessageLabel.font = [UIFont voicesFontWithSize:19];
+                    cell.emptyStateMessageLabel.numberOfLines = 0;
+                    cell.emptyStateMessageLabel.text = @"This group hasn’t sent any actions yet.";
+                    cell.emptyStateMessageLabel.textAlignment = NSTextAlignmentCenter;
+                    return cell;
+                } else {
+                    ActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kActionCellReuse forIndexPath:indexPath];
+                    if (cell == nil) {
+                        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed: kActionCellReuse owner:self options:nil];
+                        cell = [topLevelObjects objectAtIndex: 0];
+                    }
+                    [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
                 return cell;
+                }
             }
         }
     }
