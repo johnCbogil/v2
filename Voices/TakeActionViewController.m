@@ -139,7 +139,6 @@
 
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
-        NSLog(@"List of Followed Groups: %@", listOfFollowedGroups);
         [self.tableView reloadData];
 
 //        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {

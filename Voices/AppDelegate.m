@@ -87,19 +87,12 @@
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
-    NSLog(@"%@", dynamicLink.url);
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
     [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
         
-        if (!result) {
-            NSLog(@"User subscribed to %@ via deeplink", groupKey);
-        }
-        else {
-            NSLog(@"User is ALREADY subscribed to %@ via deeplink", groupKey);
-        }
     } onError:^(NSError *error) {
-        NSLog(@"There has been an error attempting to subscribe via deeplink: %@", error);
+        
     }];
 }
 
@@ -109,7 +102,6 @@
     // time. So if you need to retrieve the token as soon as it is available this is where that
     // should be done.
     NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-    NSLog(@"InstanceID token: %@", refreshedToken);
     
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
@@ -119,11 +111,7 @@
 
 - (void)connectToFcm {
     [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-        if (error != nil) {
-            NSLog(@"Unable to connect to FCM. %@", error);
-        } else {
-            NSLog(@"Connected to FCM.");
-        }
+        
     }];
 }
 
@@ -131,12 +119,6 @@
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
-    
-    // Print message ID.
-    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
-    
-    // Pring full message.
-    NSLog(@"%@", userInfo);
     
     if (userInfo[@"action"]) {
         
@@ -167,8 +149,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [self connectToFcm];
     
     if (self.actionKey.length) {
-        
-        NSLog(@"ACTION VIA NOTI: %@", self.actionKey);
         
         UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
         
@@ -232,7 +212,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)setInitialViewController {
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-        NSLog(@"First launch");
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
@@ -306,15 +285,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         completeFilePath = [NSString stringWithFormat:@"%@/%@", basePath, file];
         URL = [NSURL fileURLWithPath:completeFilePath];
         [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
-        // NSLog(@"File %@  is excluded from backup %@", file, [URL resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsExcludedFromBackupKey] error:nil]);
     }
 }
 
 - (void)printFontFamilies {
     for (NSString *familyName in [UIFont familyNames]){
-        NSLog(@"Family name: %@", familyName);
         for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
-            NSLog(@"--Font name: %@", fontName);
         }
     }
 }

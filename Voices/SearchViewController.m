@@ -74,7 +74,6 @@
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    NSLog(@"ADDY: SAVE: %@",homeAddress);
 
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -111,12 +110,10 @@
                               filter:filter
                             callback:^(NSArray *results, NSError *error) {
                                 if (error != nil) {
-                                    NSLog(@"Autocomplete error %@", [error localizedDescription]);
                                     return;
                                 }
                                 NSMutableArray *tempArray = @[].mutableCopy;
                                 for (GMSAutocompletePrediction* result in results) {
-                                    NSLog(@"Result '%@'", result.attributedFullText.string);
                                     [tempArray addObject:result.attributedFullText.string];
                                 }
                                 self.resultsArray = tempArray;

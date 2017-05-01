@@ -50,12 +50,10 @@
                               filter:filter
                             callback:^(NSArray *results, NSError *error) {
                                 if (error != nil) {
-                                    NSLog(@"Autocomplete error %@", [error localizedDescription]);
                                     return;
                                 }
                                 NSMutableArray *tempArray = @[].mutableCopy;
                                 for (GMSAutocompletePrediction* result in results) {
-                                    NSLog(@"Result '%@'", result.attributedFullText.string);
                                     [tempArray addObject:result.attributedFullText.string];
                                 }
                                 self.resultsArray = tempArray;
@@ -91,7 +89,6 @@
     }
     else if (indexPath.row == 1) {
         NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-        NSLog(@"ADDY: CELLFORROW: %@",homeAddress);
 
         ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
         if (homeAddress.length) {
@@ -153,7 +150,6 @@
     
     [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
         
-        NSLog(@"%@", locationResults);
         [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
@@ -169,7 +165,7 @@
         [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
         
     } onError:^(NSError *googleMapsError) {
-        NSLog(@"%@", [googleMapsError localizedDescription]);
+        
     }];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"hideSearchResultsTableView" object:nil];
 }

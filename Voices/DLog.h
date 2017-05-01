@@ -1,9 +1,9 @@
 #ifdef DEBUG
 #include <libgen.h>
-#define DLogm() NSLog(@"[%s:%d %@]",basename((char *)__FILE__),__LINE__,NSStringFromSelector(_cmd))
-#define DLog(xx, ...) NSLog(@"%s(%d): " xx, ((strrchr(__FILE__, '/') ? : __FILE__- 1) + 1), __LINE__, ##__VA_ARGS__)
-#define DLogv(var) NSLog(@"[%s:%d %@] "# var " = %@",basename((char *)__FILE__),__LINE__,NSStringFromSelector(_cmd), var)
-#define DLogv_separator() NSLog( @"────────────────────────────────────────────────────────────────────────────" );
+#define DLogm()
+#define DLog(xx, ...)
+#define DLogv(var)
+#define DLogv_separator()
 #define DLogi(int) DLog( @"(int) "# int " = %i", int );
 #define DLogNSInteger(NSInteger) DLog( @"(NSInteger) "# NSInteger " = %ld", (long)NSInteger );
 #define DLogf(float) DLog( @"(float) "# float " = %f", float );

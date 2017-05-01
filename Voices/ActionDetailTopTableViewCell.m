@@ -45,7 +45,6 @@
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     [self.groupImageButton.imageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        NSLog(@"Group image success");
         [UIView animateWithDuration:.25 animations:^{
             [self.groupImageButton setBackgroundImage:image forState:UIControlStateNormal];
         }];
@@ -53,7 +52,6 @@
         [UIView animateWithDuration:.25 animations:^{
             [self.groupImageButton setBackgroundImage:[UIImage imageNamed:kGroupDefaultImage] forState:UIControlStateNormal];
         }];
-        NSLog(@"Action image failure");
     }];
 }
 
