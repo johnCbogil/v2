@@ -451,7 +451,11 @@
     if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
         [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
         [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
-            self.listOfGroupActions = [[listOfActions reverseObjectEnumerator] allObjects];
+            
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+            
             [self.tableView reloadData];
         }];
     }
