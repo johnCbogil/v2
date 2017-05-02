@@ -77,7 +77,7 @@ NSString *const kPolicyPositionsDetailCell = @"PolicyPositionsDetailCell";
 #pragma mark - Empty Action TableViewCell 
 
 // when a group hasn't sent any actions yet
-NSString *const kEmptyActionTableViewCell = @"EmptyActionTableViewCell";
+NSString *const kEmptyStateTableViewCell = @"EmptyStateTableViewCell";
 
 
 @end

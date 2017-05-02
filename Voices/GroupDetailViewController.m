@@ -18,7 +18,7 @@
 #import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
 #import "WebViewController.h"
-#import "EmptyActionTableViewCell.h"
+#import "EmptyStateTableViewCell.h"
 
 @interface GroupDetailViewController ()
 
@@ -109,11 +109,12 @@
     self.followGroupDelegate = self;
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:kGroupFollowTableViewCell bundle:nil]forCellReuseIdentifier:kGroupFollowTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kGroupDescriptionTableViewCell bundle:nil]forCellReuseIdentifier:kGroupDescriptionTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kPolicyPositionsDetailCell bundle:nil]  forCellReuseIdentifier:kPolicyPositionsDetailCell];
     [self.tableView registerNib:[UINib nibWithNibName:kActionCellReuse bundle:nil] forCellReuseIdentifier:kActionCellReuse];
-    [self.tableView registerNib:[UINib nibWithNibName:kEmptyActionTableViewCell  bundle:nil] forCellReuseIdentifier: kEmptyActionTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kEmptyStateTableViewCell  bundle:nil] forCellReuseIdentifier: kEmptyStateTableViewCell];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -277,6 +278,8 @@
     } onError:^(NSError *error) {
         NSLog(@"Error fetching policy position for group: %@. Error message: %@", self.group.name, error.localizedDescription);
     }];
+    [self.tableView reloadData];
+     [self toggleActivityIndicatorOff];
 }
 
 #pragma mark - Expanding Cell
@@ -333,9 +336,15 @@
             switch (self.segmentControl.selectedSegmentIndex) {
                 case 0:
                     numberOfRows = self.listOfPolicyPositions.count;
+                    if (numberOfRows == 0) {
+                        numberOfRows = 1;
+                    }
                     break;
                 case 1:
                     numberOfRows = self.listOfGroupActions.count;
+                    if (numberOfRows == 0) {
+                        numberOfRows = 1;
+                    }
                     break;
             }
             break;
@@ -375,37 +384,53 @@
         }
     }
     else {
-
         switch (self.segmentControl.selectedSegmentIndex) {
             case 0: {
-                NSString *cellIdentifier = kPolicyPositionsDetailCell;
-                PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-                if (cell == nil) {
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kPolicyPositionsDetailCell owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
+                if (self.listOfPolicyPositions.count == 0) {
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+                    NSString *cellIdentifier = kEmptyStateTableViewCell ;
+                    EmptyStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+                    if (cell == nil) {
+                        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kEmptyStateTableViewCell  owner:self options:nil];
+                        cell = [topLevelObjects objectAtIndex: 0];
+                    }
+                    cell.emptyStateLabel.font = [UIFont voicesFontWithSize:19];
+                    cell.emptyStateLabel.numberOfLines = 0;
+                    cell.emptyStateLabel.text = @"This group hasn't listed any policy positions yet.";
+                    cell.emptyStateLabel.textAlignment = NSTextAlignmentCenter;
+                    return cell;
+                } else {
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                    NSString *cellIdentifier = kPolicyPositionsDetailCell;
+                    PolicyPositionsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+                    if (cell == nil) {
+                        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kPolicyPositionsDetailCell owner:self options:nil];
+                        cell = [topLevelObjects objectAtIndex:0];
+                    }
+                    NSString *policy = [self.listOfPolicyPositions[indexPath.row]key];
+                    cell.policyLabel.text = policy;
+                    cell.policyLabel.font = [UIFont voicesFontWithSize:19];
+                    cell.policyLabel.numberOfLines = 0;
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    return cell;
                 }
-                NSString *policy = [self.listOfPolicyPositions[indexPath.row]key];
-                cell.policyLabel.text = policy;
-                cell.policyLabel.font = [UIFont voicesFontWithSize:19];
-                cell.policyLabel.numberOfLines = 0;
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                return cell;
             }
             case 1: {
                 if (self.listOfGroupActions.count == 0) {
-                    NSString *cellIdentifier = kEmptyActionTableViewCell ;
-                    EmptyActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+                    NSString *cellIdentifier = kEmptyStateTableViewCell ;
+                    EmptyStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
                     if (cell == nil) {
-                        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kEmptyActionTableViewCell  owner:self options:nil];
+                        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:kEmptyStateTableViewCell  owner:self options:nil];
                         cell = [topLevelObjects objectAtIndex: 0];
                     }
                     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-                    cell.emptyStateMessageLabel.font = [UIFont voicesFontWithSize:19];
-                    cell.emptyStateMessageLabel.numberOfLines = 0;
-                    cell.emptyStateMessageLabel.text = @"This group hasn’t sent any actions yet.";
-                    cell.emptyStateMessageLabel.textAlignment = NSTextAlignmentCenter;
+                    cell.emptyStateLabel.font = [UIFont voicesFontWithSize:19];
+                    cell.emptyStateLabel.numberOfLines = 0;
+                    cell.emptyStateLabel.text = @"This group hasn’t sent any actions yet.";
+                    cell.emptyStateLabel.textAlignment = NSTextAlignmentCenter;
                     return cell;
                 } else {
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
                     ActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kActionCellReuse forIndexPath:indexPath];
                     if (cell == nil) {
                         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed: kActionCellReuse owner:self options:nil];
@@ -459,6 +484,7 @@
             [self.tableView reloadData];
         }];
     }
+     [self toggleActivityIndicatorOff];
     [self.tableView reloadData];
 }
 

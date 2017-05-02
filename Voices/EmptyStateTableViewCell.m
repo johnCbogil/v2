@@ -1,14 +1,14 @@
 //
-//  EmptyActionTableViewCell.m
+//  EmptyStateTableViewCell.m
 //  Voices
 //
-//  Created by perrin cloutier on 5/1/17.
+//  Created by perrin cloutier on 5/2/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "EmptyActionTableViewCell.h"
+#import "EmptyStateTableViewCell.h"
 
-@implementation EmptyActionTableViewCell
+@implementation EmptyStateTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
