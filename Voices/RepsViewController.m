@@ -35,7 +35,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
 
-    [self.collectionView.collectionViewLayout invalidateLayout]; // TODO: CAN I MOVE THIS INTO CONFIGURECOLLECTIONVIEW
+//    [self.collectionView.collectionViewLayout invalidateLayout]; // TODO: CAN I MOVE THIS INTO CONFIGURECOLLECTIONVIEW
     
     self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
     
@@ -46,9 +46,13 @@
 
 }
 
+- (void)viewWillLayoutSubviews {
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.collectionView.collectionViewLayout invalidateLayout];
+//    [self.collectionView.collectionViewLayout invalidateLayout];
     [self.collectionView reloadData];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
@@ -113,7 +117,8 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return self.view.frame.size;
+    return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.height);
+    return self.collectionView.frame.size;
 }
 
 - (void)reloadCollectionView {
@@ -143,8 +148,6 @@
         }
     }
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:closestCell];
-    
-//    RootViewController *rootVC = (RootViewController *)self.parentViewController;
     [self updateTabForIndex:indexPath];
 }
 
