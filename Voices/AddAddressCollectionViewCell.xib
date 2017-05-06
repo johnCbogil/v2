@@ -12,32 +12,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddAddressCollectionViewCell" id="JLq-dr-RIP" customClass="AddAddressCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="371" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="495"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="371" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="495"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your address to see your reps." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pio-CR-jFs">
-                        <rect key="frame" x="20" y="71" width="331" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your address to see your reps." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pio-CR-jFs">
+                        <rect key="frame" x="20" y="20" width="335" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👨‍💼👩‍💼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFP-d7-H9J">
-                        <rect key="frame" x="20" y="100" width="331" height="71"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="👨‍💼👩‍💼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFP-d7-H9J">
+                        <rect key="frame" x="20" y="49" width="335" height="71"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="59"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices does not share your address with anyone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDW-gb-YXs">
-                        <rect key="frame" x="20" y="217" width="331" height="11"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voices does not share your address with anyone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDW-gb-YXs">
+                        <rect key="frame" x="20" y="166" width="335" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oce-zJ-P7p">
-                        <rect key="frame" x="20" y="179" width="331" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oce-zJ-P7p">
+                        <rect key="frame" x="20" y="128" width="335" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Add Address"/>
                         <connections>
                             <action selector="addAddressButtonDidPress:" destination="JLq-dr-RIP" eventType="touchUpInside" id="gWc-du-gln"/>
@@ -45,28 +49,15 @@
                     </button>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="PFP-d7-H9J" firstAttribute="leading" secondItem="oce-zJ-P7p" secondAttribute="leading" id="3Qe-bi-wyN"/>
-                <constraint firstItem="oce-zJ-P7p" firstAttribute="top" secondItem="PFP-d7-H9J" secondAttribute="bottom" constant="8" symbolic="YES" id="7nQ-ha-uo2"/>
-                <constraint firstItem="oce-zJ-P7p" firstAttribute="trailing" secondItem="iDW-gb-YXs" secondAttribute="trailing" id="H2H-Lv-1YO"/>
-                <constraint firstItem="oce-zJ-P7p" firstAttribute="leading" secondItem="iDW-gb-YXs" secondAttribute="leading" id="O54-Lf-A3S"/>
-                <constraint firstItem="pio-CR-jFs" firstAttribute="centerX" secondItem="JLq-dr-RIP" secondAttribute="centerX" id="PGz-eq-wOF"/>
-                <constraint firstItem="pio-CR-jFs" firstAttribute="leading" secondItem="PFP-d7-H9J" secondAttribute="leading" id="S15-6x-iCn"/>
-                <constraint firstItem="pio-CR-jFs" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="20" id="VyO-fs-9a0"/>
-                <constraint firstItem="PFP-d7-H9J" firstAttribute="top" secondItem="pio-CR-jFs" secondAttribute="bottom" constant="8" symbolic="YES" id="Xqv-Cu-GXh"/>
-                <constraint firstItem="iDW-gb-YXs" firstAttribute="top" secondItem="oce-zJ-P7p" secondAttribute="bottom" constant="8" symbolic="YES" id="qm9-bc-uU4"/>
-                <constraint firstItem="pio-CR-jFs" firstAttribute="top" secondItem="JLq-dr-RIP" secondAttribute="top" constant="71" id="uwo-K0-Gzd"/>
-                <constraint firstItem="pio-CR-jFs" firstAttribute="trailing" secondItem="PFP-d7-H9J" secondAttribute="trailing" id="v3l-fu-DEO"/>
-                <constraint firstItem="PFP-d7-H9J" firstAttribute="trailing" secondItem="oce-zJ-P7p" secondAttribute="trailing" id="wED-DG-OaH"/>
-            </constraints>
-            <size key="customSize" width="371" height="300"/>
+            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <size key="customSize" width="371" height="225"/>
             <connections>
                 <outlet property="addAddressButton" destination="oce-zJ-P7p" id="aR5-p5-fmD"/>
                 <outlet property="addAddressLabel" destination="pio-CR-jFs" id="bKo-QN-RSh"/>
                 <outlet property="emojiLabel" destination="PFP-d7-H9J" id="hF1-sA-fS6"/>
                 <outlet property="privacyLabel" destination="iDW-gb-YXs" id="d64-PD-u6O"/>
             </connections>
-            <point key="canvasLocation" x="90.5" y="168"/>
+            <point key="canvasLocation" x="90.5" y="130.5"/>
         </collectionViewCell>
     </objects>
 </document>

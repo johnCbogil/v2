@@ -275,6 +275,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="0i4-cz-Uwg"/>
                                     <constraint firstItem="usD-En-vUP" firstAttribute="top" secondItem="IHf-wb-gWQ" secondAttribute="top" id="Ahg-P8-ocK"/>
                                     <constraint firstAttribute="trailing" secondItem="usD-En-vUP" secondAttribute="trailing" id="H3K-sP-Dev"/>
                                     <constraint firstItem="usD-En-vUP" firstAttribute="centerY" secondItem="IHf-wb-gWQ" secondAttribute="centerY" id="MFN-dA-mBr"/>
@@ -302,7 +303,6 @@
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="20" id="G19-gc-IMe"/>
                             <constraint firstItem="7jD-iB-DcU" firstAttribute="leading" secondItem="ohY-vD-AGg" secondAttribute="leading" id="GOn-Cg-TZa"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="leading" secondItem="IHf-wb-gWQ" secondAttribute="leading" id="HYq-xf-aeG"/>
-                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="4nO-VY-e87" secondAttribute="top" constant="123" id="KZ3-lC-8Z8"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" id="Keg-Jn-39k"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="8" id="OS6-EF-O83"/>
                             <constraint firstItem="ely-1P-I86" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="16" id="SpD-Or-1wM"/>
