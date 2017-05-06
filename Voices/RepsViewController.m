@@ -144,8 +144,8 @@
     }
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:closestCell];
     
-    RootViewController *rootVC = (RootViewController *)self.parentViewController;
-    [rootVC updateTabForIndex:indexPath];
+//    RootViewController *rootVC = (RootViewController *)self.parentViewController;
+    [self updateTabForIndex:indexPath];
 }
 
 - (void)pushToDetailVC: (RepDetailViewController*) repVC {

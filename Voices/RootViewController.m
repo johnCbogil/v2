@@ -40,8 +40,8 @@
 //@property (weak, nonatomic) IBOutlet UIButton *stateButton;
 //@property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
-@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
-@property (strong, nonatomic) NSDictionary *buttonDictionary;
+//@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+//@property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
 @property (weak, nonatomic) IBOutlet UITableView *searchResultsTableView;
@@ -131,28 +131,28 @@
 //    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
 }
 
-- (void)updateTabForIndex:(NSIndexPath *)indexPath {
-    if (self.selectedIndexPath != indexPath) {
-        
-        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
-        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
-        
-        if (newButton == lastButton) {
-            return;
-        }
-        
-        [newButton.layer removeAllAnimations];
-        [lastButton.layer removeAllAnimations];
-        
-        [UIView animateWithDuration:.25 animations:^{
-            
-            newButton.tintColor = [UIColor voicesBlue];
-            lastButton.tintColor = [UIColor voicesLightGray];
-            
-        }];
-        self.selectedIndexPath = indexPath;
-    }
-}
+//- (void)updateTabForIndex:(NSIndexPath *)indexPath {
+//    if (self.selectedIndexPath != indexPath) {
+//        
+//        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
+//        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
+//        
+//        if (newButton == lastButton) {
+//            return;
+//        }
+//        
+//        [newButton.layer removeAllAnimations];
+//        [lastButton.layer removeAllAnimations];
+//        
+//        [UIView animateWithDuration:.25 animations:^{
+//            
+//            newButton.tintColor = [UIColor voicesBlue];
+//            lastButton.tintColor = [UIColor voicesLightGray];
+//            
+//        }];
+//        self.selectedIndexPath = indexPath;
+//    }
+//}
 
 - (void)configureDarkView {
     
