@@ -72,6 +72,8 @@
     [self configureDarkView];
     [self configureSearchResultsTableView];
 //    [self setupCallCenterToPresentThankYou];
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+    [self fetchRepsForAddress:homeAddress];
     
     self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
 }
@@ -212,7 +214,16 @@
     [SearchResultsManager sharedInstance].locationSearched = textField.text;
     self.searchTextField.text = [SearchResultsManager sharedInstance].locationSearched;
     
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
+    [self fetchRepsForAddress:textField.text];
+    
+    [self hideSearchResultsTableView];
+    
+    return NO;
+}
+
+- (void)fetchRepsForAddress:(NSString *)address {
+    
+    [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
         
         [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
             NSLog(@"%@", locationResults);
@@ -233,9 +244,6 @@
         NSLog(@"%@", [googleMapsError localizedDescription]);
     }];
     
-    [self hideSearchResultsTableView];
-    
-    return NO;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

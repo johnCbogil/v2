@@ -26,6 +26,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self configureTableView];
+    [self configureRefreshControl];
+    
+    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
+}
+
+- (void)configureTableView {
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
@@ -36,6 +44,11 @@
     // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
     self.tableView.allowsSelection = NO;
     
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)configureRefreshControl {
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.bounds = CGRectMake(self.refreshControl.bounds.origin.x,
                                             15,
@@ -43,9 +56,6 @@
                                             self.refreshControl.bounds.size.height);
     
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
-    
-    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
 #pragma mark - UITableView Delegate Methods
