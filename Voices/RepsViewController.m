@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *federalButton;
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
+@property (strong, nonatomic) NSDictionary *buttonDictionary;
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -31,8 +33,17 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+
     [self.collectionView.collectionViewLayout invalidateLayout]; // TODO: CAN I MOVE THIS INTO CONFIGURECOLLECTIONVIEW
+    
+    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
+    
+//    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+    self.federalButton.tintColor = [UIColor voicesBlue];
+    self.stateButton.tintColor = [UIColor voicesLightGray];
+    self.localButton.tintColor = [UIColor voicesLightGray];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -142,16 +153,57 @@
     [self.parentViewController.navigationController pushViewController:repVC animated:YES];
 }
 
-#pragma mark - Rep Level Buttons Did Press
+#pragma mark - Page Indicator Container
 
 - (IBAction)federalButtonDidPress:(id)sender {
-    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
+
 }
 - (IBAction)stateButtonDidPress:(id)sender {
-    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
+   
 }
 - (IBAction)localButtonDidPress:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
+
+}
+
+- (void)setPageIndicator:(NSNotification *)notification {
+        long int pageNumber = [notification.object integerValue];
+        if (pageNumber == 0) {
+            [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+        else if (pageNumber == 1) {
+            [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+        else if (pageNumber == 2) {
+            [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+//        [self presentScriptDialog];
     
+}
+
+- (void)updateTabForIndex:(NSIndexPath *)indexPath {
+    if (self.selectedIndexPath != indexPath) {
+        
+        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
+        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
+        
+        if (newButton == lastButton) {
+            return;
+        }
+        
+        [newButton.layer removeAllAnimations];
+        [lastButton.layer removeAllAnimations];
+        
+        [UIView animateWithDuration:.25 animations:^{
+            
+            newButton.tintColor = [UIColor voicesBlue];
+            lastButton.tintColor = [UIColor voicesLightGray];
+            
+        }];
+        self.selectedIndexPath = indexPath;
+    }
 }
 
 
