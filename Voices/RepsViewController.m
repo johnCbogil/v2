@@ -9,6 +9,7 @@
 #import "RepsViewController.h"
 #import "RepsManager.h"
 #import "RootViewController.h"
+#import "AddAddressCollectionViewCell.h"
 
 @interface RepsViewController()
 
@@ -27,12 +28,14 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     
-    [self.collectionView.collectionViewLayout invalidateLayout];
+    [self.collectionView.collectionViewLayout invalidateLayout]; // TODO: CAN I MOVE THIS INTO CONFIGURECOLLECTIONVIEW
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.collectionView.collectionViewLayout invalidateLayout];
+    [self.collectionView reloadData];
 }
 
 - (void)configureCollectionView {
@@ -40,7 +43,9 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
+    // TODO: CREATE CONSTNATS FOR THESE
     [self.collectionView registerNib:[UINib nibWithNibName:@"RepsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"RepsCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"AddAddressCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"AddAddressCollectionViewCell"];
     self.collectionView.pagingEnabled = YES;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
@@ -57,20 +62,33 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 3;
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+    if (homeAddress.length) {
+        return 3;
+    }
+    else {
+        return 1;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
-    
-    cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
-    
-    cell.index = indexPath.item;
-    cell.repDetailDelegate = self;
-    [cell reloadTableView];
-    
-    return cell;
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+
+    if (homeAddress.length) {
+        RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
+        cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
+        cell.index = indexPath.item;
+        cell.repDetailDelegate = self;
+        [cell reloadTableView];
+        return cell;
+
+    }
+    else {
+        // RETURN ADDADDRESSCELL
+        AddAddressCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddAddressCollectionViewCell" forIndexPath:indexPath];
+        return cell;
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
