@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="mDv-wp-Cbp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t2f-5V-Erd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="445"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WJZ-hA-hMq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="381"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZWW-xi-bhX">
                                     <size key="itemSize" width="50" height="50"/>
@@ -46,22 +46,71 @@
                                     <outlet property="delegate" destination="RaT-JB-7Ja" id="aIF-m0-gaE"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N29-Is-M7q" userLabel="PageIndicatorView">
+                                <rect key="frame" x="16" y="8" width="288" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eg-Me-Xuf">
+                                        <rect key="frame" x="9" y="3" width="90" height="42"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <state key="normal" title="Federal"/>
+                                        <connections>
+                                            <action selector="federalButtonDidPress:" destination="RaT-JB-7Ja" eventType="touchUpInside" id="bGl-qp-ktj"/>
+                                            <action selector="federalPageButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="bSL-Vh-k6z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdM-Yl-0bj">
+                                        <rect key="frame" x="103" y="3" width="99" height="42"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <state key="normal" title="State"/>
+                                        <connections>
+                                            <action selector="stateButtonDidPress:" destination="RaT-JB-7Ja" eventType="touchUpInside" id="iFz-Zd-fx0"/>
+                                            <action selector="statePageButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="Wse-jl-aYA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppy-EH-wob">
+                                        <rect key="frame" x="214" y="3" width="66" height="42"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                        <state key="normal" title="Local"/>
+                                        <connections>
+                                            <action selector="localButtonDidPress:" destination="RaT-JB-7Ja" eventType="touchUpInside" id="AAp-WU-KLH"/>
+                                            <action selector="localPageButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="BE9-IW-uXb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1eg-Me-Xuf" firstAttribute="leading" secondItem="N29-Is-M7q" secondAttribute="leading" constant="9" id="05T-YH-vtj"/>
+                                    <constraint firstItem="HdM-Yl-0bj" firstAttribute="leading" secondItem="1eg-Me-Xuf" secondAttribute="trailing" constant="4" id="0mx-VX-saB"/>
+                                    <constraint firstItem="1eg-Me-Xuf" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="top" constant="3" id="9wd-zc-6UV"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ppy-EH-wob" secondAttribute="trailing" constant="8" id="J5Y-qt-ybN"/>
+                                    <constraint firstItem="1eg-Me-Xuf" firstAttribute="centerY" secondItem="N29-Is-M7q" secondAttribute="centerY" id="JAk-lq-t6v"/>
+                                    <constraint firstItem="Ppy-EH-wob" firstAttribute="centerY" secondItem="N29-Is-M7q" secondAttribute="centerY" id="VCf-L8-PnM"/>
+                                    <constraint firstItem="HdM-Yl-0bj" firstAttribute="centerY" secondItem="N29-Is-M7q" secondAttribute="centerY" id="bPI-Z5-IU4"/>
+                                    <constraint firstItem="Ppy-EH-wob" firstAttribute="leading" secondItem="HdM-Yl-0bj" secondAttribute="trailing" constant="12" id="oV7-sG-VmL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="N29-Is-M7q" secondAttribute="trailing" constant="16" id="1SF-j2-KyK"/>
+                            <constraint firstItem="N29-Is-M7q" firstAttribute="leading" secondItem="t2f-5V-Erd" secondAttribute="leading" constant="16" id="379-l3-dlg"/>
                             <constraint firstAttribute="trailing" secondItem="WJZ-hA-hMq" secondAttribute="trailing" id="3KW-XD-VPw"/>
-                            <constraint firstItem="WJZ-hA-hMq" firstAttribute="top" secondItem="GJ3-Yw-fMI" secondAttribute="bottom" id="KDt-J8-NbM"/>
+                            <constraint firstItem="WJZ-hA-hMq" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="bottom" constant="8" id="Uew-hY-3pW"/>
+                            <constraint firstItem="N29-Is-M7q" firstAttribute="top" secondItem="GJ3-Yw-fMI" secondAttribute="bottom" constant="8" id="bEb-dW-gOo"/>
                             <constraint firstItem="WJZ-hA-hMq" firstAttribute="leading" secondItem="t2f-5V-Erd" secondAttribute="leading" id="g0h-pQ-iXc"/>
                             <constraint firstItem="WJZ-hA-hMq" firstAttribute="bottom" secondItem="mDv-wp-Cbp" secondAttribute="top" id="hTo-Xq-J6F"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="WJZ-hA-hMq" id="xTg-Po-bcy"/>
+                        <outlet property="federalButton" destination="1eg-Me-Xuf" id="b4I-Qi-X9a"/>
+                        <outlet property="localButton" destination="Ppy-EH-wob" id="1Lr-nr-L0Z"/>
+                        <outlet property="pageIndicatorContainer" destination="N29-Is-M7q" id="Uoz-YC-bqL"/>
+                        <outlet property="stateButton" destination="HdM-Yl-0bj" id="rwh-br-USV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="et2-Ri-1ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2794" y="288"/>
+            <point key="canvasLocation" x="2793.75" y="287.32394366197184"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="BEl-WS-0AA">
@@ -194,46 +243,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfh-8V-iDn" userLabel="PageIndicatorView">
-                                <rect key="frame" x="16" y="128" width="288" height="48"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ren-g7-23T">
-                                        <rect key="frame" x="9" y="3" width="90" height="42"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                        <state key="normal" title="Federal"/>
-                                        <connections>
-                                            <action selector="federalPageButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="cI4-cC-IKk"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isi-1L-mIi">
-                                        <rect key="frame" x="103" y="3" width="99" height="42"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                        <state key="normal" title="State"/>
-                                        <connections>
-                                            <action selector="statePageButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="1Ym-nV-Hew"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJw-sL-tFt">
-                                        <rect key="frame" x="214" y="3" width="66" height="42"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
-                                        <state key="normal" title="Local"/>
-                                        <connections>
-                                            <action selector="localPageButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="hqx-Un-qYw"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="ren-g7-23T" firstAttribute="leading" secondItem="Tfh-8V-iDn" secondAttribute="leading" constant="9" id="EKy-br-FLc"/>
-                                    <constraint firstItem="isi-1L-mIi" firstAttribute="centerY" secondItem="Tfh-8V-iDn" secondAttribute="centerY" id="GnG-bc-Ea6"/>
-                                    <constraint firstItem="isi-1L-mIi" firstAttribute="leading" secondItem="ren-g7-23T" secondAttribute="trailing" constant="4" id="Uh2-CE-twJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="wJw-sL-tFt" secondAttribute="trailing" constant="8" id="YKg-f8-X8p"/>
-                                    <constraint firstItem="wJw-sL-tFt" firstAttribute="leading" secondItem="isi-1L-mIi" secondAttribute="trailing" constant="12" id="f01-Io-pVO"/>
-                                    <constraint firstItem="ren-g7-23T" firstAttribute="centerY" secondItem="Tfh-8V-iDn" secondAttribute="centerY" id="igi-Vz-Zm5"/>
-                                    <constraint firstItem="wJw-sL-tFt" firstAttribute="centerY" secondItem="Tfh-8V-iDn" secondAttribute="centerY" id="mto-dc-4Qm"/>
-                                </constraints>
-                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohY-vD-AGg">
-                                <rect key="frame" x="0.0" y="176" width="320" height="392"/>
+                                <rect key="frame" x="0.0" y="123" width="320" height="445"/>
                                 <connections>
                                     <segue destination="RaT-JB-7Ja" kind="embed" id="GeH-dQ-6k0"/>
                                 </connections>
@@ -286,54 +297,35 @@
                         <constraints>
                             <constraint firstItem="IHf-wb-gWQ" firstAttribute="trailing" secondItem="iCg-1k-HG3" secondAttribute="trailing" id="8Rl-UM-H3B"/>
                             <constraint firstItem="7jD-iB-DcU" firstAttribute="top" secondItem="4nO-VY-e87" secondAttribute="top" id="8vK-Hz-5ud"/>
-                            <constraint firstItem="Tfh-8V-iDn" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="65" id="CFW-gK-Ldt"/>
                             <constraint firstItem="7jD-iB-DcU" firstAttribute="trailing" secondItem="ohY-vD-AGg" secondAttribute="trailing" id="DUc-4R-Gq5"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="bottom" secondItem="IHf-wb-gWQ" secondAttribute="bottom" id="FT8-dg-qgw"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="20" id="G19-gc-IMe"/>
                             <constraint firstItem="7jD-iB-DcU" firstAttribute="leading" secondItem="ohY-vD-AGg" secondAttribute="leading" id="GOn-Cg-TZa"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="leading" secondItem="IHf-wb-gWQ" secondAttribute="leading" id="HYq-xf-aeG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Tfh-8V-iDn" secondAttribute="trailing" id="IGU-ph-o7S"/>
-                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="4nO-VY-e87" secondAttribute="top" constant="176" id="KZ3-lC-8Z8"/>
+                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="4nO-VY-e87" secondAttribute="top" constant="123" id="KZ3-lC-8Z8"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" id="Keg-Jn-39k"/>
-                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="61" id="OS6-EF-O83"/>
-                            <constraint firstItem="Tfh-8V-iDn" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="13" id="QsZ-Z6-KPR"/>
+                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="iCg-1k-HG3" secondAttribute="bottom" constant="8" id="OS6-EF-O83"/>
                             <constraint firstItem="ely-1P-I86" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="16" id="SpD-Or-1wM"/>
                             <constraint firstItem="7jD-iB-DcU" firstAttribute="bottom" secondItem="yql-Ix-qR9" secondAttribute="top" id="V5u-5m-WMY"/>
-                            <constraint firstItem="Tfh-8V-iDn" firstAttribute="centerX" secondItem="iCg-1k-HG3" secondAttribute="centerX" id="W61-MG-XTh"/>
                             <constraint firstAttribute="trailing" secondItem="ely-1P-I86" secondAttribute="trailing" constant="16" id="Xkk-4P-nAV"/>
                             <constraint firstItem="yql-Ix-qR9" firstAttribute="top" secondItem="ely-1P-I86" secondAttribute="bottom" constant="250" id="cD1-Gn-TBn"/>
-                            <constraint firstItem="Tfh-8V-iDn" firstAttribute="bottom" secondItem="ohY-vD-AGg" secondAttribute="bottom" id="eKt-7t-kwq"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leadingMargin" id="eXq-pf-5q5"/>
                             <constraint firstAttribute="trailing" secondItem="ohY-vD-AGg" secondAttribute="trailing" id="fcI-mW-ckh"/>
                             <constraint firstItem="iCg-1k-HG3" firstAttribute="top" secondItem="IHf-wb-gWQ" secondAttribute="top" id="o1a-G0-8lE"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="bottom" secondItem="yql-Ix-qR9" secondAttribute="top" id="otW-IN-lo3"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Tfh-8V-iDn" secondAttribute="leading" id="p8l-gw-7AJ"/>
-                            <constraint firstItem="Tfh-8V-iDn" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" constant="281" id="pf4-Sb-Sxg"/>
                             <constraint firstItem="IHf-wb-gWQ" firstAttribute="centerX" secondItem="ohY-vD-AGg" secondAttribute="centerX" id="q3E-HK-wQY"/>
-                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="Tfh-8V-iDn" secondAttribute="bottom" id="wXV-2f-JKO"/>
                             <constraint firstItem="ely-1P-I86" firstAttribute="top" secondItem="IHf-wb-gWQ" secondAttribute="bottom" id="xCQ-Gy-5BT"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="CFW-gK-Ldt"/>
-                                <exclude reference="eKt-7t-kwq"/>
-                                <exclude reference="pf4-Sb-Sxg"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="nco-zX-zcV"/>
                     <connections>
                         <outlet property="containerView" destination="ohY-vD-AGg" id="3bz-52-TjQ"/>
                         <outlet property="darkView" destination="7jD-iB-DcU" id="sge-tz-nkk"/>
-                        <outlet property="federalButton" destination="ren-g7-23T" id="shF-ti-J7O"/>
                         <outlet property="infoButton" destination="usD-En-vUP" id="qNm-Xz-9MH"/>
-                        <outlet property="localButton" destination="wJw-sL-tFt" id="6hs-wx-Hpt"/>
-                        <outlet property="pageIndicatorView" destination="Tfh-8V-iDn" id="8jz-kC-XWT"/>
                         <outlet property="searchResultsTableView" destination="ely-1P-I86" id="mQ3-TB-ZtI"/>
                         <outlet property="searchTextField" destination="ARA-4W-JcE" id="HuC-sP-CJ8"/>
                         <outlet property="searchView" destination="IHf-wb-gWQ" id="41W-Lo-pnd"/>
                         <outlet property="shimmeringView" destination="iCg-1k-HG3" id="OsN-w8-Q0B"/>
-                        <outlet property="stateButton" destination="isi-1L-mIi" id="Pcm-bX-sY9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0H-PU-P60" userLabel="First Responder" sceneMemberID="firstResponder"/>

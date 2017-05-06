@@ -10,4 +10,9 @@
 
 @interface AddAddressCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *addAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addAddressButton;
+@property (weak, nonatomic) IBOutlet UILabel *privacyLabel;
+
 @end

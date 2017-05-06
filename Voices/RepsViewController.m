@@ -14,6 +14,10 @@
 @interface RepsViewController()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIView *pageIndicatorContainer;
+@property (weak, nonatomic) IBOutlet UIButton *federalButton;
+@property (weak, nonatomic) IBOutlet UIButton *stateButton;
+@property (weak, nonatomic) IBOutlet UIButton *localButton;
 
 @end
 
@@ -29,13 +33,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     
     [self.collectionView.collectionViewLayout invalidateLayout]; // TODO: CAN I MOVE THIS INTO CONFIGURECOLLECTIONVIEW
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.collectionView.collectionViewLayout invalidateLayout];
     [self.collectionView reloadData];
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+    if (homeAddress.length) {
+        self.pageIndicatorContainer.hidden = NO;
+    }
+    else {
+        self.pageIndicatorContainer.hidden = YES;
+    }
 }
 
 - (void)configureCollectionView {
@@ -51,7 +62,6 @@
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     flowLayout.minimumLineSpacing = 0.0;
     self.collectionView.collectionViewLayout = flowLayout;
-    
 }
 
 #pragma mark - CollectionView Delegate Methods
@@ -90,9 +100,7 @@
     }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     return self.view.frame.size;
 }
@@ -132,6 +140,18 @@
 - (void)pushToDetailVC: (RepDetailViewController*) repVC {
     
     [self.parentViewController.navigationController pushViewController:repVC animated:YES];
+}
+
+#pragma mark - Rep Level Buttons Did Press
+
+- (IBAction)federalButtonDidPress:(id)sender {
+    
+}
+- (IBAction)stateButtonDidPress:(id)sender {
+    
+}
+- (IBAction)localButtonDidPress:(id)sender {
+    
 }
 
 

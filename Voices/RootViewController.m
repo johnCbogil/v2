@@ -35,10 +35,10 @@
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *shadowView;
-@property (weak, nonatomic) IBOutlet UIView *pageIndicatorView;
-@property (weak, nonatomic) IBOutlet UIButton *federalButton;
-@property (weak, nonatomic) IBOutlet UIButton *stateButton;
-@property (weak, nonatomic) IBOutlet UIButton *localButton;
+//@property (weak, nonatomic) IBOutlet UIView *pageIndicatorView;
+//@property (weak, nonatomic) IBOutlet UIButton *federalButton;
+//@property (weak, nonatomic) IBOutlet UIButton *stateButton;
+//@property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
@@ -75,7 +75,7 @@
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
     [self fetchRepsForAddress:homeAddress];
     
-    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
+//    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,10 +109,10 @@
 
 - (void)setColors {
     self.searchView.backgroundColor = [UIColor voicesOrange];
-    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-    self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesLightGray];
+//    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
+//    self.federalButton.tintColor = [UIColor voicesBlue];
+//    self.stateButton.tintColor = [UIColor voicesLightGray];
+//    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (void)setFont {
@@ -126,9 +126,9 @@
             self.searchBarFontSize = 27;
         }
     }
-    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
-    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
-    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+//    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+//    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
+//    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
 }
 
 - (void)updateTabForIndex:(NSIndexPath *)indexPath {
@@ -598,17 +598,17 @@
 }
 
 - (void)setPageIndicator:(NSNotification *)notification {
-    long int pageNumber = [notification.object integerValue];
-    if (pageNumber == 0) {
-        [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }
-    else if (pageNumber == 1) {
-        [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }
-    else if (pageNumber == 2) {
-        [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }
-    [self presentScriptDialog];
+//    long int pageNumber = [notification.object integerValue];
+//    if (pageNumber == 0) {
+//        [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+//    }
+//    else if (pageNumber == 1) {
+//        [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+//    }
+//    else if (pageNumber == 2) {
+//        [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+//    }
+//    [self presentScriptDialog];
     
 }
 

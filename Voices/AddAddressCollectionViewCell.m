@@ -10,4 +10,7 @@
 
 @implementation AddAddressCollectionViewCell
 
+- (IBAction)addAddressButtonDidPress:(id)sender {
+}
+
 @end
