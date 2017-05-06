@@ -10,6 +10,4 @@
 
 @interface RootViewController : UIViewController <UISearchBarDelegate>
 
-- (void)updateTabForIndex:(NSIndexPath *)indexPath;
-
 @end
