@@ -25,7 +25,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+        
     [self configureTableView];
     [self configureRefreshControl];
     

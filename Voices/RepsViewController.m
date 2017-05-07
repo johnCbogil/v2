@@ -35,11 +35,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
 
-//    [self.collectionView.collectionViewLayout invalidateLayout]; // TODO: CAN I MOVE THIS INTO CONFIGURECOLLECTIONVIEW
     
     self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
     
-//    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesLightGray];
@@ -52,7 +50,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self.collectionView.collectionViewLayout invalidateLayout];
     [self.collectionView reloadData];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
@@ -117,7 +114,6 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.height);
     return self.collectionView.frame.size;
 }
 
