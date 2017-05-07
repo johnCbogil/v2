@@ -10,6 +10,18 @@
 
 @implementation AddAddressCollectionViewCell
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.addAddressLabel.font = [UIFont voicesFontWithSize:30];
+    self.emojiLabel.font = [UIFont voicesFontWithSize:60];
+    self.privacyLabel.font = [UIFont voicesFontWithSize:10];
+    self.addAddressButton.tintColor = [UIColor whiteColor];
+    self.addAddressButton.backgroundColor = [UIColor orangeColor];
+    self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
+    self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
+}
+
 - (IBAction)addAddressButtonDidPress:(id)sender {
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];

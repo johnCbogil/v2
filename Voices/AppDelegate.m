@@ -35,6 +35,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
+    
+    [[NSUserDefaults standardUserDefaults]setValue:nil forKey:kHomeAddress];
         
     [self setInitialViewController];
     [self setCache];

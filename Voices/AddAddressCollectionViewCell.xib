@@ -18,30 +18,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your address to see your reps." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pio-CR-jFs">
-                        <rect key="frame" x="20" y="20" width="335" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your address to see your reps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pio-CR-jFs">
+                        <rect key="frame" x="20" y="0.0" width="335" height="72"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="👨‍💼👩‍💼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFP-d7-H9J">
-                        <rect key="frame" x="20" y="49" width="335" height="71"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👨‍💼👩‍💼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFP-d7-H9J">
+                        <rect key="frame" x="20" y="79" width="335" height="71"/>
                         <fontDescription key="fontDescription" type="system" pointSize="59"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voices does not share your address with anyone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDW-gb-YXs">
-                        <rect key="frame" x="20" y="166" width="335" height="11"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices does not share your address with anyone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDW-gb-YXs">
+                        <rect key="frame" x="123" y="196" width="130" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oce-zJ-P7p">
-                        <rect key="frame" x="20" y="128" width="335" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oce-zJ-P7p">
+                        <rect key="frame" x="76" y="158" width="222" height="30"/>
                         <state key="normal" title="Add Address"/>
                         <connections>
                             <action selector="addAddressButtonDidPress:" destination="JLq-dr-RIP" eventType="touchUpInside" id="gWc-du-gln"/>
@@ -49,11 +45,25 @@
                     </button>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="oce-zJ-P7p" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="76" id="7kg-o6-dST"/>
+                <constraint firstItem="iDW-gb-YXs" firstAttribute="top" secondItem="oce-zJ-P7p" secondAttribute="bottom" constant="8" id="D7e-zO-zFW"/>
+                <constraint firstAttribute="trailing" secondItem="iDW-gb-YXs" secondAttribute="trailing" constant="122" id="HB8-Fs-2Kq"/>
+                <constraint firstAttribute="trailing" secondItem="oce-zJ-P7p" secondAttribute="trailing" constant="77" id="L9k-ZC-Y9v"/>
+                <constraint firstAttribute="trailing" secondItem="PFP-d7-H9J" secondAttribute="trailing" constant="20" id="Nrc-9t-FJa"/>
+                <constraint firstItem="PFP-d7-H9J" firstAttribute="top" secondItem="pio-CR-jFs" secondAttribute="bottom" constant="7" id="RWT-b8-vuC"/>
+                <constraint firstItem="pio-CR-jFs" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="20" id="YHR-37-mU6"/>
+                <constraint firstItem="oce-zJ-P7p" firstAttribute="top" secondItem="PFP-d7-H9J" secondAttribute="bottom" constant="8" id="dxu-Zv-2Gv"/>
+                <constraint firstItem="PFP-d7-H9J" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="20" id="flh-BE-khD"/>
+                <constraint firstItem="pio-CR-jFs" firstAttribute="top" secondItem="JLq-dr-RIP" secondAttribute="top" id="oX7-dh-yE7"/>
+                <constraint firstItem="iDW-gb-YXs" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="123" id="qbd-p2-PqV"/>
+                <constraint firstAttribute="trailing" secondItem="pio-CR-jFs" secondAttribute="trailing" constant="20" id="sUr-xe-MYf"/>
+            </constraints>
             <size key="customSize" width="371" height="-21"/>
             <connections>
                 <outlet property="addAddressButton" destination="oce-zJ-P7p" id="aR5-p5-fmD"/>
-                <outlet property="addAddressLabel" destination="pio-CR-jFs" id="bKo-QN-RSh"/>
+                <outlet property="addAddressLabel" destination="pio-CR-jFs" id="AT4-xb-vBw"/>
                 <outlet property="emojiLabel" destination="PFP-d7-H9J" id="hF1-sA-fS6"/>
                 <outlet property="privacyLabel" destination="iDW-gb-YXs" id="d64-PD-u6O"/>
             </connections>
