@@ -13,11 +13,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.addAddressLabel.font = [UIFont voicesFontWithSize:30];
+    self.addAddressLabel.font = [UIFont voicesFontWithSize:25];
     self.emojiLabel.font = [UIFont voicesFontWithSize:60];
-    self.privacyLabel.font = [UIFont voicesFontWithSize:10];
+    self.privacyLabel.font = [UIFont voicesFontWithSize:11];
     self.addAddressButton.tintColor = [UIColor whiteColor];
-    self.addAddressButton.backgroundColor = [UIColor orangeColor];
+    self.addAddressButton.backgroundColor = [UIColor voicesOrange];
     self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
     self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
 }
