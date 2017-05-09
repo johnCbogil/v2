@@ -76,6 +76,7 @@
     [self fetchRepsForAddress:homeAddress];
     
 //    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -191,7 +192,7 @@
     
     // Create shadow
     self.shadowView = [[UIView alloc] init];
-    self.shadowView.backgroundColor = [UIColor whiteColor];
+    self.shadowView.backgroundColor = [UIColor clearColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
 }
 
