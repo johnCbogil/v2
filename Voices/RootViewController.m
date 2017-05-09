@@ -72,8 +72,8 @@
     [self configureDarkView];
     [self configureSearchResultsTableView];
 //    [self setupCallCenterToPresentThankYou];
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
-    [self fetchRepsForAddress:homeAddress];
+    
+    
     
 //    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
     
@@ -85,6 +85,11 @@
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     self.navigationController.navigationBar.hidden = YES;
     [self.searchResultsTableView reloadData];
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+    if (homeAddress.length) {
+        [self fetchRepsForAddress:homeAddress];
+    }
 }
 
 - (void)viewDidLayoutSubviews {
