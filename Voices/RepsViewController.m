@@ -41,6 +41,8 @@
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesLightGray];
+    
+    self.pageIndicatorContainer.hidden = YES;
 
 }
 
@@ -53,12 +55,7 @@
     [self.collectionView reloadData];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
-    if (homeAddress.length) {
-        self.pageIndicatorContainer.hidden = NO;
-    }
-    else {
-        self.pageIndicatorContainer.hidden = YES;
-    }
+
 }
 
 - (void)configureCollectionView {
@@ -85,7 +82,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
-    if (homeAddress.length) {
+    if ([RepsManager sharedInstance].fedReps.count) {
         return 3;
     }
     else {
@@ -95,7 +92,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
 
     if ([RepsManager sharedInstance].fedReps.count) {
         RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
@@ -118,6 +115,12 @@
 }
 
 - (void)reloadCollectionView {
+    if ([RepsManager sharedInstance].fedReps.count) {
+        self.pageIndicatorContainer.hidden = NO;
+    }
+    else {
+        self.pageIndicatorContainer.hidden = YES;
+    }
     [self.collectionView reloadData];
 }
 
