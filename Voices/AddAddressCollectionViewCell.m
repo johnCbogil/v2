@@ -15,7 +15,7 @@
     
     self.addAddressLabel.font = [UIFont voicesFontWithSize:25];
     self.emojiLabel.font = [UIFont voicesFontWithSize:60];
-    self.privacyLabel.font = [UIFont voicesFontWithSize:11];
+    self.privacyLabel.font = [UIFont voicesFontWithSize:12];
     self.addAddressButton.tintColor = [UIColor whiteColor];
     self.addAddressButton.backgroundColor = [UIColor voicesOrange];
     self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;

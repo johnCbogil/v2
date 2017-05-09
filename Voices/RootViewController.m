@@ -213,8 +213,7 @@
     [textField resignFirstResponder];
     
     [SearchResultsManager sharedInstance].locationSearched = textField.text;
-    self.searchTextField.text = [SearchResultsManager sharedInstance].locationSearched;
-    
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[SearchResultsManager sharedInstance].locationSearched attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
     [self fetchRepsForAddress:textField.text];
     
     [self hideSearchResultsTableView];
@@ -224,27 +223,28 @@
 
 - (void)fetchRepsForAddress:(NSString *)address {
     
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
-        
-        [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            NSLog(@"%@", locationResults);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
+    if (address.length) {
+        [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
+            
+            [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+                NSLog(@"%@", locationResults);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+            
+        } onError:^(NSError *googleMapsError) {
+            NSLog(@"%@", [googleMapsError localizedDescription]);
         }];
-        
-        [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
-        
-    } onError:^(NSError *googleMapsError) {
-        NSLog(@"%@", [googleMapsError localizedDescription]);
-    }];
-    
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -525,7 +525,8 @@
     
     self.searchResultsTableView.hidden = YES;
     self.darkView.hidden = YES;
-    self.searchTextField.text = [SearchResultsManager sharedInstance].locationSearched;
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[SearchResultsManager sharedInstance].locationSearched attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
+
     [self.searchTextField resignFirstResponder];
     [self.darkView removeGestureRecognizer:self.tap];
 }
