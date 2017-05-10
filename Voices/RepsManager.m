@@ -63,13 +63,13 @@
         [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error){
-            NSLog(@"%@",[error localizedDescription]);
+            
         }];
         
         [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
-            NSLog(@"%@",[error localizedDescription]);
+            
         }];
         
         [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
@@ -102,7 +102,7 @@
     [[RepsNetworkManager sharedInstance]getFederalContactFormURLSWithCompletion:^(NSDictionary *results) {
         self.federalRepContactFormURLs = results;
     } onError:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+        
     }];
 }
 
@@ -186,7 +186,6 @@
     
     // Parse out the council district from the data
     self.currentCouncilDistrict = [[district valueForKey:@"properties"]valueForKey:@"coundist"];
-    NSLog(@"%@", self.currentCouncilDistrict);
     // Parse out the geometry
     NSDictionary *geometry = [district valueForKey:@"geometry"];
     // Parse the polygons from the data

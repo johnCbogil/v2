@@ -72,21 +72,16 @@
     
     [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
         if (error) {
-            NSLog(@"UserAuth error: %@", error);
             return;
         }
         
         [self createUserReferences];
         
-        NSLog(@"Created a new userID: %@", [CurrentUser sharedInstance].firebaseUserID);
-        
         // Add user to list of users
         [self.usersRef updateChildValues:@{[CurrentUser sharedInstance].firebaseUserID : @{@"userID" : [CurrentUser sharedInstance].firebaseUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
             if (error) {
-                NSLog(@"Error adding user to database: %@", error);
                 return;
             }
-            NSLog(@"Created user %@ in database", [CurrentUser sharedInstance].firebaseUserID);
         }];
     }];
 }
@@ -102,31 +97,21 @@
         
         BOOL isUserFollowingGroup = snapshot.value == [NSNull null] ? NO : YES;
         
-        NSLog(@"User %d a member of selected group", isUserFollowingGroup);
-        
         if (snapshot.value == [NSNull null]) {
             
             // Add group to user's groups
             [[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"] updateChildValues:@{groupKey :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
                 if (error) {
-                    NSLog(@"write error: %@", error);
                 }
             }];
             
             // Add user to group's users
             [[[self.groupsRef child:groupKey]child:@"followers"] updateChildValues:@{[FIRAuth auth].currentUser.uid :@1} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                if (error) {
-                    NSLog(@"write error: %@", error);
-                }
-                else {
-                    NSLog(@"Added user to group via deeplink succesfully");
-                }
             }];
             
             // Add group to user's subscriptions
             NSString *topic = [groupKey stringByReplacingOccurrencesOfString:@" " withString:@""];
             [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
-            NSLog(@"User subscribed to %@", groupKey);
             
             isUserFollowingGroup = NO;
             
@@ -140,7 +125,7 @@
             successBlock(isUserFollowingGroup);
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
+        
     }];
 }
 
@@ -228,7 +213,7 @@
             }];
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
+        
     }];
 }
 
@@ -252,7 +237,6 @@
     
     // Remove group from user's subscriptions
     [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
-    NSLog(@"User unsubscribed to %@", group.key);
     
     // Remove associated actions
     NSMutableArray *discardedActions = [NSMutableArray array];

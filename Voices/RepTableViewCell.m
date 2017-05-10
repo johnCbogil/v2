@@ -83,7 +83,6 @@
         }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
-        NSLog(@"Federal image failure");
     }];
 }
 
@@ -209,24 +208,19 @@
 
 - (void)callStateDidChange:(NSNotification *)notification {
     //Log the notification
-    NSLog(@"Notification : %@", notification);
     NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
     if ([callInfo isEqualToString: CTCallStateDialing]) {
         //The call state, before connection is established, when the user initiates the call.
-        NSLog(@"****** call is dialing ******");
         [self scheduleNotification];
     }
     if ([callInfo isEqualToString: CTCallStateIncoming]) {
         //The call state, before connection is established, when a call is incoming but not yet answered by the user.
-        NSLog(@"***** call is incoming ******");
     }
     if ([callInfo isEqualToString: CTCallStateConnected]) {
         //The call state when the call is fully established for all parties involved.
-        NSLog(@"***** call connected *****");
     }
     if ([callInfo isEqualToString: CTCallStateDisconnected]) {
         //the call state has ended
-        NSLog(@"***** call ended *****");
     }
 }
 
@@ -236,7 +230,6 @@
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center removeAllDeliveredNotifications];
-    NSLog(@"LOCAL NOTI FIRED-----------");
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.f];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
                                                                              NSCalendarUnitMonth + NSCalendarUnitDay +

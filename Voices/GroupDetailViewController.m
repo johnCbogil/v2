@@ -89,14 +89,13 @@
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                               timeoutInterval:60];
     [cell.groupImageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed: kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-        NSLog(@"Action image success");
         
         [UIView animateWithDuration:.25 animations:^{
             cell.groupImageView.image = image;
         }];
         
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
-        NSLog(@"Action image failure");
+        
     }];
 }
 
@@ -222,7 +221,6 @@
             
             // Reflect follow status in UI
             [weakSelf followGroup];
-            NSLog(@"User subscribed to %@", groupKey);
         }
         else {
             
@@ -250,7 +248,7 @@
                                                   [weakSelf unFollowGroup];
                                               }
                                           } onError:^(NSError *error) {
-                                              NSLog(@"Error fetching group with key: %@. Error: %@", groupKey, error.localizedDescription);
+                                              
                                           }];
                                           // read the value once to see if group key exists
                                       }];
@@ -260,7 +258,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
     } onError:^(NSError *error) {
-        NSLog(@"%@", error);
+        
     }];
 }
 
@@ -273,7 +271,7 @@
         weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
         [weakSelf.tableView reloadData];
     } onError:^(NSError *error) {
-        NSLog(@"Error fetching policy position for group: %@. Error message: %@", self.group.name, error.localizedDescription);
+        
     }];
 }
 

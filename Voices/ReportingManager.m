@@ -51,8 +51,6 @@
     
     NSURL *url = [NSURL URLWithString: reportingString];
     
-    NSLog(@"Reporting URL: %@", url);
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -62,7 +60,6 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
-        NSLog(@"Error: %@", error);
     }];
     [operation start];
 }

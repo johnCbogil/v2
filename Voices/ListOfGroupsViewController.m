@@ -78,8 +78,7 @@
         [weakSelf.tableView reloadData];
         [self toggleActivityIndicatorOff];
     } onError:^(NSError *error) {
-        NSLog(@"%@", error.localizedDescription);
-
+        
     }];
 }
 

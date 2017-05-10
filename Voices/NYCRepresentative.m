@@ -11,7 +11,6 @@
 @implementation NYCRepresentative
 
 - (id)initWithData:(NSDictionary*)data {
-    //    NSLog(@"%@", data);
     self = [super init];
     if (self != nil) {
         self.districtNumber = data[@"district"];
