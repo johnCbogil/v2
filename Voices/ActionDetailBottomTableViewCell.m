@@ -40,7 +40,6 @@
     
     [self configureCollectionView];
     
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if ([RepsManager sharedInstance].fedReps.count) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
