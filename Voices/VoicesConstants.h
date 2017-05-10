@@ -69,4 +69,6 @@ extern NSString *const kGroupFollowTableViewCell;
 extern NSString *const kGroupDescriptionTableViewCell;
 extern NSString *const kPolicyPositionsDetailCell;
 
+extern NSString *const kEmptyStateTableViewCell;
+
 @end
