@@ -15,7 +15,7 @@
 
 @interface RepsCollectionViewCell()
 
-@property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
+//@property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -29,7 +29,7 @@
     [self configureTableView];
     [self configureRefreshControl];
     
-    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
+//    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
 - (void)configureTableView {
@@ -77,13 +77,12 @@
     if(self.tableViewDataSource.count > 0) {
         
         cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
-        
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else {
-        UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
-        emptyStateCell.backgroundView = self.emptyRepTableViewCell;
-        cell = emptyStateCell;
+
+        cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyRepTableViewCell"];
+
     }
     [self.refreshControl endRefreshing];
     [self toggleZeroState];
@@ -147,10 +146,6 @@
     [UIView animateWithDuration:.25 animations:^{
         self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2 && ![RepsManager sharedInstance].isLocalRepsAvailable) {
-        [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
-        [self.emptyRepTableViewCell updateImage];
-    }
 }
 
 - (void)turnZeroStateOff {

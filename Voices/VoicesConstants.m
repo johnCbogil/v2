@@ -13,7 +13,10 @@
 
 NSString *const kRepTableViewCell = @"RepTableViewCell";
 NSString *const kActionCellReuse = @"ActionTableViewCell";
+NSString *const kRepsCollectionViewCell = @"RepsCollectionViewCell";
+NSString *const kAddAddressCollectionViewCell = @"AddAddressCollectionViewCell";
 
+NSString *const kDeepLinkURLScheme = @"deepLinkURLScheme";
 
 NSString *const kAvenirNextRegular = @"AvenirNext-Regular";
 NSString *const kAvenirNextMedium = @"AvenirNext-Medium";

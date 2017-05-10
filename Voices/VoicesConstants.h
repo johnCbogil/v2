@@ -13,6 +13,10 @@
 
 extern NSString *const kRepTableViewCell;
 extern NSString *const kActionCellReuse;
+extern NSString *const kRepsCollectionViewCell;
+extern NSString *const kAddAddressCollectionViewCell;
+
+extern NSString *const kDeepLinkURLScheme;
 
 extern NSString *const kAvenirNextRegular;
 extern NSString *const kAvenirNextMedium;

@@ -23,27 +23,19 @@
 
 @end
 
-
 @implementation RepsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configurePageIndicator];
     [self configureCollectionView];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
-
     
     self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
-    self.federalButton.tintColor = [UIColor voicesBlue];
-    self.stateButton.tintColor = [UIColor voicesLightGray];
-    self.localButton.tintColor = [UIColor voicesLightGray];
-    
-    self.pageIndicatorContainer.hidden = YES;
-
 }
 
 - (void)viewWillLayoutSubviews {
@@ -53,9 +45,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.collectionView reloadData];
-    
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
+}
 
+- (void)configurePageIndicator {
+    
+    self.federalButton.tintColor = [UIColor voicesBlue];
+    self.stateButton.tintColor = [UIColor voicesLightGray];
+    self.localButton.tintColor = [UIColor voicesLightGray];
+    
+    self.pageIndicatorContainer.hidden = YES;
 }
 
 - (void)configureCollectionView {
@@ -64,8 +62,8 @@
     self.collectionView.dataSource = self;
     
     // TODO: CREATE CONSTNATS FOR THESE
-    [self.collectionView registerNib:[UINib nibWithNibName:@"RepsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"RepsCollectionViewCell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"AddAddressCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"AddAddressCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:kRepsCollectionViewCell bundle:nil] forCellWithReuseIdentifier:kRepsCollectionViewCell];
+    [self.collectionView registerNib:[UINib nibWithNibName:kAddAddressCollectionViewCell bundle:nil] forCellWithReuseIdentifier:kAddAddressCollectionViewCell];
     self.collectionView.pagingEnabled = YES;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
@@ -81,7 +79,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
     if ([RepsManager sharedInstance].fedReps.count) {
         return 3;
     }
@@ -92,19 +89,17 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
-
     if ([RepsManager sharedInstance].fedReps.count) {
-        RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RepsCollectionViewCell" forIndexPath:indexPath];
+        RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRepsCollectionViewCell forIndexPath:indexPath];
         cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
         cell.index = indexPath.item;
         cell.repDetailDelegate = self;
         [cell reloadTableView];
         return cell;
-
+        
     }
     else {
-        AddAddressCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddAddressCollectionViewCell" forIndexPath:indexPath];
+        AddAddressCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAddAddressCollectionViewCell forIndexPath:indexPath];
         return cell;
     }
 }
@@ -130,7 +125,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-   
+    
     NSArray *cellArray = self.collectionView.visibleCells;
     
     CGFloat viewHalfWidth = self.view.frame.size.width / 2;
@@ -159,30 +154,28 @@
 
 - (IBAction)federalButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
-
+    
 }
 - (IBAction)stateButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
-   
+    
 }
 - (IBAction)localButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
-
+    
 }
 
 - (void)setPageIndicator:(NSNotification *)notification {
-        long int pageNumber = [notification.object integerValue];
-        if (pageNumber == 0) {
-            [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-        }
-        else if (pageNumber == 1) {
-            [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-        }
-        else if (pageNumber == 2) {
-            [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-        }
-//        [self presentScriptDialog];
-    
+    long int pageNumber = [notification.object integerValue];
+    if (pageNumber == 0) {
+        [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }
+    else if (pageNumber == 1) {
+        [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }
+    else if (pageNumber == 2) {
+        [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 - (void)updateTabForIndex:(NSIndexPath *)indexPath {

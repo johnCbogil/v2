@@ -35,13 +35,7 @@
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (weak, nonatomic) IBOutlet FBShimmeringView *shimmeringView;
 @property (nonatomic, strong) UIView *shadowView;
-//@property (weak, nonatomic) IBOutlet UIView *pageIndicatorView;
-//@property (weak, nonatomic) IBOutlet UIButton *federalButton;
-//@property (weak, nonatomic) IBOutlet UIButton *stateButton;
-//@property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
-//@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
-//@property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (nonatomic) double searchBarFontSize;
 @property (weak, nonatomic) IBOutlet UITableView *searchResultsTableView;
@@ -71,12 +65,6 @@
     [self configureSearchBar];
     [self configureDarkView];
     [self configureSearchResultsTableView];
-//    [self setupCallCenterToPresentThankYou];
-    
-    
-    
-//    self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,11 +102,8 @@
 #pragma mark - Custom accessor methods
 
 - (void)setColors {
+    
     self.searchView.backgroundColor = [UIColor voicesOrange];
-//    self.infoButton.tintColor = [[UIColor whiteColor]colorWithAlphaComponent:1];
-//    self.federalButton.tintColor = [UIColor voicesBlue];
-//    self.stateButton.tintColor = [UIColor voicesLightGray];
-//    self.localButton.tintColor = [UIColor voicesLightGray];
 }
 
 - (void)setFont {
@@ -132,33 +117,7 @@
             self.searchBarFontSize = 27;
         }
     }
-//    self.federalButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
-//    self.stateButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
-//    self.localButton.titleLabel.font = [UIFont voicesBoldFontWithSize:25];
 }
-
-//- (void)updateTabForIndex:(NSIndexPath *)indexPath {
-//    if (self.selectedIndexPath != indexPath) {
-//        
-//        UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];
-//        UIButton *lastButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:self.selectedIndexPath.item]];
-//        
-//        if (newButton == lastButton) {
-//            return;
-//        }
-//        
-//        [newButton.layer removeAllAnimations];
-//        [lastButton.layer removeAllAnimations];
-//        
-//        [UIView animateWithDuration:.25 animations:^{
-//            
-//            newButton.tintColor = [UIColor voicesBlue];
-//            lastButton.tintColor = [UIColor voicesLightGray];
-//            
-//        }];
-//        self.selectedIndexPath = indexPath;
-//    }
-//}
 
 - (void)configureDarkView {
     
@@ -211,7 +170,6 @@
     self.searchResultsTableView.backgroundView.backgroundColor = [UIColor whiteColor];
     [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"ResultsTableViewCell" bundle:nil]forCellReuseIdentifier:@"ResultsTableViewCell"];
     [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -602,21 +560,6 @@
 
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
-}
-
-- (void)setPageIndicator:(NSNotification *)notification {
-//    long int pageNumber = [notification.object integerValue];
-//    if (pageNumber == 0) {
-//        [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-//    }
-//    else if (pageNumber == 1) {
-//        [self.stateButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-//    }
-//    else if (pageNumber == 2) {
-//        [self.localButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-//    }
-//    [self presentScriptDialog];
-    
 }
 
 - (void)refreshSearchText {

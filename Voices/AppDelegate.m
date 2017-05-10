@@ -41,7 +41,7 @@
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
-    [FIROptions defaultOptions].deepLinkURLScheme = @"com.johnbogil.voices";
+    [FIROptions defaultOptions].deepLinkURLScheme = kDeepLinkURLScheme;
     [FIRApp configure];
     [GMSPlacesClient provideAPIKey:kAutocomplete];
 
