@@ -31,8 +31,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voices does not share your address with anyone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDW-gb-YXs">
-                        <rect key="frame" x="114" y="196" width="148" height="30.5"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="11"/>
+                        <rect key="frame" x="96" y="196" width="184" height="33"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -49,7 +49,7 @@
             <constraints>
                 <constraint firstItem="oce-zJ-P7p" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="76" id="7kg-o6-dST"/>
                 <constraint firstItem="iDW-gb-YXs" firstAttribute="top" secondItem="oce-zJ-P7p" secondAttribute="bottom" constant="8" id="D7e-zO-zFW"/>
-                <constraint firstAttribute="trailing" secondItem="iDW-gb-YXs" secondAttribute="trailing" constant="113" id="HB8-Fs-2Kq"/>
+                <constraint firstAttribute="trailing" secondItem="iDW-gb-YXs" secondAttribute="trailing" constant="95" id="HB8-Fs-2Kq"/>
                 <constraint firstAttribute="trailing" secondItem="oce-zJ-P7p" secondAttribute="trailing" constant="77" id="L9k-ZC-Y9v"/>
                 <constraint firstAttribute="trailing" secondItem="PFP-d7-H9J" secondAttribute="trailing" constant="20" id="Nrc-9t-FJa"/>
                 <constraint firstItem="PFP-d7-H9J" firstAttribute="top" secondItem="pio-CR-jFs" secondAttribute="bottom" constant="7" id="RWT-b8-vuC"/>
@@ -57,7 +57,7 @@
                 <constraint firstItem="oce-zJ-P7p" firstAttribute="top" secondItem="PFP-d7-H9J" secondAttribute="bottom" constant="8" id="dxu-Zv-2Gv"/>
                 <constraint firstItem="PFP-d7-H9J" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="20" id="flh-BE-khD"/>
                 <constraint firstItem="pio-CR-jFs" firstAttribute="top" secondItem="JLq-dr-RIP" secondAttribute="top" id="oX7-dh-yE7"/>
-                <constraint firstItem="iDW-gb-YXs" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="114" id="qbd-p2-PqV"/>
+                <constraint firstItem="iDW-gb-YXs" firstAttribute="leading" secondItem="JLq-dr-RIP" secondAttribute="leading" constant="96" id="qbd-p2-PqV"/>
                 <constraint firstAttribute="trailing" secondItem="pio-CR-jFs" secondAttribute="trailing" constant="20" id="sUr-xe-MYf"/>
             </constraints>
             <size key="customSize" width="371" height="-21"/>

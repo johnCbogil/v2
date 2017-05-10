@@ -172,7 +172,7 @@
 - (void)configureSearchBar {
     
     self.shadowView = [[UIView alloc] init];
-    self.shadowView.backgroundColor = [UIColor whiteColor];
+    self.shadowView.backgroundColor = [UIColor clearColor];
     [self.view insertSubview:self.shadowView belowSubview:self.shimmeringView];
     
     [self.searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
