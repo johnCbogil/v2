@@ -74,9 +74,12 @@
     self.navigationController.navigationBar.hidden = YES;
     [self.searchResultsTableView reloadData];
     
+    
+    // TODO: FETCHING HOME REPS ON VDA IS BAD BC VDA HAPPENS MORE OFTEN THEN DESIRED USE CASES
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
     if (homeAddress.length) {
         [self fetchRepsForAddress:homeAddress];
+        self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your Reps" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize],NSForegroundColorAttributeName: [UIColor whiteColor]}];
     }
 }
 

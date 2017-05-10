@@ -50,7 +50,7 @@
                                 <rect key="frame" x="4" y="8" width="312" height="37"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eg-Me-Xuf">
-                                        <rect key="frame" x="8" y="8" width="90" height="20"/>
+                                        <rect key="frame" x="18" y="8" width="90" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Federal"/>
                                         <connections>
@@ -59,7 +59,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdM-Yl-0bj">
-                                        <rect key="frame" x="125" y="8" width="63" height="20"/>
+                                        <rect key="frame" x="135" y="8" width="63" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="State"/>
                                         <connections>
@@ -68,7 +68,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppy-EH-wob">
-                                        <rect key="frame" x="238" y="8" width="66" height="20"/>
+                                        <rect key="frame" x="228" y="8" width="66" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Local"/>
                                         <connections>
@@ -84,10 +84,10 @@
                                     <constraint firstItem="HdM-Yl-0bj" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="top" constant="8" id="9RJ-7Y-qAt"/>
                                     <constraint firstAttribute="bottom" secondItem="1eg-Me-Xuf" secondAttribute="bottom" constant="9" id="Sys-UO-9ZW"/>
                                     <constraint firstItem="Ppy-EH-wob" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="top" constant="8" id="Zrf-oe-iz8"/>
-                                    <constraint firstItem="Ppy-EH-wob" firstAttribute="leading" secondItem="HdM-Yl-0bj" secondAttribute="trailing" constant="50" id="aXF-jc-eoi"/>
-                                    <constraint firstItem="1eg-Me-Xuf" firstAttribute="leading" secondItem="N29-Is-M7q" secondAttribute="leading" constant="8" id="kik-rF-le9"/>
+                                    <constraint firstItem="Ppy-EH-wob" firstAttribute="leading" secondItem="HdM-Yl-0bj" secondAttribute="trailing" constant="30" id="aXF-jc-eoi"/>
+                                    <constraint firstItem="1eg-Me-Xuf" firstAttribute="leading" secondItem="N29-Is-M7q" secondAttribute="leading" constant="18" id="kik-rF-le9"/>
                                     <constraint firstItem="HdM-Yl-0bj" firstAttribute="leading" secondItem="1eg-Me-Xuf" secondAttribute="trailing" constant="27" id="lEW-iz-hK6"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ppy-EH-wob" secondAttribute="trailing" constant="8" id="sN2-Mk-h8X"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ppy-EH-wob" secondAttribute="trailing" constant="18" id="sN2-Mk-h8X"/>
                                     <constraint firstAttribute="bottom" secondItem="Ppy-EH-wob" secondAttribute="bottom" constant="9" id="wZP-aM-7UX"/>
                                     <constraint firstItem="1eg-Me-Xuf" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="top" constant="8" id="yrE-BK-pMH"/>
                                 </constraints>

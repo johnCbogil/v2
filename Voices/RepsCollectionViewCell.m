@@ -15,7 +15,6 @@
 
 @interface RepsCollectionViewCell()
 
-//@property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -29,7 +28,6 @@
     [self configureTableView];
     [self configureRefreshControl];
     
-//    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
 - (void)configureTableView {
@@ -37,6 +35,8 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"EmptyRepTableViewCell"];
+
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
