@@ -80,7 +80,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-//        successBlock(responseObject);
+        successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];

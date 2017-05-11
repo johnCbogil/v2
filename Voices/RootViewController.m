@@ -25,6 +25,7 @@
 #import "SearchResultsManager.h"
 #import "SearchViewController.h"
 #import "MoreViewController.h"
+@import GooglePlaces;
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -60,6 +61,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [GMSPlacesClient provideAPIKey:kAutocomplete];
+
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
