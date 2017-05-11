@@ -99,7 +99,6 @@
     // Note that this callback will be fired everytime a new token is generated, including the first
     // time. So if you need to retrieve the token as soon as it is available this is where that
     // should be done.
-    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
     
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
@@ -109,7 +108,9 @@
 
 - (void)connectToFcm {
     [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-        
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
     }];
 }
 
@@ -289,6 +290,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)printFontFamilies {
     for (NSString *familyName in [UIFont familyNames]){
         for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
+            NSLog(@"%@", fontName);
         }
     }
 }

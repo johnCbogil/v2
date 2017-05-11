@@ -73,7 +73,6 @@
     
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
