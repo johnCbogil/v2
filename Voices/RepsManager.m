@@ -15,8 +15,7 @@
 
 @interface RepsManager()
 
-@property (strong, nonatomic) NSArray *fedReps;
-@property (strong, nonatomic) NSArray *stateReps;
+
 @property (strong, nonatomic) NSString *currentCouncilDistrict;
 @property (strong, nonatomic) NSDictionary *federalRepContactFormURLs;
 @end

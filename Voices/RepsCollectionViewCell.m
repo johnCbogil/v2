@@ -15,7 +15,6 @@
 
 @interface RepsCollectionViewCell()
 
-@property (strong, nonatomic) EmptyRepTableViewCell *emptyRepTableViewCell;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -25,16 +24,30 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+        
+    [self configureTableView];
+    [self configureRefreshControl];
+    
+}
+
+- (void)configureTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"EmptyRepTableViewCell"];
+
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
     self.tableView.allowsSelection = NO;
+    
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)configureRefreshControl {
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.bounds = CGRectMake(self.refreshControl.bounds.origin.x,
@@ -43,9 +56,6 @@
                                             self.refreshControl.bounds.size.height);
     
     [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
-    
-    self.emptyRepTableViewCell = [[EmptyRepTableViewCell alloc]init];
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -67,13 +77,12 @@
     if(self.tableViewDataSource.count > 0) {
         
         cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
-        
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else {
-        UITableViewCell *emptyStateCell = [[UITableViewCell alloc]init];
-        emptyStateCell.backgroundView = self.emptyRepTableViewCell;
-        cell = emptyStateCell;
+
+        cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyRepTableViewCell"];
+
     }
     [self.refreshControl endRefreshing];
     [self toggleZeroState];
@@ -137,10 +146,6 @@
     [UIView animateWithDuration:.25 animations:^{
         self.tableView.backgroundView.alpha = 1;
     }];
-    if (self.index == 2 && ![RepsManager sharedInstance].isLocalRepsAvailable) {
-        [self.emptyRepTableViewCell updateLabels:kLocalRepsMissing bottom:@""];
-        [self.emptyRepTableViewCell updateImage];
-    }
 }
 
 - (void)turnZeroStateOff {

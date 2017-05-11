@@ -40,8 +40,7 @@
     
     [self configureCollectionView];
     
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    if (homeAddress.length) {
+    if ([RepsManager sharedInstance].fedReps.count) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.indicatorView.hidden = NO;

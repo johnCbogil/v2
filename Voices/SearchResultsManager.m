@@ -35,6 +35,7 @@
     if (self != nil) {
         _placesClient = [[GMSPlacesClient alloc] init];
         self.resultsArray = @[];
+        self.locationSearched = @"Find Your Reps";
     }
     return self;
 }
