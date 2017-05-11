@@ -467,9 +467,6 @@
 				7E5CC8261C909034005E8F45 /* Controller */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
-				526309F51EBE19E9005F189D /* AddAddressCollectionViewCell.xib */,
-				526309F71EBE19F4005F189D /* AddAddressCollectionViewCell.h */,
-				526309F81EBE19F4005F189D /* AddAddressCollectionViewCell.m */,
 			);
 			name = RepsTab;
 			sourceTree = "<group>";
@@ -531,6 +528,9 @@
 		7E5CC8281C909065005E8F45 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				526309F71EBE19F4005F189D /* AddAddressCollectionViewCell.h */,
+				526309F81EBE19F4005F189D /* AddAddressCollectionViewCell.m */,
+				526309F51EBE19E9005F189D /* AddAddressCollectionViewCell.xib */,
 				52BB34381B6160CA00BB9FFD /* Reps.storyboard */,
 				5235B07F1BA735A500CF43F9 /* RepTableViewCell.h */,
 				5235B0801BA735A500CF43F9 /* RepTableViewCell.m */,

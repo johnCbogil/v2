@@ -12,56 +12,23 @@
 
 @interface EmptyRepTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *topLabel;
-@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *jonLennonImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *swipeDownImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *malalaImageView;
-@property (weak, nonatomic) IBOutlet UILabel *swipeForRepsLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *missingRepImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *missingRepImageViewTwo;
+@property (weak, nonatomic) IBOutlet UILabel *localRepsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
+
 
 @end
 
 @implementation EmptyRepTableViewCell
 
-- (instancetype)init {
-    self = [super init];
+- (void)awakeFromNib {
+    [super awakeFromNib];
     
-    self = [[[NSBundle mainBundle] loadNibNamed:@"EmptyRepTableViewCell" owner:self options:nil] objectAtIndex:0];
+    self.localRepsLabel.font = [UIFont voicesFontWithSize:23];
+    self.localRepsLabel.text = @"Local reps are not available in this area yet.";
+    self.emojiLabel.font = [UIFont voicesFontWithSize:60];
+    self.emojiLabel.text = @"👨‍💼👩‍💼";
     
-    [self setFont];
-    self.missingRepImageView.alpha = 0;
-    self.missingRepImageViewTwo.alpha = 0;
-    
-    return self;
 }
 
-- (void)setFont {
-    
-    self.topLabel.font = [UIFont voicesMediumFontWithSize:23];
-    self.bottomLabel.font = [UIFont voicesFontWithSize:21];
-
-    self.swipeDownImageView.alpha = 0.10f;
-    self.jonLennonImageView.layer.cornerRadius = kButtonCornerRadius;
-    self.malalaImageView.layer.cornerRadius = kButtonCornerRadius;
-    self.jonLennonImageView.clipsToBounds = YES;
-    self.malalaImageView.clipsToBounds = YES;
-    
-    self.swipeForRepsLabel.font = [UIFont voicesFontWithSize:21];
-}
-
-- (void)updateLabels:(NSString *)top bottom:(NSString *)bottom  {
-
-    self.topLabel.text = top;
-    self.bottomLabel.text = bottom;
-}
-
-- (void)updateImage {
-    
-    self.missingRepImageView.alpha = 0.75;
-    self.missingRepImageViewTwo.alpha = 0.75;
-    self.swipeDownImageView.alpha = 0.0;
-}
 
 @end

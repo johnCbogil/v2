@@ -15,58 +15,34 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local reps are not available in this area yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-xO-8Nf">
-                    <rect key="frame" x="8" y="16" width="359" height="25"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUJ-OZ-zqJ">
-                    <rect key="frame" x="8" y="16" width="359" height="0.0"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-Ur-bOv">
+                    <rect key="frame" x="16" y="20" width="343" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zeroStateMalala" translatesAutoresizingMaskIntoConstraints="NO" id="1zO-Cy-elk">
-                    <rect key="frame" x="8" y="49" width="278" height="120"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="9sd-EZ-TgW"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zeroStateLennon" translatesAutoresizingMaskIntoConstraints="NO" id="WxJ-9r-CMb">
-                    <rect key="frame" x="8" y="177" width="278" height="120"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="m39-9w-Bob"/>
-                    </constraints>
-                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpF-I5-u0F">
+                    <rect key="frame" x="16" y="49" width="343" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="WxJ-9r-CMb" secondAttribute="trailing" constant="89" id="2FA-aq-91P"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="trailing" secondItem="exQ-xO-8Nf" secondAttribute="trailing" id="5YP-TG-N5a"/>
-                <constraint firstItem="1zO-Cy-elk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="5ky-OO-2HF"/>
-                <constraint firstAttribute="trailing" secondItem="exQ-xO-8Nf" secondAttribute="trailing" constant="8" id="77a-Ke-pFc"/>
-                <constraint firstItem="WxJ-9r-CMb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="9fZ-PV-NCs"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="GqQ-rA-8OQ"/>
-                <constraint firstAttribute="trailing" secondItem="1zO-Cy-elk" secondAttribute="trailing" constant="89" id="IoD-EZ-bKd"/>
-                <constraint firstItem="WxJ-9r-CMb" firstAttribute="top" secondItem="1zO-Cy-elk" secondAttribute="bottom" constant="8" id="JDz-dl-P9E"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="NMt-N2-oTT"/>
-                <constraint firstItem="exQ-xO-8Nf" firstAttribute="top" secondItem="WUJ-OZ-zqJ" secondAttribute="bottom" id="Unb-x8-Lik"/>
-                <constraint firstItem="1zO-Cy-elk" firstAttribute="top" secondItem="exQ-xO-8Nf" secondAttribute="bottom" constant="8" symbolic="YES" id="cIh-DY-keN"/>
-                <constraint firstItem="WUJ-OZ-zqJ" firstAttribute="leading" secondItem="exQ-xO-8Nf" secondAttribute="leading" id="tsR-y7-PHU"/>
+                <constraint firstItem="e4A-Ur-bOv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="DJe-2R-xyz"/>
+                <constraint firstAttribute="trailing" secondItem="e4A-Ur-bOv" secondAttribute="trailing" constant="16" id="SMA-2C-Bmk"/>
+                <constraint firstItem="e4A-Ur-bOv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ok8-i9-8nk"/>
+                <constraint firstItem="IpF-I5-u0F" firstAttribute="top" secondItem="e4A-Ur-bOv" secondAttribute="bottom" constant="8" id="rQ4-bp-lxW"/>
+                <constraint firstItem="IpF-I5-u0F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="tft-6X-206"/>
+                <constraint firstAttribute="trailing" secondItem="IpF-I5-u0F" secondAttribute="trailing" constant="16" id="zev-l8-k1K"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="bottomLabel" destination="WUJ-OZ-zqJ" id="zLO-6o-rIV"/>
-                <outlet property="missingRepImageView" destination="1zO-Cy-elk" id="FLj-JP-7cd"/>
-                <outlet property="missingRepImageViewTwo" destination="WxJ-9r-CMb" id="yk2-sQ-BkU"/>
-                <outlet property="topLabel" destination="exQ-xO-8Nf" id="9EF-Ff-iFo"/>
+                <outlet property="emojiLabel" destination="IpF-I5-u0F" id="6hn-6r-QGC"/>
+                <outlet property="localRepsLabel" destination="e4A-Ur-bOv" id="9gx-cd-GXA"/>
             </connections>
             <point key="canvasLocation" x="-20.5" y="69"/>
         </view>
     </objects>
-    <resources>
-        <image name="zeroStateLennon" width="16" height="16"/>
-        <image name="zeroStateMalala" width="16" height="16"/>
-    </resources>
 </document>
