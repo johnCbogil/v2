@@ -203,7 +203,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     
-    if (notificationSettings.types && ![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"] ) {
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    
+    if (notificationSettings.types && !isFirstLaunch ) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationsRegistered" object:nil];
     }
 }
@@ -244,9 +246,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)unzipNYCDataSet {
     
-    if ([[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]) {
+    BOOL isCouncilFileUnzipped = [[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip];
+    
+    if (isCouncilFileUnzipped) {
         [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
-        
     }
     else {
         // Get the file path for the zip
