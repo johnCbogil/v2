@@ -7,6 +7,7 @@
 //
 
 #import "EmptyRepTableViewCell.h"
+#import "VoicesUtilities.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
@@ -26,7 +27,7 @@
     self.localRepsLabel.font = [UIFont voicesFontWithSize:23];
     self.localRepsLabel.text = @"Local reps are not available in this area yet.";
     self.emojiLabel.font = [UIFont voicesFontWithSize:60];
-    self.emojiLabel.text = @"👨‍💼👩‍💼";
+    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
     
 }
 

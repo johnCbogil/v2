@@ -10,6 +10,7 @@
 
 @interface VoicesUtilities : NSObject
 
-+ (NSString *)getEmojis;
++ (NSString *)getRandomEmojiMale;
++ (NSString *)getRandomEmojiFemale;
 
 @end
