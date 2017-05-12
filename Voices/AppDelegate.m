@@ -34,7 +34,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
-            
+    
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
@@ -42,7 +42,7 @@
     [self excludeGeoJSONFromCloudBackup];
     [FIROptions defaultOptions].deepLinkURLScheme = kDeepLinkURLScheme;
     [FIRApp configure];
-
+    
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];
     
@@ -227,7 +227,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         self.window.rootViewController = tabVC;
         [self.window makeKeyAndVisible];
         tabVC.selectedIndex = 1;
-
+        
     }
 }
 
@@ -246,12 +246,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)unzipNYCDataSet {
     
-    BOOL isCouncilFileUnzipped = [[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip];
+    [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
     
-    if (isCouncilFileUnzipped) {
-        [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
-    }
-    else {
+    if (![RepsManager sharedInstance].nycDistricts) {
+        
         // Get the file path for the zip
         NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
         // Get the file path for the destination
