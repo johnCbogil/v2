@@ -36,38 +36,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.hidden = NO;
-    
-    self.title = @"More Info";
-    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    
-    self.repImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.repImageView.layer.cornerRadius = 5;
-    self.repImageView.clipsToBounds = YES;
-    
-    self.titleLabel.text = self.representative.title;
-    self.nameLabel.font = [UIFont voicesFontWithSize:34];
-    self.titleLabel.font = [UIFont voicesFontWithSize:34];
-    self.nameLabel.text = self.representative.fullName;
-    self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.stateCode, self.representative.party];
-    self.partyStateLabel.font = [UIFont voicesFontWithSize:26];
-    self.topInfluencersLabel.font = [UIFont voicesFontWithSize:26];
-    
-    [self.segmentedControl setTitle:@"Industry" forSegmentAtIndex:1];
-    [self.segmentedControl setTitle:@"Contributor" forSegmentAtIndex:0];
-    self.segmentedControl.tintColor = [UIColor voicesOrange];
-    [self.segmentedControl setSelectedSegmentIndex:0];
-    self.segmentedControl.backgroundColor = [UIColor whiteColor];
-    self.segmentedControl.layer.cornerRadius = kButtonCornerRadius;
-    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.twitterButton.tintColor = [UIColor voicesOrange];
+
+    [self configureNavigationController];
+    [self configureLabels];
+    [self configureTableView];
+    [self configureActionButtons];
+    [self configureImage];
+    [self fetchTopContributors];
+}
+
+- (void)fetchTopContributors {
     
     [[RepsNetworkManager sharedInstance]getTopContributorsForRep:self.representative.crpID withCompletion:^(NSData *results) {
         
@@ -79,14 +57,64 @@
         NSLog(@"%@", [error localizedDescription]);
         
     }];
+}
+
+- (void)fetchTopIndustries {
     
-    [self configureImage];
+    [[RepsNetworkManager sharedInstance]getTopIndustriesForRep:self.representative.crpID withCompletion:^(NSData *results) {
+        
+        NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
+        self.topIndustriesArray = resultsDict[@"response"][@"industries"][@"industry"];
+        NSLog(@"%@", resultsDict);
+        [self.tableView reloadData];
+        
+        
+    } onError:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (void)configureActionButtons {
+    
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.twitterButton.tintColor = [UIColor voicesOrange];
+}
+
+- (void)configureSegmentedControl {
+    
+    [self.segmentedControl setTitle:@"Industry" forSegmentAtIndex:1];
+    [self.segmentedControl setTitle:@"Contributor" forSegmentAtIndex:0];
+    self.segmentedControl.tintColor = [UIColor voicesOrange];
+    [self.segmentedControl setSelectedSegmentIndex:0];
+    self.segmentedControl.backgroundColor = [UIColor whiteColor];
+    self.segmentedControl.layer.cornerRadius = kButtonCornerRadius;
+    [self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
+}
+
+- (void)configureLabels {
+    
+    self.titleLabel.text = self.representative.title;
+    self.nameLabel.font = [UIFont voicesFontWithSize:34];
+    self.titleLabel.font = [UIFont voicesFontWithSize:34];
+    self.nameLabel.text = self.representative.fullName;
+    self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.stateCode, self.representative.party];
+    self.partyStateLabel.font = [UIFont voicesFontWithSize:26];
+    self.topInfluencersLabel.font = [UIFont voicesFontWithSize:26];
+}
+
+- (void)configureNavigationController {
+    
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+    self.title = @"More Info";
 }
 
 - (void)configureTableView {
     
-    
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)configureImage {
@@ -119,39 +147,24 @@
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         
     }];
+    
+    self.repImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.repImageView.layer.cornerRadius = 5;
+    self.repImageView.clipsToBounds = YES;
 }
 
 - (IBAction)segmentedControlDidChange:(id)sender {
     
     if (self.segmentedControl.selectedSegmentIndex == 0 && !self.topContributorsArray.count) {
         
-        [[RepsNetworkManager sharedInstance]getTopContributorsForRep:self.representative.crpID withCompletion:^(NSData *results) {
-            
-            NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
-            self.topContributorsArray = resultsDict[@"response"][@"contributors"][@"contributor"];
-            [self.tableView reloadData];
-            
-        } onError:^(NSError *error) {
-            NSLog(@"%@", [error localizedDescription]);
-            
-        }];
+        [self fetchTopContributors];
         
     }
     else if (!self.topIndustriesArray.count) {
-        [[RepsNetworkManager sharedInstance]getTopIndustriesForRep:self.representative.crpID withCompletion:^(NSData *results) {
-            
-            NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
-            self.topIndustriesArray = resultsDict[@"response"][@"industries"][@"industry"];
-            NSLog(@"%@", resultsDict);
-            [self.tableView reloadData];
-            
-            
-        } onError:^(NSError *error) {
-            NSLog(@"%@", [error localizedDescription]);
-        }];
+        
+        [self fetchTopIndustries];
     }
     [self.tableView reloadData];
-    
 }
 
 #pragma mark - UITableViewDelegate Methods
