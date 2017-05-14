@@ -19,22 +19,5 @@
 
 @property (strong, nonatomic) Representative *representative;
 
-@property (weak, nonatomic) IBOutlet UIImageView *repImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nextElection;
-@property (weak, nonatomic) IBOutlet UILabel *repTitle;
-@property (weak, nonatomic) IBOutlet UILabel *repName;
-@property (weak, nonatomic) IBOutlet UILabel *repPartyDistrict;
-@property (weak, nonatomic) IBOutlet UIView *contactRepContainter;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
-@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
-@property (nonatomic) CTCallCenter *callCenter;
- 
-
-
--(void)fillInData;
-- (IBAction)didPressCallButton:(id)sender;
-- (IBAction)didPressEmailButton:(id)sender;
-- (IBAction)didPressTweetButton:(id)sender;
 
 @end

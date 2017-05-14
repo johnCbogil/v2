@@ -20,6 +20,7 @@
                                onError:(void(^)(NSError *error))errorBlock;
 - (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;
+- (void)getTopContributorsForRep:(NSString *)repID withCompletion: (void(^)(NSData *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong)UIImage *missingRepresentativePhoto;
 

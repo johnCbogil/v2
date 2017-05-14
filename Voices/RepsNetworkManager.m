@@ -147,5 +147,35 @@
     [operation start];
 }
 
+#pragma mark - OpenSecretsAPI
+
+- (void)getTopContributorsForRep:(NSString *)repID withCompletion: (void(^)(NSData *results))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    NSString *formattedString = [NSString stringWithFormat:@"http://www.opensecrets.org/api/?method=candContrib&cid=%@&cycle=2016&apikey=c152b047d8d1697d89d824f265d43df3&output=json", repID];
+    NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSURL *url = [NSURL URLWithString:encodedURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    operation.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"TopContributors error%@", [error localizedDescription]);
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }];
+    
+    [operation start];
+
+}
+
 
 @end

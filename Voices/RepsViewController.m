@@ -146,7 +146,7 @@
 }
 
 - (void)pushToDetailVC: (RepDetailViewController*) repVC {
-    
+
     [self.parentViewController.navigationController pushViewController:repVC animated:YES];
 }
 

@@ -29,6 +29,7 @@
         [self formatTitle:[data valueForKey:@"title"]];
         self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
         self.gender = [data valueForKey:@"gender"];
+        self.crpID = [data valueForKey:@"crp_id"];
         return self;
     }
     return self;
