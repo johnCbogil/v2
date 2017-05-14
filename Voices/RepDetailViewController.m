@@ -27,9 +27,10 @@
 @property (strong, nonatomic) NSArray *topContributorsArray;
 @property (strong, nonatomic) NSArray *topIndustriesArray;
 
-
-
 @end
+
+// TODO: DIANNE FEINSTEIN REP NAME IS TOO LONG
+
 @implementation RepDetailViewController
 
 - (void)viewDidLoad {
@@ -64,6 +65,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.callButton.tintColor = [UIColor voicesOrange];
+    self.emailButton.tintColor = [UIColor voicesOrange];
+    self.twitterButton.tintColor = [UIColor voicesOrange];
+    
     [[RepsNetworkManager sharedInstance]getTopContributorsForRep:self.representative.crpID withCompletion:^(NSData *results) {
         
         NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
@@ -75,14 +80,16 @@
         
     }];
     
-    [self setImage];
+    [self configureImage];
 }
 
 - (void)configureTableView {
     
+    
+    
 }
 
-- (void)setImage {
+- (void)configureImage {
     UIImage *placeholderImage;
     if(self.representative.gender){
         if ([self.representative.gender isEqualToString:@"M"]) {
@@ -116,6 +123,35 @@
 
 - (IBAction)segmentedControlDidChange:(id)sender {
     
+    if (self.segmentedControl.selectedSegmentIndex == 0 && !self.topContributorsArray.count) {
+        
+        [[RepsNetworkManager sharedInstance]getTopContributorsForRep:self.representative.crpID withCompletion:^(NSData *results) {
+            
+            NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
+            self.topContributorsArray = resultsDict[@"response"][@"contributors"][@"contributor"];
+            [self.tableView reloadData];
+            
+        } onError:^(NSError *error) {
+            NSLog(@"%@", [error localizedDescription]);
+            
+        }];
+        
+    }
+    else if (!self.topIndustriesArray.count) {
+        [[RepsNetworkManager sharedInstance]getTopIndustriesForRep:self.representative.crpID withCompletion:^(NSData *results) {
+            
+            NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
+            self.topIndustriesArray = resultsDict[@"response"][@"industries"][@"industry"];
+            NSLog(@"%@", resultsDict);
+            [self.tableView reloadData];
+            
+            
+        } onError:^(NSError *error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }];
+    }
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - UITableViewDelegate Methods
@@ -135,15 +171,19 @@
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (self.segmentedControl.selectedSegmentIndex == 1) {
-        cell.textLabel.text = self.topIndustriesArray[indexPath.row];
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@",self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"], self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
+        
     }
     else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@",self.topContributorsArray[indexPath.row][@"@attributes"][@"total"], self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"] ];
-        
-        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"], self.topContributorsArray[indexPath.row][@"@attributes"][@"total"] ];
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
