@@ -24,6 +24,7 @@
 @import FirebaseMessaging;
 @import FirebaseDynamicLinks;
 @import UserNotifications;
+@import GooglePlaces;
 
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
 
@@ -42,6 +43,8 @@
     [self excludeGeoJSONFromCloudBackup];
     [FIROptions defaultOptions].deepLinkURLScheme = kDeepLinkURLScheme;
     [FIRApp configure];
+    [GMSPlacesClient provideAPIKey:kAutocomplete];
+
     
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];

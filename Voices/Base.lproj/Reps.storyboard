@@ -215,7 +215,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwr-W5-oBt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cwr-W5-oBt">
                                 <rect key="frame" x="124" y="101" width="196" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -237,6 +237,9 @@
                                             <constraint firstAttribute="height" constant="42" id="jpV-fd-gaN"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="Phone Filled"/>
+                                        <connections>
+                                            <action selector="callButtonDidPress:" destination="nyy-3H-Urv" eventType="touchUpInside" id="Pne-lV-iQw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpB-AF-ttR">
                                         <rect key="frame" x="97" y="20" width="45" height="45"/>
@@ -245,6 +248,9 @@
                                             <constraint firstAttribute="width" constant="45" id="nga-is-h4P"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="Message Filled"/>
+                                        <connections>
+                                            <action selector="emailButtonDidPress:" destination="nyy-3H-Urv" eventType="touchUpInside" id="L0s-nW-yto"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-cf-2aG">
                                         <rect key="frame" x="188" y="20" width="45" height="45"/>
@@ -253,6 +259,9 @@
                                             <constraint firstAttribute="width" constant="45" id="Sjl-19-XnW"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="Twitter Filled"/>
+                                        <connections>
+                                            <action selector="twitterButtonDidPress:" destination="nyy-3H-Urv" eventType="touchUpInside" id="5VU-fW-rog"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

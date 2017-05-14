@@ -26,32 +26,91 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *topContributorsArray;
 @property (strong, nonatomic) NSArray *topIndustriesArray;
+@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
 
 @end
 
-// TODO: DIANNE FEINSTEIN REP NAME IS TOO LONG
+// TODO: CONTRIBUTOR NAMES ARE CUTOFF
+// TODO: DON'T PRESENT THIS VIEW FOR STATE OR LOCAL REPS
+// TODO: HOOK UP ACTION BUTTONS
+// TODO: ADD URL TO OPENSECRETS THAT OPENS TO WEBSITE
 
 @implementation RepDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
     [self configureNavigationController];
     [self configureLabels];
     [self configureTableView];
     [self configureActionButtons];
     [self configureImage];
+    [self configureActivityIndicator];
+    [self configureSegmentedControl];
+    [self configureTopInfluencersButton];
     [self fetchTopContributors];
 }
 
+- (void)configureTopInfluencersButton {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 20, 20);
+    [button setImage:[UIImage imageNamed:@"InfoButton"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(presentTopInfluencersInfoAlert) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barButton=[[UIBarButtonItem alloc] init];
+    [barButton setCustomView:button];
+    self.navigationItem.rightBarButtonItem=barButton;
+}
+
+- (void)presentTopInfluencersInfoAlert {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Top Influencers" message:@"Information is provided by OpenSecrets.org and represents the latest election cycle." preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+//    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+- (void)configureActivityIndicator {
+    
+    self.indicatorView = [[UIActivityIndicatorView alloc]
+                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicatorView.color = [UIColor grayColor];
+    self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
+    self.indicatorView.hidden = false;
+    self.indicatorView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:self.indicatorView];
+    
+    NSLayoutConstraint *horizontalConstraint = [self.indicatorView.centerXAnchor constraintEqualToAnchor: self.view.centerXAnchor];
+    NSLayoutConstraint *verticalConstraint = [self.indicatorView.centerYAnchor constraintEqualToAnchor:self.view.bottomAnchor constant: -self.view.frame.size.height/6];
+    NSArray *constraints = [[NSArray alloc]initWithObjects:horizontalConstraint, verticalConstraint, nil];
+    [NSLayoutConstraint activateConstraints:constraints];
+}
+
+- (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.indicatorView startAnimating];
+    });
+}
+
+- (void)toggleActivityIndicatorOff {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.indicatorView stopAnimating];
+    });
+}
+
 - (void)fetchTopContributors {
+    
+    [self toggleActivityIndicatorOn];
     
     [[RepsNetworkManager sharedInstance]getTopContributorsForRep:self.representative.crpID withCompletion:^(NSData *results) {
         
         NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
         self.topContributorsArray = resultsDict[@"response"][@"contributors"][@"contributor"];
         [self.tableView reloadData];
+        [self toggleActivityIndicatorOff];
         
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
@@ -61,13 +120,15 @@
 
 - (void)fetchTopIndustries {
     
+    [self toggleActivityIndicatorOn];
+    
     [[RepsNetworkManager sharedInstance]getTopIndustriesForRep:self.representative.crpID withCompletion:^(NSData *results) {
         
         NSDictionary *resultsDict = [NSJSONSerialization JSONObjectWithData:results options:kNilOptions error:nil];
         self.topIndustriesArray = resultsDict[@"response"][@"industries"][@"industry"];
         NSLog(@"%@", resultsDict);
         [self.tableView reloadData];
-        
+        [self toggleActivityIndicatorOff];
         
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
@@ -95,10 +156,13 @@
 - (void)configureLabels {
     
     self.titleLabel.text = self.representative.title;
+    self.titleLabel.numberOfLines = 0;
     self.nameLabel.font = [UIFont voicesFontWithSize:34];
+    [self.nameLabel sizeToFit];
+    self.nameLabel.minimumScaleFactor = 0.5;
     self.titleLabel.font = [UIFont voicesFontWithSize:34];
     self.nameLabel.text = self.representative.fullName;
-    self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.stateCode, self.representative.party];
+    self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.party, self.representative.stateCode];
     self.partyStateLabel.font = [UIFont voicesFontWithSize:26];
     self.topInfluencersLabel.font = [UIFont voicesFontWithSize:26];
 }
@@ -167,6 +231,19 @@
     [self.tableView reloadData];
 }
 
+- (NSString *)formatMoney:(NSString *)number {
+    
+    // CONVERT STRING TO NUMBER
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:number];
+    
+    // CONVERT NUMBER TO STRING
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    return [formatter stringFromNumber:myNumber];
+}
+
 #pragma mark - UITableViewDelegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -183,13 +260,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
     if (self.segmentedControl.selectedSegmentIndex == 1) {
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@",self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"], self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
+        NSString *total = [self formatMoney:self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"],total];
         
     }
     else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"], self.topContributorsArray[indexPath.row][@"@attributes"][@"total"] ];
+        
+        NSString *total = [self formatMoney:self.topContributorsArray[indexPath.row][@"@attributes"][@"total"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"], total];
     }
     
     return cell;
@@ -199,5 +280,13 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - Action Buttons Did Press
+
+- (IBAction)callButtonDidPress:(id)sender {
+}
+- (IBAction)emailButtonDidPress:(id)sender {
+}
+- (IBAction)twitterButtonDidPress:(id)sender {
+}
 
 @end

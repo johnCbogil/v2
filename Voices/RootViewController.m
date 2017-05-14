@@ -25,7 +25,6 @@
 #import "SearchResultsManager.h"
 #import "SearchViewController.h"
 #import "MoreViewController.h"
-@import GooglePlaces;
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -55,8 +54,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [GMSPlacesClient provideAPIKey:kAutocomplete];
-
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -80,7 +77,7 @@
     
     // TODO: FETCHING HOME REPS ON VDA IS BAD BC VDA HAPPENS MORE OFTEN THEN DESIRED USE CASES
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
-    if (homeAddress.length) {
+    if (homeAddress.length && ![RepsManager sharedInstance].fedReps.count) {
         [self fetchRepsForAddress:homeAddress];
         self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your Reps" attributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize],NSForegroundColorAttributeName: [UIColor whiteColor]}];
     }
