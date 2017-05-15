@@ -66,7 +66,7 @@
 - (void)presentTopInfluencersInfoAlert {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Top Influencers" message:@"Information is provided by OpenSecrets.org and represents the latest election cycle." preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"✊" style:UIAlertActionStyleDefault handler:nil]];
 //    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     [self presentViewController:alertController animated:YES completion:nil];
     
@@ -272,7 +272,7 @@
         NSString *total = [self formatMoney:self.topContributorsArray[indexPath.row][@"@attributes"][@"total"]];
         cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"], total];
     }
-    
+    cell.textLabel.font = [UIFont voicesFontWithSize:19];
     return cell;
 }
 
