@@ -89,7 +89,10 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([RepsManager sharedInstance].fedReps.count) {
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    BOOL homeAddressSaved = homeAddress.length;
+    
+    if ([RepsManager sharedInstance].fedReps.count || homeAddressSaved) {
         RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRepsCollectionViewCell forIndexPath:indexPath];
         cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
         cell.index = indexPath.item;

@@ -246,9 +246,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)unzipNYCDataSet {
     
-    [RepsManager sharedInstance].nycDistricts = [[[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip]valueForKey:@"features"];
+    BOOL councilDataExists = [[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip];
     
-    if (![RepsManager sharedInstance].nycDistricts) {
+    
+    if (!councilDataExists) {
         
         // Get the file path for the zip
         NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
@@ -268,10 +269,17 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         NSError *error =  nil;
         NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
         
-        [[NSUserDefaults standardUserDefaults]setObject:jsonDataDict forKey:kCityCouncilZip];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        // THESE 2 LINES WERE CAUSING A SLOW INSTALL
+        
+//        [[NSUserDefaults standardUserDefaults]setObject:jsonDataDict forKey:kCityCouncilZip];
+//        [[NSUserDefaults standardUserDefaults]synchronize];
         
         [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+    }
+    else {
+        NSDictionary *jsonDataDict = [[NSUserDefaults standardUserDefaults]objectForKey:kCityCouncilZip];
+        [RepsManager sharedInstance].nycDistricts = jsonDataDict[@"features"];
+
     }
 }
 
