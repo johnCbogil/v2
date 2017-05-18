@@ -77,7 +77,12 @@
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 2) - 200);
     [self.view addSubview:self.activityIndicatorView];
-    [self toggleActivityIndicatorOn];
+    
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress) {
+        [self toggleActivityIndicatorOn];
+
+    }
 }
 
 - (void)toggleActivityIndicatorOn {
