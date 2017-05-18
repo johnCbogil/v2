@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -30,7 +31,8 @@
     
     [self configurePageIndicator];
     [self configureCollectionView];
-    
+    [self createActivityIndicator];
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
@@ -61,7 +63,6 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    // TODO: CREATE CONSTNATS FOR THESE
     [self.collectionView registerNib:[UINib nibWithNibName:kRepsCollectionViewCell bundle:nil] forCellWithReuseIdentifier:kRepsCollectionViewCell];
     [self.collectionView registerNib:[UINib nibWithNibName:kAddAddressCollectionViewCell bundle:nil] forCellWithReuseIdentifier:kAddAddressCollectionViewCell];
     self.collectionView.pagingEnabled = YES;
@@ -69,6 +70,26 @@
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     flowLayout.minimumLineSpacing = 0.0;
     self.collectionView.collectionViewLayout = flowLayout;
+}
+
+- (void)createActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 2) - 200);
+    [self.view addSubview:self.activityIndicatorView];
+    [self toggleActivityIndicatorOn];
+}
+
+- (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView startAnimating];
+    });
+}
+
+- (void)toggleActivityIndicatorOff {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView stopAnimating];
+    });
 }
 
 #pragma mark - CollectionView Delegate Methods
