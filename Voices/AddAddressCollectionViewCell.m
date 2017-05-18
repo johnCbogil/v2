@@ -7,6 +7,7 @@
 //
 
 #import "AddAddressCollectionViewCell.h"
+#import "VoicesUtilities.h"
 
 @implementation AddAddressCollectionViewCell
 
@@ -18,7 +19,8 @@
     self.privacyLabel.font = [UIFont voicesFontWithSize:12];
     self.addAddressButton.tintColor = [UIColor whiteColor];
     self.addAddressButton.backgroundColor = [UIColor voicesOrange];
-    self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 8;
+    self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
+    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
     self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
 }
 
@@ -26,5 +28,7 @@
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
 }
+
+
 
 @end

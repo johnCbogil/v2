@@ -30,6 +30,7 @@
 		5261CF6B1D14F121007B122B /* stateGovernors.json in Resources */ = {isa = PBXBuildFile; fileRef = 5261CF6A1D14F121007B122B /* stateGovernors.json */; };
 		526309F61EBE19E9005F189D /* AddAddressCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526309F51EBE19E9005F189D /* AddAddressCollectionViewCell.xib */; };
 		526309F91EBE19F4005F189D /* AddAddressCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 526309F81EBE19F4005F189D /* AddAddressCollectionViewCell.m */; };
+		5270C3B41EC49ADD00ACC43D /* VoicesUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5270C3B31EC49ADD00ACC43D /* VoicesUtilities.m */; };
 		527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* ScriptDialog.xib */; };
 		52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52911CE51D7DF25D00FCD267 /* CurrentUser.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
@@ -153,6 +154,8 @@
 		526309F51EBE19E9005F189D /* AddAddressCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressCollectionViewCell.xib; sourceTree = "<group>"; };
 		526309F71EBE19F4005F189D /* AddAddressCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressCollectionViewCell.h; sourceTree = "<group>"; };
 		526309F81EBE19F4005F189D /* AddAddressCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressCollectionViewCell.m; sourceTree = "<group>"; };
+		5270C3B21EC49ADD00ACC43D /* VoicesUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicesUtilities.h; sourceTree = "<group>"; };
+		5270C3B31EC49ADD00ACC43D /* VoicesUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesUtilities.m; sourceTree = "<group>"; };
 		527871C41D3C443200CD29BB /* ScriptDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScriptDialog.xib; sourceTree = "<group>"; };
 		52911CE41D7DF25D00FCD267 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		52911CE51D7DF25D00FCD267 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 				7E5CC8261C909034005E8F45 /* Controller */,
 				7E5CC8271C909043005E8F45 /* Model */,
 				5204038B1BCC137F00016768 /* Info */,
+				5270C3B21EC49ADD00ACC43D /* VoicesUtilities.h */,
+				5270C3B31EC49ADD00ACC43D /* VoicesUtilities.m */,
 			);
 			name = RepsTab;
 			sourceTree = "<group>";
@@ -941,6 +946,7 @@
 				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
+				5270C3B41EC49ADD00ACC43D /* VoicesUtilities.m in Sources */,
 				7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */,
 				5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */,
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,

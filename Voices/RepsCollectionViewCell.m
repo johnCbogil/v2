@@ -111,7 +111,6 @@
         [self.repDetailDelegate pushToDetailVC:repDetailVC];
 }
 
-
 - (void)reloadTableView {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
