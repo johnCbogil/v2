@@ -27,7 +27,6 @@
         
     [self configureTableView];
     [self configureRefreshControl];
-    
 }
 
 - (void)configureTableView {

@@ -46,6 +46,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]objectForKey:kHomeAddress];
+    if (homeAddress.length && [RepsManager sharedInstance].fedReps.count == 0) {
+        [self toggleActivityIndicatorOn];
+    }
+    else {
+        [self toggleActivityIndicatorOff];
+    }
+    
     [self.collectionView reloadData];
 }
 
@@ -81,7 +89,6 @@
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress) {
         [self toggleActivityIndicatorOn];
-
     }
 }
 
@@ -106,6 +113,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     if ([RepsManager sharedInstance].fedReps.count) {
+        [self toggleActivityIndicatorOff];
         return 3;
     }
     else {
@@ -229,6 +237,5 @@
         self.selectedIndexPath = indexPath;
     }
 }
-
 
 @end
