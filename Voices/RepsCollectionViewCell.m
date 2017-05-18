@@ -67,8 +67,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(self.tableViewDataSource.count > 0){
         return self.tableViewDataSource.count;
-    } else{
+    } else if (self.index == 2){
         return 1;
+    }
+    else {
+        return 0;
     }
 }
 
@@ -79,11 +82,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
-    else {
-
+    else if (self.index == 2) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyRepTableViewCell"];
-
     }
+    
     [self.refreshControl endRefreshing];
     [self toggleZeroState];
     return cell;
