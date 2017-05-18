@@ -1,0 +1,38 @@
+//
+//  AddAddressCollectionViewCell.m
+//  Voices
+//
+//  Created by John Bogil on 5/6/17.
+//  Copyright © 2017 John Bogil. All rights reserved.
+//
+
+#import "AddAddressCollectionViewCell.h"
+#import "VoicesUtilities.h"
+
+@implementation AddAddressCollectionViewCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.addAddressLabel.font = [UIFont voicesFontWithSize:25];
+    self.emojiLabel.font = [UIFont voicesFontWithSize:60];
+    self.privacyLabel.font = [UIFont voicesFontWithSize:12];
+    self.addAddressButton.tintColor = [UIColor whiteColor];
+    self.addAddressButton.backgroundColor = [UIColor voicesOrange];
+<<<<<<< HEAD
+    self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 8;
+=======
+    self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
+    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+>>>>>>> 440-randomEmojiGen
+    self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
+}
+
+- (IBAction)addAddressButtonDidPress:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
+}
+
+
+
+@end
