@@ -44,7 +44,7 @@
     [FIROptions defaultOptions].deepLinkURLScheme = kDeepLinkURLScheme;
     [FIRApp configure];
     [GMSPlacesClient provideAPIKey:kAutocomplete];
-
+    
     
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];
@@ -249,25 +249,25 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)unzipNYCDataSet {
     
-        // Get the file path for the zip
-        NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
-        // Get the file path for the destination
-        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        // Specify that we want the council data set
-        self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:kCityCouncilJSON];
-        // Check if the file exists at the path
-        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.dataSetPathWithComponent];
-        // If the file does not already exist, unzip it
-        if (!fileExists) {
-            // Unzip the archive and send it to destination
-            [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
-        }
-        
-        NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
-        NSError *error =  nil;
-        NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        
-        [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+    // Get the file path for the zip
+    NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
+    // Get the file path for the destination
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    // Specify that we want the council data set
+    self.dataSetPathWithComponent = [documentsPath stringByAppendingPathComponent:kCityCouncilJSON];
+    // Check if the file exists at the path
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.dataSetPathWithComponent];
+    // If the file does not already exist, unzip it
+    if (!fileExists) {
+        // Unzip the archive and send it to destination
+        [SSZipArchive unzipFileAtPath:archiveFilePath toDestination:documentsPath];
+    }
+    
+    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:((AppDelegate*)[UIApplication sharedApplication].delegate).dataSetPathWithComponent encoding:NSUTF8StringEncoding error:NULL];
+    NSError *error =  nil;
+    NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    
+    [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
 }
 
 - (void)excludeGeoJSONFromCloudBackup {
