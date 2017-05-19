@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -93,21 +93,37 @@
                                     <constraint firstItem="1eg-Me-Xuf" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="top" constant="8" id="yrE-BK-pMH"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6Gk-Oc-pkW">
+                                <rect key="frame" x="150" y="126" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finding Reps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pue-aY-ATL">
+                                <rect key="frame" x="16" y="97" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="pue-aY-ATL" firstAttribute="centerX" secondItem="N29-Is-M7q" secondAttribute="centerX" id="5aj-Wo-gHk"/>
+                            <constraint firstItem="6Gk-Oc-pkW" firstAttribute="top" secondItem="pue-aY-ATL" secondAttribute="bottom" constant="8" symbolic="YES" id="8oB-L3-qIM"/>
                             <constraint firstItem="N29-Is-M7q" firstAttribute="leading" secondItem="t2f-5V-Erd" secondAttribute="leading" constant="4" id="Buz-6G-ol8"/>
                             <constraint firstItem="N29-Is-M7q" firstAttribute="top" secondItem="GJ3-Yw-fMI" secondAttribute="bottom" constant="8" id="CCU-IR-zij"/>
                             <constraint firstAttribute="trailing" secondItem="N29-Is-M7q" secondAttribute="trailing" constant="4" id="DNN-Ad-orH"/>
                             <constraint firstItem="WJZ-hA-hMq" firstAttribute="leading" secondItem="t2f-5V-Erd" secondAttribute="leading" id="G82-80-myK"/>
+                            <constraint firstItem="pue-aY-ATL" firstAttribute="centerX" secondItem="6Gk-Oc-pkW" secondAttribute="centerX" id="Pd6-Y3-2kM"/>
+                            <constraint firstItem="pue-aY-ATL" firstAttribute="leading" secondItem="t2f-5V-Erd" secondAttribute="leadingMargin" id="Stm-X9-OPv"/>
                             <constraint firstItem="WJZ-hA-hMq" firstAttribute="top" secondItem="N29-Is-M7q" secondAttribute="bottom" constant="8" id="bZo-cH-wtr"/>
                             <constraint firstItem="mDv-wp-Cbp" firstAttribute="top" secondItem="WJZ-hA-hMq" secondAttribute="bottom" id="doa-gU-ybI"/>
+                            <constraint firstItem="pue-aY-ATL" firstAttribute="top" secondItem="WJZ-hA-hMq" secondAttribute="top" constant="44" id="egB-PH-4gv"/>
                             <constraint firstAttribute="trailing" secondItem="WJZ-hA-hMq" secondAttribute="trailing" id="tqX-Ad-2lH"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="6Gk-Oc-pkW" id="3sP-DK-jo9"/>
                         <outlet property="collectionView" destination="WJZ-hA-hMq" id="xTg-Po-bcy"/>
                         <outlet property="federalButton" destination="1eg-Me-Xuf" id="b4I-Qi-X9a"/>
+                        <outlet property="findingRepsLabel" destination="pue-aY-ATL" id="fRX-7s-jRP"/>
                         <outlet property="localButton" destination="Ppy-EH-wob" id="1Lr-nr-L0Z"/>
                         <outlet property="pageIndicatorContainer" destination="N29-Is-M7q" id="Uoz-YC-bqL"/>
                         <outlet property="stateButton" destination="HdM-Yl-0bj" id="rwh-br-USV"/>

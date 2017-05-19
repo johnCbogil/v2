@@ -20,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *localButton;
 @property (strong, nonatomic) NSDictionary *buttonDictionary;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UILabel *findingRepsLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -46,6 +47,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]objectForKey:kHomeAddress];
     if (homeAddress.length && [RepsManager sharedInstance].fedReps.count == 0) {
         [self toggleActivityIndicatorOn];
@@ -53,8 +55,6 @@
     else {
         [self toggleActivityIndicatorOff];
     }
-    
-//    [self.collectionView reloadData];
 }
 
 - (void)configurePageIndicator {
@@ -81,11 +81,12 @@
 }
 
 - (void)createActivityIndicator {
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+
+    self.findingRepsLabel.font = [UIFont voicesFontWithSize:23];
+    self.activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     self.activityIndicatorView.color = [UIColor grayColor];
-    self.activityIndicatorView.center = CGPointMake(self.view.frame.size.width / 2, (self.view.frame.size.height / 2) - 200);
-    [self.view addSubview:self.activityIndicatorView];
-    
+    self.activityIndicatorView.hidesWhenStopped = YES;
+
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress) {
         [self toggleActivityIndicatorOn];
@@ -94,12 +95,14 @@
 
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.findingRepsLabel.hidden = NO;
         [self.activityIndicatorView startAnimating];
     });
 }
 
 - (void)toggleActivityIndicatorOff {
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.findingRepsLabel.hidden = YES;
         [self.activityIndicatorView stopAnimating];
     });
 }
