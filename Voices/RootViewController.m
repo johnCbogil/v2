@@ -76,6 +76,7 @@
     
     
     // TODO: FETCHING HOME REPS ON VDA IS BAD BC VDA HAPPENS MORE OFTEN THEN DESIRED USE CASES
+    // THIS SHOULD HAPPEN ONLY WHEN AN ADDRESS IS ADDED
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kHomeAddress];
     if (homeAddress.length && ![RepsManager sharedInstance].fedReps.count) {
         [self fetchRepsForAddress:homeAddress];
@@ -180,25 +181,8 @@
     
     [SearchResultsManager sharedInstance].locationSearched = textField.text;
     
-    [[LocationService sharedInstance]getCoordinatesFromSearchText:textField.text withCompletion:^(CLLocation *locationResults) {
-        
-        [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-        
-        [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
-        
-    } onError:^(NSError *googleMapsError) {
-        
-    }];
+    [self fetchRepsForAddress:textField.text];
+
     self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[SearchResultsManager sharedInstance].locationSearched attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName : [UIFont voicesFontWithSize:self.searchBarFontSize]}];
     [self fetchRepsForAddress:textField.text];
     

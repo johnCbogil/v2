@@ -54,7 +54,7 @@
         [self toggleActivityIndicatorOff];
     }
     
-    [self.collectionView reloadData];
+//    [self.collectionView reloadData];
 }
 
 - (void)configurePageIndicator {
