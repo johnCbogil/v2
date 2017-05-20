@@ -422,6 +422,9 @@
                                     <constraint firstAttribute="width" constant="30" id="qb8-AS-xkm"/>
                                 </constraints>
                                 <state key="normal" image="More"/>
+                                <connections>
+                                    <action selector="moreButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="i2J-pn-yVn"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find reps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-h2-Dnu">
                                 <rect key="frame" x="16" y="47" width="202" height="52"/>

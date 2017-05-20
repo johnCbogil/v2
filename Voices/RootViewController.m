@@ -86,7 +86,11 @@
 - (IBAction)searchButtonDidPress:(id)sender {
     
     [self presentSearchViewController];
+}
+
+- (IBAction)moreButtonDidPress:(id)sender {
     
+    [self presentInfoViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
