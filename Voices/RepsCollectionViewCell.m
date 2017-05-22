@@ -36,7 +36,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"EmptyRepTableViewCell"];
 
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     

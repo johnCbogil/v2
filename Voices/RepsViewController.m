@@ -51,6 +51,7 @@
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]objectForKey:kHomeAddress];
     if (homeAddress.length && [RepsManager sharedInstance].fedReps.count == 0) {
         [self toggleActivityIndicatorOn];
+        [self.collectionView reloadData];
     }
     else {
         [self toggleActivityIndicatorOff];
