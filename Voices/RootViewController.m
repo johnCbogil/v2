@@ -74,8 +74,8 @@
 
 - (void)configureNewSearch {
     
-    self.findRepsLabel.font = [UIFont voicesBoldFontWithSize:38];
-    self.findRepsLabel.text = @"Find Reps";
+    self.findRepsLabel.font = [UIFont voicesBoldFontWithSize:36];
+    self.findRepsLabel.text = @"Contact Reps";
     self.searchButton.tintColor = [UIColor blackColor];
 //    self.searchButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.moreButton.tintColor = [UIColor blackColor];
@@ -85,7 +85,11 @@
 
 - (IBAction)searchButtonDidPress:(id)sender {
     
-    [self presentSearchViewController];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    searchViewController.title = @"Find reps by address";
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
 - (IBAction)moreButtonDidPress:(id)sender {
