@@ -81,7 +81,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
-    if (searchText.length > 0) {
+    if (searchText.length > 1) {
         [self placeAutocomplete:searchText onSuccess:^{
             [self.tableView reloadData];
         }];
@@ -108,8 +108,10 @@
                               filter:filter
                             callback:^(NSArray *results, NSError *error) {
                                 if (error != nil) {
+                                    NSLog(@"%@", [error localizedDescription]);
                                     return;
                                 }
+                                NSLog(@"%@", results);
                                 NSMutableArray *tempArray = @[].mutableCopy;
                                 for (GMSAutocompletePrediction* result in results) {
                                     [tempArray addObject:result.attributedFullText.string];
