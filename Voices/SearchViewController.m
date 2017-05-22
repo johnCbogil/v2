@@ -10,7 +10,6 @@
 #import "LocationService.h"
 #import "RepsManager.h"
 #import "ResultsTableViewCell.h"
-#import "SearchResultsManager.h"
 
 @import GooglePlaces;
 
@@ -37,6 +36,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ResultsTableViewCell" bundle:nil]forCellReuseIdentifier:@"ResultsTableViewCell"];
     _placesClient = [[GMSPlacesClient alloc] init];
     self.resultsArray = @[];
 }
@@ -73,7 +73,7 @@
     
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -96,7 +96,6 @@
     [self saveHomeAddress];
 }
 
-// TODO: THIS AUTOCOMPLETE CODE IS REPEATED IN SEARCHRESULTSMANAGER.M
 #pragma mark - Autocomplete methods ---------------------------------
 
 - (void)placeAutocomplete:(NSString *)searchText onSuccess:(void(^)(void))successBlock {
@@ -126,22 +125,41 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.resultsArray.count;
+    return self.resultsArray.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont voicesFontWithSize:17];
-    cell.textLabel.text = self.resultsArray[indexPath.row];
-    return cell;
+    if (indexPath.row == 0) {
+        ResultsTableViewCell *cell = (ResultsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ResultsTableViewCell" forIndexPath:indexPath];
+        cell.result.text = @"Current Location";
+        cell.icon.image = [UIImage imageNamed:@"gpsArrow"];
+        [cell.editButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        return cell;
+        
+    }
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont voicesFontWithSize:17];
+        cell.textLabel.text = self.resultsArray[indexPath.row-1];
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.searchBar.text = self.resultsArray[indexPath.row];
+    
+    if (indexPath.row == 0) {
+        
+        [[LocationService sharedInstance]startUpdatingLocation];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    else {
+        self.searchBar.text = self.resultsArray[indexPath.row-1];
+    }
 }
 
 @end
