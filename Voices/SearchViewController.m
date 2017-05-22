@@ -118,7 +118,6 @@
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UISearchBar Delegate Methods
@@ -201,13 +200,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [LocationService sharedInstance].isHomeAddressVC = self.isHomeAddressVC;
     
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
-        [LocationService sharedInstance].isHomeAddressVC = self.isHomeAddressVC;
         [self.navigationController popViewControllerAnimated:YES];
-        
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];

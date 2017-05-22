@@ -60,7 +60,7 @@
     [super viewWillAppear:animated];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    if (homeAddress) {
+    if (homeAddress.length) {
         [self fetchRepsForHomeAddress:homeAddress];
     }
 }
@@ -170,7 +170,7 @@
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    
+    searchViewController.isHomeAddressVC = YES;
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
         searchViewController.title = @"Edit Home Address";
