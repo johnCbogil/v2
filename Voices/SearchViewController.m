@@ -27,12 +27,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configureNavController];
+    [self configureSearchBar];
+    [self configureTableView];
+}
+
+- (void)configureNavController {
+    
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
-    self.navigationItem.rightBarButtonItem = privacyButton;
+    if (self.isHomeAddressVC) {
+        UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
+        self.navigationItem.rightBarButtonItem = privacyButton;
+    }
+}
+
+- (void)configureSearchBar {
+    
     self.searchBar.placeholder = @"Enter address";
     self.searchBar.delegate  = self;
     [self.searchBar setReturnKeyType:UIReturnKeyDone];
+}
+
+- (void)configureTableView {
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
@@ -67,6 +84,33 @@
     [alert addAction:button0];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void)fetchRepsForAddress:(NSString *)address {
+    
+    if (address.length) {
+        [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
+            
+            [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+                NSLog(@"%@", locationResults);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+            
+        } onError:^(NSError *googleMapsError) {
+            NSLog(@"%@", [googleMapsError localizedDescription]);
+        }];
+    }
 }
 
 - (void)saveHomeAddress {
@@ -161,6 +205,8 @@
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
+        [self fetchRepsForAddress:self.resultsArray[indexPath.row-1]];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

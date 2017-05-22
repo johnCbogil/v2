@@ -112,11 +112,13 @@
 }
 
 - (void)connectToFcm {
-    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }];
+//    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+//        if (error) {
+//            NSLog(@"%@", [error localizedDescription]);
+//        }
+//    }];
+    
+    [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
