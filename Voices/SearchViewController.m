@@ -71,7 +71,7 @@
 - (void)presentPrivacyAlert {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Privacy is a human right"
-                                message:@"Voices does not share your address with any third parties."
+                                message:@"Voices does not share your address with anyone."
                                 preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *button0 = [UIAlertAction
@@ -137,7 +137,12 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self saveHomeAddress];
+    
+    if (_isHomeAddressVC) {
+        [self saveHomeAddress];
+    }
+    [self fetchRepsForAddress:searchBar.text];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Autocomplete methods ---------------------------------
@@ -205,8 +210,7 @@
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
-        [self fetchRepsForAddress:self.resultsArray[indexPath.row-1]];
-        [self.navigationController popViewControllerAnimated:YES];
+
     }
 }
 

@@ -24,7 +24,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-        
+    
     [self configureTableView];
     [self configureRefreshControl];
 }
@@ -35,7 +35,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"EmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"EmptyRepTableViewCell"];
-
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -100,13 +100,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // TODO: UNCOMMENT WHEN REP DETAIL VIEWS ARE READY
-    
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-        RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
-        repDetailVC.representative = self.tableViewDataSource[indexPath.row];
-        [self.repDetailDelegate pushToDetailVC:repDetailVC];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
+    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
+    [self.repDetailDelegate pushToDetailVC:repDetailVC];
 }
 
 - (void)reloadTableView {
@@ -115,7 +113,7 @@
 
 - (void)pullToRefresh {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchBarPullToRefresh" object:nil];     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchBarPullToRefresh" object:nil];
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
         [[LocationService sharedInstance]startUpdatingLocation];
         
