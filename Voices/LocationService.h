@@ -16,6 +16,7 @@
 @property (strong, nonatomic) CLLocation *currentLocation;
 @property (strong, nonatomic) CLLocation *requestedLocation;
 @property (strong, nonatomic) NSMutableArray *observers;
+@property (nonatomic) BOOL isHomeAddressVC;
 - (void)startUpdatingLocation;
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock;

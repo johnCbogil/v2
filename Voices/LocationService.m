@@ -52,6 +52,10 @@
     // TODO: THIS IS NOT DRY
     self.currentLocation = location;
     self.requestedLocation = location;
+    
+    if (self.isHomeAddressVC) {
+        [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f %lf", location.coordinate.latitude, location.coordinate.longitude] forKey:kHomeAddress];
+    }
 }
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock

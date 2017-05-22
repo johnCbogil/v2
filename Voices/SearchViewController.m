@@ -205,6 +205,7 @@
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
+        [LocationService sharedInstance].isHomeAddressVC = self.isHomeAddressVC;
         [self.navigationController popViewControllerAnimated:YES];
         
     }
