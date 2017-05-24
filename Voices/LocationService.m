@@ -55,6 +55,7 @@
     
     if (self.isHomeAddressVC) {
         [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f %lf", location.coordinate.latitude, location.coordinate.longitude] forKey:kHomeAddress];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadActionDetailTableView" object:nil];
     }
 }
 

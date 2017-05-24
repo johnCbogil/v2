@@ -52,6 +52,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailComposer) name:@"presentEmailComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposerInActionDetail) name:@"presentTweetComposerInActionDetail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"reloadActionDetailTableView" object:nil];
     
     
 }
@@ -75,6 +76,11 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMiddleTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailBottomTableViewCell"];
+}
+
+- (void)reloadTableView {
+    
+    [self.tableview reloadData];
 }
 
 - (void)configureHomeButton {
