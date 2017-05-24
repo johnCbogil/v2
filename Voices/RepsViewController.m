@@ -33,10 +33,12 @@
     [self configurePageIndicator];
     [self configureCollectionView];
     [self createActivityIndicator];
-
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:@"endFetchingReps" object:nil];
     
     self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
 }
@@ -48,14 +50,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]objectForKey:kHomeAddress];
-    if (homeAddress.length && [RepsManager sharedInstance].fedReps.count == 0) {
-        [self toggleActivityIndicatorOn];
-        [self.collectionView reloadData];
-    }
-    else {
-        [self toggleActivityIndicatorOff];
-    }
+    //    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]objectForKey:kHomeAddress];
+    //    if (homeAddress.length && [RepsManager sharedInstance].fedReps.count == 0) {
+    //        [self toggleActivityIndicatorOn];
+    //        [self.collectionView reloadData];
+    //    }
+    //    else {
+    //        [self toggleActivityIndicatorOff];
+    //    }
+    
+    // ACTIVITY INDICATOR SHOULD ONLY BE ON WHEN REPS ARE BEING FETCHED. OBSERVE THE NETWORK MANAGER
+    // ACTIVITY INDICATOR SHOULD NEVER BE ON AT THE SAME TIME AS THE EMPTY STATE CELL.
+    // HOW DOES THIS CLASS KNOW IF IT IS PRESENTING THE EMPTY STATE OR REPS
+    // CANT RELY ON FED REPS COUNT BC OF CASE WHEN USER HAS REPS LOADED AND SEARCHES FOR MORE REPS
 }
 
 - (void)configurePageIndicator {
@@ -82,12 +89,12 @@
 }
 
 - (void)createActivityIndicator {
-
+    
     self.findingRepsLabel.font = [UIFont voicesFontWithSize:23];
     self.activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.hidesWhenStopped = YES;
-
+    
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress) {
         [self toggleActivityIndicatorOn];
@@ -117,11 +124,15 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     if ([RepsManager sharedInstance].fedReps.count) {
-        [self toggleActivityIndicatorOff];
         return 3;
     }
     else {
-        return 1;
+        if (self.activityIndicatorView.hidden == NO) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
     }
 }
 
@@ -187,7 +198,7 @@
 }
 
 - (void)pushToDetailVC: (RepDetailViewController*) repVC {
-
+    
     [self.parentViewController.navigationController pushViewController:repVC animated:YES];
 }
 

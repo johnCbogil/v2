@@ -38,6 +38,9 @@
 
 - (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
                                       onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
+    
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -46,10 +49,11 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         
         NSString *message;
