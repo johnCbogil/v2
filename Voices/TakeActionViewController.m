@@ -1,4 +1,4 @@
-//
+    //
 //  TakeActionViewController.m
 //  Voices
 //
@@ -61,7 +61,6 @@
     else {
         self.tableView.backgroundView.hidden = NO;
     }
-
     [self.tableView reloadData];
 }
 
@@ -271,7 +270,6 @@
     } else {
         [self userAuth];
     }
-
     [self.tableView reloadData];
 }
 
