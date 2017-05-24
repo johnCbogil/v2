@@ -186,7 +186,6 @@
         cell.icon.image = [UIImage imageNamed:@"gpsArrow"];
         [cell.editButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         return cell;
-        
     }
     else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];

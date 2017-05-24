@@ -90,7 +90,7 @@
 
 - (IBAction)callButtonDidPress:(id)sender {
     
-    if (self.representative.phone.length > 0) {
+    if ([self.representative.phone isKindOfClass:[NSString class]] && self.representative.phone.length > 0) {
         NSString *confirmCallMessage;
         if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
             confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.representative.nickname];

@@ -63,7 +63,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.tableViewDataSource.count > 0){
+    if (self.tableViewDataSource.count > 0){
         return self.tableViewDataSource.count;
     } else if (self.index == 2){
         return 1;
