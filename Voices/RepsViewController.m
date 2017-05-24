@@ -63,6 +63,7 @@
     // ACTIVITY INDICATOR SHOULD NEVER BE ON AT THE SAME TIME AS THE EMPTY STATE CELL.
     // HOW DOES THIS CLASS KNOW IF IT IS PRESENTING THE EMPTY STATE OR REPS
     // CANT RELY ON FED REPS COUNT BC OF CASE WHEN USER HAS REPS LOADED AND SEARCHES FOR MORE REPS
+    // THERE NEEDS TO BE ZERO CELLS WHEN
 }
 
 - (void)configurePageIndicator {
@@ -70,7 +71,6 @@
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesLightGray];
-    
     self.pageIndicatorContainer.hidden = YES;
 }
 
@@ -91,6 +91,7 @@
 - (void)createActivityIndicator {
     
     self.findingRepsLabel.font = [UIFont voicesFontWithSize:23];
+    self.findingRepsLabel.hidden = YES;
     self.activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.hidesWhenStopped = YES;
@@ -104,6 +105,7 @@
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.findingRepsLabel.hidden = NO;
+        self.collectionView.hidden = YES;
         [self.activityIndicatorView startAnimating];
     });
 }
@@ -111,6 +113,7 @@
 - (void)toggleActivityIndicatorOff {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.findingRepsLabel.hidden = YES;
+        self.collectionView.hidden = NO;
         [self.activityIndicatorView stopAnimating];
     });
 }
