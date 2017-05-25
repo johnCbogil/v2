@@ -36,8 +36,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
-//    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
-    
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
@@ -46,7 +44,6 @@
     [FIROptions defaultOptions].deepLinkURLScheme = kDeepLinkURLScheme;
     [FIRApp configure];
     [GMSPlacesClient provideAPIKey:kAutocomplete];
-    
     
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];
