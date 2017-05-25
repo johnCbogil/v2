@@ -34,7 +34,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:@"EmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"EmptyRepTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:kEmptyRepTableViewCell bundle:nil]forCellReuseIdentifier:kEmptyRepTableViewCell];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -81,7 +81,7 @@
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else if (self.index == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyRepTableViewCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:kEmptyRepTableViewCell];
     }
     
     [self.refreshControl endRefreshing];
