@@ -90,7 +90,6 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
   - Protobuf (3.3.0)
-  - Shimmer (1.0.2)
   - SSZipArchive (1.8.1)
   - STPopup (1.8.2)
 
@@ -105,7 +104,6 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
-  - Shimmer
   - SSZipArchive
   - STPopup
 
@@ -126,10 +124,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
-  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
 
-PODFILE CHECKSUM: aff95c23451e31bd411b8d778e8cd5f66c5f260a
+PODFILE CHECKSUM: 065a8c8c4f9c1ac732517ce56615e2e012c32171
 
 COCOAPODS: 1.1.1

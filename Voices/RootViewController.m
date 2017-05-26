@@ -13,8 +13,6 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
-#import "FBShimmeringView.h"
-#import "FBShimmeringLayer.h"
 #import "RepsManager.h"
 #import "ReportingManager.h"
 #import "ScriptManager.h"
@@ -22,7 +20,6 @@
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
-#import "SearchResultsManager.h"
 #import "SearchViewController.h"
 #import "MoreViewController.h"
 

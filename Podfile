@@ -6,7 +6,6 @@
 target 'Voices' do
     
     pod "AFNetworking", "~> 2.0"
-    pod "Shimmer"
     pod 'STPopup'
     pod 'SSZipArchive'
     pod 'Firebase/Core'
