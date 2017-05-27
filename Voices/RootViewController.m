@@ -72,6 +72,7 @@
     
     self.findRepsLabel.font = [UIFont voicesBoldFontWithSize:36];
     self.findRepsLabel.text = @"Contact Reps";
+    self.findRepsLabel.adjustsFontSizeToFitWidth = YES;
     self.searchButton.tintColor = [UIColor blackColor];
     self.moreButton.tintColor = [UIColor blackColor];
 }

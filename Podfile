@@ -18,7 +18,6 @@ target 'Voices' do
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
 
-
 end
 
 target 'VoicesTests' do

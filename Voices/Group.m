@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
     if (!self) {
         return nil;
     }
+    
+
     self.name = dictionary[@"name"];
     self.groupType = dictionary[@"groupType"];
     self.key = key;

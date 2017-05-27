@@ -407,7 +407,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMl-8f-34u">
-                                <rect key="frame" x="216" y="38" width="40" height="71"/>
+                                <rect key="frame" x="226" y="38" width="40" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="50H-c5-lGA"/>
                                 </constraints>
@@ -447,12 +447,12 @@
                             <constraint firstItem="NGk-cz-Q0m" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="8" id="NDe-4l-04x"/>
                             <constraint firstItem="5Kv-h2-Dnu" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leadingMargin" id="V7S-zj-Do4"/>
                             <constraint firstItem="5Kv-h2-Dnu" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="27" id="Yj0-BU-ePI"/>
-                            <constraint firstItem="mMl-8f-34u" firstAttribute="leading" secondItem="5Kv-h2-Dnu" secondAttribute="trailing" constant="-2" id="aVs-Jg-Hcn"/>
+                            <constraint firstItem="mMl-8f-34u" firstAttribute="leading" secondItem="5Kv-h2-Dnu" secondAttribute="trailing" constant="8" id="aVs-Jg-Hcn"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="NGk-cz-Q0m" secondAttribute="bottom" constant="-11" id="cHE-eT-NWu"/>
                             <constraint firstItem="S1s-c8-5ek" firstAttribute="leading" secondItem="5Kv-h2-Dnu" secondAttribute="leading" constant="5" id="dZE-No-yjb"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" id="hAk-nh-4t3"/>
                             <constraint firstAttribute="trailing" secondItem="ohY-vD-AGg" secondAttribute="trailing" id="lnp-qF-TVZ"/>
-                            <constraint firstItem="NGk-cz-Q0m" firstAttribute="leading" secondItem="mMl-8f-34u" secondAttribute="trailing" constant="18" id="phe-eA-YiT"/>
+                            <constraint firstItem="NGk-cz-Q0m" firstAttribute="leading" secondItem="mMl-8f-34u" secondAttribute="trailing" constant="8" id="phe-eA-YiT"/>
                             <constraint firstItem="NGk-cz-Q0m" firstAttribute="trailing" secondItem="4nO-VY-e87" secondAttribute="trailingMargin" id="qgy-WC-QFz"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="5Kv-h2-Dnu" secondAttribute="bottom" constant="9" id="u1Q-3w-uXP"/>
                             <constraint firstItem="yql-Ix-qR9" firstAttribute="top" secondItem="ohY-vD-AGg" secondAttribute="bottom" id="vQj-LY-dOM"/>
