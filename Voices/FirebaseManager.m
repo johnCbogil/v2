@@ -324,7 +324,7 @@
     
     NSDate *currentTime = [NSDate date];
     
-    if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
+    if (action.timestamp < currentTime.timeIntervalSince1970) {
 
         NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
             if ([action.key isEqualToString:actionInArray.key]) {
