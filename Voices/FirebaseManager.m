@@ -241,8 +241,10 @@
     // Remove associated actions
     NSMutableArray *discardedActions = [NSMutableArray array];
     for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        if ([action.groupKey isEqualToString:group.key]) {
-            [discardedActions addObject:action];
+        if(action.groupKey != nil && group.key != nil) {
+            if([action.groupKey caseInsensitiveCompare: group.key] == NSOrderedSame){
+                [discardedActions addObject:action];
+            }
         }
     }
     [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
