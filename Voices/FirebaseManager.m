@@ -135,6 +135,11 @@
         NSDictionary *groups = snapshot.value;
         NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if (![obj isKindOfClass:[NSDictionary class]]) {
+                return ;
+            }
+            
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
             
             BOOL debug = [self isInDebugMode];
