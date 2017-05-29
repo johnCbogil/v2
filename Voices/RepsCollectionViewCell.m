@@ -27,6 +27,8 @@
     
     [self configureTableView];
     [self configureRefreshControl];
+    
+    self.tableView.allowsSelection = NO; // FLIP
 }
 
 - (void)configureTableView {
@@ -39,8 +41,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
-    self.tableView.allowsSelection = YES;
+
     
     [self.tableView addSubview:self.refreshControl];
 }
@@ -101,10 +102,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
-    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
-    [self.repDetailDelegate pushToDetailVC:repDetailVC];
+    
+    if (self.index == 0) {
+        
+        UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+        RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
+        repDetailVC.representative = self.tableViewDataSource[indexPath.row];
+        [self.repDetailDelegate pushToDetailVC:repDetailVC];
+    }
 }
 
 - (void)reloadTableView {

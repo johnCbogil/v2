@@ -30,10 +30,8 @@
 
 @end
 
-// TODO: CONTRIBUTOR NAMES ARE CUTOFF
 // TODO: DON'T PRESENT THIS VIEW FOR STATE OR LOCAL REPS
 // TODO: HOOK UP ACTION BUTTONS
-// TODO: ADD URL TO OPENSECRETS THAT OPENS TO WEBSITE
 
 @implementation RepDetailViewController
 
@@ -194,6 +192,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.rowHeight = 60;
 }
 
 - (void)configureImage {
