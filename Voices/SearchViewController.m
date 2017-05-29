@@ -75,7 +75,7 @@
                                 preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *button0 = [UIAlertAction
-                              actionWithTitle:@"✊"
+                              actionWithTitle:@"OK"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {

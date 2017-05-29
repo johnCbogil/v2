@@ -40,7 +40,7 @@
     self.tableView.delegate = self;
     
     // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
-    self.tableView.allowsSelection = NO;
+    self.tableView.allowsSelection = YES;
     
     [self.tableView addSubview:self.refreshControl];
 }

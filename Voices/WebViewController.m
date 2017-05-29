@@ -20,21 +20,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self configureNavigationController];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBarHidden = NO;
     self.webView.delegate = self;
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:urlRequest];
     self.webView.contentMode = UIViewContentModeScaleAspectFit;
     [self createActivityIndicator];
-    [self.navigationItem setBackBarButtonItem:nil];
-    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self.navigationItem setBackBarButtonItem:nil];
+}
+
+- (void)configureNavigationController {
+    
+    self.navigationController.navigationBarHidden = NO;
+    [self.navigationItem setBackBarButtonItem:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
 - (void)createActivityIndicator {
