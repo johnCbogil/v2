@@ -7,12 +7,11 @@
 //
 
 #import "ActionDetailMiddleTableViewCell.h"
-
-#import "ContactsView.h"
+#import "ActionsContainerView.h"
 
 @interface ActionDetailMiddleTableViewCell()
 
-@property (weak, nonatomic) IBOutlet ContactsView *contactsView;
+@property (weak, nonatomic) IBOutlet ActionsContainerView *actionsContainerView;
 
 @end
 
@@ -23,15 +22,15 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.contactsView.callButtonTappedBlock = ^{
+    self.actionsContainerView.callButtonTappedBlock = ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentCaller" object:nil];
     };
     
-    self.contactsView.emailButtonTappedBlock = ^{
+    self.actionsContainerView.emailButtonTappedBlock = ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentEmailComposer" object:nil];
     };
     
-    self.contactsView.tweetButtonTappedBlock = ^{
+    self.actionsContainerView.tweetButtonTappedBlock = ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposerInActionDetail" object:nil];
     };
 }

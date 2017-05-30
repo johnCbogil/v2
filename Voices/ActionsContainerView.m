@@ -1,12 +1,12 @@
 //
-//  ContactsView.m
+//  ActionsContainerView.m
 //  Voices
 //
 //  Created by David Weissler on 5/29/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "ContactsView.h"
+#import "ActionsContainerView.h"
 
 #import "ReportingManager.h"
 #import "Representative.h"
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactsView()
+@interface ActionsContainerView()
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@implementation ContactsView
+@implementation ActionsContainerView
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -47,11 +47,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)commonInit {
     
-    [[NSBundle mainBundle]loadNibNamed:@"ContactsView" owner:self options:nil];
+    [self configureNib];
+    [self configureButtons];
+}
+
+- (void)configureNib {
+    
+    [[NSBundle mainBundle]loadNibNamed:@"ActionsContainerView" owner:self options:nil];
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
-    
-    [self configureButtons];
 }
 
 - (void)configureButtons {
