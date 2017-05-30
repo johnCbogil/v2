@@ -7,37 +7,32 @@
 //
 
 #import "ActionDetailMiddleTableViewCell.h"
+#import "ActionsContainerView.h"
+
+@interface ActionDetailMiddleTableViewCell()
+
+@property (weak, nonatomic) IBOutlet ActionsContainerView *actionsContainerView;
+
+@end
 
 @implementation ActionDetailMiddleTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    self.actionsContainerView.callButtonTappedBlock = ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentCaller" object:nil];
+    };
     
-}
-
-- (IBAction)callButtonDidPress:(id)sender {
+    self.actionsContainerView.emailButtonTappedBlock = ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentEmailComposer" object:nil];
+    };
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentCaller" object:nil];
-}
-
-- (IBAction)emailButtonDidPress:(id)sender {
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentEmailComposer" object:nil];
-}
-
-- (IBAction)tweetButtonDidPress:(id)sender {
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposerInActionDetail" object:nil];
+    self.actionsContainerView.tweetButtonTappedBlock = ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposerInActionDetail" object:nil];
+    };
 }
 
 @end
