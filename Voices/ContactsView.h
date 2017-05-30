@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) void (^callButtonTappedBlock)(void);
 @property (nonatomic, copy, nullable) void (^emailButtonTappedBlock)(void);
 @property (nonatomic, copy, nullable) void (^tweetButtonTappedBlock)(void);
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 
 - (void)configureWithRepresentative:(Representative *)representative;

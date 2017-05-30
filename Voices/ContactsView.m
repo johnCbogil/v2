@@ -16,9 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactsView()
 
-@property (nonatomic) UIButton *callButton;
-@property (nonatomic) UIButton *emailButton;
-@property (nonatomic) UIButton *tweetButton;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+
 @property (nonatomic) Representative *representative;
 
 @end
@@ -45,52 +46,19 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)commonInit {
-    self.callButton = [[UIButton alloc] init];
-    self.emailButton = [[UIButton alloc] init];
-    self.tweetButton = [[UIButton alloc] init];
     
-    [self.callButton setBackgroundImage:[UIImage imageNamed:@"Phone Filled" ] forState:UIControlStateNormal];
-    [self.emailButton setBackgroundImage:[UIImage imageNamed:@"Message Filled" ] forState:UIControlStateNormal];
-    [self.tweetButton setBackgroundImage:[UIImage imageNamed:@"Twitter Filled" ] forState:UIControlStateNormal];
+    [[NSBundle mainBundle]loadNibNamed:@"ContactsView" owner:self options:nil];
+    [self addSubview:self.contentView];
+    self.contentView.frame = self.bounds;
     
-    [self.callButton sizeToFit];
-    [self.emailButton sizeToFit];
-    [self.tweetButton sizeToFit];
-    
-    [self addSubview:self.callButton];
-    [self addSubview:self.emailButton];
-    [self addSubview:self.tweetButton];
+    [self configureButtons];
+}
+
+- (void)configureButtons {
     
     self.callButton.tintColor = [UIColor voicesOrange];
     self.emailButton.tintColor = [UIColor voicesOrange];
     self.tweetButton.tintColor = [UIColor voicesOrange];
-    
-    [self.callButton addTarget:self action:@selector(callButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-    [self.emailButton addTarget:self action:@selector(emailButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tweetButton addTarget:self action:@selector(tweetButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CGFloat contentWidth = self.frame.size.width;
-    CGFloat totalButtonWidth = (CGRectGetWidth(self.callButton.frame)
-                                + CGRectGetWidth(self.emailButton.frame)
-                                + CGRectGetWidth(self.tweetButton.frame));
-    CGFloat totalFreeSpace = contentWidth - totalButtonWidth;
-    CGFloat buttonPadding = totalFreeSpace/4.f;
-    
-    CGRect callFrame = self.callButton.frame;
-    callFrame.origin.x = buttonPadding;
-    self.callButton.frame = callFrame;
-
-    CGRect emailFrame = self.emailButton.frame;
-    emailFrame.origin.x = self.callButton.frame.origin.x + self.callButton.frame.size.width + buttonPadding;
-    self.emailButton.frame = emailFrame;
-
-    CGRect tweetFrame = self.tweetButton.frame;
-    tweetFrame.origin.x = self.emailButton.frame.origin.x + self.emailButton.frame.size.width + buttonPadding;
-    self.tweetButton.frame = tweetFrame;
 }
 
 - (void)configureWithRepresentative:(Representative *)representative {
@@ -98,8 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - User Actions
-
-- (void)callButtonDidPress:(id)sender {
+- (IBAction)callButtonDidPress:(id)sender {
+    
     if (self.callButtonTappedBlock) {
         self.callButtonTappedBlock();
         return;
@@ -140,13 +108,13 @@ NS_ASSUME_NONNULL_BEGIN
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
-
-- (void)emailButtonDidPress:(id)sender {
+- (IBAction)emailButtonDidPress:(id)sender {
+    
     if (self.emailButtonTappedBlock) {
         self.emailButtonTappedBlock();
         return;
     }
-
+    
     if (self.representative.bioguide.length > 0) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kRepContactFormsJSON ofType:@"json"];
         NSData *contactFormsJSON = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
@@ -189,7 +157,8 @@ NS_ASSUME_NONNULL_BEGIN
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)tweetButtonDidPress:(id)sender {
+- (IBAction)tweetButtonDidPress:(id)sender {
+    
     if (self.tweetButtonTappedBlock) {
         self.tweetButtonTappedBlock();
         return;
