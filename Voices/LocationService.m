@@ -58,7 +58,7 @@
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         if(placemarks && placemarks.count > 0) {
             CLPlacemark *placemark= [placemarks objectAtIndex:0];
-            address = [NSString stringWithFormat:@"Current location street address: %@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
+            address = [NSString stringWithFormat:@"%@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
             NSLog(@"%@",address);
             if (self.isHomeAddressVC) {
                 [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
