@@ -53,10 +53,24 @@
     self.currentLocation = location;
     self.requestedLocation = location;
     
+    __block NSString *address = nil;
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if(placemarks && placemarks.count > 0) {
+            CLPlacemark *placemark= [placemarks objectAtIndex:0];
+            address = [NSString stringWithFormat:@"Current location street address: %@ %@,%@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea]];
+            NSLog(@"%@",address);
+        }
+    }];
+
+    
     if (self.isHomeAddressVC) {
         [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f %lf", location.coordinate.latitude, location.coordinate.longitude] forKey:kHomeAddress];
     }
 }
+
+
+
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock {
