@@ -6,7 +6,6 @@
 target 'Voices' do
     
     pod "AFNetworking", "~> 2.0"
-    pod "Shimmer"
     pod 'STPopup'
     pod 'SSZipArchive'
     pod 'Firebase/Core'
@@ -18,7 +17,6 @@ target 'Voices' do
     pod 'GooglePlaces'
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
-
 
 end
 

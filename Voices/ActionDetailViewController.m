@@ -52,17 +52,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentCaller) name:@"presentCaller" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentEmailComposer) name:@"presentEmailComposer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentTweetComposerInActionDetail) name:@"presentTweetComposerInActionDetail" object:nil];
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    if (homeAddress.length) {
-        [self fetchRepsForHomeAddress:homeAddress];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
 }
 
 - (void)configureTableview {
@@ -75,6 +65,11 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailMiddleTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMiddleTableViewCell"];
     [self.tableview registerNib:[UINib nibWithNibName:@"ActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailBottomTableViewCell"];
+}
+
+- (void)reloadTableViewFromNotification {
+    
+    [self.tableview reloadData];
 }
 
 - (void)configureHomeButton {

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActionsContainerView">
+            <connections>
+                <outlet property="callButton" destination="pZG-hf-i75" id="Lm0-Rd-3vR"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="dbe-5P-NSW"/>
+                <outlet property="emailButton" destination="iPV-F3-hdp" id="dOq-tR-faJ"/>
+                <outlet property="tweetButton" destination="2wR-vE-XGh" id="RM5-hw-2r7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZG-hf-i75">
+                    <rect key="frame" x="20" y="39" width="16" height="22"/>
+                    <state key="normal" image="Phone Filled"/>
+                    <connections>
+                        <action selector="callButtonDidPress:" destination="-1" eventType="touchUpInside" id="6f5-Vi-p7F"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPV-F3-hdp">
+                    <rect key="frame" x="189" y="39" width="16" height="22"/>
+                    <state key="normal" image="Message Filled"/>
+                    <connections>
+                        <action selector="emailButtonDidPress:" destination="-1" eventType="touchUpInside" id="OsP-gk-HaC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wR-vE-XGh">
+                    <rect key="frame" x="359" y="39" width="16" height="22"/>
+                    <state key="normal" image="Twitter Filled"/>
+                    <connections>
+                        <action selector="tweetButtonDidPress:" destination="-1" eventType="touchUpInside" id="Oqh-TB-Ymo"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="pZG-hf-i75" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2c1-QC-NSf"/>
+                <constraint firstItem="iPV-F3-hdp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LKA-L4-NVj"/>
+                <constraint firstAttribute="trailing" secondItem="2wR-vE-XGh" secondAttribute="trailing" constant="20" id="fq2-0r-qVM"/>
+                <constraint firstItem="pZG-hf-i75" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="gTc-y6-SXj"/>
+                <constraint firstItem="iPV-F3-hdp" firstAttribute="baseline" secondItem="2wR-vE-XGh" secondAttribute="baseline" id="hK2-Jo-Pu7"/>
+                <constraint firstItem="pZG-hf-i75" firstAttribute="baseline" secondItem="iPV-F3-hdp" secondAttribute="baseline" id="uhw-l0-Av5"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="44.5" y="-229"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Message Filled" width="16" height="16"/>
+        <image name="Phone Filled" width="16" height="16"/>
+        <image name="Twitter Filled" width="16" height="16"/>
+    </resources>
+</document>

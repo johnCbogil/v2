@@ -75,4 +75,6 @@ extern NSString *const kPolicyPositionsDetailCell;
 
 extern NSString *const kEmptyStateTableViewCell;
 
+extern NSString *const kEmptyRepTableViewCell;
+
 @end

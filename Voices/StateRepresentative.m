@@ -21,7 +21,7 @@
         NSArray *phones = [offices valueForKey:@"phone"];
         if (phones.count > 0) {
             self.phone = [offices valueForKey:@"phone"][0];
-            if(!self.phone || [self.phone isKindOfClass:[NSNull class]]) {
+            if([self.phone isKindOfClass:[NSString class]] && !self.phone.length) {
                 self.phone = [[data valueForKey:@"offices"]valueForKey:@"phone"][1];
             }
         }

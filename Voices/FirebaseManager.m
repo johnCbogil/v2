@@ -135,6 +135,11 @@
         NSDictionary *groups = snapshot.value;
         NSMutableArray *groupsArray = [NSMutableArray array];
         [groups enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if (![obj isKindOfClass:[NSDictionary class]]) {
+                return ;
+            }
+            
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
             
             BOOL debug = [self isInDebugMode];
@@ -241,8 +246,10 @@
     // Remove associated actions
     NSMutableArray *discardedActions = [NSMutableArray array];
     for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        if ([action.groupKey isEqualToString:group.key]) {
-            [discardedActions addObject:action];
+        if(action.groupKey != nil && group.key != nil) {
+            if([action.groupKey caseInsensitiveCompare: group.key] == NSOrderedSame){
+                [discardedActions addObject:action];
+            }
         }
     }
     [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
@@ -322,7 +329,7 @@
     
     NSDate *currentTime = [NSDate date];
     
-    if (action.timestamp < currentTime.timeIntervalSince1970  - (3600 * 4)) {
+    if (action.timestamp < currentTime.timeIntervalSince1970) {
 
         NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
             if ([action.key isEqualToString:actionInArray.key]) {

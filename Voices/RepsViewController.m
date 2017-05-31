@@ -33,29 +33,22 @@
     [self configurePageIndicator];
     [self configureCollectionView];
     [self createActivityIndicator];
-
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    [self addObservers];
     
     self.buttonDictionary = @{@0 : self.federalButton, @1 : self.stateButton , @2 :self.localButton};
 }
 
-- (void)viewWillLayoutSubviews {
-    [self.collectionView.collectionViewLayout invalidateLayout];
+- (void)addObservers {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCollectionView) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changePage:) name:@"jumpPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setPageIndicator:) name:@"actionPageJump" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:@"endFetchingReps" object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]objectForKey:kHomeAddress];
-    if (homeAddress.length && [RepsManager sharedInstance].fedReps.count == 0) {
-        [self toggleActivityIndicatorOn];
-        [self.collectionView reloadData];
-    }
-    else {
-        [self toggleActivityIndicatorOff];
-    }
+- (void)viewWillLayoutSubviews {
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 - (void)configurePageIndicator {
@@ -63,7 +56,6 @@
     self.federalButton.tintColor = [UIColor voicesBlue];
     self.stateButton.tintColor = [UIColor voicesLightGray];
     self.localButton.tintColor = [UIColor voicesLightGray];
-    
     self.pageIndicatorContainer.hidden = YES;
 }
 
@@ -82,12 +74,13 @@
 }
 
 - (void)createActivityIndicator {
-
+    
     self.findingRepsLabel.font = [UIFont voicesFontWithSize:23];
+    self.findingRepsLabel.hidden = YES;
     self.activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.hidesWhenStopped = YES;
-
+    
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress) {
         [self toggleActivityIndicatorOn];
@@ -97,6 +90,7 @@
 - (void)toggleActivityIndicatorOn {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.findingRepsLabel.hidden = NO;
+        self.collectionView.hidden = YES;
         [self.activityIndicatorView startAnimating];
     });
 }
@@ -104,6 +98,7 @@
 - (void)toggleActivityIndicatorOff {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.findingRepsLabel.hidden = YES;
+        self.collectionView.hidden = NO;
         [self.activityIndicatorView stopAnimating];
     });
 }
@@ -117,11 +112,15 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     if ([RepsManager sharedInstance].fedReps.count) {
-        [self toggleActivityIndicatorOff];
         return 3;
     }
     else {
-        return 1;
+        if (self.activityIndicatorView.hidden == NO) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
     }
 }
 
@@ -187,7 +186,7 @@
 }
 
 - (void)pushToDetailVC: (RepDetailViewController*) repVC {
-
+    
     [self.parentViewController.navigationController pushViewController:repVC animated:YES];
 }
 

@@ -27,6 +27,8 @@
     
     [self configureTableView];
     [self configureRefreshControl];
+    
+    self.tableView.allowsSelection = NO; // FLIP
 }
 
 - (void)configureTableView {
@@ -34,13 +36,12 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:@"EmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"EmptyRepTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:kEmptyRepTableViewCell bundle:nil]forCellReuseIdentifier:kEmptyRepTableViewCell];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    // TODO: FLIP FLAG WHEN READY TO ADD REP DETAIL VIEWS
-    self.tableView.allowsSelection = NO;
+
     
     [self.tableView addSubview:self.refreshControl];
 }
@@ -63,7 +64,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.tableViewDataSource.count > 0){
+    if (self.tableViewDataSource.count > 0){
         return self.tableViewDataSource.count;
     } else if (self.index == 2){
         return 1;
@@ -81,7 +82,7 @@
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
     }
     else if (self.index == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyRepTableViewCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:kEmptyRepTableViewCell];
     }
     
     [self.refreshControl endRefreshing];
@@ -101,10 +102,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
-    repDetailVC.representative = self.tableViewDataSource[indexPath.row];
-    [self.repDetailDelegate pushToDetailVC:repDetailVC];
+    
+    if (self.index == 0) {
+        
+        UIStoryboard *repsStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+        RepDetailViewController *repDetailVC = [repsStoryboard instantiateViewControllerWithIdentifier:@"RepDetailViewController"];
+        repDetailVC.representative = self.tableViewDataSource[indexPath.row];
+        [self.repDetailDelegate pushToDetailVC:repDetailVC];
+    }
 }
 
 - (void)reloadTableView {

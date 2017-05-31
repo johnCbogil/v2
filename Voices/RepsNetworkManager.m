@@ -36,8 +36,12 @@
 
 #pragma mark - Get Federal Representatives
 
-- (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock
+- (void)getFederalRepresentativesFromLocation:(CLLocation*)location
+                               WithCompletion:(void(^)(NSDictionary *results))successBlock
                                       onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
+    
     NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -46,10 +50,11 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         successBlock(responseObject);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
         
         NSString *message;
@@ -59,18 +64,18 @@
         else {
             message = @"It appears there was a server error";
         }
-
+        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }];
     
     [operation start];
-
+    
 }
 
 - (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock
-                          onError:(void(^)(NSError *error))errorBlock {
+                                        onError:(void(^)(NSError *error))errorBlock {
     
     NSURL *url = [NSURL URLWithString:@"https://firebasestorage.googleapis.com/v0/b/voices-430ae.appspot.com/o/repContactForms%20copy.json?alt=media&token=cf808323-a266-4ffc-a566-23497912b9f3"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -102,7 +107,9 @@
 
 #pragma mark - Get State Representatives Methods
 
-- (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
+- (void)getStateRepresentativesFromLocation:(CLLocation*)location
+                             WithCompletion:(void(^)(NSDictionary *results))successBlock
+                                    onError:(void(^)(NSError *error))errorBlock {
     
     NSString *dataUrl = [NSString stringWithFormat:@"http://openstates.org/api/v1//legislators/geo/?lat=%f&long=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFState];
     NSURL *url = [NSURL URLWithString:dataUrl];
@@ -138,7 +145,7 @@
         successBlock(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-       
+        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
@@ -158,7 +165,7 @@
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFHTTPResponseSerializer serializer];
-
+    
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -173,7 +180,7 @@
     }];
     
     [operation start];
-
+    
 }
 
 - (void)getTopIndustriesForRep:(NSString *)repID withCompletion: (void(^)(NSData *results))successBlock onError:(void(^)(NSError *error))errorBlock {

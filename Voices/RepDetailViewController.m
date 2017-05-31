@@ -10,7 +10,7 @@
 #import "ReportingManager.h"
 #import "ScriptManager.h"
 #import "RepsNetworkManager.h"
-
+#import "WebViewController.h"
 @interface RepDetailViewController() <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *repImageView;
@@ -30,10 +30,8 @@
 
 @end
 
-// TODO: CONTRIBUTOR NAMES ARE CUTOFF
 // TODO: DON'T PRESENT THIS VIEW FOR STATE OR LOCAL REPS
 // TODO: HOOK UP ACTION BUTTONS
-// TODO: ADD URL TO OPENSECRETS THAT OPENS TO WEBSITE
 
 @implementation RepDetailViewController
 
@@ -66,10 +64,25 @@
 - (void)presentTopInfluencersInfoAlert {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Top Influencers" message:@"Information is provided by OpenSecrets.org and represents the latest election cycle." preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"✊" style:UIAlertActionStyleDefault handler:nil]];
-//    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Visit OpenSecrets" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+     
+        [self presentOpenSecretsWebViewController];
+        
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+
     [self presentViewController:alertController animated:YES completion:nil];
     
+}
+
+- (void)presentOpenSecretsWebViewController {
+    
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = [NSURL URLWithString:@"https://www.opensecrets.org/"];
+    webViewController.title = @"OpenSecrets";
+    webViewController.navigationItem.backBarButtonItem = nil;
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 - (void)configureActivityIndicator {
@@ -89,6 +102,7 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.indicatorView startAnimating];
     });
@@ -114,7 +128,6 @@
         
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
-        
     }];
 }
 
@@ -179,6 +192,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.rowHeight = 60;
 }
 
 - (void)configureImage {
@@ -260,6 +274,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.textLabel.numberOfLines = 0;
     
     if (self.segmentedControl.selectedSegmentIndex == 1) {
         
