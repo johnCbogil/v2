@@ -58,16 +58,16 @@
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         if(placemarks && placemarks.count > 0) {
             CLPlacemark *placemark= [placemarks objectAtIndex:0];
-            address = [NSString stringWithFormat:@"Current location street address: %@ %@,%@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea]];
+            address = [NSString stringWithFormat:@"Current location street address: %@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
             NSLog(@"%@",address);
+            if (self.isHomeAddressVC) {
+                [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadActionDetailTableView" object:nil];
+            }
         }
     }];
-
     
-    if (self.isHomeAddressVC) {
-        [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f %lf", location.coordinate.latitude, location.coordinate.longitude] forKey:kHomeAddress];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadActionDetailTableView" object:nil];
-    }
+    
 }
 
 
