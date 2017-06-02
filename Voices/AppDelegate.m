@@ -29,6 +29,8 @@
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) NSString *actionKey;
+@property (strong, nonatomic) NSString *dataSetPathWithComponent;
+@property (nonatomic) BOOL isBeingInstalledFromDeeplink;
 
 @end
 
