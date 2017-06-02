@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
     [[NSBundle mainBundle]loadNibNamed:@"ContactsView" owner:self options:nil];
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
+    self.backgroundColor = [UIColor whiteColor];
     
     [self configureButtons];
 }

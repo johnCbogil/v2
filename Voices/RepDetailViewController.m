@@ -11,6 +11,8 @@
 #import "ScriptManager.h"
 #import "RepsNetworkManager.h"
 #import "WebViewController.h"
+#import "ContactsView.h"
+
 @interface RepDetailViewController() <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *repImageView;
@@ -18,15 +20,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partyStateLabel;
 @property (weak, nonatomic) IBOutlet UIView *actionContainerView;
-@property (weak, nonatomic) IBOutlet UIButton *callButton;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
-@property (weak, nonatomic) IBOutlet UIButton *twitterButton;
 @property (weak, nonatomic) IBOutlet UILabel *topInfluencersLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *topContributorsArray;
 @property (strong, nonatomic) NSArray *topIndustriesArray;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
+@property (weak, nonatomic) IBOutlet ContactsView *contactsView;
 
 @end
 
@@ -41,12 +41,12 @@
     [self configureNavigationController];
     [self configureLabels];
     [self configureTableView];
-    [self configureActionButtons];
     [self configureImage];
     [self configureActivityIndicator];
     [self configureSegmentedControl];
     [self configureTopInfluencersButton];
     [self fetchTopContributors];
+    [self.contactsView configureWithRepresentative:self.representative];
 }
 
 - (void)configureTopInfluencersButton {
@@ -146,13 +146,6 @@
     } onError:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
-}
-
-- (void)configureActionButtons {
-    
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.twitterButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)configureSegmentedControl {

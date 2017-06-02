@@ -404,6 +404,8 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
+// TODO: THIS PROB SHOULDNT BE HAPPENING HERE AND ITS BEING REPEATED
+
 #pragma mark - NSNotifications
 
 -(void)registerCallStateNotification {

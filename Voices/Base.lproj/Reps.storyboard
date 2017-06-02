@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -243,54 +242,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0Z-mA-55r" userLabel="ContainerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0Z-mA-55r" userLabel="ContainerView" customClass="ContactsView">
                                 <rect key="frame" x="42" y="180" width="236" height="80"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sf0-EK-KZL">
-                                        <rect key="frame" x="8" y="20" width="42" height="42"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="0lI-Ki-Dcp"/>
-                                            <constraint firstAttribute="height" constant="42" id="jpV-fd-gaN"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="Phone Filled"/>
-                                        <connections>
-                                            <action selector="callButtonDidPress:" destination="nyy-3H-Urv" eventType="touchUpInside" id="Pne-lV-iQw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpB-AF-ttR">
-                                        <rect key="frame" x="97" y="20" width="45" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="4Kp-gE-a32"/>
-                                            <constraint firstAttribute="width" constant="45" id="nga-is-h4P"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="Message Filled"/>
-                                        <connections>
-                                            <action selector="emailButtonDidPress:" destination="nyy-3H-Urv" eventType="touchUpInside" id="L0s-nW-yto"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-cf-2aG">
-                                        <rect key="frame" x="188" y="20" width="45" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="EKH-g1-zcM"/>
-                                            <constraint firstAttribute="width" constant="45" id="Sjl-19-XnW"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="Twitter Filled"/>
-                                        <connections>
-                                            <action selector="twitterButtonDidPress:" destination="nyy-3H-Urv" eventType="touchUpInside" id="5VU-fW-rog"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Sf0-EK-KZL" firstAttribute="centerY" secondItem="d0Z-mA-55r" secondAttribute="centerY" constant="1" id="49a-BY-Toy"/>
-                                    <constraint firstItem="7ap-cf-2aG" firstAttribute="centerY" secondItem="d0Z-mA-55r" secondAttribute="centerY" constant="2.5" id="4dd-7T-79t"/>
-                                    <constraint firstItem="fpB-AF-ttR" firstAttribute="centerY" secondItem="d0Z-mA-55r" secondAttribute="centerY" constant="2.5" id="CAR-2a-Vty"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="WA4-OL-Cmb"/>
-                                    <constraint firstItem="7ap-cf-2aG" firstAttribute="centerX" secondItem="d0Z-mA-55r" secondAttribute="centerX" multiplier="1.8" constant="-1.9000000000000057" id="ZfF-7T-f7V"/>
-                                    <constraint firstItem="fpB-AF-ttR" firstAttribute="centerX" secondItem="d0Z-mA-55r" secondAttribute="centerX" constant="1.5" id="bk9-cI-7sX"/>
-                                    <constraint firstItem="Sf0-EK-KZL" firstAttribute="leading" secondItem="d0Z-mA-55r" secondAttribute="leadingMargin" id="cIB-0V-ptc"/>
                                     <constraint firstAttribute="height" constant="80" id="eyi-DD-jEk"/>
-                                    <constraint firstItem="Sf0-EK-KZL" firstAttribute="centerX" secondItem="d0Z-mA-55r" secondAttribute="centerX" multiplier="0.2" constant="5.3999999999999986" id="fdE-1F-Ryf"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1V9-Wz-sy6">
@@ -347,6 +304,7 @@
                             <constraint firstItem="d0Z-mA-55r" firstAttribute="centerX" secondItem="c8e-DG-1VH" secondAttribute="centerX" id="gLB-aE-NFy"/>
                             <constraint firstItem="d0Z-mA-55r" firstAttribute="top" secondItem="7Ba-nW-QDR" secondAttribute="bottom" constant="8" symbolic="YES" id="kvP-PG-iQD"/>
                             <constraint firstItem="cwr-W5-oBt" firstAttribute="leading" secondItem="ghI-gr-c2T" secondAttribute="leading" id="ls4-hD-Geg"/>
+                            <constraint firstItem="d0Z-mA-55r" firstAttribute="leading" secondItem="c8e-DG-1VH" secondAttribute="leadingMargin" constant="26" id="rQC-Vw-4h2"/>
                             <constraint firstItem="0j4-PT-4KZ" firstAttribute="leading" secondItem="7Ba-nW-QDR" secondAttribute="trailing" constant="8" symbolic="YES" id="sW1-a7-4Hi"/>
                             <constraint firstItem="cwr-W5-oBt" firstAttribute="top" secondItem="0j4-PT-4KZ" secondAttribute="bottom" constant="8" symbolic="YES" id="yaR-s5-Cc1"/>
                         </constraints>
@@ -354,8 +312,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="actionContainerView" destination="d0Z-mA-55r" id="7S9-hk-ifY"/>
-                        <outlet property="callButton" destination="Sf0-EK-KZL" id="Tb2-gZ-Ck3"/>
-                        <outlet property="emailButton" destination="fpB-AF-ttR" id="o5b-4o-BqK"/>
+                        <outlet property="contactsView" destination="d0Z-mA-55r" id="y3a-Cc-3fQ"/>
                         <outlet property="nameLabel" destination="cwr-W5-oBt" id="YtJ-60-JSc"/>
                         <outlet property="partyStateLabel" destination="ghI-gr-c2T" id="HAO-as-uoH"/>
                         <outlet property="repImageView" destination="7Ba-nW-QDR" id="aTX-oT-7ab"/>
@@ -363,7 +320,6 @@
                         <outlet property="tableView" destination="1V9-Wz-sy6" id="ZIS-4e-dci"/>
                         <outlet property="titleLabel" destination="0j4-PT-4KZ" id="wQp-Nj-0Me"/>
                         <outlet property="topInfluencersLabel" destination="yMH-oc-E0Q" id="3GY-Ud-5Pj"/>
-                        <outlet property="twitterButton" destination="7ap-cf-2aG" id="2HC-Z6-jWD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l6-mk-iLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -473,9 +429,6 @@
     </scenes>
     <resources>
         <image name="MagnifyingGlass" width="16" height="16"/>
-        <image name="Message Filled" width="16" height="16"/>
         <image name="More" width="16" height="16"/>
-        <image name="Phone Filled" width="16" height="16"/>
-        <image name="Twitter Filled" width="16" height="16"/>
     </resources>
 </document>

@@ -7,14 +7,12 @@
 //
 
 #import "RepTableViewCell.h"
-
 #import "AFHTTPRequestOperation.h"
 #import "ContactsView.h"
 #import "ReportingManager.h"
 #import "Representative.h"
 #import "ScriptManager.h"
 #import "UIImageView+AFNetworking.h"
-
 #import <CoreTelephony/CTCall.h>
 #import <CoreTelephony/CTCallCenter.h>
 #import <MessageUI/MFMailComposeViewController.h>
@@ -84,6 +82,8 @@
     }];
 }
 
+
+// TODO: THIS PROB SHOULDNT BE HAPPENING HERE AND ITS BEING REPEATED
 #pragma mark - NSNotifications
 
 -(void)registerCallStateNotification {

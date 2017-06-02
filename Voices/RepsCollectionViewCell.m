@@ -28,7 +28,6 @@
     [self configureTableView];
     [self configureRefreshControl];
     
-    self.tableView.allowsSelection = NO; // FLIP
 }
 
 - (void)configureTableView {
@@ -40,8 +39,6 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-
     
     [self.tableView addSubview:self.refreshControl];
 }
