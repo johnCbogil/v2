@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qNg-Dy-7jP" id="9uY-lc-yzz">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="139"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i04-Gh-fbL">
@@ -49,52 +48,11 @@
                             </mask>
                         </variation>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ContainerView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ContactsView" customClass="ContactsView">
                         <rect key="frame" x="116" y="51" width="236" height="80"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAb-DP-LFI">
-                                <rect key="frame" x="8" y="20" width="37" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="0wA-rA-wjg"/>
-                                    <constraint firstAttribute="height" constant="37" id="mVt-u2-B8f"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Phone Filled"/>
-                                <connections>
-                                    <action selector="callButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="Qu3-Xx-cLu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-QW-5ph">
-                                <rect key="frame" x="97" y="20" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="N9p-qB-Af3"/>
-                                    <constraint firstAttribute="height" constant="40" id="hpr-iX-YuG"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Message Filled"/>
-                                <connections>
-                                    <action selector="emailButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="dTD-tr-slT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p8-P5-2it">
-                                <rect key="frame" x="188" y="20" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="jYc-iD-mJw"/>
-                                    <constraint firstAttribute="width" constant="40" id="phg-up-xo0"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Twitter Filled"/>
-                                <connections>
-                                    <action selector="tweetButtonDidPress:" destination="qNg-Dy-7jP" eventType="touchUpInside" id="z3s-GU-Jb9"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qAb-DP-LFI" firstAttribute="centerY" secondItem="4Qj-e2-LYP" secondAttribute="centerY" constant="-1.5" id="2B4-KE-4gz"/>
-                            <constraint firstItem="lgW-QW-5ph" firstAttribute="centerY" secondItem="4Qj-e2-LYP" secondAttribute="centerY" id="DFB-bt-czM"/>
-                            <constraint firstItem="qAb-DP-LFI" firstAttribute="centerX" secondItem="4Qj-e2-LYP" secondAttribute="centerX" multiplier="0.2" constant="2.5999999999999979" id="Ghk-kO-uFP"/>
-                            <constraint firstItem="8p8-P5-2it" firstAttribute="centerY" secondItem="4Qj-e2-LYP" secondAttribute="centerY" id="Ky4-Nb-TdX"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="VOk-oT-yya"/>
-                            <constraint firstItem="lgW-QW-5ph" firstAttribute="centerX" secondItem="4Qj-e2-LYP" secondAttribute="centerX" constant="-1" id="bDo-kG-id4"/>
-                            <constraint firstItem="8p8-P5-2it" firstAttribute="centerX" secondItem="4Qj-e2-LYP" secondAttribute="centerX" multiplier="1.8" constant="-4.4000000000000057" id="n6K-7Y-S7c"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -120,18 +78,11 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="callButton" destination="qAb-DP-LFI" id="3i6-3d-FZQ"/>
-                <outlet property="emailButton" destination="lgW-QW-5ph" id="Fvd-JT-tSl"/>
+                <outlet property="contactsView" destination="4Qj-e2-LYP" id="bf6-f1-B5H"/>
                 <outlet property="name" destination="cJk-NX-ZHW" id="9ba-RQ-WQ5"/>
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
-                <outlet property="tweetButton" destination="8p8-P5-2it" id="i2f-rW-fea"/>
             </connections>
             <point key="canvasLocation" x="498" y="563"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Message Filled" width="33" height="33"/>
-        <image name="Phone Filled" width="623" height="268"/>
-        <image name="Twitter Filled" width="33" height="33"/>
-    </resources>
 </document>

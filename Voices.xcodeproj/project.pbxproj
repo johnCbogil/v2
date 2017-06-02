@@ -75,6 +75,7 @@
 		52FECFCF1E889F8000847E7A /* ActionDetailMiddleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FECFCE1E889F8000847E7A /* ActionDetailMiddleTableViewCell.xib */; };
 		52FECFD21E88A09F00847E7A /* ActionDetailBottomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FECFD11E88A09F00847E7A /* ActionDetailBottomTableViewCell.m */; };
 		52FECFD41E88A0B200847E7A /* ActionDetailBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FECFD31E88A0B200847E7A /* ActionDetailBottomTableViewCell.xib */; };
+		611861611EDCCCEC007C317C /* ContactsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611861601EDCCCEC007C317C /* ContactsView.m */; };
 		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
@@ -83,6 +84,7 @@
 		7E525BDE1E819B33007E80A8 /* ActionRepCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E525BDC1E819B33007E80A8 /* ActionRepCollectionViewCell.xib */; };
 		7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsViewController.m */; };
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
+		7EC234301EDDF74600EAA71E /* ContactsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC2342F1EDDF74600EAA71E /* ContactsView.xib */; };
 		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
@@ -225,6 +227,8 @@
 		52FECFD01E88A09F00847E7A /* ActionDetailBottomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDetailBottomTableViewCell.h; sourceTree = "<group>"; };
 		52FECFD11E88A09F00847E7A /* ActionDetailBottomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailBottomTableViewCell.m; sourceTree = "<group>"; };
 		52FECFD31E88A0B200847E7A /* ActionDetailBottomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionDetailBottomTableViewCell.xib; sourceTree = "<group>"; };
+		6118615F1EDCCCEC007C317C /* ContactsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsView.h; sourceTree = "<group>"; };
+		611861601EDCCCEC007C317C /* ContactsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsView.m; sourceTree = "<group>"; };
 		61DC8EA11D0660590086C070 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		61DC8EA21D0660590086C070 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		7E133DB51D53A50900F128CC /* EmptyRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyRepTableViewCell.h; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 		7EA49CE31D6C9B4B002449CC /* Voices.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Voices.entitlements; sourceTree = "<group>"; };
 		7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyDetailViewController.h; sourceTree = "<group>"; };
 		7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDetailViewController.m; sourceTree = "<group>"; };
+		7EC2342F1EDDF74600EAA71E /* ContactsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsView.xib; sourceTree = "<group>"; };
 		7ED3E7CD1DFB431300C1391C /* ScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptManager.h; sourceTree = "<group>"; };
 		7ED3E7CE1DFB431300C1391C /* ScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptManager.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -346,6 +351,8 @@
 				52194F531E3C519400EBF461 /* DLog.h */,
 				52EEC2751E55376D00CE12AF /* WebViewController.h */,
 				52EEC2761E55376D00CE12AF /* WebViewController.m */,
+				6118615F1EDCCCEC007C317C /* ContactsView.h */,
+				611861601EDCCCEC007C317C /* ContactsView.m */,
 				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
 				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
 				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
@@ -544,6 +551,7 @@
 				52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */,
 				52F31EDA1E5FA642008BCC2A /* ResultsTableViewCell.h */,
 				52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */,
+				7EC2342F1EDDF74600EAA71E /* ContactsView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -785,6 +793,7 @@
 				A74FA2391EB84BBA00C68D0E /* EmptyStateTableViewCell.xib in Resources */,
 				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
+				7EC234301EDDF74600EAA71E /* ContactsView.xib in Resources */,
 				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
 				52FECFD41E88A0B200847E7A /* ActionDetailBottomTableViewCell.xib in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
@@ -975,6 +984,7 @@
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
+				611861611EDCCCEC007C317C /* ContactsView.m in Sources */,
 				7E525BDD1E819B33007E80A8 /* ActionRepCollectionViewCell.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */,
