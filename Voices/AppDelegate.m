@@ -62,7 +62,9 @@
                     handleUniversalLink:userActivity.webpageURL
                     completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                  NSError * _Nullable error) {
-                        // ...
+                        if (error) {
+                            NSLog(@"%@", [error localizedDescription]);
+                        }
                     }];
     
     return handled;
@@ -97,7 +99,6 @@
         
     }];
 }
-
 
 - (void)tokenRefreshNotification:(NSNotification *)notification {
     // Note that this callback will be fired everytime a new token is generated, including the first
