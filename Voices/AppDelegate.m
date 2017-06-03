@@ -30,7 +30,6 @@
 
 @property (strong, nonatomic) NSString *actionKey;
 @property (strong, nonatomic) NSString *dataSetPathWithComponent;
-@property (nonatomic) BOOL isBeingInstalledFromDeeplink;
 
 @end
 
@@ -81,6 +80,7 @@
         // apply a promotional offer to the user's account.
         // ...
         
+        self.isBeingInstalledFromDeeplink = YES;
         [self handleDynamicLink:dynamicLink];
         
         return YES;
@@ -171,7 +171,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
             TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
             self.window.rootViewController = tabVC;
-            
             
             //TODO: Maybe switch for loop with navCtrl = self.window.rootViewController.navController
             for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {

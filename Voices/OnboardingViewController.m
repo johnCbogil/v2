@@ -8,6 +8,8 @@
 
 #import "OnboardingViewController.h"
 #import "NotiOnboardingViewController.h"
+#import "AppDelegate.h"
+#import "TabBarViewController.h"
 
 @interface OnboardingViewController ()
 
@@ -39,9 +41,20 @@
 
 - (IBAction)getStartedButtonDidPress:(id)sender {
     
-    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-    NotiOnboardingViewController *tabVC = (NotiOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"NotiOnboardingViewController"];
-    [self.navigationController pushViewController:tabVC animated:YES];
+    BOOL isBeingInstalledFromDeeplink = [(AppDelegate *)[[UIApplication sharedApplication] delegate] isBeingInstalledFromDeeplink];
+
+    if (isBeingInstalledFromDeeplink) {
+
+        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+        NotiOnboardingViewController *tabVC = (NotiOnboardingViewController *)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"NotiOnboardingViewController"];
+        [self.navigationController pushViewController:tabVC animated:YES];
+    }
+    else {
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+        [self.navigationController pushViewController:tabVC animated:YES];
+    }
 }
 
 @end
