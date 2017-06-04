@@ -7,6 +7,7 @@ target 'Voices' do
     
     pod "AFNetworking", "~> 2.0"
     pod 'STPopup'
+    pod 'Instabug'
     pod 'SSZipArchive'
     pod 'Firebase/Core'
     pod 'Firebase/Database'

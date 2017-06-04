@@ -18,6 +18,7 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 #import "FirebaseManager.h"
+#import <Instabug/Instabug.h>
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -25,6 +26,7 @@
 @import FirebaseDynamicLinks;
 @import UserNotifications;
 @import GooglePlaces;
+
 
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
 
@@ -38,6 +40,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
+    [Instabug startWithToken:@"8f3391817b122bd6f52f3ad62f608c1b" invocationEvent:IBGInvocationEventNone];
+    [Instabug setPromptOptionsEnabledWithBug:NO feedback:NO chat:YES];
+
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
