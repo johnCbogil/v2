@@ -28,7 +28,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     self.choiceArray = [[NSArray alloc] initWithObjects:@"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects:@"Make your actions more effective.", @"A higher rating means more people can find the app to support your causes.", @"What issues are important to you?", @"Your ideas make Voices better.", nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects:@"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"Your ideas make Voices better.", nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

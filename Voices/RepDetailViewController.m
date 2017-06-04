@@ -66,7 +66,7 @@
         [self presentOpenSecretsWebViewController];
         
     }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
 
     [self presentViewController:alertController animated:YES completion:nil];
     
@@ -76,7 +76,7 @@
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
-    webViewController.url = [NSURL URLWithString:@"https://www.opensecrets.org/"];
+    webViewController.url = [NSURL URLWithString:@"https://www.opensecrets.org/about/"];
     webViewController.title = @"OpenSecrets";
     webViewController.navigationItem.backBarButtonItem = nil;
     [self.navigationController pushViewController:webViewController animated:YES];
