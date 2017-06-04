@@ -351,7 +351,13 @@
 
 - (IBAction)moreButtonDidPress:(id)sender {
     
-    [self presentInfoViewController];
+    UIStoryboard *moreSB = [UIStoryboard storyboardWithName:@"More" bundle: nil];
+    MoreViewController *moreViewController = (MoreViewController *)[moreSB instantiateViewControllerWithIdentifier:@"MoreViewController"];
+    moreViewController.title = @"More Info";
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:moreViewController animated:YES];
+
+//    [self presentInfoViewController];
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {

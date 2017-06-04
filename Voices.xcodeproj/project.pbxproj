@@ -427,7 +427,6 @@
 				5264E8561E554EAC00C2DDD8 /* SharedClasses */,
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52D8929D1CC471AA004FBEA3 /* TakeActionTab */,
-				E860E04C1E79DC3700055D39 /* More */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
 			);
 			path = Voices;
@@ -469,6 +468,7 @@
 		52D892901CC45CC1004FBEA3 /* RepsTab */ = {
 			isa = PBXGroup;
 			children = (
+				E860E04C1E79DC3700055D39 /* More */,
 				52AD33971BE5CAA000EC0468 /* Managers */,
 				7E5CC8281C909065005E8F45 /* View */,
 				7E5CC8261C909034005E8F45 /* Controller */,

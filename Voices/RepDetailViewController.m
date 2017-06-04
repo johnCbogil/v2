@@ -30,9 +30,6 @@
 
 @end
 
-// TODO: DON'T PRESENT THIS VIEW FOR STATE OR LOCAL REPS
-// TODO: HOOK UP ACTION BUTTONS
-
 @implementation RepDetailViewController
 
 - (void)viewDidLoad {

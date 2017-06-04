@@ -19,26 +19,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self configureTableView];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    self.moreTableView.delegate = self;
-    self.moreTableView.dataSource = self;
-    
-//    self.dataArray = [[NSArray alloc] initWithObjects:@"Feedback", @"Share app", @"Rate in app store", @"About", @"FAQ", @"Voter registration", @"Enable location", @"Enable push notification", nil];
     self.choiceArray = [[NSArray alloc] initWithObjects:@"About", @"Rate App", @"Issue Survey", nil];
-    
     self.subtitleArray = [[NSArray alloc] initWithObjects:@"Ask us anything!", @"A higher rating means more people can use the app to support your causes", @"What issues are important to you?", nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+#pragma mark - TableView methods
+
+- (void)configureTableView {
+    
+    self.moreTableView.delegate = self;
+    self.moreTableView.dataSource = self;
+    self.moreTableView.rowHeight = 80;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -59,13 +66,17 @@
     }
     
     cell.textLabel.text = [self.choiceArray objectAtIndex:indexPath.row];
+    cell.textLabel.numberOfLines = 0;
     cell.detailTextLabel.text = [self.subtitleArray objectAtIndex:indexPath.row];
-    
+    cell.detailTextLabel.numberOfLines = 0;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.moreTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     AboutViewController *aboutVC = [[AboutViewController alloc] init];
     IssueSurveyViewController *issueSurveyVC = [[IssueSurveyViewController alloc] init];
     NSString *iTunesAppLink = @"itms://itunes.apple.com/us/app/congress-voices/id965692648?mt=8";
@@ -91,8 +102,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 @end
