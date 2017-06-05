@@ -41,6 +41,8 @@
     self.tableView.delegate = self;
     
     [self.tableView addSubview:self.refreshControl];
+    
+    self.tableView.allowsSelection = NO; // FLIP
 }
 
 - (void)configureRefreshControl {
