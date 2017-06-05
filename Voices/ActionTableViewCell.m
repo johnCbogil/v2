@@ -49,7 +49,7 @@
 
 - (void)configureFont {
     
-    self.dateLabel.font = [UIFont voicesFontWithSize:12];
+    self.dateLabel.font = [UIFont voicesFontWithSize:13];
     self.dateLabel.textColor = [UIColor voicesGray];
 
     self.groupNameLabel.textColor = [UIColor voicesBlack];
