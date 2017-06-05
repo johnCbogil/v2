@@ -29,7 +29,6 @@
     [self configureActionButton];
     
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
-    
 }
 
 - (void)configureDate:(int long)timestamp {
