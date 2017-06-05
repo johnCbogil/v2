@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (nonatomic) Group *group;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @end
 
 @implementation ActionTableViewCell
@@ -23,16 +25,33 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.takeActionButton.tintColor = [UIColor voicesOrange];
-    [self setFont];
+    [self configureFont];
+    [self configureActionButton];
+    
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
+    
+}
+
+- (void)configureDate:(int long)timestamp {
+    
+    NSDate *actionTimeStampDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    self.dateLabel.text = [dateFormatter stringFromDate:actionTimeStampDate];
+}
+
+- (void)configureActionButton {
     
     self.takeActionButton.tintColor = [UIColor whiteColor];
     self.takeActionButton.backgroundColor = [UIColor voicesOrange];
     self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
 }
 
-- (void)setFont {
+- (void)configureFont {
+    
+    self.dateLabel.font = [UIFont voicesFontWithSize:12];
+    self.dateLabel.textColor = [UIColor voicesGray];
+
     self.groupNameLabel.textColor = [UIColor voicesBlack];
     self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
     
@@ -57,6 +76,7 @@
     self.actionTitleTextView.text = action.title;
     self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:self.group.groupImageURL];
+    [self configureDate:action.timestamp];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
