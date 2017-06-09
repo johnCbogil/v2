@@ -43,7 +43,7 @@
 
 - (void)configureSearchBar {
     
-    self.searchBar.placeholder = @"Enter address";
+    self.searchBar.placeholder = @"Enter full address";
     self.searchBar.delegate  = self;
     [self.searchBar setReturnKeyType:UIReturnKeyDone];
 }
