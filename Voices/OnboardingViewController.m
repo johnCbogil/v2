@@ -36,7 +36,7 @@
     self.startButton.titleLabel.minimumScaleFactor = 0.75;
 
     self.introLabel.font = [UIFont voicesFontWithSize:30];
-    self.introLabel.text = @"Support the groups and causes you care about";
+    self.introLabel.text = @"Support the groups and causes you care about.";
 }
 
 - (IBAction)getStartedButtonDidPress:(id)sender {
