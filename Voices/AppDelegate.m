@@ -98,11 +98,14 @@
     
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
-    [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
+    if (groupKey.length) {
         
-    } onError:^(NSError *error) {
-        
-    }];
+        [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
+            
+        } onError:^(NSError *error) {
+            
+        }];   
+    }
 }
 
 - (void)tokenRefreshNotification:(NSNotification *)notification {

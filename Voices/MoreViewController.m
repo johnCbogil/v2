@@ -156,6 +156,7 @@
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
+
 - (void)presentProTipsViewController {
     
     UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"NewInfo" owner:self options:nil] objectAtIndex:0];
