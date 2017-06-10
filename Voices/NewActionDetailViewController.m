@@ -36,7 +36,6 @@
 
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

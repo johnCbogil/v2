@@ -29,6 +29,9 @@
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7kR-cD-Y9a">
                         <rect key="frame" x="8" y="37" width="359" height="187"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="187" id="NPX-ol-NCA"/>
+                        </constraints>
                     </tableView>
                 </subviews>
                 <constraints>
