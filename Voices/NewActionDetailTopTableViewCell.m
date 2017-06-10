@@ -23,15 +23,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-
-    
 }
 
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
     
     [self fetchGroupLogoForImageURL:group.groupImageURL];
-
+    self.acitionTitleLabel.text = action.title;
+    self.descriptionTextView.text = action.body;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {

@@ -23,7 +23,6 @@
     
     [self configureTableView];
     self.title = self.group.name;
-
 }
 
 - (void)configureTableView {
@@ -38,6 +37,8 @@
 
     self.tableView.estimatedRowHeight = 150.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.tableView.allowsSelection = NO;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
