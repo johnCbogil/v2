@@ -8,17 +8,19 @@
 
 #import "NewActionDetailBottomTableViewCell.h"
 
+@interface NewActionDetailBottomTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
+
+
+@end
+
 @implementation NewActionDetailBottomTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

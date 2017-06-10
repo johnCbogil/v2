@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k0W-gi-hf3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k0W-gi-hf3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -157,6 +157,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qN3-DF-Id6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1969" y="393"/>
+        </scene>
+        <!--New Action Detail View Controller-->
+        <scene sceneID="0rs-Hx-fdU">
+            <objects>
+                <viewController storyboardIdentifier="NewActionDetailViewController" id="xII-FG-p1k" customClass="NewActionDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OCQ-EJ-HpC"/>
+                        <viewControllerLayoutGuide type="bottom" id="LhF-iu-Byq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NzP-I2-mBo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZP9-rp-BLK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZP9-rp-BLK" firstAttribute="top" secondItem="NzP-I2-mBo" secondAttribute="top" id="Cww-TG-c2R"/>
+                            <constraint firstItem="ZP9-rp-BLK" firstAttribute="leading" secondItem="NzP-I2-mBo" secondAttribute="leading" id="Ihl-Ut-ES7"/>
+                            <constraint firstItem="ZP9-rp-BLK" firstAttribute="bottom" secondItem="LhF-iu-Byq" secondAttribute="top" id="WwW-k5-zGJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ZP9-rp-BLK" secondAttribute="trailing" id="syd-T6-Cla"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZP9-rp-BLK" id="xqK-fU-7pn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EgW-Xd-k7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2637.5999999999999" y="389.95502248875567"/>
         </scene>
         <!--Group Detail View Controller-->
         <scene sceneID="fUB-PN-6BJ">

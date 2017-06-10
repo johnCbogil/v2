@@ -8,6 +8,15 @@
 
 #import "NewActionDetailTopTableViewCell.h"
 
+@interface NewActionDetailTopTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *groupImageView;
+@property (weak, nonatomic) IBOutlet UILabel *acitionTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) IBOutlet UIButton *expandButton;
+
+@end
+
 @implementation NewActionDetailTopTableViewCell
 
 - (void)awakeFromNib {
@@ -15,10 +24,7 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (IBAction)expandButtonDidPress:(id)sender {
 }
 
 @end
