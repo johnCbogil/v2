@@ -353,7 +353,7 @@
     
     UIStoryboard *moreSB = [UIStoryboard storyboardWithName:@"More" bundle: nil];
     MoreViewController *moreViewController = (MoreViewController *)[moreSB instantiateViewControllerWithIdentifier:@"MoreViewController"];
-    moreViewController.title = @"More Info";
+    moreViewController.title = @"More";
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:moreViewController animated:YES];
 

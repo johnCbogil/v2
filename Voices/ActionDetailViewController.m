@@ -41,7 +41,6 @@
     [ScriptManager sharedInstance].lastAction = self.action;
     self.title = self.group.name;
     [self configureTableview];
-    [self configureHomeButton];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress) {
@@ -70,17 +69,6 @@
 - (void)reloadTableViewFromNotification {
     
     [self.tableview reloadData];
-}
-
-- (void)configureHomeButton {
-    
-    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"HomeEdit"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(presentSearchViewController)forControlEvents:UIControlEventTouchUpInside];
-    [button setFrame:CGRectMake(0, 0, 25, 25)];
-    button.tintColor = [UIColor voicesOrange];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = barButton;
 }
 
 - (void)fetchRepsForHomeAddress:(NSString *)address {

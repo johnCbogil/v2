@@ -31,7 +31,7 @@
     self.getRepsButton.backgroundColor = [UIColor clearColor];
     self.getRepsButton.titleLabel.font = [UIFont voicesFontWithSize:23];
     
-    [self.getRepsButton setTitle:@"Add Address To Show Reps" forState:UIControlStateNormal];
+    [self.getRepsButton setTitle:@"Add Address To See Your Reps" forState:UIControlStateNormal];
 
     [self.collectionView reloadData];
 }

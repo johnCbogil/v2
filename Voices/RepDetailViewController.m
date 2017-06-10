@@ -175,7 +175,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    self.title = @"More Info";
+    self.title = @"More";
 }
 
 - (void)configureTableView {
