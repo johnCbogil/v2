@@ -20,26 +20,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-ts-YVT">
-                        <rect key="frame" x="8" y="116" width="359" height="21"/>
+                        <rect key="frame" x="8" y="116" width="359" height="29"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4aj-nE-0Hm">
-                        <rect key="frame" x="8" y="145" width="359" height="105"/>
+                        <rect key="frame" x="8" y="153" width="359" height="105"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="105" id="Nz5-7t-QxD"/>
+                            <constraint firstAttribute="height" constant="105" id="CgS-Zn-oYx"/>
                         </constraints>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEs-C5-VLA">
-                        <rect key="frame" x="8" y="258" width="359" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEs-C5-VLA">
+                        <rect key="frame" x="8" y="258" width="359" height="43"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <state key="normal" title="Expand"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="43" id="DkN-2x-YqC"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="168" minY="10" maxX="168" maxY="10"/>
+                        <state key="normal" image="downArrow2"/>
                         <connections>
                             <action selector="expandButtonDidPress:" destination="nj4-GP-w0A" eventType="touchUpInside" id="XBP-nI-qTj"/>
                         </connections>
@@ -48,8 +52,8 @@
                         <rect key="frame" x="138" y="8" width="100" height="100"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="100" id="kLS-N1-OPV"/>
-                            <constraint firstAttribute="width" constant="100" id="o32-YL-Xc0"/>
+                            <constraint firstAttribute="height" constant="100" id="2Ad-mE-TjP"/>
+                            <constraint firstAttribute="width" constant="100" id="5Hm-iq-rlM"/>
                         </constraints>
                         <connections>
                             <action selector="groupImageButtonDidPress:" destination="nj4-GP-w0A" eventType="touchUpInside" id="Ew6-Mq-T00"/>
@@ -57,18 +61,18 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="L2r-80-qcc" firstAttribute="centerX" secondItem="acv-ts-YVT" secondAttribute="centerX" id="3gV-sZ-iDH"/>
-                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="4aj-nE-0Hm" secondAttribute="leading" id="6RB-hC-c8I"/>
-                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="top" secondItem="acv-ts-YVT" secondAttribute="bottom" constant="8" symbolic="YES" id="KnZ-0Z-rxY"/>
-                    <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="4aj-nE-0Hm" secondAttribute="trailing" id="PUi-A3-KNd"/>
-                    <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="L2r-80-qcc" secondAttribute="bottom" constant="8" symbolic="YES" id="R45-dd-EDC"/>
-                    <constraint firstItem="uEs-C5-VLA" firstAttribute="top" secondItem="4aj-nE-0Hm" secondAttribute="bottom" constant="8" symbolic="YES" id="WE8-h7-jRN"/>
-                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leadingMargin" id="WfC-On-XSj"/>
-                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="trailing" secondItem="uEs-C5-VLA" secondAttribute="trailing" id="ZQS-3G-ejh"/>
-                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="leading" secondItem="uEs-C5-VLA" secondAttribute="leading" id="dqM-tC-zXt"/>
-                    <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="Hlc-wA-QFt" secondAttribute="trailingMargin" id="fC3-GF-eb6"/>
-                    <constraint firstItem="L2r-80-qcc" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="topMargin" id="odM-tQ-Nge"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="uEs-C5-VLA" secondAttribute="bottom" constant="4.5" id="sqb-2b-2CH"/>
+                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="top" secondItem="acv-ts-YVT" secondAttribute="bottom" constant="8" symbolic="YES" id="5Yp-wk-cHW"/>
+                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="leading" secondItem="uEs-C5-VLA" secondAttribute="leading" id="8tt-07-NyR"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="Hlc-wA-QFt" secondAttribute="trailingMargin" id="FSL-LO-UpO"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="uEs-C5-VLA" secondAttribute="bottom" constant="-8.5" id="NzC-jU-2Jz"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="4aj-nE-0Hm" secondAttribute="leading" id="P9y-0c-fM0"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="4aj-nE-0Hm" secondAttribute="trailing" id="Q0e-px-iNZ"/>
+                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="trailing" secondItem="uEs-C5-VLA" secondAttribute="trailing" id="QYg-sU-Mdh"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="centerX" secondItem="acv-ts-YVT" secondAttribute="centerX" id="Yv1-u2-Wvi"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="topMargin" id="fwX-L6-ZUu"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="L2r-80-qcc" secondAttribute="bottom" constant="8" symbolic="YES" id="gcl-8Z-UbW"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leadingMargin" id="oF8-zI-3dy"/>
+                    <constraint firstItem="uEs-C5-VLA" firstAttribute="top" secondItem="4aj-nE-0Hm" secondAttribute="bottom" id="oRP-Eu-Q8J"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -80,4 +84,7 @@
             <point key="canvasLocation" x="-149.5" y="172.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="downArrow2" width="104" height="104"/>
+    </resources>
 </document>
