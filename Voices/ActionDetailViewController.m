@@ -154,17 +154,11 @@
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
     searchViewController.isHomeAddressVC = YES;
-    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-    if (homeAddress.length > 0) {
-        searchViewController.title = @"Edit Home Address";
-    }
-    else {
-        searchViewController.title = @"Add Home Address";
-    }
-
+    searchViewController.title = @"Add Home Address";
+    
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-
+    
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
@@ -183,7 +177,7 @@
         
         UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:title  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Preview" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-
+            
             [self presentScriptView];
             
         }]];
@@ -228,7 +222,7 @@
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
-
+    
 }
 
 - (void)presentEmailComposer {

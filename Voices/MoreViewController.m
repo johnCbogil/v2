@@ -151,6 +151,8 @@
         searchViewController.title = @"Add Home Address";
     }
     self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
