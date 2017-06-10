@@ -9,7 +9,8 @@
 #import "TakeActionViewController.h"
 #import "Action.h"
 #import "ActionTableViewCell.h"
-#import "ActionDetailViewController.h"
+//#import "ActionDetailViewController.h"
+#import "NewActionDetailViewController.h"
 #import "CurrentUser.h"
 #import "Group.h"
 #import "GroupDetailViewController.h"
@@ -175,10 +176,10 @@
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-    ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+    NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
+//    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-    actionDetailViewController.group = currentGroup;
+//    actionDetailViewController.group = currentGroup;
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
 

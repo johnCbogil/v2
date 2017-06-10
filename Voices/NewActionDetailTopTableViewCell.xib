@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,34 +19,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="300.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X8c-ek-Gke">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X8c-ek-Gke">
                         <rect key="frame" x="137" y="8" width="100" height="100"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="D53-MH-tyo"/>
+                            <constraint firstAttribute="height" constant="100" id="qzI-81-aya"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-ts-YVT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-ts-YVT">
                         <rect key="frame" x="8" y="116" width="359" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4aj-nE-0Hm">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4aj-nE-0Hm">
                         <rect key="frame" x="8" y="145" width="359" height="105"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEs-C5-VLA">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEs-C5-VLA">
                         <rect key="frame" x="8" y="258" width="359" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <state key="normal" title="Expand"/>
                         <connections>
                             <action selector="expandButtonDidPress:" destination="nj4-GP-w0A" eventType="touchUpInside" id="XBP-nI-qTj"/>
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="uEs-C5-VLA" secondAttribute="bottom" constant="4.5" id="847-J4-fsG"/>
+                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="trailing" secondItem="uEs-C5-VLA" secondAttribute="trailing" id="Bb8-M6-loC"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leadingMargin" id="Ky5-4o-xOI"/>
+                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="leading" secondItem="uEs-C5-VLA" secondAttribute="leading" id="LtW-wr-fmq"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="Hlc-wA-QFt" secondAttribute="trailingMargin" id="PRt-F1-Tj8"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="4aj-nE-0Hm" secondAttribute="trailing" id="PkS-PK-rWx"/>
+                    <constraint firstItem="X8c-ek-Gke" firstAttribute="centerX" secondItem="acv-ts-YVT" secondAttribute="centerX" id="QPh-cV-HRn"/>
+                    <constraint firstItem="4aj-nE-0Hm" firstAttribute="top" secondItem="acv-ts-YVT" secondAttribute="bottom" constant="8" symbolic="YES" id="Y5w-uK-1cQ"/>
+                    <constraint firstItem="uEs-C5-VLA" firstAttribute="top" secondItem="4aj-nE-0Hm" secondAttribute="bottom" constant="8" symbolic="YES" id="Zqf-ka-NL2"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="4aj-nE-0Hm" secondAttribute="leading" id="hBc-Uo-win"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="X8c-ek-Gke" secondAttribute="bottom" constant="8" symbolic="YES" id="rBB-J2-mNd"/>
+                    <constraint firstItem="X8c-ek-Gke" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="topMargin" id="yZD-Xg-e0N"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="acitionTitleLabel" destination="acv-ts-YVT" id="3ES-9a-z4K"/>

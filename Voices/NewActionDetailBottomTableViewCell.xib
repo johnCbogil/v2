@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,19 +19,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="231.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Take Action" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrg-UK-i1p">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take Action" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrg-UK-i1p">
                         <rect key="frame" x="8" y="8" width="359" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7kR-cD-Y9a">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7kR-cD-Y9a">
                         <rect key="frame" x="8" y="37" width="359" height="187"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </tableView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Zrg-UK-i1p" firstAttribute="trailing" secondItem="7kR-cD-Y9a" secondAttribute="trailing" id="72S-bn-1Vf"/>
+                    <constraint firstItem="Zrg-UK-i1p" firstAttribute="top" secondItem="FSB-gu-sCg" secondAttribute="topMargin" id="MQb-ji-B1E"/>
+                    <constraint firstItem="Zrg-UK-i1p" firstAttribute="leading" secondItem="7kR-cD-Y9a" secondAttribute="leading" id="aV6-hW-c7P"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="7kR-cD-Y9a" secondAttribute="bottom" constant="-0.5" id="cW6-nu-m43"/>
+                    <constraint firstItem="Zrg-UK-i1p" firstAttribute="trailing" secondItem="FSB-gu-sCg" secondAttribute="trailingMargin" id="ceN-7F-YXx"/>
+                    <constraint firstItem="Zrg-UK-i1p" firstAttribute="leading" secondItem="FSB-gu-sCg" secondAttribute="leadingMargin" id="mad-9I-aZa"/>
+                    <constraint firstItem="7kR-cD-Y9a" firstAttribute="top" secondItem="Zrg-UK-i1p" secondAttribute="bottom" constant="8" symbolic="YES" id="vsv-x9-BIS"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="tableView" destination="7kR-cD-Y9a" id="B4t-2m-XnI"/>
