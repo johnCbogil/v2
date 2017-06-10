@@ -72,7 +72,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="acitionTitleLabel" destination="acv-ts-YVT" id="3ES-9a-z4K"/>
+                <outlet property="actionTitleLabel" destination="acv-ts-YVT" id="dFz-Ju-YGR"/>
                 <outlet property="descriptionTextView" destination="4aj-nE-0Hm" id="eSa-Sp-DVh"/>
                 <outlet property="expandButton" destination="uEs-C5-VLA" id="Q5v-gP-Uqd"/>
                 <outlet property="groupImageButton" destination="L2r-80-qcc" id="imQ-vZ-4aU"/>

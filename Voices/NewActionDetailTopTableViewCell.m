@@ -11,7 +11,7 @@
 
 @interface NewActionDetailTopTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *acitionTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UIButton *expandButton;
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
@@ -28,8 +28,10 @@
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
     
     [self fetchGroupLogoForImageURL:group.groupImageURL];
-    self.acitionTitleLabel.text = action.title;
+    self.actionTitleLabel.text = action.title;
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
     self.descriptionTextView.text = action.body;
+    self.descriptionTextView.editable = NO;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {
