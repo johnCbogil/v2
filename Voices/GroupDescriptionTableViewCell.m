@@ -23,7 +23,6 @@
     [super awakeFromNib];
     // Initialization code
     self.arrowImage.tintColor = [UIColor voicesOrange];
-
 }
 
 #pragma mark - set up textview

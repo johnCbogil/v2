@@ -15,14 +15,26 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UIButton *expandButton;
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
+@property (nonatomic)BOOL isDescriptionExpanded;
 
 @end
+
+// TODO: MAKE SURE ACTION TITLE HEIGHT IS DYNAMIC
+// TODO: SET FONTS FOR EVERYTHING
+// TODO: IMPLEMENT DYNAMIC TEXTVIEW HEIGHT
+
 
 @implementation NewActionDetailTopTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
+    self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
+    self.descriptionTextView.backgroundColor = [UIColor whiteColor];
+    self.expandButton.backgroundColor = [UIColor whiteColor];
+    [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
+    [self.expandButton setTitle:nil forState:UIControlStateNormal];
+    self.expandButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
@@ -30,8 +42,11 @@
     [self fetchGroupLogoForImageURL:group.groupImageURL];
     self.actionTitleLabel.text = action.title;
     self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.actionTitleLabel.numberOfLines = 0;
     self.descriptionTextView.text = action.body;
+    self.descriptionTextView.font = [UIFont voicesFontWithSize:17];
     self.descriptionTextView.editable = NO;
+    self.descriptionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {
