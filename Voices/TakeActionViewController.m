@@ -177,9 +177,9 @@
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
-//    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
-//    actionDetailViewController.group = currentGroup;
+    actionDetailViewController.group = currentGroup;
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
 

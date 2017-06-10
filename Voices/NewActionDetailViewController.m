@@ -22,6 +22,8 @@
     [super viewDidLoad];
     
     [self configureTableView];
+    self.title = self.group.name;
+
 }
 
 - (void)configureTableView {
@@ -47,6 +49,7 @@
     
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
+        [cell initWithAction:self.action andGroup:self.group];
         return cell;
     }
     else {
