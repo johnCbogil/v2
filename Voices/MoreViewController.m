@@ -10,6 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "STPopupController.h"
 #import <Instabug/Instabug.h>
+#import "SearchViewController.h"
 
 @interface MoreViewController ()
 
@@ -27,8 +28,17 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
-    self.choiceArray = [[NSArray alloc] initWithObjects:@"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects:@"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"Your ideas make Voices better.", nil];
+    self.choiceArray = [[NSArray alloc] initWithObjects: @"Edit Home Address", @"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Home", @"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"Your ideas make Voices better.", nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
+}
+
+- (void)reloadAddressCell {
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0] ;
+    [self.moreTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -91,6 +101,14 @@
     cell.textLabel.font = [UIFont voicesBoldFontWithSize:20];
     cell.detailTextLabel.font = [UIFont voicesFontWithSize:14];
     
+    if (indexPath.row == 0) {
+        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+        if (!homeAddress.length) {
+            homeAddress = @"Home not set yet.";
+        }
+        cell.detailTextLabel.text = homeAddress;
+    }
+    
     return cell;
 }
 
@@ -101,21 +119,39 @@
     IssueSurveyViewController *issueSurveyVC = [[IssueSurveyViewController alloc] init];
     switch ([indexPath row]) {
         case 0:
-            [self presentProTipsViewController];
+            [self presentSearchViewController];
             break;
         case 1:
-            [self rateApp];
+            [self presentProTipsViewController];
             break;
         case 2:
+            [self rateApp];
+            break;
+        case 3:
             issueSurveyVC.urlString = @"https://goo.gl/forms/m9Ux4UJ5MAJmuZyz1";
             [issueSurveyVC.navigationItem setTitle:@"Issue Survey"];
             [self.navigationController pushViewController:issueSurveyVC animated:YES];
             break;
-        case 3:
+        case 4:
             [Instabug invoke];
         default:
             break;
     }
+}
+
+- (void)presentSearchViewController {
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    searchViewController.isHomeAddressVC = YES;
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (homeAddress.length > 0) {
+        searchViewController.title = @"Edit Home Address";
+    }
+    else {
+        searchViewController.title = @"Add Home Address";
+    }
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
 - (void)presentProTipsViewController {
@@ -130,12 +166,6 @@
     popupController.transitionStyle = STPopupTransitionStyleFade;
     [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
     [popupController presentInViewController:self];
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

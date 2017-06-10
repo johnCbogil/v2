@@ -62,7 +62,7 @@
             NSLog(@"%@",address);
             if (self.isHomeAddressVC) {
                 [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadActionDetailTableView" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
             }
         }
     }];
