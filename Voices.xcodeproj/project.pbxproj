@@ -16,9 +16,7 @@
 		52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 52361C9C1D3076ED00589827 /* PolicyPosition.m */; };
 		524672671EEC494C000A7484 /* NewActionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524672661EEC494C000A7484 /* NewActionDetailViewController.m */; };
 		5246726A1EEC49BA000A7484 /* NewActionDetailTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524672691EEC49BA000A7484 /* NewActionDetailTopTableViewCell.m */; };
-		5246726D1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5246726C1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.m */; };
 		5246726F1EEC49D6000A7484 /* NewActionDetailTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5246726E1EEC49D6000A7484 /* NewActionDetailTopTableViewCell.xib */; };
-		524672711EEC49E5000A7484 /* NewActionDetailBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524672701EEC49E5000A7484 /* NewActionDetailBottomTableViewCell.xib */; };
 		524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */ = {isa = PBXBuildFile; fileRef = 524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */; };
 		524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524FF1E01D14ECA600C4BE89 /* TakeActionViewController.m */; };
 		525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525306611CC8571800982CC8 /* ListOfGroupsViewController.m */; };
@@ -140,10 +138,7 @@
 		524672661EEC494C000A7484 /* NewActionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailViewController.m; sourceTree = "<group>"; };
 		524672681EEC49BA000A7484 /* NewActionDetailTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailTopTableViewCell.h; sourceTree = "<group>"; };
 		524672691EEC49BA000A7484 /* NewActionDetailTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailTopTableViewCell.m; sourceTree = "<group>"; };
-		5246726B1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewActionDetailBottomTableViewCell.h; sourceTree = "<group>"; };
-		5246726C1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewActionDetailBottomTableViewCell.m; sourceTree = "<group>"; };
 		5246726E1EEC49D6000A7484 /* NewActionDetailTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewActionDetailTopTableViewCell.xib; sourceTree = "<group>"; };
-		524672701EEC49E5000A7484 /* NewActionDetailBottomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewActionDetailBottomTableViewCell.xib; sourceTree = "<group>"; };
 		524B15B11C7E76A7003B4372 /* CouncilDistrictsJSON.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = CouncilDistrictsJSON.zip; sourceTree = "<group>"; };
 		524FF1DF1D14ECA600C4BE89 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
 		524FF1E01D14ECA600C4BE89 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
@@ -501,10 +496,7 @@
 				524672661EEC494C000A7484 /* NewActionDetailViewController.m */,
 				524672681EEC49BA000A7484 /* NewActionDetailTopTableViewCell.h */,
 				524672691EEC49BA000A7484 /* NewActionDetailTopTableViewCell.m */,
-				5246726B1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.h */,
-				5246726C1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.m */,
 				5246726E1EEC49D6000A7484 /* NewActionDetailTopTableViewCell.xib */,
-				524672701EEC49E5000A7484 /* NewActionDetailBottomTableViewCell.xib */,
 			);
 			name = TakeActionTab;
 			sourceTree = "<group>";
@@ -793,7 +785,6 @@
 			files = (
 				52FECFCF1E889F8000847E7A /* ActionDetailMiddleTableViewCell.xib in Resources */,
 				5261CF691D14EE98007B122B /* TakeActionViewController.h in Resources */,
-				524672711EEC49E5000A7484 /* NewActionDetailBottomTableViewCell.xib in Resources */,
 				E860E0561E8AB7C300055D39 /* AboutViewController.xib in Resources */,
 				E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
@@ -995,7 +986,6 @@
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
 				52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */,
 				9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */,
-				5246726D1EEC49C6000A7484 /* NewActionDetailBottomTableViewCell.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				526309F91EBE19F4005F189D /* AddAddressCollectionViewCell.m in Sources */,
 				52089CEA1E80B3E900A32984 /* ActionDetailViewController.m in Sources */,

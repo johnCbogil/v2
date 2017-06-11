@@ -8,14 +8,18 @@
 
 #import "NewActionDetailViewController.h"
 #import "NewActionDetailTopTableViewCell.h"
-#import "NewActionDetailBottomTableViewCell.h"
+#import "RepTableViewCell.h"
+#import "RepsManager.h"
 
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *listOfReps;
 
 @end
 
+// TODO: ONLY RELOAD NECESSARY CELL
+// TODO:
 @implementation NewActionDetailViewController
 
 - (void)viewDidLoad {
@@ -24,6 +28,15 @@
     [self configureTableView];
     self.title = self.group.name;
     
+    if (self.action.level == 0) {
+        self.listOfReps = [RepsManager sharedInstance].fedReps;
+    }
+    else if (self.action.level == 1) {
+        self.listOfReps = [RepsManager sharedInstance].stateReps;
+    }
+    else if (self.action.level == 2) {
+        self.listOfReps = [RepsManager sharedInstance].localReps;
+    }
 }
 
 - (void)configureTableView {
@@ -32,12 +45,9 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailBottomTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailBottomTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    self.tableView.estimatedRowHeight = 150.f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.tableView.allowsSelection = NO;
 }
@@ -49,7 +59,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 2;
+    return self.listOfReps.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -57,11 +67,17 @@
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
+        self.tableView.estimatedRowHeight = 150;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         cell.delegate = self;
         return cell;
     }
     else {
-        NewActionDetailBottomTableViewCell *cell = (NewActionDetailBottomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailBottomTableViewCell" forIndexPath:indexPath];
+        
+        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
+        [cell initWithRep:self.listOfReps[indexPath.row-1]];
+        self.tableView.rowHeight = 140;
+
         return cell;
     }
 }
