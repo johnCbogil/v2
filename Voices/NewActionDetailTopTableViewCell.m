@@ -19,9 +19,8 @@
 
 @end
 
-// TODO: MAKE SURE ACTION TITLE HEIGHT IS DYNAMIC
 // TODO: SET FONTS FOR EVERYTHING
-// TODO: IMPLEMENT DYNAMIC TEXTVIEW HEIGHT
+// TODO: CONSTRAINTS ARENT PROPER
 
 
 @implementation NewActionDetailTopTableViewCell
@@ -34,6 +33,7 @@
     [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
     [self.expandButton setTitle:nil forState:UIControlStateNormal];
     self.expandButton.tintColor = [UIColor voicesOrange];
+    self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
 
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
@@ -83,18 +83,19 @@
     }else{
         [self contractTextView];
     }
-//    [self.expandingCellDelegate expandButtonDidPress:self];
     [self.delegate expandActionDescription:self];
 }
 
 - (void)expandTextView {
     self.isDescriptionExpanded = true;
     [self maxLines];
+    [self.expandButton setImage:[UIImage imageNamed:@"upArrow2"] forState:UIControlStateNormal];
 }
 
 - (void)contractTextView {
     self.isDescriptionExpanded = false;
     [self maxLines];
+    [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
 }
 
 - (void)maxLines {

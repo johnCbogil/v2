@@ -39,7 +39,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="43" id="DkN-2x-YqC"/>
                         </constraints>
-                        <inset key="imageEdgeInsets" minX="168" minY="10" maxX="168" maxY="10"/>
+                        <inset key="imageEdgeInsets" minX="168" minY="0.0" maxX="168" maxY="20"/>
                         <state key="normal" image="downArrow2"/>
                         <connections>
                             <action selector="expandButtonDidPress:" destination="nj4-GP-w0A" eventType="touchUpInside" id="XBP-nI-qTj"/>
