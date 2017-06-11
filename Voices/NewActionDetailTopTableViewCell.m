@@ -28,14 +28,22 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
+    [self configureActionTitleLabel];
+    [self configureExpandButton];
+    self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
+}
+
+- (void)configureActionTitleLabel {
     self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)configureExpandButton {
+    
     self.expandButton.backgroundColor = [UIColor whiteColor];
     [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
     [self.expandButton setTitle:nil forState:UIControlStateNormal];
     self.expandButton.tintColor = [UIColor voicesOrange];
-    self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
-
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
     
     [self fetchGroupLogoForImageURL:group.groupImageURL];
