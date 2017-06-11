@@ -30,7 +30,6 @@
     [super awakeFromNib];
 
     self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
-    self.descriptionTextView.backgroundColor = [UIColor whiteColor];
     self.expandButton.backgroundColor = [UIColor whiteColor];
     [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
     [self.expandButton setTitle:nil forState:UIControlStateNormal];
@@ -40,13 +39,20 @@
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
     
     [self fetchGroupLogoForImageURL:group.groupImageURL];
+    [self configureDescriptionTextViewWithText:action.body];
     self.actionTitleLabel.text = action.title;
     self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
     self.actionTitleLabel.numberOfLines = 0;
-    self.descriptionTextView.text = action.body;
+}
+
+- (void)configureDescriptionTextViewWithText:(NSString *)text {
+    
+    self.descriptionTextView.backgroundColor = [UIColor whiteColor];
+    self.descriptionTextView.text = text;
     self.descriptionTextView.font = [UIFont voicesFontWithSize:17];
     self.descriptionTextView.editable = NO;
     self.descriptionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.descriptionTextView.scrollEnabled = NO;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {
@@ -71,7 +77,34 @@
 }
 
 - (IBAction)expandButtonDidPress:(id)sender {
+    
+    if(self.isDescriptionExpanded == false){
+        [self expandTextView];
+    }else{
+        [self contractTextView];
+    }
+//    [self.expandingCellDelegate expandButtonDidPress:self];
+    [self.delegate expandActionDescription:self];
 }
+
+- (void)expandTextView {
+    self.isDescriptionExpanded = true;
+    [self maxLines];
+}
+
+- (void)contractTextView {
+    self.isDescriptionExpanded = false;
+    [self maxLines];
+}
+
+- (void)maxLines {
+    if(self.isDescriptionExpanded == false){
+        self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
+    }else{
+        self.descriptionTextView.textContainer.maximumNumberOfLines = 0;
+    }
+}
+
 - (IBAction)groupImageButtonDidPress:(id)sender {
 }
 

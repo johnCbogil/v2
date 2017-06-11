@@ -10,7 +10,7 @@
 #import "NewActionDetailTopTableViewCell.h"
 #import "NewActionDetailBottomTableViewCell.h"
 
-@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -23,6 +23,7 @@
     
     [self configureTableView];
     self.title = self.group.name;
+    
 }
 
 - (void)configureTableView {
@@ -41,6 +42,11 @@
     self.tableView.allowsSelection = NO;
 }
 
+- (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
+    
+    [self.tableView reloadData];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return 2;
@@ -51,6 +57,7 @@
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
+        cell.delegate = self;
         return cell;
     }
     else {
