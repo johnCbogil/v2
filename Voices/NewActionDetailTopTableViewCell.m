@@ -19,10 +19,6 @@
 
 @end
 
-// TODO: SET FONTS FOR EVERYTHING
-// TODO: CONSTRAINTS ARENT PROPER
-
-
 @implementation NewActionDetailTopTableViewCell
 
 - (void)awakeFromNib {
@@ -33,8 +29,18 @@
     self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
 
+- (void)initWithAction:(Action *)action andGroup:(Group *)group {
+    
+    [self fetchGroupLogoForImageURL:group.groupImageURL];
+    [self configureDescriptionTextViewWithText:action.body];
+    self.actionTitleLabel.text = action.title;
+}
+
 - (void)configureActionTitleLabel {
+    
     self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.actionTitleLabel.numberOfLines = 0;
 }
 
 - (void)configureExpandButton {
@@ -43,14 +49,6 @@
     [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
     [self.expandButton setTitle:nil forState:UIControlStateNormal];
     self.expandButton.tintColor = [UIColor voicesOrange];
-}
-- (void)initWithAction:(Action *)action andGroup:(Group *)group {
-    
-    [self fetchGroupLogoForImageURL:group.groupImageURL];
-    [self configureDescriptionTextViewWithText:action.body];
-    self.actionTitleLabel.text = action.title;
-    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
-    self.actionTitleLabel.numberOfLines = 0;
 }
 
 - (void)configureDescriptionTextViewWithText:(NSString *)text {

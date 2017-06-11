@@ -72,9 +72,6 @@
                     <constraint firstItem="uEs-C5-VLA" firstAttribute="top" secondItem="4aj-nE-0Hm" secondAttribute="bottom" id="oRP-Eu-Q8J"/>
                 </constraints>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="uEs-C5-VLA" secondAttribute="bottom" id="wsG-CG-W0p"/>
-            </constraints>
             <connections>
                 <outlet property="actionTitleLabel" destination="acv-ts-YVT" id="dFz-Ju-YGR"/>
                 <outlet property="descriptionTextView" destination="4aj-nE-0Hm" id="eSa-Sp-DVh"/>
