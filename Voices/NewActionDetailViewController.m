@@ -54,7 +54,8 @@
 
 - (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
     
-    [self.tableView reloadData];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0] ;
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:NO];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -77,7 +78,6 @@
         RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
         [cell initWithRep:self.listOfReps[indexPath.row-1]];
         self.tableView.rowHeight = 140;
-
         return cell;
     }
 }
