@@ -9,7 +9,7 @@
 #import "NewActionDetailViewController.h"
 #import "NewActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
-#import "EmptyStateTableViewCell.h"
+#import "NewActionDetailEmptyRepTableViewCell.h"
 #import "RepsManager.h"
 
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
@@ -47,7 +47,9 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:kEmptyStateTableViewCell bundle:nil]forCellReuseIdentifier:kEmptyStateTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailEmptyRepTableViewCell"];
+
+    
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -87,7 +89,8 @@
             return cell;
         }
         else {
-            EmptyStateTableViewCell *cell = (EmptyStateTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kEmptyStateTableViewCell forIndexPath:indexPath];
+            NewActionDetailEmptyRepTableViewCell *cell = (NewActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+            self.tableView.rowHeight = 250;
             return cell;
         }
     }

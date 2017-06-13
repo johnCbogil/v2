@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *expandButton;
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
 @property (nonatomic)BOOL isDescriptionExpanded;
+@property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
 
 @end
 
@@ -26,6 +27,8 @@
 
     [self configureActionTitleLabel];
     [self configureExpandButton];
+    self.takeActionLabel.text = @"Take Action";
+    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:19];
     self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
 
