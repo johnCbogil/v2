@@ -49,11 +49,13 @@
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailEmptyRepTableViewCell"];
 
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.tableView.allowsSelection = NO;
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
@@ -74,7 +76,7 @@
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
-        self.tableView.estimatedRowHeight = 150;
+        self.tableView.estimatedRowHeight = 350;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         cell.delegate = self;
         return cell;

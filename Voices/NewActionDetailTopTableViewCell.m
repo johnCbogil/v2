@@ -27,8 +27,7 @@
 
     [self configureActionTitleLabel];
     [self configureExpandButton];
-    self.takeActionLabel.text = @"Take Action";
-    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:19];
+    [self configureTakeActionLabel];
     self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
 
@@ -37,6 +36,12 @@
     [self fetchGroupLogoForImageURL:group.groupImageURL];
     [self configureDescriptionTextViewWithText:action.body];
     self.actionTitleLabel.text = action.title;
+}
+
+- (void)configureTakeActionLabel {
+    
+    self.takeActionLabel.text = @"Take Action";
+    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:19];
 }
 
 - (void)configureActionTitleLabel {
@@ -96,18 +101,21 @@
 }
 
 - (void)expandTextView {
+    
     self.isDescriptionExpanded = true;
     [self maxLines];
     [self.expandButton setImage:[UIImage imageNamed:@"upArrow2"] forState:UIControlStateNormal];
 }
 
 - (void)contractTextView {
+    
     self.isDescriptionExpanded = false;
     [self maxLines];
     [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
 }
 
 - (void)maxLines {
+    
     if(self.isDescriptionExpanded == false){
         self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
     }else{
