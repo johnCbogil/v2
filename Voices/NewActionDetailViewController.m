@@ -9,6 +9,7 @@
 #import "NewActionDetailViewController.h"
 #import "NewActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
+#import "EmptyStateTableViewCell.h"
 #import "RepsManager.h"
 
 @interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
@@ -46,6 +47,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:kEmptyStateTableViewCell bundle:nil]forCellReuseIdentifier:kEmptyStateTableViewCell];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -59,7 +61,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.listOfReps.count + 1;
+    if (self.listOfReps.count) {
+        return self.listOfReps.count + 1;
+    }
+    else return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,10 +79,17 @@
     }
     else {
         
-        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
-        [cell initWithRep:self.listOfReps[indexPath.row-1]];
-        self.tableView.rowHeight = 140;
-        return cell;
+        if (self.listOfReps.count) {
+        
+            RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
+            [cell initWithRep:self.listOfReps[indexPath.row-1]];
+            self.tableView.rowHeight = 140;
+            return cell;
+        }
+        else {
+            EmptyStateTableViewCell *cell = (EmptyStateTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kEmptyStateTableViewCell forIndexPath:indexPath];
+            return cell;
+        }
     }
 }
 
