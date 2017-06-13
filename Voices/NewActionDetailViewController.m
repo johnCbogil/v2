@@ -54,8 +54,7 @@
 
 - (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0] ;
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:NO];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
