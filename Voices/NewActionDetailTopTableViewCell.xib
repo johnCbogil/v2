@@ -71,15 +71,14 @@
                     <constraint firstItem="acv-ts-YVT" firstAttribute="trailing" secondItem="Hlc-wA-QFt" secondAttribute="trailingMargin" id="FSL-LO-UpO"/>
                     <constraint firstAttribute="trailing" secondItem="uEs-C5-VLA" secondAttribute="trailing" constant="8" id="HS4-kc-lRe"/>
                     <constraint firstItem="uEs-C5-VLA" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="8" id="IXN-rZ-9bx"/>
-                    <constraint firstAttribute="trailing" secondItem="L2r-80-qcc" secondAttribute="trailing" constant="137" id="IsR-Nf-K21"/>
-                    <constraint firstAttribute="bottom" secondItem="2RG-h4-Xsc" secondAttribute="bottom" constant="25.5" id="ZDq-TX-Ej5"/>
+                    <constraint firstAttribute="bottom" secondItem="2RG-h4-Xsc" secondAttribute="bottom" priority="750" constant="25.5" id="ZDq-TX-Ej5"/>
                     <constraint firstItem="L2r-80-qcc" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="topMargin" id="fwX-L6-ZUu"/>
                     <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="L2r-80-qcc" secondAttribute="bottom" constant="8" symbolic="YES" id="gcl-8Z-UbW"/>
                     <constraint firstItem="uEs-C5-VLA" firstAttribute="top" secondItem="4aj-nE-0Hm" secondAttribute="bottom" constant="-1" id="hca-b1-JNR"/>
                     <constraint firstAttribute="trailing" secondItem="2RG-h4-Xsc" secondAttribute="trailing" constant="8" id="o2N-EA-UyV"/>
-                    <constraint firstItem="L2r-80-qcc" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="138" id="o4L-TS-Z3A"/>
                     <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leadingMargin" id="oF8-zI-3dy"/>
                     <constraint firstAttribute="trailing" secondItem="4aj-nE-0Hm" secondAttribute="trailing" constant="8" id="rhB-tV-aex"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="centerX" secondItem="Hlc-wA-QFt" secondAttribute="centerX" id="w5N-Zt-SLE"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
