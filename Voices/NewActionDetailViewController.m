@@ -76,7 +76,7 @@
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
-        self.tableView.estimatedRowHeight = 500;
+        self.tableView.estimatedRowHeight = 350;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         cell.delegate = self;
         return cell;
