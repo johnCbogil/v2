@@ -73,6 +73,7 @@
                 <outlet property="contactsView" destination="4Qj-e2-LYP" id="bf6-f1-B5H"/>
                 <outlet property="name" destination="cJk-NX-ZHW" id="9ba-RQ-WQ5"/>
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
+                <outlet property="photoHeightConstraint" destination="XIf-mp-x3A" id="bhV-Gh-17K"/>
             </connections>
             <point key="canvasLocation" x="498" y="563"/>
         </tableViewCell>

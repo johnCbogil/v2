@@ -11,5 +11,6 @@
 @interface RepTableViewCell : UITableViewCell
 
 - (void)initWithRep:(id)rep;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoHeightConstraint;
 
 @end
