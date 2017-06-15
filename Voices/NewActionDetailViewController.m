@@ -19,8 +19,8 @@
 
 @end
 
-// TODO: ONLY RELOAD NECESSARY CELL
-// TODO:
+// TODO: rep cell sizes are broken on 5s
+
 @implementation NewActionDetailViewController
 
 - (void)viewDidLoad {
@@ -54,6 +54,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.tableView.allowsSelection = NO;
+    
     self.tableView.estimatedRowHeight = 300.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
@@ -93,6 +94,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (self.listOfReps.count && indexPath.row > 0) {
+        return 140.0f;
+    }
+    else {
+        return 300.0f;
+    }
 }
 
 @end
