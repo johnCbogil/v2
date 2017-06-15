@@ -7,6 +7,7 @@
 //
 
 #import "NewActionDetailViewController.h"
+#import "SearchViewController.h"
 #import "NewActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
 #import "NewActionDetailEmptyRepTableViewCell.h"
@@ -20,6 +21,7 @@
 @end
 
 // TODO: rep cell sizes are broken on 5s
+// TODO: Repcell size breaks when level is not 0, has something to do with the image
 
 @implementation NewActionDetailViewController
 
@@ -38,6 +40,9 @@
     else if (self.action.level == 2) {
         self.listOfReps = [RepsManager sharedInstance].localReps;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
 }
 
 - (void)configureTableView {
@@ -48,7 +53,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailEmptyRepTableViewCell"];
-
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -57,6 +62,11 @@
     
     self.tableView.estimatedRowHeight = 300.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+- (void)reloadTableViewFromNotification {
+    
+    [self.tableView reloadData];
 }
 
 - (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
@@ -97,7 +107,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     if (self.listOfReps.count && indexPath.row > 0) {
         return 140.0f;
     }
@@ -106,4 +116,13 @@
     }
 }
 
+- (void)presentSearchViewController {
+    
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    searchViewController.isHomeAddressVC = YES;
+    searchViewController.title = @"Add Home Address";
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:searchViewController animated:YES];
+}
 @end

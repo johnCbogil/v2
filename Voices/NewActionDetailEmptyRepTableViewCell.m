@@ -7,18 +7,35 @@
 //
 
 #import "NewActionDetailEmptyRepTableViewCell.h"
+#import "VoicesUtilities.h"
+
+@interface NewActionDetailEmptyRepTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *addAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *privacyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addAddressButton;
+
+@end
 
 @implementation NewActionDetailEmptyRepTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
+    self.addAddressLabel.font = [UIFont voicesFontWithSize:17];
+    self.emojiLabel.font = [UIFont voicesFontWithSize:60];
+    self.privacyLabel.font = [UIFont voicesFontWithSize:12];
+    self.addAddressButton.tintColor = [UIColor whiteColor];
+    self.addAddressButton.backgroundColor = [UIColor voicesOrange];
+    self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
+    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+    self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (IBAction)addAddressButtonDidPress:(id)sender {
 
-    // Configure the view for the selected state
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
 }
 
 @end

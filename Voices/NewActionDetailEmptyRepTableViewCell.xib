@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vTZ-kP-xdd" id="vKF-OJ-4fI">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="145.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your address to see your reps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJv-Hv-wRK">
@@ -40,6 +40,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyR-oX-kgf">
                         <rect key="frame" x="76" y="88" width="222" height="30"/>
                         <state key="normal" title="Add Address"/>
+                        <connections>
+                            <action selector="addAddressButtonDidPress:" destination="vTZ-kP-xdd" eventType="touchUpInside" id="9ag-Ms-ENc"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -58,6 +61,12 @@
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="leading" secondItem="ZZY-AH-aL4" secondAttribute="leading" id="ua4-ng-xa9"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="addAddressButton" destination="VyR-oX-kgf" id="XdX-1K-IxR"/>
+                <outlet property="addAddressLabel" destination="yJv-Hv-wRK" id="wWe-iF-FOC"/>
+                <outlet property="emojiLabel" destination="ZZY-AH-aL4" id="dPK-NX-BN8"/>
+                <outlet property="privacyLabel" destination="YiE-7d-9xc" id="sQn-wl-A7D"/>
+            </connections>
             <point key="canvasLocation" x="-103.5" y="14"/>
         </tableViewCell>
     </objects>
