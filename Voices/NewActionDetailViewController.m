@@ -54,7 +54,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.tableView.allowsSelection = NO;
-    
+    self.tableView.estimatedRowHeight = 300.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -76,25 +76,17 @@
     if (indexPath.row == 0) {
         NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
-        self.tableView.estimatedRowHeight = 350;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
         cell.delegate = self;
         return cell;
     }
+    else if (self.listOfReps.count) {
+        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
+        [cell initWithRep:self.listOfReps[indexPath.row-1]];
+        return cell;
+    }
     else {
-        
-        if (self.listOfReps.count) {
-        
-            RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
-            [cell initWithRep:self.listOfReps[indexPath.row-1]];
-            self.tableView.rowHeight = 140;
-            return cell;
-        }
-        else {
-            NewActionDetailEmptyRepTableViewCell *cell = (NewActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
-            self.tableView.rowHeight = 250;
-            return cell;
-        }
+        NewActionDetailEmptyRepTableViewCell *cell = (NewActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+        return cell;
     }
 }
 
@@ -102,4 +94,5 @@
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 @end
