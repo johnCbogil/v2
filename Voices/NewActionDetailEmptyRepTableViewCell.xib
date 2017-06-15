@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewActionDetailEmptyRepTableViewCell" id="vTZ-kP-xdd" customClass="NewActionDetailEmptyRepTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewActionDetailEmptyRepTableViewCell" rowHeight="146" id="vTZ-kP-xdd" customClass="NewActionDetailEmptyRepTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vTZ-kP-xdd" id="vKF-OJ-4fI">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your address to see your reps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJv-Hv-wRK">
@@ -47,17 +47,18 @@
                     <constraint firstItem="VyR-oX-kgf" firstAttribute="centerX" secondItem="vKF-OJ-4fI" secondAttribute="centerX" id="4T3-fz-Rab"/>
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="top" secondItem="vKF-OJ-4fI" secondAttribute="top" id="5D7-a2-dma"/>
                     <constraint firstItem="VyR-oX-kgf" firstAttribute="leading" secondItem="vKF-OJ-4fI" secondAttribute="leadingMargin" constant="68" id="6ZT-Dt-xKb"/>
-                    <constraint firstItem="YiE-7d-9xc" firstAttribute="leading" secondItem="vKF-OJ-4fI" secondAttribute="leadingMargin" constant="77" id="6gz-Yv-1rG"/>
-                    <constraint firstItem="YiE-7d-9xc" firstAttribute="top" secondItem="VyR-oX-kgf" secondAttribute="bottom" constant="8" symbolic="YES" id="DNM-MX-cDR"/>
                     <constraint firstItem="ZZY-AH-aL4" firstAttribute="centerX" secondItem="VyR-oX-kgf" secondAttribute="centerX" id="JIi-d5-GN2"/>
                     <constraint firstItem="ZZY-AH-aL4" firstAttribute="top" secondItem="yJv-Hv-wRK" secondAttribute="bottom" constant="8" symbolic="YES" id="RrE-cF-oDd"/>
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="trailing" secondItem="ZZY-AH-aL4" secondAttribute="trailing" id="ZKD-ND-r6u"/>
                     <constraint firstItem="VyR-oX-kgf" firstAttribute="top" secondItem="ZZY-AH-aL4" secondAttribute="bottom" constant="8" symbolic="YES" id="dzO-OT-c6J"/>
-                    <constraint firstItem="VyR-oX-kgf" firstAttribute="centerX" secondItem="YiE-7d-9xc" secondAttribute="centerX" id="sLE-eg-Zi6"/>
+                    <constraint firstItem="YiE-7d-9xc" firstAttribute="centerX" secondItem="VyR-oX-kgf" secondAttribute="centerX" id="eGS-Rd-aRI"/>
+                    <constraint firstItem="YiE-7d-9xc" firstAttribute="top" secondItem="VyR-oX-kgf" secondAttribute="bottom" constant="8" symbolic="YES" id="ixe-2Z-NKx"/>
+                    <constraint firstAttribute="bottom" secondItem="YiE-7d-9xc" secondAttribute="bottom" constant="9" id="nzH-n0-IoH"/>
+                    <constraint firstItem="YiE-7d-9xc" firstAttribute="leading" secondItem="vKF-OJ-4fI" secondAttribute="leadingMargin" constant="77" id="tiP-BX-gh5"/>
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="leading" secondItem="ZZY-AH-aL4" secondAttribute="leading" id="ua4-ng-xa9"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-103" y="66"/>
+            <point key="canvasLocation" x="-103.5" y="14"/>
         </tableViewCell>
     </objects>
 </document>
