@@ -21,7 +21,6 @@
 @end
 
 // TODO: rep cell sizes are broken on 5s
-// TODO: Repcell size breaks when level is not 0, has something to do with the image
 
 @implementation NewActionDetailViewController
 
