@@ -7,6 +7,7 @@
 //
 
 #import "NewActionDetailViewController.h"
+#import "STPopupController.h"
 #import "SearchViewController.h"
 #import "NewActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
@@ -33,6 +34,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
+    
 }
 
 - (void)configureDatasource{
@@ -76,6 +79,20 @@
 - (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
     
     [self.tableView reloadData];
+}
+
+- (void)presentScriptView {
+    
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    popupController.containerView.layer.cornerRadius = 10;
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    popupController.transitionStyle = STPopupTransitionStyleFade;
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+    [popupController presentInViewController:self];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

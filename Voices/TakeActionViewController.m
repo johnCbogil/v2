@@ -18,6 +18,7 @@
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
+#import "ScriptManager.h"
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -180,6 +181,7 @@
     actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row]];
     actionDetailViewController.group = currentGroup;
+    [ScriptManager sharedInstance].lastAction = [CurrentUser sharedInstance].listOfActions[indexPath.row];
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
 }
 
@@ -195,8 +197,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (self.selectedSegment == 0) {
-        
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
@@ -213,6 +215,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (self.selectedSegment == 0) {
         return NO;
     }
