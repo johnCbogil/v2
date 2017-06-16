@@ -29,6 +29,13 @@
     
     [self configureTableView];
     self.title = self.group.name;
+    [self configureDatasource];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+}
+
+- (void)configureDatasource{
     
     if (self.action.level == 0) {
         self.listOfReps = [RepsManager sharedInstance].fedReps;
@@ -39,9 +46,6 @@
     else if (self.action.level == 2) {
         self.listOfReps = [RepsManager sharedInstance].localReps;
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
 }
 
 - (void)configureTableView {
@@ -65,6 +69,7 @@
 
 - (void)reloadTableViewFromNotification {
     
+    [self configureDatasource];
     [self.tableView reloadData];
 }
 
