@@ -37,11 +37,11 @@
 
     [self configureTableView];
     [self createActivityIndicator];
+    [self configureSegmentedControl];
 
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 
-    self.segmentControl.tintColor = [UIColor voicesOrange];
     self.isUserAuthInProgress = NO;
 }
 
@@ -81,6 +81,14 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50.f;
+}
+
+- (void)configureSegmentedControl {
+
+    self.segmentControl.tintColor = [UIColor voicesOrange];
+    [self.segmentControl setTitle:@"Action Feed" forSegmentAtIndex:0];
+    [self.segmentControl setTitle:@"My Groups" forSegmentAtIndex:1];
+    
 }
 
 - (void)createActivityIndicator {
