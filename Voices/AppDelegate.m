@@ -39,8 +39,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
-    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
-    
     [Instabug startWithToken:@"8f3391817b122bd6f52f3ad62f608c1b" invocationEvent:IBGInvocationEventNone];
     [Instabug setPromptOptionsEnabledWithBug:NO feedback:NO chat:YES];
 
