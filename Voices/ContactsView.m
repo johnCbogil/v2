@@ -11,6 +11,7 @@
 #import "ReportingManager.h"
 #import "Representative.h"
 #import "ScriptManager.h"
+#import "STPopupController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -73,23 +74,23 @@ NS_ASSUME_NONNULL_BEGIN
         self.callButtonTappedBlock();
         return;
     }
-    
-    if ([self.representative.phone isKindOfClass:[NSString class]] && self.representative.phone.length > 0) {
-        NSString *confirmCallMessage;
+    if (self.representative.phone.length) {
+        NSString *confirmCallMessage = @"A call script will appear when you begin calling. Would you like to preview it or begin calling?";
+        NSString *title;
         if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@, do you know what to say?", self.representative.nickname];
+            title =  [NSString stringWithFormat:@"Call %@", self.representative.nickname];
         }
         else {
-            confirmCallMessage =  [NSString stringWithFormat:@"You're about to call %@ %@, do you know what to say?", self.representative.firstName, self.representative.lastName];
+            title =  [NSString stringWithFormat:@"Call %@ %@", self.representative.firstName, self.representative.lastName];
         }
         
-        UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@ %@ %@", self.representative.title,self.representative.firstName, self.representative.lastName]  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
-        //button0
-        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentInfoViewController" object:nil];
+        UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:title  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Preview" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [self presentScriptView];
+            
         }]];
-        //button1
-        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
             NSURL* callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
             if ([[UIApplication sharedApplication] canOpenURL:callUrl]) {
@@ -104,11 +105,35 @@ NS_ASSUME_NONNULL_BEGIN
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:nil];
     }
     else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This legislator hasn't given us their phone number, try tweeting at them instead." preferredStyle:UIAlertControllerStyleAlert];
+        
+        NSString *message;
+        if (self.representative) {
+            message = @"This rep hasn't given us their phone number, try tweeting at them instead.";
+        }
+        else {
+            message = @"Please select a rep first.";
+        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
+
+- (void)presentScriptView {
+    
+    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+    popupController.containerView.layer.cornerRadius = 10;
+    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    popupController.transitionStyle = STPopupTransitionStyleFade;
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+    [popupController presentInViewController:self];
+    
+}
+
 - (IBAction)emailButtonDidPress:(id)sender {
     
     if (self.emailButtonTappedBlock) {

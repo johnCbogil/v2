@@ -146,7 +146,6 @@
     [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
-
 #pragma mark - Presentation Controllers
 
 - (void)presentSearchViewController {

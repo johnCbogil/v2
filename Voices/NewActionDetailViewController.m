@@ -20,7 +20,7 @@
 
 @end
 
-// TODO: rep cell sizes are broken on 5s
+// TODO: Scripts
 
 @implementation NewActionDetailViewController
 
