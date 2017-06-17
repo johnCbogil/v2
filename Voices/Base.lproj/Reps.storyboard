@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -242,7 +242,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0Z-mA-55r" userLabel="ContainerView" customClass="ContactsView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0Z-mA-55r" userLabel="ContainerView" customClass="ActionView">
                                 <rect key="frame" x="42" y="180" width="236" height="80"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -312,7 +312,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="actionContainerView" destination="d0Z-mA-55r" id="7S9-hk-ifY"/>
-                        <outlet property="contactsView" destination="d0Z-mA-55r" id="y3a-Cc-3fQ"/>
+                        <outlet property="actionView" destination="d0Z-mA-55r" id="r4c-Nz-OuY"/>
                         <outlet property="nameLabel" destination="cwr-W5-oBt" id="YtJ-60-JSc"/>
                         <outlet property="partyStateLabel" destination="ghI-gr-c2T" id="HAO-as-uoH"/>
                         <outlet property="repImageView" destination="7Ba-nW-QDR" id="aTX-oT-7ab"/>

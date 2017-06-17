@@ -11,7 +11,7 @@
 #import "ScriptManager.h"
 #import "RepsNetworkManager.h"
 #import "WebViewController.h"
-#import "ContactsView.h"
+#import "ActionView.h"
 
 @interface RepDetailViewController() <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,7 +26,7 @@
 @property (strong, nonatomic) NSArray *topContributorsArray;
 @property (strong, nonatomic) NSArray *topIndustriesArray;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
-@property (weak, nonatomic) IBOutlet ContactsView *contactsView;
+@property (weak, nonatomic) IBOutlet ActionView *actionView;
 
 @end
 
@@ -43,7 +43,7 @@
     [self configureSegmentedControl];
     [self configureTopInfluencersButton];
     [self fetchTopContributors];
-    [self.contactsView configureWithRepresentative:self.representative];
+    [self.actionView configureWithRepresentative:self.representative];
 }
 
 - (void)configureTopInfluencersButton {

@@ -1,12 +1,12 @@
 //
-//  ContactsView.m
+//  ActionView
 //  Voices
 //
 //  Created by David Weissler on 5/29/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "ContactsView.h"
+#import "ActionView.h"
 
 #import "ReportingManager.h"
 #import "Representative.h"
@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactsView()
+@interface ActionView()
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@implementation ContactsView
+@implementation ActionView
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)commonInit {
     
-    [[NSBundle mainBundle]loadNibNamed:@"ContactsView" owner:self options:nil];
+    [[NSBundle mainBundle]loadNibNamed:@"ActionView" owner:self options:nil];
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
     self.backgroundColor = [UIColor whiteColor];

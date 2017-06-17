@@ -43,7 +43,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ContactsView" customClass="ContactsView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ActionView" customClass="ActionView">
                         <rect key="frame" x="116" y="51" width="236" height="80"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -70,7 +70,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contactsView" destination="4Qj-e2-LYP" id="bf6-f1-B5H"/>
+                <outlet property="actionView" destination="4Qj-e2-LYP" id="CRt-qT-RLf"/>
                 <outlet property="name" destination="cJk-NX-ZHW" id="9ba-RQ-WQ5"/>
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
                 <outlet property="photoHeightConstraint" destination="XIf-mp-x3A" id="bhV-Gh-17K"/>

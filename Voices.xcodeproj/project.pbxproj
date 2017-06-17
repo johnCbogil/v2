@@ -71,7 +71,7 @@
 		52F5C6FE1CEAB5460015801D /* CouncilMemberData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52F5C6FD1CEAB5460015801D /* CouncilMemberData.json */; };
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
-		611861611EDCCCEC007C317C /* ContactsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611861601EDCCCEC007C317C /* ContactsView.m */; };
+		611861611EDCCCEC007C317C /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611861601EDCCCEC007C317C /* ActionView.m */; };
 		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
@@ -80,7 +80,7 @@
 		7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */; };
 		7EBFD4181EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBFD4171EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m */; };
 		7EBFD41A1EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBFD4191EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib */; };
-		7EC234301EDDF74600EAA71E /* ContactsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC2342F1EDDF74600EAA71E /* ContactsView.xib */; };
+		7EC234301EDDF74600EAA71E /* ActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC2342F1EDDF74600EAA71E /* ActionView.xib */; };
 		7ED3E7CF1DFB431300C1391C /* ScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED3E7CE1DFB431300C1391C /* ScriptManager.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
@@ -217,8 +217,8 @@
 		52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		52FC68F91C37657000E29B7A /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
-		6118615F1EDCCCEC007C317C /* ContactsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsView.h; sourceTree = "<group>"; };
-		611861601EDCCCEC007C317C /* ContactsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsView.m; sourceTree = "<group>"; };
+		6118615F1EDCCCEC007C317C /* ActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionView.h; sourceTree = "<group>"; };
+		611861601EDCCCEC007C317C /* ActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionView.m; sourceTree = "<group>"; };
 		61DC8EA11D0660590086C070 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		61DC8EA21D0660590086C070 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		7E133DB51D53A50900F128CC /* EmptyRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyRepTableViewCell.h; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		7EBFD4161EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDetailEmptyRepTableViewCell.h; sourceTree = "<group>"; };
 		7EBFD4171EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailEmptyRepTableViewCell.m; sourceTree = "<group>"; };
 		7EBFD4191EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionDetailEmptyRepTableViewCell.xib; sourceTree = "<group>"; };
-		7EC2342F1EDDF74600EAA71E /* ContactsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsView.xib; sourceTree = "<group>"; };
+		7EC2342F1EDDF74600EAA71E /* ActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionView.xib; sourceTree = "<group>"; };
 		7ED3E7CD1DFB431300C1391C /* ScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptManager.h; sourceTree = "<group>"; };
 		7ED3E7CE1DFB431300C1391C /* ScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptManager.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -335,14 +335,15 @@
 		5264E8561E554EAC00C2DDD8 /* SharedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				7EC2342F1EDDF74600EAA71E /* ActionView.xib */,
 				52AD33961BE5CA2B00EC0468 /* Categories */,
 				5270C3B21EC49ADD00ACC43D /* VoicesUtilities.h */,
 				5270C3B31EC49ADD00ACC43D /* VoicesUtilities.m */,
 				52194F531E3C519400EBF461 /* DLog.h */,
 				52EEC2751E55376D00CE12AF /* WebViewController.h */,
 				52EEC2761E55376D00CE12AF /* WebViewController.m */,
-				6118615F1EDCCCEC007C317C /* ContactsView.h */,
-				611861601EDCCCEC007C317C /* ContactsView.m */,
+				6118615F1EDCCCEC007C317C /* ActionView.h */,
+				611861601EDCCCEC007C317C /* ActionView.m */,
 				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
 				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
 				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
@@ -474,14 +475,6 @@
 				7EEDF30F1CF8DABC006E0696 /* Model */,
 				7EEDF30B1CF8DA95006E0696 /* View */,
 				7EEDF30A1CF8DA87006E0696 /* Controller */,
-				524672651EEC494C000A7484 /* ActionDetailViewController.h */,
-				524672661EEC494C000A7484 /* ActionDetailViewController.m */,
-				524672681EEC49BA000A7484 /* ActionDetailTopTableViewCell.h */,
-				524672691EEC49BA000A7484 /* ActionDetailTopTableViewCell.m */,
-				5246726E1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib */,
-				7EBFD4161EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.h */,
-				7EBFD4171EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m */,
-				7EBFD4191EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib */,
 			);
 			name = TakeActionTab;
 			sourceTree = "<group>";
@@ -549,7 +542,6 @@
 				52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */,
 				52F31EDA1E5FA642008BCC2A /* ResultsTableViewCell.h */,
 				52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */,
-				7EC2342F1EDDF74600EAA71E /* ContactsView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -557,6 +549,8 @@
 		7EEDF30A1CF8DA87006E0696 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				524672651EEC494C000A7484 /* ActionDetailViewController.h */,
+				524672661EEC494C000A7484 /* ActionDetailViewController.m */,
 				524FF1DF1D14ECA600C4BE89 /* TakeActionViewController.h */,
 				524FF1E01D14ECA600C4BE89 /* TakeActionViewController.m */,
 				525306601CC8571800982CC8 /* ListOfGroupsViewController.h */,
@@ -572,6 +566,12 @@
 		7EEDF30B1CF8DA95006E0696 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7EBFD4161EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.h */,
+				7EBFD4171EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m */,
+				7EBFD4191EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib */,
+				524672681EEC49BA000A7484 /* ActionDetailTopTableViewCell.h */,
+				524672691EEC49BA000A7484 /* ActionDetailTopTableViewCell.m */,
+				5246726E1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib */,
 				52D892981CC463C2004FBEA3 /* TakeAction.storyboard */,
 				A775E3681E52142D00CFAF27 /* GroupFollowTableViewCell.h */,
 				A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */,
@@ -775,7 +775,7 @@
 				A74FA2391EB84BBA00C68D0E /* EmptyStateTableViewCell.xib in Resources */,
 				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
-				7EC234301EDDF74600EAA71E /* ContactsView.xib in Resources */,
+				7EC234301EDDF74600EAA71E /* ActionView.xib in Resources */,
 				5246726F1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib in Resources */,
 				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
 				5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */,
@@ -965,7 +965,7 @@
 				52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */,
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
-				611861611EDCCCEC007C317C /* ContactsView.m in Sources */,
+				611861611EDCCCEC007C317C /* ActionView.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ContactsView.h
+//  ActionView.h
 //  Voices
 //
 //  Created by David Weissler on 5/29/17.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactsView : UIView
+@interface ActionView : UIView
 
 @property (nonatomic, copy, nullable) void (^callButtonTappedBlock)(void);
 @property (nonatomic, copy, nullable) void (^emailButtonTappedBlock)(void);
