@@ -126,42 +126,9 @@
             <point key="canvasLocation" x="1968" y="-317"/>
         </scene>
         <!--Action Detail View Controller-->
-        <scene sceneID="sYR-t2-CYL">
-            <objects>
-                <viewController storyboardIdentifier="ActionDetailViewController" id="am9-Ph-zjg" customClass="ActionDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yvy-Nh-nIB"/>
-                        <viewControllerLayoutGuide type="bottom" id="hhi-tp-ixk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VuI-Pv-tCX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8H5-gN-1Xj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8H5-gN-1Xj" secondAttribute="trailing" id="DgD-wS-6bV"/>
-                            <constraint firstItem="8H5-gN-1Xj" firstAttribute="leading" secondItem="VuI-Pv-tCX" secondAttribute="leading" id="XQ7-Hs-JQU"/>
-                            <constraint firstItem="hhi-tp-ixk" firstAttribute="top" secondItem="8H5-gN-1Xj" secondAttribute="bottom" id="eka-w7-vxH"/>
-                            <constraint firstItem="8H5-gN-1Xj" firstAttribute="top" secondItem="VuI-Pv-tCX" secondAttribute="top" id="g7R-p9-M5p"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableview" destination="8H5-gN-1Xj" id="2US-hB-pds"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qN3-DF-Id6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1969" y="393"/>
-        </scene>
-        <!--New Action Detail View Controller-->
         <scene sceneID="0rs-Hx-fdU">
             <objects>
-                <viewController storyboardIdentifier="NewActionDetailViewController" id="xII-FG-p1k" customClass="NewActionDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActionDetailViewController" id="xII-FG-p1k" customClass="ActionDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OCQ-EJ-HpC"/>
                         <viewControllerLayoutGuide type="bottom" id="LhF-iu-Byq"/>
@@ -189,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgW-Xd-k7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2637.5999999999999" y="389.95502248875567"/>
+            <point key="canvasLocation" x="1969" y="390"/>
         </scene>
         <!--Group Detail View Controller-->
         <scene sceneID="fUB-PN-6BJ">
@@ -305,7 +272,9 @@
             <objects>
                 <navigationController storyboardIdentifier="TakeActionNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UgK-Rn-ulC">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

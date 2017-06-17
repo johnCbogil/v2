@@ -1,15 +1,15 @@
 //
-//  NewActionDetailEmptyRepTableViewCell.m
+//  ActionDetailEmptyRepTableViewCell.m
 //  Voices
 //
 //  Created by Bogil, John on 6/13/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "NewActionDetailEmptyRepTableViewCell.h"
+#import "ActionDetailEmptyRepTableViewCell.h"
 #import "VoicesUtilities.h"
 
-@interface NewActionDetailEmptyRepTableViewCell()
+@interface ActionDetailEmptyRepTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *addAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation NewActionDetailEmptyRepTableViewCell
+@implementation ActionDetailEmptyRepTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -1,20 +1,20 @@
 //
-//  NewActionDetailViewController.m
+//  ActionDetailViewController.m
 //  Voices
 //
 //  Created by John Bogil on 6/10/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "NewActionDetailViewController.h"
+#import "ActionDetailViewController.h"
 #import "STPopupController.h"
 #import "SearchViewController.h"
-#import "NewActionDetailTopTableViewCell.h"
+#import "ActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
-#import "NewActionDetailEmptyRepTableViewCell.h"
+#import "ActionDetailEmptyRepTableViewCell.h"
 #import "RepsManager.h"
 
-@interface NewActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
+@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *listOfReps;
@@ -23,7 +23,7 @@
 
 // TODO: Scripts
 
-@implementation NewActionDetailViewController
+@implementation ActionDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,9 +56,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailTopTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:@"NewActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"NewActionDetailEmptyRepTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailEmptyRepTableViewCell"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -76,7 +76,7 @@
     [self.tableView reloadData];
 }
 
-- (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender {
+- (void)expandActionDescription:(ActionDetailTopTableViewCell *)sender {
     
     [self.tableView reloadData];
 }
@@ -106,7 +106,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        NewActionDetailTopTableViewCell *cell = (NewActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailTopTableViewCell" forIndexPath:indexPath];
+        ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
         return cell;
@@ -117,7 +117,7 @@
         return cell;
     }
     else {
-        NewActionDetailEmptyRepTableViewCell *cell = (NewActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"NewActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+        ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
         return cell;
     }
 }

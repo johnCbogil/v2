@@ -15,7 +15,7 @@
 #import "TabBarViewController.h"
 #import "CurrentUser.h"
 #import "RepsManager.h"
-#import "NewActionDetailViewController.h"
+#import "ActionDetailViewController.h"
 #import "Action.h"
 #import "FirebaseManager.h"
 #import <Instabug/Instabug.h>
@@ -166,7 +166,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         
         UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
         
-        NewActionDetailViewController *actionDetailViewController = (NewActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"NewActionDetailViewController"];
+        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
         FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
         FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
         FIRDatabaseReference *actionRef = [actionsRef child:self.actionKey];

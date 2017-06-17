@@ -1,15 +1,15 @@
 //
-//  NewActionDetailTopTableViewCell.m
+//  ActionDetailTopTableViewCell.m
 //  Voices
 //
 //  Created by John Bogil on 6/10/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "NewActionDetailTopTableViewCell.h"
+#import "ActionDetailTopTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface NewActionDetailTopTableViewCell()
+@interface ActionDetailTopTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation NewActionDetailTopTableViewCell
+@implementation ActionDetailTopTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

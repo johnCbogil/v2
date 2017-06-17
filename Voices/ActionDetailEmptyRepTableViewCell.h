@@ -1,5 +1,5 @@
 //
-//  NewActionDetailEmptyRepTableViewCell.h
+//  ActionDetailEmptyRepTableViewCell.h
 //  Voices
 //
 //  Created by Bogil, John on 6/13/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewActionDetailEmptyRepTableViewCell : UITableViewCell
+@interface ActionDetailEmptyRepTableViewCell : UITableViewCell
 
 @end

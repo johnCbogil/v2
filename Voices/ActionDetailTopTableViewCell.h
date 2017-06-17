@@ -1,5 +1,5 @@
 //
-//  NewActionDetailTopTableViewCell.h
+//  ActionDetailTopTableViewCell.h
 //  Voices
 //
 //  Created by John Bogil on 6/10/17.
@@ -10,15 +10,15 @@
 #import "Action.h"
 #import "Group.h"
 
-@class NewActionDetailTopTableViewCell;
+@class ActionDetailTopTableViewCell;
 
 @protocol ExpandActionDescriptionDelegate <NSObject>   //define delegate protocol
 
-- (void)expandActionDescription:(NewActionDetailTopTableViewCell *)sender;
+- (void)expandActionDescription:(ActionDetailTopTableViewCell *)sender;
 
 @end
 
-@interface NewActionDetailTopTableViewCell : UITableViewCell
+@interface ActionDetailTopTableViewCell : UITableViewCell
 
 - (void)initWithAction:(Action *)action andGroup:(Group *)group;
 @property (strong, nonatomic) id <ExpandActionDescriptionDelegate> delegate;

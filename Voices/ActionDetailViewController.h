@@ -1,5 +1,5 @@
 //
-//  NewActionDetailViewController.h
+//  ActionDetailViewController.h
 //  Voices
 //
 //  Created by John Bogil on 6/10/17.
@@ -10,7 +10,7 @@
 #import "Group.h"
 #import "Action.h"
 
-@interface NewActionDetailViewController : UIViewController
+@interface ActionDetailViewController : UIViewController
 
 @property (strong, nonatomic) Action *action;
 @property (strong, nonatomic) Group *group;

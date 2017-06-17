@@ -15,7 +15,7 @@
 #import "PolicyPositionsDetailCell.h"
 #import "GroupFollowTableViewCell.h"
 #import "ActionTableViewCell.h"
-#import "NewActionDetailViewController.h"
+#import "ActionDetailViewController.h"
 #import "FirebaseManager.h"
 #import "WebViewController.h"
 #import "EmptyStateTableViewCell.h"
@@ -456,7 +456,7 @@
                 break;
             }
             case 1: {
-                NewActionDetailViewController *actionDetailVC = (NewActionDetailViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"NewActionDetailViewController"];
+                ActionDetailViewController *actionDetailVC = (ActionDetailViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"ActionDetailViewController"];
                 actionDetailVC.action = self.listOfGroupActions[indexPath.row];
                 actionDetailVC.group = self.group;
                 [self.navigationController pushViewController:actionDetailVC animated:true];
