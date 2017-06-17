@@ -35,10 +35,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
-    
 }
 
-- (void)configureDatasource{
+- (void)configureDatasource {
     
     if (self.action.level == 0) {
         self.listOfReps = [RepsManager sharedInstance].fedReps;

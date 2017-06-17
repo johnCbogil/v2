@@ -160,14 +160,14 @@
     
     self.titleLabel.text = self.representative.title;
     self.titleLabel.numberOfLines = 0;
-    self.nameLabel.font = [UIFont voicesFontWithSize:34];
+    self.nameLabel.font = [UIFont voicesBoldFontWithSize:30];
     [self.nameLabel sizeToFit];
     self.nameLabel.minimumScaleFactor = 0.5;
-    self.titleLabel.font = [UIFont voicesFontWithSize:34];
+    self.titleLabel.font = [UIFont voicesBoldFontWithSize:30];
     self.nameLabel.text = self.representative.fullName;
     self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.party, self.representative.stateCode];
     self.partyStateLabel.font = [UIFont voicesFontWithSize:26];
-    self.topInfluencersLabel.font = [UIFont voicesFontWithSize:26];
+    self.topInfluencersLabel.font = [UIFont voicesBoldFontWithSize:22];
 }
 
 - (void)configureNavigationController {
