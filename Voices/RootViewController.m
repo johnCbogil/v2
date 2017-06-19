@@ -114,6 +114,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptDialog) name:@"presentScriptView" object:nil];
+
 }
 
 #pragma mark - Presentation Controllers
