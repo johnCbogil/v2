@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AboutViewController.h"
-#import "IssueSurveyViewController.h"
 
 @interface MoreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

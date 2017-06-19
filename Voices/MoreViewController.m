@@ -11,6 +11,7 @@
 #import "STPopupController.h"
 #import <Instabug/Instabug.h>
 #import "SearchViewController.h"
+#import "WebViewController.h"
 
 @interface MoreViewController ()
 
@@ -115,8 +116,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.moreTableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webVC = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     
-    IssueSurveyViewController *issueSurveyVC = [[IssueSurveyViewController alloc] init];
     switch ([indexPath row]) {
         case 0:
             [self presentSearchViewController];
@@ -128,9 +130,10 @@
             [self rateApp];
             break;
         case 3:
-            issueSurveyVC.urlString = @"https://goo.gl/forms/m9Ux4UJ5MAJmuZyz1";
-            [issueSurveyVC.navigationItem setTitle:@"Issue Survey"];
-            [self.navigationController pushViewController:issueSurveyVC animated:YES];
+            
+            webVC.url = [NSURL URLWithString:@"https://goo.gl/forms/m9Ux4UJ5MAJmuZyz1"];
+            [webVC.navigationItem setTitle:@"Issue Survey"];
+            [self.navigationController pushViewController:webVC animated:YES];
             break;
         case 4:
             [Instabug invoke];
