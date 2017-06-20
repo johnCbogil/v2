@@ -42,7 +42,7 @@
     [self configureActivityIndicator];
     [self configureSegmentedControl];
     [self configureTopInfluencersButton];
-    [self fetchTopContributors];
+    [self fetchTopIndustries];
     [self.actionView configureWithRepresentative:self.representative];
 }
 
@@ -147,8 +147,8 @@
 
 - (void)configureSegmentedControl {
     
-    [self.segmentedControl setTitle:@"Industry" forSegmentAtIndex:1];
-    [self.segmentedControl setTitle:@"Contributor" forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:@"Industry" forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:@"Contributor" forSegmentAtIndex:1];
     self.segmentedControl.tintColor = [UIColor voicesOrange];
     [self.segmentedControl setSelectedSegmentIndex:0];
     self.segmentedControl.backgroundColor = [UIColor whiteColor];
@@ -160,10 +160,10 @@
     
     self.titleLabel.text = self.representative.title;
     self.titleLabel.numberOfLines = 0;
+    self.titleLabel.font = [UIFont voicesMediumFontWithSize:30];
     self.nameLabel.font = [UIFont voicesMediumFontWithSize:30];
     [self.nameLabel sizeToFit];
     self.nameLabel.minimumScaleFactor = 0.5;
-    self.titleLabel.font = [UIFont voicesMediumFontWithSize:30];
     self.nameLabel.text = self.representative.fullName;
     self.partyStateLabel.font = [UIFont voicesMediumFontWithSize:26];
     self.topInfluencersLabel.font = [UIFont voicesMediumFontWithSize:22];
@@ -230,14 +230,15 @@
 
 - (IBAction)segmentedControlDidChange:(id)sender {
     
-    if (self.segmentedControl.selectedSegmentIndex == 0 && !self.topContributorsArray.count) {
-        
-        [self fetchTopContributors];
+    if (self.segmentedControl.selectedSegmentIndex == 0 && !self.topIndustriesArray.count) {
+        [self fetchTopIndustries];
         
     }
-    else if (!self.topIndustriesArray.count) {
+    else if (!self.topContributorsArray.count) {
         
-        [self fetchTopIndustries];
+        [self fetchTopContributors];
+
+
     }
     [self.tableView reloadData];
 }
@@ -260,10 +261,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (self.segmentedControl.selectedSegmentIndex == 1) {
-        return self.topIndustriesArray.count;
+        return self.topContributorsArray.count;
     }
     else {
-        return self.topContributorsArray.count;
+        return self.topIndustriesArray.count;
     }
     return 0;
 }
@@ -275,14 +276,14 @@
     
     if (self.segmentedControl.selectedSegmentIndex == 1) {
         
-        NSString *total = [self formatMoney:self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"],total];
+        NSString *total = [self formatMoney:self.topContributorsArray[indexPath.row][@"@attributes"][@"total"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"],total];
         
     }
     else {
         
-        NSString *total = [self formatMoney:self.topContributorsArray[indexPath.row][@"@attributes"][@"total"]];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"], total];
+        NSString *total = [self formatMoney:self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"], total];
     }
     cell.textLabel.font = [UIFont voicesFontWithSize:19];
     return cell;
