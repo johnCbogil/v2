@@ -26,7 +26,7 @@
 
 - (IBAction)addAddressButtonDidPress:(id)sender {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewControllerInRootVC" object:nil];
 }
 
 

@@ -44,12 +44,17 @@
                             <action selector="addAddressButtonDidPress:" destination="vTZ-kP-xdd" eventType="touchUpInside" id="9ag-Ms-ENc"/>
                         </connections>
                     </button>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JfO-qV-hRM">
+                        <rect key="frame" x="177" y="32" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="leading" secondItem="vKF-OJ-4fI" secondAttribute="leadingMargin" constant="12" id="0gL-xN-9ry"/>
                     <constraint firstItem="VyR-oX-kgf" firstAttribute="centerX" secondItem="vKF-OJ-4fI" secondAttribute="centerX" id="4T3-fz-Rab"/>
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="top" secondItem="vKF-OJ-4fI" secondAttribute="top" id="5D7-a2-dma"/>
                     <constraint firstItem="VyR-oX-kgf" firstAttribute="leading" secondItem="vKF-OJ-4fI" secondAttribute="leadingMargin" constant="68" id="6ZT-Dt-xKb"/>
+                    <constraint firstItem="JfO-qV-hRM" firstAttribute="top" secondItem="yJv-Hv-wRK" secondAttribute="bottom" constant="8" id="7Y5-RW-46r"/>
+                    <constraint firstItem="JfO-qV-hRM" firstAttribute="centerX" secondItem="vKF-OJ-4fI" secondAttribute="centerX" id="9a5-tn-x7b"/>
                     <constraint firstItem="ZZY-AH-aL4" firstAttribute="centerX" secondItem="VyR-oX-kgf" secondAttribute="centerX" id="JIi-d5-GN2"/>
                     <constraint firstItem="ZZY-AH-aL4" firstAttribute="top" secondItem="yJv-Hv-wRK" secondAttribute="bottom" constant="8" symbolic="YES" id="RrE-cF-oDd"/>
                     <constraint firstItem="yJv-Hv-wRK" firstAttribute="trailing" secondItem="ZZY-AH-aL4" secondAttribute="trailing" id="ZKD-ND-r6u"/>
@@ -62,6 +67,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activityIndicatorView" destination="JfO-qV-hRM" id="qvD-BG-y9c"/>
                 <outlet property="addAddressButton" destination="VyR-oX-kgf" id="XdX-1K-IxR"/>
                 <outlet property="addAddressLabel" destination="yJv-Hv-wRK" id="wWe-iF-FOC"/>
                 <outlet property="emojiLabel" destination="ZZY-AH-aL4" id="dPK-NX-BN8"/>

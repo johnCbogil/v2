@@ -113,7 +113,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewControllerInRootVC) name:@"presentSearchViewControllerInRootVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptDialog) name:@"presentScriptView" object:nil];
 
 }
@@ -289,7 +289,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)presentSearchViewController {
+- (void)presentSearchViewControllerInRootVC {
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
     searchViewController.isHomeAddressVC = YES;

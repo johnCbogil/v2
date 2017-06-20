@@ -21,8 +21,6 @@
 
 @end
 
-// TODO: Scripts
-
 @implementation ActionDetailViewController
 
 - (void)viewDidLoad {
