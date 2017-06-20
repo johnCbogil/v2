@@ -22,11 +22,19 @@
     self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
     self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
     self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
+    
+    NSTimer* timer = [NSTimer timerWithTimeInterval:2.5f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (IBAction)addAddressButtonDidPress:(id)sender {
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewControllerInRootVC" object:nil];
+}
+
+- (void)updateEmojiLabel {
+
+    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
 }
 
 
