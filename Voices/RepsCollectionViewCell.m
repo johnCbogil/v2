@@ -42,7 +42,7 @@
     
     [self.tableView addSubview:self.refreshControl];
     
-    self.tableView.allowsSelection = NO; // FLIP
+    self.tableView.allowsSelection = YES; // FLIP
 }
 
 - (void)configureRefreshControl {
