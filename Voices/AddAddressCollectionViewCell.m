@@ -23,7 +23,7 @@
     self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
     self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
     
-    NSTimer* timer = [NSTimer timerWithTimeInterval:2.5f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
+    NSTimer* timer = [NSTimer timerWithTimeInterval:3.0f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
