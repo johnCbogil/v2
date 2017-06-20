@@ -36,8 +36,21 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:@"endFetchingReps" object:nil];
-
+    
+    NSTimer* timer = [NSTimer timerWithTimeInterval:2.0f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
+
+- (void)updateEmojiLabel {
+    
+    CATransition *animation = [CATransition animation];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.5;
+    [self.emojiLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
+    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+}
+
 - (void)createActivityIndicator {
     
     self.activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
