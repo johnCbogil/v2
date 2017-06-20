@@ -23,7 +23,7 @@
         self.party = [data valueForKey:@"party"];
         self.email = [[RepsManager sharedInstance]getContactFormForBioGuide:self.bioguide];
         self.twitter = [data valueForKey:@"twitter_id"];
-        self.districtNumber = [data valueForKey:@"district"];
+        self.districtNumber = [NSString stringWithFormat:@"%@", [data valueForKey:@"district"]];
         self.stateCode = [data valueForKey:@"state"];
         self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
         [self formatTitle:[data valueForKey:@"title"]];

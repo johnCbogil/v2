@@ -165,9 +165,16 @@
     self.nameLabel.minimumScaleFactor = 0.5;
     self.titleLabel.font = [UIFont voicesMediumFontWithSize:30];
     self.nameLabel.text = self.representative.fullName;
-    self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.party, self.representative.stateCode];
     self.partyStateLabel.font = [UIFont voicesMediumFontWithSize:26];
     self.topInfluencersLabel.font = [UIFont voicesMediumFontWithSize:22];
+    
+    if (![self.representative.districtNumber isEqualToString:@"<null>"]) {
+        
+        self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@, District %@", self.representative.party, self.representative.stateCode, self.representative.districtNumber];
+    }
+    else {
+        self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.party, self.representative.stateCode];
+    }
 }
 
 - (void)configureNavigationController {
