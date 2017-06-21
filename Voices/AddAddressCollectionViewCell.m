@@ -20,7 +20,7 @@
     self.addAddressButton.tintColor = [UIColor whiteColor];
     self.addAddressButton.backgroundColor = [UIColor voicesOrange];
     self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
-    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmojiFemale]];
     self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
     
     NSTimer* timer = [NSTimer timerWithTimeInterval:2.0f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
@@ -39,7 +39,7 @@
     animation.type = kCATransitionFade;
     animation.duration = 0.5;
     [self.emojiLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
-    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmojiFemale]];
 }
 
 @end
