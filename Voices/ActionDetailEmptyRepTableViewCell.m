@@ -31,25 +31,25 @@
     self.addAddressButton.tintColor = [UIColor whiteColor];
     self.addAddressButton.backgroundColor = [UIColor voicesOrange];
     self.addAddressButton.layer.cornerRadius = kButtonCornerRadius + 10;
-    self.emojiLabel.text = @"🏡";//[NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmoji]];
     self.addAddressButton.titleLabel.font = [UIFont voicesFontWithSize:24];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleActivityIndicatorOff) name:@"endFetchingReps" object:nil];
     
-//    NSTimer* timer = [NSTimer timerWithTimeInterval:2.0f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
-//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    NSTimer* timer = [NSTimer timerWithTimeInterval:2.25f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
-//- (void)updateEmojiLabel {
-//    
-//    CATransition *animation = [CATransition animation];
-//    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    animation.type = kCATransitionFade;
-//    animation.duration = 0.5;
-//    [self.emojiLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
-//    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
-//}
+- (void)updateEmojiLabel {
+    
+    CATransition *animation = [CATransition animation];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.5;
+    [self.emojiLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmoji]];
+}
 
 - (void)createActivityIndicator {
     

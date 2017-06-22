@@ -27,7 +27,7 @@
     self.localRepsLabel.font = [UIFont voicesFontWithSize:23];
     self.localRepsLabel.text = @"Local reps are not available in this area yet.";
     self.emojiLabel.font = [UIFont voicesFontWithSize:60];
-    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmoji]];
     
 }
 
