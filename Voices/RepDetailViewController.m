@@ -76,7 +76,7 @@
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
-    webViewController.url = [NSURL URLWithString:@"https://www.opensecrets.org/about/"];
+    webViewController.url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.opensecrets.org/politicians/summary.php?cycle=2016&type=I&cid=%@", self.representative.crpID]];
     webViewController.title = @"OpenSecrets";
     webViewController.navigationItem.backBarButtonItem = nil;
     [self.navigationController pushViewController:webViewController animated:YES];
