@@ -206,6 +206,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [LocationService sharedInstance].isHomeAddressVC = self.isHomeAddressVC;
     
@@ -220,7 +223,6 @@
             [self saveHomeAddress];
         }
         [self fetchRepsForAddress:self.searchBar.text];
-        [self.navigationController popViewControllerAnimated:YES];
 
 
     }
