@@ -216,6 +216,12 @@
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
+        if (_isHomeAddressVC) {
+            [self saveHomeAddress];
+        }
+        [self fetchRepsForAddress:self.searchBar.text];
+        [self.navigationController popViewControllerAnimated:YES];
+
 
     }
 }

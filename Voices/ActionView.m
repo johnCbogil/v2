@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
     if (self.representative.phone.length) {
-        NSString *confirmCallMessage = @"A call script will appear when you begin calling. Would you like to preview it or begin calling?";
+        NSString *confirmCallMessage = @"Would you like to preview the call script or begin calling?";
         NSString *title;
         if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
             title =  [NSString stringWithFormat:@"Call %@", self.representative.nickname];
@@ -102,6 +102,11 @@ NS_ASSUME_NONNULL_BEGIN
                 [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
             }
         }]];
+        
+        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }]];
+
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:nil];
     }
     else {
