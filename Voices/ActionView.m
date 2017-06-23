@@ -102,12 +102,10 @@ NS_ASSUME_NONNULL_BEGIN
                 [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
             }
         }]];
-        
-        [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-        }]];
 
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:nil];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:^{
+            [confirmCallAlertController.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
+        }];
     }
     else {
         
@@ -122,6 +120,11 @@ NS_ASSUME_NONNULL_BEGIN
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
+}
+
+- (void)alertControllerBackgroundTapped {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"closeAlertView" object:nil];
 }
 
 - (IBAction)emailButtonDidPress:(id)sender {

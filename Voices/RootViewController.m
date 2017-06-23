@@ -115,7 +115,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewControllerInRootVC) name:@"presentSearchViewControllerInRootVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptDialog) name:@"presentScriptView" object:nil];
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(closeAlertView) name:@"closeAlertView" object:nil];
 }
 
 #pragma mark - Presentation Controllers
@@ -304,6 +304,12 @@
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
+
+- (void)closeAlertView {
+    
+    [self dismissViewControllerAnimated: YES completion: nil];
+}
+
 #pragma mark Call Center methods
 - (void)setupCallCenterToPresentThankYou {
     // __weak RootViewController *weakself = self;
@@ -358,8 +364,8 @@
     moreViewController.title = @"More";
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:moreViewController animated:YES];
-
-//    [self presentInfoViewController];
+    
+    //    [self presentInfoViewController];
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
