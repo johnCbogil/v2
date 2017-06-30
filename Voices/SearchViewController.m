@@ -125,7 +125,6 @@
     
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    
 }
 
 #pragma mark - UISearchBar Delegate Methods
@@ -215,7 +214,6 @@
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
-        [self.navigationController popViewControllerAnimated:YES];
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
