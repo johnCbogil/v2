@@ -684,7 +684,8 @@
  "next_election_date": "11/6/2018",
  "first_name": "Scott",
  "last_name": "Walker",
- "gender": "M"
+ "gender": "M",
+ "contact_form" : "https://walker.wi.gov/contact-us"
  },
  {
  "full_name": "Matt Mead",

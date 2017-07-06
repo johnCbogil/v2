@@ -32,6 +32,8 @@
 @property (strong, nonatomic) NSString *stateCode;
 @property (strong, nonatomic) NSString *districtFullName;
 @property (strong, nonatomic) NSString *crpID;
+@property (strong, nonatomic) NSString *contactForm;
+
 
 
 -(void) generateDistrictName;

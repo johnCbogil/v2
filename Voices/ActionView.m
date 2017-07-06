@@ -162,6 +162,33 @@ NS_ASSUME_NONNULL_BEGIN
                                    @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
+    // TODO: THIS IS NOT DRY
+    else if (self.representative.contactForm.length > 0) {
+        
+        NSString *contactFormURLString = self.representative.contactForm;
+        
+        if (contactFormURLString.length == 0) {
+            [self showEmailAlert];
+            return;
+        }
+        NSURL *contactFormURL = [NSURL URLWithString:contactFormURLString];
+        
+        NSString *title = self.representative.title;
+        NSString *name = self.representative.fullName;
+        NSString *fullName = @"";
+        if (title.length > 0 && name.length > 0) {
+            fullName = [NSString stringWithFormat:@"%@ %@", title, name];
+        }
+        else if (name.length > 0) {
+            fullName = name;
+        }
+        else if (title.length > 0) {
+            fullName = title;
+        }
+        NSDictionary *notiDict = @{@"contactFormURL" : contactFormURL,
+                                   @"fullName": fullName};
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
+    }
     else if(self.representative.email && ![self.representative.email isKindOfClass:[NSNull class]]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentEmailVC" object:self.representative.email];
     }

@@ -65,6 +65,7 @@
         self.nextElection = [self formatElectionDate:[data valueForKey:@"next_election_date"]];
         self.twitter = [data valueForKey:@"twitter"];
         self.gender = [data valueForKey:@"gender"];
+        self.contactForm = data[@"contact_form"];
         return self;
     }
     return self;

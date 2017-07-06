@@ -27,7 +27,6 @@
 @import UserNotifications;
 @import GooglePlaces;
 
-
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) NSString *actionKey;
@@ -38,6 +37,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
+    
+    
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
     
     [Instabug startWithToken:@"8f3391817b122bd6f52f3ad62f608c1b" invocationEvent:IBGInvocationEventNone];
     [Instabug setPromptOptionsEnabledWithBug:NO feedback:NO chat:YES];
@@ -54,9 +56,15 @@
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];
     
+
+    
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    
+    
+
+
     return YES;
 }
 
@@ -115,6 +123,18 @@
     
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
+    
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+
+    if (!isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
+        [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
+            
+            [[FirebaseManager sharedInstance]resubscribeToTopicsOnReInstall];
+            
+        } onError:^(NSError *error) {
+            
+        }];
+    }
     
     // TODO: If necessary send token to appliation server.
 }

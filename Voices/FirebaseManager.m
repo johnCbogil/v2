@@ -28,6 +28,7 @@
 @implementation FirebaseManager
 
 #pragma mark - Initialization
+
 + (FirebaseManager *) sharedInstance {
     static FirebaseManager *instance = nil;
     static dispatch_once_t onceToken;
@@ -156,7 +157,15 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         errorBlock(error);
     }];
+}
+
+- (void)resubscribeToTopicsOnReInstall {
     
+    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        
+        NSString *topic = [group.key stringByReplacingOccurrencesOfString:@" " withString:@""];
+        [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
+    }
 }
 
 - (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
