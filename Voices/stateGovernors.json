@@ -442,13 +442,13 @@
  "state_full": "New York",
  "party": "Democrat",
  "phone": "1-518-474-8390",
- "email": "gov.cuomo@chamber.state.ny.us",
  "twitter": "NYGovCuomo",
  "photo_url": "https://www.governor.ny.gov/sites/governor.ny.gov/files/thumbnails/image/gov_bio_image.png",
  "next_election_date": "11/6/2018",
  "first_name": "Andrew",
  "last_name": "Cuomo",
- "gender": "M"
+ "gender": "M",
+ "contact_form" : "https://www.governor.ny.gov/content/governor-contact-form"
  },
  {
  "full_name": "Pat McCrory",
