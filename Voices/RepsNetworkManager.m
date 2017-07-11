@@ -42,7 +42,7 @@
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
     
-    NSString *dataUrl = [NSString stringWithFormat:@"https://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
+    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
