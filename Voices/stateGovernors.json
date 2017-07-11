@@ -174,13 +174,13 @@
  "state_full": "Illinois",
  "party": "Republican",
  "phone": "217-782-0244",
- "email": "governor@state.il.us",
  "twitter": "BruceRauner",
  "photo_url": "http://www.illinois.gov/gov/PublishingImages/Governor_Headshot.jpg",
  "next_election_date": "11/6/2018",
  "first_name": "Bruce",
  "last_name": "Rauner",
- "gender": "M"
+ "gender": "M",
+ "contact_form" : "https://www.illinois.gov/gov/contactus/Pages/VoiceAnOpinion.aspx"
  },
  {
  "full_name": "Mike Pence",
