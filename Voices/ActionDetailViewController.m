@@ -18,7 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *listOfReps;
-
+@property (strong, nonatomic) NSArray *testArray;
+    
 @end
 
 @implementation ActionDetailViewController
@@ -33,6 +34,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
+    
+    self.testArray = @[@"More Info",@"What to say (Call Script)",@"Share action"];
 }
 
 - (void)configureDatasource {
@@ -98,32 +101,48 @@
 //        return self.listOfReps.count + 1;
 //    }
 //    else return 2;
-    return 1;
+    if (self.listOfReps.count) {
+        return self.listOfReps.count + self.testArray.count + 1;
+    }
+    else {
+        return self.listOfReps.count + self.testArray.count + 2;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (indexPath.row == 0) {
+    if (indexPath.row == 0) {
         ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
         return cell;
-//    }
-//    else {
-//        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//        return cell;
-//    }
-//    else if (self.listOfReps.count) {
-//        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
-//        [cell initWithRep:self.listOfReps[indexPath.row-1]];
-//        return cell;
-//    }
-//    else {
-//        ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
-//        return cell;
-//    }
+    }
+    else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            cell.textLabel.text = self.testArray[indexPath.row-1];
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
+        cell.accessoryView.tintColor = [UIColor orangeColor];
+        [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
+        
+        return cell;
+    }
+    else {
+        if (self.listOfReps.count) {
+            RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
+            [cell initWithRep:self.listOfReps[indexPath.row-4]];
+            return cell;
+        }
+        else {
+            ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+            return cell;
+        }
+    }
 }
-
+    
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
