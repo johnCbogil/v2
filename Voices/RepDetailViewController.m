@@ -260,13 +260,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (self.segmentedControl.selectedSegmentIndex == 1) {
-        return self.topContributorsArray.count;
-    }
-    else {
-        return self.topIndustriesArray.count;
-    }
-    return 0;
+//    if (self.segmentedControl.selectedSegmentIndex == 1) {
+//        return self.topContributorsArray.count;
+//    }
+//    else {
+//        return self.topIndustriesArray.count;
+//    }
+//    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

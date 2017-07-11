@@ -94,29 +94,34 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (self.listOfReps.count) {
-        return self.listOfReps.count + 1;
-    }
-    else return 2;
+//    if (self.listOfReps.count) {
+//        return self.listOfReps.count + 1;
+//    }
+//    else return 2;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0) {
+//    if (indexPath.row == 0) {
         ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
         return cell;
-    }
-    else if (self.listOfReps.count) {
-        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
-        [cell initWithRep:self.listOfReps[indexPath.row-1]];
-        return cell;
-    }
-    else {
-        ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
-        return cell;
-    }
+//    }
+//    else {
+//        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//        return cell;
+//    }
+//    else if (self.listOfReps.count) {
+//        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
+//        [cell initWithRep:self.listOfReps[indexPath.row-1]];
+//        return cell;
+//    }
+//    else {
+//        ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+//        return cell;
+//    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
