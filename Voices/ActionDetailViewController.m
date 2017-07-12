@@ -12,6 +12,7 @@
 #import "ActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
 #import "ActionDetailEmptyRepTableViewCell.h"
+#import "ActionDetailMenuItemTableViewCell.h"
 #import "RepsManager.h"
 
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
@@ -33,7 +34,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
     
     self.testArray = @[@"More Info",@"What to say (Call Script)",@"Share action"];
 }
@@ -59,6 +60,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailEmptyRepTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailMenuItemTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMenuItemTableViewCell"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -81,26 +83,22 @@
     [self.tableView reloadData];
 }
 
-- (void)presentScriptView {
-    
-    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-    popupController.containerView.layer.cornerRadius = 10;
-    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
-    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
-    popupController.transitionStyle = STPopupTransitionStyleFade;
-    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-    [popupController presentInViewController:self];
-}
+//- (void)presentScriptView {
+//    
+//    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
+//    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
+//    popupController.containerView.layer.cornerRadius = 10;
+//    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
+//    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+//    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
+//    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
+//    popupController.transitionStyle = STPopupTransitionStyleFade;
+//    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
+//    [popupController presentInViewController:self];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-//    if (self.listOfReps.count) {
-//        return self.listOfReps.count + 1;
-//    }
-//    else return 2;
     if (self.listOfReps.count) {
         return self.listOfReps.count + self.testArray.count + 1;
     }
@@ -118,16 +116,12 @@
         return cell;
     }
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
-        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-            cell.textLabel.text = self.testArray[indexPath.row-1];
-        }
+        ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
+        cell.itemTitle.text = self.testArray[indexPath.row-1];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
         cell.accessoryView.tintColor = [UIColor orangeColor];
         [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
-        
         return cell;
     }
     else {
