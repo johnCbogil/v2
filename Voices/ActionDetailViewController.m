@@ -23,6 +23,12 @@
     
 @end
 
+// TODO: MENU SELECTION NEEDS TO DELEGATE TO THE MENUITEMCELL
+// TODO: FIX MENUITEM LABEL JUSTIFICATION
+// TODO: INCREASE SPACING BETWEEN TOPCELL AND MENUITEMCELL
+// TODO: INCREASE SPACING BETWEEN MENUITEMCELL AND ADDADDRESSCELL
+// TODO: ADD 'TAKE ACTION' TITLE TO WHEN REPS ARE LOADED
+
 @implementation ActionDetailViewController
 
 - (void)viewDidLoad {
@@ -62,7 +68,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailEmptyRepTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailMenuItemTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMenuItemTableViewCell"];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorColor = [UIColor clearColor];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -113,6 +119,7 @@
         ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
+        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         return cell;
     }
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
@@ -122,16 +129,19 @@
         cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
         cell.accessoryView.tintColor = [UIColor orangeColor];
         [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
+        
         return cell;
     }
     else {
         if (self.listOfReps.count) {
             RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
             [cell initWithRep:self.listOfReps[indexPath.row-4]];
+            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
             return cell;
         }
         else {
             ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
             return cell;
         }
     }

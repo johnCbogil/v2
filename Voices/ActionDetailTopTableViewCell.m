@@ -47,7 +47,7 @@
 - (void)configureActionTitleLabel {
     
     self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
-    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:19];
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:21];
     self.actionTitleLabel.numberOfLines = 0;
 }
 

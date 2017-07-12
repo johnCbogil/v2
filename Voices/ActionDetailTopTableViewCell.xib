@@ -19,18 +19,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-ts-YVT">
-                        <rect key="frame" x="8" y="116" width="359" height="29"/>
+                        <rect key="frame" x="8" y="91" width="359" height="54"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2r-80-qcc">
-                        <rect key="frame" x="138" y="8" width="100" height="100"/>
+                        <rect key="frame" x="150" y="8" width="75" height="75"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="100" id="Jlb-Ra-CYO"/>
-                            <constraint firstAttribute="width" constant="100" id="jma-w5-uxr"/>
+                            <constraint firstAttribute="height" constant="75" id="Jlb-Ra-CYO"/>
+                            <constraint firstAttribute="width" constant="75" id="jma-w5-uxr"/>
                         </constraints>
                         <connections>
                             <action selector="groupImageButtonDidPress:" destination="nj4-GP-w0A" eventType="touchUpInside" id="Ew6-Mq-T00"/>
@@ -39,9 +39,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="8" id="3wW-SJ-qIS"/>
-                    <constraint firstItem="L2r-80-qcc" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="138" id="B1n-VZ-Fd5"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="150" id="B1n-VZ-Fd5"/>
                     <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="L2r-80-qcc" secondAttribute="bottom" constant="8" id="ISW-11-bxP"/>
-                    <constraint firstAttribute="trailing" secondItem="L2r-80-qcc" secondAttribute="trailing" constant="137" id="ddS-fA-Pfe"/>
+                    <constraint firstAttribute="trailing" secondItem="L2r-80-qcc" secondAttribute="trailing" constant="150" id="ddS-fA-Pfe"/>
                     <constraint firstItem="L2r-80-qcc" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="top" constant="8" id="sB8-DX-zqj"/>
                     <constraint firstAttribute="bottom" secondItem="acv-ts-YVT" secondAttribute="bottom" constant="6.5" id="uau-a3-zno"/>
                     <constraint firstAttribute="trailing" secondItem="acv-ts-YVT" secondAttribute="trailing" constant="8" id="wZY-38-pet"/>
