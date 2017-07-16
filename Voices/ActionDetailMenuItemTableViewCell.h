@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ActionDetailMenuItemTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
 
 @end

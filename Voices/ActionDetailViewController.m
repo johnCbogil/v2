@@ -20,10 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *listOfReps;
 @property (strong, nonatomic) NSArray *testArray;
-    
+@property (nonatomic) NSInteger indexPathRowToExpand;
 @end
 
-// TODO: MENU SELECTION NEEDS TO DELEGATE TO THE MENUITEMCELL
+// TODO: MENU SELECTION SHOULD RELOAD SELECTED CELL W/ PROPER SIZE 
 // TODO: FIX MENUITEM LABEL JUSTIFICATION
 // TODO: INCREASE SPACING BETWEEN TOPCELL AND MENUITEMCELL
 // TODO: INCREASE SPACING BETWEEN MENUITEMCELL AND ADDADDRESSCELL
@@ -42,7 +42,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
     
-    self.testArray = @[@"More Info",@"What to say (Call Script)",@"Share action"];
+    self.testArray = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
 }
 
 - (void)configureDatasource {
@@ -72,7 +72,7 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.tableView.allowsSelection = NO;
+//    self.tableView.allowsSelection = NO;
     
     self.tableView.estimatedRowHeight = 300.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -123,8 +123,20 @@
         return cell;
     }
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
+        
         ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
-        cell.itemTitle.text = self.testArray[indexPath.row-1];
+        cell.itemTitle.numberOfLines = 0;
+        if (self.indexPathRowToExpand == indexPath.row) {
+            if (indexPath.row == 1) {
+                cell.itemTitle.text = self.action.body;
+            }
+            else if (indexPath.row == 2) {
+                cell.itemTitle.text = self.action.script;
+            }
+        }
+        else {
+            cell.itemTitle.text = self.testArray[indexPath.row-1];
+        }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
         cell.accessoryView.tintColor = [UIColor orangeColor];
@@ -149,6 +161,14 @@
     
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (self.indexPathRowToExpand == indexPath.row) {
+        self.indexPathRowToExpand = 0;
+    }
+    else if (indexPath.row == 1 || indexPath.row == 2) {
+        self.indexPathRowToExpand = indexPath.row;
+    }
+    
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

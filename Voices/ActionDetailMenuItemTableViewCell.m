@@ -14,6 +14,7 @@
     [super awakeFromNib];
     // Initialization code
     self.itemTitle.font = [UIFont voicesFontWithSize:19];
+    self.itemTitle.numberOfLines = 0;
 }
 
 @end

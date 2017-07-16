@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,9 +26,10 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="centerY" secondItem="TPA-hX-aT5" secondAttribute="centerY" id="FpJ-vY-qD1"/>
-                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="trailing" secondItem="TPA-hX-aT5" secondAttribute="trailingMargin" id="PEP-w2-I4l"/>
-                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leadingMargin" id="tmb-6F-e0Y"/>
+                    <constraint firstAttribute="trailing" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="8" id="367-I3-Fmm"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="8" id="B2r-MU-jSw"/>
+                    <constraint firstAttribute="bottom" secondItem="VMu-xm-Ouk" secondAttribute="bottom" constant="11.5" id="gvG-NS-UuJ"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="vJK-2b-OWw"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
