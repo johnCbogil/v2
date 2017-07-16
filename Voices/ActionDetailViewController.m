@@ -134,11 +134,6 @@
         else {
             cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
-//        cell.accessoryView.tintColor = [UIColor orangeColor];
-//        [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
-        
         return cell;
     }
     else if (indexPath.row == 4) {
@@ -156,12 +151,10 @@
         if (self.listOfReps.count) {
             RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
             [cell initWithRep:self.listOfReps[indexPath.row-4]];
-//            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
             return cell;
         }
         else {
             ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
-//            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -175,6 +168,16 @@
     }
     else if (indexPath.row == 1 || indexPath.row == 2) {
         self.indexPathRowToExpand = indexPath.row;
+    }
+    else if (indexPath.row == 3) {
+        //                NSString *string = ...;
+        //                NSURL *URL = ...;
+        
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[@"hello"]applicationActivities:nil];
+        [self.navigationController presentViewController:activityViewController
+                                                animated:YES
+                                              completion:^{
+                                              }];
     }
     
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
