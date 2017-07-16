@@ -18,24 +18,50 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duC-p4-knl" userLabel="SingleLineView">
+                        <rect key="frame" x="15" y="42" width="360" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="DWQ-Gv-XEZ"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMu-xm-Ouk">
-                        <rect key="frame" x="15" y="11" width="352" height="21"/>
+                        <rect key="frame" x="15" y="11" width="324" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddGroup" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-tx-9bO">
+                        <rect key="frame" x="347" y="11" width="20" height="20"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="47x-b5-OeV"/>
+                            <constraint firstAttribute="width" constant="20" id="Njq-co-hdm"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="8" id="367-I3-Fmm"/>
-                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="B2r-MU-jSw"/>
-                    <constraint firstAttribute="bottom" secondItem="VMu-xm-Ouk" secondAttribute="bottom" constant="11.5" id="gvG-NS-UuJ"/>
-                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="vJK-2b-OWw"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="57V-cT-H9U"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="leading" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="8" id="8dN-0R-R6X"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="9lm-cb-gfQ"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="WuJ-SL-AiP"/>
+                    <constraint firstAttribute="bottom" secondItem="VMu-xm-Ouk" secondAttribute="bottom" constant="11.5" id="aGT-jG-ykE"/>
+                    <constraint firstItem="duC-p4-knl" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="bMU-4v-e0c"/>
+                    <constraint firstAttribute="bottom" secondItem="duC-p4-knl" secondAttribute="bottom" constant="0.5" id="fmn-Mt-xM0"/>
+                    <constraint firstAttribute="trailing" secondItem="pCc-tx-9bO" secondAttribute="trailing" constant="8" id="u7y-Pb-KHB"/>
+                    <constraint firstAttribute="trailing" secondItem="duC-p4-knl" secondAttribute="trailing" id="zfe-mp-vb3"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="addGroupImageView" destination="pCc-tx-9bO" id="77I-6W-qXv"/>
                 <outlet property="itemTitle" destination="VMu-xm-Ouk" id="jHc-yR-uKo"/>
             </connections>
             <point key="canvasLocation" x="555.5" y="-172"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="AddGroup" width="16" height="16"/>
+    </resources>
 </document>

@@ -12,9 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
     self.itemTitle.font = [UIFont voicesFontWithSize:19];
     self.itemTitle.numberOfLines = 0;
+    
+    self.addGroupImageView.tintColor = [UIColor orangeColor];
+    self.addGroupImageView.backgroundColor = [UIColor clearColor];
 }
 
 @end

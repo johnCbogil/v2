@@ -11,5 +11,6 @@
 @interface ActionDetailMenuItemTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *addGroupImageView;
 
 @end

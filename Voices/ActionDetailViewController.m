@@ -67,7 +67,7 @@
 //    self.tableView.separatorColor = [UIColor clearColor];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.tableView.allowsSelection = NO;
     
     self.tableView.estimatedRowHeight = 300.f;
@@ -115,7 +115,7 @@
         ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
-        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+//        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -134,10 +134,10 @@
         else {
             cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
-        cell.accessoryView.tintColor = [UIColor orangeColor];
-        [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
+//        cell.accessoryView.tintColor = [UIColor orangeColor];
+//        [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
         
         return cell;
     }
@@ -156,12 +156,12 @@
         if (self.listOfReps.count) {
             RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
             [cell initWithRep:self.listOfReps[indexPath.row-4]];
-            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+//            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
             return cell;
         }
         else {
             ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
-            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+//            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
