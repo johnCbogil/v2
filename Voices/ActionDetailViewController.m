@@ -170,10 +170,8 @@
         self.indexPathRowToExpand = indexPath.row;
     }
     else if (indexPath.row == 3) {
-        //                NSString *string = ...;
-        //                NSURL *URL = ...;
-        
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[@"hello"]applicationActivities:nil];
+        NSString *shareString = [NSString stringWithFormat:@"Please support %@. %@.\n\n https://tryvoices.com/%@", self.group.name, self.action.title,self.group.key];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
         [self.navigationController presentViewController:activityViewController
                                                 animated:YES
                                               completion:^{
