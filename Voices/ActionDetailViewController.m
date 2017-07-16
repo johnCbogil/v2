@@ -19,15 +19,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *listOfReps;
-@property (strong, nonatomic) NSArray *testArray;
+@property (strong, nonatomic) NSArray *listOfMenuItems;
 @property (nonatomic) NSInteger indexPathRowToExpand;
 @end
 
-// TODO: MENU SELECTION SHOULD RELOAD SELECTED CELL W/ PROPER SIZE 
-// TODO: FIX MENUITEM LABEL JUSTIFICATION
-// TODO: INCREASE SPACING BETWEEN TOPCELL AND MENUITEMCELL
-// TODO: INCREASE SPACING BETWEEN MENUITEMCELL AND ADDADDRESSCELL
-// TODO: ADD 'TAKE ACTION' TITLE TO WHEN REPS ARE LOADED
+// TODO: IMPLEMENT SHARE ACTION FUNCTIONALITY
 
 @implementation ActionDetailViewController
 
@@ -42,7 +38,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
     
-    self.testArray = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
+    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
 }
 
 - (void)configureDatasource {
@@ -106,10 +102,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (self.listOfReps.count) {
-        return self.listOfReps.count + self.testArray.count + 1;
+        return self.listOfReps.count + self.listOfMenuItems.count + 2;
     }
     else {
-        return self.listOfReps.count + self.testArray.count + 2;
+        return self.listOfReps.count + self.listOfMenuItems.count + 3;
     }
 }
 
@@ -120,6 +116,7 @@
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
         cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
@@ -135,13 +132,24 @@
             }
         }
         else {
-            cell.itemTitle.text = self.testArray[indexPath.row-1];
+            cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AddGroup"]];
         cell.accessoryView.tintColor = [UIColor orangeColor];
         [cell.accessoryView setFrame:CGRectMake(0, 0, 20, 20)];
         
+        return cell;
+    }
+    else if (indexPath.row == 4) {
+        UITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            cell.textLabel.font = [UIFont voicesBoldFontWithSize:21];
+            cell.textLabel.text = @"Take Action";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            
+        }
         return cell;
     }
     else {
@@ -154,6 +162,7 @@
         else {
             ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
             cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMu-xm-Ouk">
-                        <rect key="frame" x="8" y="11" width="359" height="21"/>
+                        <rect key="frame" x="15" y="11" width="352" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -27,7 +27,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="8" id="367-I3-Fmm"/>
-                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="8" id="B2r-MU-jSw"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="B2r-MU-jSw"/>
                     <constraint firstAttribute="bottom" secondItem="VMu-xm-Ouk" secondAttribute="bottom" constant="11.5" id="gvG-NS-UuJ"/>
                     <constraint firstItem="VMu-xm-Ouk" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="vJK-2b-OWw"/>
                 </constraints>
