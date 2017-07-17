@@ -55,8 +55,8 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="addGroupImageView" destination="pCc-tx-9bO" id="77I-6W-qXv"/>
                 <outlet property="itemTitle" destination="VMu-xm-Ouk" id="jHc-yR-uKo"/>
+                <outlet property="openCloseMenuItemImageView" destination="pCc-tx-9bO" id="At4-aX-ugn"/>
             </connections>
             <point key="canvasLocation" x="555.5" y="-172"/>
         </tableViewCell>

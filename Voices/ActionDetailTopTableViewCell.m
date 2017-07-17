@@ -26,7 +26,6 @@
     [super awakeFromNib];
 
     [self configureActionTitleLabel];
-    [self configureExpandButton];
     [self configureTakeActionLabel];
     self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
@@ -34,7 +33,6 @@
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
     
     [self fetchGroupLogoForImageURL:group.groupImageURL];
-    [self configureDescriptionTextViewWithText:action.body];
     self.actionTitleLabel.text = action.title;
 }
 
@@ -49,24 +47,6 @@
     self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
     self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:21];
     self.actionTitleLabel.numberOfLines = 0;
-}
-
-- (void)configureExpandButton {
-    
-    self.expandButton.backgroundColor = [UIColor whiteColor];
-    [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
-    [self.expandButton setTitle:nil forState:UIControlStateNormal];
-    self.expandButton.tintColor = [UIColor voicesOrange];
-}
-
-- (void)configureDescriptionTextViewWithText:(NSString *)text {
-    
-    self.descriptionTextView.backgroundColor = [UIColor whiteColor];
-    self.descriptionTextView.text = text;
-    self.descriptionTextView.font = [UIFont voicesFontWithSize:17];
-    self.descriptionTextView.editable = NO;
-    self.descriptionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
-    self.descriptionTextView.scrollEnabled = NO;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {
@@ -88,39 +68,6 @@
             [self.groupImageButton setBackgroundImage:[UIImage imageNamed:kGroupDefaultImage] forState:UIControlStateNormal];
         }];
     }];
-}
-
-- (IBAction)expandButtonDidPress:(id)sender {
-    
-    if(self.isDescriptionExpanded == false){
-        [self expandTextView];
-    }else{
-        [self contractTextView];
-    }
-    [self.delegate expandActionDescription:self];
-}
-
-- (void)expandTextView {
-    
-    self.isDescriptionExpanded = true;
-    [self maxLines];
-    [self.expandButton setImage:[UIImage imageNamed:@"upArrow2"] forState:UIControlStateNormal];
-}
-
-- (void)contractTextView {
-    
-    self.isDescriptionExpanded = false;
-    [self maxLines];
-    [self.expandButton setImage:[UIImage imageNamed:@"downArrow2"] forState:UIControlStateNormal];
-}
-
-- (void)maxLines {
-    
-    if(self.isDescriptionExpanded == false){
-        self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
-    }else{
-        self.descriptionTextView.textContainer.maximumNumberOfLines = 0;
-    }
 }
 
 - (IBAction)groupImageButtonDidPress:(id)sender {

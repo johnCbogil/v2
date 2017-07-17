@@ -21,9 +21,11 @@
 @property (strong, nonatomic) NSArray *listOfReps;
 @property (strong, nonatomic) NSArray *listOfMenuItems;
 @property (nonatomic) NSInteger indexPathRowToExpand;
+
 @end
 
-// TODO: IMPLEMENT SHARE ACTION FUNCTIONALITY
+// TODO: UIACTIVITYVIEWCONTROLLER ITEMS MISSING ON 5S
+// TODO: LOGO CONSTRAINTS BREAK ON 5S
 
 @implementation ActionDetailViewController
 
@@ -36,7 +38,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptView) name:@"presentScriptView" object:nil];
     
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
 }
@@ -64,11 +65,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailEmptyRepTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailMenuItemTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMenuItemTableViewCell"];
     
-//    self.tableView.separatorColor = [UIColor clearColor];
-    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.allowsSelection = NO;
     
     self.tableView.estimatedRowHeight = 300.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -84,20 +82,6 @@
     
     [self.tableView reloadData];
 }
-
-//- (void)presentScriptView {
-//    
-//    UIViewController *infoViewController = (UIViewController *)[[[NSBundle mainBundle] loadNibNamed:@"ScriptDialog" owner:self options:nil] objectAtIndex:0];
-//    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:infoViewController];
-//    popupController.containerView.layer.cornerRadius = 10;
-//    [STPopupNavigationBar appearance].barTintColor = [UIColor orangeColor]; // This is the only OK "orangeColor", for now
-//    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-//    [STPopupNavigationBar appearance].barStyle = UIBarStyleDefault;
-//    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont voicesFontWithSize:23], NSForegroundColorAttributeName: [UIColor whiteColor] };
-//    popupController.transitionStyle = STPopupTransitionStyleFade;
-//    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[STPopupNavigationBar class]]] setTitleTextAttributes:@{ NSFontAttributeName:[UIFont voicesFontWithSize:19] } forState:UIControlStateNormal];
-//    [popupController presentInViewController:self];
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -115,7 +99,6 @@
         ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
-//        cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -124,6 +107,8 @@
         ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
         cell.itemTitle.numberOfLines = 0;
         if (self.indexPathRowToExpand == indexPath.row) {
+            
+            cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"Minus"];
             if (indexPath.row == 1) {
                 cell.itemTitle.text = self.action.body;
             }
@@ -132,6 +117,7 @@
             }
         }
         else {
+            cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"AddGroup"];
             cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }
         return cell;
@@ -143,19 +129,21 @@
             cell.textLabel.font = [UIFont voicesBoldFontWithSize:21];
             cell.textLabel.text = @"Take Action";
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         return cell;
     }
     else {
         if (self.listOfReps.count) {
             RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell forIndexPath:indexPath];
-            [cell initWithRep:self.listOfReps[indexPath.row-4]];
+            [cell initWithRep:self.listOfReps[indexPath.row - 5]];
             return cell;
         }
         else {
             ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return cell;
         }
     }
@@ -170,7 +158,7 @@
         self.indexPathRowToExpand = indexPath.row;
     }
     else if (indexPath.row == 3) {
-        NSString *shareString = [NSString stringWithFormat:@"Please support %@. %@.\n\n https://tryvoices.com/%@", self.group.name, self.action.title,self.group.key];
+        NSString *shareString = [NSString stringWithFormat:@"Hey, please help me support %@. %@.\n\n https://tryvoices.com/%@", self.group.name, self.action.title,self.group.key];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
         [self.navigationController presentViewController:activityViewController
                                                 animated:YES
