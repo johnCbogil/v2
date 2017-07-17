@@ -9,7 +9,6 @@
 #import "MoreViewController.h"
 #import <StoreKit/StoreKit.h>
 #import "STPopupController.h"
-#import <Instabug/Instabug.h>
 #import "SearchViewController.h"
 #import "WebViewController.h"
 
@@ -136,7 +135,12 @@
             [self.navigationController pushViewController:webVC animated:YES];
             break;
         case 4:
-            [Instabug invoke];
+            
+            webVC.url = [NSURL URLWithString:@"https://docs.google.com/a/tryvoices.com/forms/d/e/1FAIpQLSdwgwjbYWtvIDqefMZtDttTak-5-P92I1r6HhanEXql_hmjxA/viewform"];
+            [webVC.navigationItem setTitle:@"Feedback Form"];
+            [self.navigationController pushViewController:webVC animated:YES];
+            break;
+
         default:
             break;
     }

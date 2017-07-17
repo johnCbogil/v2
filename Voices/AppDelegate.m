@@ -18,7 +18,6 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 #import "FirebaseManager.h"
-#import <Instabug/Instabug.h>
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -42,9 +41,6 @@
         [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
     }
     
-    [Instabug startWithToken:@"8f3391817b122bd6f52f3ad62f608c1b" invocationEvent:IBGInvocationEventNone];
-    [Instabug setPromptOptionsEnabledWithBug:NO feedback:NO chat:YES];
-
     [self setInitialViewController];
     [self setCache];
     [self enableFeedbackAndReporting];
