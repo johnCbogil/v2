@@ -20,6 +20,8 @@
 
 @end
 
+// TODO: RENAME THIS CLASS
+
 @implementation ActionDetailTopTableViewCell
 
 - (void)awakeFromNib {

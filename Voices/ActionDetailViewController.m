@@ -24,9 +24,6 @@
 
 @end
 
-// TODO: UIACTIVITYVIEWCONTROLLER ITEMS MISSING ON 5S
-// TODO: LOGO CONSTRAINTS BREAK ON 5S
-
 @implementation ActionDetailViewController
 
 - (void)viewDidLoad {

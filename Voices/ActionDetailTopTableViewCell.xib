@@ -39,9 +39,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="8" id="3wW-SJ-qIS"/>
-                    <constraint firstItem="L2r-80-qcc" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="150" id="B1n-VZ-Fd5"/>
                     <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="L2r-80-qcc" secondAttribute="bottom" constant="8" id="ISW-11-bxP"/>
-                    <constraint firstAttribute="trailing" secondItem="L2r-80-qcc" secondAttribute="trailing" constant="150" id="ddS-fA-Pfe"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="centerX" secondItem="Hlc-wA-QFt" secondAttribute="centerX" id="Kv2-DD-xsc"/>
                     <constraint firstAttribute="bottom" secondItem="acv-ts-YVT" secondAttribute="bottom" constant="13" id="gkE-s1-0n9"/>
                     <constraint firstItem="L2r-80-qcc" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="top" constant="8" id="sB8-DX-zqj"/>
                     <constraint firstAttribute="trailing" secondItem="acv-ts-YVT" secondAttribute="trailing" constant="8" id="wZY-38-pet"/>
