@@ -211,8 +211,11 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
     webViewController.title = fullName;
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:webViewController animated:YES];
+    webViewController.hidesBottomBarWhenPushed = YES; // I would actually set this in WebViewController's viewDidLoad method
+    // Push on to the current tab bar's nav controller.
+    UINavigationController *navController = (UINavigationController *)self.tabBarController.selectedViewController;
+    navController.navigationBar.hidden = NO;
+    [navController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {
