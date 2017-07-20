@@ -12,11 +12,8 @@
 @interface ActionDetailTopTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UIButton *expandButton;
 @property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
 @property (nonatomic)BOOL isDescriptionExpanded;
-@property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
 
 @end
 
@@ -28,20 +25,12 @@
     [super awakeFromNib];
 
     [self configureActionTitleLabel];
-    [self configureTakeActionLabel];
-    self.descriptionTextView.textContainer.maximumNumberOfLines = 3;
 }
 
 - (void)initWithAction:(Action *)action andGroup:(Group *)group {
     
     [self fetchGroupLogoForImageURL:group.groupImageURL];
     self.actionTitleLabel.text = action.title;
-}
-
-- (void)configureTakeActionLabel {
-    
-    self.takeActionLabel.text = @"Take Action";
-    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:19];
 }
 
 - (void)configureActionTitleLabel {
@@ -55,8 +44,8 @@
     
     self.groupImageButton.backgroundColor = [UIColor clearColor];
     self.groupImageButton.imageView.contentMode = UIViewContentModeScaleToFill;
-    self.groupImageButton.imageView.layer.cornerRadius = kButtonCornerRadius;
-    self.groupImageButton.imageView.clipsToBounds = YES;
+    self.groupImageButton.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImageButton.clipsToBounds = YES;
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
