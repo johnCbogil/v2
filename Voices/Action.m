@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
     _timestamp = [dictionary[@"timestamp"]intValue];
     _level = [dictionary[@"level"]intValue];
     _script = dictionary[@"script"];
+    if (!_script.length) {
+        _script = kGenericScript;
+    }
     _debug = [dictionary[@"debug"]intValue];
     return self;
 }
