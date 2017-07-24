@@ -124,7 +124,7 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
             cell.textLabel.font = [UIFont voicesBoldFontWithSize:21];
-            cell.textLabel.text = @"Take Action";
+            cell.textLabel.text = @"Contact Reps";
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
