@@ -78,7 +78,7 @@
 
 - (void)presentPrivacyAlert {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Privacy is a human right"
+                                alertControllerWithTitle:@"Privacy is a human right."
                                 message:@"Voices does not share your address with anyone."
                                 preferredStyle:UIAlertControllerStyleAlert];
     
