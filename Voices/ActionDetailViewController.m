@@ -114,7 +114,12 @@
             }
         }
         else {
-            cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"AddGroup"];
+            if (indexPath.row == 3) {
+                cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"shareIcon"];
+            }
+            else {
+                cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"AddGroup"];
+            }
             cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }
         return cell;
