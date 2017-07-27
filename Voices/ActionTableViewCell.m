@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (nonatomic) Group *group;
+@property (strong, nonatomic) Action *action;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *completionStateButton;
 
@@ -26,12 +27,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self configureCompletionStateButton];
     [self configureFont];
     [self configureActionButton];
-    
-    self.completionStateButton.tintColor = [UIColor voicesLightGray];
 
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
+}
+
+- (void)configureCompletionStateButton {
+    
+    if (self.action.isCompleted) {
+        self.completionStateButton.tintColor = [UIColor greenColor];
+    }
+    else {
+        self.completionStateButton.tintColor = [UIColor voicesLightGray];
+    }
 }
 
 - (void)configureDate:(int long)timestamp {
@@ -51,17 +61,17 @@
 
 - (void)configureFont {
     
-    self.dateLabel.font = [UIFont voicesFontWithSize:19];
+    self.dateLabel.font = [UIFont voicesFontWithSize:18];
     self.dateLabel.textColor = [UIColor voicesGray];
 
     self.groupNameLabel.textColor = [UIColor voicesBlack];
-    self.groupNameLabel.font = [UIFont voicesFontWithSize:22];
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:21];
     
     self.actionSubjectLabel.textColor = [UIColor voicesBlack];
-    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:22];
+    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:21];
     
     self.actionTitleTextView.textColor = [UIColor voicesGray];
-    self.actionTitleTextView.font = [UIFont voicesFontWithSize:22];
+    self.actionTitleTextView.font = [UIFont voicesFontWithSize:21];
     
     self.takeActionButton.tintColor = [UIColor voicesOrange];
     self.takeActionButton.titleLabel.font = [UIFont voicesMediumFontWithSize:17];
@@ -73,6 +83,7 @@
 
 - (void)initWithGroup:(Group *)group andAction:(Action *)action {
     
+    self.action = action;
     self.group = group;
     self.groupNameLabel.text = group.name;
     self.actionTitleTextView.text = action.title;
@@ -103,6 +114,7 @@
     self.groupImage.layer.cornerRadius = kButtonCornerRadius;
     self.groupImage.backgroundColor = [UIColor clearColor];
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
@@ -111,6 +123,17 @@
 }
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
+    
+    if (self.action.isCompleted) {
+        self.action.isCompleted = NO;
+        self.completionStateButton.tintColor = [UIColor voicesLightGray];
+
+    }
+    else {
+        self.action.isCompleted = YES;
+        self.completionStateButton.tintColor = [UIColor greenColor];
+
+    }
     
 }
 

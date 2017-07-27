@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property int level;
 @property BOOL debug;
+@property BOOL isCompleted;
 @property (readonly, nonatomic, copy) NSString *key;
 @property (readonly, nonatomic, copy) NSString *body;
 @property (readonly, nonatomic, copy) NSString *title;
