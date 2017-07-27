@@ -33,17 +33,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-tx-9bO">
-                        <rect key="frame" x="337" y="7" width="30" height="30"/>
+                        <rect key="frame" x="347" y="12" width="20" height="20"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="47x-b5-OeV"/>
-                            <constraint firstAttribute="width" constant="30" id="Njq-co-hdm"/>
+                            <constraint firstAttribute="height" constant="20" id="47x-b5-OeV"/>
+                            <constraint firstAttribute="width" constant="20" id="Njq-co-hdm"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="7" id="57V-cT-H9U"/>
-                    <constraint firstItem="pCc-tx-9bO" firstAttribute="leading" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="-2" id="8dN-0R-R6X"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="12" id="57V-cT-H9U"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="leading" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="8" id="8dN-0R-R6X"/>
                     <constraint firstItem="VMu-xm-Ouk" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="9lm-cb-gfQ"/>
                     <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="WuJ-SL-AiP"/>
                     <constraint firstAttribute="bottom" secondItem="VMu-xm-Ouk" secondAttribute="bottom" constant="11.5" id="aGT-jG-ykE"/>
@@ -62,6 +62,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="shareIcon" width="700" height="700"/>
+        <image name="shareIcon" width="392" height="533"/>
     </resources>
 </document>
