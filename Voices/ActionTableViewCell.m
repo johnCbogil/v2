@@ -8,6 +8,7 @@
 
 #import "ActionTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "FirebaseManager.h"
 
 @interface ActionTableViewCell()
 
@@ -27,7 +28,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self configureCompletionStateButton];
     [self configureFont];
     [self configureActionButton];
 
@@ -90,6 +90,7 @@
     self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:self.group.groupImageURL];
     [self configureDate:action.timestamp];
+    [self configureCompletionStateButton];
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url {
@@ -124,6 +125,9 @@
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
     
+    // WRITE TO USER'S LIST OF ACTIONS COMPLETED
+    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action];
+    
     if (self.action.isCompleted) {
         self.action.isCompleted = NO;
         self.completionStateButton.tintColor = [UIColor voicesLightGray];
@@ -132,9 +136,7 @@
     else {
         self.action.isCompleted = YES;
         self.completionStateButton.tintColor = [UIColor greenColor];
-
     }
-    
 }
 
 @end

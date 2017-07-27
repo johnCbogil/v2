@@ -282,7 +282,25 @@
 
 #pragma mark - Actions
 
-// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED
+- (void)actionCompleteButtonPressed:(Action *)action {
+    
+    FIRDatabaseReference *currentUserRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
+    
+    [[currentUserRef child:action.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        BOOL isActionCompleted = snapshot.value == [NSNull null] ? NO : YES;
+
+        if (!isActionCompleted) {
+            
+            [currentUserRef updateChildValues:@{action.key : @1}];
+        }
+        else {
+            [[currentUserRef child:action.key]removeValue];
+        }
+    }];
+}
+
+// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
@@ -310,6 +328,19 @@
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
         successBlock(actions);
     });
+}
+
+- (void)fetchListOfCompletedActionsWithCompletion:(void(^)(NSArray *listOfCompletedActions))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    [[self.currentUserRef child:@"actionsCompleted"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if (snapshot.value != [NSNull null]) {
+            
+            NSDictionary *actionKeysDict = snapshot.value;
+            NSArray *actionKeys = actionKeysDict.allKeys;
+            successBlock(actionKeys);
+        }
+    }];
 }
 
 #pragma mark - Policy Positions

@@ -57,6 +57,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if ([CurrentUser sharedInstance].firebaseUserID) {
+        
+        [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
+            [CurrentUser sharedInstance].listOfCompletedActions = listOfCompletedActions;
+        } onError:^(NSError *error) {
+            
+        }];
         [self fetchFollowedGroupsForCurrentUser];
     }
     else {
