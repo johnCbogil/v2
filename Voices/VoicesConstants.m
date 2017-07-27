@@ -43,7 +43,7 @@ NSString *const kCouncilMemberDataJSON = @"CouncilMemberData";
 NSString *const kNYCExtraRepsJSON = @"nycExtraReps";
 NSString *const kRepContactFormsJSON = @"repContactForms";
 
-CGFloat const kButtonCornerRadius = 3.f;
+CGFloat const kButtonCornerRadius = 4.f;
 
 NSString *const kGroupDefaultImage = @"VoicesIcon";
 NSString *const kRepDefaultImageMale = @"MissingRepMale";

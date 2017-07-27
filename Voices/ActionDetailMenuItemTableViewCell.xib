@@ -62,6 +62,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="shareIcon" width="392" height="533"/>
+        <image name="shareIcon" width="549" height="549"/>
     </resources>
 </document>
