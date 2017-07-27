@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (nonatomic) Group *group;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *completionStateButton;
 
 @end
 
@@ -28,6 +29,8 @@
     [self configureFont];
     [self configureActionButton];
     
+    self.completionStateButton.tintColor = [UIColor voicesLightGray];
+
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
 }
 
@@ -48,17 +51,17 @@
 
 - (void)configureFont {
     
-    self.dateLabel.font = [UIFont voicesFontWithSize:13];
+    self.dateLabel.font = [UIFont voicesFontWithSize:19];
     self.dateLabel.textColor = [UIColor voicesGray];
 
     self.groupNameLabel.textColor = [UIColor voicesBlack];
-    self.groupNameLabel.font = [UIFont voicesFontWithSize:19];
+    self.groupNameLabel.font = [UIFont voicesFontWithSize:22];
     
     self.actionSubjectLabel.textColor = [UIColor voicesBlack];
-    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:19];
+    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:22];
     
     self.actionTitleTextView.textColor = [UIColor voicesGray];
-    self.actionTitleTextView.font = [UIFont voicesFontWithSize:19];
+    self.actionTitleTextView.font = [UIFont voicesFontWithSize:22];
     
     self.takeActionButton.tintColor = [UIColor voicesOrange];
     self.takeActionButton.titleLabel.font = [UIFont voicesMediumFontWithSize:17];
@@ -107,5 +110,8 @@
 - (IBAction)takeActionButtonDidPress:(id)sender {
 }
 
+- (IBAction)completionStateButtonDidPress:(id)sender {
+    
+}
 
 @end
