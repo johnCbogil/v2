@@ -40,4 +40,7 @@
     return [UIColor colorWithRed:(227.0/255.0) green:(118.0/255.0) blue:(15/255.0) alpha:1.];
 }
 
++ (UIColor *)voicesGreen {
+    return [UIColor colorWithRed:(69.0/255.0) green:(211.0/255.0) blue:(101.0/255.0) alpha:1];
+}
 @end

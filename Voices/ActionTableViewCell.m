@@ -25,7 +25,8 @@
 
 // TODO: TRACK COMPLETIONS VIA FIREBASE ANALYTICS
 // TODO: IMPLEMENT A THANK YOU / SHARE FEEDBACK
-// TODO: FINALIZE DESIGN --> SIZING IS FUCKED, CHECKMARK NEEDS FILL AND BETTER COLOR
+// TODO: FINALIZE DESIGN --> SIZING IS FUCKED
+// TODO: RUN ON 5S
 // UX: PRESSING THE CHECKMARK BUTTON NEEDS TO BE WAY MORE SATISFYING
 
 @implementation ActionTableViewCell
@@ -42,10 +43,12 @@
 - (void)configureCompletionStateButton {
     
     if (self.action.isCompleted) {
-        self.completionStateButton.tintColor = [UIColor greenColor];
+        self.completionStateButton.tintColor = [UIColor voicesGreen];
+        [self.completionStateButton setImage:[UIImage imageNamed:@"checkMarkFilled"] forState:UIControlStateNormal];
     }
     else {
         self.completionStateButton.tintColor = [UIColor voicesLightGray];
+        [self.completionStateButton setImage:[UIImage imageNamed:@"checkMark"] forState:UIControlStateNormal];
     }
 }
 
@@ -136,11 +139,12 @@
     if (self.action.isCompleted) {
         self.action.isCompleted = NO;
         self.completionStateButton.tintColor = [UIColor voicesLightGray];
-
+        [self.completionStateButton setImage:[UIImage imageNamed:@"checkMark"] forState:UIControlStateNormal];
     }
     else {
         self.action.isCompleted = YES;
-        self.completionStateButton.tintColor = [UIColor greenColor];
+        [self.completionStateButton setImage:[UIImage imageNamed:@"checkMarkFilled"] forState:UIControlStateNormal];
+        self.completionStateButton.tintColor = [UIColor voicesGreen];
     }
 }
 
