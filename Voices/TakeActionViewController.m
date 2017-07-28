@@ -17,7 +17,7 @@
 #import "FirebaseManager.h"
 #import "ScriptManager.h"
 
-@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -215,6 +215,7 @@
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
         Group *currentGroup = [Group groupForAction: action];
         [cell initWithGroup:currentGroup andAction:action];
+        cell.delegate = self;
         return cell;
     }
     else {
@@ -292,9 +293,11 @@
 
 - (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thank you for being someone who cares!"
-                                                                             message:@"Please share this action with others. There is stregnth in numbers" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Action Completed!"
+                                                                             message:@"You're a good citizen. Now please consider sharing this action with others. Change happens when many people act together."
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         NSString *shareString = [NSString stringWithFormat:@"Hey, please help me support %@. %@.\n\n https://tryvoices.com/%@", group.name, action.title, group.key];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
@@ -302,11 +305,14 @@
                                                 animated:YES
                                               completion:^{ }];
     }];
+    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    [alertController addAction:shareAction];
+    
     [alertController addAction:cancel];
+    [alertController addAction:shareAction];
+    
     
     [self presentViewController:alertController animated:YES completion:nil];
 }

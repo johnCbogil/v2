@@ -10,8 +10,15 @@
 #import "Action.h"
 #import "Group.h"
 
+@protocol PresentThankYouAlertDelegate <NSObject>
+
+- (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action;
+
+@end
+
 @interface ActionTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) id <PresentThankYouAlertDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 - (void)initWithGroup:(Group *)group andAction:(Action *)action;
 

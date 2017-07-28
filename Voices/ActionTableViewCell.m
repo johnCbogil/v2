@@ -24,10 +24,8 @@
 @end
 
 // TODO: TRACK COMPLETIONS VIA FIREBASE ANALYTICS
-// TODO: IMPLEMENT A THANK YOU / SHARE FEEDBACK
 // TODO: FINALIZE DESIGN --> SIZING IS FUCKED
 // TODO: RUN ON 5S
-// UX: PRESSING THE CHECKMARK BUTTON NEEDS TO BE WAY MORE SATISFYING
 
 @implementation ActionTableViewCell
 
@@ -142,7 +140,7 @@
         [self.completionStateButton setImage:[UIImage imageNamed:@"checkMarkFilled"] forState:UIControlStateNormal];
         self.completionStateButton.tintColor = [UIColor voicesGreen];
         
-        // PRESENT ALERT
+        [self.delegate presentThankYouAlertForGroup:self.group andAction:self.action];
     }
 }
 
