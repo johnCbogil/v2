@@ -16,10 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
-@property (nonatomic) Group *group;
-@property (strong, nonatomic) Action *action;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *completionStateButton;
+@property (nonatomic) Group *group;
+@property (strong, nonatomic) Action *action;
 
 @end
 
@@ -126,9 +126,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-}
-
-- (IBAction)takeActionButtonDidPress:(id)sender {
 }
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
