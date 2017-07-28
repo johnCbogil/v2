@@ -130,7 +130,6 @@
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
     
-    // WRITE TO USER'S LIST OF ACTIONS COMPLETED
     [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action];
     
     if (self.action.isCompleted) {
@@ -142,6 +141,8 @@
         self.action.isCompleted = YES;
         [self.completionStateButton setImage:[UIImage imageNamed:@"checkMarkFilled"] forState:UIControlStateNormal];
         self.completionStateButton.tintColor = [UIColor voicesGreen];
+        
+        // PRESENT ALERT
     }
 }
 

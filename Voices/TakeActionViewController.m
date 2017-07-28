@@ -290,4 +290,30 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - UIAlerts
+
+- (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thank you for being someone who cares!"
+                                                                             message:@"Please share this action with others. There is stregnth in numbers" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *shareString = [NSString stringWithFormat:@"Hey, please help me support %@. %@.\n\n https://tryvoices.com/%@", group.name, action.title, group.key];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
+        [self.navigationController presentViewController:activityViewController
+                                                animated:YES
+                                              completion:^{
+                                              }];
+    
+
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    [alertController addAction:shareAction];
+    [alertController addAction:cancel];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
 @end
