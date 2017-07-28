@@ -1,4 +1,4 @@
-    //
+//
 //  TakeActionViewController.m
 //  Voices
 //
@@ -7,11 +7,9 @@
 //
 
 #import "TakeActionViewController.h"
-#import "Action.h"
 #import "ActionTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
-#import "Group.h"
 #import "GroupDetailViewController.h"
 #import "GroupTableViewCell.h"
 #import "GroupsEmptyState.h"
@@ -33,14 +31,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self configureTableView];
     [self createActivityIndicator];
     [self configureSegmentedControl];
-
+    
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-
+    
     self.isUserAuthInProgress = NO;
 }
 
@@ -72,13 +70,13 @@
 }
 
 - (void)configureTableView {
-
+    
     self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
     if (!self.isUserAuthInProgress) {
         self.tableView.backgroundView.hidden = YES;
     }
-
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
@@ -89,7 +87,7 @@
 }
 
 - (void)configureSegmentedControl {
-
+    
     self.segmentControl.tintColor = [UIColor voicesOrange];
     [self.segmentControl setTitle:@"Action Feed" forSegmentAtIndex:0];
     [self.segmentControl setTitle:@"My Groups" forSegmentAtIndex:1];
@@ -111,9 +109,9 @@
 }
 
 - (void)toggleActivityIndicatorOff {
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-
+        
         if (self.selectedSegment == 0) {
             if (![CurrentUser sharedInstance].listOfActions.count) {
                 self.tableView.backgroundView.hidden = NO;
@@ -150,23 +148,23 @@
 - (void)fetchFollowedGroupsForCurrentUser {
     self.isUserAuthInProgress = NO;
     [self toggleActivityIndicatorOn];
-
+    
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
-
-//        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
-//            [self.tableView reloadData];
-//        } onError:^(NSError *error) {
-//
-//        }];
+        
+        //        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
+        //            [self.tableView reloadData];
+        //        } onError:^(NSError *error) {
+        //
+        //        }];
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
 }
 
 - (IBAction)listOfGroupsButtonDidPress:(id)sender {
-
+    
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
@@ -177,7 +175,7 @@
 }
 
 - (void)learnMoreButtonDidPress:(UIButton*)sender {
-
+    
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     [self pushToActionDetail:indexPath];
@@ -240,7 +238,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Group *currentGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-
+        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:currentGroup.name
                                                                                  message:@"Are you sure you would like to stop supporting this group?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -258,13 +256,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-
+    
     if (self.segmentControl.selectedSegmentIndex) {
         GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
         groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
@@ -293,7 +291,7 @@
 #pragma mark - UIAlerts
 
 - (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
-
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thank you for being someone who cares!"
                                                                              message:@"Please share this action with others. There is stregnth in numbers" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -302,18 +300,15 @@
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
         [self.navigationController presentViewController:activityViewController
                                                 animated:YES
-                                              completion:^{
-                                              }];
-    
-
+                                              completion:^{ }];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
+        
     }];
     [alertController addAction:shareAction];
     [alertController addAction:cancel];
     
     [self presentViewController:alertController animated:YES completion:nil];
-
 }
+
 @end
