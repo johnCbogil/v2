@@ -28,7 +28,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="1Y3-FE-fbV" userLabel="GroupName">
-                        <rect key="frame" x="81" y="39" width="352" height="34"/>
+                        <rect key="frame" x="81" y="33" width="352" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="sAA-PW-Jrc"/>
                         </constraints>
@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-bg-TiE" userLabel="Description">
-                        <rect key="frame" x="76" y="98" width="353" height="67"/>
+                        <rect key="frame" x="76" y="91" width="353" height="82"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="109" id="Nr3-WN-UQ9"/>
                         </constraints>
@@ -51,7 +51,7 @@
                         </variation>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Subject" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGT-Td-XTR">
-                        <rect key="frame" x="81" y="78" width="348" height="20"/>
+                        <rect key="frame" x="81" y="71" width="348" height="20"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -63,10 +63,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttV-a1-gBw">
-                        <rect key="frame" x="399" y="173" width="30" height="30"/>
+                        <rect key="frame" x="394" y="173" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="OB6-bS-ogB"/>
-                            <constraint firstAttribute="width" constant="30" id="zNd-gQ-XY7"/>
+                            <constraint firstAttribute="height" constant="35" id="OB6-bS-ogB"/>
+                            <constraint firstAttribute="width" constant="35" id="zNd-gQ-XY7"/>
                         </constraints>
                         <state key="normal" image="checkMark"/>
                         <connections>
@@ -80,21 +80,21 @@
                     <constraint firstItem="yaR-kc-GVU" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="16" id="1ia-SD-Lgc"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="-4" id="7hy-yp-617"/>
                     <constraint firstAttribute="trailing" secondItem="yaR-kc-GVU" secondAttribute="trailing" constant="12" id="Aoj-uN-PN6"/>
-                    <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="yaR-kc-GVU" secondAttribute="bottom" constant="6" id="CVd-oz-HmF"/>
-                    <constraint firstAttribute="bottom" secondItem="ttV-a1-gBw" secondAttribute="bottom" constant="15.5" id="DVR-bC-lgH"/>
+                    <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="yaR-kc-GVU" secondAttribute="bottom" id="CVd-oz-HmF"/>
+                    <constraint firstAttribute="bottom" secondItem="ttV-a1-gBw" secondAttribute="bottom" constant="10.5" id="DVR-bC-lgH"/>
                     <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" id="HUB-X3-tIA"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="8" id="IDh-Rh-XRW"/>
                     <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="12" id="ISG-VZ-GwK"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="Iyc-XP-lwa"/>
-                    <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="5cj-rV-NyV" secondAttribute="top" constant="31" id="N3R-Xp-tr5"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="bottom" secondItem="5cj-rV-NyV" secondAttribute="bottom" constant="30" id="WUC-ee-49h"/>
-                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" constant="5" id="XJk-P0-5dt"/>
+                    <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="5cj-rV-NyV" secondAttribute="top" constant="25" id="N3R-Xp-tr5"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="bottom" secondItem="5cj-rV-NyV" secondAttribute="bottom" constant="23" id="WUC-ee-49h"/>
+                    <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" constant="4" id="XJk-P0-5dt"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="Xkv-bv-sHN"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="5cj-rV-NyV" secondAttribute="trailing" constant="13" id="eQE-3Z-WIk"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="ewi-XH-OtG"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" id="hF3-Re-f5a"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="1Y3-FE-fbV" secondAttribute="leading" id="i8V-XB-FRE"/>
-                    <constraint firstItem="ttV-a1-gBw" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="8" id="lsj-Xl-Cgm"/>
+                    <constraint firstItem="ttV-a1-gBw" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="lsj-Xl-Cgm"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" id="q6v-bq-n57"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="1Y3-FE-fbV" secondAttribute="leading" id="qVk-WE-zNt"/>
                     <constraint firstAttribute="trailing" secondItem="ttV-a1-gBw" secondAttribute="trailing" constant="12" id="rxD-QG-0dp"/>
@@ -120,7 +120,7 @@
                 <outlet property="groupImage" destination="5cj-rV-NyV" id="cgx-g0-KLP"/>
                 <outlet property="groupNameLabel" destination="1Y3-FE-fbV" id="GYp-Ks-Anf"/>
             </connections>
-            <point key="canvasLocation" x="627.5" y="720.5"/>
+            <point key="canvasLocation" x="626" y="715"/>
         </tableViewCell>
     </objects>
     <resources>
