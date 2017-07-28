@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-bg-TiE" userLabel="Description">
-                        <rect key="frame" x="76" y="98" width="353" height="75"/>
+                        <rect key="frame" x="76" y="98" width="353" height="67"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="109" id="Nr3-WN-UQ9"/>
                         </constraints>
@@ -62,15 +62,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnM-pP-jmA">
-                        <rect key="frame" x="399" y="178" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttV-a1-gBw">
+                        <rect key="frame" x="399" y="173" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Ciz-lu-3FV"/>
-                            <constraint firstAttribute="height" constant="30" id="lLp-40-ofp"/>
+                            <constraint firstAttribute="height" constant="30" id="OB6-bS-ogB"/>
+                            <constraint firstAttribute="width" constant="30" id="zNd-gQ-XY7"/>
                         </constraints>
                         <state key="normal" image="checkMark"/>
                         <connections>
-                            <action selector="completionStateButtonDidPress:" destination="0NS-vx-xEm" eventType="touchUpInside" id="mcQ-Dv-6fA"/>
+                            <action selector="completionStateButtonDidPress:" destination="0NS-vx-xEm" eventType="touchUpInside" id="td5-dX-Bu7"/>
                         </connections>
                     </button>
                 </subviews>
@@ -78,17 +78,15 @@
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="PKl-bg-TiE" secondAttribute="leading" id="0S4-ju-PYk"/>
                     <constraint firstAttribute="bottomMargin" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="-0.5" id="1gr-LQ-PhK"/>
                     <constraint firstItem="yaR-kc-GVU" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="16" id="1ia-SD-Lgc"/>
-                    <constraint firstItem="YnM-pP-jmA" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="5" id="4yP-AD-PfJ"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="-4" id="7hy-yp-617"/>
                     <constraint firstAttribute="trailing" secondItem="yaR-kc-GVU" secondAttribute="trailing" constant="12" id="Aoj-uN-PN6"/>
-                    <constraint firstItem="YnM-pP-jmA" firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="-4" id="CHb-id-ZES"/>
                     <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="yaR-kc-GVU" secondAttribute="bottom" constant="6" id="CVd-oz-HmF"/>
+                    <constraint firstAttribute="bottom" secondItem="ttV-a1-gBw" secondAttribute="bottom" constant="15.5" id="DVR-bC-lgH"/>
                     <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="IGT-Td-XTR" secondAttribute="bottom" id="HUB-X3-tIA"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="top" constant="8" id="IDh-Rh-XRW"/>
                     <constraint firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="12" id="ISG-VZ-GwK"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="Iyc-XP-lwa"/>
                     <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="5cj-rV-NyV" secondAttribute="top" constant="31" id="N3R-Xp-tr5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="YnM-pP-jmA" secondAttribute="bottom" constant="2.5" id="Va8-BQ-oEM"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="bottom" secondItem="5cj-rV-NyV" secondAttribute="bottom" constant="30" id="WUC-ee-49h"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" constant="5" id="XJk-P0-5dt"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="Xkv-bv-sHN"/>
@@ -96,9 +94,10 @@
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="ewi-XH-OtG"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" id="hF3-Re-f5a"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="1Y3-FE-fbV" secondAttribute="leading" id="i8V-XB-FRE"/>
-                    <constraint firstItem="YnM-pP-jmA" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" constant="-10" id="kib-XA-GcQ"/>
+                    <constraint firstItem="ttV-a1-gBw" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" constant="8" id="lsj-Xl-Cgm"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="trailing" secondItem="PKl-bg-TiE" secondAttribute="trailing" id="q6v-bq-n57"/>
                     <constraint firstItem="IGT-Td-XTR" firstAttribute="leading" secondItem="1Y3-FE-fbV" secondAttribute="leading" id="qVk-WE-zNt"/>
+                    <constraint firstAttribute="trailing" secondItem="ttV-a1-gBw" secondAttribute="trailing" constant="12" id="rxD-QG-0dp"/>
                     <constraint firstItem="yaR-kc-GVU" firstAttribute="leading" secondItem="5cj-rV-NyV" secondAttribute="trailing" constant="13" id="u5g-Vw-Bhh"/>
                     <constraint firstItem="PKl-bg-TiE" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="76" id="xm2-6X-MTj"/>
                 </constraints>
@@ -110,14 +109,13 @@
                         <exclude reference="q6v-bq-n57"/>
                         <exclude reference="qVk-WE-zNt"/>
                         <exclude reference="1gr-LQ-PhK"/>
-                        <exclude reference="kib-XA-GcQ"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionSubjectLabel" destination="IGT-Td-XTR" id="V0I-lc-QzA"/>
                 <outlet property="actionTitleTextView" destination="PKl-bg-TiE" id="ECc-Sx-iyo"/>
-                <outlet property="completionStateButton" destination="YnM-pP-jmA" id="W2e-VN-isk"/>
+                <outlet property="completionStateButton" destination="ttV-a1-gBw" id="qH0-MT-TOo"/>
                 <outlet property="dateLabel" destination="yaR-kc-GVU" id="GMF-R4-QLE"/>
                 <outlet property="groupImage" destination="5cj-rV-NyV" id="cgx-g0-KLP"/>
                 <outlet property="groupNameLabel" destination="1Y3-FE-fbV" id="GYp-Ks-Anf"/>
