@@ -294,10 +294,10 @@
 - (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Action Completed!"
-                                                                             message:@"You're a good citizen. Now please consider sharing this action with others. Change happens when many people act together."
+                                                                             message:@"You're a good citizen. Now share this action with others, change happens when many people act together."
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull alert) {
         
         NSString *shareString = [NSString stringWithFormat:@"Hey, please help me support %@. %@.\n\n https://tryvoices.com/%@", group.name, action.title, group.key];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
