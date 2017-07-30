@@ -282,7 +282,7 @@
 
 #pragma mark - Actions
 
-- (void)actionCompleteButtonPressed:(Action *)action {
+- (void)actionCompleteButtonPressed:(Action *)action withCompletion:(void(^)(id))successBlock onError:(void (^)(NSError *))errorBlock {
     
     FIRDatabaseReference *currentUserRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     
@@ -297,6 +297,7 @@
         else {
             [[currentUserRef child:action.key]removeValue];
         }
+        successBlock;
     }];
 }
 

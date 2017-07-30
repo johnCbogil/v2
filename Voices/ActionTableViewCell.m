@@ -24,10 +24,6 @@
 
 @end
 
-// TODO: TRACK COMPLETIONS VIA FIREBASE ANALYTICS
-// TODO: FINALIZE DESIGN --> SIZING IS FUCKED
-// TODO: RUN ON 5S
-
 @implementation ActionTableViewCell
 
 - (void)awakeFromNib {
@@ -129,8 +125,14 @@
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
     
-    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action];
+    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action withCompletion:^(id) {
+        
+    } onError:^(NSError *) {
+        
+    }];
     
+    [self.refreshDelegate refreshHeaderCell];
+
     if (self.action.isCompleted) {
         self.action.isCompleted = NO;
         self.completionStateButton.tintColor = [UIColor voicesLightGray];

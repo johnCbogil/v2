@@ -8,6 +8,7 @@
 
 #import "TakeActionViewController.h"
 #import "ActionTableViewCell.h"
+#import "ActionFeedHeaderTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
 #import "GroupDetailViewController.h"
@@ -17,7 +18,7 @@
 #import "FirebaseManager.h"
 #import "ScriptManager.h"
 
-@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
+@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate, RefreshHeaderCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -81,6 +82,7 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ActionFeedHeaderTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionFeedHeaderTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50.f;
@@ -91,12 +93,10 @@
     self.segmentControl.tintColor = [UIColor voicesOrange];
     [self.segmentControl setTitle:@"Action Feed" forSegmentAtIndex:0];
     [self.segmentControl setTitle:@"My Groups" forSegmentAtIndex:1];
-    
 }
 
 - (void)createActivityIndicator {
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
-                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.center=self.view.center;
     [self.view addSubview:self.activityIndicatorView];
@@ -152,12 +152,7 @@
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
-        
-        //        [[FirebaseManager sharedInstance]fetchActionsWithCompletion:^(NSArray *listOfActions) {
-        //            [self.tableView reloadData];
-        //        } onError:^(NSError *error) {
-        //
-        //        }];
+
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
@@ -210,13 +205,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.selectedSegment == 0) {
-        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
-        [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-        Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
-        Group *currentGroup = [Group groupForAction: action];
-        [cell initWithGroup:currentGroup andAction:action];
-        cell.delegate = self;
-        return cell;
+        
+        if (indexPath.row == 0) {
+            
+            ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
+            [cell refreshTotalActionsCompleted];
+            return cell;
+        }
+        else {
+            
+            ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
+            [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
+            Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+            Group *currentGroup = [Group groupForAction: action];
+            [cell initWithGroup:currentGroup andAction:action];
+            cell.delegate = self;
+            cell.refreshDelegate = self;
+            return cell;
+        }
     }
     else {
         GroupTableViewCell *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
@@ -273,6 +279,13 @@
         [self pushToActionDetail:indexPath];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)refreshHeaderCell {
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Segment Control
