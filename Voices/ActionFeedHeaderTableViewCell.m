@@ -53,6 +53,6 @@
     self.totalActionsCompletedLabel.layer.cornerRadius = self.totalActionsCompletedLabel.bounds.size.width/2;
     self.totalActionsCompletedLabel.clipsToBounds = YES;
     self.totalActionsCompletedLabel.textColor = [UIColor whiteColor];
-    self.totalActionsCompletedLabel.font = [UIFont voicesFontWithSize:22];
+    self.totalActionsCompletedLabel.font = [UIFont voicesBoldFontWithSize:20];
 }
 @end
