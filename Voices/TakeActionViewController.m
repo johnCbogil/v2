@@ -290,8 +290,11 @@
 - (void)refreshHeaderCell {
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
-    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+//    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+//    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell refreshTotalActionsCompleted];
 }
 
 #pragma mark - Segment Control

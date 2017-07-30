@@ -342,6 +342,9 @@
             NSArray *actionKeys = actionKeysDict.allKeys;
             successBlock(actionKeys);
         }
+        else {
+            successBlock(nil);
+        }
     }];
 }
 
