@@ -18,7 +18,7 @@
 #import "FirebaseManager.h"
 #import "ScriptManager.h"
 
-@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate, RefreshHeaderCellDelegate>
+@interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -41,6 +41,8 @@
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     self.isUserAuthInProgress = NO;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
 }
 
 - (void)configureEmptyState {
@@ -220,7 +222,6 @@
             Group *currentGroup = [Group groupForAction: action];
             [cell initWithGroup:currentGroup andAction:action];
             cell.delegate = self;
-            cell.refreshDelegate = self;
             return cell;
         }
     }
@@ -285,7 +286,7 @@
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
-    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Segment Control

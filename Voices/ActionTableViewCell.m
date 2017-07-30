@@ -125,14 +125,8 @@
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
     
-    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action withCompletion:^(id) {
-        
-    } onError:^(NSError *) {
-        
-    }];
+    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action];
     
-    [self.refreshDelegate refreshHeaderCell];
-
     if (self.action.isCompleted) {
         self.action.isCompleted = NO;
         self.completionStateButton.tintColor = [UIColor voicesLightGray];

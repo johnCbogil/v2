@@ -10,28 +10,49 @@
 #import "FirebaseManager.h"
 #import "CurrentUser.h"
 
+@interface ActionFeedHeaderTableViewCell()
+
+@property (nonatomic) NSUInteger completedActionCountInt;
+
+@end
 @implementation ActionFeedHeaderTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
-    self.totalActionsCompletedLabel.backgroundColor = [UIColor voicesGreen];
-    self.totalActionsCompletedLabel.layer.cornerRadius = 10;
-}
+    [self refreshTotalActionsCompleted];
+    [self configureTotalActionsCompletedLabel];
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+    self.titleLabel.font = [UIFont voicesFontWithSize:19];
+    self.subtitleLabel.font = [UIFont voicesFontWithSize:17];
+    self.subtitleLabel.text = @"Select an action below to get started.";
 }
 
 - (void)refreshTotalActionsCompleted {
     
     [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
-        self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", listOfCompletedActions.count];
+        
+        self.completedActionCountInt = listOfCompletedActions.count;
+        self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", self.completedActionCountInt];
+        if (listOfCompletedActions.count > 0) {
+            self.subtitleLabel.text = @"Keep up the good work!";
+        }
+        else {
+            self.subtitleLabel.text = @"Select an action below to get started.";
+        }
     } onError:^(NSError *error) {
         
     }];
+}
+
+- (void)configureTotalActionsCompletedLabel {
+    
+    self.totalActionsCompletedLabel.backgroundColor = [UIColor voicesGreen];
+    self.totalActionsCompletedLabel.layer.cornerRadius = self.totalActionsCompletedLabel.bounds.size.width/2;
+    self.totalActionsCompletedLabel.clipsToBounds = YES;
+    self.totalActionsCompletedLabel.textColor = [UIColor whiteColor];
+    self.totalActionsCompletedLabel.font = [UIFont voicesFontWithSize:22];
 }
 @end

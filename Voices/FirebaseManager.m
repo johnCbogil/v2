@@ -282,7 +282,7 @@
 
 #pragma mark - Actions
 
-- (void)actionCompleteButtonPressed:(Action *)action withCompletion:(void(^)(id))successBlock onError:(void (^)(NSError *))errorBlock {
+- (void)actionCompleteButtonPressed:(Action *)action {
     
     FIRDatabaseReference *currentUserRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     
@@ -297,7 +297,8 @@
         else {
             [[currentUserRef child:action.key]removeValue];
         }
-        successBlock;
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshHeaderCell" object:nil];
     }];
 }
 

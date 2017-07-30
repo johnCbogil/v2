@@ -16,16 +16,9 @@
 
 @end
 
-@protocol RefreshHeaderCellDelegate <NSObject>
-
-- (void)refreshHeaderCell;
-
-@end
-
 @interface ActionTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) id <PresentThankYouAlertDelegate> delegate;
-@property (strong, nonatomic) id <RefreshHeaderCellDelegate> refreshDelegate;
 @property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 - (void)initWithGroup:(Group *)group andAction:(Action *)action;
 
