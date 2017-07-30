@@ -26,7 +26,7 @@
 
     
     self.titleLabel.font = [UIFont voicesFontWithSize:19];
-    self.subtitleLabel.font = [UIFont voicesFontWithSize:17];
+    self.subtitleLabel.font = [UIFont voicesFontWithSize:15];
     self.subtitleLabel.text = @"Select an action below to get started.";
 }
 

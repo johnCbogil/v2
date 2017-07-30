@@ -212,13 +212,14 @@
             
             ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
             [cell refreshTotalActionsCompleted];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         else {
             
             ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
             [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-            Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row];
+            Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
             Group *currentGroup = [Group groupForAction: action];
             [cell initWithGroup:currentGroup andAction:action];
             cell.delegate = self;
@@ -264,6 +265,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        return;
+    }
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
