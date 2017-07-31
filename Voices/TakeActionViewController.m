@@ -59,11 +59,6 @@
     [super viewWillAppear:animated];
     if ([CurrentUser sharedInstance].firebaseUserID) {
         
-        [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
-            [CurrentUser sharedInstance].listOfCompletedActions = listOfCompletedActions;
-        } onError:^(NSError *error) {
-            
-        }];
         [self fetchFollowedGroupsForCurrentUser];
     }
     else {
@@ -289,9 +284,12 @@
 
 - (void)refreshHeaderCell {
 
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [cell refreshTotalActionsCompleted];
+    if (self.selectedSegment == 0) {
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [cell refreshTotalActionsCompleted];
+    }
 }
 
 #pragma mark - Segment Control

@@ -32,7 +32,6 @@
         
         self.listOfFollowedGroups = @[].mutableCopy;
         self.listOfActions = @[].mutableCopy;
-        self.listOfCompletedActions = @[].mutableCopy;
     }
     return self;
 }

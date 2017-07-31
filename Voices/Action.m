@@ -7,7 +7,7 @@
 //
 
 #import "Action.h"
-#import "CurrentUser.h"
+#import "FirebaseManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,12 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
         _script = kGenericScript;
     }
     _debug = [dictionary[@"debug"]intValue];
-    if ([[CurrentUser sharedInstance].listOfCompletedActions containsObject:_key]) {
-        _isCompleted = YES;
-    }
-    else {
-        _isCompleted = NO;
-    }
+    
+    [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
+        if ([listOfCompletedActions containsObject:_key]) {
+            _isCompleted = YES;
+        }
+        else {
+            _isCompleted = NO;
+        }
+    } onError:^(NSError *error) {
+        
+    }];
     return self;
 }
 
