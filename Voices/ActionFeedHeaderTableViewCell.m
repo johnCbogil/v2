@@ -35,7 +35,7 @@
     [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
         
         self.completedActionCountInt = listOfCompletedActions.count;
-        self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", self.completedActionCountInt];
+        self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)self.completedActionCountInt];
         if (listOfCompletedActions.count > 0) {
             self.subtitleLabel.text = @"Keep up the good work!";
         }
