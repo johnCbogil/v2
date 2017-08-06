@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *groupImage;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *actionTitleTextView;
-@property (weak, nonatomic) IBOutlet UILabel *actionSubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *completionStateButton;
 @property (nonatomic) Group *group;
@@ -70,9 +69,6 @@
     self.groupNameLabel.textColor = [UIColor voicesBlack];
     self.groupNameLabel.font = [UIFont voicesFontWithSize:21];
     
-    self.actionSubjectLabel.textColor = [UIColor voicesBlack];
-    self.actionSubjectLabel.font = [UIFont voicesMediumFontWithSize:21];
-    
     self.actionTitleTextView.textColor = [UIColor voicesGray];
     self.actionTitleTextView.font = [UIFont voicesFontWithSize:21];
     
@@ -90,7 +86,6 @@
     self.group = group;
     self.groupNameLabel.text = group.name;
     self.actionTitleTextView.text = action.title;
-    self.actionSubjectLabel.text = action.subject;
     [self setGroupImageFromURL:self.group.groupImageURL];
     [self configureDate:action.timestamp];
     [self configureCompletionStateButton];

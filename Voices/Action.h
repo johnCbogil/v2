@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic, copy) NSString *title;
 @property (readonly, nonatomic, copy) NSString *groupName;
 @property (readonly, nonatomic, copy) NSString *groupKey;
-@property (readonly, nonatomic, copy) NSString *subject;
 @property (readonly, nonatomic, copy) NSString *script;
 @property (readonly) int long timestamp;
 @property (strong, nonatomic) NSURL *groupImageURL;

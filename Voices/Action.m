@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
     _groupKey = dictionary[@"groupKey"];
     _title = dictionary[@"title"];
     _groupImageURL = [NSURL URLWithString:dictionary[@"imageURL"]];
-    _subject = dictionary[@"subject"];
     _timestamp = [dictionary[@"timestamp"]intValue];
     _level = [dictionary[@"level"]intValue];
     _script = dictionary[@"script"];
