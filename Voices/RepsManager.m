@@ -80,7 +80,7 @@
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock {
     
-    [[RepsNetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+    [[RepsNetworkManager sharedInstance]getFederalRepsFromLocation:location WithCompletion:^(NSDictionary *results) {
         
         // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];

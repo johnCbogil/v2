@@ -28,6 +28,8 @@ NSString *const kSFCongress = @"a0c99640cc894383975eb73b99f39d2f";
 NSString *const kSFState = @"cf138133-cf8c-4013-95c7-31d197203e02";
 NSString *const kGoogMaps = @"AIzaSyBr8fizIgU0OF53heFICd3ak5Yp1EJpviE";
 NSString *const kAutocomplete = @"AIzaSyBudmB9IiHLj9Bjw5BYdPikwNyVc0bTYHw";
+NSString *const kGoogCivic = @"AIzaSyASF9RaK1iMCFqzu6FQYYeAXwsfQTLQkWU";
+
 
 NSString *const kFederalRepresentative = @"FederalRepresentative";
 NSString *const kStateRepresentative = @"StateRepresentative";

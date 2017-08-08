@@ -74,6 +74,28 @@
     
 }
 
+- (void)getFederalRepsFromLocation:(CLLocation*)location
+                    WithCompletion:(void(^)(NSDictionary *results))successBlock
+                           onError:(void(^)(NSError *error))errorBlock {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
+    
+    NSString *dataUrl = [NSString stringWithFormat:@"https://www.googleapis.com/civicinfo/v2/representatives?key=%@&address=%f,%f&levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody", kGoogCivic, location.coordinate.latitude,  location.coordinate.longitude];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
+    }];
+    [operation start];
+}
+
 - (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock {
     
