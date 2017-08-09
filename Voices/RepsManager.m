@@ -84,7 +84,7 @@
         
         // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
-        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
+        for (NSDictionary *resultDict in [results valueForKey:@"officials"]) {
             FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
             [listOfFederalRepresentatives addObject:federalRepresentative];
             self.fedReps = listOfFederalRepresentatives;

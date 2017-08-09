@@ -14,7 +14,7 @@
 @interface RepsNetworkManager : NSObject
 
 +(RepsNetworkManager *) sharedInstance;
-- (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
+//- (void)getFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getFederalRepsFromLocation:(CLLocation*)location
                     WithCompletion:(void(^)(NSDictionary *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock;

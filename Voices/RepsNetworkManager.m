@@ -36,43 +36,43 @@
 
 #pragma mark - Get Federal Representatives
 
-- (void)getFederalRepresentativesFromLocation:(CLLocation*)location
-                               WithCompletion:(void(^)(NSDictionary *results))successBlock
-                                      onError:(void(^)(NSError *error))errorBlock {
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
-    
-    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        successBlock(responseObject);
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
-        
-        NSString *message;
-        if (error.code == -1009) {
-            message = @"The internet connection appears to be offline.";
-        }
-        else {
-            message = @"It appears there was a server error";
-        }
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-    }];
-    
-    [operation start];
-    
-}
+//- (void)getFederalRepresentativesFromLocation:(CLLocation*)location
+//                               WithCompletion:(void(^)(NSDictionary *results))successBlock
+//                                      onError:(void(^)(NSError *error))errorBlock {
+//    
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
+//    
+//    NSString *dataUrl = [NSString stringWithFormat:@"http://congress.api.sunlightfoundation.com/legislators/locate?latitude=%f&longitude=%f&apikey=%@", location.coordinate.latitude,  location.coordinate.longitude, kSFCongress];
+//    NSURL *url = [NSURL URLWithString:dataUrl];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        successBlock(responseObject);
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
+//        
+//        NSString *message;
+//        if (error.code == -1009) {
+//            message = @"The internet connection appears to be offline.";
+//        }
+//        else {
+//            message = @"It appears there was a server error";
+//        }
+//        
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:message preferredStyle:UIAlertControllerStyleAlert];
+//        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+//        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+//    }];
+//    
+//    [operation start];
+//    
+//}
 
 - (void)getFederalRepsFromLocation:(CLLocation*)location
                     WithCompletion:(void(^)(NSDictionary *results))successBlock
@@ -89,8 +89,10 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         successBlock(responseObject);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingReps" object:nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"endRefreshing" object:nil];
     }];
     [operation start];
