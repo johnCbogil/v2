@@ -31,7 +31,9 @@
 //        self.gender = [data valueForKey:@"gender"];
 //        self.crpID = [data valueForKey:@"crp_id"];
         self.fullName = data[@"name"];
+        self.phone = data[@"phones"][0];
         self.party = data[@"party"];
+        self.photoURL = [NSURL URLWithString:data[@"photoUrl"]];
         NSArray *channels = data[@"channels"];
         for (NSDictionary *channel in channels) {
             if ([channel[@"type"]isEqualToString:@"Twitter"]) {
