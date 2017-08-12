@@ -43,6 +43,8 @@
     self.isUserAuthInProgress = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
+    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)configureEmptyState {

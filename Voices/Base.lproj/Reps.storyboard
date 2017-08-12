@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="mDv-wp-Cbp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t2f-5V-Erd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="457"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WJZ-hA-hMq">
-                                <rect key="frame" x="0.0" y="53" width="320" height="407"/>
+                                <rect key="frame" x="0.0" y="53" width="320" height="404"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZWW-xi-bhX">
                                     <size key="itemSize" width="50" height="50"/>
@@ -357,13 +357,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohY-vD-AGg">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="111" width="320" height="457"/>
                                 <connections>
                                     <segue destination="RaT-JB-7Ja" kind="embed" id="GeH-dQ-6k0"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMl-8f-34u">
-                                <rect key="frame" x="221" y="38" width="40" height="71"/>
+                                <rect key="frame" x="221" y="38" width="40" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="50H-c5-lGA"/>
                                 </constraints>
@@ -373,7 +373,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGk-cz-Q0m">
-                                <rect key="frame" x="279" y="28" width="30" height="91"/>
+                                <rect key="frame" x="279" y="28" width="30" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="qb8-AS-xkm"/>
                                 </constraints>
@@ -383,13 +383,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find reps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-h2-Dnu">
-                                <rect key="frame" x="16" y="47" width="202" height="52"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="38"/>
+                                <rect key="frame" x="16" y="47" width="202" height="55"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1s-c8-5ek">
-                                <rect key="frame" x="21" y="108" width="299" height="2"/>
+                                <rect key="frame" x="21" y="111" width="299" height="2"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                         </subviews>
