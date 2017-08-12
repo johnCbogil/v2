@@ -50,6 +50,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     self.userProfileButton.tintColor = [UIColor voicesOrange];
     self.addGroupButton.tintColor = [UIColor voicesOrange];
+    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:40];
 }
 
 - (void)configureEmptyState {

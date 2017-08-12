@@ -37,16 +37,16 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Px1-hj-bAe">
-                                <rect key="frame" x="16" y="47" width="235" height="55"/>
+                                <rect key="frame" x="16" y="47" width="256" height="55"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayz-aM-rSI">
-                                <rect key="frame" x="329" y="60" width="30" height="30"/>
+                                <rect key="frame" x="335" y="54" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="M6F-d2-ceW"/>
-                                    <constraint firstAttribute="width" constant="30" id="Mw5-z9-UDr"/>
+                                    <constraint firstAttribute="height" constant="40" id="M6F-d2-ceW"/>
+                                    <constraint firstAttribute="width" constant="40" id="Mw5-z9-UDr"/>
                                 </constraints>
                                 <state key="normal" image="AddGroup"/>
                                 <connections>
@@ -54,10 +54,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mm-PM-tLR">
-                                <rect key="frame" x="286" y="62" width="25" height="25"/>
+                                <rect key="frame" x="297" y="61" width="27" height="27"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="9GP-a3-PlE"/>
-                                    <constraint firstAttribute="width" constant="25" id="Pxb-gg-j6u"/>
+                                    <constraint firstAttribute="height" constant="27" id="9GP-a3-PlE"/>
+                                    <constraint firstAttribute="width" constant="27" id="Pxb-gg-j6u"/>
                                 </constraints>
                                 <state key="normal" image="userFilled"/>
                                 <connections>
@@ -65,7 +65,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFg-or-GAf">
-                                <rect key="frame" x="16" y="110" width="359" height="2"/>
+                                <rect key="frame" x="23" y="110" width="352" height="2"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="a40-Yy-hfI"/>
@@ -74,26 +74,28 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ayz-aM-rSI" firstAttribute="leading" secondItem="8Mm-PM-tLR" secondAttribute="trailing" constant="18" id="1ru-3B-mgt"/>
-                            <constraint firstAttribute="trailing" secondItem="ayz-aM-rSI" secondAttribute="trailing" constant="16" id="3Bx-ob-B3w"/>
-                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="leading" secondItem="Px1-hj-bAe" secondAttribute="trailing" constant="35" id="4VN-7w-DgZ"/>
+                            <constraint firstItem="ayz-aM-rSI" firstAttribute="leading" secondItem="8Mm-PM-tLR" secondAttribute="trailing" constant="11" id="1ru-3B-mgt"/>
+                            <constraint firstAttribute="trailing" secondItem="ayz-aM-rSI" secondAttribute="trailing" id="3Bx-ob-B3w"/>
+                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="leading" secondItem="Px1-hj-bAe" secondAttribute="trailing" constant="25" id="4VN-7w-DgZ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="trailing" secondItem="GFg-or-GAf" secondAttribute="trailing" id="4ip-re-hiV"/>
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="27" id="5hS-pN-zbJ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="bottom" secondItem="WFz-Rb-9DG" secondAttribute="top" id="7hE-PN-nhP"/>
-                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="42" id="GMQ-bY-WJB"/>
+                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="41" id="GMQ-bY-WJB"/>
                             <constraint firstAttribute="trailing" secondItem="GFg-or-GAf" secondAttribute="trailing" id="HXo-ZL-eOs"/>
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="16" id="RTX-p0-3ZT"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" id="db1-jW-3a0"/>
                             <constraint firstItem="GFg-or-GAf" firstAttribute="top" secondItem="Px1-hj-bAe" secondAttribute="bottom" constant="8" id="eTH-sG-Ztb"/>
-                            <constraint firstItem="ayz-aM-rSI" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="40" id="gEk-aq-eqW"/>
+                            <constraint firstItem="ayz-aM-rSI" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="34" id="gEk-aq-eqW"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="top" secondItem="GFg-or-GAf" secondAttribute="bottom" constant="7" id="nIT-If-feI"/>
-                            <constraint firstItem="GFg-or-GAf" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="16" id="wNe-4M-y0y"/>
+                            <constraint firstItem="GFg-or-GAf" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="23" id="wNe-4M-y0y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5nS-Vg-Mh9">
                         <nil key="title"/>
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="addGroupButton" destination="ayz-aM-rSI" id="2EM-OO-8G7"/>
                         <outlet property="tableView" destination="fUB-rf-To8" id="RFB-5c-y8Y"/>
@@ -293,7 +295,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Rf8-ep-UmH">
             <objects>
-                <navigationController storyboardIdentifier="TakeActionNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="k0W-gi-hf3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TakeActionNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="k0W-gi-hf3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
