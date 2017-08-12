@@ -9,7 +9,15 @@
 #import "FederalRepresentative.h"
 #import "RepsManager.h"
 
+@interface FederalRepresentative()
+
+@property (strong, nonatomic) NSNumber *officialIndex;
+
+
+@end
+
 @implementation FederalRepresentative
+
 
 - (id)initWithData:(NSDictionary *)data {
     self = [super init];
@@ -30,6 +38,15 @@
 //        self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
 //        self.gender = [data valueForKey:@"gender"];
 //        self.crpID = [data valueForKey:@"crp_id"];
+        
+        NSDictionary *office = data[@"office"];
+        NSArray *roles = office[@"roles"];
+        if ([roles[0]isEqualToString:@"legislatorUpperBody"]) {
+            self.title = @"Senator";
+        }
+        else {
+            self.title = @"Representative";
+        }
         self.fullName = data[@"name"];
         self.phone = data[@"phones"][0];
         self.party = data[@"party"];

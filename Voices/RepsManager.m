@@ -82,13 +82,24 @@
     
     [[RepsNetworkManager sharedInstance]getFederalRepsFromLocation:location WithCompletion:^(NSDictionary *results) {
         
-        // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
-        for (NSDictionary *resultDict in [results valueForKey:@"officials"]) {
-            FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
-            [listOfFederalRepresentatives addObject:federalRepresentative];
-            self.fedReps = listOfFederalRepresentatives;
-            successBlock();
+        NSArray *officials = results[@"officials"];
+        NSArray *offices = results[@"offices"];
+
+        for (NSDictionary *office in offices) {
+            
+            NSArray *officialIndices = office[@"officialIndices"];
+            
+            for (NSNumber *officialIndex in officialIndices) {
+                
+                NSMutableDictionary *official = [NSMutableDictionary dictionaryWithDictionary:officials[[officialIndex integerValue]]];
+                [official setObject:office forKey:@"office"];
+                
+                FederalRepresentative *federalRep = [[FederalRepresentative alloc]initWithData:official];
+                [listOfFederalRepresentatives addObject:federalRep];
+                self.fedReps = listOfFederalRepresentatives;
+                successBlock();
+            }
         }
         
     } onError:^(NSError *error) {

@@ -46,7 +46,7 @@
 - (void)initWithRep:(id)rep {
     self.representative = rep;
     NSString *title = self.representative.shortTitle ? self.representative.shortTitle : self.representative.title;
-    self.name.text = [NSString stringWithFormat:@"%@ %@ %@", title, self.representative.firstName, self.representative.lastName];
+    self.name.text = [NSString stringWithFormat:@"%@ %@", title, self.representative.fullName];
     [self.actionView configureWithRepresentative:self.representative];
     [self setupImage];
 }
