@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mm-PM-tLR">
-                                <rect key="frame" x="297" y="61" width="27" height="27"/>
+                                <rect key="frame" x="294" y="61" width="27" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="9GP-a3-PlE"/>
                                     <constraint firstAttribute="width" constant="27" id="Pxb-gg-j6u"/>
@@ -74,9 +74,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ayz-aM-rSI" firstAttribute="leading" secondItem="8Mm-PM-tLR" secondAttribute="trailing" constant="11" id="1ru-3B-mgt"/>
+                            <constraint firstItem="ayz-aM-rSI" firstAttribute="leading" secondItem="8Mm-PM-tLR" secondAttribute="trailing" constant="14" id="1ru-3B-mgt"/>
                             <constraint firstAttribute="trailing" secondItem="ayz-aM-rSI" secondAttribute="trailing" id="3Bx-ob-B3w"/>
-                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="leading" secondItem="Px1-hj-bAe" secondAttribute="trailing" constant="25" id="4VN-7w-DgZ"/>
+                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="leading" secondItem="Px1-hj-bAe" secondAttribute="trailing" constant="22" id="4VN-7w-DgZ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="trailing" secondItem="GFg-or-GAf" secondAttribute="trailing" id="4ip-re-hiV"/>
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="27" id="5hS-pN-zbJ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="bottom" secondItem="WFz-Rb-9DG" secondAttribute="top" id="7hE-PN-nhP"/>
