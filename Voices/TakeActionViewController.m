@@ -26,6 +26,9 @@
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
+@property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *userProfileButton;
+@property (weak, nonatomic) IBOutlet UIButton *addGroupButton;
 @end
 
 @implementation TakeActionViewController
@@ -45,6 +48,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
     
     [self.navigationController setNavigationBarHidden:YES];
+    self.userProfileButton.tintColor = [UIColor voicesOrange];
+    self.addGroupButton.tintColor = [UIColor voicesOrange];
 }
 
 - (void)configureEmptyState {
@@ -334,6 +339,12 @@
     
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (IBAction)userProfileButtonDidPress:(id)sender {
+}
+
+- (IBAction)addGroupButtonDidPress:(id)sender {
 }
 
 @end
