@@ -76,13 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
     if (self.representative.phone.length) {
         NSString *confirmCallMessage = @"Would you like to preview the call script or begin calling?";
-        NSString *title;
-        if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
-            title =  [NSString stringWithFormat:@"Call %@", self.representative.nickname];
-        }
-        else {
-            title =  [NSString stringWithFormat:@"Call %@ %@", self.representative.firstName, self.representative.lastName];
-        }
+        NSString *title = [NSString stringWithFormat:@"Call %@",self.representative.fullName];
         
         UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:title  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Preview" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
