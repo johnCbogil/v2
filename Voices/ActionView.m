@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
         }]];
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
-            NSURL* callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
+            NSURL *callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
             if ([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 [[UIApplication sharedApplication] openURL:callUrl];
             }

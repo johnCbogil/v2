@@ -16,9 +16,7 @@
 @interface RepDetailViewController() <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *repImageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *partyStateLabel;
 @property (weak, nonatomic) IBOutlet UIView *actionContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *topInfluencersLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -158,23 +156,13 @@
 
 - (void)configureLabels {
     
-    self.titleLabel.text = self.representative.title;
-    self.titleLabel.numberOfLines = 0;
-    self.titleLabel.font = [UIFont voicesMediumFontWithSize:30];
+   
     self.nameLabel.font = [UIFont voicesMediumFontWithSize:30];
+    self.nameLabel.numberOfLines = 0;
     [self.nameLabel sizeToFit];
     self.nameLabel.minimumScaleFactor = 0.5;
     self.nameLabel.text = self.representative.fullName;
-    self.partyStateLabel.font = [UIFont voicesMediumFontWithSize:26];
     self.topInfluencersLabel.font = [UIFont voicesMediumFontWithSize:22];
-    
-    if (![self.representative.districtNumber isEqualToString:@"<null>"]) {
-        
-        self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@, District %@", self.representative.party, self.representative.stateCode, self.representative.districtNumber];
-    }
-    else {
-        self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.party, self.representative.stateCode];
-    }
 }
 
 - (void)configureNavigationController {

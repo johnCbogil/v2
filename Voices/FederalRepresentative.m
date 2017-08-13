@@ -49,6 +49,10 @@
         }
         self.fullName = data[@"name"];
         self.phone = data[@"phones"][0];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
         self.party = data[@"party"];
         self.photoURL = [NSURL URLWithString:data[@"photoUrl"]];
         NSArray *channels = data[@"channels"];
