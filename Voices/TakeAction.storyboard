@@ -54,10 +54,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mm-PM-tLR">
-                                <rect key="frame" x="294" y="61" width="27" height="27"/>
+                                <rect key="frame" x="286" y="59" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="9GP-a3-PlE"/>
-                                    <constraint firstAttribute="width" constant="27" id="Pxb-gg-j6u"/>
+                                    <constraint firstAttribute="height" constant="30" id="9GP-a3-PlE"/>
+                                    <constraint firstAttribute="width" constant="30" id="Pxb-gg-j6u"/>
                                 </constraints>
                                 <state key="normal" image="userFilled"/>
                                 <connections>
@@ -74,13 +74,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ayz-aM-rSI" firstAttribute="leading" secondItem="8Mm-PM-tLR" secondAttribute="trailing" constant="14" id="1ru-3B-mgt"/>
+                            <constraint firstItem="ayz-aM-rSI" firstAttribute="leading" secondItem="8Mm-PM-tLR" secondAttribute="trailing" constant="19" id="1ru-3B-mgt"/>
                             <constraint firstAttribute="trailing" secondItem="ayz-aM-rSI" secondAttribute="trailing" id="3Bx-ob-B3w"/>
-                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="leading" secondItem="Px1-hj-bAe" secondAttribute="trailing" constant="22" id="4VN-7w-DgZ"/>
+                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="leading" secondItem="Px1-hj-bAe" secondAttribute="trailing" constant="14" id="4VN-7w-DgZ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="trailing" secondItem="GFg-or-GAf" secondAttribute="trailing" id="4ip-re-hiV"/>
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="27" id="5hS-pN-zbJ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="bottom" secondItem="WFz-Rb-9DG" secondAttribute="top" id="7hE-PN-nhP"/>
-                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="41" id="GMQ-bY-WJB"/>
+                            <constraint firstItem="8Mm-PM-tLR" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="39" id="GMQ-bY-WJB"/>
                             <constraint firstAttribute="trailing" secondItem="GFg-or-GAf" secondAttribute="trailing" id="HXo-ZL-eOs"/>
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="16" id="RTX-p0-3ZT"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" id="db1-jW-3a0"/>
@@ -297,9 +297,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TakeActionNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="k0W-gi-hf3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UgK-Rn-ulC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

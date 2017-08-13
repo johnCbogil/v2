@@ -48,7 +48,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
     
     [self.navigationController setNavigationBarHidden:YES];
-    self.userProfileButton.tintColor = [UIColor voicesOrange];
+    self.userProfileButton.tintColor = [UIColor blackColor];
     self.addGroupButton.tintColor = [UIColor voicesOrange];
     self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:40];
 }
