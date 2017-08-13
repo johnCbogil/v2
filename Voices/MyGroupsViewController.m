@@ -11,11 +11,14 @@
 #import "FirebaseManager.h"
 #import "GroupTableViewCell.h"
 #import "GroupDetailViewController.h"
+#import "GroupsEmptyState.h"
+#import "ListOfGroupsViewController.h"
 
 @interface MyGroupsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 
 @end
 
@@ -51,6 +54,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.emptyStateView = [[GroupsEmptyState alloc]init];
+    self.tableView.backgroundView = self.emptyStateView;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50.f;
