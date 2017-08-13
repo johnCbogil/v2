@@ -41,9 +41,12 @@
         
         [self fetchFollowedGroupsForCurrentUser];
     }
+    
+
 }
 
 - (void)configureActivityIndicator {
+    
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.center=self.view.center;
@@ -63,7 +66,9 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         [self.activityIndicatorView startAnimating];
     });
 }
@@ -73,20 +78,34 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [self.activityIndicatorView stopAnimating];
-
+        
     });
+}
+
+- (void)toggleEmptyState {
+    
+    if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
+        self.tableView.backgroundView.hidden = NO;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    else {
+        self.tableView.backgroundView.hidden = YES;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
 }
 
 - (void)fetchFollowedGroupsForCurrentUser {
     //    self.isUserAuthInProgress = NO;
-        [self toggleActivityIndicatorOn];
+    [self toggleActivityIndicatorOn];
     
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
-                [self toggleActivityIndicatorOff];
+        
+        [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
+        [self toggleEmptyState];
         
     } onError:^(NSError *error) {
-                [self toggleActivityIndicatorOff];
+        [self toggleActivityIndicatorOff];
     }];
 }
 
