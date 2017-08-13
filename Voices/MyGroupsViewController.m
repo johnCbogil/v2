@@ -15,6 +15,7 @@
 @interface MyGroupsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -26,9 +27,8 @@
     self.title = @"My Groups";
     
     [self configureTableView];
+    [self configureActivityIndicator];
     self.navigationController.navigationBarHidden = NO;
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,8 +40,15 @@
     }
 }
 
+- (void)configureActivityIndicator {
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center=self.view.center;
+    [self.view addSubview:self.activityIndicatorView];
+}
+
 - (void)configureTableView {
- 
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
@@ -50,16 +57,31 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
+- (void)toggleActivityIndicatorOn {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView startAnimating];
+    });
+}
+
+- (void)toggleActivityIndicatorOff {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.activityIndicatorView stopAnimating];
+
+    });
+}
+
 - (void)fetchFollowedGroupsForCurrentUser {
-//    self.isUserAuthInProgress = NO;
-//    [self toggleActivityIndicatorOn];
+    //    self.isUserAuthInProgress = NO;
+        [self toggleActivityIndicatorOn];
     
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
-//        [self toggleActivityIndicatorOff];
+                [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
         
     } onError:^(NSError *error) {
-//        [self toggleActivityIndicatorOff];
+                [self toggleActivityIndicatorOff];
     }];
 }
 
