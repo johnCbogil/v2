@@ -35,6 +35,7 @@
     [self createActivityIndicator];
     [self retrieveGroups];
     
+    self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 

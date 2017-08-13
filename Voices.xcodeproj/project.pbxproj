@@ -76,6 +76,7 @@
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
 		7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */; };
+		7E60D03C1F3FDBCE0047C17D /* MyGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60D03B1F3FDBCE0047C17D /* MyGroupsViewController.m */; };
 		7E6ACA6B1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6ACA6A1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib */; };
 		7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsViewController.m */; };
 		7EA517101F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5170F1F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib */; };
@@ -229,6 +230,8 @@
 		7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyRepTableViewCell.xib; sourceTree = "<group>"; };
 		7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiOnboardingViewController.h; sourceTree = "<group>"; };
 		7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiOnboardingViewController.m; sourceTree = "<group>"; };
+		7E60D03A1F3FDBCE0047C17D /* MyGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGroupsViewController.h; sourceTree = "<group>"; };
+		7E60D03B1F3FDBCE0047C17D /* MyGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGroupsViewController.m; sourceTree = "<group>"; };
 		7E6ACA6A1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionDetailTakeActionTableViewCell.xib; sourceTree = "<group>"; };
 		7E6CB2DD1DD658B20027D11B /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
 		7E6CB2DE1DD658B20027D11B /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
@@ -566,6 +569,8 @@
 				525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */,
 				7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */,
 				7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */,
+				7E60D03A1F3FDBCE0047C17D /* MyGroupsViewController.h */,
+				7E60D03B1F3FDBCE0047C17D /* MyGroupsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				524672671EEC494C000A7484 /* ActionDetailViewController.m in Sources */,
 				E860E0551E8AB7C300055D39 /* AboutViewController.m in Sources */,
 				7EAFDDB01D2EF9840032F8A8 /* PolicyDetailViewController.m in Sources */,
+				7E60D03C1F3FDBCE0047C17D /* MyGroupsViewController.m in Sources */,
 				A77809ED1E200FC10001E825 /* GroupDescriptionTableViewCell.m in Sources */,
 				52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */,
 				7EE956C81F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m in Sources */,

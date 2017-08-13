@@ -11,18 +11,19 @@
 #import "ActionFeedHeaderTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
-#import "GroupDetailViewController.h"
-#import "GroupTableViewCell.h"
+//#import "GroupDetailViewController.h"
+//#import "GroupTableViewCell.h"
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
 #import "ScriptManager.h"
+#import "MyGroupsViewController.h"
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-@property (nonatomic) NSInteger selectedSegment;
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+//@property (nonatomic) NSInteger selectedSegment;
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
@@ -38,7 +39,7 @@
     
     [self configureTableView];
     [self createActivityIndicator];
-    [self configureSegmentedControl];
+//    [self configureSegmentedControl];
     
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
@@ -54,17 +55,20 @@
 }
 
 - (void)configureEmptyState {
-    if (self.segmentControl.selectedSegmentIndex) {
-        [self.emptyStateView updateLabels:kGroupEmptyStateTopLabel bottom:kGroupEmptyStateBottomLabel];
-    }
-    else {
+//    if (self.segmentControl.selectedSegmentIndex) {
+//        [self.emptyStateView updateLabels:kGroupEmptyStateTopLabel bottom:kGroupEmptyStateBottomLabel];
+//    }
+//    else {
         [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
-    }
+//    }
     [self.view layoutSubviews];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+
     if ([CurrentUser sharedInstance].firebaseUserID) {
         
         [self fetchFollowedGroupsForCurrentUser];
@@ -85,7 +89,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionFeedHeaderTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionFeedHeaderTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -93,12 +97,12 @@
     self.tableView.estimatedRowHeight = 50.f;
 }
 
-- (void)configureSegmentedControl {
-    
-    self.segmentControl.tintColor = [UIColor voicesOrange];
-    [self.segmentControl setTitle:@"Action Feed" forSegmentAtIndex:0];
-    [self.segmentControl setTitle:@"My Groups" forSegmentAtIndex:1];
-}
+//- (void)configureSegmentedControl {
+//    
+//    self.segmentControl.tintColor = [UIColor voicesOrange];
+//    [self.segmentControl setTitle:@"Action Feed" forSegmentAtIndex:0];
+//    [self.segmentControl setTitle:@"My Groups" forSegmentAtIndex:1];
+//}
 
 - (void)createActivityIndicator {
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -117,22 +121,22 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (self.selectedSegment == 0) {
+//        if (self.selectedSegment == 0) {
             if (![CurrentUser sharedInstance].listOfActions.count) {
                 self.tableView.backgroundView.hidden = NO;
             }
             else {
                 self.tableView.backgroundView.hidden = YES;
             }
-        }
-        else {
+//        }
+//        else {
             if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
                 self.tableView.backgroundView.hidden = NO;
             }
             else {
                 self.tableView.backgroundView.hidden = YES;
             }
-        }
+//        }
     });
     [self.activityIndicatorView stopAnimating];
 }
@@ -163,16 +167,16 @@
     }];
 }
 
-- (IBAction)listOfGroupsButtonDidPress:(id)sender {
-    
-    // Allows centering of the nav bar title by making an empty back button
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
-    
-    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
-    [self.navigationController pushViewController:viewControllerB animated:YES];
-}
+//- (IBAction)listOfGroupsButtonDidPress:(id)sender {
+//    
+//    // Allows centering of the nav bar title by making an empty back button
+//    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    [self.navigationItem setBackBarButtonItem:backButtonItem];
+//    
+//    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+//    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
+//    [self.navigationController pushViewController:viewControllerB animated:YES];
+//}
 
 - (void)learnMoreButtonDidPress:(UIButton*)sender {
     
@@ -199,18 +203,18 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.selectedSegment) {
-        return [CurrentUser sharedInstance].listOfFollowedGroups.count;
-    }
-    else {
+//    if (self.selectedSegment) {
+//        return [CurrentUser sharedInstance].listOfFollowedGroups.count;
+//    }
+//    else {
         return [CurrentUser sharedInstance].listOfActions.count;
-    }
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.selectedSegment == 0) {
-        
+//    if (self.selectedSegment == 0) {
+    
         if (indexPath.row == 0) {
             
             ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
@@ -228,23 +232,23 @@
             cell.delegate = self;
             return cell;
         }
-    }
-    else {
-        GroupTableViewCell *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
-        Group *group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        [cell initWithGroup:group];
-        return cell;
-    }
+//    }
+//    else {
+//        GroupTableViewCell *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
+//        Group *group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
+//        [cell initWithGroup:group];
+//        return cell;
+//    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.selectedSegment == 0) {
+//    if (self.selectedSegment == 0) {
         return NO;
-    }
-    else {
-        return YES;
-    }
+//    }
+//    else {
+//        return YES;
+//    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -269,50 +273,50 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0 && self.selectedSegment == 0) {
+    if (indexPath.row == 0) {
         return;
     }
     
-    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+//    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
-    if (self.segmentControl.selectedSegmentIndex) {
-        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-        groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-        [self.navigationController pushViewController:groupDetailViewController animated:YES];
-    }
-    else {
+//    if (self.segmentControl.selectedSegmentIndex) {
+//        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+//        groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
+//        [self.navigationController pushViewController:groupDetailViewController animated:YES];
+//    }
+//    else {
         [self pushToActionDetail:indexPath];
-    }
+//    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)refreshHeaderCell {
 
-    if (self.selectedSegment == 0) {
-        
+//    if (self.selectedSegment == 0) {
+    
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         [cell refreshTotalActionsCompleted];
-    }
+//    }
 }
 
-#pragma mark - Segment Control
-
-- (IBAction)segmentControlDidChange:(id)sender {
-    [self configureEmptyState];
-    self.segmentControl = (UISegmentedControl *) sender;
-    self.selectedSegment = self.segmentControl.selectedSegmentIndex;
-    if ([CurrentUser sharedInstance].firebaseUserID) {
-        [self fetchFollowedGroupsForCurrentUser];
-    } else {
-        [self userAuth];
-    }
-    [self.tableView reloadData];
-}
+//#pragma mark - Segment Control
+//
+//- (IBAction)segmentControlDidChange:(id)sender {
+//    [self configureEmptyState];
+//    self.segmentControl = (UISegmentedControl *) sender;
+//    self.selectedSegment = self.segmentControl.selectedSegmentIndex;
+//    if ([CurrentUser sharedInstance].firebaseUserID) {
+//        [self fetchFollowedGroupsForCurrentUser];
+//    } else {
+//        [self userAuth];
+//    }
+//    [self.tableView reloadData];
+//}
 
 #pragma mark - UIAlerts
 
@@ -343,9 +347,25 @@
 }
 
 - (IBAction)userProfileButtonDidPress:(id)sender {
+    
+    // Allows centering of the nav bar title by making an empty back button
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    MyGroupsViewController *viewControllerB = (MyGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"MyGroupsViewController"];
+    [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
 - (IBAction)addGroupButtonDidPress:(id)sender {
+    
+    // Allows centering of the nav bar title by making an empty back button
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
+    [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
 @end
