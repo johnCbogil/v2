@@ -17,7 +17,6 @@
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
 #import "ScriptManager.h"
-#import "MyGroupsViewController.h"
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
@@ -28,7 +27,6 @@
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
-@property (weak, nonatomic) IBOutlet UIButton *userProfileButton;
 @property (weak, nonatomic) IBOutlet UIButton *addGroupButton;
 @end
 
@@ -49,7 +47,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
     
     [self.navigationController setNavigationBarHidden:YES];
-    self.userProfileButton.tintColor = [UIColor blackColor];
     self.addGroupButton.tintColor = [UIColor voicesOrange];
     self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:40];
 }
@@ -344,17 +341,6 @@
     
     
     [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (IBAction)userProfileButtonDidPress:(id)sender {
-    
-    // Allows centering of the nav bar title by making an empty back button
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
-    
-    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-    MyGroupsViewController *viewControllerB = (MyGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"MyGroupsViewController"];
-    [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
 - (IBAction)addGroupButtonDidPress:(id)sender {
