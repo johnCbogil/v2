@@ -226,6 +226,7 @@
                 }];
             }];
         }
+        successBlock([CurrentUser sharedInstance].listOfFollowedGroups);
     } withCancelBlock:^(NSError * _Nonnull error) {
         
     }];

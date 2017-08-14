@@ -37,6 +37,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
+    
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)configureDatasource {

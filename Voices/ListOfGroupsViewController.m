@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSMutableArray *listOfGroups;
 @property (strong, nonatomic) NSArray *listOfFollowedGroups;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -29,17 +30,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Select A Group To Learn More";
-    
     [self configureTableView];
     [self createActivityIndicator];
-    [self retrieveGroups];
+    [self configureSegmentedControl];
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
+- (void)configureSegmentedControl {
+    
+    self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"My Groups",@"All Groups"]];
+    self.navigationItem.titleView = self.segmentedControl;
+    if ([CurrentUser sharedInstance].firebaseUserID) {
+        self.segmentedControl.selectedSegmentIndex = 0;
+        [self fetchMyGroups];
+
+    }
+    else {
+        self.segmentedControl.selectedSegmentIndex = 1;
+        [self fetchAllGroups];
+
+    }
+    [self.segmentedControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
+
+}
+
+- (void)segmentControlDidChangeValue {
+    
+    if (self.segmentedControl.selectedSegmentIndex) {
+        
+        [self fetchAllGroups];
+    }
+    else {
+        
+        [self fetchMyGroups];
+    }
+}
+
 - (void)configureTableView {
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -71,13 +101,31 @@
 
 #pragma mark - Firebase methods
 
-- (void)retrieveGroups {
+- (void)fetchAllGroups {
+    
     [self toggleActivityIndicatorOn];
     __weak ListOfGroupsViewController *weakSelf = self;
     [[FirebaseManager sharedInstance] fetchAllGroupsWithCompletion:^(NSArray *groups) {
+        
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groups];
         [weakSelf.tableView reloadData];
         [self toggleActivityIndicatorOff];
+        
+    } onError:^(NSError *error) {
+        
+    }];
+}
+
+- (void)fetchMyGroups {
+    
+    [self toggleActivityIndicatorOn];
+    __weak ListOfGroupsViewController *weakSelf = self;
+    [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
+        
+        weakSelf.listOfGroups = [CurrentUser sharedInstance].listOfFollowedGroups;
+        [weakSelf.tableView reloadData];
+        [self toggleActivityIndicatorOff];
+
     } onError:^(NSError *error) {
         
     }];
