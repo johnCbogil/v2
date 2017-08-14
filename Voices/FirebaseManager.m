@@ -318,14 +318,10 @@
             
             if ([self shouldAddActionToList:action]) {
                 [actions addObject:action];
-//                [[CurrentUser sharedInstance].listOfActions addObject:action]; // TODO: WELL HERE'S YA PROBLEM
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-//                successBlock([CurrentUser sharedInstance].listOfActions);
                 actions = [actions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
                 successBlock(actions);
-//                [actions addObject:action];
             }
             dispatch_group_leave(actionsGroup);
         }];
