@@ -268,7 +268,6 @@
 		0226D4387FDF4E60BA650775750639DB /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+AFNetworking.m"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		0341D060E0F1283DED5ABA6169070D3B /* Empty.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Empty.pbobjc.m; path = objectivec/google/protobuf/Empty.pbobjc.m; sourceTree = "<group>"; };
 		034AD03337CCCD51B0C570D3725C09B4 /* Timestamp.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Timestamp.pbobjc.h; path = objectivec/google/protobuf/Timestamp.pbobjc.h; sourceTree = "<group>"; };
-		03F868445123F5F4042AEA88B8FEF6AE /* GooglePlacePicker.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlacePicker.bundle; path = Frameworks/GooglePlacePicker.framework/Versions/A/Resources/GooglePlacePicker.bundle; sourceTree = "<group>"; };
 		040E15BFEBEBA241A5C0D0E690486BCF /* GPBUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBUtilities.h; path = objectivec/GPBUtilities.h; sourceTree = "<group>"; };
 		043448086DCC55C9B33A1561508A9783 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLConnectionOperation.h; path = AFNetworking/AFURLConnectionOperation.h; sourceTree = "<group>"; };
 		06A2D36FE2EBF573015C7749CBD2CC09 /* GPBDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBDictionary.m; path = objectivec/GPBDictionary.m; sourceTree = "<group>"; };
@@ -278,6 +277,7 @@
 		09F2744951B3A55FD21C15BAE3D54E1F /* ioapi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = SSZipArchive/minizip/ioapi.h; sourceTree = "<group>"; };
 		0B0342D023D7D950B73B47783A329FF4 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 		0B2C224C1C8A8EF996D45DB4CBF30713 /* GPBDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBDictionary.h; path = objectivec/GPBDictionary.h; sourceTree = "<group>"; };
+		0C107870CB72191876ACF54D0ED779F7 /* GooglePlacePicker.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlacePicker.bundle; path = Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle; sourceTree = "<group>"; };
 		0C97A4BF862B0F74F5B3001347345E1D /* GPBMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBMessage.m; path = objectivec/GPBMessage.m; sourceTree = "<group>"; };
 		0DF3DC45BD4FE998B640D4E7528D4250 /* aes_ni.c */ = {isa = PBXFileReference; includeInIndex = 1; name = aes_ni.c; path = SSZipArchive/minizip/aes/aes_ni.c; sourceTree = "<group>"; };
 		0E88202C8A813549C66707D824C23713 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+AFNetworking.m"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
@@ -307,6 +307,7 @@
 		29F955A67E45B5AD090264E19FC7AF98 /* GPBExtensionInternals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBExtensionInternals.h; path = objectivec/GPBExtensionInternals.h; sourceTree = "<group>"; };
 		2CE7DB3A0D3D5247E7D5CCD952F70057 /* STPopupController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupController.m; path = STPopup/STPopupController.m; sourceTree = "<group>"; };
 		2E98287D3D58D8DE1894C0CFA9BFA94B /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = SSZipArchive/minizip/crypt.h; sourceTree = "<group>"; };
+		2F6A6822D9D4AE908FBABAAF11F0D7A3 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		2F7D78F7A897E1C3981CE64CFD1A229C /* GPBArray_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBArray_PackagePrivate.h; path = objectivec/GPBArray_PackagePrivate.h; sourceTree = "<group>"; };
 		3161E28E9BF42788FED1F098F21F2173 /* Protobuf-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Protobuf-prefix.pch"; sourceTree = "<group>"; };
 		31C6507DDA220CFB8853BFD56C8ABA7A /* GTMSessionUploadFetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMSessionUploadFetcher.m; path = Source/GTMSessionUploadFetcher.m; sourceTree = "<group>"; };
@@ -363,11 +364,11 @@
 		680D340011AED2DBE09180FA8A895CB1 /* aesopt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = aesopt.h; path = SSZipArchive/minizip/aes/aesopt.h; sourceTree = "<group>"; };
 		6811ACAA6A5A021DCBA0FA3F51B2AEF4 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		687B4429B2F7BEE75AF58101FABDF588 /* Duration.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Duration.pbobjc.m; path = objectivec/google/protobuf/Duration.pbobjc.m; sourceTree = "<group>"; };
+		69DD3A31385212CAD385B76B59F8A64B /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		6B54DCCD438696F9CC3FB96CB8B7C502 /* pb_common.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_common.c; sourceTree = "<group>"; };
 		6C994C7E2F4F675B09740C6E63E62362 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 		6D1AD49A0B03E6FC3E18A2D6A1F89A43 /* FirebaseDynamicLinks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDynamicLinks.framework; path = Frameworks/FirebaseDynamicLinks.framework; sourceTree = "<group>"; };
 		6DA4B520FE6573F9E158BFB2CFDFE57C /* aes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = aes.h; path = SSZipArchive/minizip/aes/aes.h; sourceTree = "<group>"; };
-		6F2C122E7C3BF3F850302433075B8789 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		6F7E5E07ECED9255645A5A400118885D /* FieldMask.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FieldMask.pbobjc.h; path = objectivec/google/protobuf/FieldMask.pbobjc.h; sourceTree = "<group>"; };
 		739B618062B727075E03C2ECE6B40055 /* SSZipArchive-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-prefix.pch"; sourceTree = "<group>"; };
 		74024D45BDB17D762AE06AE6F4A6D5C1 /* GTMNSDictionary+URLArguments.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GTMNSDictionary+URLArguments.h"; path = "Foundation/GTMNSDictionary+URLArguments.h"; sourceTree = "<group>"; };
@@ -481,7 +482,6 @@
 		DD573B9087C94C278B307BA64710E942 /* GPBDictionary_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBDictionary_PackagePrivate.h; path = objectivec/GPBDictionary_PackagePrivate.h; sourceTree = "<group>"; };
 		DDB52853833F0FB0A6795E65ED0BE9E6 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLConnectionOperation.m; path = AFNetworking/AFURLConnectionOperation.m; sourceTree = "<group>"; };
 		DDE0B7B986C823F7EA0E886B724238DC /* STPopupControllerTransitioningSlideVertical.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupControllerTransitioningSlideVertical.m; path = STPopup/STPopupControllerTransitioningSlideVertical.m; sourceTree = "<group>"; };
-		DF9DC57C87438881706A996E94B89632 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		E0379845E29187F86783BAA0352E0705 /* prng.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = prng.h; path = SSZipArchive/minizip/aes/prng.h; sourceTree = "<group>"; };
 		E0BECD2B873C35FC0FFD2F489C19F60C /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
 		E1BDC12976916029643C416490AF6D9A /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -618,14 +618,6 @@
 			path = "../Target Support Files/STPopup";
 			sourceTree = "<group>";
 		};
-		0DB51FFA5E88202F358D91DAF87FB339 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6F2C122E7C3BF3F850302433075B8789 /* GooglePlaces.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		0F327D1270102081844F1E7EB97A0E71 /* NSData+zlib */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,20 +725,20 @@
 			path = "../Target Support Files/SSZipArchive";
 			sourceTree = "<group>";
 		};
-		1BA65DF6E3B1957F0360E3F26B3F0ED3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DF9DC57C87438881706A996E94B89632 /* GoogleMaps.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		20B56609144CE204DFA8221F742B2D76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				05B55DFFACCD9F333E86E2EF446DD015 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		259F3E4904AC161E812F9A5224DC4587 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F6A6822D9D4AE908FBABAAF11F0D7A3 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		280257BC454DB2E3430CB6A81CC6A2F0 /* FirebaseCrash */ = {
@@ -995,14 +987,6 @@
 			path = GTMSessionFetcher;
 			sourceTree = "<group>";
 		};
-		92D5BA7ACFBD592B9F9EFE7559DF250D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				03F868445123F5F4042AEA88B8FEF6AE /* GooglePlacePicker.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		95DA11007D93F18571F57876D4B2A572 /* NSString+URLArguments */ = {
 			isa = PBXGroup;
 			children = (
@@ -1247,7 +1231,7 @@
 			isa = PBXGroup;
 			children = (
 				860BF38E1E21E2FFD57F7D83EEAA22D2 /* Frameworks */,
-				0DB51FFA5E88202F358D91DAF87FB339 /* Resources */,
+				FCECB6F9FB7DCFB1C922F0CAC8055177 /* Resources */,
 			);
 			name = GooglePlaces;
 			path = GooglePlaces;
@@ -1287,6 +1271,14 @@
 				31C6507DDA220CFB8853BFD56C8ABA7A /* GTMSessionUploadFetcher.m */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		EC61F4CCFA22E5D4D8477E5AB0D38DBD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0C107870CB72191876ACF54D0ED779F7 /* GooglePlacePicker.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		F6595FD2FB1C097DA5393E05F4AE3627 /* Protobuf */ = {
@@ -1364,7 +1356,7 @@
 			isa = PBXGroup;
 			children = (
 				856045AFE5DC6461032BC28DF5BB6EF5 /* Frameworks */,
-				92D5BA7ACFBD592B9F9EFE7559DF250D /* Resources */,
+				EC61F4CCFA22E5D4D8477E5AB0D38DBD /* Resources */,
 			);
 			name = GooglePlacePicker;
 			path = GooglePlacePicker;
@@ -1374,7 +1366,7 @@
 			isa = PBXGroup;
 			children = (
 				D4A9EE75FB643E674C5094854FAC402B /* Frameworks */,
-				1BA65DF6E3B1957F0360E3F26B3F0ED3 /* Resources */,
+				259F3E4904AC161E812F9A5224DC4587 /* Resources */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -1392,6 +1384,14 @@
 			);
 			name = GoogleToolboxForMac;
 			path = GoogleToolboxForMac;
+			sourceTree = "<group>";
+		};
+		FCECB6F9FB7DCFB1C922F0CAC8055177 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				69DD3A31385212CAD385B76B59F8A64B /* GooglePlaces.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		FE226C0248B93A3B8406C0A867922471 /* Support Files */ = {
