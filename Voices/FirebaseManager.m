@@ -306,7 +306,7 @@
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
-    NSMutableArray *actions = [NSMutableArray array];
+    __block NSMutableArray *actions = [NSMutableArray array];
     for (NSString *actionKey in group.actionKeys) {
         dispatch_group_enter(actionsGroup);
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -317,12 +317,15 @@
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             if ([self shouldAddActionToList:action]) {
-                [[CurrentUser sharedInstance].listOfActions addObject:action];
+                [actions addObject:action];
+//                [[CurrentUser sharedInstance].listOfActions addObject:action]; // TODO: WELL HERE'S YA PROBLEM
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                successBlock([CurrentUser sharedInstance].listOfActions);
-                [actions addObject:action];
+//                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+//                successBlock([CurrentUser sharedInstance].listOfActions);
+                actions = [actions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+                successBlock(actions);
+//                [actions addObject:action];
             }
             dispatch_group_leave(actionsGroup);
         }];

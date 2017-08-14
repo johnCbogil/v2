@@ -126,11 +126,11 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
-#pragma mark - Indicator 
+#pragma mark - Indicator
 
 - (void)createActivityIndicator {
     self.indicatorView = [[UIActivityIndicatorView alloc]
-                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.indicatorView.color = [UIColor grayColor];
     self.indicatorView.frame = CGRectMake(0, 0, 30.0f, 30.0f);
     self.indicatorView.hidden = false;
@@ -159,7 +159,7 @@
 #pragma mark - Follow Group methods
 
 - (void)observeFollowGroupStatus {
-   
+    
     if([self isUserFollowingGroup:self.group.key] == true) {
         
         self.followGroupStatus = @"Following ▾";
@@ -275,7 +275,7 @@
         
     }];
     [self.tableView reloadData];
-     [self toggleActivityIndicatorOff];
+    [self toggleActivityIndicatorOff];
 }
 
 #pragma mark - Expanding Cell
@@ -433,7 +433,7 @@
                         cell = [topLevelObjects objectAtIndex: 0];
                     }
                     [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
-                return cell;
+                    return cell;
                 }
             }
         }
@@ -460,14 +460,14 @@
                 actionDetailVC.action = self.listOfGroupActions[indexPath.row];
                 actionDetailVC.group = self.group;
                 [self.navigationController pushViewController:actionDetailVC animated:true];
-             }
+            }
             default:
                 break;
         }
     }
 }
 
-#pragma mark - Segment Control 
+#pragma mark - Segment Control
 - (void)segmentControlDidChangeValue {
     if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
         [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
@@ -480,7 +480,7 @@
             [self.tableView reloadData];
         }];
     }
-     [self toggleActivityIndicatorOff];
+    [self toggleActivityIndicatorOff];
     [self.tableView reloadData];
 }
 

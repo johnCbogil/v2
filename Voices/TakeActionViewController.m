@@ -132,6 +132,7 @@
 #pragma mark - Firebase Methods
 
 - (void)userAuth {
+    
     if (self.isUserAuthInProgress) {
         return;
     }
@@ -143,6 +144,7 @@
 }
 
 - (void)fetchFollowedGroupsForCurrentUser {
+    
     self.isUserAuthInProgress = NO;
     [self toggleActivityIndicatorOn];
     
@@ -191,6 +193,7 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if (self.selectedSegment) {
         return [CurrentUser sharedInstance].listOfFollowedGroups.count;
     }
@@ -240,6 +243,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Group *currentGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         
