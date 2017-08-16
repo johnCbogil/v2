@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) NSNumber *officialIndex;
 
-
 @end
 
 @implementation FederalRepresentative
@@ -22,22 +21,6 @@
 - (id)initWithData:(NSDictionary *)data {
     self = [super init];
     if(self != nil) {
-//        self.bioguide = [data valueForKey:@"bioguide_id"];
-//        self.firstName = [data valueForKey:@"first_name"];
-//        self.lastName = [data valueForKey:@"last_name"];
-//        self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
-//        self.nickname = [data valueForKey:@"nickname"];
-//        self.phone = [data valueForKey:@"phone"];
-//        self.party = [data valueForKey:@"party"];
-//        self.email = [[RepsManager sharedInstance]getContactFormForBioGuide:self.bioguide];
-//        self.twitter = [data valueForKey:@"twitter_id"];
-//        self.districtNumber = [NSString stringWithFormat:@"%@", [data valueForKey:@"district"]];
-//        self.stateCode = [data valueForKey:@"state"];
-//        self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
-//        [self formatTitle:[data valueForKey:@"title"]];
-//        self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
-//        self.gender = [data valueForKey:@"gender"];
-//        self.crpID = [data valueForKey:@"crp_id"];
         
         NSDictionary *office = data[@"office"];
         NSArray *roles = office[@"roles"];
