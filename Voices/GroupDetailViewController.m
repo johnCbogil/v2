@@ -298,39 +298,29 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 0;
-        case 1:
-            return 40.0f;
+    
+    if (section == 1) {
+        return 40.0f;
     }
-    return 40.0f;
+    else return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger numberOfRows = 0;
-    switch (section) {
-        case 0:
-            numberOfRows = 2;
-            break;
-        case 1:
-            switch (self.segmentControl.selectedSegmentIndex) {
-                case 0:
-                    numberOfRows = self.listOfPolicyPositions.count;
-                    if (numberOfRows == 0) {
-                        numberOfRows = 1;
-                    }
-                    break;
-                case 1:
-                    numberOfRows = self.listOfGroupActions.count;
-                    if (numberOfRows == 0) {
-                        numberOfRows = 1;
-                    }
-                    break;
-            }
-            break;
+    
+    BOOL isActionsTabSelected = self.segmentControl.selectedSegmentIndex;
+    BOOL isSectionEqualToList = section;
+    
+    if (!isSectionEqualToList) {
+        return 2;
     }
-    return numberOfRows;
+    else {
+        if (isActionsTabSelected) {
+            return self.listOfGroupActions.count;
+        }
+        else {
+            return self.listOfPolicyPositions.count;
+        }
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
