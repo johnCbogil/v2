@@ -46,7 +46,7 @@
     
     [self configureTableView];
     [self createActivityIndicator];
-    [self fetchPolicyPositions];
+    [self fetchActions];
     [self configureTitleLabel];
     [self observeFollowGroupStatus];
     [self configureHapticFeedback];
@@ -263,21 +263,6 @@
     }];
 }
 
-// TODO: MOVE TO A NETWORK MANAGER
-- (void)fetchPolicyPositions {
-    [self toggleActivityIndicatorOn];
-    __weak GroupDetailViewController *weakSelf = self;
-    [[FirebaseManager sharedInstance] fetchPolicyPositionsForGroup:self.group withCompletion:^(NSArray *positions) {
-        [self toggleActivityIndicatorOff];
-        weakSelf.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
-        [weakSelf.tableView reloadData];
-    } onError:^(NSError *error) {
-        
-    }];
-    [self.tableView reloadData];
-    [self toggleActivityIndicatorOff];
-}
-
 #pragma mark - Expanding Cell
 
 - (void)expandButtonDidPress:(GroupDescriptionTableViewCell *)cell {
@@ -301,7 +286,7 @@
                 self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
                 self.segmentControl.tintColor = [UIColor voicesOrange];
                 [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
-                [self.segmentControl setSelectedSegmentIndex:0];
+                [self.segmentControl setSelectedSegmentIndex:1];
                 self.segmentControl.backgroundColor = [UIColor whiteColor];
                 self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
                 [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
@@ -470,18 +455,51 @@
 #pragma mark - Segment Control
 - (void)segmentControlDidChangeValue {
     if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
-        [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
-        [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
-            
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-            
-            [self.tableView reloadData];
-        }];
+        
+        [self fetchActions];
+    }
+    else if (self.segmentControl.selectedSegmentIndex == 0) {
+        
+        [self fetchPolicyPositions];
     }
     [self toggleActivityIndicatorOff];
     [self.tableView reloadData];
+}
+
+// TODO: MOVE TO A NETWORK MANAGER
+
+- (void)fetchActions {
+    
+    [self toggleActivityIndicatorOn];
+
+    [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
+    [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
+        
+        [self toggleActivityIndicatorOff];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+        
+        [self.tableView reloadData];
+    }];
+}
+
+// TODO: MOVE TO A NETWORK MANAGER
+
+- (void)fetchPolicyPositions {
+    
+    [self toggleActivityIndicatorOn];
+    
+    [[FirebaseManager sharedInstance] fetchPolicyPositionsForGroup:self.group withCompletion:^(NSArray *positions) {
+        
+        [self toggleActivityIndicatorOff];
+        self.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
+        [self.tableView reloadData];
+    } onError:^(NSError *error) {
+        
+    }];
+    [self.tableView reloadData];
+    [self toggleActivityIndicatorOff];
 }
 
 @end
