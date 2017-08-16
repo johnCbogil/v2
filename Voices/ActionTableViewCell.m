@@ -132,10 +132,14 @@
         [self.completionStateButton setImage:[UIImage imageNamed:@"checkMarkFilled"] forState:UIControlStateNormal];
         self.completionStateButton.tintColor = [UIColor voicesGreen];
         
+        [self.delegate presentThankYouAlertForGroup:self.group andAction:self.action];
+        
+#ifdef DEBUG
+        return;
+#else
         [FIRAnalytics logEventWithName:@"userCompletedAction"
                             parameters:@{ @"actionKey": self.action.key}];
-        
-        [self.delegate presentThankYouAlertForGroup:self.group andAction:self.action];
+#endif
     }
 }
 
