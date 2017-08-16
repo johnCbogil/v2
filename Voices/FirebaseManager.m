@@ -222,6 +222,8 @@
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
 
                 [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+                    
+                    [CurrentUser sharedInstance].listOfActions = listOfActions.mutableCopy;
                     successBlock(listOfActions);
                 }];
             }];
