@@ -55,11 +55,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
 - (void)configureHapticFeedback {
+    
     NSOperatingSystemVersion version;
     version.majorVersion = 10;
     version.minorVersion = 0;
@@ -81,6 +83,7 @@
 }
 
 - (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupFollowTableViewCell *)cell {
+    
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
     cell.groupImageView.layer.cornerRadius = kButtonCornerRadius;
     cell.groupImageView.clipsToBounds = YES;
@@ -129,6 +132,7 @@
 #pragma mark - Indicator
 
 - (void)createActivityIndicator {
+    
     self.indicatorView = [[UIActivityIndicatorView alloc]
                           initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.indicatorView.color = [UIColor grayColor];
@@ -144,6 +148,7 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.indicatorView startAnimating];
     });
@@ -160,7 +165,7 @@
 
 - (void)observeFollowGroupStatus {
     
-    if([self isUserFollowingGroup:self.group.key] == true) {
+    if ([self isUserFollowingGroup:self.group.key] == true) {
         
         self.followGroupStatus = @"Following ▾";
     }
@@ -273,28 +278,23 @@
 #pragma mark - TableView Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 2;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return nil;
-        case 1: {
-            if (!self.segmentControl) {
-                NSArray *items = @[@"Issues", @"Actions"];
-                self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
-                self.segmentControl.tintColor = [UIColor voicesOrange];
-                [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
-                [self.segmentControl setSelectedSegmentIndex:1];
-                self.segmentControl.backgroundColor = [UIColor whiteColor];
-                self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
-                [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
-            }
-            return self.segmentControl;
-        }
+    
+    if (!self.segmentControl) {
+        NSArray *items = @[@"Issues", @"Actions"];
+        self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
+        self.segmentControl.tintColor = [UIColor voicesOrange];
+        [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
+        [self.segmentControl setSelectedSegmentIndex:1];
+        self.segmentControl.backgroundColor = [UIColor whiteColor];
+        self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
+        [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
     }
-    return nil;
+    return self.segmentControl;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -453,6 +453,7 @@
 }
 
 #pragma mark - Segment Control
+
 - (void)segmentControlDidChangeValue {
     if (self.segmentControl.selectedSegmentIndex == 1 && self.listOfGroupActions.count == 0) {
         
@@ -471,7 +472,7 @@
 - (void)fetchActions {
     
     [self toggleActivityIndicatorOn];
-
+    
     [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
     [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
         
@@ -482,6 +483,8 @@
         
         [self.tableView reloadData];
     }];
+    
+    
 }
 
 // TODO: MOVE TO A NETWORK MANAGER
