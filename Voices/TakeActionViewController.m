@@ -46,7 +46,6 @@
 }
 
 - (void)configureEmptyState {
-    
     if (self.segmentControl.selectedSegmentIndex) {
         [self.emptyStateView updateLabels:kGroupEmptyStateTopLabel bottom:kGroupEmptyStateBottomLabel];
     }

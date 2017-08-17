@@ -223,7 +223,11 @@
                 
                 [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
                     
-//                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
+                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
+                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+
                     successBlock(listOfActions);
                 }];
             }];
@@ -306,45 +310,14 @@
 }
 
 // TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
+// TODO: THIS SHOULD NOT BE SENDING ACTIONS DIRECTLY TO CURRENT USER BC THE GROUPDETAIL ALSO NEEDS TO BE ABLE TO FETCH ACTIONS
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
-    //
-    //    //Need dispatch group to wait for all action keys calls to finish
-    //    dispatch_group_t actionsGroup = dispatch_group_create();
-    //
-    //    __block NSMutableArray *actions = [NSMutableArray array];
-    //
-    //    for (NSString *actionKey in group.actionKeys) {
-    //
-    //        dispatch_group_enter(actionsGroup);
-    //
-    //        [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-    //
-    //            if (snapshot.value == [NSNull null]) {
-    //                dispatch_group_leave(actionsGroup);
-    //                return;
-    //            }
-    //
-    //            Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-    //
-    //            if ([self shouldAddActionToList:action]) {
-    //
-    //                [actions addObject:action];
-    //                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    //                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    //                actions = [actions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-    //
-    //                successBlock(actions); // TODO: I COMMENTED THIS OUT AND NOTICED NO CHANGE
-    //            }
-    //            dispatch_group_leave(actionsGroup);
-    //        }];
-    //    }
-    //    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
-    //        successBlock(actions);
-    //    });
+    
+   __block NSMutableArray *actionsList = @[].mutableCopy;
     
     dispatch_group_t actionsGroup = dispatch_group_create();
 
-    [CurrentUser sharedInstance].listOfActions = [NSMutableArray array];
+//    [CurrentUser sharedInstance].listOfActions = [NSMutableArray array];
 
     for (NSString *actionKey in group.actionKeys) {
         
@@ -358,7 +331,7 @@
             }
             
             // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
-            NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+            NSInteger index = [actionsList indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
                 if ([action.key isEqualToString:actionKey]) {
                     *stop = YES;
                     return YES;
@@ -374,10 +347,10 @@
         
             Action *action = [[Action alloc]initWithKey:actionKey actionDictionary:snapshot.value];
             if ([self shouldAddActionToList:action]) {
-                [[CurrentUser sharedInstance].listOfActions addObject:action];
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+                [actionsList addObject:action];
+//                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+//                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//                actionsList = [actionsList sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
 
             }
             dispatch_group_leave(actionsGroup);
@@ -385,7 +358,7 @@
         }];
     }
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
-        successBlock([CurrentUser sharedInstance].listOfActions);
+        successBlock(actionsList);
     });
 }
 
