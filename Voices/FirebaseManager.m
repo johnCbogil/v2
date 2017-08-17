@@ -227,7 +227,6 @@
                     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
                     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
                     [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-
                     successBlock(listOfActions);
                 }];
             }];
@@ -348,10 +347,6 @@
             Action *action = [[Action alloc]initWithKey:actionKey actionDictionary:snapshot.value];
             if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
-//                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-//                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//                actionsList = [actionsList sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-
             }
             dispatch_group_leave(actionsGroup);
 
