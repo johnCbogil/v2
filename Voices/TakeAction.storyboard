@@ -50,7 +50,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayz-aM-rSI">
-                                <rect key="frame" x="335" y="53" width="40" height="40"/>
+                                <rect key="frame" x="324" y="53" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="M6F-d2-ceW"/>
                                     <constraint firstAttribute="width" constant="40" id="Mw5-z9-UDr"/>
@@ -63,7 +63,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ayz-aM-rSI" secondAttribute="trailing" id="3Bx-ob-B3w"/>
+                            <constraint firstAttribute="trailing" secondItem="ayz-aM-rSI" secondAttribute="trailing" constant="11" id="3Bx-ob-B3w"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="trailing" secondItem="GFg-or-GAf" secondAttribute="trailing" id="4ip-re-hiV"/>
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="27" id="5hS-pN-zbJ"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="bottom" secondItem="WFz-Rb-9DG" secondAttribute="top" id="7hE-PN-nhP"/>
@@ -317,7 +317,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UgK-Rn-ulC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
