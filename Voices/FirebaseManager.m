@@ -223,7 +223,7 @@
 
                 [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
                     
-                    [CurrentUser sharedInstance].listOfActions = listOfActions.mutableCopy;
+                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
                     successBlock(listOfActions);
                 }];
             }];
@@ -306,24 +306,33 @@
 
 // TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
+    
     //Need dispatch group to wait for all action keys calls to finish
     dispatch_group_t actionsGroup = dispatch_group_create();
+    
     __block NSMutableArray *actions = [NSMutableArray array];
+    
     for (NSString *actionKey in group.actionKeys) {
+        
         dispatch_group_enter(actionsGroup);
+        
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            
             if (snapshot.value == [NSNull null]) {
                 dispatch_group_leave(actionsGroup);
                 return;
             }
+            
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
             if ([self shouldAddActionToList:action]) {
+                
                 [actions addObject:action];
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
                 actions = [actions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                successBlock(actions);
+                
+                successBlock(actions); // TODO: I COMMENTED THIS OUT AND NOTICED NO CHANGE
             }
             dispatch_group_leave(actionsGroup);
         }];

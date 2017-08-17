@@ -215,6 +215,7 @@
         }
         else {
             
+            // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
             ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
             [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
             Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
