@@ -309,14 +309,11 @@
 }
 
 // TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
-// TODO: THIS SHOULD NOT BE SENDING ACTIONS DIRECTLY TO CURRENT USER BC THE GROUPDETAIL ALSO NEEDS TO BE ABLE TO FETCH ACTIONS
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     
    __block NSMutableArray *actionsList = @[].mutableCopy;
     
     dispatch_group_t actionsGroup = dispatch_group_create();
-
-//    [CurrentUser sharedInstance].listOfActions = [NSMutableArray array];
 
     for (NSString *actionKey in group.actionKeys) {
         
