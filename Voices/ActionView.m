@@ -76,13 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
     if (self.representative.phone.length) {
         NSString *confirmCallMessage = @"Would you like to preview the call script or begin calling?";
-        NSString *title;
-        if (self.representative.nickname != nil && ![self.representative.nickname isEqual:[NSNull null]]) {
-            title =  [NSString stringWithFormat:@"Call %@", self.representative.nickname];
-        }
-        else {
-            title =  [NSString stringWithFormat:@"Call %@ %@", self.representative.firstName, self.representative.lastName];
-        }
+        NSString *title = [NSString stringWithFormat:@"Call %@",self.representative.fullName];
         
         UIAlertController *confirmCallAlertController = [UIAlertController alertControllerWithTitle:title  message:confirmCallMessage preferredStyle:UIAlertControllerStyleAlert];
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Preview" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
@@ -92,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
         }]];
         [confirmCallAlertController addAction:[UIAlertAction actionWithTitle:@"Call" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [[ReportingManager sharedInstance] reportEvent:kCALL_EVENT eventFocus:self.representative.fullName eventData:[ScriptManager sharedInstance].lastAction.key];
-            NSURL* callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
+            NSURL *callUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.representative.phone]];
             if ([[UIApplication sharedApplication] canOpenURL:callUrl]) {
                 [[UIApplication sharedApplication] openURL:callUrl];
             }

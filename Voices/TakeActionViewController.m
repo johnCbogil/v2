@@ -141,6 +141,7 @@
 #pragma mark - Firebase Methods
 
 - (void)userAuth {
+    
     if (self.isUserAuthInProgress) {
         return;
     }
@@ -152,6 +153,7 @@
 }
 
 - (void)fetchFollowedGroupsForCurrentUser {
+    
     self.isUserAuthInProgress = NO;
     [self toggleActivityIndicatorOn];
     
@@ -221,6 +223,7 @@
         }
         else {
             
+            // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
             ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
             [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
             Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
@@ -249,6 +252,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Group *currentGroup = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
         

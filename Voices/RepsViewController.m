@@ -48,6 +48,7 @@
 }
 
 - (void)viewWillLayoutSubviews {
+    
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
@@ -88,6 +89,7 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.findingRepsLabel.hidden = NO;
         self.collectionView.hidden = YES;
@@ -96,6 +98,7 @@
 }
 
 - (void)toggleActivityIndicatorOff {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.findingRepsLabel.hidden = YES;
         self.collectionView.hidden = NO;
@@ -130,15 +133,16 @@
     BOOL homeAddressSaved = homeAddress.length;
     
     if ([RepsManager sharedInstance].fedReps.count || homeAddressSaved) {
+        
         RepsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRepsCollectionViewCell forIndexPath:indexPath];
         cell.tableViewDataSource = [[RepsManager sharedInstance]fetchRepsForIndex:indexPath.item];
         cell.index = indexPath.item;
         cell.repDetailDelegate = self;
         [cell reloadTableView];
         return cell;
-        
     }
     else {
+        
         AddAddressCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kAddAddressCollectionViewCell forIndexPath:indexPath];
         return cell;
     }
@@ -150,6 +154,7 @@
 }
 
 - (void)reloadCollectionView {
+    
     if ([RepsManager sharedInstance].fedReps.count) {
         self.pageIndicatorContainer.hidden = NO;
     }
@@ -160,6 +165,7 @@
 }
 
 - (void)changePage:(NSNotification *)notification {
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[notification.object integerValue] inSection:0];
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
@@ -193,19 +199,22 @@
 #pragma mark - Page Indicator Container
 
 - (IBAction)federalButtonDidPress:(id)sender {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@0];
 }
+
 - (IBAction)stateButtonDidPress:(id)sender {
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@1];
     
 }
 - (IBAction)localButtonDidPress:(id)sender {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
 }
 
 - (void)setPageIndicator:(NSNotification *)notification {
+    
     long int pageNumber = [notification.object integerValue];
     if (pageNumber == 0) {
         [self.federalButton sendActionsForControlEvents:UIControlEventTouchUpInside];
@@ -219,6 +228,7 @@
 }
 
 - (void)updateTabForIndex:(NSIndexPath *)indexPath {
+    
     if (self.selectedIndexPath != indexPath) {
         
         UIButton *newButton = [self.buttonDictionary objectForKey:[NSNumber numberWithInteger:indexPath.item]];

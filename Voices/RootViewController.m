@@ -222,7 +222,7 @@
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
+        NSString *initialText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
         [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
             switch (result) {
