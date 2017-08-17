@@ -325,8 +325,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0){
-        if(indexPath.row == 0){
+    BOOL isPolicyOrActionCellSection = indexPath.section;
+    
+    if (!isPolicyOrActionCellSection) {
+        
+        if (indexPath.row == 0){
+            
             NSString *cellIdentifier = kGroupFollowTableViewCell;
             GroupFollowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if(cell == nil){
