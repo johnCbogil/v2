@@ -42,7 +42,7 @@
     
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"My Groups",@"All Groups"]];
     self.navigationItem.titleView = self.segmentedControl;
-    if ([CurrentUser sharedInstance].firebaseUserID) {
+    if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
         self.segmentedControl.selectedSegmentIndex = 0;
         [self fetchMyGroups];
 
