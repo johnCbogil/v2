@@ -23,6 +23,7 @@
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UILabel *emptyStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *megaphoneEmojiLabel;
 
 @end
 
@@ -43,6 +44,7 @@
 - (void)configureEmptyStateLabel {
     
     self.emptyStateLabel.hidden = YES;
+    self.megaphoneEmojiLabel.hidden = YES;
 
     if (self.segmentedControl.selectedSegmentIndex) {
         return;
@@ -50,14 +52,16 @@
     
     if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
         self.emptyStateLabel.hidden = YES;
+        self.megaphoneEmojiLabel.hidden = YES;
     }
     else {
         self.emptyStateLabel.hidden = NO;
+        self.megaphoneEmojiLabel.hidden = NO;
     }
     
     self.emptyStateLabel.font = [UIFont voicesFontWithSize:23];
-    self.emptyStateLabel.text = @"You don't follow any groups right now. Select the All Groups tab to see groups and amplify your voice.";
-
+    self.self.megaphoneEmojiLabel.font = [UIFont voicesFontWithSize:46];
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:@"You don't follow any groups right now. Select the All Groups tab to see groups and amplify your voice."];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:NSMakeRange(49, 11)];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont voicesBoldFontWithSize:23] range:NSMakeRange(49, 11)];
@@ -86,6 +90,8 @@
 }
 
 - (void)segmentControlDidChangeValue {
+    
+    [self configureEmptyStateLabel];
     
     if (self.segmentedControl.selectedSegmentIndex) {
         

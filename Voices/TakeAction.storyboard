@@ -157,21 +157,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📣" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9Y-yP-qST">
+                                <rect key="frame" x="16" y="88" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yf6-LW-g1x" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" constant="16" id="3v6-2K-smY"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="trailing" secondItem="d9Y-yP-qST" secondAttribute="trailing" id="AZF-es-Ncx"/>
                             <constraint firstItem="mod-FK-t7E" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" id="Cpu-PY-RxS"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" constant="47" id="HRB-FI-LZF"/>
+                            <constraint firstItem="d9Y-yP-qST" firstAttribute="top" secondItem="yf6-LW-g1x" secondAttribute="bottom" id="NwC-Y7-kQZ"/>
                             <constraint firstItem="mod-FK-t7E" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" id="TMa-tG-bwg"/>
                             <constraint firstItem="mod-FK-t7E" firstAttribute="bottom" secondItem="nHf-ya-AJ2" secondAttribute="top" id="YOB-yC-veo"/>
-                            <constraint firstItem="yf6-LW-g1x" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" constant="47" id="eBt-5t-fMc"/>
-                            <constraint firstAttribute="trailing" secondItem="yf6-LW-g1x" secondAttribute="trailing" constant="16" id="gmL-xV-CNW"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="leading" secondItem="d9Y-yP-qST" secondAttribute="leading" id="YOu-jk-V24"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="centerX" secondItem="mod-FK-t7E" secondAttribute="centerX" id="ah2-qx-nap"/>
                             <constraint firstAttribute="trailing" secondItem="mod-FK-t7E" secondAttribute="trailing" id="gw0-8j-qOh"/>
-                            <constraint firstItem="yf6-LW-g1x" firstAttribute="centerX" secondItem="5qS-BV-pJM" secondAttribute="centerX" id="tgE-8q-dfI"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leadingMargin" id="tie-3Y-YRr"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emptyStateLabel" destination="yf6-LW-g1x" id="6h6-NS-2gx"/>
+                        <outlet property="megaphoneEmojiLabel" destination="d9Y-yP-qST" id="Zre-Uj-B3q"/>
                         <outlet property="tableView" destination="mod-FK-t7E" id="XKQ-ys-dEF"/>
                     </connections>
                 </viewController>
