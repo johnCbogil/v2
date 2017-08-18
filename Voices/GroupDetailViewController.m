@@ -326,6 +326,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     BOOL isPolicyOrActionCellSection = indexPath.section;
+    BOOL isActionsTabSelected = self.segmentControl.selectedSegmentIndex;
+
     
     if (!isPolicyOrActionCellSection) {
         
@@ -359,8 +361,8 @@
         }
     }
     else {
-        switch (self.segmentControl.selectedSegmentIndex) {
-            case 0: {
+        if (!isActionsTabSelected) {
+            
                 if (self.listOfPolicyPositions.count == 0) {
                     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
                     NSString *cellIdentifier = kEmptyStateTableViewCell ;
@@ -390,7 +392,7 @@
                     return cell;
                 }
             }
-            case 1: {
+        else {
                 if (self.listOfGroupActions.count == 0) {
                     NSString *cellIdentifier = kEmptyStateTableViewCell ;
                     EmptyStateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
@@ -416,7 +418,6 @@
                 }
             }
         }
-    }
     return nil;
 }
 

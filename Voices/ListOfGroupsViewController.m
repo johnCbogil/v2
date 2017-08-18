@@ -71,6 +71,7 @@
 #pragma mark - Firebase methods
 
 - (void)retrieveGroups {
+    
     [self toggleActivityIndicatorOn];
     __weak ListOfGroupsViewController *weakSelf = self;
     [[FirebaseManager sharedInstance] fetchAllGroupsWithCompletion:^(NSArray *groups) {
@@ -85,6 +86,7 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.listOfGroups.count;
 }
 
