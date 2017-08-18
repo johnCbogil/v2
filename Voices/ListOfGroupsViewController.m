@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSArray *listOfFollowedGroups;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *emptyStateLabel;
 
 @end
 
@@ -33,15 +34,43 @@
     [self configureTableView];
     [self createActivityIndicator];
     [self configureSegmentedControl];
+    [self configureEmptyStateLabel];
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+}
+
+- (void)configureEmptyStateLabel {
+    
+    self.emptyStateLabel.hidden = YES;
+
+    if (self.segmentedControl.selectedSegmentIndex) {
+        return;
+    }
+    
+    if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
+        self.emptyStateLabel.hidden = YES;
+    }
+    else {
+        self.emptyStateLabel.hidden = NO;
+    }
+    
+    self.emptyStateLabel.font = [UIFont voicesFontWithSize:23];
+    self.emptyStateLabel.text = @"You don't follow any groups right now. Select the All Groups tab to see groups and amplify your voice.";
+
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:@"You don't follow any groups right now. Select the All Groups tab to see groups and amplify your voice."];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:NSMakeRange(49, 11)];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont voicesBoldFontWithSize:23] range:NSMakeRange(49, 11)];
+    self.emptyStateLabel.attributedText = attributedString;
+    
+    self.emptyStateLabel.numberOfLines = 0;
 }
 
 - (void)configureSegmentedControl {
     
     self.segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"My Groups",@"All Groups"]];
     self.navigationItem.titleView = self.segmentedControl;
+    
     if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
         self.segmentedControl.selectedSegmentIndex = 0;
         [self fetchMyGroups];
@@ -80,6 +109,7 @@
 }
 
 - (void)createActivityIndicator {
+    
     self.activityIndicatorView = [[UIActivityIndicatorView alloc]
                                   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicatorView.color = [UIColor grayColor];
@@ -88,12 +118,14 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicatorView startAnimating];
     });
 }
 
 - (void)toggleActivityIndicatorOff {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicatorView stopAnimating];
     });
@@ -124,6 +156,7 @@
         
         weakSelf.listOfGroups = [CurrentUser sharedInstance].listOfFollowedGroups;
         [weakSelf.tableView reloadData];
+        [self configureEmptyStateLabel];
         [self toggleActivityIndicatorOff];
 
     } onError:^(NSError *error) {
@@ -134,10 +167,12 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.listOfGroups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     GroupTableViewCell  *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
     [cell initWithGroup:self.listOfGroups[indexPath.row]];
     
@@ -145,6 +180,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Allows centering of the nav bar title by making an empty back button

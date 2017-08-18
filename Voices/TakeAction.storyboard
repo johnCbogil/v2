@@ -151,22 +151,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yf6-LW-g1x">
+                                <rect key="frame" x="16" y="67" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" constant="16" id="3v6-2K-smY"/>
                             <constraint firstItem="mod-FK-t7E" firstAttribute="leading" secondItem="5qS-BV-pJM" secondAttribute="leading" id="Cpu-PY-RxS"/>
                             <constraint firstItem="mod-FK-t7E" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" id="TMa-tG-bwg"/>
                             <constraint firstItem="mod-FK-t7E" firstAttribute="bottom" secondItem="nHf-ya-AJ2" secondAttribute="top" id="YOB-yC-veo"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="top" secondItem="Fur-lE-ZOf" secondAttribute="bottom" constant="47" id="eBt-5t-fMc"/>
+                            <constraint firstAttribute="trailing" secondItem="yf6-LW-g1x" secondAttribute="trailing" constant="16" id="gmL-xV-CNW"/>
                             <constraint firstAttribute="trailing" secondItem="mod-FK-t7E" secondAttribute="trailing" id="gw0-8j-qOh"/>
+                            <constraint firstItem="yf6-LW-g1x" firstAttribute="centerX" secondItem="5qS-BV-pJM" secondAttribute="centerX" id="tgE-8q-dfI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyStateLabel" destination="yf6-LW-g1x" id="6h6-NS-2gx"/>
                         <outlet property="tableView" destination="mod-FK-t7E" id="XKQ-ys-dEF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DKR-iB-aCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968" y="-317"/>
+            <point key="canvasLocation" x="1967.2" y="-317.09145427286359"/>
         </scene>
         <!--Action Detail View Controller-->
         <scene sceneID="0rs-Hx-fdU">
@@ -317,7 +328,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UgK-Rn-ulC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UgK-Rn-ulC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
