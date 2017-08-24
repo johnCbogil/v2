@@ -291,18 +291,23 @@
 
 - (void)actionCompleteButtonPressed:(Action *)action {
     
-    FIRDatabaseReference *currentUserRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     
-    [[currentUserRef child:action.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
+    FIRDatabaseReference *actionRef = [[self.actionsRef child:action.key]child:@"usersCompleted"];
+    
+    [[currentUserActionsCompletedRef child:action.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         BOOL isActionCompleted = snapshot.value == [NSNull null] ? NO : YES;
         
         if (!isActionCompleted) {
             
-            [currentUserRef updateChildValues:@{action.key : @1}];
+            [currentUserActionsCompletedRef updateChildValues:@{action.key : @1}];
+            [actionRef updateChildValues:@{[FIRAuth auth].currentUser.uid : @1}];
         }
         else {
-            [[currentUserRef child:action.key]removeValue];
+            
+            [[currentUserActionsCompletedRef child:action.key]removeValue];
+            [[actionRef child:[FIRAuth auth].currentUser.uid]removeValue];
         }
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshHeaderCell" object:nil];
