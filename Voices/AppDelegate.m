@@ -89,6 +89,9 @@
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
+    if (!dynamicLink.url) {
+        return;
+    }
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
     [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
