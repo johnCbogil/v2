@@ -7,6 +7,7 @@
 //
 
 #import "Action.h"
+#import "FirebaseManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,11 +21,24 @@ NS_ASSUME_NONNULL_BEGIN
     _groupKey = dictionary[@"groupKey"];
     _title = dictionary[@"title"];
     _groupImageURL = [NSURL URLWithString:dictionary[@"imageURL"]];
-    _subject = dictionary[@"subject"];
     _timestamp = [dictionary[@"timestamp"]intValue];
     _level = [dictionary[@"level"]intValue];
     _script = dictionary[@"script"];
+    if (!_script.length) {
+        _script = kGenericScript;
+    }
     _debug = [dictionary[@"debug"]intValue];
+    
+    [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
+        if ([listOfCompletedActions containsObject:_key]) {
+            _isCompleted = YES;
+        }
+        else {
+            _isCompleted = NO;
+        }
+    } onError:^(NSError *error) {
+        
+    }];
     return self;
 }
 

@@ -2,44 +2,50 @@
 //  ActionDetailTopTableViewCell.m
 //  Voices
 //
-//  Created by John Bogil on 3/26/17.
+//  Created by John Bogil on 6/10/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
 #import "ActionDetailTopTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
-#import "GroupDetailViewController.h"
+
+@interface ActionDetailTopTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *actionTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *groupImageButton;
+@property (nonatomic)BOOL isDescriptionExpanded;
+
+@end
+
+// TODO: RENAME THIS CLASS
 
 @implementation ActionDetailTopTableViewCell
 
-// TODO: PRESSING BUTTON SHOULD BRING YOU TO GROUP
-
-- (void)initWithAction:(Action *)action andGroup:(Group *)group {
-    self.currentGroup = group;
-    [self fetchGroupLogoForImageURL:group.groupImageURL];
-    [self configureActionTitleLabelForText:action.title];
-    self.delegate = nil;
-}
-
-- (void)configureActionTitleLabelForText:(NSString *)text {
-    self.actionTitleLabel.numberOfLines = 0;
-    self.actionTitleLabel.text = text;
-    self.actionTitleLabel.font = [UIFont voicesFontWithSize:25];
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    [self.groupImageButton setTitle:nil forState:UIControlStateNormal];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    [self configureActionTitleLabel];
+}
+
+- (void)initWithAction:(Action *)action andGroup:(Group *)group {
+    
+    [self fetchGroupLogoForImageURL:group.groupImageURL];
+    self.actionTitleLabel.text = action.title;
+}
+
+- (void)configureActionTitleLabel {
+    
+    self.actionTitleLabel.backgroundColor = [UIColor whiteColor];
+    self.actionTitleLabel.font = [UIFont voicesBoldFontWithSize:21];
+    self.actionTitleLabel.numberOfLines = 0;
 }
 
 - (void)fetchGroupLogoForImageURL:(NSURL *)url {
     
     self.groupImageButton.backgroundColor = [UIColor clearColor];
     self.groupImageButton.imageView.contentMode = UIViewContentModeScaleToFill;
-    self.groupImageButton.imageView.layer.cornerRadius = kButtonCornerRadius;
-    self.groupImageButton.imageView.clipsToBounds = YES;
+    self.groupImageButton.layer.cornerRadius = kButtonCornerRadius;
+    self.groupImageButton.clipsToBounds = YES;
     
     NSURLRequest *imageRequest = [NSURLRequest requestWithURL:url
                                                   cachePolicy:NSURLRequestReturnCacheDataElseLoad
@@ -55,13 +61,7 @@
     }];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 - (IBAction)groupImageButtonDidPress:(id)sender {
-    [self.delegate pushToGroupDetail];
 }
 
 @end

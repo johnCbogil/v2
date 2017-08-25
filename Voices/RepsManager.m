@@ -80,15 +80,26 @@
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock {
     
-    [[RepsNetworkManager sharedInstance]getFederalRepresentativesFromLocation:location WithCompletion:^(NSDictionary *results) {
+    [[RepsNetworkManager sharedInstance]getFederalRepsFromLocation:location WithCompletion:^(NSDictionary *results) {
         
-        // THIS FEELS REDUNDANT
         NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
-        for (NSDictionary *resultDict in [results valueForKey:@"results"]) {
-            FederalRepresentative *federalRepresentative = [[FederalRepresentative alloc] initWithData:resultDict];
-            [listOfFederalRepresentatives addObject:federalRepresentative];
-            self.fedReps = listOfFederalRepresentatives;
-            successBlock();
+        NSArray *officials = results[@"officials"];
+        NSArray *offices = results[@"offices"];
+
+        for (NSDictionary *office in offices) {
+            
+            NSArray *officialIndices = office[@"officialIndices"];
+            
+            for (NSNumber *officialIndex in officialIndices) {
+                
+                NSMutableDictionary *official = [NSMutableDictionary dictionaryWithDictionary:officials[[officialIndex integerValue]]];
+                [official setObject:office forKey:@"office"];
+                
+                FederalRepresentative *federalRep = [[FederalRepresentative alloc]initWithData:official];
+                [listOfFederalRepresentatives addObject:federalRep];
+                self.fedReps = listOfFederalRepresentatives;
+                successBlock();
+            }
         }
         
     } onError:^(NSError *error) {
@@ -256,6 +267,5 @@
     NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
     return billDeBlasio;
 }
-
 
 @end

@@ -24,7 +24,7 @@
     [self setFont];
     self.title = self.policyPosition.key;
     self.policyPositionTextView.text = self.policyPosition.policyPosition; // TODO: NOT GOOD NAMING
-    self.policyPositionTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.policyPositionTextView.dataDetectorTypes = UIDataDetectorTypeLink;
     self.policyPositionTextView.delegate = self;
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];

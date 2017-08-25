@@ -28,6 +28,7 @@
 @implementation FirebaseManager
 
 #pragma mark - Initialization
+
 + (FirebaseManager *) sharedInstance {
     static FirebaseManager *instance = nil;
     static dispatch_once_t onceToken;
@@ -156,7 +157,15 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         errorBlock(error);
     }];
+}
+
+- (void)resubscribeToTopicsOnReInstall {
     
+    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        
+        NSString *topic = [group.key stringByReplacingOccurrencesOfString:@" " withString:@""];
+        [[FIRMessaging messaging] subscribeToTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
+    }
 }
 
 - (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
@@ -211,12 +220,18 @@
                     return;
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
-
+                
                 [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+                    
+                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
+                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
                     successBlock(listOfActions);
                 }];
             }];
         }
+        successBlock([CurrentUser sharedInstance].listOfFollowedGroups);
     } withCancelBlock:^(NSError * _Nonnull error) {
         
     }];
@@ -259,6 +274,7 @@
 }
 
 - (void)fetchGroupWithKey:(NSString *)groupKey withCompletion:(void (^)(Group *))successBlock onError:(void (^)(NSError *))errorBlock {
+    
     [[[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"]child: groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         Group *group;
         if (snapshot.value != [NSNull null]) {
@@ -273,34 +289,91 @@
 
 #pragma mark - Actions
 
-// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED
+- (void)actionCompleteButtonPressed:(Action *)action {
+    
+    
+    FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
+    FIRDatabaseReference *actionRef = [[self.actionsRef child:action.key]child:@"usersCompleted"];
+    
+    [[currentUserActionsCompletedRef child:action.key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        BOOL isActionCompleted = snapshot.value == [NSNull null] ? NO : YES;
+        
+        if (!isActionCompleted) {
+            
+            [currentUserActionsCompletedRef updateChildValues:@{action.key : @1}];
+            [actionRef updateChildValues:@{[FIRAuth auth].currentUser.uid : @1}];
+        }
+        else {
+            
+            [[currentUserActionsCompletedRef child:action.key]removeValue];
+            [[actionRef child:[FIRAuth auth].currentUser.uid]removeValue];
+        }
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshHeaderCell" object:nil];
+    }];
+}
+
+// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
-    //Need dispatch group to wait for all action keys calls to finish
+    
+   __block NSMutableArray *actionsList = @[].mutableCopy;
+    
     dispatch_group_t actionsGroup = dispatch_group_create();
-    NSMutableArray *actions = [NSMutableArray array];
+
     for (NSString *actionKey in group.actionKeys) {
+        
         dispatch_group_enter(actionsGroup);
+
+        
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value == [NSNull null]) {
-                dispatch_group_leave(actionsGroup);
+            
+            if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
                 return;
             }
-            Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             
+            // Iterate through the listOfFollowedGroups and determine the index of the object that passes the following test:
+            NSInteger index = [actionsList indexOfObjectPassingTest:^BOOL(Action *action, NSUInteger idx, BOOL *stop) {
+                if ([action.key isEqualToString:actionKey]) {
+                    *stop = YES;
+                    return YES;
+                }
+                return NO;
+                
+            }];
+            
+            if (index != NSNotFound) {
+                // We already have this group in our table
+                return;
+            }
+        
+            Action *action = [[Action alloc]initWithKey:actionKey actionDictionary:snapshot.value];
             if ([self shouldAddActionToList:action]) {
-                [[CurrentUser sharedInstance].listOfActions addObject:action];
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                successBlock([CurrentUser sharedInstance].listOfActions);
-                [actions addObject:action];
+                [actionsList addObject:action];
             }
             dispatch_group_leave(actionsGroup);
+
         }];
     }
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
-        successBlock(actions);
+        successBlock(actionsList);
     });
+}
+
+- (void)fetchListOfCompletedActionsWithCompletion:(void(^)(NSArray *listOfCompletedActions))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    [[self.currentUserRef child:@"actionsCompleted"]observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if (snapshot.value != [NSNull null]) {
+            
+            NSDictionary *actionKeysDict = snapshot.value;
+            NSArray *actionKeys = actionKeysDict.allKeys;
+            successBlock(actionKeys);
+        }
+        else {
+            successBlock(nil);
+        }
+    }];
 }
 
 #pragma mark - Policy Positions
@@ -330,7 +403,7 @@
     NSDate *currentTime = [NSDate date];
     
     if (action.timestamp < currentTime.timeIntervalSince1970) {
-
+        
         NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
             if ([action.key isEqualToString:actionInArray.key]) {
                 *stop = YES;

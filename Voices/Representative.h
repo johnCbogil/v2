@@ -15,7 +15,6 @@
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *fullName;
-@property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSURL *photoURL;
 @property (strong, nonatomic) NSString *party;
 @property (strong, nonatomic) NSString *phone;
@@ -32,6 +31,8 @@
 @property (strong, nonatomic) NSString *stateCode;
 @property (strong, nonatomic) NSString *districtFullName;
 @property (strong, nonatomic) NSString *crpID;
+@property (strong, nonatomic) NSString *contactForm;
+
 
 
 -(void) generateDistrictName;

@@ -19,10 +19,12 @@
 - (void)fetchAllGroupsWithCompletion:(void(^)(NSArray *groups))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)removeGroup:(Group *)group;
 - (void)fetchGroupWithKey:(NSString *)groupKey withCompletion:(void(^)(Group *group))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)resubscribeToTopicsOnReInstall;
 
 //Action methods
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock;
-
+- (void)actionCompleteButtonPressed:(Action *)action;
+- (void)fetchListOfCompletedActionsWithCompletion:(void(^)(NSArray *listOfCompletedActions))successBlock onError:(void(^)(NSError *error))errorBlock;
 //Policy Positions
 - (void)fetchPolicyPositionsForGroup:(Group *)group withCompletion:(void(^)(NSArray *positions))successBlock onError:(void(^)(NSError *error))errorBlock;
 

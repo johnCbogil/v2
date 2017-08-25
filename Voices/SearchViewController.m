@@ -30,6 +30,18 @@
     [self configureNavController];
     [self configureSearchBar];
     [self configureTableView];
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
 
 - (void)configureNavController {
@@ -43,7 +55,7 @@
 
 - (void)configureSearchBar {
     
-    self.searchBar.placeholder = @"Enter address";
+    self.searchBar.placeholder = @"Enter full address";
     self.searchBar.delegate  = self;
     [self.searchBar setReturnKeyType:UIReturnKeyDone];
 }
@@ -58,10 +70,6 @@
     self.resultsArray = @[];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -70,7 +78,7 @@
 
 - (void)presentPrivacyAlert {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Privacy is a human right"
+                                alertControllerWithTitle:@"Privacy is a human right."
                                 message:@"Voices does not share your address with anyone."
                                 preferredStyle:UIAlertControllerStyleAlert];
     
@@ -117,7 +125,6 @@
     
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    
 }
 
 #pragma mark - UISearchBar Delegate Methods
@@ -198,16 +205,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [LocationService sharedInstance].isHomeAddressVC = self.isHomeAddressVC;
     
     if (indexPath.row == 0) {
         
         [[LocationService sharedInstance]startUpdatingLocation];
-        [self.navigationController popViewControllerAnimated:YES];
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
+        if (_isHomeAddressVC) {
+            [self saveHomeAddress];
+        }
+        [self fetchRepsForAddress:self.searchBar.text];
+
 
     }
 }

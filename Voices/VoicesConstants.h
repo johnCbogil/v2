@@ -28,6 +28,7 @@ extern NSString *const kSFCongress;
 extern NSString *const kSFState;
 extern NSString *const kGoogMaps;
 extern NSString *const kAutocomplete;
+extern NSString *const kGoogCivic;
 
 extern NSString *const kFederalRepresentative;
 extern NSString *const kStateRepresentative;

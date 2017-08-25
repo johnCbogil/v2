@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,14 +23,9 @@
                         <rect key="frame" x="8" y="8" width="100" height="122"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="123" id="5pw-hv-S9M"/>
                             <constraint firstAttribute="width" constant="100" id="KCj-gj-55O"/>
+                            <constraint firstAttribute="height" constant="122" id="XIf-mp-x3A"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="5pw-hv-S9M"/>
-                            </mask>
-                        </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-NX-ZHW">
                         <rect key="frame" x="116" y="8" width="236" height="33"/>
@@ -48,12 +43,9 @@
                             </mask>
                         </variation>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ContactsView" customClass="ContactsView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qj-e2-LYP" userLabel="ActionView" customClass="ActionView">
                         <rect key="frame" x="116" y="51" width="236" height="80"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="VOk-oT-yya"/>
-                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -61,13 +53,13 @@
                     <constraint firstItem="4Qj-e2-LYP" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="8" id="6K4-oA-S6r"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4Qj-e2-LYP" secondAttribute="trailing" id="9uP-AC-JhX"/>
                     <constraint firstItem="cJk-NX-ZHW" firstAttribute="trailing" secondItem="9uY-lc-yzz" secondAttribute="trailingMargin" id="AOP-OK-Kbo"/>
+                    <constraint firstAttribute="bottom" secondItem="i04-Gh-fbL" secondAttribute="bottom" constant="9.5" id="HJP-Z0-qOj"/>
                     <constraint firstItem="4Qj-e2-LYP" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="9.5" id="Qzx-80-Kpk"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="centerY" secondItem="9uY-lc-yzz" secondAttribute="centerY" constant="-0.75" id="Sty-Oh-1zo"/>
                     <constraint firstItem="i04-Gh-fbL" firstAttribute="leading" secondItem="9uY-lc-yzz" secondAttribute="leadingMargin" id="VZg-kR-Koy"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cJk-NX-ZHW" secondAttribute="trailing" id="XPQ-Je-hgB"/>
                     <constraint firstItem="4Qj-e2-LYP" firstAttribute="top" secondItem="cJk-NX-ZHW" secondAttribute="bottom" constant="58.5" id="c6p-7c-Uz4"/>
                     <constraint firstAttribute="bottomMargin" secondItem="4Qj-e2-LYP" secondAttribute="bottom" constant="0.5" id="fr4-g2-1ZV"/>
-                    <constraint firstItem="i04-Gh-fbL" firstAttribute="top" secondItem="9uY-lc-yzz" secondAttribute="topMargin" id="nBo-XU-rZw"/>
                     <constraint firstItem="cJk-NX-ZHW" firstAttribute="leading" secondItem="i04-Gh-fbL" secondAttribute="trailing" constant="8" id="zJL-Tl-4w1"/>
                 </constraints>
                 <variation key="default">
@@ -78,9 +70,10 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contactsView" destination="4Qj-e2-LYP" id="bf6-f1-B5H"/>
+                <outlet property="actionView" destination="4Qj-e2-LYP" id="CRt-qT-RLf"/>
                 <outlet property="name" destination="cJk-NX-ZHW" id="9ba-RQ-WQ5"/>
                 <outlet property="photo" destination="i04-Gh-fbL" id="zui-Hn-2ap"/>
+                <outlet property="photoHeightConstraint" destination="XIf-mp-x3A" id="bhV-Gh-17K"/>
             </connections>
             <point key="canvasLocation" x="498" y="563"/>
         </tableViewCell>

@@ -8,7 +8,7 @@
 
 #import "RepTableViewCell.h"
 #import "AFHTTPRequestOperation.h"
-#import "ContactsView.h"
+#import "ActionView.h"
 #import "ReportingManager.h"
 #import "Representative.h"
 #import "ScriptManager.h"
@@ -24,7 +24,7 @@
 @property (strong, nonatomic) Representative *representative;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
-@property (weak, nonatomic) IBOutlet ContactsView *contactsView;
+@property (weak, nonatomic) IBOutlet ActionView *actionView;
 @property (nonatomic) CTCallCenter *callCenter;
 
 @end
@@ -46,8 +46,8 @@
 - (void)initWithRep:(id)rep {
     self.representative = rep;
     NSString *title = self.representative.shortTitle ? self.representative.shortTitle : self.representative.title;
-    self.name.text = [NSString stringWithFormat:@"%@ %@ %@", title, self.representative.firstName, self.representative.lastName];
-    [self.contactsView configureWithRepresentative:self.representative];
+    self.name.text = [NSString stringWithFormat:@"%@ %@", title, self.representative.fullName];
+    [self.actionView configureWithRepresentative:self.representative];
     [self setupImage];
 }
 

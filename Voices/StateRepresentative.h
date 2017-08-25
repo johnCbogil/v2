@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *upperChamber;
 @property (strong, nonatomic) NSString *lowerChamber;
 
+
 - (id)initWithData:(NSDictionary*)data;
 - (id)initGovWithData:(NSDictionary*)data;
 

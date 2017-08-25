@@ -32,12 +32,12 @@
     [super viewDidLoad];
 
     self.title = @"Here's what to say";
-    self.contentSizeInPopup = CGSizeMake(300, 315);
+    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width / 1.15, self.view.frame.size.height / 1.5);
     self.closeWindowButton.layer.cornerRadius = kButtonCornerRadius;
     self.closeWindowButton.backgroundColor = [UIColor voicesOrange];
     
     self.scriptTextView.editable = NO;
-    self.scriptTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.scriptTextView.dataDetectorTypes = UIDataDetectorTypeLink;
 
     if ([ScriptManager sharedInstance].lastAction.script.length > 0) {
         self.scriptTextView.text = [ScriptManager sharedInstance].lastAction.script;

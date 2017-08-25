@@ -41,6 +41,7 @@
 #ifdef DEBUG
     eventType = [@"DEBUG_" stringByAppendingString:eventType];
 #endif
+    
     NSString *params = [NSString stringWithFormat:@"eventType=%@&eventFocus=%@&eventData=%@&eventLoggerId=%@&platform=%@&osVersion=%@&eventTime=%@", eventType, eventFocus, eventData, eventLoggerID, platform, osVersion, currentTime];
     NSString *reportingString = [NSString stringWithFormat:@"%@%@", kEVENT_DATABASE, params];
     

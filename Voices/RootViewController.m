@@ -70,8 +70,8 @@
 
 - (void)configureSearchBar {
     
-    self.findRepsLabel.font = [UIFont voicesBoldFontWithSize:36];
-    self.findRepsLabel.text = @"Contact Reps";
+    self.findRepsLabel.font = [UIFont voicesBoldFontWithSize:40];
+    self.findRepsLabel.text = @"My Reps";
     self.findRepsLabel.adjustsFontSizeToFitWidth = YES;
     self.searchButton.tintColor = [UIColor blackColor];
     self.moreButton.tintColor = [UIColor blackColor];
@@ -113,7 +113,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewControllerInRootVC) name:@"presentSearchViewControllerInRootVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptDialog) name:@"presentScriptView" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(closeAlertView) name:@"closeAlertView" object:nil];
 }
 
 #pragma mark - Presentation Controllers
@@ -209,15 +211,18 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
     webViewController.title = fullName;
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:webViewController animated:YES];
+    webViewController.hidesBottomBarWhenPushed = YES; // I would actually set this in WebViewController's viewDidLoad method
+    // Push on to the current tab bar's nav controller.
+    UINavigationController *navController = (UINavigationController *)self.tabBarController.selectedViewController;
+    navController.navigationBar.hidden = NO;
+    [navController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentTweetComposer:(NSNotification*)notification {
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *initialText = [NSString stringWithFormat:@".@%@", [notification.userInfo objectForKey:@"accountName"]];
+        NSString *initialText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
         [tweetSheetOBJ setInitialText:initialText];
         [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
             switch (result) {
@@ -287,7 +292,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)presentSearchViewController {
+- (void)presentSearchViewControllerInRootVC {
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
     searchViewController.isHomeAddressVC = YES;
@@ -300,6 +305,12 @@
     }
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
+}
+
+
+- (void)closeAlertView {
+    
+    [self dismissViewControllerAnimated: YES completion: nil];
 }
 
 #pragma mark Call Center methods
@@ -351,7 +362,13 @@
 
 - (IBAction)moreButtonDidPress:(id)sender {
     
-    [self presentInfoViewController];
+    UIStoryboard *moreSB = [UIStoryboard storyboardWithName:@"More" bundle: nil];
+    MoreViewController *moreViewController = (MoreViewController *)[moreSB instantiateViewControllerWithIdentifier:@"MoreViewController"];
+    moreViewController.title = @"More";
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:moreViewController animated:YES];
+    
+    //    [self presentInfoViewController];
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {

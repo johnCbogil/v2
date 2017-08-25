@@ -9,27 +9,43 @@
 #import "FederalRepresentative.h"
 #import "RepsManager.h"
 
+@interface FederalRepresentative()
+
+@property (strong, nonatomic) NSNumber *officialIndex;
+
+@end
+
 @implementation FederalRepresentative
+
 
 - (id)initWithData:(NSDictionary *)data {
     self = [super init];
     if(self != nil) {
-        self.bioguide = [data valueForKey:@"bioguide_id"];
-        self.firstName = [data valueForKey:@"first_name"];
-        self.lastName = [data valueForKey:@"last_name"];
-        self.fullName = [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
-        self.nickname = [data valueForKey:@"nickname"];
-        self.phone = [data valueForKey:@"phone"];
-        self.party = [data valueForKey:@"party"];
-        self.email = [[RepsManager sharedInstance]getContactFormForBioGuide:self.bioguide];
-        self.twitter = [data valueForKey:@"twitter_id"];
-        self.districtNumber = [data valueForKey:@"district"];
-        self.stateCode = [data valueForKey:@"state"];
-        self.nextElection = [self formatElectionDate:[data valueForKey:@"term_end"]];
-        [self formatTitle:[data valueForKey:@"title"]];
-        self.photoURL = [self createPhotoURLFromBioguide:self.bioguide];
-        self.gender = [data valueForKey:@"gender"];
-        self.crpID = [data valueForKey:@"crp_id"];
+        
+        NSDictionary *office = data[@"office"];
+        NSArray *roles = office[@"roles"];
+        if ([roles[0]isEqualToString:@"legislatorUpperBody"]) {
+            self.title = @"Senator";
+        }
+        else {
+            self.title = @"Representative";
+        }
+        self.fullName = data[@"name"];
+        self.phone = data[@"phones"][0];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
+        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        self.party = data[@"party"];
+        self.photoURL = [NSURL URLWithString:data[@"photoUrl"]];
+        NSArray *channels = data[@"channels"];
+        for (NSDictionary *channel in channels) {
+            if ([channel[@"type"]isEqualToString:@"Twitter"]) {
+                self.twitter = [NSString stringWithFormat:@"@%@",channel[@"id"]];
+            }
+        }
+        
+        
         return self;
     }
     return self;

@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property int level;
 @property BOOL debug;
+@property BOOL isCompleted;
 @property (readonly, nonatomic, copy) NSString *key;
 @property (readonly, nonatomic, copy) NSString *body;
 @property (readonly, nonatomic, copy) NSString *title;
 @property (readonly, nonatomic, copy) NSString *groupName;
 @property (readonly, nonatomic, copy) NSString *groupKey;
-@property (readonly, nonatomic, copy) NSString *subject;
 @property (readonly, nonatomic, copy) NSString *script;
 @property (readonly) int long timestamp;
 @property (strong, nonatomic) NSURL *groupImageURL;

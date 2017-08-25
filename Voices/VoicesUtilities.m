@@ -8,28 +8,12 @@
 
 #import "VoicesUtilities.h"
 
-
 @implementation VoicesUtilities
 
-+ (NSString *)getRandomEmojiMale {
++ (NSString *)getRandomEmoji {
     
     NSMutableArray *array = @[].mutableCopy;
-    NSString *listOfEmojis = @"👨🏻‍💼👨🏻‍⚖️👨🏼‍💼👨🏼‍⚖️👨🏽‍💼👨🏽‍⚖️👨🏾‍💼👨🏾‍⚖️";
-    listOfEmojis = [listOfEmojis stringByReplacingOccurrencesOfString:@" " withString:@""];
-
-    [listOfEmojis enumerateSubstringsInRange:NSMakeRange(0, listOfEmojis.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
-
-        [array addObject:substring];
-    }];
-    
-    NSUInteger randomIndex = arc4random() % [array count];
-    return array[randomIndex];
-}
-
-+ (NSString *)getRandomEmojiFemale {
-    
-    NSMutableArray *array = @[].mutableCopy;
-    NSString *listOfEmojis = @"👩🏻‍💼👩🏻‍⚖️👩🏼‍💼👩🏼‍⚖️👩🏽‍💼👩🏽‍⚖️👩🏾‍💼👩🏾‍⚖️";
+    NSString *listOfEmojis = @"👩🏻‍💼👨🏻‍💼👩🏾‍⚖️👨🏻‍⚖️👩🏾‍💼👨🏼‍💼👩🏽‍⚖️👨🏼‍⚖️👩🏼‍💼👨🏽‍💼👩🏽‍💼👨🏽‍⚖️👩🏼‍⚖️👨🏾‍💼👩🏻‍⚖️👨🏾‍⚖️";
     listOfEmojis = [listOfEmojis stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     [listOfEmojis enumerateSubstringsInRange:NSMakeRange(0, listOfEmojis.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {

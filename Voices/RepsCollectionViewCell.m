@@ -41,6 +41,8 @@
     self.tableView.delegate = self;
     
     [self.tableView addSubview:self.refreshControl];
+    
+    self.tableView.allowsSelection = NO; // FLIP
 }
 
 - (void)configureRefreshControl {
@@ -72,19 +74,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell;
     if(self.tableViewDataSource.count > 0) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
+        RepTableViewCell *cell = (RepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kRepTableViewCell];
         [cell initWithRep:self.tableViewDataSource[indexPath.row]];
+        cell.photoHeightConstraint.active = NO;
+        [self.refreshControl endRefreshing];
+        [self toggleZeroState];
+        return cell;
     }
     else if (self.index == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:kEmptyRepTableViewCell];
+        
+        EmptyRepTableViewCell *cell = (EmptyRepTableViewCell *) [tableView dequeueReusableCellWithIdentifier:kEmptyRepTableViewCell];
+        [self.refreshControl endRefreshing];
+        [self toggleZeroState];
+        return cell;
     }
-    
-    [self.refreshControl endRefreshing];
-    [self toggleZeroState];
-    return cell;
+    else {
+        [self.refreshControl endRefreshing];
+        [self toggleZeroState];
+        id cell;
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

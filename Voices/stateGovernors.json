@@ -61,7 +61,7 @@
  "state_full": "California",
  "party": "Democrat",
  "phone": "(916) 445-2841",
- "email": "governor@governor.ca.gov",
+ "email": "https://govapps.gov.ca.gov/gov39mail/",
  "twitter": "JerryBrownGov",
  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Edmund_G_Brown_Jr.jpg",
  "next_election_date": "11/6/2018",
@@ -174,13 +174,13 @@
  "state_full": "Illinois",
  "party": "Republican",
  "phone": "217-782-0244",
- "email": "governor@state.il.us",
  "twitter": "BruceRauner",
  "photo_url": "http://www.illinois.gov/gov/PublishingImages/Governor_Headshot.jpg",
  "next_election_date": "11/6/2018",
  "first_name": "Bruce",
  "last_name": "Rauner",
- "gender": "M"
+ "gender": "M",
+ "contact_form" : "https://www.illinois.gov/gov/contactus/Pages/VoiceAnOpinion.aspx"
  },
  {
  "full_name": "Mike Pence",
@@ -442,13 +442,13 @@
  "state_full": "New York",
  "party": "Democrat",
  "phone": "1-518-474-8390",
- "email": "gov.cuomo@chamber.state.ny.us",
  "twitter": "NYGovCuomo",
  "photo_url": "https://www.governor.ny.gov/sites/governor.ny.gov/files/thumbnails/image/gov_bio_image.png",
  "next_election_date": "11/6/2018",
  "first_name": "Andrew",
  "last_name": "Cuomo",
- "gender": "M"
+ "gender": "M",
+ "contact_form" : "https://www.governor.ny.gov/content/governor-contact-form"
  },
  {
  "full_name": "Pat McCrory",
@@ -679,13 +679,13 @@
  "state_full": "Wisconsin",
  "party": "Republican",
  "phone": "(608) 266-1212",
- "email": "wisgov@mail.state.wi.us",
  "twitter": "Scottwalker",
  "photo_url": "https://lh5.googleusercontent.com/-WsJIfVGcO0s/AAAAAAAAAAI/AAAAAAAABCI/ZHzfqECsuJ0/s0-c-k-no-ns/photo.jpg",
  "next_election_date": "11/6/2018",
  "first_name": "Scott",
  "last_name": "Walker",
- "gender": "M"
+ "gender": "M",
+ "contact_form" : "https://walker.wi.gov/contact-us"
  },
  {
  "full_name": "Matt Mead",

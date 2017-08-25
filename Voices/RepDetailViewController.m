@@ -11,14 +11,12 @@
 #import "ScriptManager.h"
 #import "RepsNetworkManager.h"
 #import "WebViewController.h"
-#import "ContactsView.h"
+#import "ActionView.h"
 
 @interface RepDetailViewController() <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *repImageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *partyStateLabel;
 @property (weak, nonatomic) IBOutlet UIView *actionContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *topInfluencersLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -26,12 +24,9 @@
 @property (strong, nonatomic) NSArray *topContributorsArray;
 @property (strong, nonatomic) NSArray *topIndustriesArray;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
-@property (weak, nonatomic) IBOutlet ContactsView *contactsView;
+@property (weak, nonatomic) IBOutlet ActionView *actionView;
 
 @end
-
-// TODO: DON'T PRESENT THIS VIEW FOR STATE OR LOCAL REPS
-// TODO: HOOK UP ACTION BUTTONS
 
 @implementation RepDetailViewController
 
@@ -45,8 +40,8 @@
     [self configureActivityIndicator];
     [self configureSegmentedControl];
     [self configureTopInfluencersButton];
-    [self fetchTopContributors];
-    [self.contactsView configureWithRepresentative:self.representative];
+    [self fetchTopIndustries];
+    [self.actionView configureWithRepresentative:self.representative];
 }
 
 - (void)configureTopInfluencersButton {
@@ -69,7 +64,7 @@
         [self presentOpenSecretsWebViewController];
         
     }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
 
     [self presentViewController:alertController animated:YES completion:nil];
     
@@ -79,7 +74,7 @@
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
-    webViewController.url = [NSURL URLWithString:@"https://www.opensecrets.org/"];
+    webViewController.url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.opensecrets.org/politicians/summary.php?cycle=2016&type=I&cid=%@", self.representative.crpID]];
     webViewController.title = @"OpenSecrets";
     webViewController.navigationItem.backBarButtonItem = nil;
     [self.navigationController pushViewController:webViewController animated:YES];
@@ -150,8 +145,8 @@
 
 - (void)configureSegmentedControl {
     
-    [self.segmentedControl setTitle:@"Industry" forSegmentAtIndex:1];
-    [self.segmentedControl setTitle:@"Contributor" forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:@"Industry" forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:@"Contributor" forSegmentAtIndex:1];
     self.segmentedControl.tintColor = [UIColor voicesOrange];
     [self.segmentedControl setSelectedSegmentIndex:0];
     self.segmentedControl.backgroundColor = [UIColor whiteColor];
@@ -161,16 +156,13 @@
 
 - (void)configureLabels {
     
-    self.titleLabel.text = self.representative.title;
-    self.titleLabel.numberOfLines = 0;
-    self.nameLabel.font = [UIFont voicesFontWithSize:34];
+   
+    self.nameLabel.font = [UIFont voicesMediumFontWithSize:30];
+    self.nameLabel.numberOfLines = 0;
     [self.nameLabel sizeToFit];
     self.nameLabel.minimumScaleFactor = 0.5;
-    self.titleLabel.font = [UIFont voicesFontWithSize:34];
     self.nameLabel.text = self.representative.fullName;
-    self.partyStateLabel.text = [NSString stringWithFormat:@"%@-%@", self.representative.party, self.representative.stateCode];
-    self.partyStateLabel.font = [UIFont voicesFontWithSize:26];
-    self.topInfluencersLabel.font = [UIFont voicesFontWithSize:26];
+    self.topInfluencersLabel.font = [UIFont voicesMediumFontWithSize:22];
 }
 
 - (void)configureNavigationController {
@@ -178,7 +170,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    self.title = @"More Info";
+    self.title = @"Details";
 }
 
 - (void)configureTableView {
@@ -186,6 +178,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 60;
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)configureImage {
@@ -226,14 +219,15 @@
 
 - (IBAction)segmentedControlDidChange:(id)sender {
     
-    if (self.segmentedControl.selectedSegmentIndex == 0 && !self.topContributorsArray.count) {
-        
-        [self fetchTopContributors];
+    if (self.segmentedControl.selectedSegmentIndex == 0 && !self.topIndustriesArray.count) {
+        [self fetchTopIndustries];
         
     }
-    else if (!self.topIndustriesArray.count) {
+    else if (!self.topContributorsArray.count) {
         
-        [self fetchTopIndustries];
+        [self fetchTopContributors];
+
+
     }
     [self.tableView reloadData];
 }
@@ -256,10 +250,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (self.segmentedControl.selectedSegmentIndex == 1) {
-        return self.topIndustriesArray.count;
+        return self.topContributorsArray.count;
     }
     else {
-        return self.topContributorsArray.count;
+        return self.topIndustriesArray.count;
     }
     return 0;
 }
@@ -271,14 +265,14 @@
     
     if (self.segmentedControl.selectedSegmentIndex == 1) {
         
-        NSString *total = [self formatMoney:self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"],total];
+        NSString *total = [self formatMoney:self.topContributorsArray[indexPath.row][@"@attributes"][@"total"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"],total];
         
     }
     else {
         
-        NSString *total = [self formatMoney:self.topContributorsArray[indexPath.row][@"@attributes"][@"total"]];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", self.topContributorsArray[indexPath.row][@"@attributes"][@"org_name"], total];
+        NSString *total = [self formatMoney:self.topIndustriesArray[indexPath.row][@"@attributes"][@"total"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", self.topIndustriesArray[indexPath.row][@"@attributes"][@"industry_name"], total];
     }
     cell.textLabel.font = [UIFont voicesFontWithSize:19];
     return cell;

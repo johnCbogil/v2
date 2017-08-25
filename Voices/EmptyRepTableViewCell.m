@@ -27,8 +27,20 @@
     self.localRepsLabel.font = [UIFont voicesFontWithSize:23];
     self.localRepsLabel.text = @"Local reps are not available in this area yet.";
     self.emojiLabel.font = [UIFont voicesFontWithSize:60];
-    self.emojiLabel.text = [NSString stringWithFormat:@"%@ %@", [VoicesUtilities getRandomEmojiMale], [VoicesUtilities getRandomEmojiFemale]];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmoji]];
     
+    NSTimer* timer = [NSTimer timerWithTimeInterval:2.0f target:self selector:@selector(updateEmojiLabel) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)updateEmojiLabel {
+    
+    CATransition *animation = [CATransition animation];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.5;
+    [self.emojiLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
+    self.emojiLabel.text = [NSString stringWithFormat:@"🏡 %@", [VoicesUtilities getRandomEmoji]];
 }
 
 

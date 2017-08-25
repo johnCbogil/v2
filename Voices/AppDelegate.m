@@ -30,13 +30,16 @@
 
 @property (strong, nonatomic) NSString *actionKey;
 @property (strong, nonatomic) NSString *dataSetPathWithComponent;
-@property (nonatomic) BOOL isBeingInstalledFromDeeplink;
 
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
+    
+    if ([self isInDebugMode]) {
+        [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
+    }
     
     [self setInitialViewController];
     [self setCache];
@@ -50,9 +53,15 @@
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];
     
+
+    
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    
+    
+
+
     return YES;
 }
 
@@ -62,7 +71,9 @@
                     handleUniversalLink:userActivity.webpageURL
                     completion:^(FIRDynamicLink * _Nullable dynamicLink,
                                  NSError * _Nullable error) {
-                        // ...
+                        if (error) {
+                            NSLog(@"%@", [error localizedDescription]);
+                        }
                     }];
     
     return handled;
@@ -79,6 +90,7 @@
         // apply a promotional offer to the user's account.
         // ...
         
+        self.isBeingInstalledFromDeeplink = YES;
         [self handleDynamicLink:dynamicLink];
         
         return YES;
@@ -92,15 +104,18 @@
     if (!dynamicLink.url) {
         return;
     }
+    
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
-    [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
+    if (groupKey.length) {
         
-    } onError:^(NSError *error) {
-        
-    }];
+        [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
+            
+        } onError:^(NSError *error) {
+            
+        }];   
+    }
 }
-
 
 - (void)tokenRefreshNotification:(NSNotification *)notification {
     // Note that this callback will be fired everytime a new token is generated, including the first
@@ -109,6 +124,18 @@
     
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
+    
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+
+    if (!isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
+        [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
+            
+            [[FirebaseManager sharedInstance]resubscribeToTopicsOnReInstall];
+            
+        } onError:^(NSError *error) {
+            
+        }];
+    }
     
     // TODO: If necessary send token to appliation server.
 }
@@ -173,7 +200,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
             TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
             self.window.rootViewController = tabVC;
-            
             
             //TODO: Maybe switch for loop with navCtrl = self.window.rootViewController.navController
             for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
@@ -305,6 +331,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [window removeConstraints:window.constraints];
         }
     }
+}
+
+- (BOOL)isInDebugMode {
+    
+#if DEBUG
+    return YES;
+#else
+    return NO;
+#endif
 }
 
 @end

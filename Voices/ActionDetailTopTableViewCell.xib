@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="251" id="w5C-x9-gNu" customClass="ActionDetailTopTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ActionDetailTopTableViewCell" selectionStyle="default" indentationWidth="10" rowHeight="200" id="nj4-GP-w0A" customClass="ActionDetailTopTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w5C-x9-gNu" id="re5-8a-P8B">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="250.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nj4-GP-w0A" id="Hlc-wA-QFt">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-0W-FIS">
-                        <rect key="frame" x="138" y="8" width="100" height="100"/>
-                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="100" id="PZQ-Z7-y5A"/>
-                            <constraint firstAttribute="width" constant="100" id="ggn-yb-JiD"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <connections>
-                            <action selector="groupImageButtonDidPress:" destination="w5C-x9-gNu" eventType="touchUpInside" id="3wL-mo-YGY"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-nQ-Val">
-                        <rect key="frame" x="8" y="115" width="359" height="127"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-ts-YVT">
+                        <rect key="frame" x="8" y="91" width="359" height="20.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2r-80-qcc">
+                        <rect key="frame" x="150" y="8" width="75" height="75"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="75" id="Jlb-Ra-CYO"/>
+                            <constraint firstAttribute="width" constant="75" id="jma-w5-uxr"/>
+                        </constraints>
+                        <connections>
+                            <action selector="groupImageButtonDidPress:" destination="nj4-GP-w0A" eventType="touchUpInside" id="Ew6-Mq-T00"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="vW5-nQ-Val" firstAttribute="top" secondItem="WrH-0W-FIS" secondAttribute="bottom" constant="7" id="Gdr-EA-ko5"/>
-                    <constraint firstAttribute="trailing" secondItem="vW5-nQ-Val" secondAttribute="trailing" constant="8" id="Kdp-xl-D3l"/>
-                    <constraint firstItem="vW5-nQ-Val" firstAttribute="leading" secondItem="re5-8a-P8B" secondAttribute="leading" constant="8" id="a1v-dq-rwf"/>
-                    <constraint firstAttribute="bottom" secondItem="vW5-nQ-Val" secondAttribute="bottom" constant="8" id="i98-q4-rPn"/>
-                    <constraint firstItem="WrH-0W-FIS" firstAttribute="centerX" secondItem="re5-8a-P8B" secondAttribute="centerX" id="imw-dL-Wbe"/>
-                    <constraint firstItem="WrH-0W-FIS" firstAttribute="top" secondItem="re5-8a-P8B" secondAttribute="top" constant="8" id="w11-WQ-Mom"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="leading" secondItem="Hlc-wA-QFt" secondAttribute="leading" constant="8" id="3wW-SJ-qIS"/>
+                    <constraint firstItem="acv-ts-YVT" firstAttribute="top" secondItem="L2r-80-qcc" secondAttribute="bottom" constant="8" id="ISW-11-bxP"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="centerX" secondItem="Hlc-wA-QFt" secondAttribute="centerX" id="Kv2-DD-xsc"/>
+                    <constraint firstAttribute="bottom" secondItem="acv-ts-YVT" secondAttribute="bottom" constant="13" id="gkE-s1-0n9"/>
+                    <constraint firstItem="L2r-80-qcc" firstAttribute="top" secondItem="Hlc-wA-QFt" secondAttribute="top" constant="8" id="sB8-DX-zqj"/>
+                    <constraint firstAttribute="trailing" secondItem="acv-ts-YVT" secondAttribute="trailing" constant="8" id="wZY-38-pet"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="actionTitleLabel" destination="vW5-nQ-Val" id="SlS-Wh-PvV"/>
-                <outlet property="groupImageButton" destination="WrH-0W-FIS" id="IYG-Pc-9A8"/>
+                <outlet property="actionTitleLabel" destination="acv-ts-YVT" id="dFz-Ju-YGR"/>
+                <outlet property="groupImageButton" destination="L2r-80-qcc" id="imQ-vZ-4aU"/>
             </connections>
-            <point key="canvasLocation" x="-95.5" y="221.5"/>
+            <point key="canvasLocation" x="-149.5" y="122"/>
         </tableViewCell>
     </objects>
 </document>
