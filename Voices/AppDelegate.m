@@ -101,6 +101,10 @@
 
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
+    if (!dynamicLink.url) {
+        return;
+    }
+    
     NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
     NSString *groupKey = splitURLString.lastObject;
     if (groupKey.length) {
