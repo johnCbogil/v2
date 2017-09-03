@@ -12,14 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
-    self.itemTitle.font = [UIFont voicesFontWithSize:19];
-    self.itemTitle.numberOfLines = 0;
     
     self.openCloseMenuItemImageView.tintColor = [UIColor orangeColor];
     self.openCloseMenuItemImageView.backgroundColor = [UIColor clearColor];
     
     self.textView.scrollEnabled = NO;
+    self.textView.font = [UIFont voicesFontWithSize:19];
 }
 
 @end

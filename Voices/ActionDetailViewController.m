@@ -104,17 +104,14 @@
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
         
         ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
-        cell.itemTitle.numberOfLines = 0;
         
         if (self.indexPathRowToExpand == indexPath.row) {
             
             cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"Minus"];
             if (indexPath.row == 1) {
-                cell.itemTitle.text = self.action.body;
                 cell.textView.text = self.action.body;
             }
             else if (indexPath.row == 2) {
-                cell.itemTitle.text = self.action.script;
                 cell.textView.text = self.action.script;
             }
         }
@@ -125,7 +122,6 @@
             else {
                 cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"AddGroup"];
             }
-            cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
             cell.textView.text = self.listOfMenuItems[indexPath.row - 1];
         }
         return cell;
