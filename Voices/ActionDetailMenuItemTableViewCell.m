@@ -18,6 +18,8 @@
     
     self.openCloseMenuItemImageView.tintColor = [UIColor orangeColor];
     self.openCloseMenuItemImageView.backgroundColor = [UIColor clearColor];
+    
+    self.textView.scrollEnabled = NO;
 }
 
 @end

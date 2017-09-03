@@ -10,6 +10,7 @@
 
 @interface ActionDetailMenuItemTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *openCloseMenuItemImageView;
 
