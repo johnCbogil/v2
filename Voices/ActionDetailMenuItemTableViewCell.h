@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActionDetailMenuItemTableViewCell : UITableViewCell
+@interface ActionDetailMenuItemTableViewCell : UITableViewCell <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *openCloseMenuItemImageView;

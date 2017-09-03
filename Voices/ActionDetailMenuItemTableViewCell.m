@@ -16,8 +16,15 @@
     self.openCloseMenuItemImageView.tintColor = [UIColor orangeColor];
     self.openCloseMenuItemImageView.backgroundColor = [UIColor clearColor];
     
+    self.textView.delegate = self;
     self.textView.scrollEnabled = NO;
     self.textView.font = [UIFont voicesFontWithSize:19];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebViewControllerForActionDetail" object:URL];
+    return NO;
 }
 
 @end

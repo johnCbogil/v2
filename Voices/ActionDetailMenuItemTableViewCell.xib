@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-tx-9bO">
-                        <rect key="frame" x="347" y="12" width="20" height="20"/>
+                        <rect key="frame" x="347" y="18" width="20" height="20"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="47x-b5-OeV"/>
@@ -45,7 +45,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="pCc-tx-9bO" firstAttribute="leading" secondItem="GPY-Uj-cT2" secondAttribute="trailing" constant="8" id="3pk-y3-vPf"/>
-                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="12" id="57V-cT-H9U"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="18" id="57V-cT-H9U"/>
                     <constraint firstItem="duC-p4-knl" firstAttribute="top" secondItem="GPY-Uj-cT2" secondAttribute="bottom" constant="6" id="Bza-WC-3Un"/>
                     <constraint firstItem="GPY-Uj-cT2" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="8" id="Knj-IC-0vP"/>
                     <constraint firstItem="GPY-Uj-cT2" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="8" id="OOV-I0-cPx"/>
