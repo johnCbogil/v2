@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTTAttributedLabel/TTTAttributedLabel.h"
+#import "TTTAttributedLabel.h"
 
 @interface ActionDetailMenuItemTableViewCell : UITableViewCell <UITextViewDelegate>
 
