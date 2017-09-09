@@ -15,6 +15,7 @@
 
     self.itemTitle.font = [UIFont voicesFontWithSize:19];
     self.itemTitle.numberOfLines = 0;
+    self.itemTitle.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     
     self.openCloseMenuItemImageView.tintColor = [UIColor orangeColor];
     self.openCloseMenuItemImageView.backgroundColor = [UIColor clearColor];
