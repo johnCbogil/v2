@@ -14,8 +14,9 @@
 #import "ActionDetailEmptyRepTableViewCell.h"
 #import "ActionDetailMenuItemTableViewCell.h"
 #import "RepsManager.h"
+#import "WebViewController.h"
 
-@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
+@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *listOfReps;
@@ -105,6 +106,7 @@
         
         ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
         cell.itemTitle.numberOfLines = 0;
+        cell.itemTitle.delegate = self;
         if (self.indexPathRowToExpand == indexPath.row) {
             
             cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"Minus"];
@@ -193,4 +195,20 @@
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    
+    [self presentWebViewController:url];
+}
+
+- (void)presentWebViewController:(NSURL *)url {
+    
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = url;
+    webViewController.title = @"TAKE ACTION";
+    self.navigationItem.title = @"";
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
+
 @end
