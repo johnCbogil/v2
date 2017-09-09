@@ -26,29 +26,27 @@
                             <constraint firstAttribute="height" constant="1" id="DWQ-Gv-XEZ"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMu-xm-Ouk" customClass="TTTAttributedLabel">
+                        <rect key="frame" x="15" y="11" width="324" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-tx-9bO">
-                        <rect key="frame" x="347" y="18" width="20" height="20"/>
+                        <rect key="frame" x="347" y="12" width="20" height="20"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="47x-b5-OeV"/>
                             <constraint firstAttribute="width" constant="20" id="Njq-co-hdm"/>
                         </constraints>
                     </imageView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GPY-Uj-cT2">
-                        <rect key="frame" x="8" y="8" width="331" height="28"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="pCc-tx-9bO" firstAttribute="leading" secondItem="GPY-Uj-cT2" secondAttribute="trailing" constant="8" id="3pk-y3-vPf"/>
-                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="18" id="57V-cT-H9U"/>
-                    <constraint firstItem="duC-p4-knl" firstAttribute="top" secondItem="GPY-Uj-cT2" secondAttribute="bottom" constant="6" id="Bza-WC-3Un"/>
-                    <constraint firstItem="GPY-Uj-cT2" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="8" id="Knj-IC-0vP"/>
-                    <constraint firstItem="GPY-Uj-cT2" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="8" id="OOV-I0-cPx"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="12" id="57V-cT-H9U"/>
+                    <constraint firstItem="pCc-tx-9bO" firstAttribute="leading" secondItem="VMu-xm-Ouk" secondAttribute="trailing" constant="8" id="8dN-0R-R6X"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="top" secondItem="TPA-hX-aT5" secondAttribute="top" constant="11" id="9lm-cb-gfQ"/>
+                    <constraint firstItem="VMu-xm-Ouk" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="WuJ-SL-AiP"/>
+                    <constraint firstAttribute="bottom" secondItem="VMu-xm-Ouk" secondAttribute="bottom" constant="11.5" id="aGT-jG-ykE"/>
                     <constraint firstItem="duC-p4-knl" firstAttribute="leading" secondItem="TPA-hX-aT5" secondAttribute="leading" constant="15" id="bMU-4v-e0c"/>
                     <constraint firstAttribute="bottom" secondItem="duC-p4-knl" secondAttribute="bottom" constant="0.5" id="fmn-Mt-xM0"/>
                     <constraint firstAttribute="trailing" secondItem="pCc-tx-9bO" secondAttribute="trailing" constant="8" id="u7y-Pb-KHB"/>
@@ -57,8 +55,8 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="itemTitle" destination="VMu-xm-Ouk" id="34E-tK-JXD"/>
                 <outlet property="openCloseMenuItemImageView" destination="pCc-tx-9bO" id="At4-aX-ugn"/>
-                <outlet property="textView" destination="GPY-Uj-cT2" id="3pD-mk-EmP"/>
             </connections>
             <point key="canvasLocation" x="555.5" y="-172"/>
         </tableViewCell>

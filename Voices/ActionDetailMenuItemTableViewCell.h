@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTTAttributedLabel/TTTAttributedLabel.h"
 
 @interface ActionDetailMenuItemTableViewCell : UITableViewCell <UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *itemTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *openCloseMenuItemImageView;
 
 @end

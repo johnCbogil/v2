@@ -16,7 +16,7 @@
 #import "RepsManager.h"
 #import "WebViewController.h"
 
-@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate>
+@interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *listOfReps;
@@ -36,8 +36,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebViewControllerForActionDetail" object:nil];
-
+    
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
     
     self.navigationController.navigationBarHidden = NO;
@@ -106,16 +105,16 @@
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
         
         ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
-        
+        cell.itemTitle.numberOfLines = 0;
+        cell.itemTitle.delegate = self;
         if (self.indexPathRowToExpand == indexPath.row) {
             
             cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"Minus"];
             if (indexPath.row == 1) {
-                cell.textView.text = self.action.body;
-                cell.textView.userInteractionEnabled = YES;
+                cell.itemTitle.text = self.action.body;
             }
             else if (indexPath.row == 2) {
-                cell.textView.text = self.action.script;
+                cell.itemTitle.text = self.action.script;
             }
         }
         else {
@@ -125,8 +124,7 @@
             else {
                 cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"AddGroup"];
             }
-            cell.textView.text = self.listOfMenuItems[indexPath.row - 1];
-            cell.textView.userInteractionEnabled = NO;
+            cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }
         return cell;
     }
@@ -198,17 +196,19 @@
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
-- (void)presentWebViewController:(NSNotification *)notifiaction {
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
     
-    NSURL *url = notifiaction.object;
+    [self presentWebViewController:url];
+}
+
+- (void)presentWebViewController:(NSURL *)url {
+    
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = url;
-    webViewController.title = self.action.title;
-    webViewController.hidesBottomBarWhenPushed = YES; // I would actually set this in WebViewController's viewDidLoad method
-    // Push on to the current tab bar's nav controller.
-    UINavigationController *navController = (UINavigationController *)self.tabBarController.selectedViewController;
-    navController.navigationBar.hidden = NO;
-    [navController pushViewController:webViewController animated:YES];
+    webViewController.title = @"TAKE ACTION";
+    self.navigationItem.title = @"";
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
+
 @end
