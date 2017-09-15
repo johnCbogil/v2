@@ -315,7 +315,13 @@
     }
     else {
         if (isActionsTabSelected) {
-            return self.listOfGroupActions.count;
+            if (self.listOfGroupActions.count >= 1) {
+                return self.listOfGroupActions.count;
+            }
+            else {
+                return 1;
+            }
+            
         }
         else {
             return self.listOfPolicyPositions.count;
