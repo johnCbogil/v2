@@ -85,7 +85,7 @@
     
     FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
     
-    if (dynamicLink) {
+    if (dynamicLink.url) {
         // Handle the deep link. For example, show the deep-linked content or
         // apply a promotional offer to the user's account.
         // ...
