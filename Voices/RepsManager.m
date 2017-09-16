@@ -54,6 +54,32 @@
     else return @[];
 }
 
+- (void)fetchRepsForAddress:(NSString *)address {
+    
+    if (address.length) {
+        [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
+            
+            [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
+                NSLog(@"%@", locationResults);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+            } onError:^(NSError *error) {
+                [error localizedDescription];
+            }];
+            
+            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+            
+        } onError:^(NSError *googleMapsError) {
+            NSLog(@"%@", [googleMapsError localizedDescription]);
+        }];
+    }
+}
+
 #pragma mark - Location Monitor
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

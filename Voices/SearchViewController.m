@@ -94,33 +94,6 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-
-- (void)fetchRepsForAddress:(NSString *)address {
-    
-    if (address.length) {
-        [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
-            
-            [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
-                NSLog(@"%@", locationResults);
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-            } onError:^(NSError *error) {
-                [error localizedDescription];
-            }];
-            
-            [[RepsManager sharedInstance]createStateRepresentativesFromLocation:locationResults WithCompletion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
-            } onError:^(NSError *error) {
-                [error localizedDescription];
-            }];
-            
-            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
-            
-        } onError:^(NSError *googleMapsError) {
-            NSLog(@"%@", [googleMapsError localizedDescription]);
-        }];
-    }
-}
-
 - (void)saveHomeAddress {
     
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
@@ -147,7 +120,7 @@
     if (_isHomeAddressVC) {
         [self saveHomeAddress];
     }
-    [self fetchRepsForAddress:searchBar.text];
+    [[RepsManager sharedInstance] fetchRepsForAddress:searchBar.text];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -220,7 +193,7 @@
         if (_isHomeAddressVC) {
             [self saveHomeAddress];
         }
-        [self fetchRepsForAddress:self.searchBar.text];
+        [[RepsManager sharedInstance] fetchRepsForAddress:self.searchBar.text];
 
 
     }

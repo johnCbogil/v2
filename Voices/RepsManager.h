@@ -14,6 +14,7 @@
 
 +(RepsManager *) sharedInstance;
 - (NSArray *)fetchRepsForIndex:(NSInteger)index;
+- (void)fetchRepsForAddress:(NSString *)address;
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock;
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock;
