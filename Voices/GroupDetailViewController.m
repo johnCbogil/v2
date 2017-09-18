@@ -474,8 +474,6 @@
     [self.tableView reloadData];
 }
 
-// TODO: MOVE TO A NETWORK MANAGER
-
 - (void)fetchActions {
     
     [self toggleActivityIndicatorOn];
@@ -493,8 +491,6 @@
     
     
 }
-
-// TODO: MOVE TO A NETWORK MANAGER
 
 - (void)fetchPolicyPositions {
     
