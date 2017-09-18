@@ -82,6 +82,19 @@
     self.navigationItem.titleView = titleLabel;
 }
 
+
+- (void)configureSegmentedControl {
+    
+    NSArray *items = @[@"Issues", @"Actions"];
+    self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
+    self.segmentControl.tintColor = [UIColor voicesOrange];
+    [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
+    [self.segmentControl setSelectedSegmentIndex:1];
+    self.segmentControl.backgroundColor = [UIColor whiteColor];
+    self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
+    [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
+}
+
 - (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupFollowTableViewCell *)cell {
     
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
@@ -288,18 +301,6 @@
         [self configureSegmentedControl];
     }
     return self.segmentControl;
-}
-
-- (void)configureSegmentedControl {
-    
-    NSArray *items = @[@"Issues", @"Actions"];
-    self.segmentControl = [[UISegmentedControl alloc] initWithItems:items];
-    self.segmentControl.tintColor = [UIColor voicesOrange];
-    [self.segmentControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
-    [self.segmentControl setSelectedSegmentIndex:1];
-    self.segmentControl.backgroundColor = [UIColor whiteColor];
-    self.segmentControl.layer.cornerRadius = kButtonCornerRadius;
-    [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
