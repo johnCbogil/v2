@@ -86,12 +86,12 @@
     self.group = group;
     self.groupNameLabel.text = group.name;
     self.actionTitleTextView.text = action.title;
-    [self setGroupImageFromURL:self.group.groupImageURL];
+    [self configureGroupImageFromURL:self.group.groupImageURL];
     [self configureDate:action.timestamp];
     [self configureCompletionStateButton];
 }
 
-- (void)setGroupImageFromURL:(NSURL *)url {
+- (void)configureGroupImageFromURL:(NSURL *)url {
     
     self.groupImage.contentMode = UIViewContentModeScaleToFill;
     self.groupImage.layer.cornerRadius = kButtonCornerRadius;

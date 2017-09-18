@@ -39,10 +39,10 @@
 - (void)initWithGroup:(Group *)group {
     self.groupName.text = group.name;
     self.groupType.text = group.groupType;
-    [self setGroupImageFromURL:group.groupImageURL];
+    [self configureGroupImageFromURL:group.groupImageURL];
 }
 
-- (void)setGroupImageFromURL:(NSURL *)photoURL { 
+- (void)configureGroupImageFromURL:(NSURL *)photoURL { 
     
     self.groupImage.contentMode = UIViewContentModeScaleToFill;
     self.groupImage.layer.cornerRadius = kButtonCornerRadius;

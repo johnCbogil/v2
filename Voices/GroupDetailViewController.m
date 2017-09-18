@@ -95,7 +95,7 @@
     [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont voicesFontWithSize:19]} forState:UIControlStateNormal];
 }
 
-- (void)setGroupImageFromURL:(NSURL *)url inCell:(GroupFollowTableViewCell *)cell {
+- (void)configureGroupImageFromURL:(NSURL *)url inCell:(GroupFollowTableViewCell *)cell {
     
     cell.groupImageView.contentMode = UIViewContentModeScaleToFill;
     cell.groupImageView.layer.cornerRadius = kButtonCornerRadius;
@@ -356,7 +356,7 @@
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
             [cell.websiteButton setTitle:self.group.website forState:UIControlStateNormal];
-            [self setGroupImageFromURL:self.group.groupImageURL inCell:cell];
+            [self configureGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }
         else if(indexPath.row == 1) {
