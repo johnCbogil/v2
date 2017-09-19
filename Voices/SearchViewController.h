@@ -10,6 +10,4 @@
 
 @interface SearchViewController : UIViewController
 
-@property (nonatomic) BOOL isHomeAddressVC;
-
 @end

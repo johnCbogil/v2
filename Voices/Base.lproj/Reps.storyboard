@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -343,16 +343,6 @@
                                     <segue destination="RaT-JB-7Ja" kind="embed" id="GeH-dQ-6k0"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMl-8f-34u">
-                                <rect key="frame" x="221" y="38" width="40" height="74"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="50H-c5-lGA"/>
-                                </constraints>
-                                <state key="normal" image="MagnifyingGlass"/>
-                                <connections>
-                                    <action selector="searchButtonDidPress:" destination="8GG-H4-Vnt" eventType="touchUpInside" id="b74-vx-IWd"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGk-cz-Q0m">
                                 <rect key="frame" x="279" y="28" width="30" height="94"/>
                                 <constraints>
@@ -364,7 +354,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find reps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-h2-Dnu">
-                                <rect key="frame" x="16" y="47" width="202" height="55"/>
+                                <rect key="frame" x="16" y="47" width="179.5" height="55"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -378,18 +368,14 @@
                         <constraints>
                             <constraint firstItem="S1s-c8-5ek" firstAttribute="top" secondItem="5Kv-h2-Dnu" secondAttribute="bottom" constant="9" id="3EK-4Q-5Pe"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="S1s-c8-5ek" secondAttribute="bottom" constant="-2" id="73Z-Gz-7qX"/>
-                            <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="mMl-8f-34u" secondAttribute="bottom" constant="-1" id="9bW-gL-Ecr"/>
-                            <constraint firstItem="mMl-8f-34u" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="18" id="EKB-Vi-B7F"/>
                             <constraint firstItem="S1s-c8-5ek" firstAttribute="trailing" secondItem="ohY-vD-AGg" secondAttribute="trailing" id="Lzj-sg-iop"/>
                             <constraint firstItem="NGk-cz-Q0m" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="8" id="NDe-4l-04x"/>
                             <constraint firstItem="5Kv-h2-Dnu" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leadingMargin" id="V7S-zj-Do4"/>
                             <constraint firstItem="5Kv-h2-Dnu" firstAttribute="top" secondItem="Rv6-NR-geP" secondAttribute="bottom" constant="27" id="Yj0-BU-ePI"/>
-                            <constraint firstItem="mMl-8f-34u" firstAttribute="leading" secondItem="5Kv-h2-Dnu" secondAttribute="trailing" constant="3" id="aVs-Jg-Hcn"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="NGk-cz-Q0m" secondAttribute="bottom" constant="-11" id="cHE-eT-NWu"/>
                             <constraint firstItem="S1s-c8-5ek" firstAttribute="leading" secondItem="5Kv-h2-Dnu" secondAttribute="leading" constant="5" id="dZE-No-yjb"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="leading" secondItem="4nO-VY-e87" secondAttribute="leading" id="hAk-nh-4t3"/>
                             <constraint firstAttribute="trailing" secondItem="ohY-vD-AGg" secondAttribute="trailing" id="lnp-qF-TVZ"/>
-                            <constraint firstItem="NGk-cz-Q0m" firstAttribute="leading" relation="lessThanOrEqual" secondItem="mMl-8f-34u" secondAttribute="trailing" constant="18" id="phe-eA-YiT"/>
                             <constraint firstItem="NGk-cz-Q0m" firstAttribute="trailing" secondItem="4nO-VY-e87" secondAttribute="trailingMargin" constant="5" id="qgy-WC-QFz"/>
                             <constraint firstItem="ohY-vD-AGg" firstAttribute="top" secondItem="5Kv-h2-Dnu" secondAttribute="bottom" constant="9" id="u1Q-3w-uXP"/>
                             <constraint firstItem="yql-Ix-qR9" firstAttribute="top" secondItem="ohY-vD-AGg" secondAttribute="bottom" id="vQj-LY-dOM"/>
@@ -400,7 +386,6 @@
                         <outlet property="containerView" destination="ohY-vD-AGg" id="3bz-52-TjQ"/>
                         <outlet property="findRepsLabel" destination="5Kv-h2-Dnu" id="FWN-GS-AHL"/>
                         <outlet property="moreButton" destination="NGk-cz-Q0m" id="gSs-cA-yaD"/>
-                        <outlet property="searchButton" destination="mMl-8f-34u" id="sWk-TD-W3h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0H-PU-P60" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -409,7 +394,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MagnifyingGlass" width="16" height="16"/>
         <image name="More" width="16" height="16"/>
     </resources>
 </document>

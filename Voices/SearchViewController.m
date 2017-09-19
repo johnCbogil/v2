@@ -39,7 +39,7 @@
     [super viewWillAppear:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-
+    
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
@@ -47,10 +47,9 @@
 - (void)configureNavController {
     
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    if (self.isHomeAddressVC) {
-        UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
-        self.navigationItem.rightBarButtonItem = privacyButton;
-    }
+    UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
+    self.navigationItem.rightBarButtonItem = privacyButton;
+    
 }
 
 - (void)configureSearchBar {
@@ -117,9 +116,8 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    if (_isHomeAddressVC) {
-        [self saveHomeAddress];
-    }
+    [self saveHomeAddress];
+    
     [[RepsManager sharedInstance] fetchRepsForAddress:searchBar.text];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -182,7 +180,6 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingReps" object:nil];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [LocationService sharedInstance].isHomeAddressVC = self.isHomeAddressVC;
     
     if (indexPath.row == 0) {
         
@@ -190,12 +187,9 @@
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
-        if (_isHomeAddressVC) {
-            [self saveHomeAddress];
-        }
+        [self saveHomeAddress];
+        
         [[RepsManager sharedInstance] fetchRepsForAddress:self.searchBar.text];
-
-
     }
 }
 

@@ -52,7 +52,7 @@
     // TODO: THIS IS NOT DRY
     self.currentLocation = location;
     self.requestedLocation = location;
-        
+    
     __block NSString *address = nil;
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -60,10 +60,9 @@
             CLPlacemark *placemark= [placemarks objectAtIndex:0];
             address = [NSString stringWithFormat:@"%@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
             NSLog(@"%@",address);
-            if (self.isHomeAddressVC) {
-                [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
-            }
+            [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
+            
         }
     }];
 }

@@ -30,7 +30,6 @@
 @property (strong, nonatomic) NSString *representativeEmail;
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet UILabel *findRepsLabel;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 
 @end
@@ -73,11 +72,8 @@
     self.findRepsLabel.font = [UIFont voicesBoldFontWithSize:40];
     self.findRepsLabel.text = @"My Reps";
     self.findRepsLabel.adjustsFontSizeToFitWidth = YES;
-    self.searchButton.tintColor = [UIColor blackColor];
     self.moreButton.tintColor = [UIColor blackColor];
 }
-
-
 
 #pragma mark - NSNotifications
 
@@ -269,9 +265,9 @@
 }
 
 - (void)presentSearchViewControllerInRootVC {
+    
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    searchViewController.isHomeAddressVC = YES;
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
         searchViewController.title = @"Edit Home Address";
@@ -282,7 +278,6 @@
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
-
 
 - (void)closeAlertView {
     
@@ -327,15 +322,6 @@
 
 #pragma mark - IBActions
 
-- (IBAction)searchButtonDidPress:(id)sender {
-    
-    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    searchViewController.title = @"Find reps by address";
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:searchViewController animated:YES];
-}
-
 - (IBAction)moreButtonDidPress:(id)sender {
     
     UIStoryboard *moreSB = [UIStoryboard storyboardWithName:@"More" bundle: nil];
@@ -362,6 +348,5 @@
 - (IBAction)localPageButtonDidPress:(id)sender {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpPage" object:@2];
 }
-
 
 @end
