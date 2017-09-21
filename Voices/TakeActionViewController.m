@@ -11,8 +11,7 @@
 #import "ActionFeedHeaderTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
-//#import "GroupDetailViewController.h"
-//#import "GroupTableViewCell.h"
+
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
@@ -21,8 +20,6 @@
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-//@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-//@property (nonatomic) NSInteger selectedSegment;
 @property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
@@ -37,7 +34,6 @@
     
     [self configureTableView];
     [self createActivityIndicator];
-//    [self configureSegmentedControl];
     
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
@@ -52,12 +48,9 @@
 }
 
 - (void)configureEmptyState {
-//    if (self.segmentControl.selectedSegmentIndex) {
-//        [self.emptyStateView updateLabels:kGroupEmptyStateTopLabel bottom:kGroupEmptyStateBottomLabel];
-//    }
-//    else {
-        [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
-//    }
+    
+    [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
+    
     [self.view layoutSubviews];
 }
 
@@ -65,7 +58,7 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden = YES;
-
+    
     if ([CurrentUser sharedInstance].firebaseUserID) {
         
         [self fetchFollowedGroupsForCurrentUser];
@@ -73,6 +66,11 @@
     else {
         self.tableView.backgroundView.hidden = NO;
     }
+    
+    if (![CurrentUser sharedInstance].listOfActions.count) {
+        self.tableView.backgroundView.hidden = NO;
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -86,20 +84,12 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    [self.tableView registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil]forCellReuseIdentifier:@"GroupTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionFeedHeaderTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionFeedHeaderTableViewCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50.f;
 }
-
-//- (void)configureSegmentedControl {
-//    
-//    self.segmentControl.tintColor = [UIColor voicesOrange];
-//    [self.segmentControl setTitle:@"Action Feed" forSegmentAtIndex:0];
-//    [self.segmentControl setTitle:@"My Groups" forSegmentAtIndex:1];
-//}
 
 - (void)createActivityIndicator {
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -118,22 +108,26 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-//        if (self.selectedSegment == 0) {
-            if (![CurrentUser sharedInstance].listOfActions.count) {
-                self.tableView.backgroundView.hidden = NO;
-            }
-            else {
-                self.tableView.backgroundView.hidden = YES;
-            }
-//        }
-//        else {
-            if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
-                self.tableView.backgroundView.hidden = NO;
-            }
-            else {
-                self.tableView.backgroundView.hidden = YES;
-            }
-//        }
+        if (![CurrentUser sharedInstance].listOfActions.count) {
+            self.tableView.backgroundView.hidden = NO;
+        }
+        else {
+            self.tableView.backgroundView.hidden = YES;
+        }
+
+        if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
+            self.tableView.backgroundView.hidden = NO;
+        }
+        else {
+            self.tableView.backgroundView.hidden = YES;
+        }
+        
+        // CONFIGURE EMPTY STATE
+        
+        // IF THERE ARE NO GROUPS
+            // DISPLAY DEFAULT EMPTY STATE
+        // IF THERE ARE GROUPS BUT NO ACTIONS
+            // PRESENT DIFFERENT EMPTY STATE
     });
     [self.activityIndicatorView stopAnimating];
 }
@@ -160,22 +154,11 @@
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
-
+        
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
 }
-
-//- (IBAction)listOfGroupsButtonDidPress:(id)sender {
-//    
-//    // Allows centering of the nav bar title by making an empty back button
-//    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-//    [self.navigationItem setBackBarButtonItem:backButtonItem];
-//    
-//    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-//    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
-//    [self.navigationController pushViewController:viewControllerB animated:YES];
-//}
 
 - (void)learnMoreButtonDidPress:(UIButton*)sender {
     
@@ -202,53 +185,36 @@
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (self.selectedSegment) {
-//        return [CurrentUser sharedInstance].listOfFollowedGroups.count;
-//    }
-//    else {
-        return [CurrentUser sharedInstance].listOfActions.count;
-//    }
+    
+    return [CurrentUser sharedInstance].listOfActions.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (self.selectedSegment == 0) {
-    
-        if (indexPath.row == 0) {
-            
-            ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
-            [cell refreshTotalActionsCompleted];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }
-        else {
-            
-            // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
-            ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
-            [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-            Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
-            Group *currentGroup = [Group groupForAction: action];
-            [cell initWithGroup:currentGroup andAction:action];
-            cell.delegate = self;
-            return cell;
-        }
-//    }
-//    else {
-//        GroupTableViewCell *cell = (GroupTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
-//        Group *group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-//        [cell initWithGroup:group];
-//        return cell;
-//    }
+    if (indexPath.row == 0) {
+        
+        ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
+        [cell refreshTotalActionsCompleted];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    else {
+        
+        // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
+        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
+        [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
+        Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
+        Group *currentGroup = [Group groupForAction: action];
+        [cell initWithGroup:currentGroup andAction:action];
+        cell.delegate = self;
+        return cell;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (self.selectedSegment == 0) {
-        return NO;
-//    }
-//    else {
-//        return YES;
-//    }
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -278,46 +244,23 @@
         return;
     }
     
-//    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
-//    if (self.segmentControl.selectedSegmentIndex) {
-//        GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
-//        groupDetailViewController.group = [CurrentUser sharedInstance].listOfFollowedGroups[indexPath.row];
-//        [self.navigationController pushViewController:groupDetailViewController animated:YES];
-//    }
-//    else {
-        [self pushToActionDetail:indexPath];
-//    }
+    
+    [self pushToActionDetail:indexPath];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)refreshHeaderCell {
-
-//    if (self.selectedSegment == 0) {
     
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell refreshTotalActionsCompleted];
-//    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell refreshTotalActionsCompleted];
 }
-
-//#pragma mark - Segment Control
-//
-//- (IBAction)segmentControlDidChange:(id)sender {
-//    [self configureEmptyState];
-//    self.segmentControl = (UISegmentedControl *) sender;
-//    self.selectedSegment = self.segmentControl.selectedSegmentIndex;
-//    if ([CurrentUser sharedInstance].firebaseUserID) {
-//        [self fetchFollowedGroupsForCurrentUser];
-//    } else {
-//        [self userAuth];
-//    }
-//    [self.tableView reloadData];
-//}
 
 #pragma mark - UIAlerts
 

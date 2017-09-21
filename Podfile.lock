@@ -20,51 +20,50 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Firebase/Auth (4.1.0):
+  - Firebase/Auth (4.2.0):
     - Firebase/Core
-    - FirebaseAuth (= 4.1.0)
-  - Firebase/Core (4.1.0):
+    - FirebaseAuth (= 4.2.0)
+  - Firebase/Core (4.2.0):
     - FirebaseAnalytics (= 4.0.3)
-    - FirebaseCore (= 4.0.5)
-  - Firebase/Crash (4.1.0):
+    - FirebaseCore (= 4.0.7)
+  - Firebase/Crash (4.2.0):
     - Firebase/Core
-    - FirebaseCrash (= 2.0.1)
-  - Firebase/Database (4.1.0):
+    - FirebaseCrash (= 2.0.2)
+  - Firebase/Database (4.2.0):
     - Firebase/Core
-    - FirebaseDatabase (= 4.0.1)
-  - Firebase/DynamicLinks (4.1.0):
+    - FirebaseDatabase (= 4.0.3)
+  - Firebase/DynamicLinks (4.2.0):
     - Firebase/Core
     - FirebaseDynamicLinks (= 2.1.0)
-  - Firebase/Messaging (4.1.0):
+  - Firebase/Messaging (4.2.0):
     - Firebase/Core
-    - FirebaseMessaging (= 2.0.1)
+    - FirebaseMessaging (= 2.0.3)
   - FirebaseAnalytics (4.0.3):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseAuth (4.1.0):
+  - FirebaseAuth (4.2.0):
     - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.5):
+  - FirebaseCore (4.0.7):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseCrash (2.0.1):
+  - FirebaseCrash (2.0.2):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebaseDatabase (4.0.1):
+  - FirebaseDatabase (4.0.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
   - FirebaseDynamicLinks (2.1.0):
     - FirebaseAnalytics (~> 4.0)
-  - FirebaseInstanceID (2.0.0):
-    - FirebaseCore (~> 4.0)
-  - FirebaseMessaging (2.0.1):
+  - FirebaseInstanceID (2.0.3)
+  - FirebaseMessaging (2.0.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -99,8 +98,8 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Protobuf (3.3.0)
-  - SSZipArchive (2.0.3)
+  - Protobuf (3.4.0)
+  - SSZipArchive (2.0.7)
   - STPopup (1.8.2)
 
 DEPENDENCIES:
@@ -119,15 +118,15 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  Firebase: ebebf41db7f10e0c7668b6eaaa857fbe599aa478
+  Firebase: 9548cae14d69718add12d75a5b312893f7ef89c7
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
-  FirebaseAuth: 8d1d2389cf82f891048d6d50d27d044f55ae09a6
-  FirebaseCore: 7d876ea97a830cbe62ba7fbbe7670c833a324ba0
-  FirebaseCrash: bce9fbfb7dd6cc850a41fe39740a2292e6b61f2e
-  FirebaseDatabase: 94c38c783d23dc6679441050772d42e801d06e9e
+  FirebaseAuth: 22f8a5170f31d1f111141950590f071f35df3229
+  FirebaseCore: 9a6cc1e3eaf75905390f9220596ad4fd8f92faee
+  FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
+  FirebaseDatabase: 03940adcac54ce30db06f1fc2136f8581734ce2c
   FirebaseDynamicLinks: ed4cb6c42705aaa5e841ed2d76e3a4bddbec10c1
-  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
-  FirebaseMessaging: b45ff9ef5d932600d3f78ff43168e7c5707aa7dc
+  FirebaseInstanceID: a4fc702b5a026f7322964376047f1a3f1f7cc6ff
+  FirebaseMessaging: eaf1bfff0193170c04ea3ba3bfe983f68f893118
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlacePicker: 755f10343d71280c7b016823e73fbae9625dfa8a
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
@@ -135,8 +134,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
-  SSZipArchive: b6648b70a36303ca5be9f0351174b347e1886236
+  Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
+  SSZipArchive: 8c197761d66bd33e7f8b5b51ee57dff303971150
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
 
 PODFILE CHECKSUM: 45287a5adcb3fb2215a3f2388e6e4dc065a36be9
