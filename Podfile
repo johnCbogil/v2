@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '8.0'
 
-#project 'Voices.xcodeproj'
+project 'Voices.xcodeproj'
 
 target 'Voices' do
     
