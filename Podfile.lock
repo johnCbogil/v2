@@ -101,6 +101,9 @@ PODS:
   - Protobuf (3.4.0)
   - SSZipArchive (2.0.7)
   - STPopup (1.8.2)
+  - TwitterCore (3.0.1)
+  - TwitterKit (3.1.1):
+    - TwitterCore (>= 3.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -115,6 +118,7 @@ DEPENDENCIES:
   - GooglePlaces
   - SSZipArchive
   - STPopup
+  - TwitterKit
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -137,7 +141,9 @@ SPEC CHECKSUMS:
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   SSZipArchive: 8c197761d66bd33e7f8b5b51ee57dff303971150
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
+  TwitterCore: 6856288a1c25e5281363250681f33b42fce1da42
+  TwitterKit: 313bf02baee8427f7649b3640169178e5a8b5a99
 
-PODFILE CHECKSUM: 352e149085eaa43ddc94569545c0077d7991c135
+PODFILE CHECKSUM: b90591273f584d16d766fa5e835b1c3d8b178790
 
 COCOAPODS: 1.1.1
