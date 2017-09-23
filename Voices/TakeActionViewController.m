@@ -50,7 +50,6 @@
 - (void)configureEmptyState {
     
     [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
-    
     [self.view layoutSubviews];
 }
 
@@ -70,7 +69,6 @@
     if (![CurrentUser sharedInstance].listOfActions.count) {
         self.tableView.backgroundView.hidden = NO;
     }
-    
     [self.tableView reloadData];
 }
 
@@ -92,6 +90,7 @@
 }
 
 - (void)createActivityIndicator {
+    
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicatorView.color = [UIColor grayColor];
     self.activityIndicatorView.center=self.view.center;
@@ -99,6 +98,7 @@
 }
 
 - (void)toggleActivityIndicatorOn {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicatorView startAnimating];
     });
