@@ -217,6 +217,40 @@
     [self.tableView reloadData];
 }
 
+- (void)askForNotificationAuth {
+    
+    NSString *notificationMessage = [NSString stringWithFormat:@"Would you like %@ to let you know when there is a new action to support?", self.group.name];
+    
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
+                                message:notificationMessage
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *button0 = [UIAlertAction
+                              actionWithTitle:@"Maybe later"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {}];
+    
+    UIAlertAction *button1 = [UIAlertAction
+                              actionWithTitle:@"Yes"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  
+                                  // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
+                                  UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+                                  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+                                  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+                                  [[UIApplication sharedApplication] registerForRemoteNotifications];
+                                  
+                              }];
+    
+    [alert addAction:button0];
+    [alert addAction:button1];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Firebase methods
 
 - (IBAction)followGroupButtonDidPress {
@@ -225,11 +259,10 @@
     
     [self.feedbackGenerator selectionChanged];
     
-    // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
-    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    if (![[UIApplication sharedApplication] isRegisteredForRemoteNotifications] && ![self isUserFollowingGroup:self.group.key]) {
+        
+        [self askForNotificationAuth];
+    }
     
     NSString *groupKey = self.group.key;
     
@@ -277,7 +310,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 
