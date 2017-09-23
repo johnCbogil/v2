@@ -82,7 +82,6 @@
     self.navigationItem.titleView = titleLabel;
 }
 
-
 - (void)configureSegmentedControl {
     
     NSArray *items = @[@"Issues", @"Actions"];
@@ -130,6 +129,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:kEmptyStateTableViewCell  bundle:nil] forCellReuseIdentifier: kEmptyStateTableViewCell];
     [self.tableView setShowsVerticalScrollIndicator:false];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.delaysContentTouches = YES;
 }
 
 - (void)presentWebViewController:(NSNotification *)notification {
