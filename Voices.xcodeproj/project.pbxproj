@@ -76,6 +76,7 @@
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
 		7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */; };
+		7E44563A1F7718200006109A /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4456391F7718200006109A /* SafariServices.framework */; };
 		7E6ACA6B1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6ACA6A1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib */; };
 		7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6CB2DE1DD658B20027D11B /* RepsViewController.m */; };
 		7EA517101F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA5170F1F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib */; };
@@ -232,6 +233,7 @@
 		7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyRepTableViewCell.xib; sourceTree = "<group>"; };
 		7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiOnboardingViewController.h; sourceTree = "<group>"; };
 		7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiOnboardingViewController.m; sourceTree = "<group>"; };
+		7E4456391F7718200006109A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		7E6ACA6A1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionDetailTakeActionTableViewCell.xib; sourceTree = "<group>"; };
 		7E6CB2DD1DD658B20027D11B /* RepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsViewController.h; sourceTree = "<group>"; };
 		7E6CB2DE1DD658B20027D11B /* RepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsViewController.m; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E44563A1F7718200006109A /* SafariServices.framework in Frameworks */,
 				A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */,
 				AEBE74E599D62B5DAF6B6003 /* libPods-Voices.a in Frameworks */,
 			);
@@ -316,6 +319,7 @@
 		1BCE4CFB4D84510D3B5DFA55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E4456391F7718200006109A /* SafariServices.framework */,
 				A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */,
 				D64AB79805CF2CD19DF899DF /* libPods-Voices.a */,
 				9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */,
