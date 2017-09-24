@@ -21,6 +21,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>twitterkit-kit3Z3HLvvIsnaF73CmSGByBd</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string></string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
@@ -36,6 +44,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>twitter</string>
+		<string>twitterauth</string>
 		<string>googlegmail</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
@@ -75,20 +84,4 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
-// Info.plist
-// Twitter Noise
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>twitterkit-kit3Z3HLvvIsnaF73CmSGByBd</string>
-            </array>
-        </dict>
-    </array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>twitter</string>
-        <string>twitterauth</string>
-    </array>
 </plist>

@@ -54,8 +54,9 @@
     [CurrentUser sharedInstance];
     [FirebaseManager sharedInstance];
     
-    
-    
+//    [[Twitter sharedInstance] startWithConsumerKey:@"hTpkPVU4pThkM0" consumerSecret:@"ovEqziMzLpUOF163Qg2mj"];
+    [[Twitter sharedInstance] startWithConsumerKey:@"kit3Z3HLvvIsnaF73CmSGByBd" consumerSecret:@"XNjD45PDCiUqV7y5qTHyW2RSY9phl8bQemNPhouhHoRSaBztFK"];
+
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
