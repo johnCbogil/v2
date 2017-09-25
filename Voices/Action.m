@@ -24,6 +24,16 @@ NS_ASSUME_NONNULL_BEGIN
     _timestamp = [dictionary[@"timestamp"]intValue];
     _level = [dictionary[@"level"]intValue];
     _script = dictionary[@"script"];
+    _actionType = dictionary[@"actionType"];
+    if (_actionType.length) {
+        
+        if ([_actionType isEqualToString:@"singleRep"]) {
+//            _representative = [Representative init]
+        }
+        else {
+//            _representative =
+        }
+    }
     if (!_script.length) {
         _script = kGenericScript;
     }

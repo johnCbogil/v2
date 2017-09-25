@@ -25,6 +25,8 @@
     }
 }
 
-// TOOD: SEE IF WE CAN MOVE "SET IMAGE" HERE
+- (void)initWithData:(NSDictionary *)data {
+    
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Representative.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic, copy) NSString *groupName;
 @property (readonly, nonatomic, copy) NSString *groupKey;
 @property (readonly, nonatomic, copy) NSString *script;
+@property (readonly, nonatomic, copy) NSString *actionType;
+@property (readonly, nonatomic, copy) Representative *representative;
 @property (readonly) int long timestamp;
 @property (strong, nonatomic) NSURL *groupImageURL;
 
