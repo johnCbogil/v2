@@ -82,8 +82,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionFeedHeaderTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionFeedHeaderTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionCellReuse bundle:nil]forCellReuseIdentifier: kActionCellReuse];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionFeedHeaderTableViewCell bundle:nil]forCellReuseIdentifier: kActionFeedHeaderTableViewCell];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50.f;
@@ -194,7 +194,7 @@
     
     if (indexPath.row == 0) {
         
-        ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
+        ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionFeedHeaderTableViewCell forIndexPath:indexPath];
         [cell refreshTotalActionsCompleted];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -202,7 +202,7 @@
     else {
         
         // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
-        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
+        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionCellReuse forIndexPath:indexPath];
         [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
         Group *currentGroup = [Group groupForAction: action];

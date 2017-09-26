@@ -11,6 +11,11 @@
 
 @interface VoicesConstants : NSObject
 
+extern NSString *const kActionFeedHeaderTableViewCell;
+extern NSString *const kActionDetailTopTableViewCell;
+extern NSString *const kActionDetailEmptyRepTableViewCell;
+extern NSString *const kActionDetailMenuItemTableViewCell;
+
 extern NSString *const kRepTableViewCell;
 extern NSString *const kActionCellReuse;
 extern NSString *const kRepsCollectionViewCell;
