@@ -20,7 +20,7 @@
 
 - (id)initWithData:(NSDictionary *)data {
     self = [super init];
-    if(self != nil) {
+    if (self != nil) {
         
         NSDictionary *office = data[@"office"];
         NSArray *roles = office[@"roles"];

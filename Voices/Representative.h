@@ -34,7 +34,7 @@
 @property (strong, nonatomic) NSString *contactForm;
 
 -(void) generateDistrictName;
-- (void)initWithData:(NSDictionary *)data;
+- (id)initWithData:(NSDictionary *)data;
 
 
 @end

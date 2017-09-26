@@ -8,6 +8,7 @@
 
 #import "Action.h"
 #import "FirebaseManager.h"
+#import "Representative.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (_actionType.length) {
         
         if ([_actionType isEqualToString:@"singleRep"]) {
-//            _representative = [Representative init]
+            _representative = [[Representative alloc]initWithData:dictionary[@"singleRep"]];
         }
         else {
-//            _representative =
+            _representative = [[Representative alloc]initWithData:dictionary[@"addressReps"]];
         }
     }
     if (!_script.length) {
