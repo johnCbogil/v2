@@ -193,32 +193,10 @@
 
 - (void)presentTweetComposer:(NSNotification*)notification {
     
-//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-//        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-//        NSString *initialText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
-//        [tweetSheetOBJ setInitialText:initialText];
-//        [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
-//            switch (result) {
-//                case SLComposeViewControllerResultCancelled:
-//
-//                    break;
-//                case SLComposeViewControllerResultDone:
-//                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
-//
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }];
-//        [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
-//    }
-    
+    NSString *tweetText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
     TWTRComposer *composer = [[TWTRComposer alloc] init];
-    
-    [composer setText:@"just setting up my Twitter Kit"];
-    [composer setImage:[UIImage imageNamed:@"twitterkit"]];
-    
-    // Called from a UIViewController
+    [composer setText:tweetText];
+
     [composer showFromViewController:self completion:^(TWTRComposerResult result) {
         if (result == TWTRComposerResultCancelled) {
             NSLog(@"Tweet composition cancelled");
@@ -345,8 +323,6 @@
     moreViewController.title = @"More";
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:moreViewController animated:YES];
-    
-    //    [self presentInfoViewController];
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {
