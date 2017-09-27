@@ -200,7 +200,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)tweetButtonDidPress:(id)sender {
     
-    if (self.twitterSession.userName.length) {
+    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
+    if (store.session) {
         
         NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
