@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-nH-RWV">
-                        <rect key="frame" x="58" y="19" width="309" height="20.5"/>
+                        <rect key="frame" x="58" y="18" width="309" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hy-b8-VPD">
-                        <rect key="frame" x="58" y="39.5" width="317" height="21"/>
+                        <rect key="frame" x="58" y="38.5" width="317" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="xeh-nH-RWV" firstAttribute="leading" secondItem="ZGb-Vz-yhm" secondAttribute="trailing" constant="8" id="6zb-9l-7r5"/>
-                    <constraint firstItem="xeh-nH-RWV" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="top" constant="19" id="Bz9-lx-9zT"/>
+                    <constraint firstItem="xeh-nH-RWV" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="top" constant="18" id="Bz9-lx-9zT"/>
                     <constraint firstItem="ZGb-Vz-yhm" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="top" constant="19" id="C0M-8c-bcq"/>
                     <constraint firstItem="3Hy-b8-VPD" firstAttribute="top" secondItem="xeh-nH-RWV" secondAttribute="bottom" id="EOT-Rb-WXQ"/>
                     <constraint firstAttribute="trailing" secondItem="3Hy-b8-VPD" secondAttribute="trailing" id="Lx2-EW-88t"/>
