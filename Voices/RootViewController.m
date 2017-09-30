@@ -22,7 +22,6 @@
 #import "WebViewController.h"
 #import "SearchViewController.h"
 #import "MoreViewController.h"
-#import <TwitterKit/TwitterKit.h>
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
@@ -193,18 +192,16 @@
 
 - (void)presentTweetComposer:(NSNotification*)notification {
     
-    NSString *tweetText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
-    TWTRComposer *composer = [[TWTRComposer alloc] init];
-    [composer setText:tweetText];
-
-    [composer showFromViewController:self completion:^(TWTRComposerResult result) {
-        if (result == TWTRComposerResultCancelled) {
-            NSLog(@"Tweet composition cancelled");
-        }
-        else {
-            NSLog(@"Sending Tweet!");
-        }
-    }];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=.%@",[notification.userInfo objectForKey:@"accountName"] ]];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = url;
+    webViewController.title = [notification.userInfo objectForKey:@"accountName"];
+    webViewController.hidesBottomBarWhenPushed = YES; // I would actually set this in WebViewController's viewDidLoad method
+    // Push on to the current tab bar's nav controller.
+    UINavigationController *navController = (UINavigationController *)self.tabBarController.selectedViewController;
+    navController.navigationBar.hidden = NO;
+    [navController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentInfoViewController {

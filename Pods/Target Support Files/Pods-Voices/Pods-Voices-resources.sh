@@ -77,15 +77,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle"
   install_resource "GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle"
   install_resource "GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle"
-  install_resource "TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle"
-  install_resource "TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle"
   install_resource "GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle"
   install_resource "GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle"
-  install_resource "TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle"
-  install_resource "TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
