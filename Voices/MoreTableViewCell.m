@@ -12,7 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
+        self.titleLabel.numberOfLines = 0;
+        self.titleLabel.font = [UIFont voicesBoldFontWithSize:20];
+        self.subtitleLabel.font = [UIFont voicesFontWithSize:14];
+
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

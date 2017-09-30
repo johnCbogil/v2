@@ -11,5 +11,6 @@
 @interface MoreTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emojiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 
 @end
