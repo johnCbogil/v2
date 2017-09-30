@@ -91,6 +91,10 @@
 #pragma mark - Group
 - (void)followGroup:(NSString *)groupKey withCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock {
     
+    if (groupKey.length == 0) {
+        return;
+    }
+    
     FIRDatabaseReference *currentUserRef = [[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:groupKey];
     
     // Check if the current user already belongs to selected group or not
