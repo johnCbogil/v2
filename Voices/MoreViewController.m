@@ -28,7 +28,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
-    self.choiceArray = [[NSArray alloc] initWithObjects: @"Edit Home Address", @"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
+    self.choiceArray = [[NSArray alloc] initWithObjects: @"🏡 Edit Home Address", @"💪 Pro Tips", @"⭐ Rate App", @"🙋🏽 Issue Survey", @"🗣️ Send Feedback", nil];
     self.subtitleArray = [[NSArray alloc] initWithObjects: @"Home", @"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"What could Voices do better to support your causes?", nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
