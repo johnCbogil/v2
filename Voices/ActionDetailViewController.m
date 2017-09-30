@@ -60,10 +60,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailTopTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailTopTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionDetailTopTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailTopTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailEmptyRepTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailEmptyRepTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailMenuItemTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailMenuItemTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionDetailEmptyRepTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailEmptyRepTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionDetailMenuItemTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailMenuItemTableViewCell];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -96,7 +96,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailTopTableViewCell" forIndexPath:indexPath];
+        ActionDetailTopTableViewCell *cell = (ActionDetailTopTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionDetailTopTableViewCell forIndexPath:indexPath];
         [cell initWithAction:self.action andGroup:self.group];
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -104,7 +104,7 @@
     }
     else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
         
-        ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailMenuItemTableViewCell" forIndexPath:indexPath];
+        ActionDetailMenuItemTableViewCell *cell = (ActionDetailMenuItemTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionDetailMenuItemTableViewCell forIndexPath:indexPath];
         cell.itemTitle.numberOfLines = 0;
         cell.itemTitle.delegate = self;
         if (self.indexPathRowToExpand == indexPath.row) {
@@ -147,7 +147,7 @@
             return cell;
         }
         else {
-            ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailEmptyRepTableViewCell" forIndexPath:indexPath];
+            ActionDetailEmptyRepTableViewCell *cell = (ActionDetailEmptyRepTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionDetailEmptyRepTableViewCell forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;

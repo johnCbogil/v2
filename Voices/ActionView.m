@@ -7,7 +7,6 @@
 //
 
 #import "ActionView.h"
-
 #import "ReportingManager.h"
 #import "Representative.h"
 #import "ScriptManager.h"
@@ -20,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
-
 @property (nonatomic) Representative *representative;
 
 @end
@@ -192,6 +190,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)showEmailAlert {
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
@@ -199,11 +198,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)tweetButtonDidPress:(id)sender {
     
+//    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
+//    if (store.session) {
+//
+//        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
+//    }
+//    else {
+//
+//        [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
+//            if (session) {
+//                self.twitterSession = session;
+//                NSLog(@"signed in as %@", [session userName]);
+//            } else {
+//                NSLog(@"error: %@", [error localizedDescription]);
+//            }
+//        }];
+//    }
+
+    
+
+    
+    
     if (self.tweetButtonTappedBlock) {
         self.tweetButtonTappedBlock();
         return;
     }
-    
+
     NSURL *tURL = [NSURL URLWithString:@"twitter://"];
     if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
         if (self.representative.twitter) {
@@ -222,6 +243,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
+
+
 
 @end
 

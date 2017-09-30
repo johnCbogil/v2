@@ -108,7 +108,6 @@
         }
         cell.detailTextLabel.text = homeAddress;
     }
-    
     return cell;
 }
 

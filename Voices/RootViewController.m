@@ -192,25 +192,16 @@
 
 - (void)presentTweetComposer:(NSNotification*)notification {
     
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *initialText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
-        [tweetSheetOBJ setInitialText:initialText];
-        [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
-            switch (result) {
-                case SLComposeViewControllerResultCancelled:
-                    
-                    break;
-                case SLComposeViewControllerResultDone:
-                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
-                    
-                    break;
-                default:
-                    break;
-            }
-        }];
-        [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
-    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=.%@",[notification.userInfo objectForKey:@"accountName"] ]];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = url;
+    webViewController.title = [notification.userInfo objectForKey:@"accountName"];
+    webViewController.hidesBottomBarWhenPushed = YES; // I would actually set this in WebViewController's viewDidLoad method
+    // Push on to the current tab bar's nav controller.
+    UINavigationController *navController = (UINavigationController *)self.tabBarController.selectedViewController;
+    navController.navigationBar.hidden = NO;
+    [navController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentInfoViewController {
@@ -329,8 +320,6 @@
     moreViewController.title = @"More";
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:moreViewController animated:YES];
-    
-    //    [self presentInfoViewController];
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {

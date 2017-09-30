@@ -11,6 +11,11 @@
 
 @implementation VoicesConstants
 
+NSString *const kActionFeedHeaderTableViewCell = @"ActionFeedHeaderTableViewCell";
+NSString *const kActionDetailTopTableViewCell  = @"ActionDetailTopTableViewCell";
+NSString *const kActionDetailEmptyRepTableViewCell = @"ActionDetailEmptyRepTableViewCell";
+NSString *const kActionDetailMenuItemTableViewCell = @"ActionDetailMenuItemTableViewCell";
+
 NSString *const kRepTableViewCell = @"RepTableViewCell";
 NSString *const kActionCellReuse = @"ActionTableViewCell";
 NSString *const kRepsCollectionViewCell = @"RepsCollectionViewCell";
