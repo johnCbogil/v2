@@ -30,7 +30,7 @@
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle:nil];
     
-    UIViewController *rootVC = (UIViewController *)[repsSB instantiateViewControllerWithIdentifier: @"RepsNavCtrl"];
+    UIViewController *rootVC = [repsSB instantiateViewControllerWithIdentifier: @"RepsNavCtrl"];
     TakeActionViewController *groupsVC = (TakeActionViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"TakeActionNavigationViewController"];
     
     self.viewControllers = @[rootVC, groupsVC];
@@ -47,7 +47,6 @@
         groupsTab.title = @"Take Action";
         groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
     }
-    
 }
 
 @end

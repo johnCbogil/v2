@@ -46,7 +46,7 @@
 
 - (void)reloadAddressCell {
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0] ;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.choiceArray.count - 1 inSection:0] ;
     [self.moreTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
 }
 
@@ -79,9 +79,8 @@
     
     self.moreTableView.delegate = self;
     self.moreTableView.dataSource = self;
-    self.moreTableView.rowHeight = 80;
     self.moreTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.moreTableView.estimatedRowHeight = 100.0;
+    self.moreTableView.estimatedRowHeight = 150.0f;
     self.moreTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -102,12 +101,15 @@
     cell.subtitleLabel.text = self.subtitleArray[indexPath.row];
     cell.emojiLabel.text = self.emojiArray[indexPath.row];
     
-        if (indexPath.row == self.choiceArray.count) {
+        if (indexPath.row == self.choiceArray.count-1) {
             NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
             if (!homeAddress.length) {
                 homeAddress = @"Not added yet.";
             }
+            else {
+                
             cell.subtitleLabel.text = homeAddress;
+            }
         }
     
     return cell;
