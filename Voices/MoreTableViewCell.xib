@@ -30,7 +30,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hy-b8-VPD">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hy-b8-VPD">
                         <rect key="frame" x="58" y="38.5" width="317" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -45,6 +45,7 @@
                     <constraint firstAttribute="trailing" secondItem="3Hy-b8-VPD" secondAttribute="trailing" id="Lx2-EW-88t"/>
                     <constraint firstItem="ZGb-Vz-yhm" firstAttribute="leading" secondItem="di6-8b-OXn" secondAttribute="leading" constant="8" id="Qn8-V2-nmW"/>
                     <constraint firstAttribute="trailing" secondItem="xeh-nH-RWV" secondAttribute="trailing" constant="8" id="S8G-Wi-Pq8"/>
+                    <constraint firstAttribute="bottom" secondItem="3Hy-b8-VPD" secondAttribute="bottom" constant="10" id="bQK-nv-Iud"/>
                     <constraint firstItem="3Hy-b8-VPD" firstAttribute="leading" secondItem="xeh-nH-RWV" secondAttribute="leading" id="nvu-6f-0pL"/>
                 </constraints>
             </tableViewCellContentView>

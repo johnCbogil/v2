@@ -30,9 +30,13 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
-    self.emojiArray = @[@"🏡",@"💪",@"⭐",@"🙋🏽",@"🗣️"];
-    self.choiceArray = [[NSArray alloc] initWithObjects: @"Edit Home Address", @"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Home", @"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"What could Voices do better to support your causes?", nil];
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (!homeAddress.length) {
+        homeAddress = @"Not added yet.";
+    }
+    self.emojiArray = @[@"💪",@"🙋🏽",@"⭐",@"🗣️",@"🏡"];
+    self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Rate App", @"Send Feedback",@"Add Home Address", nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"A higher rating means more people can find the app to support your cause.", @"What could Voices do better to support your cause?", homeAddress, nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
@@ -77,6 +81,8 @@
     self.moreTableView.dataSource = self;
     self.moreTableView.rowHeight = 80;
     self.moreTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.moreTableView.estimatedRowHeight = 100.0;
+    self.moreTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -96,10 +102,10 @@
     cell.subtitleLabel.text = self.subtitleArray[indexPath.row];
     cell.emojiLabel.text = self.emojiArray[indexPath.row];
     
-        if (indexPath.row == 0) {
+        if (indexPath.row == self.choiceArray.count) {
             NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
             if (!homeAddress.length) {
-                homeAddress = @"Home not set yet.";
+                homeAddress = @"Not added yet.";
             }
             cell.subtitleLabel.text = homeAddress;
         }
@@ -115,25 +121,29 @@
     
     switch ([indexPath row]) {
         case 0:
-            [self presentSearchViewController];
-            break;
-        case 1:
+            
             [self presentProTipsViewController];
             break;
-        case 2:
-            [self rateApp];
-            break;
-        case 3:
+        case 1:
             
             webVC.url = [NSURL URLWithString:@"https://goo.gl/forms/m9Ux4UJ5MAJmuZyz1"];
             [webVC.navigationItem setTitle:@"Issue Survey"];
             [self.navigationController pushViewController:webVC animated:YES];
             break;
-        case 4:
+        case 2:
+            
+            [self rateApp];
+            break;
+        case 3:
+            
             
             webVC.url = [NSURL URLWithString:@"https://docs.google.com/a/tryvoices.com/forms/d/e/1FAIpQLSdwgwjbYWtvIDqefMZtDttTak-5-P92I1r6HhanEXql_hmjxA/viewform"];
             [webVC.navigationItem setTitle:@"Feedback Form"];
             [self.navigationController pushViewController:webVC animated:YES];
+            break;
+        case 4:
+    
+            [self presentSearchViewController];
             break;
 
         default:
