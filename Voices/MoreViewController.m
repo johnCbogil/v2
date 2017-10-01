@@ -11,10 +11,12 @@
 #import "STPopupController.h"
 #import "SearchViewController.h"
 #import "WebViewController.h"
+#import "MoreTableViewCell.h"
 
 @interface MoreViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *moreTableView;
+@property (strong, nonatomic) NSArray *emojiArray;
 
 @end
 
@@ -28,11 +30,14 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
-    self.choiceArray = [[NSArray alloc] initWithObjects: @"🏡 Edit Home Address", @"💪 Pro Tips", @"⭐ Rate App", @"🙋🏽 Issue Survey", @"🗣️ Send Feedback", nil];
+    self.emojiArray = @[@"🏡",@"💪",@"⭐",@"🙋🏽",@"🗣️"];
+    self.choiceArray = [[NSArray alloc] initWithObjects: @"Edit Home Address", @"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
     self.subtitleArray = [[NSArray alloc] initWithObjects: @"Home", @"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"What could Voices do better to support your causes?", nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
+    
+    [self.moreTableView registerNib:[UINib nibWithNibName:@"MoreTableViewCell" bundle:nil]forCellReuseIdentifier:@"MoreTableViewCell"];
 }
 
 - (void)reloadAddressCell {
@@ -86,28 +91,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellIdentifier = @"Cell";
+    MoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoreTableViewCell"];
+    cell.titleLabel.text = self.choiceArray[indexPath.row];
+    cell.subtitleLabel.text = self.subtitleArray[indexPath.row];
+    cell.emojiLabel.text = self.emojiArray[indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
-    cell.textLabel.text = [self.choiceArray objectAtIndex:indexPath.row];
-    cell.textLabel.numberOfLines = 0;
-    cell.detailTextLabel.text = [self.subtitleArray objectAtIndex:indexPath.row];
-    cell.detailTextLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont voicesBoldFontWithSize:20];
-    cell.detailTextLabel.font = [UIFont voicesFontWithSize:14];
-    
-    if (indexPath.row == 0) {
-        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-        if (!homeAddress.length) {
-            homeAddress = @"Home not set yet.";
+        if (indexPath.row == 0) {
+            NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+            if (!homeAddress.length) {
+                homeAddress = @"Home not set yet.";
+            }
+            cell.subtitleLabel.text = homeAddress;
         }
-        cell.detailTextLabel.text = homeAddress;
-    }
+    
     return cell;
 }
 

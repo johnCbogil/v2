@@ -73,6 +73,8 @@
     self.findRepsLabel.text = @"My Reps";
     self.findRepsLabel.adjustsFontSizeToFitWidth = YES;
     self.moreButton.tintColor = [UIColor blackColor];
+    [self.moreButton setImage:[UIImage imageNamed:@"femaleUser"] forState:UIControlStateNormal];
+    self.moreButton.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - NSNotifications

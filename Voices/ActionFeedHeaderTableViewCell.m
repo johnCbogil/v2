@@ -24,7 +24,7 @@
     [self refreshTotalActionsCompleted];
     [self configureTotalActionsCompletedLabel];
 
-    
+    self.titleLabel.text = @"Total Actions You Completed";
     self.titleLabel.font = [UIFont voicesFontWithSize:19];
     self.subtitleLabel.font = [UIFont voicesFontWithSize:15];
     self.subtitleLabel.text = @"Select an action below to get started.";
@@ -37,7 +37,7 @@
         self.completedActionCountInt = listOfCompletedActions.count;
         self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)self.completedActionCountInt];
         if (listOfCompletedActions.count > 0) {
-            self.subtitleLabel.text = @"Keep up the good work!";
+            self.subtitleLabel.text = @"Thank you!";
         }
         else {
             self.subtitleLabel.text = @"Select an action below to get started.";
