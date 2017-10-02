@@ -267,7 +267,7 @@
 - (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Action Completed!"
-                                                                             message:@"You're a good citizen. Now share this action with others, change happens when many people act together."
+                                                                             message:@"Thank you! Now share this action with others, change happens when many people act together."
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull alert) {

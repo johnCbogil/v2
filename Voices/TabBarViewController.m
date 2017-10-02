@@ -26,9 +26,9 @@
 }
 
 - (void)createViewControllers {
-    
-    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle:nil];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     
     UIViewController *rootVC = [repsSB instantiateViewControllerWithIdentifier: @"RepsNavCtrl"];
     TakeActionViewController *groupsVC = (TakeActionViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"TakeActionNavigationViewController"];
@@ -44,7 +44,7 @@
     
     if (self.tabBar.items.count > 1) {
         UITabBarItem *groupsTab = [self.tabBar.items objectAtIndex:1];
-        groupsTab.title = @"Take Action";
+        groupsTab.title = @"My Actions";
         groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
     }
 }
