@@ -450,6 +450,7 @@
                     cell.emptyStateLabel.numberOfLines = 0;
                     cell.emptyStateLabel.text = @"This group hasn’t sent any actions yet.";
                     cell.emptyStateLabel.textAlignment = NSTextAlignmentCenter;
+                    cell.userInteractionEnabled = NO;
                     return cell;
                 } else {
                     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
