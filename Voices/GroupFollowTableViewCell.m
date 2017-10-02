@@ -41,8 +41,8 @@
 }
 
 - (IBAction)websiteButtonDidPress:(id)sender {
-    
-    NSURL *url = [NSURL URLWithString:self.websiteButton.titleLabel.text];
+
+    NSURL *url = [NSURL URLWithString:self.websiteURL];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebViewControllerForGroupDetail" object:url];
 }
 

@@ -32,7 +32,7 @@
 @property (strong, nonatomic) NSArray *listOfGroupActions;
 @property (strong, nonatomic) NSString *const actionTBVReuse;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
-
+@property (strong, nonatomic) NSString *websiteURL;
 @end
 
 @implementation GroupDetailViewController
@@ -138,6 +138,7 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = notification.object;
     webViewController.title = @"TAKE ACTION";
+    webViewController.url = [NSURL URLWithString:self.group.website];
     self.navigationItem.title = @"";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
@@ -388,7 +389,7 @@
             cell.followGroupDelegate = self;
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
-            [cell.websiteButton setTitle:self.group.website forState:UIControlStateNormal];
+            [cell.websiteButton setTitle:@"Visit website" forState:UIControlStateNormal];
             [self configureGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }
