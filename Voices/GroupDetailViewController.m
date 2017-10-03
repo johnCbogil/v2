@@ -239,7 +239,6 @@
                               handler:^(UIAlertAction * action)
                               {
                                   
-                                  // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
                                   UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
                                   UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
                                   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
