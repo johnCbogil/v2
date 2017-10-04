@@ -7,7 +7,6 @@
 //
 
 #import "ActionDetailViewController.h"
-#import "STPopupController.h"
 #import "SearchViewController.h"
 #import "ActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"

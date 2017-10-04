@@ -10,7 +10,6 @@
 #import "ReportingManager.h"
 #import "Representative.h"
 #import "ScriptManager.h"
-#import "STPopupController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

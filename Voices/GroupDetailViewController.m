@@ -32,7 +32,7 @@
 @property (strong, nonatomic) NSArray *listOfGroupActions;
 @property (strong, nonatomic) NSString *const actionTBVReuse;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
-
+@property (strong, nonatomic) NSString *websiteURL;
 @end
 
 @implementation GroupDetailViewController
@@ -138,6 +138,7 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = notification.object;
     webViewController.title = @"TAKE ACTION";
+    webViewController.url = [NSURL URLWithString:self.group.website];
     self.navigationItem.title = @"";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
@@ -238,7 +239,6 @@
                               handler:^(UIAlertAction * action)
                               {
                                   
-                                  // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
                                   UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
                                   UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
                                   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -388,7 +388,7 @@
             cell.followGroupDelegate = self;
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
-            [cell.websiteButton setTitle:self.group.website forState:UIControlStateNormal];
+            [cell.websiteButton setTitle:@"Visit website" forState:UIControlStateNormal];
             [self configureGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }
@@ -450,6 +450,7 @@
                     cell.emptyStateLabel.numberOfLines = 0;
                     cell.emptyStateLabel.text = @"This group hasn’t sent any actions yet.";
                     cell.emptyStateLabel.textAlignment = NSTextAlignmentCenter;
+                    cell.userInteractionEnabled = NO;
                     return cell;
                 } else {
                     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
