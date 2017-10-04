@@ -1,19 +1,19 @@
 //
-//  SearchViewController.m
+//  AddAddressViewController.m
 //  Voices
 //
 //  Created by John Bogil on 3/2/17.
 //  Copyright © 2017 John Bogil. All rights reserved.
 //
 
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "LocationService.h"
 #import "RepsManager.h"
 #import "ResultsTableViewCell.h"
 
 @import GooglePlaces;
 
-@interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface AddAddressViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation SearchViewController
+@implementation AddAddressViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

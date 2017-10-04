@@ -7,7 +7,7 @@
 //
 
 #import "ActionDetailViewController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "ActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
 #import "ActionDetailEmptyRepTableViewCell.h"
@@ -34,7 +34,7 @@
     self.title = self.group.name;
     [self configureDatasource];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
     
@@ -188,13 +188,13 @@
     }
 }
 
-- (void)presentSearchViewController {
+- (void)presentAddAddressViewController {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    searchViewController.title = @"Add Home Address";
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
+    addAddressViewController.title = @"Add Home Address";
     self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
 }
 
 - (void)presentGroupDetailViewController {

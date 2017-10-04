@@ -173,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="3574" y="669"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Add Address View Controller-->
         <scene sceneID="D9j-2n-DSs">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="bnU-pc-0Ah" customClass="SearchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddAddressViewController" id="bnU-pc-0Ah" customClass="AddAddressViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QSe-jW-7Wb"/>
                         <viewControllerLayoutGuide type="bottom" id="A6X-tt-VgP"/>
@@ -227,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ba-nW-QDR">
-                                <rect key="frame" x="16" y="72" width="100" height="100"/>
+                                <rect key="frame" x="16" y="76" width="100" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="aJx-xZ-AVZ"/>
                                 </constraints>
@@ -271,7 +271,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zZ-4C-Xsg">
-                                <rect key="frame" x="124" y="72" width="180" height="100"/>
+                                <rect key="frame" x="124" y="76" width="180" height="96"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
