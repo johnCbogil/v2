@@ -15,6 +15,7 @@
 #import "ActionDetailMenuItemTableViewCell.h"
 #import "RepsManager.h"
 #import "WebViewController.h"
+#import "GroupDetailViewController.h"
 
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
@@ -36,6 +37,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
+    
     
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
     
@@ -193,6 +196,14 @@
     searchViewController.title = @"Add Home Address";
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:searchViewController animated:YES];
+}
+
+- (void)presentGroupDetailViewController {
+    
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    groupDetailViewController.group = self.group;
+    [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
