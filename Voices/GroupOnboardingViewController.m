@@ -10,6 +10,8 @@
 #import "FirebaseManager.h"
 #import "GroupTableViewCell.h"
 #import "GroupDetailViewController.h"
+#import "TabBarViewController.h"
+
 @interface GroupOnboardingViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -25,6 +27,7 @@
     [super viewDidLoad];
 
     self.navigationController.navigationBar.hidden = NO;
+    self.title = @"Join Groups";
     [self configureTableView];
     [self configureInstructionLabel];
     [self fetchAllGroups];
@@ -51,7 +54,7 @@
 
 - (void)configureInstructionLabel {
     
-    self.instructionLabel.text = @"See what groups are in your area. Actions are more effective when taken with others.";
+    self.instructionLabel.text = @"Actions are more effective when taken with others.";
     self.instructionLabel.font = [UIFont voicesFontWithSize:19];
     self.instructionLabel.numberOfLines = 0;
 }
@@ -92,5 +95,9 @@
 
 - (IBAction)continueButtonDidPress:(id)sender {
     
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+    tabVC.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:tabVC animated:YES];
 }
 @end

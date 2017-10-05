@@ -48,6 +48,10 @@
 
 - (IBAction)getStartedButtonDidPress:(id)sender {
     
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    backButtonItem.tintColor = [UIColor voicesOrange];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
     BOOL isBeingInstalledFromDeeplink = [(AppDelegate *)[[UIApplication sharedApplication] delegate] isBeingInstalledFromDeeplink];
 
     if (isBeingInstalledFromDeeplink) {
