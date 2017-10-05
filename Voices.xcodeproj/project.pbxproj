@@ -123,8 +123,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00CBD0281F8577BF009D00AD /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AddAddressViewController.h; path = Voices/AddAddressViewController.h; sourceTree = "<group>"; };
-		00CBD0291F8577BF009D00AD /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AddAddressViewController.m; path = Voices/AddAddressViewController.m; sourceTree = "<group>"; };
+		00CBD0281F8577BF009D00AD /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		00CBD0291F8577BF009D00AD /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		158C0BA4129B1DD8E1DCD6C0 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
@@ -355,6 +355,8 @@
 		5264E8561E554EAC00C2DDD8 /* SharedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				00CBD0281F8577BF009D00AD /* AddAddressViewController.h */,
+				00CBD0291F8577BF009D00AD /* AddAddressViewController.m */,
 				7E0448271F644E10001CE76C /* TTTAttributedLabel.h */,
 				7E0448281F644E10001CE76C /* TTTAttributedLabel.m */,
 				7EC2342F1EDDF74600EAA71E /* ActionView.xib */,
@@ -411,8 +413,6 @@
 		52BB34221B6160C900BB9FFD = {
 			isa = PBXGroup;
 			children = (
-				00CBD0281F8577BF009D00AD /* AddAddressViewController.h */,
-				00CBD0291F8577BF009D00AD /* AddAddressViewController.m */,
 				52BB342D1B6160C900BB9FFD /* Voices */,
 				52BB343B1B6160CA00BB9FFD /* Images.xcassets */,
 				52BB34471B6160CA00BB9FFD /* VoicesTests */,
