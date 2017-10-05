@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Onboarding View Controller-->
         <scene sceneID="1HK-Yf-QtW">
@@ -96,7 +101,6 @@
                 <navigationController storyboardIdentifier="OnboardingNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="h3K-Vq-3kd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sbD-q5-0XO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -234,9 +238,68 @@
             </objects>
             <point key="canvasLocation" x="2225" y="329"/>
         </scene>
+        <!--Group Onboarding View Controller-->
+        <scene sceneID="JYa-bI-2Iq">
+            <objects>
+                <viewController storyboardIdentifier="GroupOnboardingViewController" id="wTf-dk-a0k" customClass="GroupOnboardingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yjh-VP-SrA"/>
+                        <viewControllerLayoutGuide type="bottom" id="7ah-eg-pLa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lPr-gd-u0P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-OO-7fL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6id-w2-Fjj">
+                                <rect key="frame" x="209" y="617" width="150" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueButtonDidPress:" destination="wTf-dk-a0k" eventType="touchUpInside" id="axe-2b-tIK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2j-rk-s1A">
+                                <rect key="frame" x="16" y="617" width="150" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ZKk-9C-R8z"/>
+                                </constraints>
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="skipButtonDidPress:" destination="wTf-dk-a0k" eventType="touchUpInside" id="6vY-57-lzB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x2j-rk-s1A" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leadingMargin" id="2Fj-9G-2LE"/>
+                            <constraint firstItem="x2j-rk-s1A" firstAttribute="baseline" secondItem="6id-w2-Fjj" secondAttribute="baseline" id="9YO-y5-Ei8"/>
+                            <constraint firstItem="6id-w2-Fjj" firstAttribute="trailing" secondItem="lPr-gd-u0P" secondAttribute="trailingMargin" id="K8z-Cc-KrM"/>
+                            <constraint firstAttribute="trailing" secondItem="CbN-OO-7fL" secondAttribute="trailing" id="QbC-9B-ZBc"/>
+                            <constraint firstItem="x2j-rk-s1A" firstAttribute="top" secondItem="CbN-OO-7fL" secondAttribute="bottom" constant="25" id="W8r-rB-3mc"/>
+                            <constraint firstAttribute="bottom" secondItem="x2j-rk-s1A" secondAttribute="bottom" constant="20" symbolic="YES" id="WD1-Ni-ORJ"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="top" secondItem="lPr-gd-u0P" secondAttribute="top" id="b5n-PB-kLc"/>
+                            <constraint firstItem="6id-w2-Fjj" firstAttribute="leading" secondItem="x2j-rk-s1A" secondAttribute="trailing" constant="43" id="iFl-7O-KyY"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leading" id="sig-vL-eUE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="6id-w2-Fjj" id="YsX-oe-aHg"/>
+                        <outlet property="skipButton" destination="x2j-rk-s1A" id="sGX-t1-P7f"/>
+                        <outlet property="tableview" destination="CbN-OO-7fL" id="mAU-fN-g2C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wtz-Yn-2GB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2916" y="314.39280359820094"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="NotiOnboarding" width="341" height="341"/>
+        <image name="NotiOnboarding" width="566" height="691"/>
         <image name="VoicesIcon" width="341" height="341"/>
     </resources>
 </document>

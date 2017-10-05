@@ -27,11 +27,11 @@
 @import GooglePlaces;
 
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
-    
-    @property (strong, nonatomic) NSString *actionKey;
-    @property (strong, nonatomic) NSString *dataSetPathWithComponent;
-    
-    @end
+
+@property (strong, nonatomic) NSString *actionKey;
+@property (strong, nonatomic) NSString *dataSetPathWithComponent;
+
+@end
 
 @implementation AppDelegate
     
@@ -123,7 +123,7 @@
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
     
-    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    BOOL isFirstLaunch = YES;// [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
     
     if (!isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
         [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {

@@ -51,8 +51,8 @@
     }
     else {
         
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"GroupOnboardingViewController"];
         [self.navigationController pushViewController:tabVC animated:YES];
     }
 }
