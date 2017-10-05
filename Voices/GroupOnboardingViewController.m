@@ -8,13 +8,14 @@
 
 #import "GroupOnboardingViewController.h"
 #import "FirebaseManager.h"
-
+#import "GroupTableViewCell.h"
+#import "GroupDetailViewController.h"
 @interface GroupOnboardingViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) NSMutableArray *listOfGroups;
-@property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (weak, nonatomic) IBOutlet UILabel *instructionLabel;
 
 @end
 
@@ -22,7 +23,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.navigationController.navigationBar.hidden = NO;
+    [self configureTableView];
+    [self configureInstructionLabel];
+    [self fetchAllGroups];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)fetchAllGroups {
@@ -37,23 +48,46 @@
         
     }];
 }
+
+- (void)configureInstructionLabel {
+    
+    self.instructionLabel.text = @"See what groups are in your area. Actions are more effective when taken with others.";
+    self.instructionLabel.font = [UIFont voicesFontWithSize:19];
+    self.instructionLabel.numberOfLines = 0;
+}
+
 - (void)configureTableView {
     
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    self.tableview.backgroundColor = [UIColor whiteColor];
+    [self.tableview registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil] forCellReuseIdentifier:@"GroupTableViewCell"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    
+    return self.listOfGroups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell;
+    
+    GroupTableViewCell  *cell = (GroupTableViewCell *)[self.tableview dequeueReusableCellWithIdentifier:@"GroupTableViewCell" forIndexPath:indexPath];
+    [cell initWithGroup:self.listOfGroups[indexPath.row]];
     return cell;
 }
 
-- (IBAction)skipButtonDidPress:(id)sender {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Allows centering of the nav bar title by making an empty back button
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+    
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    groupDetailViewController.group = self.listOfGroups[indexPath.row];
+    [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
 - (IBAction)continueButtonDidPress:(id)sender {

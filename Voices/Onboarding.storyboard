@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
-                                <rect key="frame" x="28" y="28" width="317" height="317"/>
+                                <rect key="frame" x="50" y="72" width="273" height="273"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DT0-Pw-P0G" secondAttribute="height" multiplier="1:1" id="oOy-gC-ole"/>
@@ -98,9 +98,10 @@
         <!--Navigation Controller-->
         <scene sceneID="6Zz-qY-LqM">
             <objects>
-                <navigationController storyboardIdentifier="OnboardingNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="h3K-Vq-3kd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OnboardingNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="h3K-Vq-3kd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sbD-q5-0XO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -251,45 +252,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-OO-7fL">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="57" width="375" height="535"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6id-w2-Fjj">
-                                <rect key="frame" x="209" y="617" width="150" height="30"/>
+                                <rect key="frame" x="16" y="617" width="343" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
                                     <action selector="continueButtonDidPress:" destination="wTf-dk-a0k" eventType="touchUpInside" id="axe-2b-tIK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2j-rk-s1A">
-                                <rect key="frame" x="16" y="617" width="150" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="ZKk-9C-R8z"/>
-                                </constraints>
-                                <state key="normal" title="Skip"/>
-                                <connections>
-                                    <action selector="skipButtonDidPress:" destination="wTf-dk-a0k" eventType="touchUpInside" id="6vY-57-lzB"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2q-wH-Ptu">
+                                <rect key="frame" x="16" y="28" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x2j-rk-s1A" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leadingMargin" id="2Fj-9G-2LE"/>
-                            <constraint firstItem="x2j-rk-s1A" firstAttribute="baseline" secondItem="6id-w2-Fjj" secondAttribute="baseline" id="9YO-y5-Ei8"/>
-                            <constraint firstItem="6id-w2-Fjj" firstAttribute="trailing" secondItem="lPr-gd-u0P" secondAttribute="trailingMargin" id="K8z-Cc-KrM"/>
-                            <constraint firstAttribute="trailing" secondItem="CbN-OO-7fL" secondAttribute="trailing" id="QbC-9B-ZBc"/>
-                            <constraint firstItem="x2j-rk-s1A" firstAttribute="top" secondItem="CbN-OO-7fL" secondAttribute="bottom" constant="25" id="W8r-rB-3mc"/>
-                            <constraint firstAttribute="bottom" secondItem="x2j-rk-s1A" secondAttribute="bottom" constant="20" symbolic="YES" id="WD1-Ni-ORJ"/>
-                            <constraint firstItem="CbN-OO-7fL" firstAttribute="top" secondItem="lPr-gd-u0P" secondAttribute="top" id="b5n-PB-kLc"/>
-                            <constraint firstItem="6id-w2-Fjj" firstAttribute="leading" secondItem="x2j-rk-s1A" secondAttribute="trailing" constant="43" id="iFl-7O-KyY"/>
-                            <constraint firstItem="CbN-OO-7fL" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leading" id="sig-vL-eUE"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="centerX" secondItem="CbN-OO-7fL" secondAttribute="centerX" id="ATj-Os-89Y"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="top" secondItem="N2q-wH-Ptu" secondAttribute="bottom" constant="8" symbolic="YES" id="C0r-3D-mwo"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="trailing" secondItem="6id-w2-Fjj" secondAttribute="trailing" id="Czr-so-4Iy"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="leading" secondItem="6id-w2-Fjj" secondAttribute="leading" id="YZc-2b-tJi"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leading" id="eHp-hZ-BSN"/>
+                            <constraint firstAttribute="trailing" secondItem="CbN-OO-7fL" secondAttribute="trailing" id="ea8-aX-DE1"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="top" secondItem="yjh-VP-SrA" secondAttribute="bottom" constant="8" symbolic="YES" id="niC-yo-5BJ"/>
+                            <constraint firstAttribute="bottom" secondItem="6id-w2-Fjj" secondAttribute="bottom" constant="20" symbolic="YES" id="qnk-K9-KR4"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leadingMargin" id="t3M-7e-9nU"/>
+                            <constraint firstItem="6id-w2-Fjj" firstAttribute="top" secondItem="CbN-OO-7fL" secondAttribute="bottom" constant="25" id="z53-hp-taD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="6id-w2-Fjj" id="YsX-oe-aHg"/>
-                        <outlet property="skipButton" destination="x2j-rk-s1A" id="sGX-t1-P7f"/>
+                        <outlet property="instructionLabel" destination="N2q-wH-Ptu" id="BEi-MJ-LEb"/>
                         <outlet property="tableview" destination="CbN-OO-7fL" id="mAU-fN-g2C"/>
                     </connections>
                 </viewController>

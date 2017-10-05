@@ -10,7 +10,7 @@
 #import "NotiOnboardingViewController.h"
 #import "AppDelegate.h"
 #import "TabBarViewController.h"
-
+#import "GroupOnboardingViewController.h"
 @interface OnboardingViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *voicesIcon;
@@ -24,7 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.hidden = YES;
     [self setFont];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)setFont {
@@ -52,7 +59,7 @@
     else {
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
-        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"GroupOnboardingViewController"];
+        GroupOnboardingViewController *tabVC = (GroupOnboardingViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"GroupOnboardingViewController"];
         [self.navigationController pushViewController:tabVC animated:YES];
     }
 }
