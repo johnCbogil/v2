@@ -30,6 +30,7 @@
     
     @property (strong, nonatomic) NSString *actionKey;
     @property (strong, nonatomic) NSString *dataSetPathWithComponent;
+    @property BOOL isFirstLaunch;
     
     @end
 
@@ -123,9 +124,9 @@
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
     
-    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
     
-    if (!isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
+    if (!self.isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
         [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
             
             [[FirebaseManager sharedInstance]resubscribeToTopicsOnReInstall];
@@ -165,9 +166,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     
-    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
     
-    if (notificationSettings.types && !isFirstLaunch ) {
+    if (notificationSettings.types && !self.isFirstLaunch ) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationsRegistered" object:nil];
     }
 }
@@ -245,8 +246,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
 - (void)setInitialViewController {
     
-    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
-    if (!isFirstLaunch) {
+    self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    if (!self.isFirstLaunch) {
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
