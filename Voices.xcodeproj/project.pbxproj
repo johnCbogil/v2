@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00CBD02A1F8577C0009D00AD /* AddAddressViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0281F8577BF009D00AD /* AddAddressViewController.h */; };
+		00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0291F8577BF009D00AD /* AddAddressViewController.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
@@ -63,7 +65,6 @@
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE4EBE1E69024700A22513 /* SearchViewController.m */; };
 		52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEC2761E55376D00CE12AF /* WebViewController.m */; };
 		52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */; };
 		52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */; };
@@ -122,6 +123,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00CBD0281F8577BF009D00AD /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		00CBD0291F8577BF009D00AD /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		158C0BA4129B1DD8E1DCD6C0 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 		5264E8561E554EAC00C2DDD8 /* SharedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				00CBD0281F8577BF009D00AD /* AddAddressViewController.h */,
+				00CBD0291F8577BF009D00AD /* AddAddressViewController.m */,
 				7E0448271F644E10001CE76C /* TTTAttributedLabel.h */,
 				7E0448281F644E10001CE76C /* TTTAttributedLabel.m */,
 				7EC2342F1EDDF74600EAA71E /* ActionView.xib */,
@@ -731,7 +736,7 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4Y3GGL46D2;
+						DevelopmentTeam = X9KW2SQ39Q;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -945,6 +950,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CBD02A1F8577C0009D00AD /* AddAddressViewController.h in Sources */,
+				00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */,
 				52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */,
 				9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */,
 				525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */,
@@ -956,7 +963,6 @@
 				52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
-				52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
@@ -1153,14 +1159,14 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4Y3GGL46D2;
+				DEVELOPMENT_TEAM = X9KW2SQ39Q;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices.ec;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1176,7 +1182,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4Y3GGL46D2;
+				DEVELOPMENT_TEAM = X9KW2SQ39Q;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1184,7 +1190,7 @@
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices.ec;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -9,7 +9,7 @@
 #import "MoreViewController.h"
 #import <StoreKit/StoreKit.h>
 #import "STPopupController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "WebViewController.h"
 #import "MoreTableViewCell.h"
 
@@ -145,7 +145,7 @@
             break;
         case 4:
     
-            [self presentSearchViewController];
+            [self presentAddAddressViewController];
             break;
 
         default:
@@ -153,21 +153,21 @@
     }
 }
 
-- (void)presentSearchViewController {
+- (void)presentAddAddressViewController {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
-        searchViewController.title = @"Edit Home Address";
+        addAddressViewController.title = @"Edit Home Address";
     }
     else {
-        searchViewController.title = @"Add Home Address";
+        addAddressViewController.title = @"Add Home Address";
     }
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
 }
 
 

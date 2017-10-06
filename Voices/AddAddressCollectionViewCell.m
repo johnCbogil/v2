@@ -29,7 +29,7 @@
 
 - (IBAction)addAddressButtonDidPress:(id)sender {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentSearchViewControllerInRootVC" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentAddAddressViewControllerInRootVC" object:nil];
 }
 
 - (void)updateEmojiLabel {

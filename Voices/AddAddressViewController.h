@@ -1,5 +1,5 @@
 //
-//  SearchViewController.h
+//  AddAddressViewController.h
 //  Voices
 //
 //  Created by John Bogil on 3/2/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController
+@interface AddAddressViewController : UIViewController
 
 @end
