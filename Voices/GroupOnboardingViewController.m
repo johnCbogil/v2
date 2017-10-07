@@ -76,11 +76,15 @@
         self.continueButton.layer.cornerRadius = kButtonCornerRadius;
         self.continueButton.clipsToBounds = YES;
         [self.continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.continueButton.alpha = 1;
     }
     else {
-        
+    
         self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:15];
         [self.continueButton setTitle:@"Join later" forState:UIControlStateNormal];
+        [self.continueButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
+        self.continueButton.alpha = 0.5;
+        self.continueButton.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -103,7 +107,6 @@
     self.tableview.dataSource = self;
     self.tableview.backgroundColor = [UIColor whiteColor];
     [self.tableview registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil] forCellReuseIdentifier:@"GroupTableViewCell"];
-    self.tableview.alpha = 0.95f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
