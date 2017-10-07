@@ -11,6 +11,7 @@
 #import "GroupTableViewCell.h"
 #import "GroupDetailViewController.h"
 #import "TabBarViewController.h"
+#import "CurrentUser.h"
 
 @interface GroupOnboardingViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -31,6 +32,7 @@
     [self configureTableView];
     [self configureInstructionLabel];
     [self fetchAllGroups];
+    [self configureContinueButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,6 +52,16 @@
     } onError:^(NSError *error) {
         
     }];
+}
+
+- (void)configureContinueButton {
+    
+    if ([CurrentUser sharedInstance].listOfFollowedGroups.count > 0) {
+        self.continueButton.titleLabel.text = @"Continue";
+    }
+    else {
+        self.continueButton.titleLabel.text = @"Join later";
+    }
 }
 
 - (void)configureInstructionLabel {
