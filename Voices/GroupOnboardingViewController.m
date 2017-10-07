@@ -43,6 +43,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
     [self configureContinueButton];
 }
 
@@ -80,10 +82,10 @@
     }
     else {
     
-        self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:15];
+        self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:19];
         [self.continueButton setTitle:@"Join later" forState:UIControlStateNormal];
         [self.continueButton setTitleColor:[UIColor voicesGray] forState:UIControlStateNormal];
-        self.continueButton.alpha = 0.5;
+        self.continueButton.alpha = 0.75;
         self.continueButton.backgroundColor = [UIColor whiteColor];
     }
 }
