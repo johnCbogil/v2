@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSMutableArray *listOfGroups;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (weak, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *joinGroupsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *selectGroupLabel;
 
 @end
 
@@ -29,8 +31,9 @@
 
     self.navigationController.navigationBar.hidden = NO;
     self.title = @"Join Groups";
+    self.view.backgroundColor = [UIColor voicesOrange];
     [self configureTableView];
-    [self configureInstructionLabel];
+    [self configureLabels];
     [self fetchAllGroups];
     [self configureContinueButton];
 }
@@ -57,20 +60,20 @@
         [weakSelf.tableview reloadData];
         
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 
 - (void)configureContinueButton {
     
-    
     if ([CurrentUser sharedInstance].listOfFollowedGroups.count > 0) {
         
         self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:19];
         [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
-        self.continueButton.backgroundColor = [UIColor voicesOrange];
+        self.continueButton.backgroundColor = [UIColor whiteColor];
         self.continueButton.layer.cornerRadius = kButtonCornerRadius;
         self.continueButton.clipsToBounds = YES;
+        [self.continueButton setTitleColor:[UIColor voicesOrange] forState:UIControlStateNormal];
     }
     else {
         
@@ -79,11 +82,17 @@
     }
 }
 
-- (void)configureInstructionLabel {
+- (void)configureLabels {
     
-    self.instructionLabel.text = @"Actions are more effective when taken with others.";
-    self.instructionLabel.font = [UIFont voicesFontWithSize:19];
-    self.instructionLabel.numberOfLines = 0;
+ 
+    self.joinGroupsLabel.font = [UIFont voicesBoldFontWithSize:28];
+    self.joinGroupsLabel.textColor = [UIColor whiteColor];
+    
+    self.instructionLabel.font = [UIFont voicesFontWithSize:23];
+    self.instructionLabel.textColor = [UIColor whiteColor];
+    
+    self.selectGroupLabel.font = [UIFont voicesFontWithSize:23];
+    self.selectGroupLabel.textColor = [UIColor whiteColor];
 }
 
 - (void)configureTableView {
