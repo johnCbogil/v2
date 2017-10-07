@@ -93,13 +93,13 @@
 - (void)configureLabels {
     
  
-    self.joinGroupsLabel.font = [UIFont voicesBoldFontWithSize:40];
+    self.joinGroupsLabel.font = [UIFont voicesBoldFontWithSize:36];
     self.joinGroupsLabel.textColor = [UIColor whiteColor];
     
     self.instructionLabel.font = [UIFont voicesFontWithSize:23];
     self.instructionLabel.textColor = [UIColor whiteColor];
     
-    self.selectGroupLabel.font = [UIFont voicesFontWithSize:23];
+    self.selectGroupLabel.font = [UIFont voicesFontWithSize:19];
     self.selectGroupLabel.textColor = [UIColor whiteColor];
 }
 

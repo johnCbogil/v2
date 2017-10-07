@@ -260,7 +260,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         self.window.rootViewController = tabVC;
         [self.window makeKeyAndVisible];
         tabVC.selectedIndex = 1;
-        
     }
 }
     
