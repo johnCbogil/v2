@@ -27,11 +27,11 @@
 @import GooglePlaces;
 
 @interface AppDelegate() <UNUserNotificationCenterDelegate>
-    
-    @property (strong, nonatomic) NSString *actionKey;
-    @property (strong, nonatomic) NSString *dataSetPathWithComponent;
-    
-    @end
+
+@property (strong, nonatomic) NSString *actionKey;
+@property (strong, nonatomic) NSString *dataSetPathWithComponent;
+
+@end
 
 @implementation AppDelegate
     
@@ -260,7 +260,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         self.window.rootViewController = tabVC;
         [self.window makeKeyAndVisible];
         tabVC.selectedIndex = 1;
-        
     }
 }
     

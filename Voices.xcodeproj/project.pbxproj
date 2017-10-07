@@ -34,6 +34,7 @@
 		527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* ScriptDialog.xib */; };
 		52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52911CE51D7DF25D00FCD267 /* CurrentUser.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
+		529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529FB0141F85CCFF00DA2A80 /* GroupOnboardingViewController.m */; };
 		52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* RepsNetworkManager.m */; };
 		52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */; };
 		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
@@ -164,6 +165,8 @@
 		52911CE41D7DF25D00FCD267 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		52911CE51D7DF25D00FCD267 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
 		52939A331D1A29C00076F878 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		529FB0131F85CCFF00DA2A80 /* GroupOnboardingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOnboardingViewController.h; sourceTree = "<group>"; };
+		529FB0141F85CCFF00DA2A80 /* GroupOnboardingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupOnboardingViewController.m; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* RepsNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsNetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* RepsNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsNetworkManager.m; sourceTree = "<group>"; };
 		52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -513,6 +516,8 @@
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
 				7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */,
 				7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */,
+				529FB0131F85CCFF00DA2A80 /* GroupOnboardingViewController.h */,
+				529FB0141F85CCFF00DA2A80 /* GroupOnboardingViewController.m */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				5246726A1EEC49BA000A7484 /* ActionDetailTopTableViewCell.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				A74FA2381EB84BBA00C68D0E /* EmptyStateTableViewCell.m in Sources */,
+				529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */,

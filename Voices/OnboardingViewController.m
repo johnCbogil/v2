@@ -10,7 +10,7 @@
 #import "NotiOnboardingViewController.h"
 #import "AppDelegate.h"
 #import "TabBarViewController.h"
-
+#import "GroupOnboardingViewController.h"
 @interface OnboardingViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *voicesIcon;
@@ -24,7 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.hidden = YES;
     [self setFont];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)setFont {
@@ -41,6 +48,10 @@
 
 - (IBAction)getStartedButtonDidPress:(id)sender {
     
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    backButtonItem.tintColor = [UIColor voicesOrange];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
     BOOL isBeingInstalledFromDeeplink = [(AppDelegate *)[[UIApplication sharedApplication] delegate] isBeingInstalledFromDeeplink];
 
     if (isBeingInstalledFromDeeplink) {
@@ -51,8 +62,8 @@
     }
     else {
         
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
+        GroupOnboardingViewController *tabVC = (GroupOnboardingViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"GroupOnboardingViewController"];
         [self.navigationController pushViewController:tabVC animated:YES];
     }
 }
