@@ -220,7 +220,7 @@
 
 - (void)askForNotificationAuth {
     
-    NSString *notificationMessage = [NSString stringWithFormat:@"Would you like %@ to let you know when there is a new action to support?", self.group.name];
+    NSString *notificationMessage = [NSString stringWithFormat:@"Enable action notifications from %@?", self.group.name];
     
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons

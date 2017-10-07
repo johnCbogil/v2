@@ -67,6 +67,11 @@
     [CurrentUser sharedInstance].firebaseUserID = [FIRAuth auth].currentUser.uid;
     self.currentUserRef = [self.usersRef child:[CurrentUser sharedInstance].firebaseUserID];
     self.currentUsersGroupsRef = [self.currentUserRef child:@"groups"];
+    [self fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 - (void)createUser {

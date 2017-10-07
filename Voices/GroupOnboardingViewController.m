@@ -35,10 +35,17 @@
     [self configureContinueButton];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self configureContinueButton];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+    [self configureContinueButton];
 }
 
 - (void)fetchAllGroups {
@@ -56,11 +63,19 @@
 
 - (void)configureContinueButton {
     
+    
     if ([CurrentUser sharedInstance].listOfFollowedGroups.count > 0) {
-        self.continueButton.titleLabel.text = @"Continue";
+        
+        self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:19];
+        [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
+        self.continueButton.backgroundColor = [UIColor voicesOrange];
+        self.continueButton.layer.cornerRadius = kButtonCornerRadius;
+        self.continueButton.clipsToBounds = YES;
     }
     else {
-        self.continueButton.titleLabel.text = @"Join later";
+        
+        self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:15];
+        [self.continueButton setTitle:@"Join later" forState:UIControlStateNormal];
     }
 }
 
