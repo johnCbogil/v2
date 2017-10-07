@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *instructionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *joinGroupsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *selectGroupLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 @end
 
@@ -32,6 +33,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.title = @"Join Groups";
     self.view.backgroundColor = [UIColor voicesOrange];
+    self.bottomView.backgroundColor = [UIColor whiteColor];
     [self configureTableView];
     [self configureLabels];
     [self fetchAllGroups];
@@ -70,10 +72,10 @@
         
         self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:19];
         [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
-        self.continueButton.backgroundColor = [UIColor whiteColor];
+        self.continueButton.backgroundColor = [UIColor voicesOrange];
         self.continueButton.layer.cornerRadius = kButtonCornerRadius;
         self.continueButton.clipsToBounds = YES;
-        [self.continueButton setTitleColor:[UIColor voicesOrange] forState:UIControlStateNormal];
+        [self.continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     else {
         
@@ -85,7 +87,7 @@
 - (void)configureLabels {
     
  
-    self.joinGroupsLabel.font = [UIFont voicesBoldFontWithSize:28];
+    self.joinGroupsLabel.font = [UIFont voicesBoldFontWithSize:40];
     self.joinGroupsLabel.textColor = [UIColor whiteColor];
     
     self.instructionLabel.font = [UIFont voicesFontWithSize:23];
@@ -101,6 +103,7 @@
     self.tableview.dataSource = self;
     self.tableview.backgroundColor = [UIColor whiteColor];
     [self.tableview registerNib:[UINib nibWithNibName:@"GroupTableViewCell" bundle:nil] forCellReuseIdentifier:@"GroupTableViewCell"];
+    self.tableview.alpha = 0.95f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -14,6 +14,9 @@
         <array key="Avenir.ttc">
             <string>Avenir-Book</string>
         </array>
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Onboarding View Controller-->
@@ -251,66 +254,79 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-OO-7fL">
-                                <rect key="frame" x="0.0" y="124" width="375" height="468"/>
+                                <rect key="frame" x="0.0" y="158" width="375" height="434"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6id-w2-Fjj">
-                                <rect key="frame" x="16" y="617" width="343" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" title="Continue"/>
-                                <connections>
-                                    <action selector="continueButtonDidPress:" destination="wTf-dk-a0k" eventType="touchUpInside" id="axe-2b-tIK"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actions are more effective when taken with others." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2q-wH-Ptu">
-                                <rect key="frame" x="16" y="66" width="343" height="21"/>
+                                <rect key="frame" x="16" y="100" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join Groups" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3em-5q-0sQ">
-                                <rect key="frame" x="16" y="28" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join Groups" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3em-5q-0sQ">
+                                <rect key="frame" x="16" y="28" width="343" height="55"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a group to learn more." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hje-39-g6U">
+                                <rect key="frame" x="77" y="129" width="221.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a group to learn more" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hje-39-g6U">
-                                <rect key="frame" x="79" y="95" width="217" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiK-js-WSd">
-                                <rect key="frame" x="0.0" y="57" width="375" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiK-js-WSd" userLabel="singleLineView">
+                                <rect key="frame" x="16" y="91" width="359" height="1"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="12q-VV-jMx"/>
+                                    <constraint firstAttribute="height" constant="1" id="HbV-Z2-7iO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezm-03-azU" userLabel="bottomView">
+                                <rect key="frame" x="0.0" y="590" width="375" height="77"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6id-w2-Fjj">
+                                        <rect key="frame" x="16" y="23" width="343" height="30"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="Continue"/>
+                                        <connections>
+                                            <action selector="continueButtonDidPress:" destination="wTf-dk-a0k" eventType="touchUpInside" id="axe-2b-tIK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="6id-w2-Fjj" firstAttribute="centerX" secondItem="ezm-03-azU" secondAttribute="centerX" id="QBb-lO-ogn"/>
+                                    <constraint firstItem="6id-w2-Fjj" firstAttribute="top" secondItem="ezm-03-azU" secondAttribute="top" constant="23" id="US6-fC-StR"/>
+                                    <constraint firstItem="6id-w2-Fjj" firstAttribute="centerY" secondItem="ezm-03-azU" secondAttribute="centerY" id="Z7s-Y1-iU4"/>
+                                    <constraint firstItem="6id-w2-Fjj" firstAttribute="leading" secondItem="ezm-03-azU" secondAttribute="leading" constant="16" id="aCp-Op-FUU"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="6id-w2-Fjj" secondAttribute="bottom" constant="20" symbolic="YES" id="7yM-1h-OIP"/>
-                            <constraint firstItem="3em-5q-0sQ" firstAttribute="centerX" secondItem="xiK-js-WSd" secondAttribute="centerX" id="92b-gc-cfI"/>
-                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="leading" secondItem="6id-w2-Fjj" secondAttribute="leading" id="AO2-rp-vPE"/>
-                            <constraint firstItem="3em-5q-0sQ" firstAttribute="trailing" secondItem="N2q-wH-Ptu" secondAttribute="trailing" id="FDi-hq-zXi"/>
-                            <constraint firstItem="xiK-js-WSd" firstAttribute="trailing" secondItem="CbN-OO-7fL" secondAttribute="trailing" id="QH3-5R-SYM"/>
-                            <constraint firstItem="xiK-js-WSd" firstAttribute="top" secondItem="3em-5q-0sQ" secondAttribute="bottom" constant="8" symbolic="YES" id="RFI-Fi-Olf"/>
-                            <constraint firstItem="xiK-js-WSd" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leading" id="XEp-SE-QBi"/>
-                            <constraint firstItem="3em-5q-0sQ" firstAttribute="leading" secondItem="N2q-wH-Ptu" secondAttribute="leading" id="XwJ-gN-foL"/>
-                            <constraint firstAttribute="trailing" secondItem="xiK-js-WSd" secondAttribute="trailing" id="ZiV-X0-3iN"/>
-                            <constraint firstItem="xiK-js-WSd" firstAttribute="leading" secondItem="CbN-OO-7fL" secondAttribute="leading" id="fP8-Ry-vv0"/>
-                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="trailing" secondItem="6id-w2-Fjj" secondAttribute="trailing" id="fXb-7T-Ur9"/>
-                            <constraint firstItem="3em-5q-0sQ" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leadingMargin" id="glF-hw-8Kk"/>
-                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="centerX" secondItem="Hje-39-g6U" secondAttribute="centerX" id="h3y-94-oMS"/>
-                            <constraint firstItem="Hje-39-g6U" firstAttribute="top" secondItem="N2q-wH-Ptu" secondAttribute="bottom" constant="8" symbolic="YES" id="i1u-Wm-FG3"/>
-                            <constraint firstItem="3em-5q-0sQ" firstAttribute="top" secondItem="yjh-VP-SrA" secondAttribute="bottom" constant="8" symbolic="YES" id="jdr-od-5Lx"/>
-                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="top" secondItem="xiK-js-WSd" secondAttribute="bottom" constant="8" id="rCR-o1-k9Q"/>
-                            <constraint firstItem="CbN-OO-7fL" firstAttribute="top" secondItem="Hje-39-g6U" secondAttribute="bottom" constant="8" symbolic="YES" id="rON-Oe-Fi9"/>
-                            <constraint firstItem="6id-w2-Fjj" firstAttribute="top" secondItem="CbN-OO-7fL" secondAttribute="bottom" constant="25" id="xsg-VZ-iVG"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="top" secondItem="xiK-js-WSd" secondAttribute="bottom" constant="8" symbolic="YES" id="1rX-qE-5pa"/>
+                            <constraint firstItem="xiK-js-WSd" firstAttribute="leading" secondItem="CbN-OO-7fL" secondAttribute="leading" constant="16" id="5W7-W5-PHg"/>
+                            <constraint firstItem="N2q-wH-Ptu" firstAttribute="centerX" secondItem="Hje-39-g6U" secondAttribute="centerX" id="68q-9k-cRK"/>
+                            <constraint firstItem="3em-5q-0sQ" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leadingMargin" id="Fx8-v1-0W9"/>
+                            <constraint firstItem="3em-5q-0sQ" firstAttribute="leading" secondItem="N2q-wH-Ptu" secondAttribute="leading" id="GXB-Ji-cA8"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="top" secondItem="Hje-39-g6U" secondAttribute="bottom" constant="8" symbolic="YES" id="Gvu-kJ-pkU"/>
+                            <constraint firstAttribute="trailing" secondItem="xiK-js-WSd" secondAttribute="trailing" id="OSK-0O-p5C"/>
+                            <constraint firstItem="3em-5q-0sQ" firstAttribute="trailing" secondItem="N2q-wH-Ptu" secondAttribute="trailing" id="Odb-H3-Reb"/>
+                            <constraint firstItem="ezm-03-azU" firstAttribute="bottom" secondItem="7ah-eg-pLa" secondAttribute="top" id="R5X-82-OiE"/>
+                            <constraint firstItem="3em-5q-0sQ" firstAttribute="top" secondItem="yjh-VP-SrA" secondAttribute="bottom" constant="8" symbolic="YES" id="VDw-yQ-C60"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="leading" secondItem="ezm-03-azU" secondAttribute="leading" id="Vgw-We-BgF"/>
+                            <constraint firstItem="3em-5q-0sQ" firstAttribute="centerX" secondItem="xiK-js-WSd" secondAttribute="centerX" constant="-8" id="b68-X6-TvO"/>
+                            <constraint firstItem="CbN-OO-7fL" firstAttribute="trailing" secondItem="ezm-03-azU" secondAttribute="trailing" id="hKR-ve-mZi"/>
+                            <constraint firstItem="xiK-js-WSd" firstAttribute="trailing" secondItem="CbN-OO-7fL" secondAttribute="trailing" id="r7e-qx-yrp"/>
+                            <constraint firstItem="7ah-eg-pLa" firstAttribute="top" secondItem="CbN-OO-7fL" secondAttribute="bottom" constant="75" id="tIK-V7-riQ"/>
+                            <constraint firstItem="xiK-js-WSd" firstAttribute="leading" secondItem="lPr-gd-u0P" secondAttribute="leading" constant="16" id="ty8-iI-ZXZ"/>
+                            <constraint firstItem="Hje-39-g6U" firstAttribute="top" secondItem="N2q-wH-Ptu" secondAttribute="bottom" constant="8" symbolic="YES" id="x6e-8e-sRL"/>
+                            <constraint firstItem="xiK-js-WSd" firstAttribute="top" secondItem="3em-5q-0sQ" secondAttribute="bottom" constant="8" symbolic="YES" id="y3r-Mi-dvn"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="ezm-03-azU" id="6dW-SJ-DOC"/>
                         <outlet property="continueButton" destination="6id-w2-Fjj" id="YsX-oe-aHg"/>
                         <outlet property="instructionLabel" destination="N2q-wH-Ptu" id="BEi-MJ-LEb"/>
                         <outlet property="joinGroupsLabel" destination="3em-5q-0sQ" id="Buo-Hz-T9F"/>
