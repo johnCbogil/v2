@@ -36,7 +36,7 @@
     }
     self.emojiArray = @[@"💪",@"🙋🏽",@"⭐",@"🗣️",@"🏡"];
     self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Rate App", @"Send Feedback",@"Add Home Address", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"Every rating helps.", @"What could Voices do better to support your cause?", homeAddress, nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"Every rating helps.", @"What could Voices do better to support you?", homeAddress, nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
