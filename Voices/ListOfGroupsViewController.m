@@ -41,6 +41,14 @@
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.segmentedControl.selectedSegmentIndex) {
+        [self fetchAllGroups];
+    }
+}
+
 - (void)configureEmptyStateLabel {
     
     self.emptyStateLabel.hidden = YES;
@@ -150,7 +158,7 @@
         [self toggleActivityIndicatorOff];
         
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 
