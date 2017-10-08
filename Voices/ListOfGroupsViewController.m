@@ -173,7 +173,7 @@
         [self toggleActivityIndicatorOff];
 
     } onError:^(NSError *error) {
-        
+       [error localizedDescription];
     }];
 }
 

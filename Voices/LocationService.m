@@ -84,7 +84,7 @@
             successBlock(location);
         }
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 

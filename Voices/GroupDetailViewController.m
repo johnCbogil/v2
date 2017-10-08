@@ -303,7 +303,7 @@
                                                   [weakSelf unFollowGroup];
                                               }
                                           } onError:^(NSError *error) {
-                                              
+                                              [error localizedDescription];
                                           }];
                                           // read the value once to see if group key exists
                                       }];
@@ -539,7 +539,7 @@
         self.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
         [self.tableView reloadData];
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
     [self.tableView reloadData];
     [self toggleActivityIndicatorOff];

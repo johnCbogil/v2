@@ -88,13 +88,13 @@
         [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error){
-            
+            [error localizedDescription];
         }];
         
         [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
-            
+            [error localizedDescription];
         }];
         
         [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
@@ -138,7 +138,7 @@
     [[RepsNetworkManager sharedInstance]getFederalContactFormURLSWithCompletion:^(NSDictionary *results) {
         self.federalRepContactFormURLs = results;
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 

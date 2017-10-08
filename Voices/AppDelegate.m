@@ -109,7 +109,7 @@
         [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
             
         } onError:^(NSError *error) {
-            
+            [error localizedDescription];
         }];
     }
 }
@@ -132,19 +132,12 @@
             [[FirebaseManager sharedInstance]resubscribeToTopicsOnReInstall];
             
         } onError:^(NSError *error) {
-            
+            [error localizedDescription];
         }];
     }
-    
-    // TODO: If necessary send token to appliation server.
 }
 
 - (void)connectToFcm {
-    //    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-    //        if (error) {
-    //            NSLog(@"%@", [error localizedDescription]);
-    //        }
-    //    }];
     
     [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
 }

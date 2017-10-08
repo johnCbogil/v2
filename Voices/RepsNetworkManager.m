@@ -28,7 +28,7 @@
         [self getFederalContactFormURLSWithCompletion:^(NSDictionary *results) {
             
         } onError:^(NSError *error) {
-            
+            [error localizedDescription];
         }];
     }
     return self;

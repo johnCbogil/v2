@@ -70,7 +70,7 @@
     [self fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 
