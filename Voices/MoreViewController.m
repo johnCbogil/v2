@@ -80,7 +80,7 @@
     self.moreTableView.delegate = self;
     self.moreTableView.dataSource = self;
     self.moreTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.moreTableView.estimatedRowHeight = 150.0f;
+    self.moreTableView.estimatedRowHeight = 200.0f;
     self.moreTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -107,7 +107,7 @@
                 homeAddress = @"Not added yet.";
             }
             else {
-                
+                cell.titleLabel.text = @"Edit Home Address";
             cell.subtitleLabel.text = homeAddress;
             }
         }
