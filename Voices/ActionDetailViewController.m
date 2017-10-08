@@ -199,6 +199,10 @@
 
 - (void)presentGroupDetailViewController {
     
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    backButtonItem.tintColor = [UIColor voicesOrange];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
     groupDetailViewController.group = self.group;

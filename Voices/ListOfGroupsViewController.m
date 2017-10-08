@@ -68,7 +68,7 @@
     }
     
     self.emptyStateLabel.font = [UIFont voicesFontWithSize:23];
-    self.self.megaphoneEmojiLabel.font = [UIFont voicesFontWithSize:46];
+    self.megaphoneEmojiLabel.font = [UIFont voicesFontWithSize:46];
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:@"You don't follow any groups right now. Select the All Groups tab to see groups and amplify your voice."];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor voicesOrange] range:NSMakeRange(49, 11)];
@@ -94,7 +94,6 @@
 
     }
     [self.segmentedControl addTarget:self action:@selector(segmentControlDidChangeValue) forControlEvents:UIControlEventValueChanged];
-
 }
 
 - (void)segmentControlDidChangeValue {
