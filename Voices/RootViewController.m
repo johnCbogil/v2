@@ -31,6 +31,7 @@
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet UILabel *findRepsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIView *singleLineView;
 
 @end
 

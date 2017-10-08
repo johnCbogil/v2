@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00CBD02A1F8577C0009D00AD /* AddAddressViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0281F8577BF009D00AD /* AddAddressViewController.h */; };
 		00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0291F8577BF009D00AD /* AddAddressViewController.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
@@ -741,7 +740,7 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = X9KW2SQ39Q;
+						DevelopmentTeam = 4Y3GGL46D2;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -955,7 +954,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00CBD02A1F8577C0009D00AD /* AddAddressViewController.h in Sources */,
 				00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */,
 				52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */,
 				9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */,
@@ -1165,14 +1163,14 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X9KW2SQ39Q;
+				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices.ec;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1188,7 +1186,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X9KW2SQ39Q;
+				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1196,7 +1194,7 @@
 				INFOPLIST_FILE = Voices/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices.ec;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
