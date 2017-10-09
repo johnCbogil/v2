@@ -7,13 +7,14 @@
 //
 
 #import "ActionDetailViewController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "ActionDetailTopTableViewCell.h"
 #import "RepTableViewCell.h"
 #import "ActionDetailEmptyRepTableViewCell.h"
 #import "ActionDetailMenuItemTableViewCell.h"
 #import "RepsManager.h"
 #import "WebViewController.h"
+#import "GroupDetailViewController.h"
 
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
@@ -33,10 +34,12 @@
     self.title = self.group.name;
     [self configureDatasource];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewController) name:@"presentSearchViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
     
-    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
+    
+    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
     self.navigationController.navigationBarHidden = NO;
 }
@@ -185,13 +188,25 @@
     }
 }
 
-- (void)presentSearchViewController {
+- (void)presentAddAddressViewController {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
-    searchViewController.title = @"Add Home Address";
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
+    addAddressViewController.title = @"Add Home Address";
     self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
+}
+
+- (void)presentGroupDetailViewController {
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    backButtonItem.tintColor = [UIColor voicesOrange];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    GroupDetailViewController *groupDetailViewController = (GroupDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"GroupDetailViewController"];
+    groupDetailViewController.group = self.group;
+    [self.navigationController pushViewController:groupDetailViewController animated:YES];
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {

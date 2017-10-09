@@ -20,7 +20,7 @@
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "MoreViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
@@ -31,6 +31,7 @@
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet UILabel *findRepsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIView *singleLineView;
 
 @end
 
@@ -87,7 +88,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewControllerInRootVC) name:@"presentSearchViewControllerInRootVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewControllerInRootVC) name:@"presentAddAddressViewControllerInRootVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptDialog) name:@"presentScriptView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(closeAlertView) name:@"closeAlertView" object:nil];
 }
@@ -257,19 +258,19 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)presentSearchViewControllerInRootVC {
+- (void)presentAddAddressViewControllerInRootVC {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
-        searchViewController.title = @"Edit Home Address";
+        addAddressViewController.title = @"Edit Home Address";
     }
     else {
-        searchViewController.title = @"Add Home Address";
+        addAddressViewController.title = @"Add Home Address";
     }
     self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
 }
 
 - (void)closeAlertView {

@@ -22,6 +22,7 @@
     [self createViewControllers];
     [self createTabBarButtons];
     
+    self.navigationController.navigationBarHidden = YES;
     [UITabBar appearance].tintColor = [UIColor voicesOrange];
 }
 

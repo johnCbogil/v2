@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
                 [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
             }
         }]];
-
+        
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:^{
             [confirmCallAlertController.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
         }];
@@ -214,53 +214,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)tweetButtonDidPress:(id)sender {
     
-//    TWTRSessionStore *store = [[Twitter sharedInstance] sessionStore];
-//    if (store.session) {
-//
-//        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
-//    }
-//    else {
-//
-//        [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
-//            if (session) {
-//                self.twitterSession = session;
-//                NSLog(@"signed in as %@", [session userName]);
-//            } else {
-//                NSLog(@"error: %@", [error localizedDescription]);
-//            }
-//        }];
-//    }
-
-    
-
-    
-    
     if (self.tweetButtonTappedBlock) {
         self.tweetButtonTappedBlock();
         return;
     }
-
-    NSURL *tURL = [NSURL URLWithString:@"twitter://"];
-    if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
-        if (self.representative.twitter) {
-            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
-        }
-        else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their Twitter handle, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
-            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-        }
+    
+    if (self.representative.twitter) {
+        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
     }
     else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Please install Twitter first." preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their Twitter handle, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }
-
-
 
 @end
 

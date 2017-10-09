@@ -55,8 +55,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    
     [self.tableView reloadData];
 }
 
@@ -220,7 +223,7 @@
 
 - (void)askForNotificationAuth {
     
-    NSString *notificationMessage = [NSString stringWithFormat:@"Would you like %@ to let you know when there is a new action to support?", self.group.name];
+    NSString *notificationMessage = [NSString stringWithFormat:@"Enable action notifications from %@?", self.group.name];
     
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
@@ -300,7 +303,7 @@
                                                   [weakSelf unFollowGroup];
                                               }
                                           } onError:^(NSError *error) {
-                                              
+                                              [error localizedDescription];
                                           }];
                                           // read the value once to see if group key exists
                                       }];
@@ -536,7 +539,7 @@
         self.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
         [self.tableView reloadData];
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
     [self.tableView reloadData];
     [self toggleActivityIndicatorOff];

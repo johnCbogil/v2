@@ -62,7 +62,6 @@
             NSLog(@"%@",address);
             [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
-            
         }
     }];
 }
@@ -84,7 +83,7 @@
             successBlock(location);
         }
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
 }
 

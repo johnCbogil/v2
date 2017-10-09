@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0061EFA81F8BFD250074CBAA /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0061EFA71F8BFD250074CBAA /* LocationManager.m */; };
+		00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0291F8577BF009D00AD /* AddAddressViewController.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
@@ -33,6 +34,7 @@
 		527871C51D3C443200CD29BB /* ScriptDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527871C41D3C443200CD29BB /* ScriptDialog.xib */; };
 		52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52911CE51D7DF25D00FCD267 /* CurrentUser.m */; };
 		52939A341D1A29C00076F878 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52939A331D1A29C00076F878 /* GroupTableViewCell.xib */; };
+		529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529FB0141F85CCFF00DA2A80 /* GroupOnboardingViewController.m */; };
 		52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A6107E1B66ACD400B041FF /* RepsNetworkManager.m */; };
 		52AC25251CF29EB7005291E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */; };
 		52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */; };
@@ -63,7 +65,6 @@
 		52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */; };
 		52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */; };
 		52E925781C3DE1D500C809C0 /* OnboardingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */; };
-		52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE4EBE1E69024700A22513 /* SearchViewController.m */; };
 		52EEC2771E55376D00CE12AF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEC2761E55376D00CE12AF /* WebViewController.m */; };
 		52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */; };
 		52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */; };
@@ -124,6 +125,8 @@
 /* Begin PBXFileReference section */
 		0061EFA61F8BFD250074CBAA /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		0061EFA71F8BFD250074CBAA /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		00CBD0281F8577BF009D00AD /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		00CBD0291F8577BF009D00AD /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		158C0BA4129B1DD8E1DCD6C0 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 		52911CE41D7DF25D00FCD267 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		52911CE51D7DF25D00FCD267 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
 		52939A331D1A29C00076F878 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		529FB0131F85CCFF00DA2A80 /* GroupOnboardingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOnboardingViewController.h; sourceTree = "<group>"; };
+		529FB0141F85CCFF00DA2A80 /* GroupOnboardingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupOnboardingViewController.m; sourceTree = "<group>"; };
 		52A6107D1B66ACD400B041FF /* RepsNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsNetworkManager.h; sourceTree = "<group>"; };
 		52A6107E1B66ACD400B041FF /* RepsNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsNetworkManager.m; sourceTree = "<group>"; };
 		52AC25241CF29EB7005291E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -352,6 +357,8 @@
 		5264E8561E554EAC00C2DDD8 /* SharedClasses */ = {
 			isa = PBXGroup;
 			children = (
+				00CBD0281F8577BF009D00AD /* AddAddressViewController.h */,
+				00CBD0291F8577BF009D00AD /* AddAddressViewController.m */,
 				7E0448271F644E10001CE76C /* TTTAttributedLabel.h */,
 				7E0448281F644E10001CE76C /* TTTAttributedLabel.m */,
 				7EC2342F1EDDF74600EAA71E /* ActionView.xib */,
@@ -508,6 +515,8 @@
 				52FC68FA1C37657000E29B7A /* OnboardingViewController.m */,
 				7E3D77901DF9D430007F2423 /* NotiOnboardingViewController.h */,
 				7E3D77911DF9D430007F2423 /* NotiOnboardingViewController.m */,
+				529FB0131F85CCFF00DA2A80 /* GroupOnboardingViewController.h */,
+				529FB0141F85CCFF00DA2A80 /* GroupOnboardingViewController.m */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -887,7 +896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F11AEE0923583B7ACA91306E /* [CP] Embed Pods Frameworks */ = {
@@ -935,7 +944,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -945,6 +954,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */,
 				52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */,
 				9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */,
 				525397DA1DFC640F00C12686 /* ReportingManager.m in Sources */,
@@ -956,7 +966,6 @@
 				52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
-				52EE4EBF1E69024700A22513 /* SearchViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
@@ -977,6 +986,7 @@
 				5246726A1EEC49BA000A7484 /* ActionDetailTopTableViewCell.m in Sources */,
 				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
 				A74FA2381EB84BBA00C68D0E /* EmptyStateTableViewCell.m in Sources */,
+				529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */,

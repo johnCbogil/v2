@@ -9,7 +9,7 @@
 #import "MoreViewController.h"
 #import <StoreKit/StoreKit.h>
 #import "STPopupController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "WebViewController.h"
 #import "MoreTableViewCell.h"
 
@@ -36,7 +36,7 @@
     }
     self.emojiArray = @[@"💪",@"🙋🏽",@"⭐",@"🗣️",@"🏡"];
     self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Rate App", @"Send Feedback",@"Add Home Address", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"A higher rating means more people can find the app to support your cause.", @"What could Voices do better to support your cause?", homeAddress, nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"Every rating helps.", @"What could Voices do better to support you?", homeAddress, nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
@@ -80,7 +80,7 @@
     self.moreTableView.delegate = self;
     self.moreTableView.dataSource = self;
     self.moreTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.moreTableView.estimatedRowHeight = 150.0f;
+    self.moreTableView.estimatedRowHeight = 200.0f;
     self.moreTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -107,7 +107,7 @@
                 homeAddress = @"Not added yet.";
             }
             else {
-                
+                cell.titleLabel.text = @"Edit Home Address";
             cell.subtitleLabel.text = homeAddress;
             }
         }
@@ -145,7 +145,7 @@
             break;
         case 4:
     
-            [self presentSearchViewController];
+            [self presentAddAddressViewController];
             break;
 
         default:
@@ -153,21 +153,21 @@
     }
 }
 
-- (void)presentSearchViewController {
+- (void)presentAddAddressViewController {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
-        searchViewController.title = @"Edit Home Address";
+        addAddressViewController.title = @"Edit Home Address";
     }
     else {
-        searchViewController.title = @"Add Home Address";
+        addAddressViewController.title = @"Add Home Address";
     }
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
 }
 
 
