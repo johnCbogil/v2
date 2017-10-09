@@ -11,7 +11,7 @@
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
 #import "NYCRepresentative.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 
 @interface RepsManager()
 
@@ -34,7 +34,7 @@
 - (id)init {
     self = [super init];
     if(self != nil) {
-        [[LocationService sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
+        [[LocationManager sharedInstance] addObserver:self forKeyPath:@"currentLocation" options:NSKeyValueObservingOptionNew context:nil];
         self.isLocalRepsAvailable = YES;
         [self createFederalRepContactFormURLS];
     }
@@ -57,7 +57,7 @@
 - (void)fetchRepsForAddress:(NSString *)address {
     
     if (address.length) {
-        [[LocationService sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
+        [[LocationManager sharedInstance]getCoordinatesFromSearchText:address withCompletion:^(CLLocation *locationResults) {
             
             [[RepsManager sharedInstance]createFederalRepresentativesFromLocation:locationResults WithCompletion:^{
                 NSLog(@"%@", locationResults);
@@ -85,19 +85,19 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"currentLocation"]) {
         
-        [self createFederalRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+        [self createFederalRepresentativesFromLocation:[LocationManager sharedInstance].currentLocation WithCompletion:^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error){
             
         }];
         
-        [self createStateRepresentativesFromLocation:[LocationService sharedInstance].currentLocation WithCompletion:^{
+        [self createStateRepresentativesFromLocation:[LocationManager sharedInstance].currentLocation WithCompletion:^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         } onError:^(NSError *error) {
             
         }];
         
-        [self createNYCRepsFromLocation:[LocationService sharedInstance].currentLocation];
+        [self createNYCRepsFromLocation:[LocationManager sharedInstance].currentLocation];
     }
 }
 

@@ -50,18 +50,35 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView.frame = self.bounds;
     self.backgroundColor = [UIColor whiteColor];
     
-    [self configureButtons];
+//    [self configureButtons];
 }
 
 - (void)configureButtons {
+    // gray out callButton if rep has no phone
+    if (self.representative.phone.length) {
+        self.callButton.tintColor = [UIColor voicesOrange];
+    } else {
+        self.callButton.tintColor = [UIColor voicesGray];
+    }
     
-    self.callButton.tintColor = [UIColor voicesOrange];
-    self.emailButton.tintColor = [UIColor voicesOrange];
-    self.tweetButton.tintColor = [UIColor voicesOrange];
+    // gray out emailButton if rep has no email
+    if (self.representative.email.length) {
+        self.emailButton.tintColor = [UIColor voicesOrange];
+    } else {
+        self.emailButton.tintColor = [UIColor voicesGray];
+    }
+    
+    // gray out tweetButton if rep has no twitter account
+    if (self.representative.twitter.length) {
+        self.tweetButton.tintColor = [UIColor voicesOrange];
+    } else {
+        self.tweetButton.tintColor = [UIColor voicesGray];
+    }
 }
 
 - (void)configureWithRepresentative:(Representative *)representative {
     self.representative = representative;
+    [self configureButtons];
 }
 
 #pragma mark - User Actions

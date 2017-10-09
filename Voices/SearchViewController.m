@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 #import "RepsManager.h"
 #import "ResultsTableViewCell.h"
 
@@ -183,7 +183,7 @@
     
     if (indexPath.row == 0) {
         
-        [[LocationService sharedInstance]startUpdatingLocation];
+        [[LocationManager sharedInstance]startUpdatingLocation];
     }
     else {
         self.searchBar.text = self.resultsArray[indexPath.row-1];
