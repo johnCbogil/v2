@@ -731,7 +731,7 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = X9KW2SQ39Q;
+						DevelopmentTeam = 4Y3GGL46D2;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1153,7 +1153,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X9KW2SQ39Q;
+				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
@@ -1176,7 +1176,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X9KW2SQ39Q;
+				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
