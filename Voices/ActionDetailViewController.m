@@ -39,7 +39,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
     
     
-    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action"];
+    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
     self.navigationController.navigationBarHidden = NO;
 }
