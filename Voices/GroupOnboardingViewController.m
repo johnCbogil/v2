@@ -32,7 +32,7 @@
 
     self.navigationController.navigationBar.hidden = NO;
     self.title = @"Join Groups";
-    self.view.backgroundColor = [UIColor voicesOrange];
+    self.view.backgroundColor = [UIColor voicesBlue];
     self.bottomView.backgroundColor = [UIColor whiteColor];
     [self configureTableView];
     [self configureLabels];
@@ -74,7 +74,7 @@
         
         self.continueButton.titleLabel.font = [UIFont voicesFontWithSize:19];
         [self.continueButton setTitle:@"Continue" forState:UIControlStateNormal];
-        self.continueButton.backgroundColor = [UIColor voicesOrange];
+        self.continueButton.backgroundColor = [UIColor voicesBlue];
         self.continueButton.layer.cornerRadius = kButtonCornerRadius;
         self.continueButton.clipsToBounds = YES;
         [self.continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
