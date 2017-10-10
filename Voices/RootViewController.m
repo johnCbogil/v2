@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #import "RepsNetworkManager.h"
 #import "StateRepresentative.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
@@ -31,7 +31,6 @@
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet UILabel *findRepsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
-@property (weak, nonatomic) IBOutlet UIView *singleLineView;
 
 @end
 
@@ -250,7 +249,7 @@
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  [[LocationService sharedInstance]startUpdatingLocation];
+                                  [[LocationManager sharedInstance]startUpdatingLocation];
                                   
                               }];
     [alert addAction:button0];

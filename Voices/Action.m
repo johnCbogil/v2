@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
             _isCompleted = NO;
         }
     } onError:^(NSError *error) {
-        [error localizedDescription];
+        
     }];
     return self;
 }

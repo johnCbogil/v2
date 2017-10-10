@@ -43,7 +43,7 @@
             self.subtitleLabel.text = @"Select an action below to get started.";
         }
     } onError:^(NSError *error) {
-        [error localizedDescription];
+        
     }];
 }
 

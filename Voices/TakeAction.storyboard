@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayz-aM-rSI">
-                                <rect key="frame" x="324" y="55" width="40" height="40"/>
+                                <rect key="frame" x="324" y="53" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="M6F-d2-ceW"/>
                                     <constraint firstAttribute="width" constant="40" id="Mw5-z9-UDr"/>
@@ -76,7 +76,7 @@
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="16" id="RTX-p0-3ZT"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" id="db1-jW-3a0"/>
                             <constraint firstItem="GFg-or-GAf" firstAttribute="top" secondItem="Px1-hj-bAe" secondAttribute="bottom" constant="8" id="eTH-sG-Ztb"/>
-                            <constraint firstItem="ayz-aM-rSI" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="35" id="gEk-aq-eqW"/>
+                            <constraint firstItem="ayz-aM-rSI" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="33" id="gEk-aq-eqW"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="top" secondItem="GFg-or-GAf" secondAttribute="bottom" constant="7" id="nIT-If-feI"/>
                             <constraint firstItem="GFg-or-GAf" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="23" id="wNe-4M-y0y"/>
                         </constraints>

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,35 +19,34 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-nH-RWV">
-                        <rect key="frame" x="58" y="8" width="309" height="26"/>
+                        <rect key="frame" x="58" y="18" width="309" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGb-Vz-yhm">
-                        <rect key="frame" x="8" y="13" width="42" height="21"/>
+                        <rect key="frame" x="8" y="19" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hy-b8-VPD">
-                        <rect key="frame" x="58" y="33" width="309" height="21"/>
+                        <rect key="frame" x="58" y="39" width="309" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZGb-Vz-yhm" firstAttribute="baseline" secondItem="xeh-nH-RWV" secondAttribute="baseline" id="3DB-oH-D0d"/>
-                    <constraint firstItem="ZGb-Vz-yhm" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="topMargin" constant="5" id="7Yu-WM-BEq"/>
-                    <constraint firstAttribute="bottom" secondItem="3Hy-b8-VPD" secondAttribute="bottom" constant="15.5" id="BSR-6i-83U"/>
-                    <constraint firstItem="xeh-nH-RWV" firstAttribute="leading" secondItem="3Hy-b8-VPD" secondAttribute="leading" id="K9Q-dC-n74"/>
-                    <constraint firstAttribute="trailing" secondItem="3Hy-b8-VPD" secondAttribute="trailing" constant="8" id="MXq-5g-dyy"/>
-                    <constraint firstItem="xeh-nH-RWV" firstAttribute="leading" secondItem="ZGb-Vz-yhm" secondAttribute="trailing" constant="8" symbolic="YES" id="bEp-Nt-I3y"/>
-                    <constraint firstItem="xeh-nH-RWV" firstAttribute="trailing" secondItem="di6-8b-OXn" secondAttribute="trailingMargin" id="cDV-py-FcO"/>
-                    <constraint firstItem="3Hy-b8-VPD" firstAttribute="top" secondItem="xeh-nH-RWV" secondAttribute="bottom" constant="-1" id="pj3-kO-sW8"/>
-                    <constraint firstItem="ZGb-Vz-yhm" firstAttribute="leading" secondItem="di6-8b-OXn" secondAttribute="leadingMargin" id="xA2-02-dve"/>
-                    <constraint firstItem="xeh-nH-RWV" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="topMargin" id="yIk-pS-mTf"/>
+                    <constraint firstItem="xeh-nH-RWV" firstAttribute="leading" secondItem="ZGb-Vz-yhm" secondAttribute="trailing" constant="8" id="6zb-9l-7r5"/>
+                    <constraint firstItem="xeh-nH-RWV" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="top" constant="18" id="Bz9-lx-9zT"/>
+                    <constraint firstItem="ZGb-Vz-yhm" firstAttribute="top" secondItem="di6-8b-OXn" secondAttribute="top" constant="19" id="C0M-8c-bcq"/>
+                    <constraint firstItem="3Hy-b8-VPD" firstAttribute="top" secondItem="xeh-nH-RWV" secondAttribute="bottom" id="EOT-Rb-WXQ"/>
+                    <constraint firstAttribute="trailing" secondItem="3Hy-b8-VPD" secondAttribute="trailing" constant="8" id="Lx2-EW-88t"/>
+                    <constraint firstItem="ZGb-Vz-yhm" firstAttribute="leading" secondItem="di6-8b-OXn" secondAttribute="leading" constant="8" id="Qn8-V2-nmW"/>
+                    <constraint firstAttribute="trailing" secondItem="xeh-nH-RWV" secondAttribute="trailing" constant="8" id="S8G-Wi-Pq8"/>
+                    <constraint firstAttribute="bottom" secondItem="3Hy-b8-VPD" secondAttribute="bottom" constant="10" id="bQK-nv-Iud"/>
+                    <constraint firstItem="3Hy-b8-VPD" firstAttribute="leading" secondItem="xeh-nH-RWV" secondAttribute="leading" id="nvu-6f-0pL"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

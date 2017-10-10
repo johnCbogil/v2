@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00CBD02A1F8577C0009D00AD /* AddAddressViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0281F8577BF009D00AD /* AddAddressViewController.h */; };
 		00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0291F8577BF009D00AD /* AddAddressViewController.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
@@ -40,7 +41,7 @@
 		52AD2CC31B61F90900EAF854 /* StateRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD2CC21B61F90900EAF854 /* StateRepresentative.m */; };
 		52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */; };
 		52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */; };
-		52B51B0A1B61B789006DF423 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationService.m */; };
+		52B51B0A1B61B789006DF423 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B51B091B61B789006DF423 /* LocationManager.m */; };
 		52B958961E118703006472DF /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B958951E118703006472DF /* InfoViewController.m */; };
 		52B958981E11873B006472DF /* NewInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B958971E11873B006472DF /* NewInfo.xib */; };
 		52B9589A1E1188BE006472DF /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B958991E1188BE006472DF /* InfoTableViewCell.xib */; };
@@ -177,8 +178,8 @@
 		52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+voicesFont.m"; sourceTree = "<group>"; };
 		52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+voicesColor.h"; sourceTree = "<group>"; };
 		52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesColor.m"; sourceTree = "<group>"; };
-		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
-		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
+		52B51B081B61B789006DF423 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		52B51B091B61B789006DF423 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		52B958941E118703006472DF /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		52B958951E118703006472DF /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		52B958971E11873B006472DF /* NewInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewInfo.xib; sourceTree = "<group>"; };
@@ -404,8 +405,8 @@
 			children = (
 				52A6107D1B66ACD400B041FF /* RepsNetworkManager.h */,
 				52A6107E1B66ACD400B041FF /* RepsNetworkManager.m */,
-				52B51B081B61B789006DF423 /* LocationService.h */,
-				52B51B091B61B789006DF423 /* LocationService.m */,
+				52B51B081B61B789006DF423 /* LocationManager.h */,
+				52B51B091B61B789006DF423 /* LocationManager.m */,
 				52CA3D891DD8D5FD00437E83 /* RepsManager.h */,
 				52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */,
 			);
@@ -740,7 +741,7 @@
 				TargetAttributes = {
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4Y3GGL46D2;
+						DevelopmentTeam = X9KW2SQ39Q;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -954,6 +955,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00CBD02A1F8577C0009D00AD /* AddAddressViewController.h in Sources */,
 				00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */,
 				52DBDC7F1E96852200AF33A1 /* GroupFollowTableViewCell.m in Sources */,
 				9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */,
@@ -969,7 +971,7 @@
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
 				94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
-				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
+				52B51B0A1B61B789006DF423 /* LocationManager.m in Sources */,
 				52C7D4B41CC71F5A00F85902 /* ActionTableViewCell.m in Sources */,
 				52C6B1D71C8FD8C30095DDDB /* VoicesConstants.m in Sources */,
 				7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */,
@@ -1163,7 +1165,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4Y3GGL46D2;
+				DEVELOPMENT_TEAM = X9KW2SQ39Q;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Voices/PrefixHeader.pch;
@@ -1186,7 +1188,7 @@
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4Y3GGL46D2;
+				DEVELOPMENT_TEAM = X9KW2SQ39Q;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

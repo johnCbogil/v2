@@ -30,12 +30,11 @@
 
 @property (strong, nonatomic) NSString *actionKey;
 @property (strong, nonatomic) NSString *dataSetPathWithComponent;
-@property BOOL isFirstLaunch;
 
 @end
 
 @implementation AppDelegate
-
+    
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
     if ([self isInDebugMode]) {
@@ -57,12 +56,12 @@
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
-    
+
     return YES;
 }
-
+    
 #pragma mark - Deeplinking
-
+    
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
     
     BOOL handled = [[FIRDynamicLinks dynamicLinks]
@@ -76,7 +75,7 @@
     
     return handled;
 }
-
+    
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *, id> *)options {
@@ -95,7 +94,7 @@
     }
     return YES;
 }
-
+    
 - (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
     
     if (!dynamicLink.url) {
@@ -109,13 +108,13 @@
         [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
             
         } onError:^(NSError *error) {
-            [error localizedDescription];
+            
         }];
     }
 }
-
+   
 #pragma mark - Notifications
-
+    
 - (void)tokenRefreshNotification:(NSNotification *)notification {
     // Note that this callback will be fired everytime a new token is generated, including the first
     // time. So if you need to retrieve the token as soon as it is available this is where that
@@ -124,24 +123,31 @@
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];
     
-    self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
     
-    if (!self.isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
+    if (!isFirstLaunch && [CurrentUser sharedInstance].firebaseUserID) {
         [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
             
             [[FirebaseManager sharedInstance]resubscribeToTopicsOnReInstall];
             
         } onError:^(NSError *error) {
-            [error localizedDescription];
+            
         }];
     }
+    
+    // TODO: If necessary send token to appliation server.
 }
-
+    
 - (void)connectToFcm {
+    //    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+    //        if (error) {
+    //            NSLog(@"%@", [error localizedDescription]);
+    //        }
+    //    }];
     
     [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
 }
-
+    
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // If you are receiving a notification message while your app is in the background,
@@ -152,37 +158,37 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         self.actionKey = userInfo[@"action"];
     }
 }
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
-}
-
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+        
+   }
+    
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     
-    self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
     
-    if (notificationSettings.types && !self.isFirstLaunch ) {
+    if (notificationSettings.types && !isFirstLaunch ) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationsRegistered" object:nil];
     }
 }
-
+    
 #pragma mark - Lifecycle and more
-
+    
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
-
+    
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
-
+    
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
-
-
+    
+    
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
@@ -232,15 +238,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         }];
     }
 }
-
+    
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+    
 - (void)setInitialViewController {
     
-    self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
-    if (!self.isFirstLaunch) {
+    BOOL isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
+    if (!isFirstLaunch) {
         UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle: nil];
         OnboardingNavigationController *onboardingPageViewController = (OnboardingNavigationController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"OnboardingNavigationController"];
         self.window.rootViewController = onboardingPageViewController;
@@ -256,13 +262,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         tabVC.selectedIndex = 1;
     }
 }
-
+    
 - (void)enableFeedbackAndReporting {
     // Override point for customization after application launch.
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
 }
-
+    
 - (void)unzipNYCDataSet {
     
     // Get the file path for the zip
@@ -285,7 +291,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
 }
-
+    
 - (void)excludeGeoJSONFromCloudBackup {
     // Exclude files from iCloud backup
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -301,13 +307,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 }
 
 - (void)setCache {
-    
-    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
-                                                            diskCapacity:100 * 1024 * 1024
-                                                                diskPath:nil];
-    [NSURLCache setSharedURLCache:sharedCache];
+        
+        NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
+                                                                diskCapacity:100 * 1024 * 1024
+                                                                    diskPath:nil];
+        [NSURLCache setSharedURLCache:sharedCache];
 }
-
+    
 - (void)printFontFamilies {
     for (NSString *familyName in [UIFont familyNames]){
         for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
@@ -315,7 +321,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         }
     }
 }
-
+    
 // Remove Apple bug error warning that occurs when phone call occurs
 - (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame {
     for(UIWindow *window in [[UIApplication sharedApplication] windows]) {
@@ -324,9 +330,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         }
     }
 }
-
+    
 #pragma marks - Debug
-
+    
 - (BOOL)isInDebugMode {
     
 #if DEBUG
@@ -335,5 +341,5 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     return NO;
 #endif
 }
-
-@end
+    
+    @end

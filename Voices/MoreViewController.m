@@ -36,7 +36,7 @@
     }
     self.emojiArray = @[@"💪",@"🙋🏽",@"⭐",@"🗣️",@"🏡"];
     self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Rate App", @"Send Feedback",@"Add Home Address", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"Every rating helps.", @"What could Voices do better to support you?", homeAddress, nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"Every rating helps.", @"What could Voices do better to support your cause?", homeAddress, nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
@@ -80,7 +80,7 @@
     self.moreTableView.delegate = self;
     self.moreTableView.dataSource = self;
     self.moreTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.moreTableView.estimatedRowHeight = 200.0f;
+    self.moreTableView.estimatedRowHeight = 150.0f;
     self.moreTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -107,7 +107,7 @@
                 homeAddress = @"Not added yet.";
             }
             else {
-                cell.titleLabel.text = @"Edit Home Address";
+                
             cell.subtitleLabel.text = homeAddress;
             }
         }
