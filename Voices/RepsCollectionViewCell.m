@@ -11,7 +11,7 @@
 #import "EmptyRepTableViewCell.h"
 #import "RepDetailViewController.h"
 #import "RepsManager.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 
 @interface RepsCollectionViewCell()
 
@@ -128,7 +128,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshSearchBarPullToRefresh" object:nil];
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
-        [[LocationService sharedInstance]startUpdatingLocation];
+        [[LocationManager sharedInstance]startUpdatingLocation];
         
     }
     else {
