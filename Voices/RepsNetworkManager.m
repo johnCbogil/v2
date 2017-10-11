@@ -7,7 +7,7 @@
 //  AIzaSyBGpp2MpyG6zmf7gHcXqNro2bom1roCfVQ
 
 #import "RepsNetworkManager.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 
 
 @implementation RepsNetworkManager

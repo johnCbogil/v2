@@ -177,7 +177,7 @@
 		52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+voicesFont.m"; sourceTree = "<group>"; };
 		52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+voicesColor.h"; sourceTree = "<group>"; };
 		52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+voicesColor.m"; sourceTree = "<group>"; };
-		52B51B081B61B789006DF423 /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
+		52B51B081B61B789006DF423 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		52B51B091B61B789006DF423 /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		52B958941E118703006472DF /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		52B958951E118703006472DF /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
@@ -404,7 +404,7 @@
 			children = (
 				52A6107D1B66ACD400B041FF /* RepsNetworkManager.h */,
 				52A6107E1B66ACD400B041FF /* RepsNetworkManager.m */,
-				52B51B081B61B789006DF423 /* LocationService.h */,
+				52B51B081B61B789006DF423 /* LocationManager.h */,
 				52B51B091B61B789006DF423 /* LocationService.m */,
 				52CA3D891DD8D5FD00437E83 /* RepsManager.h */,
 				52CA3D8A1DD8D5FD00437E83 /* RepsManager.m */,
