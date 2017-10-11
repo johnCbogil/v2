@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *joinGroupsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *selectGroupLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -34,6 +35,8 @@
     self.title = @"Join Groups";
     self.view.backgroundColor = [UIColor voicesBlue];
     self.bottomView.backgroundColor = [UIColor whiteColor];
+    
+    [self configureActivityIndicator];
     [self configureTableView];
     [self configureLabels];
     [self fetchAllGroups];
@@ -57,15 +60,40 @@
 
 - (void)fetchAllGroups {
     
+    [self toggleActivityIndicatorOn];
     __weak GroupOnboardingViewController *weakSelf = self;
     [[FirebaseManager sharedInstance] fetchAllGroupsWithCompletion:^(NSArray *groups) {
         
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groups];
         [weakSelf.tableview reloadData];
+        [self toggleActivityIndicatorOff];
         
     } onError:^(NSError *error) {
         [error localizedDescription];
     }];
+}
+
+- (void)configureActivityIndicator {
+    
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc]
+                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor grayColor];
+    self.activityIndicatorView.center=self.view.center;
+    [self.view addSubview:self.activityIndicatorView];
+}
+
+- (void)toggleActivityIndicatorOn {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView startAnimating];
+    });
+}
+
+- (void)toggleActivityIndicatorOff {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicatorView stopAnimating];
+    });
 }
 
 - (void)configureContinueButton {
@@ -91,7 +119,6 @@
 }
 
 - (void)configureLabels {
-    
  
     self.joinGroupsLabel.font = [UIFont voicesBoldFontWithSize:36];
     self.joinGroupsLabel.textColor = [UIColor whiteColor];
