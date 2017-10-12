@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.callButtonTappedBlock();
         return;
     }
-    if (self.representative.phone.length) {
+    if (![self.representative.phone isKindOfClass:[NSNull class]] && self.representative.phone.length) {
         NSString *confirmCallMessage = @"Would you like to preview the call script or begin calling?";
         NSString *title = [NSString stringWithFormat:@"Call %@",self.representative.fullName];
         
