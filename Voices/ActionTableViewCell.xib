@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,7 +33,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="1Y3-FE-fbV" userLabel="GroupName">
-                        <rect key="frame" x="81" y="33" width="352" height="34"/>
+                        <rect key="frame" x="81" y="33" width="348" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="sAA-PW-Jrc"/>
                         </constraints>
@@ -81,7 +86,7 @@
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="top" secondItem="y5l-rm-C94" secondAttribute="topMargin" id="Iyc-XP-lwa"/>
                     <constraint firstItem="1Y3-FE-fbV" firstAttribute="top" secondItem="5cj-rV-NyV" secondAttribute="top" constant="25" id="N3R-Xp-tr5"/>
                     <constraint firstItem="PKl-bg-TiE" firstAttribute="top" secondItem="1Y3-FE-fbV" secondAttribute="bottom" id="N97-qT-d7q"/>
-                    <constraint firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="8" id="RV7-zo-EXT"/>
+                    <constraint firstAttribute="trailing" secondItem="1Y3-FE-fbV" secondAttribute="trailing" constant="12" id="RV7-zo-EXT"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leadingMargin" id="Xkv-bv-sHN"/>
                     <constraint firstItem="5cj-rV-NyV" firstAttribute="leading" secondItem="y5l-rm-C94" secondAttribute="leading" constant="8" id="ewi-XH-OtG"/>
                     <constraint firstItem="ttV-a1-gBw" firstAttribute="top" secondItem="PKl-bg-TiE" secondAttribute="bottom" id="lsj-Xl-Cgm"/>
