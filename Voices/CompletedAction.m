@@ -8,19 +8,12 @@
 
 #import "CompletedAction.h"
 
-@interface CompletedAction()
-
-@property (strong, nonatomic) NSString *timestamp;
-@property (strong, nonatomic) NSArray *usersCheered;
-
-@end
-
 @implementation CompletedAction
 
 - (instancetype)initWithData:(NSDictionary *)data {
     
-    self.timestamp = [data valueForKey:@"timestamp"];
-    self.usersCheered = [data valueForKey:@"usersCheered"]; // THIS MAY NEED TO BE A DICT INSTEADf
+    self.timestamp = [[data valueForKey:@"timestamp"]intValue];
+    self.usersCheered = [[data valueForKey:@"usersCheered"]allKeys]; // THIS MAY NEED TO BE A DICT INSTEADf
     
     return self;
 }

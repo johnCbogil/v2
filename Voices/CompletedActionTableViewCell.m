@@ -15,6 +15,10 @@
     // Initialization code
 }
 
-
+- (void)initWithData:(CompletedAction *)completedAction {
+    
+    self.textLabel.text =  [NSString stringWithFormat:@"%ld", completedAction.timestamp];
+    
+}
 
 @end

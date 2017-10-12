@@ -25,28 +25,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    self.tableViewDataSource = @[].mutableCopy;
+    
     [self.tableView registerNib:[UINib nibWithNibName: @"CompletedActionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CompletedActionTableViewCell"];
     [self configureTableView];
     
-//    // FOR EACH GROUP IN THE LIST OF USERS FOLLOWED GROUPS
-    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
-        //    // FETCH ACTIONS
-        [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+    
+    // FOR EACH ACTION IN THE LIST OF ACTIOJNS
+    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
+        
+        for (NSDictionary *user in action.usersCompleted) {
             
-            // FOR EACH ACTION IN THE LIST OF ACTIOJNS
-            for (Action *action in listOfActions) {
-             
-                for (NSDictionary *user in action.usersCompleted) {
-                    
-                    // CREATE A USERCOMPLETED MODEL OBJECT
-                    CompletedAction *completedAction = [[CompletedAction alloc]initWithData:user];
-                    
-                    // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
-                    [self.tableViewDataSource addObject:completedAction];
-                }
-            }
-        }];
+            // CREATE A USERCOMPLETED MODEL OBJECT
+            CompletedAction *completedAction = [[CompletedAction alloc]initWithData:action.usersCompleted[user]];
+            
+            // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
+            [self.tableViewDataSource addObject:completedAction];
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -64,6 +61,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CompletedActionTableViewCell *cell = (CompletedActionTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:@"CompletedActionTableViewCell" forIndexPath:indexPath];
+    [cell initWithData:self.tableViewDataSource[indexPath.row]];
     
     return cell;
 }

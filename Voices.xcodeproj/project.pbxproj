@@ -90,6 +90,7 @@
 		7EE956C81F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		896C64CF6CA0389CE746987C /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */; };
+		94B2C7871F8FD7A30000D06D /* CompletedActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B2C7861F8FD7A30000D06D /* CompletedActionTableViewCell.xib */; };
 		94BCA5131F8C5D400025042B /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCA5121F8C5D400025042B /* SocialViewController.m */; };
 		94BCA5161F8C5E310025042B /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BCA5151F8C5E310025042B /* Social.storyboard */; };
 		94D4EF321F8EF98900BC3AE6 /* CompletedAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4EF311F8EF98900BC3AE6 /* CompletedAction.m */; };
@@ -263,6 +264,7 @@
 		7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailMenuItemTableViewCell.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		94B2C7861F8FD7A30000D06D /* CompletedActionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletedActionTableViewCell.xib; sourceTree = "<group>"; };
 		94B34EE31F7AE75E0071300F /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BCA5111F8C5D400025042B /* SocialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		94BCA5121F8C5D400025042B /* SocialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				94D4EF311F8EF98900BC3AE6 /* CompletedAction.m */,
 				94D4EF331F8EFAF400BC3AE6 /* CompletedActionTableViewCell.h */,
 				94D4EF341F8EFAF400BC3AE6 /* CompletedActionTableViewCell.m */,
+				94B2C7861F8FD7A30000D06D /* CompletedActionTableViewCell.xib */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
 				A74FA2391EB84BBA00C68D0E /* EmptyStateTableViewCell.xib in Resources */,
 				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
+				94B2C7871F8FD7A30000D06D /* CompletedActionTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				7EC234301EDDF74600EAA71E /* ActionView.xib in Resources */,
 				5246726F1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib in Resources */,

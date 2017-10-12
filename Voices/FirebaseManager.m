@@ -246,7 +246,7 @@
         }
         successBlock([CurrentUser sharedInstance].listOfFollowedGroups);
     } withCancelBlock:^(NSError * _Nonnull error) {
-        
+        [error localizedDescription];
     }];
 }
 
@@ -365,7 +365,6 @@
                 [actionsList addObject:action];
             }
             dispatch_group_leave(actionsGroup);
-
         }];
     }
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{

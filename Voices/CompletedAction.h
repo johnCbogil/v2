@@ -11,5 +11,7 @@
 @interface CompletedAction : NSObject
 
 - (instancetype)initWithData:(NSDictionary *)data;
+@property (nonatomic) int long timestamp;
+@property (strong, nonatomic) NSArray *usersCheered;
 
 @end

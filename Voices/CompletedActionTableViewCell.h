@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CompletedAction.h"
 
 @interface CompletedActionTableViewCell : UITableViewCell
+
+- (void)initWithData:(CompletedAction *)completedAction;
 
 @end
