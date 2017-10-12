@@ -369,7 +369,7 @@
         }];
     }
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
-        successBlock(actionsList);
+        successBlock(actionsList); // THIS IS ONLY CALLED WHEN FOLLOWING NON DEBUG GROUPS
     });
 }
 

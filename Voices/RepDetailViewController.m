@@ -282,13 +282,4 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - Action Buttons Did Press
-
-- (IBAction)callButtonDidPress:(id)sender {
-}
-- (IBAction)emailButtonDidPress:(id)sender {
-}
-- (IBAction)twitterButtonDidPress:(id)sender {
-}
-
 @end
