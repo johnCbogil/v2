@@ -186,8 +186,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [CurrentUser sharedInstance].listOfActions.count;
-    
+    if ([CurrentUser sharedInstance].listOfActions.count) {
+        return [CurrentUser sharedInstance].listOfActions.count + 1;
+    }
+    else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
