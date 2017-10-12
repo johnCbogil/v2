@@ -92,6 +92,8 @@
 		896C64CF6CA0389CE746987C /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */; };
 		94BCA5131F8C5D400025042B /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCA5121F8C5D400025042B /* SocialViewController.m */; };
 		94BCA5161F8C5E310025042B /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BCA5151F8C5E310025042B /* Social.storyboard */; };
+		94D4EF321F8EF98900BC3AE6 /* CompletedAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4EF311F8EF98900BC3AE6 /* CompletedAction.m */; };
+		94D4EF351F8EFAF400BC3AE6 /* CompletedActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4EF341F8EFAF400BC3AE6 /* CompletedActionTableViewCell.m */; };
 		94DF29F51F804A57002ED9F8 /* MoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */; };
 		94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */; };
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
@@ -265,6 +267,10 @@
 		94BCA5111F8C5D400025042B /* SocialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
 		94BCA5121F8C5D400025042B /* SocialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
 		94BCA5151F8C5E310025042B /* Social.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
+		94D4EF301F8EF98900BC3AE6 /* CompletedAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletedAction.h; sourceTree = "<group>"; };
+		94D4EF311F8EF98900BC3AE6 /* CompletedAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompletedAction.m; sourceTree = "<group>"; };
+		94D4EF331F8EFAF400BC3AE6 /* CompletedActionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletedActionTableViewCell.h; sourceTree = "<group>"; };
+		94D4EF341F8EFAF400BC3AE6 /* CompletedActionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompletedActionTableViewCell.m; sourceTree = "<group>"; };
 		94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreTableViewCell.xib; sourceTree = "<group>"; };
 		94DF29F61F804A94002ED9F8 /* MoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreTableViewCell.h; sourceTree = "<group>"; };
 		94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewCell.m; sourceTree = "<group>"; };
@@ -661,6 +667,10 @@
 				94BCA5111F8C5D400025042B /* SocialViewController.h */,
 				94BCA5121F8C5D400025042B /* SocialViewController.m */,
 				94BCA5151F8C5E310025042B /* Social.storyboard */,
+				94D4EF301F8EF98900BC3AE6 /* CompletedAction.h */,
+				94D4EF311F8EF98900BC3AE6 /* CompletedAction.m */,
+				94D4EF331F8EFAF400BC3AE6 /* CompletedActionTableViewCell.h */,
+				94D4EF341F8EFAF400BC3AE6 /* CompletedActionTableViewCell.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -996,6 +1006,7 @@
 				5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */,
 				525EC5A61D2C9C2E007F3C13 /* GroupDetailViewController.m in Sources */,
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
+				94D4EF321F8EF98900BC3AE6 /* CompletedAction.m in Sources */,
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
@@ -1008,6 +1019,7 @@
 				529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
+				94D4EF351F8EFAF400BC3AE6 /* CompletedActionTableViewCell.m in Sources */,
 				52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */,
 				52B958961E118703006472DF /* InfoViewController.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
