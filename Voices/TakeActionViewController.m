@@ -11,7 +11,7 @@
 #import "ActionFeedHeaderTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
-
+#import "SocialViewController.h"
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
 #import "FirebaseManager.h"
@@ -294,12 +294,20 @@
 
 - (IBAction)addGroupButtonDidPress:(id)sender {
     
+//    // Allows centering of the nav bar title by making an empty back button
+//    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    [self.navigationItem setBackBarButtonItem:backButtonItem];
+//
+//    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+//    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
+//    [self.navigationController pushViewController:viewControllerB animated:YES];
+    
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
     
-    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"Social" bundle: nil];
+    ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"SocialViewController"];
     [self.navigationController pushViewController:viewControllerB animated:YES];
 }
 
