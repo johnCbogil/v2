@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic, copy) NSString *script;
 @property (readonly) int long timestamp;
 @property (strong, nonatomic) NSURL *groupImageURL;
+@property (strong, nonatomic) NSArray *usersCompleted;
 
 - (instancetype)initWithKey:(NSString *)key actionDictionary:(NSDictionary *)dictionary;
 

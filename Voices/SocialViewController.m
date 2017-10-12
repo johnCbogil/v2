@@ -9,6 +9,8 @@
 #import "SocialViewController.h"
 #import "FirebaseManager.h"
 #import "CurrentUser.h"
+#import "Group.h"
+#import "Action.h"
 
 @interface SocialViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -24,15 +26,28 @@
     [self configureTableView];
     
 //    // FOR EACH GROUP IN THE LIST OF USERS FOLLOWED GROUPS
+    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        //    // FETCH ACTIONS
+        [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+            
+            // FOR EACH ACTION IN THE LIST OF ACTIOJNS
+            for (Action *action in listOfActions) {
+             
+                for (NSString *user in action.usersCompleted) {
+                    
+                    // CREATE A USERCOMPLETED MODEL OBJECT
+                    
+                    // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
+
+                }
+            }
+        }];
+    }
 //    
-//    // FETCH ACTIONS
-//    [FirebaseManager sharedInstance]fetchActionsForGroup:<#(Group *)#> withCompletion:<#^(NSArray *listOfActions)successBlock#>
+
     
-    // FOR EACH ACTION IN THE LIST OF ACTIOJNS
     
-    // CREATE A USERCOMPLETED MODEL OBJECT
     
-    // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
 }
 
 - (void)configureTableView {
