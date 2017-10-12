@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #import "RepsNetworkManager.h"
 #import "StateRepresentative.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
@@ -250,7 +250,7 @@
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  [[LocationService sharedInstance]startUpdatingLocation];
+                                  [[LocationManager sharedInstance]startUpdatingLocation];
                                   
                               }];
     [alert addAction:button0];

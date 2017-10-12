@@ -1,5 +1,5 @@
 //
-//  LocationService.h
+//  LocationManager.h
 //  Voices
 //
 //  Created by John Bogil on 7/23/15.
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface LocationService : NSObject <CLLocationManagerDelegate>
+@interface LocationManager : NSObject <CLLocationManagerDelegate>
 
-+(LocationService *) sharedInstance;
++(LocationManager *) sharedInstance;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *currentLocation;
 @property (strong, nonatomic) CLLocation *requestedLocation;

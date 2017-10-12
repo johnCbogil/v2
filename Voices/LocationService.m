@@ -1,19 +1,19 @@
 
-//  LocationService.m
+//  LocationManager.m
 //  Voices
 //
 //  Created by John Bogil on 7/23/15.
 //  Copyright (c) 2015 John Bogil. All rights reserved.
 //
 
-#import "LocationService.h"
+#import "LocationManager.h"
 #import "RepsNetworkManager.h"
 
-@implementation LocationService
+@implementation LocationManager
 
-+ (LocationService *) sharedInstance {
++ (LocationManager *) sharedInstance {
     
-    static LocationService *instance = nil;
+    static LocationManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[self alloc]init];
