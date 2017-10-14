@@ -7,8 +7,10 @@
 //
 
 #import "ActionTableViewCell.h"
+
 #import "UIImageView+AFNetworking.h"
 #import "FirebaseManager.h"
+
 @import Firebase;
 
 @interface ActionTableViewCell()
@@ -120,7 +122,7 @@
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
     
-    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action];
+    [[FirebaseManager sharedInstance] actionCompleteButtonPressed:self.action];
     
     if (self.action.isCompleted) {
         self.action.isCompleted = NO;

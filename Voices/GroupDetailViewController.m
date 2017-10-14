@@ -20,7 +20,7 @@
 #import "WebViewController.h"
 #import "EmptyStateTableViewCell.h"
 
-@interface GroupDetailViewController ()
+@interface GroupDetailViewController ()<PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
 @property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
@@ -462,6 +462,7 @@
                         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed: kActionCellReuse owner:self options:nil];
                         cell = [topLevelObjects objectAtIndex: 0];
                     }
+                    cell.delegate = self;
                     [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
                     return cell;
                 }

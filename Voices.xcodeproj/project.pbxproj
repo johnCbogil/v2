@@ -72,6 +72,7 @@
 		52FC68F51C3764CF00E29B7A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FC68F41C3764CF00E29B7A /* Onboarding.storyboard */; };
 		52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FC68FA1C37657000E29B7A /* OnboardingViewController.m */; };
 		611861611EDCCCEC007C317C /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611861601EDCCCEC007C317C /* ActionView.m */; };
+		61B86CEF1F929B5900B1D3B4 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B86CEE1F929B5900B1D3B4 /* UIViewController+Alert.m */; };
 		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
 		7E0448291F644E10001CE76C /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0448281F644E10001CE76C /* TTTAttributedLabel.m */; };
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
@@ -230,6 +231,8 @@
 		52FC68FA1C37657000E29B7A /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		6118615F1EDCCCEC007C317C /* ActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionView.h; sourceTree = "<group>"; };
 		611861601EDCCCEC007C317C /* ActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionView.m; sourceTree = "<group>"; };
+		61B86CED1F929B5900B1D3B4 /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
+		61B86CEE1F929B5900B1D3B4 /* UIViewController+Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		61DC8EA11D0660590086C070 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		61DC8EA21D0660590086C070 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		7E0448271F644E10001CE76C /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				52AD33911BE5C73D00EC0468 /* UIFont+voicesFont.m */,
 				52AD33931BE5C8FD00EC0468 /* UIColor+voicesColor.h */,
 				52AD33941BE5C8FD00EC0468 /* UIColor+voicesColor.m */,
+				61B86CED1F929B5900B1D3B4 /* UIViewController+Alert.h */,
+				61B86CEE1F929B5900B1D3B4 /* UIViewController+Alert.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1014,6 +1019,7 @@
 				7EA517131F2E7375003362D1 /* ActionFeedHeaderTableViewCell.m in Sources */,
 				52A6107F1B66ACD400B041FF /* RepsNetworkManager.m in Sources */,
 				52BB34311B6160CA00BB9FFD /* main.m in Sources */,
+				61B86CEF1F929B5900B1D3B4 /* UIViewController+Alert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

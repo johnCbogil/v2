@@ -7,7 +7,9 @@
 //
 
 #import "Action.h"
+
 #import "FirebaseManager.h"
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,16 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
     }
     _debug = [dictionary[@"debug"]intValue];
     
-    [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
-        if ([listOfCompletedActions containsObject:_key]) {
-            _isCompleted = YES;
-        }
-        else {
-            _isCompleted = NO;
-        }
-    } onError:^(NSError *error) {
-        [error localizedDescription];
-    }];
+    NSDictionary<NSString *, NSNumber *> *usersCompleted = dictionary[@"usersCompleted"];
+    self.isCompleted = usersCompleted[[FIRAuth auth].currentUser.uid].boolValue;
+    
     return self;
 }
 
