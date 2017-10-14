@@ -42,11 +42,18 @@
         [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
     }
     
-    [self setInitialViewController];
-    [self setCache];
+    [self configureInitialViewController];
+    [self configureCache];
     [self enableFeedbackAndReporting];
     [self unzipNYCDataSet];
     [self excludeGeoJSONFromCloudBackup];
+    [self configureFirebase];
+    
+    return YES;
+}
+
+- (void)configureFirebase {
+    
     [FIROptions defaultOptions].deepLinkURLScheme = kDeepLinkURLScheme;
     [FIRApp configure];
     [GMSPlacesClient provideAPIKey:kAutocomplete];
@@ -57,8 +64,6 @@
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
-    
-    return YES;
 }
 
 #pragma mark - Deeplinking
@@ -237,7 +242,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)setInitialViewController {
+- (void)configureInitialViewController {
     
     self.isFirstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"];
     if (!self.isFirstLaunch) {
@@ -300,7 +305,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     }
 }
 
-- (void)setCache {
+- (void)configureCache {
     
     NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
                                                             diskCapacity:100 * 1024 * 1024
