@@ -7,6 +7,7 @@
 //
 
 #import "GroupDetailViewController.h"
+
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
@@ -19,6 +20,7 @@
 #import "FirebaseManager.h"
 #import "WebViewController.h"
 #import "EmptyStateTableViewCell.h"
+#import "UIViewController+Alert.h"
 
 @interface GroupDetailViewController ()<PresentThankYouAlertDelegate>
 
