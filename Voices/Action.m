@@ -31,8 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
     _debug = [dictionary[@"debug"]intValue];
     
-    NSDictionary<NSString *, NSNumber *> *usersCompleted = dictionary[@"usersCompleted"];
-    self.isCompleted = usersCompleted[[FIRAuth auth].currentUser.uid].boolValue;
+    NSDictionary *usersCompleted = dictionary[@"usersCompleted"];
+    self.isCompleted = usersCompleted[[FIRAuth auth].currentUser.uid];
     
     return self;
 }
