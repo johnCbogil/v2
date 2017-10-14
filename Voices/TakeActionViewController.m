@@ -160,13 +160,6 @@
     }];
 }
 
-- (void)learnMoreButtonDidPress:(UIButton*)sender {
-    
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    [self pushToActionDetail:indexPath];
-}
-
 - (void)pushToActionDetail:(NSIndexPath *)indexPath {
     
     // Allows centering of the nav bar title by making an empty back button
@@ -205,7 +198,6 @@
         
         // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionCellReuse forIndexPath:indexPath];
-        [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
         Group *currentGroup = [Group groupForAction: action];
         [cell initWithGroup:currentGroup andAction:action];
