@@ -7,6 +7,7 @@
 //
 
 #import "GroupDetailViewController.h"
+
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
@@ -19,8 +20,9 @@
 #import "FirebaseManager.h"
 #import "WebViewController.h"
 #import "EmptyStateTableViewCell.h"
+#import "UIViewController+Alert.h"
 
-@interface GroupDetailViewController ()
+@interface GroupDetailViewController ()<PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
 @property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
@@ -462,6 +464,7 @@
                         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed: kActionCellReuse owner:self options:nil];
                         cell = [topLevelObjects objectAtIndex: 0];
                     }
+                    cell.delegate = self;
                     [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
                     return cell;
                 }

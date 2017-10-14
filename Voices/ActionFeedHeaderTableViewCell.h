@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalActionsCompletedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
-- (void)refreshTotalActionsCompleted;
+
+- (void)refreshTotalActionsCompleted:(NSUInteger)actionsCompletedCount;
 
 @end

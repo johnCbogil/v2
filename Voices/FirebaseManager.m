@@ -7,9 +7,10 @@
 //
 
 #import "FirebaseManager.h"
+
 #import "CurrentUser.h"
-#import "ReportingManager.h"
 #import "PolicyPosition.h"
+#import "ReportingManager.h"
 
 @import Firebase;
 
@@ -181,7 +182,7 @@
     }
 }
 
-- (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
+- (void)fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     
     [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
     
@@ -304,6 +305,7 @@
 
 - (void)actionCompleteButtonPressed:(Action *)action {
     
+    // TODO: CHANGE ACTION.TIMESTAMP
     NSDictionary *userCompletedDict = @{[FIRAuth auth].currentUser.uid : @{@"timestamp":[NSString stringWithFormat:@"%ld", action.timestamp]}};
     
     FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
@@ -360,7 +362,7 @@
                 return;
             }
         
-            Action *action = [[Action alloc]initWithKey:actionKey actionDictionary:snapshot.value];
+            Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
             }
