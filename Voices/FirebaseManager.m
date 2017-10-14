@@ -7,9 +7,10 @@
 //
 
 #import "FirebaseManager.h"
+
 #import "CurrentUser.h"
-#import "ReportingManager.h"
 #import "PolicyPosition.h"
+#import "ReportingManager.h"
 
 @import Firebase;
 
@@ -181,7 +182,7 @@
     }
 }
 
-- (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
+- (void)fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     
     [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
     
@@ -303,8 +304,7 @@
 #pragma mark - Actions
 
 - (void)actionCompleteButtonPressed:(Action *)action {
-    
-    
+
     FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     FIRDatabaseReference *actionRef = [[self.actionsRef child:action.key]child:@"usersCompleted"];
     

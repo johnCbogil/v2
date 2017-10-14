@@ -7,21 +7,20 @@
 //
 
 #import "ActionFeedHeaderTableViewCell.h"
-#import "FirebaseManager.h"
-#import "CurrentUser.h"
 
 @interface ActionFeedHeaderTableViewCell()
 
 @property (nonatomic) NSUInteger completedActionCountInt;
 
 @end
+
 @implementation ActionFeedHeaderTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
-    [self refreshTotalActionsCompleted];
+    [self refreshTotalActionsCompleted:self.completedActionCountInt];
     [self configureTotalActionsCompletedLabel];
 
     self.titleLabel.text = @"Total Actions You Completed";
@@ -30,21 +29,15 @@
     self.subtitleLabel.text = @"Select an action below to get started.";
 }
 
-- (void)refreshTotalActionsCompleted {
-    
-    [[FirebaseManager sharedInstance]fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
-        
-        self.completedActionCountInt = listOfCompletedActions.count;
-        self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)self.completedActionCountInt];
-        if (listOfCompletedActions.count > 0) {
-            self.subtitleLabel.text = @"Thank you!";
-        }
-        else {
-            self.subtitleLabel.text = @"Select an action below to get started.";
-        }
-    } onError:^(NSError *error) {
-        [error localizedDescription];
-    }];
+- (void)refreshTotalActionsCompleted:(NSUInteger)actionsCompletedCount {
+    self.completedActionCountInt = actionsCompletedCount;
+    self.totalActionsCompletedLabel.text = [NSString stringWithFormat:@"%ld", (unsigned long)self.completedActionCountInt];
+    if (actionsCompletedCount > 0) {
+        self.subtitleLabel.text = @"Thank you!";
+    }
+    else {
+        self.subtitleLabel.text = @"Select an action below to get started.";
+    }
 }
 
 - (void)configureTotalActionsCompletedLabel {
