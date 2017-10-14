@@ -26,6 +26,8 @@
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addGroupButton;
+@property (nonatomic) NSUInteger actionsCompletedCount;
+
 @end
 
 @implementation TakeActionViewController
@@ -33,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self fetchCompletedActions];
     [self configureTableView];
     [self createActivityIndicator];
     
@@ -41,7 +44,7 @@
     
     self.isUserAuthInProgress = NO;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchCompletedActions) name:@"refreshHeaderCell" object:nil];
     
     [self.navigationController setNavigationBarHidden:YES];
     self.addGroupButton.tintColor = [UIColor voicesOrange];
@@ -135,16 +138,13 @@
 
 #pragma mark - Firebase Methods
 
-- (void)userAuth {
-    
-    if (self.isUserAuthInProgress) {
-        return;
-    }
-    self.isUserAuthInProgress = YES;
-    NSString *userID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-    if (userID) {
-        [self fetchFollowedGroupsForCurrentUser];
-    }
+- (void)fetchCompletedActions {
+    [[FirebaseManager sharedInstance] fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
+        self.actionsCompletedCount = listOfCompletedActions.count;
+        [self refreshHeaderCell];
+    } onError:^(NSError *error) {
+    }];
+
 }
 
 - (void)fetchFollowedGroupsForCurrentUser {
@@ -190,7 +190,7 @@
     
     if (indexPath.row == 0) {
         ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionFeedHeaderTableViewCell forIndexPath:indexPath];
-        [cell refreshTotalActionsCompleted];
+        [cell refreshTotalActionsCompleted:self.actionsCompletedCount];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -247,11 +247,9 @@
 }
 
 - (void)refreshHeaderCell {
-    
-    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [cell refreshTotalActionsCompleted];
+    [cell refreshTotalActionsCompleted:self.actionsCompletedCount];
 }
 
 - (IBAction)addGroupButtonDidPress:(id)sender {
