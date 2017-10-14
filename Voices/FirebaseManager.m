@@ -366,6 +366,7 @@
             if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
             }
+            [actionsList addObject:action];
             dispatch_group_leave(actionsGroup);
         }];
     }
@@ -423,7 +424,7 @@
                 *stop = YES;
                 return YES;
             }
-            return NO;
+            return YES;
         }];
         if (index != NSNotFound) {
             // We already have this action in our table

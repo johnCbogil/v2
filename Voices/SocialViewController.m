@@ -33,18 +33,41 @@
     
     
     // FOR EACH ACTION IN THE LIST OF ACTIOJNS
-    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
+    [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
+        for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
+            [[FirebaseManager sharedInstance] fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+                [self updateTableWithActions:listOfActions];
+            }];
+        }
+    } onError:^(NSError *error) {
         
+    }];
+    
+//    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
+//
+//        for (NSDictionary *user in action.usersCompleted) {
+//
+//            // CREATE A USERCOMPLETED MODEL OBJECT
+//            CompletedAction *completedAction = [[CompletedAction alloc]initWithData:action.usersCompleted[user]];
+//
+//            // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
+//            [self.tableViewDataSource addObject:completedAction];
+//            [self.tableView reloadData];
+//        }
+//    }
+}
+
+- (void)updateTableWithActions:(NSArray<Action *> *)actions {
+    for (Action *action in actions) {
         for (NSDictionary *user in action.usersCompleted) {
-            
             // CREATE A USERCOMPLETED MODEL OBJECT
-            CompletedAction *completedAction = [[CompletedAction alloc]initWithData:action.usersCompleted[user]];
+            CompletedAction *completedAction = [[CompletedAction alloc] initWithData:action.usersCompleted[user]];
             
             // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
             [self.tableViewDataSource addObject:completedAction];
-            [self.tableView reloadData];
         }
     }
+    [self.tableView reloadData];
 }
 
 - (void)configureTableView {
