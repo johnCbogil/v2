@@ -360,7 +360,7 @@
                 return;
             }
         
-            Action *action = [[Action alloc]initWithKey:actionKey actionDictionary:snapshot.value];
+            Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
             if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
             }

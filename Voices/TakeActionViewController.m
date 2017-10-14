@@ -189,18 +189,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        
         ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionFeedHeaderTableViewCell forIndexPath:indexPath];
         [cell refreshTotalActionsCompleted];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else {
-        
-        // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionCellReuse forIndexPath:indexPath];
         Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
-        Group *currentGroup = [Group groupForAction: action];
+        Group *currentGroup = [Group groupForAction:action];
         [cell initWithGroup:currentGroup andAction:action];
         cell.delegate = self;
         return cell;
