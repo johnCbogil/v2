@@ -304,6 +304,7 @@
 
 - (void)actionCompleteButtonPressed:(Action *)action {
     
+    NSDictionary *userCompletedDict = @{[FIRAuth auth].currentUser.uid : @{@"timestamp":[NSString stringWithFormat:@"%ld", action.timestamp]}};
     
     FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     FIRDatabaseReference *actionRef = [[self.actionsRef child:action.key]child:@"usersCompleted"];
@@ -315,14 +316,13 @@
         if (!isActionCompleted) {
             
             [currentUserActionsCompletedRef updateChildValues:@{action.key : @1}];
-            [actionRef updateChildValues:@{[FIRAuth auth].currentUser.uid : @1}];
+            [actionRef updateChildValues:userCompletedDict];
         }
         else {
             
             [[currentUserActionsCompletedRef child:action.key]removeValue];
             [[actionRef child:[FIRAuth auth].currentUser.uid]removeValue];
         }
-        
         [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshHeaderCell" object:nil];
     }];
 }
