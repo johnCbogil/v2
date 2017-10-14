@@ -27,7 +27,6 @@
     [super viewDidLoad];
     
     [self configureTableView];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];

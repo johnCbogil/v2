@@ -10,10 +10,11 @@
 
 @implementation CompletedAction
 
+// TODO: THIS NEEDS TO NOT CRASH FOR LWV WISCONSIN ACTIONS
 - (instancetype)initWithData:(NSDictionary *)data {
     
     self.timestamp = [[data valueForKey:@"timestamp"]intValue];
-    self.usersCheered = [[data valueForKey:@"usersCheered"]allKeys]; // THIS MAY NEED TO BE A DICT INSTEADf
+    self.usersCheered = [[data valueForKey:@"usersCheered"]allKeys];
     
     return self;
 }
