@@ -7,15 +7,16 @@
 //
 
 #import "TakeActionViewController.h"
+
 #import "ActionTableViewCell.h"
 #import "ActionFeedHeaderTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
-
+#import "FirebaseManager.h"
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
-#import "FirebaseManager.h"
 #import "ScriptManager.h"
+#import "UIViewController+Alert.h"
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
@@ -254,34 +255,6 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [cell refreshTotalActionsCompleted];
-}
-
-#pragma mark - UIAlerts
-
-- (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Action Completed!"
-                                                                             message:@"Thank you! Now share this action with others, change happens when many people act together."
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull alert) {
-        
-        NSString *shareString = [NSString stringWithFormat:@"Hey, please help me support %@. %@.\n\n https://tryvoices.com/%@", group.name, action.title, group.key];
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
-        [self.navigationController presentViewController:activityViewController
-                                                animated:YES
-                                              completion:^{ }];
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [alertController addAction:cancel];
-    [alertController addAction:shareAction];
-    
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)addGroupButtonDidPress:(id)sender {
