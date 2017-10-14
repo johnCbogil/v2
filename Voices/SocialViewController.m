@@ -26,9 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableViewDataSource = @[].mutableCopy;
-    
-    [self.tableView registerNib:[UINib nibWithNibName: @"CompletedActionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CompletedActionTableViewCell"];
+    self.title = @"My Community";
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
     [self configureTableView];
     
     
@@ -49,6 +49,8 @@
 
 - (void)configureTableView {
     
+    self.tableViewDataSource = @[].mutableCopy;
+    [self.tableView registerNib:[UINib nibWithNibName: @"CompletedActionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CompletedActionTableViewCell"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
