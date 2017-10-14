@@ -7,8 +7,10 @@
 //
 
 #import "ActionTableViewCell.h"
+
 #import "UIImageView+AFNetworking.h"
 #import "FirebaseManager.h"
+
 @import Firebase;
 
 @interface ActionTableViewCell()
