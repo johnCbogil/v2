@@ -31,6 +31,9 @@
 
 @end
 
+// TODO: OUTSTANDING ISSUES
+// ACTIVITY INDICATOR NOT APPEARING
+
 @implementation TakeActionViewController
 
 - (void)viewDidLoad {
@@ -75,13 +78,12 @@
     if (!self.tableViewDataSource.count) {
         self.tableView.backgroundView.hidden = NO;
     }
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
     [self fetchActions];
 }
 
 - (void)configureTableView {
     
-    self.tableViewDataSource = @[].mutableCopy;
     [self fetchCompletedActionCount];
     self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
@@ -182,6 +184,8 @@
 
 - (void)fetchActions {
     
+    self.tableViewDataSource = @[].mutableCopy;
+    
     for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
         
         [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
@@ -197,6 +201,7 @@
             }
         }];
     }
+    [self.tableView reloadData];
 }
 
 - (BOOL)shouldAddActionToList:(Action *)action {
@@ -250,7 +255,7 @@
     }
     else {
         ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionCellReuse forIndexPath:indexPath];
-        Action *action = self.tableViewDataSource[indexPath.row-1];
+        Action *action = self.tableViewDataSource[indexPath.row - 1];
         Group *currentGroup = [Group groupForAction:action];
         [cell initWithGroup:currentGroup andAction:action];
         cell.delegate = self;
