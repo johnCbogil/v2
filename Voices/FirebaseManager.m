@@ -184,7 +184,7 @@
 
 - (void)fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     
-    [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
+//    [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
     [[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -235,14 +235,18 @@
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
                 
-                [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
-                    
-                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
-                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                    successBlock(listOfActions);
-                }];
+                
+                // THIS METHOD IS ONLY FETCHING GROUPS RIGHT NOW
+                
+                
+//                [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+//
+//                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
+//                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+//                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//                    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+//                    successBlock(listOfActions);
+//                }];
             }];
         }
         successBlock([CurrentUser sharedInstance].listOfFollowedGroups);
@@ -332,11 +336,11 @@
     
    __block NSMutableArray *actionsList = @[].mutableCopy;
     
-    dispatch_group_t actionsGroup = dispatch_group_create();
+//    dispatch_group_t actionsGroup = dispatch_group_create();
 
     for (NSString *actionKey in group.actionKeys) {
         
-        dispatch_group_enter(actionsGroup);
+//        dispatch_group_enter(actionsGroup);
 
         
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -361,16 +365,16 @@
             }
         
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-            if ([self shouldAddActionToList:action]) {
+//            if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
-            }
-            dispatch_group_leave(actionsGroup);
+//            }
+//            dispatch_group_leave(actionsGroup);
 
         }];
     }
-    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
+//    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
         successBlock(actionsList); // THIS IS ONLY CALLED WHEN FOLLOWING NON DEBUG GROUPS
-    });
+//    });
 }
 
 - (void)fetchListOfCompletedActionsWithCompletion:(void(^)(NSArray *listOfCompletedActions))successBlock onError:(void(^)(NSError *error))errorBlock {
@@ -411,36 +415,40 @@
     }
 }
 
-- (BOOL)shouldAddActionToList:(Action *)action {
-    
-    NSDate *currentTime = [NSDate date];
-    
-    if (action.timestamp < currentTime.timeIntervalSince1970) {
-        
-        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
-            if ([action.key isEqualToString:actionInArray.key]) {
-                *stop = YES;
-                return YES;
-            }
-            return NO;
-        }];
-        if (index != NSNotFound) {
-            // We already have this action in our table
-            return NO;
-        }
-        
-        BOOL debug = [self isInDebugMode];
-        // if app is in debug, add all groups
-        if (debug) {
-            return YES;
-        }
-        // if app is not in debug, add only non-debug groups
-        else if (!action.debug) {
-            return YES;
-        }
-    }
-    return NO;
-}
+
+// THIS SHOULD BE OCCURING IN THE VIEW CONTROLLER
+
+
+//- (BOOL)shouldAddActionToList:(Action *)action {
+//
+//    NSDate *currentTime = [NSDate date];
+//
+//    if (action.timestamp < currentTime.timeIntervalSince1970) {
+//
+//        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
+//            if ([action.key isEqualToString:actionInArray.key]) {
+//                *stop = YES;
+//                return YES;
+//            }
+//            return NO;
+//        }];
+//        if (index != NSNotFound) {
+//            // We already have this action in our table
+//            return NO;
+//        }
+//
+//        BOOL debug = [self isInDebugMode];
+//        // if app is in debug, add all groups
+//        if (debug) {
+//            return YES;
+//        }
+//        // if app is not in debug, add only non-debug groups
+//        else if (!action.debug) {
+//            return YES;
+//        }
+//    }
+//    return NO;
+//}
 
 #pragma mark - Private methods
 
