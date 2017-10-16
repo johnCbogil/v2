@@ -166,7 +166,7 @@
         
         NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
         groupsArray = [groupsArray sortedArrayUsingDescriptors:@[sort]].mutableCopy;
-
+        
         successBlock(groupsArray);
     } withCancelBlock:^(NSError * _Nonnull error) {
         errorBlock(error);
@@ -308,7 +308,7 @@
 #pragma mark - Actions
 
 - (void)actionCompleteButtonPressed:(Action *)action {
-
+    
     FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     FIRDatabaseReference *actionRef = [[self.actionsRef child:action.key]child:@"usersCompleted"];
     
@@ -336,11 +336,11 @@
     
    __block NSMutableArray *actionsList = @[].mutableCopy;
     
-//    dispatch_group_t actionsGroup = dispatch_group_create();
+    dispatch_group_t actionsGroup = dispatch_group_create();
 
     for (NSString *actionKey in group.actionKeys) {
         
-//        dispatch_group_enter(actionsGroup);
+        dispatch_group_enter(actionsGroup);
 
         
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -368,13 +368,13 @@
 //            if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
 //            }
-//            dispatch_group_leave(actionsGroup);
+            dispatch_group_leave(actionsGroup);
 
         }];
     }
-//    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
+    dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
         successBlock(actionsList); // THIS IS ONLY CALLED WHEN FOLLOWING NON DEBUG GROUPS
-//    });
+    });
 }
 
 - (void)fetchListOfCompletedActionsWithCompletion:(void(^)(NSArray *listOfCompletedActions))successBlock onError:(void(^)(NSError *error))errorBlock {

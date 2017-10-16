@@ -76,12 +76,14 @@
         self.tableView.backgroundView.hidden = NO;
     }
     [self.tableView reloadData];
+    [self fetchActions];
+
 }
 
 - (void)configureTableView {
     
+    self.tableViewDataSource = @[].mutableCopy;
     [self fetchCompletedActionCount];
-    [self fetchActions];
     self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
     if (!self.isUserAuthInProgress) {
@@ -185,15 +187,15 @@
         
         [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
             
-            for (Action *action in listOfActions) {
+//            for (Action *action in listOfActions) {
             
-                if ([self shouldAddActionToList:action]) {
+//                if ([self shouldAddActionToList:action]) {
                     [self.tableViewDataSource addObjectsFromArray:listOfActions];
-                    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-                    self.tableViewDataSource = [self.tableViewDataSource sortedArrayUsingDescriptors:@[sort]].mutableCopy;\
+                    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+                    self.tableViewDataSource = [self.tableViewDataSource sortedArrayUsingDescriptors:@[sort]].mutableCopy;
                     [self.tableView reloadData];
-                }
-            }
+//                }
+//            }
         }];
     }
 }

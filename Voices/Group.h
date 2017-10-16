@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSURL *groupImageURL;
 @property (strong, nonatomic) NSArray <NSString*> *actionKeys;
 @property (strong, nonatomic) NSString *website;
+@property (strong, nonatomic) NSMutableArray *actionsArray;
 @property BOOL debug;
 
 + (Group *)groupForAction: (Action*) action;
