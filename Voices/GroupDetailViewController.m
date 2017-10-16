@@ -518,18 +518,14 @@
     
     [self toggleActivityIndicatorOn];
     
-//    [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
     [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
         
         [self toggleActivityIndicatorOff];
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-        
         [self.tableView reloadData];
     }];
-    
-    
 }
 
 - (void)fetchPolicyPositions {

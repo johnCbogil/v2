@@ -234,24 +234,11 @@
                     return;
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
-                
-                
-                // THIS METHOD IS ONLY FETCHING GROUPS RIGHT NOW
-                
-                
-//                [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
-//
-//                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
-//                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-//                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//                    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-//                    successBlock(listOfActions);
-//                }];
             }];
         }
         successBlock([CurrentUser sharedInstance].listOfFollowedGroups);
     } withCancelBlock:^(NSError * _Nonnull error) {
-        
+        [error localizedDescription];
     }];
 }
 
@@ -275,17 +262,6 @@
     
     // Remove group from user's subscriptions
     [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
-    
-    // Remove associated actions
-    NSMutableArray *discardedActions = [NSMutableArray array];
-//    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-//        if(action.groupKey != nil && group.key != nil) {
-//            if([action.groupKey caseInsensitiveCompare: group.key] == NSOrderedSame){
-//                [discardedActions addObject:action];
-//            }
-//        }
-//    }
-//    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
     
     [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
     
@@ -417,41 +393,6 @@
         }];
     }
 }
-
-
-// THIS SHOULD BE OCCURING IN THE VIEW CONTROLLER
-
-
-//- (BOOL)shouldAddActionToList:(Action *)action {
-//
-//    NSDate *currentTime = [NSDate date];
-//
-//    if (action.timestamp < currentTime.timeIntervalSince1970) {
-//
-//        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
-//            if ([action.key isEqualToString:actionInArray.key]) {
-//                *stop = YES;
-//                return YES;
-//            }
-//            return NO;
-//        }];
-//        if (index != NSNotFound) {
-//            // We already have this action in our table
-//            return NO;
-//        }
-//
-//        BOOL debug = [self isInDebugMode];
-//        // if app is in debug, add all groups
-//        if (debug) {
-//            return YES;
-//        }
-//        // if app is not in debug, add only non-debug groups
-//        else if (!action.debug) {
-//            return YES;
-//        }
-//    }
-//    return NO;
-//}
 
 #pragma mark - Private methods
 

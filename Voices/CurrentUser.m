@@ -31,7 +31,6 @@
     if(self != nil) {
         
         self.listOfFollowedGroups = @[].mutableCopy;
-//        self.listOfActions = @[].mutableCopy;
     }
     return self;
 }
