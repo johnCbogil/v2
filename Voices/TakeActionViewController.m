@@ -63,11 +63,11 @@
         
         [self fetchFollowedGroupsForCurrentUser];
     }
-    else {
-        self.tableView.backgroundView.hidden = NO;
-    }
     
-    if (!self.tableViewDataSource.count) {
+    if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
+        self.tableView.backgroundView.hidden = YES;
+    }
+    else {
         self.tableView.backgroundView.hidden = NO;
     }
 
@@ -150,7 +150,6 @@
 - (void)fetchActions {
     
     self.tableViewDataSource = @[].mutableCopy;
-    
     for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
         
         [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
