@@ -334,6 +334,8 @@
 // TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingActions" object:nil];
+    
    __block NSMutableArray *actionsList = @[].mutableCopy;
     
     dispatch_group_t actionsGroup = dispatch_group_create();
@@ -374,6 +376,7 @@
     }
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
         successBlock(actionsList); // THIS IS ONLY CALLED WHEN FOLLOWING NON DEBUG GROUPS
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"stopFetchingActions" object:nil];
     });
 }
 

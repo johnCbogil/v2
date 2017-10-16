@@ -21,18 +21,15 @@
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addGroupButton;
 @property (nonatomic) NSUInteger actionsCompletedCount;
 @property (strong, nonatomic) NSMutableArray *tableViewDataSource;
+@property (weak, nonatomic) IBOutlet UILabel *gettingActionsLabel;
 
 @end
-
-// TODO: OUTSTANDING ISSUES
-// ACTIVITY INDICATOR NOT APPEARING
 
 @implementation TakeActionViewController
 
@@ -43,8 +40,9 @@
     [self configureActivityIndicator];
     [self configureNavigationBar];
     
-    self.isUserAuthInProgress = NO;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchCompletedActionCount) name:@"refreshHeaderCell" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingActions" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toggleActivityIndicatorOff) name:@"stopFetchingActions" object:nil];
 }
 
 - (void)configureNavigationBar {
@@ -54,12 +52,6 @@
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     self.addGroupButton.tintColor = [UIColor voicesOrange];
     self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:40];
-}
-
-- (void)configureEmptyState {
-    
-    [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
-    [self.view layoutSubviews];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,7 +70,7 @@
     if (!self.tableViewDataSource.count) {
         self.tableView.backgroundView.hidden = NO;
     }
-//    [self.tableView reloadData];
+
     [self fetchActions];
 }
 
@@ -87,9 +79,6 @@
     [self fetchCompletedActionCount];
     self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
-    if (!self.isUserAuthInProgress) {
-        self.tableView.backgroundView.hidden = YES;
-    }
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName: kActionCellReuse bundle:nil]forCellReuseIdentifier: kActionCellReuse];
@@ -117,29 +106,8 @@
 - (void)toggleActivityIndicatorOff {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if (!self.tableViewDataSource.count) {
-            self.tableView.backgroundView.hidden = NO;
-        }
-        else {
-            self.tableView.backgroundView.hidden = YES;
-        }
-
-        if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
-            self.tableView.backgroundView.hidden = NO;
-        }
-        else {
-            self.tableView.backgroundView.hidden = YES;
-        }
-        
-        // CONFIGURE EMPTY STATE
-        
-        // IF THERE ARE NO GROUPS
-            // DISPLAY DEFAULT EMPTY STATE
-        // IF THERE ARE GROUPS BUT NO ACTIONS
-            // PRESENT DIFFERENT EMPTY STATE
+        [self.activityIndicatorView stopAnimating];
     });
-    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Firebase Methods
@@ -150,16 +118,13 @@
         self.actionsCompletedCount = listOfCompletedActions.count;
         [self refreshHeaderCell];
     } onError:^(NSError *error) {
+        [error localizedDescription];
     }];
 }
 
 - (void)fetchFollowedGroupsForCurrentUser {
     
-    self.isUserAuthInProgress = NO;
-    [self toggleActivityIndicatorOn];
-    
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
-        [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
         
     } onError:^(NSError *error) {
@@ -294,7 +259,6 @@
     if (indexPath.row == 0) {
         return;
     }
-    
     
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
