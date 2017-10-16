@@ -518,7 +518,7 @@
     
     [self toggleActivityIndicatorOn];
     
-    [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
+//    [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
     [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
         
         [self toggleActivityIndicatorOff];

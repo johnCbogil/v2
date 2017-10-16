@@ -77,7 +77,6 @@
     }
     [self.tableView reloadData];
     [self fetchActions];
-
 }
 
 - (void)configureTableView {
@@ -187,15 +186,15 @@
         
         [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
             
-//            for (Action *action in listOfActions) {
+            for (Action *action in listOfActions) {
             
-//                if ([self shouldAddActionToList:action]) {
+                if ([self shouldAddActionToList:action]) {
                     [self.tableViewDataSource addObjectsFromArray:listOfActions];
-                    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+                    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
                     self.tableViewDataSource = [self.tableViewDataSource sortedArrayUsingDescriptors:@[sort]].mutableCopy;
                     [self.tableView reloadData];
-//                }
-//            }
+                }
+            }
         }];
     }
 }
