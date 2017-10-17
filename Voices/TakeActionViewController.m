@@ -68,7 +68,7 @@
         [self fetchFollowedGroupsForCurrentUser];
     }
     
-    if ([CurrentUser sharedInstance].listOfFollowedGroups.count && self.tableViewDataSource.count) {
+    if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
         self.tableView.backgroundView.hidden = YES;
     }
     else {
