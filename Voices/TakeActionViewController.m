@@ -17,6 +17,7 @@
 #import "ListOfGroupsViewController.h"
 #import "ScriptManager.h"
 #import "UIViewController+Alert.h"
+#import "VoicesUtilities.h"
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
@@ -190,7 +191,7 @@
             return NO;
         }
 
-        BOOL debug = [self isInDebugMode];
+        BOOL debug = [VoicesUtilities isInDebugMode];
         // if app is in debug, add all groups
         if (debug) {
             return YES;
@@ -287,16 +288,6 @@
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     ListOfGroupsViewController *viewControllerB = (ListOfGroupsViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ListOfGroupsViewController"];
     [self.navigationController pushViewController:viewControllerB animated:YES];
-}
-
-#pragma mark - Private methods
-
-- (BOOL)isInDebugMode {
-#if DEBUG
-    return YES;
-#else
-    return NO;
-#endif
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "CurrentUser.h"
 #import "PolicyPosition.h"
 #import "ReportingManager.h"
+#import "VoicesUtilities.h"
 
 @import Firebase;
 
@@ -153,7 +154,7 @@
             
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
             
-            BOOL debug = [self isInDebugMode];
+            BOOL debug = [VoicesUtilities isInDebugMode];
             // if app is in debug, add all groups
             if (debug) {
                 [groupsArray addObject:group];
@@ -218,7 +219,7 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                BOOL debug = [self isInDebugMode];
+                BOOL debug = [VoicesUtilities isInDebugMode];
                 // if app is in debug, add all groups
                 if (debug) {
                     [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
@@ -392,16 +393,6 @@
             errorBlock(error);
         }];
     }
-}
-
-#pragma mark - Private methods
-
-- (BOOL)isInDebugMode {
-#if DEBUG
-    return YES;
-#else
-    return NO;
-#endif
 }
 
 @end

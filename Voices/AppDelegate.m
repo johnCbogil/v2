@@ -18,6 +18,7 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 #import "FirebaseManager.h"
+#import "VoicesUtilities.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -38,7 +39,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
-    if ([self isInDebugMode]) {
+    if ([VoicesUtilities isInDebugMode]) {
         [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
     }
     
@@ -328,17 +329,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [window removeConstraints:window.constraints];
         }
     }
-}
-
-#pragma marks - Debug
-
-- (BOOL)isInDebugMode {
-    
-#if DEBUG
-    return YES;
-#else
-    return NO;
-#endif
 }
 
 @end
