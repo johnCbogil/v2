@@ -39,6 +39,10 @@
     [self configureTableView];
     [self configureActivityIndicator];
     [self configureNavigationBar];
+    [self configureObservers];
+}
+
+- (void)configureObservers {
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchCompletedActionCount) name:@"refreshHeaderCell" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingActions" object:nil];
