@@ -15,8 +15,6 @@
 
 @implementation CurrentUser
 
-// TODO: THIS CLASS SHOULD BE SEPARATED BETWEEN USER MODEL AND NETWORK MANAGER
-
 + (CurrentUser *) sharedInstance {
     static CurrentUser *instance = nil;
     static dispatch_once_t onceToken;

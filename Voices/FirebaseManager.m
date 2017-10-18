@@ -308,7 +308,6 @@
     }];
 }
 
-// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
 - (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingActions" object:nil];
