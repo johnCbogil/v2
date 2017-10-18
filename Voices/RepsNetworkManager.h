@@ -19,7 +19,7 @@
                     WithCompletion:(void(^)(NSDictionary *results))successBlock
                            onError:(void(^)(NSError *error))errorBlock;
 - (void)getStateRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
-- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
+- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSDictionary *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock;
 - (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock
                                         onError:(void(^)(NSError *error))errorBlock;

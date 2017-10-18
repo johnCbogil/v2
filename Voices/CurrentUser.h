@@ -15,5 +15,5 @@
 + (CurrentUser *) sharedInstance;
 @property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
 @property (strong, nonatomic) NSString *firebaseUserID;
-
+@property (strong, nonatomic) NSString *city;
 @end

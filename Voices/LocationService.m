@@ -8,6 +8,7 @@
 
 #import "LocationManager.h"
 #import "RepsNetworkManager.h"
+#import "CurrentUser.h"
 
 @implementation LocationManager
 
@@ -60,6 +61,7 @@
             CLPlacemark *placemark= [placemarks objectAtIndex:0];
             address = [NSString stringWithFormat:@"%@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
             NSLog(@"%@",address);
+            [CurrentUser sharedInstance].city = [placemark locality];
             [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
         }
@@ -68,7 +70,22 @@
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock {
-    [[RepsNetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
+    
+    [[RepsNetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSDictionary *results) {
+        
+        NSLog(@"%@", results);
+        NSArray *subResults = results[@"results"];
+        NSDictionary *addressComponents = subResults[0];
+        NSArray *subAddressComponents = addressComponents[@"address_components"];
+        for (NSDictionary *component in subAddressComponents) {
+            if ([component[@"types"] containsValueForKey:@"political"] && [component[@"types"] containsValueForKey:@"administrative_area_level_1"] ) {
+                NSLog(component[@"long_name"]);
+            }
+        }
+        
+        
+//        [CurrentUser sharedInstance].city = superResults[@"address_components"];
+        
         if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
             
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." preferredStyle:UIAlertControllerStyleAlert];
@@ -76,8 +93,8 @@
             [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
         }
         else {
-            CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
-            CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
+            CLLocationDegrees latitude = [[[[addressComponents valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
+            CLLocationDegrees longitude = [[[[addressComponents valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
             CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             self.requestedLocation = location;
             successBlock(location);

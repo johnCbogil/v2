@@ -115,7 +115,7 @@
 
 #pragma mark - Get Street Address Method
 
-- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSArray *results))successBlock
+- (void)getStreetAddressFromSearchText:(NSString*)searchText withCompletion:(void(^)(NSDictionary *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock {
     
     NSString *formattedString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", searchText, kGoogMaps];
