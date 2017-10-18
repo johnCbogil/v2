@@ -1,14 +1,14 @@
 //
-//  NYCRepresentative.m
+//  LocalRepresentative.m
 //  Voices
 //
 //  Created by John Bogil on 1/23/16.
 //  Copyright © 2016 John Bogil. All rights reserved.
 //
 
-#import "NYCRepresentative.h"
+#import "LocalRepresentative.h"
 
-@implementation NYCRepresentative
+@implementation LocalRepresentative
 
 - (id)initWithData:(NSDictionary*)data {
     self = [super init];

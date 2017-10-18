@@ -51,7 +51,7 @@
 		52BB343C1B6160CA00BB9FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343B1B6160CA00BB9FFD /* Images.xcassets */; };
 		52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BB343D1B6160CA00BB9FFD /* LaunchScreen.xib */; };
 		52BB344B1B6160CA00BB9FFD /* VoicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BB344A1B6160CA00BB9FFD /* VoicesTests.m */; };
-		52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */; };
+		52BE68141C5487A900C9E9C0 /* LocalRepresentative.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE68131C5487A900C9E9C0 /* LocalRepresentative.m */; };
 		52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BF3EBE1DD7C9F10041349B /* RepsCollectionViewCell.xib */; };
 		52BF3EC21DD7CA400041349B /* RepsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BF3EC11DD7CA400041349B /* RepsCollectionViewCell.m */; };
 		52C653301B75120900EA6FFD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6532F1B75120900EA6FFD /* RootViewController.m */; };
@@ -197,8 +197,8 @@
 		52BB34441B6160CA00BB9FFD /* Voices.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Voices.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52BB34491B6160CA00BB9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BB344A1B6160CA00BB9FFD /* VoicesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoicesTests.m; sourceTree = "<group>"; };
-		52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYCRepresentative.h; sourceTree = "<group>"; };
-		52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYCRepresentative.m; sourceTree = "<group>"; };
+		52BE68121C5487A900C9E9C0 /* LocalRepresentative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalRepresentative.h; sourceTree = "<group>"; };
+		52BE68131C5487A900C9E9C0 /* LocalRepresentative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalRepresentative.m; sourceTree = "<group>"; };
 		52BF3EBE1DD7C9F10041349B /* RepsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepsCollectionViewCell.xib; sourceTree = "<group>"; };
 		52BF3EC01DD7CA400041349B /* RepsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepsCollectionViewCell.h; sourceTree = "<group>"; };
 		52BF3EC11DD7CA400041349B /* RepsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepsCollectionViewCell.m; sourceTree = "<group>"; };
@@ -546,8 +546,8 @@
 				52AD2CBF1B61E7A300EAF854 /* FederalRepresentative.m */,
 				52AD2CC11B61F90900EAF854 /* StateRepresentative.h */,
 				52AD2CC21B61F90900EAF854 /* StateRepresentative.m */,
-				52BE68121C5487A900C9E9C0 /* NYCRepresentative.h */,
-				52BE68131C5487A900C9E9C0 /* NYCRepresentative.m */,
+				52BE68121C5487A900C9E9C0 /* LocalRepresentative.h */,
+				52BE68131C5487A900C9E9C0 /* LocalRepresentative.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -986,7 +986,7 @@
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */,
 				5246726A1EEC49BA000A7484 /* ActionDetailTopTableViewCell.m in Sources */,
-				52BE68141C5487A900C9E9C0 /* NYCRepresentative.m in Sources */,
+				52BE68141C5487A900C9E9C0 /* LocalRepresentative.m in Sources */,
 				A74FA2381EB84BBA00C68D0E /* EmptyStateTableViewCell.m in Sources */,
 				529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,

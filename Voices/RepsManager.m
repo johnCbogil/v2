@@ -10,7 +10,7 @@
 #import "RepsNetworkManager.h"
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
-#import "NYCRepresentative.h"
+#import "LocalRepresentative.h"
 #import "LocationManager.h"
 
 @interface RepsManager()
@@ -72,7 +72,7 @@
                 [error localizedDescription];
             }];
             
-            [[RepsManager sharedInstance]createNYCRepsFromLocation:locationResults];
+            [[RepsManager sharedInstance]createLocalRepsFromLocation:locationResults];
             
         } onError:^(NSError *googleMapsError) {
             NSLog(@"%@", [googleMapsError localizedDescription]);
@@ -97,7 +97,7 @@
             [error localizedDescription];
         }];
         
-        [self createNYCRepsFromLocation:[LocationManager sharedInstance].currentLocation];
+        [self createLocalRepsFromLocation:[LocationManager sharedInstance].currentLocation];
     }
 }
 
@@ -195,17 +195,17 @@
     return governorRepresentative;
 }
 
-#pragma mark - Create NYC Representatives
+#pragma mark - Create Local Representatives
 
-- (void)createNYCRepsFromLocation:(CLLocation *)location {
+- (void)createLocalRepsFromLocation:(CLLocation *)location {
     
     self.localReps = @[].mutableCopy;
     
     BOOL isLocationWithinPath = false;
     
-    for (NSDictionary *district in self.nycDistricts) {
+    for (NSDictionary *district in self.localDistricts) {
         CGMutablePathRef path = CGPathCreateMutable();
-        [self drawNYCDistrictPath:path fromDictionary:district];
+        [self drawLocalDistrictPath:path fromDictionary:district];
         isLocationWithinPath = [self isLocation:location withinPath:path];
         CGPathRelease(path);
         if (isLocationWithinPath) {
@@ -218,7 +218,7 @@
     }
 }
 
-- (void)drawNYCDistrictPath:(CGMutablePathRef)path fromDictionary: (NSDictionary *)district {
+- (void)drawLocalDistrictPath:(CGMutablePathRef)path fromDictionary: (NSDictionary *)district {
     
     // Parse out the council district from the data
     self.currentCouncilDistrict = [[district valueForKey:@"properties"]valueForKey:@"coundist"];
@@ -256,16 +256,16 @@
     double currentLongitude = location.coordinate.longitude;
     if (CGPathContainsPoint(path, nil, CGPointMake(currentLatitude,currentLongitude),false)) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kCouncilMemberDataJSON ofType:@"json"];
-        NSData *nycCouncilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
-        NSDictionary *nycCouncilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:nycCouncilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
-        NSDictionary *districts = [nycCouncilMemberDataDictionary objectForKey:@"districts"];
+        NSData *councilMemberJSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingUncached error:nil];
+        NSDictionary *councilMemberDataDictionary = [NSJSONSerialization JSONObjectWithData:councilMemberJSONData options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *districts = [councilMemberDataDictionary objectForKey:@"districts"];
         
         for (int i = 0; i < districts.count; i++) {
             if (i + 1 == [self.currentCouncilDistrict intValue]) {
                 isLocationWithinPath = YES;
                 self.isLocalRepsAvailable = YES;
-                NYCRepresentative *nycRep = [[NYCRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
-                [self.localReps addObject:nycRep];
+                LocalRepresentative *localRep = [[LocalRepresentative alloc] initWithData:districts[[NSString stringWithFormat:@"%d", i+1]]];
+                [self.localReps addObject:localRep];
                 [self createExtraNYCReps];
                 
                 return isLocationWithinPath;
@@ -282,15 +282,15 @@
     NSDictionary *nycExtraRepsDict = [NSJSONSerialization JSONObjectWithData:nycExtraRepsData options:NSJSONReadingAllowFragments error:nil];
     NSDictionary *reps = [nycExtraRepsDict objectForKey:@"reps"];
     for (id repData in reps) {
-        NYCRepresentative *rep = [[NYCRepresentative alloc]initWithData:reps[repData]];
+        LocalRepresentative *rep = [[LocalRepresentative alloc]initWithData:reps[repData]];
         [self.localReps addObject:rep];
     }
 }
 
-- (NYCRepresentative *)createBillDeBlasio {
+- (LocalRepresentative *)createBillDeBlasio {
     
     NSDictionary *deBlasioDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"BilldeBlasio" ofType:@"plist"]];
-    NYCRepresentative *billDeBlasio = [[NYCRepresentative alloc] initWithData:deBlasioDictionary];
+    LocalRepresentative *billDeBlasio = [[LocalRepresentative alloc] initWithData:deBlasioDictionary];
     return billDeBlasio;
 }
 

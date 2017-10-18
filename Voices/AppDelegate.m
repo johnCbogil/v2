@@ -46,7 +46,7 @@
     [self configureInitialViewController];
     [self configureCache];
     [self enableFeedbackAndReporting];
-    [self unzipNYCDataSet];
+    [self unzipLocalDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [self configureFirebase];
     
@@ -268,7 +268,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
 }
 
-- (void)unzipNYCDataSet {
+- (void)unzipLocalDataSet {
     
     // Get the file path for the zip
     NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
@@ -288,7 +288,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSError *error =  nil;
     NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+    [RepsManager sharedInstance].localDistricts = [jsonDataDict valueForKey:@"features"];
 }
 
 - (void)excludeGeoJSONFromCloudBackup {
