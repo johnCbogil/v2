@@ -162,7 +162,7 @@
             for (Action *action in listOfActions) {
             
                 if ([self shouldAddActionToList:action]) {
-                    [self.tableViewDataSource addObjectsFromArray:listOfActions];
+                    [self.tableViewDataSource addObject:action];
                     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
                     self.tableViewDataSource = [self.tableViewDataSource sortedArrayUsingDescriptors:@[sort]].mutableCopy;
                     [self.tableView reloadData];
