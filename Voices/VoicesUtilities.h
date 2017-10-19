@@ -11,5 +11,6 @@
 @interface VoicesUtilities : NSObject
 
 + (NSString *)getRandomEmoji;
++ (BOOL)isInDebugMode;
 
 @end

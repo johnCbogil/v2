@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
         return nil;
     }
     
-
+    self.actionsArray = @[].mutableCopy;
     self.name = dictionary[@"name"];
     self.groupType = dictionary[@"groupType"];
     self.key = key;

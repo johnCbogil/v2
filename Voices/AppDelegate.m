@@ -18,6 +18,7 @@
 #import "ActionDetailViewController.h"
 #import "Action.h"
 #import "FirebaseManager.h"
+#import "VoicesUtilities.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -38,14 +39,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions {
     
-    if ([self isInDebugMode]) {
+    if ([VoicesUtilities isInDebugMode]) {
         [[NSUserDefaults standardUserDefaults]setObject:nil forKey:kHomeAddress];
     }
     
     [self configureInitialViewController];
     [self configureCache];
     [self enableFeedbackAndReporting];
-    [self unzipNYCDataSet];
+    [self unzipLocalDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [self configureFirebase];
     
@@ -211,7 +212,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
             self.window.rootViewController = tabVC;
             
-            //TODO: Maybe switch for loop with navCtrl = self.window.rootViewController.navController
             for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
                 
                 Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
@@ -268,7 +268,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
 }
 
-- (void)unzipNYCDataSet {
+- (void)unzipLocalDataSet {
     
     // Get the file path for the zip
     NSString *archiveFilePath = [[NSBundle mainBundle] pathForResource:kCityCouncilZip ofType:@"zip"];
@@ -288,7 +288,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSError *error =  nil;
     NSDictionary *jsonDataDict = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
     
-    [RepsManager sharedInstance].nycDistricts = [jsonDataDict valueForKey:@"features"];
+    [RepsManager sharedInstance].localDistricts = [jsonDataDict valueForKey:@"features"];
 }
 
 - (void)excludeGeoJSONFromCloudBackup {
@@ -328,17 +328,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
             [window removeConstraints:window.constraints];
         }
     }
-}
-
-#pragma marks - Debug
-
-- (BOOL)isInDebugMode {
-    
-#if DEBUG
-    return YES;
-#else
-    return NO;
-#endif
 }
 
 @end

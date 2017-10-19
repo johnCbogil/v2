@@ -153,7 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
                                    @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
-    // TODO: THIS IS NOT DRY
+
     else if (self.representative.contactForm.length > 0) {
         
         NSString *contactFormURLString = self.representative.contactForm;

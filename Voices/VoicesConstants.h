@@ -37,11 +37,11 @@ extern NSString *const kGoogCivic;
 
 extern NSString *const kFederalRepresentative;
 extern NSString *const kStateRepresentative;
-extern NSString *const kNYCRepresentative;
+extern NSString *const kLocalRepresentative;
 
 extern NSString *const kCreateFederalRepresentatives;
 extern NSString *const kCreateStateRepresentatives;
-extern NSString *const kCreateNYCRepresentatives;
+extern NSString *const kCreateLocalRepresentatives;
 
 extern NSString *const kCityCouncilZip;
 extern NSString *const kCityCouncilJSON;

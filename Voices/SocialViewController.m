@@ -32,19 +32,19 @@
     [self configureTableView];
     
     
-    // FOR EACH ACTION IN THE LIST OF ACTIOJNS
-    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        
-        for (NSDictionary *user in action.usersCompleted) {
-            
-            // CREATE A USERCOMPLETED MODEL OBJECT
-            CompletedAction *completedAction = [[CompletedAction alloc]initWithData:action.usersCompleted[user]];
-            
-            // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
-            [self.tableViewDataSource addObject:completedAction];
-            [self.tableView reloadData];
-        }
-    }
+//    // FOR EACH ACTION IN THE LIST OF ACTIOJNS
+//    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
+//        
+//        for (NSDictionary *user in action.usersCompleted) {
+//            
+//            // CREATE A USERCOMPLETED MODEL OBJECT
+//            CompletedAction *completedAction = [[CompletedAction alloc]initWithData:action.usersCompleted[user]];
+//            
+//            // CREATE ARRAY OF USERCOMPLETED MODEL OBJECTS AND SEND TO TABLEVIEW
+//            [self.tableViewDataSource addObject:completedAction];
+//            [self.tableView reloadData];
+//        }
+//    }
 }
 
 - (void)configureTableView {
