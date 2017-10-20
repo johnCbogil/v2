@@ -33,6 +33,8 @@
     [super viewDidAppear:animated];
     
     [self.navigationItem setBackBarButtonItem:nil];
+    self.navigationController.navigationBarHidden = NO;
+
 }
 
 - (void)configureNavigationController {
