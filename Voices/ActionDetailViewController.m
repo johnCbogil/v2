@@ -209,6 +209,7 @@
         cell = [nib objectAtIndex:0];
     }
     
+    // have to wrap the cell in a view bc the cell disappears when rep cells are selected.
     UIView *view = [[UIView alloc] init];
     [view addSubview:cell];
     
