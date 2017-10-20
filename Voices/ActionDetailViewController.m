@@ -208,7 +208,11 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActionDetailFooterTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    return cell.contentView; // returning content view bc footer sometimes disappears when cells are selected
+    
+    UIView *view = [[UIView alloc] init];
+    [view addSubview:cell];
+    
+    return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
