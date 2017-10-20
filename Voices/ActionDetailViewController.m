@@ -74,15 +74,19 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
+- (void)reloadTableView {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 - (void)reloadTableViewFromNotification {
     
     [self configureDatasource];
-    [self.tableView reloadData];
+    [self reloadTableView];
 }
 
 - (void)expandActionDescription:(ActionDetailTopTableViewCell *)sender {
     
-    [self.tableView reloadData];
+    [self reloadTableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -120,6 +124,7 @@
             }
         }
         else {
+//??
             if (indexPath.row == 3) {
                 cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"shareIcon"];
             }

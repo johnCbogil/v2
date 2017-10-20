@@ -19,6 +19,7 @@
     
     self.openCloseMenuItemImageView.tintColor = [UIColor orangeColor];
     self.openCloseMenuItemImageView.backgroundColor = [UIColor clearColor];
+
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange{

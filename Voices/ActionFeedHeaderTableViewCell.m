@@ -54,5 +54,6 @@
     self.totalActionsCompletedLabel.clipsToBounds = YES;
     self.totalActionsCompletedLabel.textColor = [UIColor whiteColor];
     self.totalActionsCompletedLabel.font = [UIFont voicesBoldFontWithSize:20];
+    
 }
 @end

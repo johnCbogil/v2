@@ -69,7 +69,11 @@
     if (![CurrentUser sharedInstance].listOfActions.count) {
         self.tableView.backgroundView.hidden = NO;
     }
-    [self.tableView reloadData];
+    [self reloadTableView];
+}
+
+- (void)reloadTableView {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)configureTableView {
@@ -153,7 +157,7 @@
     
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         [self toggleActivityIndicatorOff];
-        [self.tableView reloadData];
+        [self reloadTableView];
         
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];

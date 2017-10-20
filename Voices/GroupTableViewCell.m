@@ -54,10 +54,12 @@
     
     [self.groupImage setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:kGroupDefaultImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
         
+
+        self.groupImage.alpha = 0;
         [UIView animateWithDuration:.25 animations:^{
             self.groupImage.image = image;
+            self.groupImage.alpha = 1.0;
         }];
-        
 
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, NSError * _Nonnull error) {
         
