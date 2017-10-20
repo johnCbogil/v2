@@ -7,9 +7,9 @@
 //
 
 #import "ActionTableViewCell.h"
-
 #import "UIImageView+AFNetworking.h"
 #import "FirebaseManager.h"
+#import "VoicesUtilities.h"
 
 @import Firebase;
 
@@ -136,13 +136,14 @@
         
         [self.delegate presentThankYouAlertForGroup:self.group andAction:self.action];
         
-#ifdef DEBUG
-        return;
-#else
-        [FIRAnalytics logEventWithName:@"userCompletedAction"
-                            parameters:@{ @"actionKey": self.action.key}];
-#endif
-    }
+        if ([VoicesUtilities isInDebugMode]) {
+            return;
+        }
+        else {
+            [FIRAnalytics logEventWithName:@"userCompletedAction"
+                                parameters:@{ @"actionKey": self.action.key}];
+        }
+ }
 }
 
 @end
