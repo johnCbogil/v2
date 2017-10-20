@@ -75,7 +75,7 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerNib:[UINib nibWithNibName: kActionDetailTopTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailTopTableViewCell];
-    [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName: kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName: kActionDetailEmptyRepTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailEmptyRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName: kActionDetailMenuItemTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailMenuItemTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailFooterTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailFooterTableViewCell"];

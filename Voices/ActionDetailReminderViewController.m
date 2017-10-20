@@ -19,19 +19,24 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+//- (void)scheduleNotification {
+//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//    center.delegate = self;
+//    [center removeAllDeliveredNotifications];
+//    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.f];
+//    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
+//                                                                             NSCalendarUnitMonth + NSCalendarUnitDay +
+//                                                                             NSCalendarUnitHour + NSCalendarUnitMinute +
+//                                                                             NSCalendarUnitSecond)
+//                                                                   fromDate:date];
+//    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+//    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+//    content.title = @"Swipe down for full message";
+//    content.body = [ScriptManager sharedInstance].lastAction.script.length ? [ScriptManager sharedInstance].lastAction.script : kGenericScript;
+//    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
+//    
+//    [center addNotificationRequest:request withCompletionHandler:nil];
+//}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
