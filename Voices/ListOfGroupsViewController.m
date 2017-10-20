@@ -110,6 +110,10 @@
     }
 }
 
+- (void)reloadTableView {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 - (void)configureTableView {
     
     self.tableView.delegate = self;
@@ -153,7 +157,7 @@
     [[FirebaseManager sharedInstance] fetchAllGroupsWithCompletion:^(NSArray *groups) {
         
         weakSelf.listOfGroups = [NSMutableArray arrayWithArray:groups];
-        [weakSelf.tableView reloadData];
+        [weakSelf reloadTableView];
         [self toggleActivityIndicatorOff];
         
     } onError:^(NSError *error) {
@@ -168,7 +172,7 @@
     [[FirebaseManager sharedInstance] fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
         
         weakSelf.listOfGroups = [CurrentUser sharedInstance].listOfFollowedGroups;
-        [weakSelf.tableView reloadData];
+        [weakSelf reloadTableView];
         [self configureEmptyStateLabel];
         [self toggleActivityIndicatorOff];
 
