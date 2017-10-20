@@ -6,8 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,22 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZy-Xj-FzB">
-                        <rect key="frame" x="8" y="23" width="151" height="33"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZy-Xj-FzB">
+                        <rect key="frame" x="33" y="23" width="151" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <state key="normal" title="Remind me later...">
+                        <state key="normal" title="Remind me...">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                         <connections>
                             <action selector="remindMeButtonDidPress:" destination="qvU-Jb-dox" eventType="touchUpInside" id="3im-O1-jOI"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSd-QM-zKz">
-                        <rect key="frame" x="217" y="23" width="150" height="33"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSd-QM-zKz">
+                        <rect key="frame" x="192" y="23" width="150" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="150" id="oDf-a5-zu7"/>
-                        </constraints>
                         <state key="normal" title="Mark completed">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -52,16 +49,9 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="leading" secondItem="MmD-Vy-BMx" secondAttribute="leadingMargin" id="7UL-7f-KNm"/>
                     <constraint firstItem="PEP-By-LcK" firstAttribute="leading" secondItem="MmD-Vy-BMx" secondAttribute="leading" id="B17-96-YEa"/>
-                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="top" secondItem="XSd-QM-zKz" secondAttribute="top" id="HT2-SG-GkR"/>
-                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="top" secondItem="PEP-By-LcK" secondAttribute="bottom" constant="21" id="Lad-8H-8mV"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="yZy-Xj-FzB" secondAttribute="bottom" constant="10.5" id="NhZ-w7-wk5"/>
-                    <constraint firstItem="XSd-QM-zKz" firstAttribute="leading" secondItem="yZy-Xj-FzB" secondAttribute="trailing" constant="58" id="QfR-ZI-WFy"/>
-                    <constraint firstItem="XSd-QM-zKz" firstAttribute="trailing" secondItem="MmD-Vy-BMx" secondAttribute="trailingMargin" id="Z2w-RA-VFY"/>
                     <constraint firstItem="PEP-By-LcK" firstAttribute="top" secondItem="MmD-Vy-BMx" secondAttribute="top" id="gIW-Oa-BuN"/>
                     <constraint firstAttribute="trailing" secondItem="PEP-By-LcK" secondAttribute="trailing" id="uNO-Ym-V56"/>
-                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="baseline" secondItem="XSd-QM-zKz" secondAttribute="firstBaseline" id="vM1-oH-oFv"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

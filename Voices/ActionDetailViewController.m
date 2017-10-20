@@ -16,6 +16,7 @@
 #import "WebViewController.h"
 #import "GroupDetailViewController.h"
 #import "ActionDetailFooterTableViewCell.h"
+#import "ActionDetailReminderViewController.h"
 
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
@@ -32,7 +33,6 @@
     [super viewDidLoad];
     
     [self configureTableView];
-    self.title = self.group.name;
     [self configureDatasource];
     [self configureObservers];
     
@@ -44,6 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.title = self.group.name;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"hideTabBar" object:nil];
 }
 
@@ -52,6 +53,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentReminderViewController) name:@"presentActionReminderViewController" object:nil];
 }
 
 - (void)configureDatasource {
@@ -247,6 +249,16 @@
     webViewController.title = @"TAKE ACTION";
     self.navigationItem.title = @"";
     [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+- (void)presentReminderViewController {
+    
+    UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
+    ActionDetailReminderViewController *reminderVC = (ActionDetailReminderViewController *)[takeActionSB instantiateViewControllerWithIdentifier:@"ActionDetailReminderViewController"];
+    reminderVC.title = @"Remind Me";
+    self.navigationItem.title = @"";
+//    [self presentViewController:reminderVC animated:YES completion:nil];
+    [self.navigationController pushViewController:reminderVC animated:YES];
 }
 
 @end

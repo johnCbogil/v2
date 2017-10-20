@@ -5,10 +5,15 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Take Action View Controller-->
         <scene sceneID="SMQ-F2-XmO">
@@ -220,6 +225,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgW-Xd-k7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1967" y="360"/>
+        </scene>
+        <!--Action Detail Reminder View Controller-->
+        <scene sceneID="2Ms-jg-dRI">
+            <objects>
+                <viewController storyboardIdentifier="ActionDetailReminderViewController" id="GD0-2Q-Kb7" customClass="ActionDetailReminderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VTz-87-CZe"/>
+                        <viewControllerLayoutGuide type="bottom" id="ILi-bC-nnU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jGv-tN-OoN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YJx-4M-D8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2660" y="356"/>
         </scene>
         <!--Group Detail View Controller-->
         <scene sceneID="fUB-PN-6BJ">

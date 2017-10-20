@@ -39,6 +39,8 @@
 }
 
 - (IBAction)remindMeButtonDidPress:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentActionReminderViewController" object:nil];
 }
 
 - (IBAction)actionCompletedButtonDidPress:(id)sender {
