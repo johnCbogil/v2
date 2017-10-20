@@ -15,6 +15,7 @@
 #import "RepsManager.h"
 #import "WebViewController.h"
 #import "GroupDetailViewController.h"
+#import "ActionDetailFooterTableViewCell.h"
 
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
@@ -33,15 +34,24 @@
     [self configureTableView];
     self.title = self.group.name;
     [self configureDatasource];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
-    
+    [self configureObservers];
     
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
     self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"hideTabBar" object:nil];
+}
+
+- (void)configureObservers {
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
 }
 
 - (void)configureDatasource {
@@ -66,6 +76,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:kRepTableViewCell bundle:nil]forCellReuseIdentifier:kRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName: kActionDetailEmptyRepTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailEmptyRepTableViewCell];
     [self.tableView registerNib:[UINib nibWithNibName: kActionDetailMenuItemTableViewCell bundle:nil]forCellReuseIdentifier: kActionDetailMenuItemTableViewCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ActionDetailFooterTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionDetailFooterTableViewCell"];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -186,6 +197,20 @@
     else {
         return 300.0f;
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    ActionDetailFooterTableViewCell *cell = (ActionDetailFooterTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailFooterTableViewCell"];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActionDetailFooterTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 75.0f;
 }
 
 - (void)presentAddAddressViewController {

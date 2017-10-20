@@ -24,6 +24,19 @@
     
     self.navigationController.navigationBarHidden = YES;
     [UITabBar appearance].tintColor = [UIColor voicesOrange];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showTabBar) name:@"showTabBar" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideTabBar) name:@"hideTabBar" object:nil];
+}
+
+- (void)hideTabBar {
+    
+    self.tabBar.hidden = YES;
+}
+
+- (void)showTabBar {
+    
+    self.tabBar.hidden = NO;
 }
 
 - (void)createViewControllers {

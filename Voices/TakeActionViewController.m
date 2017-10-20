@@ -62,6 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"showTabBar" object:nil];
     self.navigationController.navigationBarHidden = YES;
     
     if ([CurrentUser sharedInstance].firebaseUserID) {
