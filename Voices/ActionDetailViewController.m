@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = self.group.name;
+    self.navigationItem.title = self.group.name;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"hideTabBar" object:nil];
 }
 

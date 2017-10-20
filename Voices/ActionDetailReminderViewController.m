@@ -25,14 +25,23 @@
     
     self.instructionLabel.text = @"When would you like to be reminded about this action?";
     self.instructionLabel.numberOfLines = 0;
+    self.instructionLabel.font = [UIFont voicesFontWithSize:23];
+    
     [self.submitButton setTitle:@"Set Reminder" forState:UIControlStateNormal];
+    self.submitButton.titleLabel.font = [UIFont voicesFontWithSize:25];
+    self.submitButton.backgroundColor = [UIColor voicesBlue];
+    self.submitButton.tintColor = [UIColor whiteColor];
+    self.submitButton.layer.cornerRadius = kButtonCornerRadius;
+    self.submitButton.clipsToBounds = YES;
+    
+    self.datePicker.minimumDate = [NSDate date];
 }
 
 - (IBAction)submitButtonDidPress:(id)sender {
     
     NSLog(@"%@", self.datePicker.date);
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 - (void)scheduleNotification {
     
