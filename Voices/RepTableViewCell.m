@@ -35,6 +35,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     self.photo.backgroundColor = [UIColor clearColor];
     self.photo.contentMode = UIViewContentModeScaleAspectFill;
     self.photo.layer.cornerRadius = 5;
@@ -44,6 +45,7 @@
 }
 
 - (void)initWithRep:(id)rep {
+    
     self.representative = rep;
     NSString *title = self.representative.shortTitle ? self.representative.shortTitle : self.representative.title;
     self.name.text = [NSString stringWithFormat:@"%@ %@", title, self.representative.fullName];
@@ -54,11 +56,13 @@
 #pragma mark - Helper methods
 
 - (void)setupFont {
+    
     self.name.font = self.name.text.length > 15 ? [UIFont voicesFontWithSize:26] : [UIFont voicesFontWithSize:28];
     self.name.textColor = [UIColor voicesBlack];
 }
 
 - (void)setupImage {
+    
     UIImage *placeholderImage;
     if ([self.representative.gender isEqualToString:@"M"]) {
         placeholderImage = [UIImage imageNamed:kRepDefaultImageMale];

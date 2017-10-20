@@ -237,8 +237,46 @@
                     <view key="view" contentMode="scaleToFill" id="jGv-tN-OoN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="QJt-Am-nQ4">
+                                <rect key="frame" x="0.0" y="253" width="375" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="qAh-HU-JPM"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="530154000.88043398">
+                                    <!--2017-10-20 01:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47i-b1-bJg">
+                                <rect key="frame" x="166" y="28" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twe-lw-zBN">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="submitButtonDidPress:" destination="GD0-2Q-Kb7" eventType="touchUpInside" id="u1A-cT-dKY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="centerX" secondItem="Twe-lw-zBN" secondAttribute="centerX" id="GfS-61-kuj"/>
+                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="leading" secondItem="jGv-tN-OoN" secondAttribute="leading" id="JUg-4u-0oo"/>
+                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="centerY" secondItem="jGv-tN-OoN" secondAttribute="centerY" id="JZ8-Yx-pUG"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="centerX" secondItem="QJt-Am-nQ4" secondAttribute="centerX" id="QP2-lQ-Tqo"/>
+                            <constraint firstAttribute="trailing" secondItem="QJt-Am-nQ4" secondAttribute="trailing" id="gFE-tP-xt0"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="top" secondItem="VTz-87-CZe" secondAttribute="bottom" constant="8" symbolic="YES" id="iN0-my-wAD"/>
+                            <constraint firstAttribute="bottom" secondItem="Twe-lw-zBN" secondAttribute="bottom" constant="20" symbolic="YES" id="zw9-GS-LlV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="QJt-Am-nQ4" id="a7s-93-e73"/>
+                        <outlet property="instructionLabel" destination="47i-b1-bJg" id="M62-IN-MIY"/>
+                        <outlet property="submitButton" destination="Twe-lw-zBN" id="Hgn-E3-kqa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJx-4M-D8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
