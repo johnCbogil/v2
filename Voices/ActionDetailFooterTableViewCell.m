@@ -22,6 +22,7 @@
     // Initialization code
     
     self.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     
     [self.remindMeButton setTitle:@"Remind me later..." forState:UIControlStateNormal];
     self.remindMeButton.backgroundColor = [UIColor voicesBlue];
