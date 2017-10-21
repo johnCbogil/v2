@@ -93,6 +93,8 @@
 		896C64CF6CA0389CE746987C /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */; };
 		94DF29F51F804A57002ED9F8 /* MoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */; };
 		94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */; };
+		94F05F231F9BE9BA006C89A9 /* RepDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F05F221F9BE9BA006C89A9 /* RepDetailTableViewCell.xib */; };
+		94F05F261F9BEA6F006C89A9 /* RepDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F05F251F9BEA6F006C89A9 /* RepDetailTableViewCell.m */; };
 		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
 		9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */; };
 		9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */; };
@@ -264,6 +266,9 @@
 		94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreTableViewCell.xib; sourceTree = "<group>"; };
 		94DF29F61F804A94002ED9F8 /* MoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreTableViewCell.h; sourceTree = "<group>"; };
 		94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewCell.m; sourceTree = "<group>"; };
+		94F05F221F9BE9BA006C89A9 /* RepDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepDetailTableViewCell.xib; sourceTree = "<group>"; };
+		94F05F241F9BEA6F006C89A9 /* RepDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepDetailTableViewCell.h; sourceTree = "<group>"; };
+		94F05F251F9BEA6F006C89A9 /* RepDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepDetailTableViewCell.m; sourceTree = "<group>"; };
 		9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA1E3301E405AC5001106F9 /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
@@ -571,6 +576,9 @@
 				52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */,
 				52F31EDA1E5FA642008BCC2A /* ResultsTableViewCell.h */,
 				52F31EDB1E5FA642008BCC2A /* ResultsTableViewCell.m */,
+				94F05F221F9BE9BA006C89A9 /* RepDetailTableViewCell.xib */,
+				94F05F241F9BEA6F006C89A9 /* RepDetailTableViewCell.h */,
+				94F05F251F9BEA6F006C89A9 /* RepDetailTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -798,6 +806,7 @@
 				525475961D31C40C00A894BA /* GroupsEmptyState.xib in Resources */,
 				52BB343F1B6160CA00BB9FFD /* LaunchScreen.xib in Resources */,
 				52B958981E11873B006472DF /* NewInfo.xib in Resources */,
+				94F05F231F9BE9BA006C89A9 /* RepDetailTableViewCell.xib in Resources */,
 				524B15B21C7E76A7003B4372 /* CouncilDistrictsJSON.zip in Resources */,
 				5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */,
 				A74FA2391EB84BBA00C68D0E /* EmptyStateTableViewCell.xib in Resources */,
@@ -965,6 +974,7 @@
 				7E6CB2DF1DD658B20027D11B /* RepsViewController.m in Sources */,
 				52AD33951BE5C8FD00EC0468 /* UIColor+voicesColor.m in Sources */,
 				52F31EDC1E5FA642008BCC2A /* ResultsTableViewCell.m in Sources */,
+				94F05F261F9BEA6F006C89A9 /* RepDetailTableViewCell.m in Sources */,
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,

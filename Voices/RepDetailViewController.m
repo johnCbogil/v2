@@ -11,6 +11,9 @@
 #import "ScriptManager.h"
 #import "RepsNetworkManager.h"
 #import "WebViewController.h"
+#import "RepDetailTableViewCell.h"
+
+int contactTypeCount = 4;
 
 @interface RepDetailViewController() <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) NSArray *contactTypeLabels;
+@property (strong, nonatomic) NSArray *contactTypeImageNames;
+@property (strong, nonatomic) NSArray *contactInfoLabels;
 
 @end
 
@@ -26,6 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.contactTypeImageNames = @[@"Phone Filled", @"Twitter Filled", @"InfoButton", @"Facebook"];
+    self.contactTypeLabels = @[@"Phone", @"Twitter", @"Website", @"Facebook"];
+    self.contactInfoLabels = @[self.representative.phone, self.representative.twitter, @"website", @"facebook"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RepDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"RepDetailTableViewCell"];
     [self configureNavigationController];
     [self configureLabels];
     [self configureTableView];
@@ -40,8 +50,8 @@
     self.nameLabel.minimumScaleFactor = 0.5;
     self.nameLabel.text = self.representative.fullName;
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.representative.title];
-    self.titleLabel.font = [UIFont voicesMediumFontWithSize:30];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@, %@", self.representative.title, self.representative.party];
+    self.titleLabel.font = [UIFont voicesMediumFontWithSize:24];
     self.titleLabel.numberOfLines = 0;
 }
 
@@ -57,7 +67,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 60;
+    self.tableView.rowHeight = 100;
     self.tableView.allowsSelection = NO;
 }
 
@@ -102,12 +112,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return contactTypeCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    RepDetailTableViewCell *cell = (RepDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"RepDetailTableViewCell" forIndexPath:indexPath];
+    cell.contactInfoLabel.text = self.contactInfoLabels[indexPath.row];
+    cell.contactTypeLabel.text = self.contactTypeLabels[indexPath.row];
+    cell.contactTypeImageView.image = [UIImage imageNamed:self.contactTypeImageNames[indexPath.row]];
     return cell;
 }
 
