@@ -31,8 +31,8 @@
             self.title = @"Representative";
         }
         self.fullName = data[@"name"];
-        self.phone = data[@"phones"][0];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        self.phoneRaw = data[@"phones"][0];
+        self.phone = [self.phoneRaw stringByReplacingOccurrencesOfString:@"(" withString:@""];
         self.phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
         self.phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
         self.phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];

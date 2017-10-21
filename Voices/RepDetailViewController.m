@@ -27,6 +27,17 @@ int contactTypeCount = 4;
 
 @end
 
+// TODO: ADD THIRD LINE TO BIO THAT INCLUDES PARTY COLOR AND STATE/DISTRICT
+// TODO: ADD SHADOWS TO CARDS
+// TODO: STYLE CONTACT LABELS
+// TODO: HIDE LINE SEPARATORS
+// TODO: HOOK UP WEBSITE AND FACEBOOK INFO
+// TODO: MOVE BIO INTO TABLEVIEWCELL
+// TODO: MOVE IMAGEVIEW LEFT
+// TODO: CHANGE BACKGROUND GRAY COLOR
+// TODO: STYLE BIO LABELS
+// TODO: IMPLEMENT DIDSELECTROW
+
 @implementation RepDetailViewController
 
 - (void)viewDidLoad {
@@ -34,7 +45,7 @@ int contactTypeCount = 4;
     
     self.contactTypeImageNames = @[@"Phone Filled", @"Twitter Filled", @"InfoButton", @"Facebook"];
     self.contactTypeLabels = @[@"Phone", @"Twitter", @"Website", @"Facebook"];
-    self.contactInfoLabels = @[self.representative.phone, self.representative.twitter, @"website", @"facebook"];
+    self.contactInfoLabels = @[self.representative.phoneRaw, self.representative.twitter, @"website", @"facebook"];
     [self.tableView registerNib:[UINib nibWithNibName:@"RepDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"RepDetailTableViewCell"];
     [self configureNavigationController];
     [self configureLabels];
@@ -44,14 +55,14 @@ int contactTypeCount = 4;
 
 - (void)configureLabels {
     
-    self.nameLabel.font = [UIFont voicesMediumFontWithSize:30];
+    self.nameLabel.font = [UIFont voicesMediumFontWithSize:24];
     self.nameLabel.numberOfLines = 0;
     [self.nameLabel sizeToFit];
     self.nameLabel.minimumScaleFactor = 0.5;
     self.nameLabel.text = self.representative.fullName;
     
     self.titleLabel.text = [NSString stringWithFormat:@"%@, %@", self.representative.title, self.representative.party];
-    self.titleLabel.font = [UIFont voicesMediumFontWithSize:24];
+    self.titleLabel.font = [UIFont voicesMediumFontWithSize:18];
     self.titleLabel.numberOfLines = 0;
 }
 

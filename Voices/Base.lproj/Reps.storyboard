@@ -227,26 +227,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ba-nW-QDR">
-                                <rect key="frame" x="110" y="72" width="100" height="100"/>
+                                <rect key="frame" x="98" y="72" width="125" height="125"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="41t-2c-VFA"/>
-                                    <constraint firstAttribute="width" constant="100" id="vC0-O8-0Hn"/>
+                                    <constraint firstAttribute="height" constant="125" id="41t-2c-VFA"/>
+                                    <constraint firstAttribute="width" constant="125" id="vC0-O8-0Hn"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybL-Vk-jjZ">
-                                <rect key="frame" x="16" y="180" width="288" height="21"/>
+                                <rect key="frame" x="16" y="205" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title + District/State" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKv-4w-fZJ">
-                                <rect key="frame" x="16" y="209" width="288" height="21"/>
+                                <rect key="frame" x="16" y="234" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bmx-Qd-Peq">
-                                <rect key="frame" x="0.0" y="238" width="320" height="330"/>
+                                <rect key="frame" x="0.0" y="263" width="320" height="305"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>

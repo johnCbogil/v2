@@ -23,6 +23,7 @@
     self.contactTypeImageView.tintColor = [UIColor voicesOrange];
     self.cardView.layer.cornerRadius = kButtonCornerRadius;
     self.cardView.clipsToBounds = YES;
+    self.contactTypeImageView.backgroundColor = [UIColor whiteColor];
 }
 
 @end
