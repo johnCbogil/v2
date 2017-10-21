@@ -33,15 +33,17 @@
     [self configureTableView];
     self.title = self.group.name;
     [self configureDatasource];
+    [self configureObservers];
+    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
+    
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)configureObservers {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
-    
-    
-    self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
-    
-    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)configureDatasource {

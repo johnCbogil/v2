@@ -23,6 +23,7 @@
 @implementation NotiOnboardingViewController
 
 - (void)dealloc {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -34,6 +35,7 @@
 }
 
 - (void)setFont {
+    
     self.turnOnNotiLabel.font = [UIFont voicesFontWithSize:19];
     
     self.turnOnNotificationsButton.titleLabel.font = [UIFont voicesFontWithSize:21];
@@ -47,6 +49,7 @@
 }
 
 - (IBAction)turnOnNotiButtonDidPress:(id)sender {
+    
     if (![self.turnOnNotificationsButton.titleLabel.text isEqualToString:@"Next"]) {
         UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
@@ -63,10 +66,12 @@
 }
 
 - (IBAction)deferNotiButtonDidPress:(id)sender {
+    
     [self pushNextVC];
 }
 
 - (void)pushNextVC {
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
     [self.navigationController pushViewController:tabVC animated:YES];    

@@ -27,7 +27,6 @@
     
     [self configureTableView];
     [self configureRefreshControl];
-    
 }
 
 - (void)configureTableView {
@@ -42,7 +41,7 @@
     
     [self.tableView addSubview:self.refreshControl];
     
-    self.tableView.allowsSelection = NO; // FLIP
+    self.tableView.allowsSelection = YES; // FLIP
 }
 
 - (void)configureRefreshControl {
@@ -134,7 +133,6 @@
     else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"presentPullToRefreshAlert" object:nil];
     }
-    
 }
 
 - (void)endRefreshing {

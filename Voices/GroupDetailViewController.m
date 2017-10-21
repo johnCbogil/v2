@@ -241,9 +241,7 @@
     UIAlertAction *button1 = [UIAlertAction
                               actionWithTitle:@"Yes"
                               style:UIAlertActionStyleDefault
-                              handler:^(UIAlertAction * action)
-                              {
-                                  
+                              handler:^(UIAlertAction * action) {
                                   UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
                                   UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
                                   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];

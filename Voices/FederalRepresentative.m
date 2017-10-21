@@ -45,7 +45,6 @@
             }
         }
         
-        
         return self;
     }
     return self;

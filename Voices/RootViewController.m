@@ -278,42 +278,6 @@
     [self dismissViewControllerAnimated: YES completion: nil];
 }
 
-#pragma mark Call Center methods
-- (void)setupCallCenterToPresentThankYou {
-    // __weak RootViewController *weakself = self;
-    //    self.callCenter = [[CTCallCenter alloc] init];
-    //    self.callCenter.callEventHandler = ^void(CTCall *call) {
-    //        if (call.callState == CTCallStateDisconnected) {
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    // [weakself setupAndPresentSTPopupControllerWithNibNamed:@"ThankYouViewController" inViewController:weakself];
-    //Announce that we've had a state change in CallCenter
-    //                NSDictionary *dict = [NSDictionary dictionaryWithObject:call.callState forKey:@"callState"]; [[NSNotificationCenter defaultCenter] postNotificationName:@"CTCallStateDidChange" object:nil userInfo:dict];
-    //            });
-    //        }
-    //    };
-}
-
-- (void)callStateDidChange:(NSNotification *)notification {
-    
-    NSString *callInfo = [[notification userInfo] objectForKey:@"callState"];
-    if([callInfo isEqualToString: CTCallStateDialing]) {
-        
-        //The call state, before connection is established, when the user initiates the call.
-    }
-    if([callInfo isEqualToString: CTCallStateIncoming]) {
-        
-        //The call state, before connection is established, when a call is incoming but not yet answered by the user.
-    }
-    if([callInfo isEqualToString: CTCallStateConnected]) {
-        
-        //The call state when the call is fully established for all parties involved.
-    }
-    if([callInfo isEqualToString: CTCallStateDisconnected]) {
-        
-        //the call state has ended
-    }
-}
-
 #pragma mark - IBActions
 
 - (IBAction)moreButtonDidPress:(id)sender {
