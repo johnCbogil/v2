@@ -7,7 +7,10 @@
 //
 
 #import "ActionDetailReminderViewController.h"
+#import "VoicesUtilities.h"
 @import UserNotifications;
+
+// TODO: CREATE FIREBASE ANALYTIC EVENT
 
 @interface ActionDetailReminderViewController () <UNUserNotificationCenterDelegate>
 
@@ -21,8 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+
     self.instructionLabel.text = @"When would you like to be reminded about this action?";
     self.instructionLabel.numberOfLines = 0;
     self.instructionLabel.font = [UIFont voicesFontWithSize:23];
@@ -38,6 +40,8 @@
 }
 
 - (IBAction)submitButtonDidPress:(id)sender {
+    
+    // TODO: CREATE FIREBASE ANALYTIC EVENT WHEN NOT IN DEBUG
     
     NSLog(@"%@", self.datePicker.date);
     [self.navigationController popViewControllerAnimated:YES];
