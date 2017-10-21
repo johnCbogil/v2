@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="odb-zs-Drl">
-                                <rect key="frame" x="316" y="24" width="35" height="35"/>
+                                <rect key="frame" x="306" y="24" width="35" height="35"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="2TV-uL-s6R"/>
@@ -47,12 +47,12 @@
                         <constraints>
                             <constraint firstItem="gip-Qz-YD3" firstAttribute="top" secondItem="mhK-Va-84A" secondAttribute="bottom" constant="8" symbolic="YES" id="2Jr-rX-iWg"/>
                             <constraint firstItem="gip-Qz-YD3" firstAttribute="bottom" secondItem="odb-zs-Drl" secondAttribute="bottom" constant="-1" id="3Jo-UF-aH7"/>
-                            <constraint firstItem="odb-zs-Drl" firstAttribute="leading" secondItem="mhK-Va-84A" secondAttribute="trailing" constant="28" id="Apc-Xx-VGD"/>
+                            <constraint firstItem="odb-zs-Drl" firstAttribute="leading" secondItem="mhK-Va-84A" secondAttribute="trailing" constant="18" id="Apc-Xx-VGD"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="top" secondItem="95Q-YM-3FW" secondAttribute="topMargin" id="BVm-D9-WIc"/>
-                            <constraint firstItem="odb-zs-Drl" firstAttribute="trailing" secondItem="95Q-YM-3FW" secondAttribute="trailingMargin" id="Kk9-dx-LLX"/>
+                            <constraint firstItem="odb-zs-Drl" firstAttribute="trailing" secondItem="95Q-YM-3FW" secondAttribute="trailingMargin" constant="-10" id="Kk9-dx-LLX"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="leading" secondItem="95Q-YM-3FW" secondAttribute="leadingMargin" id="U1P-0h-tB1"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="leading" secondItem="gip-Qz-YD3" secondAttribute="leading" id="YMP-A4-MMp"/>
-                            <constraint firstItem="odb-zs-Drl" firstAttribute="leading" secondItem="gip-Qz-YD3" secondAttribute="trailing" constant="28" id="i30-pB-7SD"/>
+                            <constraint firstItem="odb-zs-Drl" firstAttribute="leading" secondItem="gip-Qz-YD3" secondAttribute="trailing" constant="18" id="i30-pB-7SD"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="top" secondItem="odb-zs-Drl" secondAttribute="top" constant="-16" id="m6m-J6-OFL"/>
                         </constraints>
                     </view>

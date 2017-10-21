@@ -30,7 +30,6 @@ int contactTypeCount = 4;
 // TODO: ADD THIRD LINE TO BIO THAT INCLUDES PARTY COLOR AND STATE/DISTRICT
 // TODO: ADD SHADOWS TO CARDS
 // TODO: STYLE CONTACT LABELS
-// TODO: HIDE LINE SEPARATORS
 // TODO: HOOK UP WEBSITE AND FACEBOOK INFO
 // TODO: MOVE BIO INTO TABLEVIEWCELL
 // TODO: MOVE IMAGEVIEW LEFT
@@ -46,7 +45,6 @@ int contactTypeCount = 4;
     self.contactTypeImageNames = @[@"Phone Filled", @"Twitter Filled", @"InfoButton", @"Facebook"];
     self.contactTypeLabels = @[@"Phone", @"Twitter", @"Website", @"Facebook"];
     self.contactInfoLabels = @[self.representative.phoneRaw, self.representative.twitter, @"website", @"facebook"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"RepDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"RepDetailTableViewCell"];
     [self configureNavigationController];
     [self configureLabels];
     [self configureTableView];
@@ -80,6 +78,8 @@ int contactTypeCount = 4;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 100;
     self.tableView.allowsSelection = NO;
+    [self.tableView registerNib:[UINib nibWithNibName:@"RepDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"RepDetailTableViewCell"];
+    self.tableView.separatorColor = [UIColor clearColor];
 }
 
 - (void)configureImage {
