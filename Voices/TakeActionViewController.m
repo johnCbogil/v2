@@ -41,6 +41,7 @@
     [self configureActivityIndicator];
     [self configureNavigationBar];
     [self configureObservers];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)configureObservers {
