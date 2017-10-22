@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+Alert.h"
-
+#import <StoreKit/StoreKit.h>
 #import "Action.h"
 #import "Group.h"
 
@@ -28,14 +28,24 @@
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        [self rateApp];
     }];
     
     [alertController addAction:cancel];
     [alertController addAction:shareAction];
     
-    
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)rateApp {
+    
+    if ([SKStoreReviewController class]){
+        [SKStoreReviewController requestReview] ;
+    }
+    else {
+        NSString *iTunesAppLink = @"itms://itunes.apple.com/us/app/congress-voices/id965692648?mt=8";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesAppLink]];
+    }
 }
 
 @end

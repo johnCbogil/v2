@@ -10,6 +10,8 @@
 #import "AFHTTPRequestOperation.h"
 #import "CurrentUser.h"
 #import "AppDelegate.h"
+#import "VoicesUtilities.h"
+
 @import Firebase;
 
 @implementation ReportingManager
@@ -38,9 +40,9 @@
     NSString *osVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
     NSString *currentTime = [self getCurrentTime];
 
-#ifdef DEBUG
-    eventType = [@"DEBUG_" stringByAppendingString:eventType];
-#endif
+    if ([VoicesUtilities isInDebugMode]) {
+        eventType = [@"DEBUG_" stringByAppendingString:eventType];
+    }
     
     NSString *params = [NSString stringWithFormat:@"eventType=%@&eventFocus=%@&eventData=%@&eventLoggerId=%@&platform=%@&osVersion=%@&eventTime=%@", eventType, eventFocus, eventData, eventLoggerID, platform, osVersion, currentTime];
     NSString *reportingString = [NSString stringWithFormat:@"%@%@", kEVENT_DATABASE, params];
