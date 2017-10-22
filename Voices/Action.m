@@ -31,10 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_actionType.length) {
         
         if ([_actionType isEqualToString:@"singleRep"]) {
-            _representative = [[Representative alloc]initWithData:dictionary[@"singleRep"]];
-        }
-        else {
-            _representative = [[Representative alloc]initWithData:dictionary[@"addressReps"]];
+            _representative = dictionary[@"representative"];
         }
     }
     if (!_script.length) {

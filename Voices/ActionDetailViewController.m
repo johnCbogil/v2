@@ -15,6 +15,7 @@
 #import "RepsManager.h"
 #import "WebViewController.h"
 #import "GroupDetailViewController.h"
+#import "Representative.h"
 
 @interface ActionDetailViewController () <UITableViewDelegate, UITableViewDataSource, ExpandActionDescriptionDelegate, TTTAttributedLabelDelegate>
 
@@ -38,7 +39,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
     
-    
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
     self.navigationController.navigationBarHidden = NO;
@@ -46,14 +46,22 @@
 
 - (void)configureDatasource {
     
-    if (self.action.level == 0) {
-        self.listOfReps = [RepsManager sharedInstance].fedReps;
+    if ([self.action.actionType isEqualToString:@"singleRep"]) {
+        
+        Representative *rep = [[Representative alloc]initWithData:self.action.representative];
+        self.listOfReps = @[rep];
     }
-    else if (self.action.level == 1) {
-        self.listOfReps = [RepsManager sharedInstance].stateReps;
-    }
-    else if (self.action.level == 2) {
-        self.listOfReps = [RepsManager sharedInstance].localReps;
+    else {
+        
+        if (self.action.level == 0) {
+            self.listOfReps = [RepsManager sharedInstance].fedReps;
+        }
+        else if (self.action.level == 1) {
+            self.listOfReps = [RepsManager sharedInstance].stateReps;
+        }
+        else if (self.action.level == 2) {
+            self.listOfReps = [RepsManager sharedInstance].localReps;
+        }
     }
 }
 
