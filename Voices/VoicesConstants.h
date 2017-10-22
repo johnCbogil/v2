@@ -34,6 +34,7 @@ extern NSString *const kSFState;
 extern NSString *const kGoogMaps;
 extern NSString *const kAutocomplete;
 extern NSString *const kGoogCivic;
+extern  NSString *const kVoteSmart;
 
 extern NSString *const kFederalRepresentative;
 extern NSString *const kStateRepresentative;

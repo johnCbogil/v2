@@ -140,6 +140,35 @@
     [operation start];
 }
 
+#pragma mark - VoteSmart API
+
+- (void)getFederalRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSArray *results))successBlock
+                               onError:(void(^)(NSError *error))errorBlock {
+    
+    NSString *postalCode = [nineDigitZip substringToIndex:4];
+    NSString *postalCodeSuffix = [nineDigitZip substringFromIndex: [nineDigitZip length] - 4];
+    
+    NSString *formattedString = [NSString stringWithFormat:@"http://api.votesmart.org/Officials.getByZip?key=%@&o=json&zip5=%@&%@", kVoteSmart, postalCode, postalCodeSuffix];
+    NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSURL *url = [NSURL URLWithString:encodedURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }];
+    [operation start];
+}
+
 #pragma mark - OpenSecretsAPI
 
 - (void)getTopContributorsForRep:(NSString *)repID withCompletion: (void(^)(NSData *results))successBlock onError:(void(^)(NSError *error))errorBlock {

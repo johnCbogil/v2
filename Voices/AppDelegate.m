@@ -19,6 +19,7 @@
 #import "Action.h"
 #import "FirebaseManager.h"
 #import "VoicesUtilities.h"
+#import "RepsNetworkManager.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -49,6 +50,12 @@
     [self unzipLocalDataSet];
     [self excludeGeoJSONFromCloudBackup];
     [self configureFirebase];
+    
+    [[RepsNetworkManager sharedInstance]getFederalRepsFromNineDigitZip:@"110402003" withCompletion:^(NSArray *results) {
+        NSLog(@"%@", results);
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
     
     return YES;
 }
