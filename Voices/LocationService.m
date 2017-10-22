@@ -82,6 +82,16 @@
             CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
             CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             self.requestedLocation = location;
+            
+            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+            [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+                if(placemarks && placemarks.count > 0) {
+                    CLPlacemark *placemark= [placemarks objectAtIndex:0];
+                    NSDictionary *addressDict = [placemark addressDictionary];
+                    NSString *nineDigitZip = [NSString stringWithFormat:@"%@%@",addressDict[@"ZIP"],addressDict[@"PostCodeExtension"]];
+                    NSLog(@"%@", nineDigitZip);
+                }
+        }];
             successBlock(location);
         }
     } onError:^(NSError *error) {
