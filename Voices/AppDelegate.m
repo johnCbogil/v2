@@ -51,10 +51,11 @@
     [self excludeGeoJSONFromCloudBackup];
     [self configureFirebase];
     
-    [[RepsNetworkManager sharedInstance]getFederalRepsFromNineDigitZip:@"110402003" withCompletion:^(NSArray *results) {
-        NSLog(@"%@", results);
+
+    [[RepsManager sharedInstance]getCandidateIDFromNineDigitZip:@"110402003" WithCompletion:^{
+        
     } onError:^(NSError *error) {
-        [error localizedDescription];
+        
     }];
     
     return YES;

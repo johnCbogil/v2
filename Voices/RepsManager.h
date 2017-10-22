@@ -15,10 +15,10 @@
 +(RepsManager *) sharedInstance;
 - (NSArray *)fetchRepsForIndex:(NSInteger)index;
 - (void)fetchRepsForAddress:(NSString *)address;
-- (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
-                                         onError:(void(^)(NSError *error))errorBlock;
+- (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock onError:(void(^)(NSError *error))errorBlock;
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock;
 - (void)createLocalRepsFromLocation:(CLLocation *)location;
+- (void)getCandidateIDFromNineDigitZip:(NSString *)nineDigitZip WithCompletion:(void(^)(void))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (NSString *)getContactFormForBioGuide:(NSString *)bioguide;
 @property (strong, nonatomic) NSArray *localDistricts;
 @property (strong, nonatomic) NSArray *fedReps;

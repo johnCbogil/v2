@@ -142,13 +142,13 @@
 
 #pragma mark - VoteSmart API
 
-- (void)getFederalRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSArray *results))successBlock
+- (void)getFederalRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSDictionary *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock {
     
-    NSString *postalCode = [nineDigitZip substringToIndex:4];
+    NSString *postalCode = [nineDigitZip substringToIndex:5];
     NSString *postalCodeSuffix = [nineDigitZip substringFromIndex: [nineDigitZip length] - 4];
     
-    NSString *formattedString = [NSString stringWithFormat:@"http://api.votesmart.org/Officials.getByZip?key=%@&o=json&zip5=%@&%@", kVoteSmart, postalCode, postalCodeSuffix];
+    NSString *formattedString = [NSString stringWithFormat:@"http://api.votesmart.org/Officials.getByZip?key=%@&o=JSON&zip5=%@&zip4=%@", kVoteSmart, postalCode, postalCodeSuffix];
     NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:encodedURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

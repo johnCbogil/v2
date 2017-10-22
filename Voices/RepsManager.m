@@ -146,6 +146,24 @@
     return [self.federalRepContactFormURLs valueForKey:bioguide];
 }
 
+- (void)getCandidateIDFromNineDigitZip:(NSString *)nineDigitZip WithCompletion:(void(^)(void))successBlock
+                                         onError:(void(^)(NSError *error))errorBlock {
+ 
+    [[RepsNetworkManager sharedInstance]getFederalRepsFromNineDigitZip:nineDigitZip withCompletion:^(NSDictionary *results) {
+        NSLog(@"%@", results);
+        NSDictionary *candidateList = results[@"candidateList"];
+        NSArray *candidates = candidateList[@"candidates"];
+        for (NSDictionary *candidate in candidates) {
+            if ([candidate[@"officeName"]isEqualToString:@"U.S. Senate"]) {
+                
+            }
+        }
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
+}
+
+
 #pragma mark - Create State Representatives
 
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {
