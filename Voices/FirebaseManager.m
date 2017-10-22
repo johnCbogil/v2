@@ -308,7 +308,7 @@
     }];
 }
 
-- (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
+- (void)fetchActionsForGroup:(Group *) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingActions" object:nil];
     
@@ -320,7 +320,6 @@
         
         dispatch_group_enter(actionsGroup);
 
-        
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
             if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?

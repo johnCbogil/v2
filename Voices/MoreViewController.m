@@ -7,7 +7,6 @@
 //
 
 #import "MoreViewController.h"
-#import <StoreKit/StoreKit.h>
 #import "STPopupController.h"
 #import "AddAddressViewController.h"
 #import "WebViewController.h"
@@ -34,9 +33,9 @@
     if (!homeAddress.length) {
         homeAddress = @"Not added yet.";
     }
-    self.emojiArray = @[@"💪",@"🙋🏽",@"⭐",@"🗣️",@"🏡"];
-    self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Rate App", @"Send Feedback",@"Add Home Address", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"Every rating helps.", @"What could Voices do better to support you?", homeAddress, nil];
+    self.emojiArray = @[@"💪",@"🙋🏽",@"🗣️",@"🏡"];
+    self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Send Feedback",@"Add Home Address", nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"What could Voices do better to support you?", homeAddress, nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
@@ -60,17 +59,6 @@
     [super viewWillDisappear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)rateApp {
-    
-    if([SKStoreReviewController class]){
-        [SKStoreReviewController requestReview] ;
-    }
-    else {
-        NSString *iTunesAppLink = @"itms://itunes.apple.com/us/app/congress-voices/id965692648?mt=8";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesAppLink]];
-    }
 }
 
 #pragma mark - TableView methods
@@ -134,16 +122,11 @@
             break;
         case 2:
             
-            [self rateApp];
-            break;
-        case 3:
-            
-            
             webVC.url = [NSURL URLWithString:@"https://docs.google.com/a/tryvoices.com/forms/d/e/1FAIpQLSdwgwjbYWtvIDqefMZtDttTak-5-P92I1r6HhanEXql_hmjxA/viewform"];
             [webVC.navigationItem setTitle:@"Feedback Form"];
             [self.navigationController pushViewController:webVC animated:YES];
             break;
-        case 4:
+        case 3:
     
             [self presentAddAddressViewController];
             break;

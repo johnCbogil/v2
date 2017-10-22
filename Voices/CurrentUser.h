@@ -16,4 +16,6 @@
 @property (strong, nonatomic) NSMutableArray *listOfFollowedGroups;
 @property (strong, nonatomic) NSString *firebaseUserID;
 @property (strong, nonatomic) NSString *city;
+@property (strong, nonatomic) NSString *nineDigitZip;
+
 @end
