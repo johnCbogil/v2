@@ -8,6 +8,7 @@
 
 #import "LocationManager.h"
 #import "RepsNetworkManager.h"
+#import "CurrentUser.h"
 
 @implementation LocationManager
 
@@ -59,7 +60,9 @@
         if(placemarks && placemarks.count > 0) {
             CLPlacemark *placemark= [placemarks objectAtIndex:0];
             address = [NSString stringWithFormat:@"%@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
-            NSLog(@"%@",address);
+            NSDictionary *addressDict = [placemark addressDictionary];
+            NSString *nineDigitZip = [NSString stringWithFormat:@"%@%@",addressDict[@"ZIP"],addressDict[@"PostCodeExtension"]];
+            [CurrentUser sharedInstance].nineDigitZip = nineDigitZip;
             [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
         }
@@ -80,6 +83,15 @@
             CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
             CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             self.requestedLocation = location;
+            
+            CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+            [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+                if(placemarks && placemarks.count > 0) {
+                    CLPlacemark *placemark= [placemarks objectAtIndex:0];
+                    NSDictionary *addressDict = [placemark addressDictionary];
+                    NSString *nineDigitZip = [NSString stringWithFormat:@"%@%@",addressDict[@"ZIP"],addressDict[@"PostCodeExtension"]];
+                    [CurrentUser sharedInstance].nineDigitZip = nineDigitZip;                }
+        }];
             successBlock(location);
         }
     } onError:^(NSError *error) {
