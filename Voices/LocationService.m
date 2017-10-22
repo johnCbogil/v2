@@ -8,6 +8,7 @@
 
 #import "LocationManager.h"
 #import "RepsNetworkManager.h"
+#import "CurrentUser.h"
 
 @implementation LocationManager
 
@@ -61,7 +62,7 @@
             address = [NSString stringWithFormat:@"%@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
             NSDictionary *addressDict = [placemark addressDictionary];
             NSString *nineDigitZip = [NSString stringWithFormat:@"%@%@",addressDict[@"ZIP"],addressDict[@"PostCodeExtension"]];
-            NSLog(@"%@",nineDigitZip);
+            [CurrentUser sharedInstance].nineDigitZip = nineDigitZip;
             [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
         }
@@ -89,8 +90,7 @@
                     CLPlacemark *placemark= [placemarks objectAtIndex:0];
                     NSDictionary *addressDict = [placemark addressDictionary];
                     NSString *nineDigitZip = [NSString stringWithFormat:@"%@%@",addressDict[@"ZIP"],addressDict[@"PostCodeExtension"]];
-                    NSLog(@"%@", nineDigitZip);
-                }
+                    [CurrentUser sharedInstance].nineDigitZip = nineDigitZip;                }
         }];
             successBlock(location);
         }
