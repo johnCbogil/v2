@@ -48,7 +48,7 @@
     
     if ([self.action.actionType isEqualToString:@"singleRep"]) {
         
-        Representative *rep = [[Representative alloc]initWithData:self.action.representative];
+        Representative *rep = [[Representative alloc]initWithData:self.action.representativeDict];
         self.listOfReps = @[rep];
     }
     else {

@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_actionType.length) {
         
         if ([_actionType isEqualToString:@"singleRep"]) {
-            _representative = dictionary[@"representative"];
+            _representativeDict = dictionary[@"representative"];
         }
     }
     if (!_script.length) {

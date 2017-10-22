@@ -34,7 +34,7 @@
         self.photoURL = data[@"imageURL"];
         self.fullName = data[@"name"];
         self.phone = data[@"phone"];
-        self.title = data[@"data"];
+        self.title = data[@"title"];
         self.twitter = data[@"twitter"];
         
         return self;
