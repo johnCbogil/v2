@@ -59,7 +59,9 @@
         if(placemarks && placemarks.count > 0) {
             CLPlacemark *placemark= [placemarks objectAtIndex:0];
             address = [NSString stringWithFormat:@"%@ %@, %@ %@ %@", [placemark subThoroughfare],[placemark thoroughfare],[placemark locality], [placemark administrativeArea], [placemark postalCode]];
-            NSLog(@"%@",address);
+            NSDictionary *addressDict = [placemark addressDictionary];
+            NSString *nineDigitZip = [NSString stringWithFormat:@"%@%@",addressDict[@"ZIP"],addressDict[@"PostCodeExtension"]];
+            NSLog(@"%@",nineDigitZip);
             [[NSUserDefaults standardUserDefaults]setObject:address forKey:kHomeAddress];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"endFetchingStreetAddress" object:nil];
         }
