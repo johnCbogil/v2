@@ -35,25 +35,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="odb-zs-Drl">
-                                <rect key="frame" x="306" y="24" width="35" height="35"/>
+                                <rect key="frame" x="306" y="26" width="32" height="32"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="2TV-uL-s6R"/>
-                                    <constraint firstAttribute="height" constant="35" id="Hs7-Wr-9qv"/>
+                                    <constraint firstAttribute="width" constant="32" id="2TV-uL-s6R"/>
+                                    <constraint firstAttribute="height" constant="32" id="Hs7-Wr-9qv"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gip-Qz-YD3" firstAttribute="top" secondItem="mhK-Va-84A" secondAttribute="bottom" constant="8" symbolic="YES" id="2Jr-rX-iWg"/>
-                            <constraint firstItem="gip-Qz-YD3" firstAttribute="bottom" secondItem="odb-zs-Drl" secondAttribute="bottom" constant="-1" id="3Jo-UF-aH7"/>
+                            <constraint firstItem="gip-Qz-YD3" firstAttribute="bottom" secondItem="odb-zs-Drl" secondAttribute="bottom" id="3Jo-UF-aH7"/>
                             <constraint firstItem="odb-zs-Drl" firstAttribute="leading" secondItem="mhK-Va-84A" secondAttribute="trailing" constant="18" id="Apc-Xx-VGD"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="top" secondItem="95Q-YM-3FW" secondAttribute="topMargin" id="BVm-D9-WIc"/>
-                            <constraint firstItem="odb-zs-Drl" firstAttribute="trailing" secondItem="95Q-YM-3FW" secondAttribute="trailingMargin" constant="-10" id="Kk9-dx-LLX"/>
+                            <constraint firstItem="odb-zs-Drl" firstAttribute="trailing" secondItem="95Q-YM-3FW" secondAttribute="trailingMargin" constant="-13" id="Kk9-dx-LLX"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="leading" secondItem="95Q-YM-3FW" secondAttribute="leadingMargin" id="U1P-0h-tB1"/>
                             <constraint firstItem="mhK-Va-84A" firstAttribute="leading" secondItem="gip-Qz-YD3" secondAttribute="leading" id="YMP-A4-MMp"/>
                             <constraint firstItem="odb-zs-Drl" firstAttribute="leading" secondItem="gip-Qz-YD3" secondAttribute="trailing" constant="18" id="i30-pB-7SD"/>
-                            <constraint firstItem="mhK-Va-84A" firstAttribute="top" secondItem="odb-zs-Drl" secondAttribute="top" constant="-16" id="m6m-J6-OFL"/>
+                            <constraint firstItem="mhK-Va-84A" firstAttribute="top" secondItem="odb-zs-Drl" secondAttribute="top" constant="-18" id="m6m-J6-OFL"/>
                         </constraints>
                     </view>
                 </subviews>

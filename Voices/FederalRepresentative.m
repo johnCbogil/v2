@@ -32,16 +32,17 @@
         }
         self.fullName = data[@"name"];
         self.phoneRaw = data[@"phones"][0];
-        self.phone = [self.phoneRaw stringByReplacingOccurrencesOfString:@"(" withString:@""];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        self.phone = [self formatPhone:self.phoneRaw];
         self.party = data[@"party"];
         self.photoURL = [NSURL URLWithString:data[@"photoUrl"]];
+        self.website = data[@"urls"];
         NSArray *channels = data[@"channels"];
         for (NSDictionary *channel in channels) {
             if ([channel[@"type"]isEqualToString:@"Twitter"]) {
                 self.twitter = [NSString stringWithFormat:@"@%@",channel[@"id"]];
+            }
+            if ([channel[@"type"]isEqualToString:@"Facebook"]) {
+                self.facebook = [NSString stringWithFormat:@"%@", channel[@""]];
             }
         }
         
@@ -77,6 +78,16 @@
         self.title = @"Representative";
         self.shortTitle = @"Rep.";
     }
+}
+
+- (NSString *)formatPhone:(NSString *)phoneRaw {
+    
+    NSString *phone = [phoneRaw stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
+    phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
+    phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+
+    return phone;
 }
 
 @end

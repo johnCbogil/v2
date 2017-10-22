@@ -28,7 +28,6 @@ int contactTypeCount = 4;
 @end
 
 // TODO: ADD THIRD LINE TO BIO THAT INCLUDES PARTY COLOR AND STATE/DISTRICT
-// TODO: ADD SHADOWS TO CARDS
 // TODO: STYLE CONTACT LABELS
 // TODO: HOOK UP WEBSITE AND FACEBOOK INFO
 // TODO: MOVE BIO INTO TABLEVIEWCELL
@@ -44,7 +43,7 @@ int contactTypeCount = 4;
     
     self.contactTypeImageNames = @[@"Phone Filled", @"Twitter Filled", @"InfoButton", @"Facebook"];
     self.contactTypeLabels = @[@"Phone", @"Twitter", @"Website", @"Facebook"];
-    self.contactInfoLabels = @[self.representative.phoneRaw, self.representative.twitter, @"website", @"facebook"];
+    self.contactInfoLabels = @[self.representative.phoneRaw, self.representative.twitter, self.representative.website, self.representative.facebook];
     [self configureNavigationController];
     [self configureLabels];
     [self configureTableView];

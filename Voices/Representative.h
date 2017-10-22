@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSString *districtNumber;
 @property (strong, nonatomic) NSData *photo;
 @property (strong, nonatomic) NSString *twitter;
+@property (strong, nonatomic) NSString *facebook;
+@property (strong, nonatomic) NSString *website;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *shortTitle;
