@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #import "RepsNetworkManager.h"
 #import "StateRepresentative.h"
-#import "LocationService.h"
+#import "LocationManager.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import <Social/Social.h>
 #import <STPopup/STPopup.h>
@@ -20,7 +20,7 @@
 #import <CoreTelephony/CTCall.h>
 #import "ThankYouViewController.h"
 #import "WebViewController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "MoreViewController.h"
 
 @interface RootViewController () <MFMailComposeViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
@@ -31,6 +31,7 @@
 @property (strong, nonatomic) CTCallCenter *callCenter;
 @property (weak, nonatomic) IBOutlet UILabel *findRepsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIView *singleLineView;
 
 @end
 
@@ -73,6 +74,8 @@
     self.findRepsLabel.text = @"My Reps";
     self.findRepsLabel.adjustsFontSizeToFitWidth = YES;
     self.moreButton.tintColor = [UIColor blackColor];
+    [self.moreButton setImage:[UIImage imageNamed:@"femaleUser"] forState:UIControlStateNormal];
+    self.moreButton.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - NSNotifications
@@ -85,7 +88,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentInfoViewController)name:@"presentInfoViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentWebViewController:) name:@"presentWebView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentPullToRefreshAlert) name:@"presentPullToRefreshAlert" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentSearchViewControllerInRootVC) name:@"presentSearchViewControllerInRootVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewControllerInRootVC) name:@"presentAddAddressViewControllerInRootVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentScriptDialog) name:@"presentScriptView" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(closeAlertView) name:@"closeAlertView" object:nil];
 }
@@ -192,25 +195,16 @@
 
 - (void)presentTweetComposer:(NSNotification*)notification {
     
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        SLComposeViewController *tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *initialText = [NSString stringWithFormat:@".%@", [notification.userInfo objectForKey:@"accountName"]];
-        [tweetSheetOBJ setInitialText:initialText];
-        [tweetSheetOBJ setCompletionHandler:^(SLComposeViewControllerResult result) {
-            switch (result) {
-                case SLComposeViewControllerResultCancelled:
-                    
-                    break;
-                case SLComposeViewControllerResultDone:
-                    [[ReportingManager sharedInstance]reportEvent:kTWEET_EVENT eventFocus:[notification.userInfo objectForKey:@"accountName"] eventData:[ScriptManager sharedInstance].lastAction.key];
-                    
-                    break;
-                default:
-                    break;
-            }
-        }];
-        [self presentViewController:tweetSheetOBJ animated:YES completion:nil];
-    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=.%@",[notification.userInfo objectForKey:@"accountName"] ]];
+    UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.url = url;
+    webViewController.title = [notification.userInfo objectForKey:@"accountName"];
+    webViewController.hidesBottomBarWhenPushed = YES; // I would actually set this in WebViewController's viewDidLoad method
+    // Push on to the current tab bar's nav controller.
+    UINavigationController *navController = (UINavigationController *)self.tabBarController.selectedViewController;
+    navController.navigationBar.hidden = NO;
+    [navController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentInfoViewController {
@@ -256,7 +250,7 @@
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  [[LocationService sharedInstance]startUpdatingLocation];
+                                  [[LocationManager sharedInstance]startUpdatingLocation];
                                   
                               }];
     [alert addAction:button0];
@@ -264,19 +258,19 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)presentSearchViewControllerInRootVC {
+- (void)presentAddAddressViewControllerInRootVC {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
-        searchViewController.title = @"Edit Home Address";
+        addAddressViewController.title = @"Edit Home Address";
     }
     else {
-        searchViewController.title = @"Add Home Address";
+        addAddressViewController.title = @"Add Home Address";
     }
     self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
 }
 
 - (void)closeAlertView {
@@ -329,8 +323,6 @@
     moreViewController.title = @"More";
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController pushViewController:moreViewController animated:YES];
-    
-    //    [self presentInfoViewController];
 }
 
 - (IBAction)infoButtonDidPress:(id)sender {

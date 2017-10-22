@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, STPopupControllerTransitioningAction) {
  Animate transitioning the container view of popup controller. "completion" need to be called after transitioning is finished.
  Initially "containerView" will be placed at the final position with transform = CGAffineTransformIdentity if it's presenting.
  */
-- (void)popupControllerAnimateTransition:(STPopupControllerTransitioningContext *)context completion:(void(^)())completion;
+- (void)popupControllerAnimateTransition:(STPopupControllerTransitioningContext *)context completion:(void(^)(void))completion;
 
 @end
 
@@ -173,6 +173,14 @@ typedef NS_ENUM(NSUInteger, STPopupTransitionStyle) {
  Pop the top most view controller out of view controllers stack with animated flag.
  */
 - (void)popViewControllerAnimated:(BOOL)animated;
+
+
+/**
+ Pops all view controllers from the stack until it reaches the root view controller
+
+ @param animated YES if animated
+ */
+- (void)popToRootViewControllerAnimated:(BOOL)animated;
 
 /**
  Set hidden status of navigation bar with animated flag.

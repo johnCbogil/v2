@@ -7,24 +7,29 @@
 //
 
 #import "TakeActionViewController.h"
+
 #import "ActionTableViewCell.h"
 #import "ActionFeedHeaderTableViewCell.h"
 #import "ActionDetailViewController.h"
 #import "CurrentUser.h"
-
+#import "FirebaseManager.h"
 #import "GroupsEmptyState.h"
 #import "ListOfGroupsViewController.h"
-#import "FirebaseManager.h"
 #import "ScriptManager.h"
+#import "UIViewController+Alert.h"
+#import "VoicesUtilities.h"
 
 @interface TakeActionViewController () <UITableViewDataSource, UITableViewDelegate, PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) BOOL isUserAuthInProgress;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) GroupsEmptyState *emptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *takeActionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addGroupButton;
+@property (nonatomic) NSUInteger actionsCompletedCount;
+@property (strong, nonatomic) NSMutableArray *tableViewDataSource;
+@property (weak, nonatomic) IBOutlet UILabel *gettingActionsLabel;
+
 @end
 
 @implementation TakeActionViewController
@@ -33,24 +38,26 @@
     [super viewDidLoad];
     
     [self configureTableView];
-    [self createActivityIndicator];
-    
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    
-    self.isUserAuthInProgress = NO;
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshHeaderCell) name:@"refreshHeaderCell" object:nil];
-    
-    [self.navigationController setNavigationBarHidden:YES];
-    self.addGroupButton.tintColor = [UIColor voicesOrange];
-    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:40];
+    [self configureActivityIndicator];
+    [self configureNavigationBar];
+    [self configureObservers];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
-- (void)configureEmptyState {
+- (void)configureObservers {
     
-    [self.emptyStateView updateLabels:kActionEmptyStateTopLabel bottom:kActionEmptyStateBottomLabel];
-    [self.view layoutSubviews];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchCompletedActionCount) name:@"refreshHeaderCell" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toggleActivityIndicatorOn) name:@"startFetchingActions" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toggleActivityIndicatorOff) name:@"stopFetchingActions" object:nil];
+}
+
+- (void)configureNavigationBar {
+    
+    [self.navigationController setNavigationBarHidden:YES];
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
+    self.addGroupButton.tintColor = [UIColor voicesOrange];
+    self.takeActionLabel.font = [UIFont voicesBoldFontWithSize:40];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,34 +69,32 @@
         
         [self fetchFollowedGroupsForCurrentUser];
     }
+    
+    if ([CurrentUser sharedInstance].listOfFollowedGroups.count) {
+        self.tableView.backgroundView.hidden = YES;
+    }
     else {
         self.tableView.backgroundView.hidden = NO;
     }
-    
-    if (![CurrentUser sharedInstance].listOfActions.count) {
-        self.tableView.backgroundView.hidden = NO;
-    }
-    [self.tableView reloadData];
+
+    [self fetchActions];
 }
 
 - (void)configureTableView {
     
+    [self fetchCompletedActionCount];
     self.emptyStateView = [[GroupsEmptyState alloc]init];
     self.tableView.backgroundView = self.emptyStateView;
-    if (!self.isUserAuthInProgress) {
-        self.tableView.backgroundView.hidden = YES;
-    }
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActionFeedHeaderTableViewCell" bundle:nil]forCellReuseIdentifier:@"ActionFeedHeaderTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionCellReuse bundle:nil]forCellReuseIdentifier: kActionCellReuse];
+    [self.tableView registerNib:[UINib nibWithNibName: kActionFeedHeaderTableViewCell bundle:nil]forCellReuseIdentifier: kActionFeedHeaderTableViewCell];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50.f;
 }
 
-- (void)createActivityIndicator {
+- (void)configureActivityIndicator {
     
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicatorView.color = [UIColor grayColor];
@@ -107,64 +112,30 @@
 - (void)toggleActivityIndicatorOff {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if (![CurrentUser sharedInstance].listOfActions.count) {
-            self.tableView.backgroundView.hidden = NO;
-        }
-        else {
-            self.tableView.backgroundView.hidden = YES;
-        }
-
-        if (![CurrentUser sharedInstance].listOfFollowedGroups.count) {
-            self.tableView.backgroundView.hidden = NO;
-        }
-        else {
-            self.tableView.backgroundView.hidden = YES;
-        }
-        
-        // CONFIGURE EMPTY STATE
-        
-        // IF THERE ARE NO GROUPS
-            // DISPLAY DEFAULT EMPTY STATE
-        // IF THERE ARE GROUPS BUT NO ACTIONS
-            // PRESENT DIFFERENT EMPTY STATE
+        [self.activityIndicatorView stopAnimating];
     });
-    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Firebase Methods
 
-- (void)userAuth {
+- (void)fetchCompletedActionCount {
     
-    if (self.isUserAuthInProgress) {
-        return;
-    }
-    self.isUserAuthInProgress = YES;
-    NSString *userID = [[NSUserDefaults standardUserDefaults]stringForKey:@"userID"];
-    if (userID) {
-        [self fetchFollowedGroupsForCurrentUser];
-    }
+    [[FirebaseManager sharedInstance] fetchListOfCompletedActionsWithCompletion:^(NSArray *listOfCompletedActions) {
+        self.actionsCompletedCount = listOfCompletedActions.count;
+        [self refreshHeaderCell];
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
 }
 
 - (void)fetchFollowedGroupsForCurrentUser {
     
-    self.isUserAuthInProgress = NO;
-    [self toggleActivityIndicatorOn];
-    
     [[FirebaseManager sharedInstance]fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
-        [self toggleActivityIndicatorOff];
         [self.tableView reloadData];
         
     } onError:^(NSError *error) {
         [self toggleActivityIndicatorOff];
     }];
-}
-
-- (void)learnMoreButtonDidPress:(UIButton*)sender {
-    
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    [self pushToActionDetail:indexPath];
 }
 
 - (void)pushToActionDetail:(NSIndexPath *)indexPath {
@@ -175,37 +146,87 @@
     
     UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
     ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-    actionDetailViewController.action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
-    Group *currentGroup = [Group groupForAction: [CurrentUser sharedInstance].listOfActions[indexPath.row-1]];
+    actionDetailViewController.action = self.tableViewDataSource[indexPath.row-1];
+    Group *currentGroup = [Group groupForAction: self.tableViewDataSource[indexPath.row-1]];
     actionDetailViewController.group = currentGroup;
-    [ScriptManager sharedInstance].lastAction = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
+    [ScriptManager sharedInstance].lastAction = self.tableViewDataSource[indexPath.row-1];
     [self.navigationController pushViewController:actionDetailViewController animated:YES];
+}
+
+- (void)fetchActions {
+    
+    self.tableViewDataSource = @[].mutableCopy;
+    for (Group *group in [CurrentUser sharedInstance].listOfFollowedGroups) {
+        
+        [[FirebaseManager sharedInstance]fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
+            
+            for (Action *action in listOfActions) {
+            
+                if ([self shouldAddActionToList:action]) {
+                    [self.tableViewDataSource addObject:action];
+                    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
+                    self.tableViewDataSource = [self.tableViewDataSource sortedArrayUsingDescriptors:@[sort]].mutableCopy;
+                    [self.tableView reloadData];
+                }
+            }
+        }];
+    }
+    [self.tableView reloadData];
+}
+
+- (BOOL)shouldAddActionToList:(Action *)action {
+
+    NSDate *currentTime = [NSDate date];
+
+    if (action.timestamp < currentTime.timeIntervalSince1970) {
+
+        NSInteger index = [self.tableViewDataSource indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
+            if ([action.key isEqualToString:actionInArray.key]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+        }];
+        if (index != NSNotFound) {
+            // We already have this action in our table
+            return NO;
+        }
+
+        BOOL debug = [VoicesUtilities isInDebugMode];
+        // if app is in debug, add all groups
+        if (debug) {
+            return YES;
+        }
+        // if app is not in debug, add only non-debug groups
+        else if (!action.debug) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - TableView delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [CurrentUser sharedInstance].listOfActions.count;
-    
+    if (self.tableViewDataSource.count) {
+        return self.tableViewDataSource.count + 1;
+    }
+    else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        
-        ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionFeedHeaderTableViewCell" forIndexPath:indexPath];
-        [cell refreshTotalActionsCompleted];
+        ActionFeedHeaderTableViewCell *cell = (ActionFeedHeaderTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionFeedHeaderTableViewCell forIndexPath:indexPath];
+        [cell refreshTotalActionsCompleted:self.actionsCompletedCount];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else {
-        
-        // TODO: THIS VC IS GETTING ONLY LWV WI ACTIONS
-        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionTableViewCell" forIndexPath:indexPath];
-        [cell.takeActionButton addTarget:self action:@selector(learnMoreButtonDidPress:) forControlEvents:UIControlEventTouchUpInside];
-        Action *action = [CurrentUser sharedInstance].listOfActions[indexPath.row-1];
-        Group *currentGroup = [Group groupForAction: action];
+        ActionTableViewCell *cell = (ActionTableViewCell *)[tableView dequeueReusableCellWithIdentifier: kActionCellReuse forIndexPath:indexPath];
+        Action *action = self.tableViewDataSource[indexPath.row - 1];
+        Group *currentGroup = [Group groupForAction:action];
         [cell initWithGroup:currentGroup andAction:action];
         cell.delegate = self;
         return cell;
@@ -244,7 +265,6 @@
         return;
     }
     
-    
     // Allows centering of the nav bar title by making an empty back button
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
@@ -255,39 +275,9 @@
 }
 
 - (void)refreshHeaderCell {
-    
-    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     ActionFeedHeaderTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [cell refreshTotalActionsCompleted];
-}
-
-#pragma mark - UIAlerts
-
-- (void)presentThankYouAlertForGroup:(Group *)group andAction:(Action *)action {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Action Completed!"
-                                                                             message:@"You're a good citizen. Now share this action with others, change happens when many people act together."
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share..." style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull alert) {
-        
-        NSString *shareString = [NSString stringWithFormat:@"Hey, please help me support %@. %@.\n\n https://tryvoices.com/%@", group.name, action.title, group.key];
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[shareString]applicationActivities:nil];
-        [self.navigationController presentViewController:activityViewController
-                                                animated:YES
-                                              completion:^{ }];
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [alertController addAction:cancel];
-    [alertController addAction:shareAction];
-    
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+    [cell refreshTotalActionsCompleted:self.actionsCompletedCount];
 }
 
 - (IBAction)addGroupButtonDidPress:(id)sender {

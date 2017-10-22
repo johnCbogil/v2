@@ -11,6 +11,11 @@
 
 @implementation VoicesConstants
 
+NSString *const kActionFeedHeaderTableViewCell = @"ActionFeedHeaderTableViewCell";
+NSString *const kActionDetailTopTableViewCell  = @"ActionDetailTopTableViewCell";
+NSString *const kActionDetailEmptyRepTableViewCell = @"ActionDetailEmptyRepTableViewCell";
+NSString *const kActionDetailMenuItemTableViewCell = @"ActionDetailMenuItemTableViewCell";
+
 NSString *const kRepTableViewCell = @"RepTableViewCell";
 NSString *const kActionCellReuse = @"ActionTableViewCell";
 NSString *const kRepsCollectionViewCell = @"RepsCollectionViewCell";
@@ -33,11 +38,11 @@ NSString *const kGoogCivic = @"AIzaSyASF9RaK1iMCFqzu6FQYYeAXwsfQTLQkWU";
 
 NSString *const kFederalRepresentative = @"FederalRepresentative";
 NSString *const kStateRepresentative = @"StateRepresentative";
-NSString *const kNYCRepresentative = @"NYCRepresentative";
+NSString *const kLocalRepresnetative = @"LocalRepresnetative";
 
 NSString *const kCreateFederalRepresentatives = @"createFederalRepresentatives";
 NSString *const kCreateStateRepresentatives = @"createStateRepresentatives";
-NSString *const kCreateNYCRepresentatives = @"createNYCRepresentatives";
+NSString *const kCreateLocalRepresnetative = @"createLocalRepresentatives";
 
 NSString *const kCityCouncilZip = @"CouncilDistrictsJSON";
 NSString *const kCityCouncilJSON = @"City Council Districts.geojson";

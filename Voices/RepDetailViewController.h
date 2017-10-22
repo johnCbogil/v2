@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FederalRepresentative.h"
 #import "StateRepresentative.h"
-#import "NYCRepresentative.h"
+#import "LocalRepresentative.h"
 #import "UIImageView+AFNetworking.h"
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>

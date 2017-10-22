@@ -7,11 +7,9 @@
 //
 
 #import "ActionView.h"
-
 #import "ReportingManager.h"
 #import "Representative.h"
 #import "ScriptManager.h"
-#import "STPopupController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetButton;
-
 @property (nonatomic) Representative *representative;
 
 @end
@@ -74,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.callButtonTappedBlock();
         return;
     }
-    if (self.representative.phone.length) {
+    if (![self.representative.phone isKindOfClass:[NSNull class]] && self.representative.phone.length) {
         NSString *confirmCallMessage = @"Would you like to preview the call script or begin calling?";
         NSString *title = [NSString stringWithFormat:@"Call %@",self.representative.fullName];
         
@@ -96,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
                 [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
             }
         }]];
-
+        
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:confirmCallAlertController animated:YES completion:^{
             [confirmCallAlertController.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
         }];
@@ -156,7 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
                                    @"fullName": fullName};
         [[NSNotificationCenter defaultCenter]postNotificationName:@"presentWebView" object:notiDict];
     }
-    // TODO: THIS IS NOT DRY
+
     else if (self.representative.contactForm.length > 0) {
         
         NSString *contactFormURLString = self.representative.contactForm;
@@ -192,6 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)showEmailAlert {
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their email address, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
@@ -204,21 +202,13 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
     
-    NSURL *tURL = [NSURL URLWithString:@"twitter://"];
-    if ( [[UIApplication sharedApplication] canOpenURL:tURL] ) {
-        if (self.representative.twitter) {
-            NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
-        }
-        else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their Twitter handle, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
-            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-        }
+    if (self.representative.twitter) {
+        NSDictionary *userInfo = [[NSDictionary alloc]initWithObjectsAndKeys:self.representative.twitter, @"accountName", nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"presentTweetComposer" object:nil userInfo:userInfo];
     }
     else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Please install Twitter first." preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"This rep hasn't given us their Twitter handle, try calling instead." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Good idea" style:UIAlertActionStyleDefault handler:nil]];
         [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
     }
 }

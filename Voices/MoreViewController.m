@@ -7,14 +7,15 @@
 //
 
 #import "MoreViewController.h"
-#import <StoreKit/StoreKit.h>
 #import "STPopupController.h"
-#import "SearchViewController.h"
+#import "AddAddressViewController.h"
 #import "WebViewController.h"
+#import "MoreTableViewCell.h"
 
 @interface MoreViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *moreTableView;
+@property (strong, nonatomic) NSArray *emojiArray;
 
 @end
 
@@ -28,16 +29,23 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     
-    self.choiceArray = [[NSArray alloc] initWithObjects: @"Edit Home Address", @"Pro Tips", @"Rate App", @"Issue Survey", @"Send Feedback", nil];
-    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Home", @"Make your actions more effective.", @"A higher rating means more people can find the app to support the causes you care about.", @"What issues are important to you?", @"What could Voices do better to support your causes?", nil];
+    NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+    if (!homeAddress.length) {
+        homeAddress = @"Not added yet.";
+    }
+    self.emojiArray = @[@"💪",@"🙋🏽",@"🗣️",@"🏡"];
+    self.choiceArray = [[NSArray alloc] initWithObjects: @"Pro Tips", @"Issue Survey", @"Send Feedback",@"Add Home Address", nil];
+    self.subtitleArray = [[NSArray alloc] initWithObjects: @"Make your actions more effective.", @"What issues are important to you?", @"What could Voices do better to support you?", homeAddress, nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadAddressCell) name:@"endFetchingStreetAddress" object:nil];
+    
+    [self.moreTableView registerNib:[UINib nibWithNibName:@"MoreTableViewCell" bundle:nil]forCellReuseIdentifier:@"MoreTableViewCell"];
 }
 
 - (void)reloadAddressCell {
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0] ;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.choiceArray.count - 1 inSection:0] ;
     [self.moreTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
 }
 
@@ -53,25 +61,15 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)rateApp {
-    
-    if([SKStoreReviewController class]){
-        [SKStoreReviewController requestReview] ;
-    }
-    else {
-        NSString *iTunesAppLink = @"itms://itunes.apple.com/us/app/congress-voices/id965692648?mt=8";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesAppLink]];
-    }
-}
-
 #pragma mark - TableView methods
 
 - (void)configureTableView {
     
     self.moreTableView.delegate = self;
     self.moreTableView.dataSource = self;
-    self.moreTableView.rowHeight = 80;
     self.moreTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.moreTableView.estimatedRowHeight = 200.0f;
+    self.moreTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -86,28 +84,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellIdentifier = @"Cell";
+    MoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MoreTableViewCell"];
+    cell.titleLabel.text = self.choiceArray[indexPath.row];
+    cell.subtitleLabel.text = self.subtitleArray[indexPath.row];
+    cell.emojiLabel.text = self.emojiArray[indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
-    cell.textLabel.text = [self.choiceArray objectAtIndex:indexPath.row];
-    cell.textLabel.numberOfLines = 0;
-    cell.detailTextLabel.text = [self.subtitleArray objectAtIndex:indexPath.row];
-    cell.detailTextLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont voicesBoldFontWithSize:20];
-    cell.detailTextLabel.font = [UIFont voicesFontWithSize:14];
-    
-    if (indexPath.row == 0) {
-        NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
-        if (!homeAddress.length) {
-            homeAddress = @"Home not set yet.";
+        if (indexPath.row == self.choiceArray.count-1) {
+            NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
+            if (!homeAddress.length) {
+                homeAddress = @"Not added yet.";
+            }
+            else {
+                cell.titleLabel.text = @"Edit Home Address";
+            cell.subtitleLabel.text = homeAddress;
+            }
         }
-        cell.detailTextLabel.text = homeAddress;
-    }
     
     return cell;
 }
@@ -120,25 +111,24 @@
     
     switch ([indexPath row]) {
         case 0:
-            [self presentSearchViewController];
-            break;
-        case 1:
+            
             [self presentProTipsViewController];
             break;
-        case 2:
-            [self rateApp];
-            break;
-        case 3:
+        case 1:
             
             webVC.url = [NSURL URLWithString:@"https://goo.gl/forms/m9Ux4UJ5MAJmuZyz1"];
             [webVC.navigationItem setTitle:@"Issue Survey"];
             [self.navigationController pushViewController:webVC animated:YES];
             break;
-        case 4:
+        case 2:
             
             webVC.url = [NSURL URLWithString:@"https://docs.google.com/a/tryvoices.com/forms/d/e/1FAIpQLSdwgwjbYWtvIDqefMZtDttTak-5-P92I1r6HhanEXql_hmjxA/viewform"];
             [webVC.navigationItem setTitle:@"Feedback Form"];
             [self.navigationController pushViewController:webVC animated:YES];
+            break;
+        case 3:
+    
+            [self presentAddAddressViewController];
             break;
 
         default:
@@ -146,21 +136,21 @@
     }
 }
 
-- (void)presentSearchViewController {
+- (void)presentAddAddressViewController {
     
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-    SearchViewController *searchViewController = (SearchViewController *)[repsSB instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
     NSString *homeAddress = [[NSUserDefaults standardUserDefaults]stringForKey:kHomeAddress];
     if (homeAddress.length > 0) {
-        searchViewController.title = @"Edit Home Address";
+        addAddressViewController.title = @"Edit Home Address";
     }
     else {
-        searchViewController.title = @"Add Home Address";
+        addAddressViewController.title = @"Add Home Address";
     }
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-    [self.navigationController pushViewController:searchViewController animated:YES];
+    [self.navigationController pushViewController:addAddressViewController animated:YES];
 }
 
 

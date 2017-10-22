@@ -7,9 +7,11 @@
 //
 
 #import "FirebaseManager.h"
+
 #import "CurrentUser.h"
-#import "ReportingManager.h"
 #import "PolicyPosition.h"
+#import "ReportingManager.h"
+#import "VoicesUtilities.h"
 
 @import Firebase;
 
@@ -67,6 +69,11 @@
     [CurrentUser sharedInstance].firebaseUserID = [FIRAuth auth].currentUser.uid;
     self.currentUserRef = [self.usersRef child:[CurrentUser sharedInstance].firebaseUserID];
     self.currentUsersGroupsRef = [self.currentUserRef child:@"groups"];
+    [self fetchFollowedGroupsForCurrentUserWithCompletion:^(NSArray *listOfFollowedGroups) {
+        
+    } onError:^(NSError *error) {
+        [error localizedDescription];
+    }];
 }
 
 - (void)createUser {
@@ -90,6 +97,10 @@
 
 #pragma mark - Group
 - (void)followGroup:(NSString *)groupKey withCompletion:(void(^)(BOOL result))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    if (groupKey.length == 0) {
+        return;
+    }
     
     FIRDatabaseReference *currentUserRef = [[[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"groups"]child:groupKey];
     
@@ -143,7 +154,7 @@
             
             Group *group = [[Group alloc] initWithKey:key groupDictionary:obj];
             
-            BOOL debug = [self isInDebugMode];
+            BOOL debug = [VoicesUtilities isInDebugMode];
             // if app is in debug, add all groups
             if (debug) {
                 [groupsArray addObject:group];
@@ -153,6 +164,10 @@
                 [groupsArray addObject:group];
             }
         }];
+        
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        groupsArray = [groupsArray sortedArrayUsingDescriptors:@[sort]].mutableCopy;
+        
         successBlock(groupsArray);
     } withCancelBlock:^(NSError * _Nonnull error) {
         errorBlock(error);
@@ -168,9 +183,9 @@
     }
 }
 
-- (void) fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
+- (void)fetchFollowedGroupsForCurrentUserWithCompletion:(void (^)(NSArray *))successBlock onError:(void (^)(NSError *))errorBlock {
     
-    [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
+//    [CurrentUser sharedInstance].listOfFollowedGroups = [NSMutableArray array];
     
     // For each group that the user belongs to
     [[[self.usersRef child:[FIRAuth auth].currentUser.uid] child:@"groups"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -204,7 +219,7 @@
                 
                 Group *group = [[Group alloc] initWithKey:key groupDictionary:snapshot.value];
                 
-                BOOL debug = [self isInDebugMode];
+                BOOL debug = [VoicesUtilities isInDebugMode];
                 // if app is in debug, add all groups
                 if (debug) {
                     [[CurrentUser sharedInstance].listOfFollowedGroups addObject:group];
@@ -220,20 +235,11 @@
                     return;
                 }
                 self.actionKeys = [snapshot.value[@"actions"] allKeys].mutableCopy;
-                
-                [self fetchActionsForGroup:group withCompletion:^(NSArray *listOfActions) {
-                    
-                    [[CurrentUser sharedInstance].listOfActions addObjectsFromArray: listOfActions.mutableCopy];
-                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                    [CurrentUser sharedInstance].listOfActions = [[CurrentUser sharedInstance].listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-                    successBlock(listOfActions);
-                }];
             }];
         }
         successBlock([CurrentUser sharedInstance].listOfFollowedGroups);
     } withCancelBlock:^(NSError * _Nonnull error) {
-        
+        [error localizedDescription];
     }];
 }
 
@@ -258,17 +264,6 @@
     // Remove group from user's subscriptions
     [[FIRMessaging messaging]unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@",group.key]];
     
-    // Remove associated actions
-    NSMutableArray *discardedActions = [NSMutableArray array];
-    for (Action *action in [CurrentUser sharedInstance].listOfActions) {
-        if(action.groupKey != nil && group.key != nil) {
-            if([action.groupKey caseInsensitiveCompare: group.key] == NSOrderedSame){
-                [discardedActions addObject:action];
-            }
-        }
-    }
-    [[CurrentUser sharedInstance].listOfActions removeObjectsInArray:discardedActions];
-    
     [[ReportingManager sharedInstance]reportEvent:kUNSUBSCRIBE_EVENT eventFocus:group.key eventData:[FIRAuth auth].currentUser.uid];
     
 }
@@ -290,7 +285,6 @@
 #pragma mark - Actions
 
 - (void)actionCompleteButtonPressed:(Action *)action {
-    
     
     FIRDatabaseReference *currentUserActionsCompletedRef = [[self.usersRef child:[FIRAuth auth].currentUser.uid]child:@"actionsCompleted"];
     FIRDatabaseReference *actionRef = [[self.actionsRef child:action.key]child:@"usersCompleted"];
@@ -314,8 +308,9 @@
     }];
 }
 
-// TODO: THIS IS BEING CALLED WHEN 'MY GROUPS' TAB IS SELECTED AND PROBABLY SHOULDNT NEED TO BE?
-- (void)fetchActionsForGroup:(Group*) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
+- (void)fetchActionsForGroup:(Group *) group withCompletion:(void(^)(NSArray *listOfActions))successBlock {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"startFetchingActions" object:nil];
     
    __block NSMutableArray *actionsList = @[].mutableCopy;
     
@@ -325,7 +320,6 @@
         
         dispatch_group_enter(actionsGroup);
 
-        
         [[self.actionsRef child:actionKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
             if (snapshot.value == [NSNull null]) { // Why is this different than NSNull class check above?
@@ -347,16 +341,17 @@
                 return;
             }
         
-            Action *action = [[Action alloc]initWithKey:actionKey actionDictionary:snapshot.value];
-            if ([self shouldAddActionToList:action]) {
+            Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
+//            if ([self shouldAddActionToList:action]) {
                 [actionsList addObject:action];
-            }
+//            }
             dispatch_group_leave(actionsGroup);
 
         }];
     }
     dispatch_group_notify(actionsGroup, dispatch_get_main_queue(), ^{
-        successBlock(actionsList);
+        successBlock(actionsList); // THIS IS ONLY CALLED WHEN FOLLOWING NON DEBUG GROUPS
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"stopFetchingActions" object:nil];
     });
 }
 
@@ -396,47 +391,6 @@
             errorBlock(error);
         }];
     }
-}
-
-- (BOOL)shouldAddActionToList:(Action *)action {
-    
-    NSDate *currentTime = [NSDate date];
-    
-    if (action.timestamp < currentTime.timeIntervalSince1970) {
-        
-        NSInteger index = [[CurrentUser sharedInstance].listOfActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
-            if ([action.key isEqualToString:actionInArray.key]) {
-                *stop = YES;
-                return YES;
-            }
-            return NO;
-        }];
-        if (index != NSNotFound) {
-            // We already have this action in our table
-            return NO;
-        }
-        
-        BOOL debug = [self isInDebugMode];
-        // if app is in debug, add all groups
-        if (debug) {
-            return YES;
-        }
-        // if app is not in debug, add only non-debug groups
-        else if (!action.debug) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-#pragma mark - Private methods
-
-- (BOOL)isInDebugMode {
-#if DEBUG
-    return YES;
-#else
-    return NO;
-#endif
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "GroupDetailViewController.h"
+
 #import "PolicyDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "PolicyPosition.h"
@@ -19,8 +20,9 @@
 #import "FirebaseManager.h"
 #import "WebViewController.h"
 #import "EmptyStateTableViewCell.h"
+#import "UIViewController+Alert.h"
 
-@interface GroupDetailViewController ()
+@interface GroupDetailViewController ()<PresentThankYouAlertDelegate>
 
 @property (weak, nonatomic)IBOutlet UITableView *tableView;
 @property (nonatomic, weak)id<ExpandingCellDelegate>expandingCellDelegate;
@@ -32,7 +34,7 @@
 @property (strong, nonatomic) NSArray *listOfGroupActions;
 @property (strong, nonatomic) NSString *const actionTBVReuse;
 @property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
-
+@property (strong, nonatomic) NSString *websiteURL;
 @end
 
 @implementation GroupDetailViewController
@@ -55,8 +57,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    
     [self.tableView reloadData];
 }
 
@@ -138,6 +143,7 @@
     WebViewController *webViewController = (WebViewController *)[repsSB instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.url = notification.object;
     webViewController.title = @"TAKE ACTION";
+    webViewController.url = [NSURL URLWithString:self.group.website];
     self.navigationItem.title = @"";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
@@ -219,7 +225,7 @@
 
 - (void)askForNotificationAuth {
     
-    NSString *notificationMessage = [NSString stringWithFormat:@"Would you like %@ to let you know when there is a new action to support?", self.group.name];
+    NSString *notificationMessage = [NSString stringWithFormat:@"Enable action notifications from %@?", self.group.name];
     
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
@@ -238,7 +244,6 @@
                               handler:^(UIAlertAction * action)
                               {
                                   
-                                  // TODO: ASK FOR NOTI PERMISSION FROM STPOPUP BEFORE ASKING FOR PERMISSION
                                   UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
                                   UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
                                   [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -300,7 +305,7 @@
                                                   [weakSelf unFollowGroup];
                                               }
                                           } onError:^(NSError *error) {
-                                              
+                                              [error localizedDescription];
                                           }];
                                           // read the value once to see if group key exists
                                       }];
@@ -388,7 +393,7 @@
             cell.followGroupDelegate = self;
             [cell setTitleForFollowGroupButton:self.followGroupStatus];
             cell.groupTypeLabel.text = self.group.groupType;
-            [cell.websiteButton setTitle:self.group.website forState:UIControlStateNormal];
+            [cell.websiteButton setTitle:@"Visit website" forState:UIControlStateNormal];
             [self configureGroupImageFromURL:self.group.groupImageURL inCell:cell];
             return cell;
         }
@@ -450,6 +455,7 @@
                     cell.emptyStateLabel.numberOfLines = 0;
                     cell.emptyStateLabel.text = @"This group hasn’t sent any actions yet.";
                     cell.emptyStateLabel.textAlignment = NSTextAlignmentCenter;
+                    cell.userInteractionEnabled = NO;
                     return cell;
                 } else {
                     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -458,6 +464,7 @@
                         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed: kActionCellReuse owner:self options:nil];
                         cell = [topLevelObjects objectAtIndex: 0];
                     }
+                    cell.delegate = self;
                     [cell initWithGroup:self.group andAction:self.listOfGroupActions[indexPath.row]];
                     return cell;
                 }
@@ -511,18 +518,14 @@
     
     [self toggleActivityIndicatorOn];
     
-    [CurrentUser sharedInstance].listOfActions = @[].mutableCopy;
     [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
         
         [self toggleActivityIndicatorOff];
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-        
         [self.tableView reloadData];
     }];
-    
-    
 }
 
 - (void)fetchPolicyPositions {
@@ -535,7 +538,7 @@
         self.listOfPolicyPositions = [NSMutableArray arrayWithArray:positions];
         [self.tableView reloadData];
     } onError:^(NSError *error) {
-        
+        [error localizedDescription];
     }];
     [self.tableView reloadData];
     [self toggleActivityIndicatorOff];

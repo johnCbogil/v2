@@ -1,5 +1,5 @@
 //
-//  NYCRepresentative.h
+//  LocalRepresentative.h
 //  Voices
 //
 //  Created by John Bogil on 1/23/16.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Representative.h"
 
-@interface NYCRepresentative : Representative
+@interface LocalRepresentative : Representative
 
 - (id)initWithData:(NSDictionary*)data;
 

@@ -25,4 +25,12 @@
     return array[randomIndex];
 }
 
++ (BOOL)isInDebugMode {
+#if DEBUG
+    return YES;
+#else
+    return NO;
+#endif
+}
+
 @end

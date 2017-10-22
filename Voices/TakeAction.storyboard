@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k0W-gi-hf3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k0W-gi-hf3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUB-rf-To8">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="C3e-7W-weW">
@@ -36,8 +36,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Px1-hj-bAe">
-                                <rect key="frame" x="16" y="47" width="213" height="52"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Actions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Px1-hj-bAe">
+                                <rect key="frame" x="16" y="47" width="205" height="52"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayz-aM-rSI">
-                                <rect key="frame" x="324" y="53" width="40" height="40"/>
+                                <rect key="frame" x="324" y="55" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="M6F-d2-ceW"/>
                                     <constraint firstAttribute="width" constant="40" id="Mw5-z9-UDr"/>
@@ -71,8 +71,8 @@
                             <constraint firstItem="Px1-hj-bAe" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="16" id="RTX-p0-3ZT"/>
                             <constraint firstItem="fUB-rf-To8" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" id="db1-jW-3a0"/>
                             <constraint firstItem="GFg-or-GAf" firstAttribute="top" secondItem="Px1-hj-bAe" secondAttribute="bottom" constant="8" id="eTH-sG-Ztb"/>
-                            <constraint firstItem="ayz-aM-rSI" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="33" id="gEk-aq-eqW"/>
-                            <constraint firstItem="fUB-rf-To8" firstAttribute="top" secondItem="GFg-or-GAf" secondAttribute="bottom" constant="7" id="nIT-If-feI"/>
+                            <constraint firstItem="ayz-aM-rSI" firstAttribute="top" secondItem="cez-2e-cd4" secondAttribute="bottom" constant="35" id="gEk-aq-eqW"/>
+                            <constraint firstItem="fUB-rf-To8" firstAttribute="top" secondItem="GFg-or-GAf" secondAttribute="bottom" id="nIT-If-feI"/>
                             <constraint firstItem="GFg-or-GAf" firstAttribute="leading" secondItem="ZIP-ID-NhE" secondAttribute="leading" constant="23" id="wNe-4M-y0y"/>
                         </constraints>
                     </view>
@@ -338,7 +338,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UgK-Rn-ulC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -352,6 +351,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddGroup" width="16" height="16"/>
+        <image name="AddGroup" width="33" height="33"/>
     </resources>
 </document>

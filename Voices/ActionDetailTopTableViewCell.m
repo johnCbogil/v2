@@ -62,6 +62,8 @@
 }
 
 - (IBAction)groupImageButtonDidPress:(id)sender {
+    // Add observer to push to GroupDetailViewController
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"presentGroupDetailViewController" object:nil];
 }
 
 @end

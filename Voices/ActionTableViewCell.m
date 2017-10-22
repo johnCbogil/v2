@@ -9,6 +9,8 @@
 #import "ActionTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "FirebaseManager.h"
+#import "VoicesUtilities.h"
+
 @import Firebase;
 
 @interface ActionTableViewCell()
@@ -120,7 +122,7 @@
 
 - (IBAction)completionStateButtonDidPress:(id)sender {
     
-    [[FirebaseManager sharedInstance]actionCompleteButtonPressed:self.action];
+    [[FirebaseManager sharedInstance] actionCompleteButtonPressed:self.action];
     
     if (self.action.isCompleted) {
         self.action.isCompleted = NO;
@@ -134,13 +136,14 @@
         
         [self.delegate presentThankYouAlertForGroup:self.group andAction:self.action];
         
-#ifdef DEBUG
-        return;
-#else
-        [FIRAnalytics logEventWithName:@"userCompletedAction"
-                            parameters:@{ @"actionKey": self.action.key}];
-#endif
-    }
+        if ([VoicesUtilities isInDebugMode]) {
+            return;
+        }
+        else {
+            [FIRAnalytics logEventWithName:@"userCompletedAction"
+                                parameters:@{ @"actionKey": self.action.key}];
+        }
+ }
 }
 
 @end

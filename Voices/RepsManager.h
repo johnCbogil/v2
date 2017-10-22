@@ -18,9 +18,9 @@
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock;
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock;
-- (void)createNYCRepsFromLocation:(CLLocation *)location;
+- (void)createLocalRepsFromLocation:(CLLocation *)location;
 - (NSString *)getContactFormForBioGuide:(NSString *)bioguide;
-@property (strong, nonatomic) NSArray *nycDistricts;
+@property (strong, nonatomic) NSArray *localDistricts;
 @property (strong, nonatomic) NSArray *fedReps;
 @property (strong, nonatomic) NSArray *stateReps;
 @property (strong, nonatomic) NSMutableArray *localReps;
