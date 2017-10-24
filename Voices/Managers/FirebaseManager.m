@@ -342,9 +342,9 @@
             }
         
             Action *action = [[Action alloc] initWithKey:actionKey actionDictionary:snapshot.value];
-//            if ([self shouldAddActionToList:action]) {
+            if ([self shouldAddAction:action toList:actionsList]) {
                 [actionsList addObject:action];
-//            }
+            }
             dispatch_group_leave(actionsGroup);
 
         }];
@@ -353,6 +353,37 @@
         successBlock(actionsList); // THIS IS ONLY CALLED WHEN FOLLOWING NON DEBUG GROUPS
         [[NSNotificationCenter defaultCenter]postNotificationName:@"stopFetchingActions" object:nil];
     });
+}
+
+- (BOOL)shouldAddAction:(Action *)action toList:(NSMutableArray *)actionsList {
+    
+    NSDate *currentTime = [NSDate date];
+    
+    if (action.timestamp < currentTime.timeIntervalSince1970) {
+        
+        NSInteger index = [actionsList indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
+            if ([action.key isEqualToString:actionInArray.key]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+        }];
+        if (index != NSNotFound) {
+            // We already have this action in our table
+            return NO;
+        }
+        
+        BOOL debug = [VoicesUtilities isInDebugMode];
+        // if app is in debug, add all groups
+        if (debug) {
+            return YES;
+        }
+        // if app is not in debug, add only non-debug groups
+        else if (!action.debug) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)fetchListOfCompletedActionsWithCompletion:(void(^)(NSArray *listOfCompletedActions))successBlock onError:(void(^)(NSError *error))errorBlock {

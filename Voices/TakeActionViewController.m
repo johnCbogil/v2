@@ -163,48 +163,48 @@
             
             for (Action *action in listOfActions) {
             
-                if ([self shouldAddActionToList:action]) {
+//                if ([self shouldAddActionToList:action]) {
                     [self.tableViewDataSource addObject:action];
                     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
                     self.tableViewDataSource = [self.tableViewDataSource sortedArrayUsingDescriptors:@[sort]].mutableCopy;
                     [self.tableView reloadData];
                 }
-            }
+//            }
         }];
     }
     [self.tableView reloadData];
 }
 
-- (BOOL)shouldAddActionToList:(Action *)action {
-
-    NSDate *currentTime = [NSDate date];
-
-    if (action.timestamp < currentTime.timeIntervalSince1970) {
-
-        NSInteger index = [self.tableViewDataSource indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
-            if ([action.key isEqualToString:actionInArray.key]) {
-                *stop = YES;
-                return YES;
-            }
-            return NO;
-        }];
-        if (index != NSNotFound) {
-            // We already have this action in our table
-            return NO;
-        }
-
-        BOOL debug = [VoicesUtilities isInDebugMode];
-        // if app is in debug, add all groups
-        if (debug) {
-            return YES;
-        }
-        // if app is not in debug, add only non-debug groups
-        else if (!action.debug) {
-            return YES;
-        }
-    }
-    return NO;
-}
+//- (BOOL)shouldAddActionToList:(Action *)action {
+//
+//    NSDate *currentTime = [NSDate date];
+//
+//    if (action.timestamp < currentTime.timeIntervalSince1970) {
+//
+//        NSInteger index = [self.tableViewDataSource indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
+//            if ([action.key isEqualToString:actionInArray.key]) {
+//                *stop = YES;
+//                return YES;
+//            }
+//            return NO;
+//        }];
+//        if (index != NSNotFound) {
+//            // We already have this action in our table
+//            return NO;
+//        }
+//
+//        BOOL debug = [VoicesUtilities isInDebugMode];
+//        // if app is in debug, add all groups
+//        if (debug) {
+//            return YES;
+//        }
+//        // if app is not in debug, add only non-debug groups
+//        else if (!action.debug) {
+//            return YES;
+//        }
+//    }
+//    return NO;
+//}
 
 #pragma mark - TableView delegate methods
 
