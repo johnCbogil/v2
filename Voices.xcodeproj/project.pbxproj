@@ -91,13 +91,8 @@
 		7EE956C81F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		896C64CF6CA0389CE746987C /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */; };
-		941447571F995E5300098A8F /* ActionDetailFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941447561F995E5300098A8F /* ActionDetailFooterTableViewCell.xib */; };
-		9414475A1F995E7300098A8F /* ActionDetailFooterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 941447591F995E7300098A8F /* ActionDetailFooterTableViewCell.m */; };
-		9414475D1F99796600098A8F /* ActionDetailReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9414475C1F99796600098A8F /* ActionDetailReminderViewController.m */; };
 		94DF29F51F804A57002ED9F8 /* MoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */; };
 		94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */; };
-		9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */; };
-		9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */; };
 		9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */; };
 		A74FA2381EB84BBA00C68D0E /* EmptyStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A74FA2361EB84BBA00C68D0E /* EmptyStateTableViewCell.m */; };
 		A74FA2391EB84BBA00C68D0E /* EmptyStateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74FA2371EB84BBA00C68D0E /* EmptyStateTableViewCell.xib */; };
@@ -263,19 +258,11 @@
 		7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailMenuItemTableViewCell.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
-		941447561F995E5300098A8F /* ActionDetailFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionDetailFooterTableViewCell.xib; sourceTree = "<group>"; };
-		941447581F995E7300098A8F /* ActionDetailFooterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionDetailFooterTableViewCell.h; sourceTree = "<group>"; };
-		941447591F995E7300098A8F /* ActionDetailFooterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionDetailFooterTableViewCell.m; sourceTree = "<group>"; };
-		9414475B1F99796600098A8F /* ActionDetailReminderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionDetailReminderViewController.h; sourceTree = "<group>"; };
-		9414475C1F99796600098A8F /* ActionDetailReminderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionDetailReminderViewController.m; sourceTree = "<group>"; };
 		94B34EE31F7AE75E0071300F /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreTableViewCell.xib; sourceTree = "<group>"; };
 		94DF29F61F804A94002ED9F8 /* MoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreTableViewCell.h; sourceTree = "<group>"; };
 		94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewCell.m; sourceTree = "<group>"; };
 		9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CA1E3301E405AC5001106F9 /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
-		9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
-		9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYouViewController.xib; sourceTree = "<group>"; };
 		9CC1B44A1E6725080025D8E8 /* FirebaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseManager.h; sourceTree = "<group>"; };
 		9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseManager.m; sourceTree = "<group>"; };
 		A74FA2351EB84BBA00C68D0E /* EmptyStateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyStateTableViewCell.h; sourceTree = "<group>"; };
@@ -356,9 +343,6 @@
 				52B958991E1188BE006472DF /* InfoTableViewCell.xib */,
 				52B9589B1E118A3F006472DF /* InfoTableViewCell.h */,
 				52B9589C1E118A3F006472DF /* InfoTableViewCell.m */,
-				9CA1E3301E405AC5001106F9 /* ThankYouViewController.h */,
-				9CA1E3311E405AC5001106F9 /* ThankYouViewController.m */,
-				9CA1E3321E405AC5001106F9 /* ThankYouViewController.xib */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -366,33 +350,13 @@
 		5264E8561E554EAC00C2DDD8 /* SharedClasses */ = {
 			isa = PBXGroup;
 			children = (
-				00CBD0281F8577BF009D00AD /* AddAddressViewController.h */,
-				00CBD0291F8577BF009D00AD /* AddAddressViewController.m */,
-				7E0448271F644E10001CE76C /* TTTAttributedLabel.h */,
-				7E0448281F644E10001CE76C /* TTTAttributedLabel.m */,
-				7EC2342F1EDDF74600EAA71E /* ActionView.xib */,
-				52AD33961BE5CA2B00EC0468 /* Categories */,
-				5270C3B21EC49ADD00ACC43D /* VoicesUtilities.h */,
-				5270C3B31EC49ADD00ACC43D /* VoicesUtilities.m */,
-				52194F531E3C519400EBF461 /* DLog.h */,
-				52EEC2751E55376D00CE12AF /* WebViewController.h */,
-				52EEC2761E55376D00CE12AF /* WebViewController.m */,
-				6118615F1EDCCCEC007C317C /* ActionView.h */,
-				611861601EDCCCEC007C317C /* ActionView.m */,
-				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
-				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
-				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
-				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
 				AA7506DE1D6644EC00DADD93 /* PrefixHeader.pch */,
-				52D892961CC45F47004FBEA3 /* Main.storyboard */,
-				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
-				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
-				7ED3E7CD1DFB431300C1391C /* ScriptManager.h */,
-				7ED3E7CE1DFB431300C1391C /* ScriptManager.m */,
-				525397D81DFC640F00C12686 /* ReportingManager.h */,
-				525397D91DFC640F00C12686 /* ReportingManager.m */,
-				9CC1B44A1E6725080025D8E8 /* FirebaseManager.h */,
-				9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */,
+				9465F08D1F9ED9C200F8503A /* Controller */,
+				9465F08C1F9ED9B000F8503A /* Managers */,
+				9465F08B1F9ED99E00F8503A /* VIew */,
+				52AD33961BE5CA2B00EC0468 /* Categories */,
+				9465F08F1F9EDA2100F8503A /* Helpers */,
+				9465F08E1F9ED9E400F8503A /* Model */,
 			);
 			name = SharedClasses;
 			sourceTree = "<group>";
@@ -596,8 +560,6 @@
 				525EC5A51D2C9C2E007F3C13 /* GroupDetailViewController.m */,
 				7EAFDDAE1D2EF9840032F8A8 /* PolicyDetailViewController.h */,
 				7EAFDDAF1D2EF9840032F8A8 /* PolicyDetailViewController.m */,
-				9414475B1F99796600098A8F /* ActionDetailReminderViewController.h */,
-				9414475C1F99796600098A8F /* ActionDetailReminderViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -605,44 +567,12 @@
 		7EEDF30B1CF8DA95006E0696 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7EBFD4161EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.h */,
-				7EBFD4171EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m */,
-				7EBFD4191EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib */,
-				524672681EEC49BA000A7484 /* ActionDetailTopTableViewCell.h */,
-				524672691EEC49BA000A7484 /* ActionDetailTopTableViewCell.m */,
-				5246726E1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib */,
 				52D892981CC463C2004FBEA3 /* TakeAction.storyboard */,
-				A775E3681E52142D00CFAF27 /* GroupFollowTableViewCell.h */,
-				A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */,
-				A775E36A1E52142D00CFAF27 /* GroupFollowTableViewCell.xib */,
-				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
-				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
-				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
-				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
-				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
-				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
+				9465F0891F9ED6EA00F8503A /* Action */,
+				9465F08A1F9ED8B200F8503A /* Group */,
 				A74FA2351EB84BBA00C68D0E /* EmptyStateTableViewCell.h */,
 				A74FA2361EB84BBA00C68D0E /* EmptyStateTableViewCell.m */,
 				A74FA2371EB84BBA00C68D0E /* EmptyStateTableViewCell.xib */,
-				E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */,
-				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
-				52939A331D1A29C00076F878 /* GroupTableViewCell.xib */,
-				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
-				525475951D31C40C00A894BA /* GroupsEmptyState.xib */,
-				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
-				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
-				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
-				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
-				7EE956C61F1597CE0093075A /* ActionDetailMenuItemTableViewCell.h */,
-				7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */,
-				7EE956C41F1597B30093075A /* ActionDetailMenuItemTableViewCell.xib */,
-				7E6ACA6A1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib */,
-				7EA5170F1F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib */,
-				7EA517111F2E7375003362D1 /* ActionFeedHeaderTableViewCell.h */,
-				7EA517121F2E7375003362D1 /* ActionFeedHeaderTableViewCell.m */,
-				941447561F995E5300098A8F /* ActionDetailFooterTableViewCell.xib */,
-				941447581F995E7300098A8F /* ActionDetailFooterTableViewCell.h */,
-				941447591F995E7300098A8F /* ActionDetailFooterTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -661,6 +591,111 @@
 				E828277F1EA5156F00256F03 /* ActionDetailTopTableViewCellDelegate.h */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9465F0891F9ED6EA00F8503A /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
+				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
+				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
+				7EE956C61F1597CE0093075A /* ActionDetailMenuItemTableViewCell.h */,
+				7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */,
+				7EE956C41F1597B30093075A /* ActionDetailMenuItemTableViewCell.xib */,
+				7E6ACA6A1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib */,
+				7EA5170F1F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib */,
+				7EA517111F2E7375003362D1 /* ActionFeedHeaderTableViewCell.h */,
+				7EA517121F2E7375003362D1 /* ActionFeedHeaderTableViewCell.m */,
+				7EBFD4161EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.h */,
+				7EBFD4171EF07DDF00FC2024 /* ActionDetailEmptyRepTableViewCell.m */,
+				7EBFD4191EF07DF400FC2024 /* ActionDetailEmptyRepTableViewCell.xib */,
+				524672681EEC49BA000A7484 /* ActionDetailTopTableViewCell.h */,
+				524672691EEC49BA000A7484 /* ActionDetailTopTableViewCell.m */,
+				5246726E1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib */,
+			);
+			name = Action;
+			sourceTree = "<group>";
+		};
+		9465F08A1F9ED8B200F8503A /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */,
+				52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */,
+				52939A331D1A29C00076F878 /* GroupTableViewCell.xib */,
+				5254759A1D31C57F00A894BA /* GroupsEmptyState.h */,
+				525475951D31C40C00A894BA /* GroupsEmptyState.xib */,
+				5254759B1D31C57F00A894BA /* GroupsEmptyState.m */,
+				A775E3681E52142D00CFAF27 /* GroupFollowTableViewCell.h */,
+				A775E3691E52142D00CFAF27 /* GroupFollowTableViewCell.m */,
+				A775E36A1E52142D00CFAF27 /* GroupFollowTableViewCell.xib */,
+				A77809EB1E200FC10001E825 /* GroupDescriptionTableViewCell.h */,
+				A77809EC1E200FC10001E825 /* GroupDescriptionTableViewCell.m */,
+				A7C833E91E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib */,
+				A7C833EB1E296504006C86E1 /* PolicyPositionsDetailCell.h */,
+				A7C833EC1E296504006C86E1 /* PolicyPositionsDetailCell.m */,
+				A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		9465F08B1F9ED99E00F8503A /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				7EC2342F1EDDF74600EAA71E /* ActionView.xib */,
+				6118615F1EDCCCEC007C317C /* ActionView.h */,
+				611861601EDCCCEC007C317C /* ActionView.m */,
+				52D892961CC45F47004FBEA3 /* Main.storyboard */,
+				7E0448271F644E10001CE76C /* TTTAttributedLabel.h */,
+				7E0448281F644E10001CE76C /* TTTAttributedLabel.m */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		9465F08C1F9ED9B000F8503A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7ED3E7CD1DFB431300C1391C /* ScriptManager.h */,
+				7ED3E7CE1DFB431300C1391C /* ScriptManager.m */,
+				525397D81DFC640F00C12686 /* ReportingManager.h */,
+				525397D91DFC640F00C12686 /* ReportingManager.m */,
+				9CC1B44A1E6725080025D8E8 /* FirebaseManager.h */,
+				9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		9465F08D1F9ED9C200F8503A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				00CBD0281F8577BF009D00AD /* AddAddressViewController.h */,
+				00CBD0291F8577BF009D00AD /* AddAddressViewController.m */,
+				52EEC2751E55376D00CE12AF /* WebViewController.h */,
+				52EEC2761E55376D00CE12AF /* WebViewController.m */,
+				52D8929E1CC47990004FBEA3 /* TabBarViewController.h */,
+				52D8929F1CC47990004FBEA3 /* TabBarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9465F08E1F9ED9E400F8503A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52911CE41D7DF25D00FCD267 /* CurrentUser.h */,
+				52911CE51D7DF25D00FCD267 /* CurrentUser.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9465F08F1F9EDA2100F8503A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5270C3B21EC49ADD00ACC43D /* VoicesUtilities.h */,
+				5270C3B31EC49ADD00ACC43D /* VoicesUtilities.m */,
+				52194F531E3C519400EBF461 /* DLog.h */,
+				52C6B1D51C8FD8C30095DDDB /* VoicesConstants.h */,
+				52C6B1D61C8FD8C30095DDDB /* VoicesConstants.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		B8B2DB6CD10AA9D3B0D8592D /* Pods */ = {
@@ -800,7 +835,6 @@
 				E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */,
 				A7C833EA1E295FCC006C86E1 /* GroupDescriptionTableViewCell.xib in Resources */,
 				526309F61EBE19E9005F189D /* AddAddressCollectionViewCell.xib in Resources */,
-				9CA1E3341E405AC5001106F9 /* ThankYouViewController.xib in Resources */,
 				7EA517101F2E72E3003362D1 /* ActionFeedHeaderTableViewCell.xib in Resources */,
 				52BF3EBF1DD7C9F10041349B /* RepsCollectionViewCell.xib in Resources */,
 				525C97D31E465FA400445721 /* repContactForms.json in Resources */,
@@ -818,7 +852,6 @@
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
 				7EC234301EDDF74600EAA71E /* ActionView.xib in Resources */,
 				5246726F1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib in Resources */,
-				941447571F995E5300098A8F /* ActionDetailFooterTableViewCell.xib in Resources */,
 				7EE956C51F1597B30093075A /* ActionDetailMenuItemTableViewCell.xib in Resources */,
 				52D892991CC463C2004FBEA3 /* TakeAction.storyboard in Resources */,
 				7E6ACA6B1F1B0D6A005954DC /* ActionDetailTakeActionTableViewCell.xib in Resources */,
@@ -996,7 +1029,6 @@
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
-				9414475A1F995E7300098A8F /* ActionDetailFooterTableViewCell.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
 				524FF1E11D14ECA600C4BE89 /* TakeActionViewController.m in Sources */,
@@ -1005,13 +1037,11 @@
 				A74FA2381EB84BBA00C68D0E /* EmptyStateTableViewCell.m in Sources */,
 				529FB0151F85CCFF00DA2A80 /* GroupOnboardingViewController.m in Sources */,
 				AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */,
-				9414475D1F99796600098A8F /* ActionDetailReminderViewController.m in Sources */,
 				52AD33921BE5C73D00EC0468 /* UIFont+voicesFont.m in Sources */,
 				52911CE61D7DF25D00FCD267 /* CurrentUser.m in Sources */,
 				52B958961E118703006472DF /* InfoViewController.m in Sources */,
 				52D892A01CC47990004FBEA3 /* TabBarViewController.m in Sources */,
 				52B9589D1E118A3F006472DF /* InfoTableViewCell.m in Sources */,
-				9CA1E3331E405AC5001106F9 /* ThankYouViewController.m in Sources */,
 				52D892A31CC47D07004FBEA3 /* GroupTableViewCell.m in Sources */,
 				526309F91EBE19F4005F189D /* AddAddressCollectionViewCell.m in Sources */,
 				524672671EEC494C000A7484 /* ActionDetailViewController.m in Sources */,
