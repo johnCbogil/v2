@@ -18,7 +18,6 @@
 #import "ScriptManager.h"
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
-#import "ThankYouViewController.h"
 #import "WebViewController.h"
 #import "AddAddressViewController.h"
 #import "MoreViewController.h"

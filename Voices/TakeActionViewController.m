@@ -63,6 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     self.navigationController.navigationBarHidden = YES;
     
     if ([CurrentUser sharedInstance].firebaseUserID) {
