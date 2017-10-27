@@ -41,10 +41,50 @@
 
 - (IBAction)submitButtonDidPress:(id)sender {
     
-    // TODO: CREATE FIREBASE ANALYTIC EVENT WHEN NOT IN DEBUG
+    if (![[UIApplication sharedApplication] isRegisteredForRemoteNotifications]) {
+        
+        [self askForNotificationAuth];
+    }
+    else {
+        
+        [self scheduleNotification];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)askForNotificationAuth {
     
-    NSLog(@"%@", self.datePicker.date);
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString *notificationMessage = @"Pleaes turn on notifications so we can remind you ";
+    
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
+                                message:notificationMessage
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *button0 = [UIAlertAction
+                              actionWithTitle:@"Maybe later"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {}];
+    
+    UIAlertAction *button1 = [UIAlertAction
+                              actionWithTitle:@"Yes"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+                                  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+                                  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+                                  [[UIApplication sharedApplication] registerForRemoteNotifications];
+                                  
+                                  [self scheduleNotification];
+                              }];
+    
+    [alert addAction:button0];
+    [alert addAction:button1];
+    [self presentViewController:alert animated:YES completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)scheduleNotification {
@@ -52,20 +92,18 @@
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center removeAllDeliveredNotifications];
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1.f];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear +
                                                                              NSCalendarUnitMonth + NSCalendarUnitDay +
                                                                              NSCalendarUnitHour + NSCalendarUnitMinute +
                                                                              NSCalendarUnitSecond)
-                                                                   fromDate:date];
+                                                                   fromDate:self.datePicker.date];
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    content.title = @"Swipe down for full message";
-//    content.body = [ScriptManager sharedInstance].lastAction.script.length ? [ScriptManager sharedInstance].lastAction.script : kGenericScript;
+    content.title = @"Your voice matters.";
+    content.body = @"This is your friendlty action reminder";
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNoti" content:content trigger:trigger];
 
     [center addNotificationRequest:request withCompletionHandler:nil];
 }
-
 
 @end

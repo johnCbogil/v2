@@ -91,6 +91,9 @@
 		7EE956C81F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */; };
 		7EEDF30E1CF8DAB8006E0696 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDF30D1CF8DAB8006E0696 /* Group.m */; };
 		896C64CF6CA0389CE746987C /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9767C9000C86F90354A71A22 /* libPods-VoicesTests.a */; };
+		9438C00B1FA3817C00E050BC /* ActionDetailFooterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9438C0091FA3817C00E050BC /* ActionDetailFooterTableViewCell.m */; };
+		9438C00C1FA3817C00E050BC /* ActionDetailFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9438C00A1FA3817C00E050BC /* ActionDetailFooterTableViewCell.xib */; };
+		9438C00F1FA3821600E050BC /* ActionDetailReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9438C00E1FA3821600E050BC /* ActionDetailReminderViewController.m */; };
 		94DF29F51F804A57002ED9F8 /* MoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */; };
 		94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF29F71F804A94002ED9F8 /* MoreTableViewCell.m */; };
 		9CC1B44C1E6725080025D8E8 /* FirebaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC1B44B1E6725080025D8E8 /* FirebaseManager.m */; };
@@ -258,6 +261,11 @@
 		7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailMenuItemTableViewCell.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		9438C0081FA3817C00E050BC /* ActionDetailFooterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDetailFooterTableViewCell.h; sourceTree = "<group>"; };
+		9438C0091FA3817C00E050BC /* ActionDetailFooterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailFooterTableViewCell.m; sourceTree = "<group>"; };
+		9438C00A1FA3817C00E050BC /* ActionDetailFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionDetailFooterTableViewCell.xib; sourceTree = "<group>"; };
+		9438C00D1FA3821600E050BC /* ActionDetailReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDetailReminderViewController.h; sourceTree = "<group>"; };
+		9438C00E1FA3821600E050BC /* ActionDetailReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailReminderViewController.m; sourceTree = "<group>"; };
 		94B34EE31F7AE75E0071300F /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreTableViewCell.xib; sourceTree = "<group>"; };
 		94DF29F61F804A94002ED9F8 /* MoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreTableViewCell.h; sourceTree = "<group>"; };
@@ -596,6 +604,9 @@
 		9465F0891F9ED6EA00F8503A /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				9438C0081FA3817C00E050BC /* ActionDetailFooterTableViewCell.h */,
+				9438C0091FA3817C00E050BC /* ActionDetailFooterTableViewCell.m */,
+				9438C00A1FA3817C00E050BC /* ActionDetailFooterTableViewCell.xib */,
 				52C7D4B21CC71F5A00F85902 /* ActionTableViewCell.h */,
 				52C7D4B31CC71F5A00F85902 /* ActionTableViewCell.m */,
 				52C7D4B01CC71EFA00F85902 /* ActionTableViewCell.xib */,
@@ -612,6 +623,8 @@
 				524672681EEC49BA000A7484 /* ActionDetailTopTableViewCell.h */,
 				524672691EEC49BA000A7484 /* ActionDetailTopTableViewCell.m */,
 				5246726E1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib */,
+				9438C00D1FA3821600E050BC /* ActionDetailReminderViewController.h */,
+				9438C00E1FA3821600E050BC /* ActionDetailReminderViewController.m */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -850,6 +863,7 @@
 				A74FA2391EB84BBA00C68D0E /* EmptyStateTableViewCell.xib in Resources */,
 				52F31ED91E5FA5AE008BCC2A /* ResultsTableViewCell.xib in Resources */,
 				52D892971CC45F47004FBEA3 /* Main.storyboard in Resources */,
+				9438C00C1FA3817C00E050BC /* ActionDetailFooterTableViewCell.xib in Resources */,
 				7EC234301EDDF74600EAA71E /* ActionView.xib in Resources */,
 				5246726F1EEC49D6000A7484 /* ActionDetailTopTableViewCell.xib in Resources */,
 				7EE956C51F1597B30093075A /* ActionDetailMenuItemTableViewCell.xib in Resources */,
@@ -1028,6 +1042,7 @@
 				52FC68FB1C37657000E29B7A /* OnboardingViewController.m in Sources */,
 				5254759C1D31C57F00A894BA /* GroupsEmptyState.m in Sources */,
 				A7C833EE1E296504006C86E1 /* PolicyPositionsDetailCell.m in Sources */,
+				9438C00B1FA3817C00E050BC /* ActionDetailFooterTableViewCell.m in Sources */,
 				7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */,
 				5253FB4E1BCB32F1001A5328 /* ScriptDialogViewController.m in Sources */,
 				52CA3D8B1DD8D5FD00437E83 /* RepsManager.m in Sources */,
@@ -1056,6 +1071,7 @@
 				52361C9D1D3076ED00589827 /* PolicyPosition.m in Sources */,
 				52AD2CC01B61E7A300EAF854 /* FederalRepresentative.m in Sources */,
 				611861611EDCCCEC007C317C /* ActionView.m in Sources */,
+				9438C00F1FA3821600E050BC /* ActionDetailReminderViewController.m in Sources */,
 				7E0448291F644E10001CE76C /* TTTAttributedLabel.m in Sources */,
 				61DC8EA31D0660590086C070 /* Action.m in Sources */,
 				7EA517131F2E7375003362D1 /* ActionFeedHeaderTableViewCell.m in Sources */,

@@ -47,6 +47,7 @@
 }
 
 - (IBAction)turnOnNotiButtonDidPress:(id)sender {
+    
     if (![self.turnOnNotificationsButton.titleLabel.text isEqualToString:@"Next"]) {
         UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];

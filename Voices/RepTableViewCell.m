@@ -126,6 +126,7 @@
 #pragma mark - UNNotifications
 
 - (void)scheduleNotification {
+    
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center removeAllDeliveredNotifications];
