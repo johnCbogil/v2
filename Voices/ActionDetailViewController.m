@@ -35,13 +35,26 @@
     self.title = self.group.name;
     [self configureDatasource];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewController" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
     
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
     self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewControllerFromActionDetail) name:@"presentAddAddressViewControllerFromActionDetail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentAddAddressViewControllerFromActionDetail" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentGroupDetailViewController" object:nil];
 }
 
 - (void)configureDatasource {
@@ -196,8 +209,9 @@
     }
 }
 
-- (void)presentAddAddressViewController {
+- (void)presentAddAddressViewControllerFromActionDetail {
     
+    NSLog(@"PRESENTING ADDRESSVC");
     UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
     AddAddressViewController *addAddressViewController = (AddAddressViewController *)[repsSB instantiateViewControllerWithIdentifier:@"AddAddressViewController"];
     addAddressViewController.title = @"Add Home Address";
