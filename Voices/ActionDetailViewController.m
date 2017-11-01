@@ -35,7 +35,6 @@
     
     [self configureTableView];
     [self configureDatasource];
-    [self configureObservers];
     
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
@@ -45,17 +44,24 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewControllerFromActionDetail) name:@"presentAddAddressViewControllerFromActionDetail" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
+    [self configureObservers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentActionReminderViewController" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentAddAddressViewControllerFromActionDetail" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"endFetchingReps" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentGroupDetailViewController" object:nil];
+}
+
+- (void)configureObservers {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentReminderViewController) name:@"presentActionReminderViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAddAddressViewController) name:@"presentAddAddressViewControllerFromActionDetail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewFromNotification) name:@"endFetchingReps" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGroupDetailViewController) name:@"presentGroupDetailViewController" object:nil];
 }
 
 - (void)configureDatasource {
