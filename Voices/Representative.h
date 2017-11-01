@@ -33,9 +33,8 @@
 @property (strong, nonatomic) NSString *crpID;
 @property (strong, nonatomic) NSString *contactForm;
 
-
-
--(void) generateDistrictName;
+- (void) generateDistrictName;
+- (id)initWithData:(NSDictionary *)data;
 
 
 @end

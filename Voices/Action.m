@@ -9,6 +9,7 @@
 #import "Action.h"
 
 #import "FirebaseManager.h"
+#import "Representative.h"
 @import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -26,6 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
     _timestamp = [dictionary[@"timestamp"]intValue];
     _level = [dictionary[@"level"]intValue];
     _script = dictionary[@"script"];
+    _actionType = dictionary[@"actionType"];
+    if (_actionType.length) {
+        
+        if ([_actionType isEqualToString:@"singleRep"]) {
+            _representativeDict = dictionary[@"representative"];
+        }
+    }
     if (!_script.length) {
         _script = kGenericScript;
     }

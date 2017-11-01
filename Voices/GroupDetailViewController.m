@@ -518,16 +518,53 @@
     
     [self toggleActivityIndicatorOn];
     
+    self.listOfGroupActions = @[].mutableCopy;
+
     [[FirebaseManager sharedInstance] fetchActionsForGroup:self.group withCompletion:^(NSArray *listOfActions) {
         
         [self toggleActivityIndicatorOff];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
-        [self.tableView reloadData];
+        for (Action *action in listOfActions) {
+            
+            if ([self shouldAddActionToList:action]) {
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                self.listOfGroupActions = [listOfActions sortedArrayUsingDescriptors:sortDescriptors].mutableCopy;
+                [self.tableView reloadData];
+            }
+        }
     }];
 }
 
+- (BOOL)shouldAddActionToList:(Action *)action {
+    
+    NSDate *currentTime = [NSDate date];
+    
+    if (action.timestamp < currentTime.timeIntervalSince1970) {
+        
+        NSInteger index = [self.listOfGroupActions indexOfObjectPassingTest:^BOOL(Action *actionInArray, NSUInteger idx, BOOL *stop) {
+            if ([action.key isEqualToString:actionInArray.key]) {
+                *stop = YES;
+                return YES;
+            }
+            return NO;
+        }];
+        if (index != NSNotFound) {
+            // We already have this action in our table
+            return NO;
+        }
+        
+        BOOL debug = [VoicesUtilities isInDebugMode];
+        // if app is in debug, add all groups
+        if (debug) {
+            return YES;
+        }
+        // if app is not in debug, add only non-debug groups
+        else if (!action.debug) {
+            return YES;
+        }
+    }
+    return NO;
+}
 - (void)fetchPolicyPositions {
     
     [self toggleActivityIndicatorOn];

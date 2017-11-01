@@ -25,6 +25,20 @@
     }
 }
 
-// TOOD: SEE IF WE CAN MOVE "SET IMAGE" HERE
+- (id)initWithData:(NSDictionary *)data {
+    self = [super init];
+
+    if (self != nil) {
+        
+        self.email = data[@"email"];
+        self.photoURL = data[@"imageURL"];
+        self.fullName = data[@"name"];
+        self.phone = data[@"phone"];
+        self.title = data[@"title"];
+        self.twitter = data[@"twitter"];
+        
+        return self;
+    }
+    return self;}
 
 @end

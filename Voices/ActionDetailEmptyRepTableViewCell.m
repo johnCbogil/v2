@@ -77,7 +77,8 @@
 
 - (IBAction)addAddressButtonDidPress:(id)sender {
 
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentAddAddressViewController" object:nil];
+    NSLog(@"ADD ADDRESS BUTTON DID PRESS");
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"presentAddAddressViewControllerFromActionDetail" object:nil];
 }
 
 @end

@@ -54,7 +54,7 @@
 
 - (void)askForNotificationAuth {
     
-    NSString *notificationMessage = @"Pleaes turn on notifications so we can remind you ";
+    NSString *notificationMessage = @"Pleaes turn on notifications so we can remind you.";
     
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:nil      //  Must be "nil", otherwise a blank title area will appear above our two buttons
