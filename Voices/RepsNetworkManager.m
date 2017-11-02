@@ -171,7 +171,7 @@
 
 - (void)getRepFromCandidateId:(NSString *)candidateId withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
     
-    NSString *formattedString = [NSString stringWithFormat:@"http:api.votesmart.org/Address.getOffice?key=%@&o=JSON&candidateId=%@", kVoteSmart, candidateId];
+    NSString *formattedString = [NSString stringWithFormat:@"http://api.votesmart.org/CandidateBio.getBio?key=%@&o=JSON&candidateId=%@", kVoteSmart, candidateId];
     NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:encodedURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
