@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,22 +23,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZG-hf-i75">
-                    <rect key="frame" x="20" y="39" width="16" height="22"/>
-                    <state key="normal" image="Phone Filled"/>
+                    <rect key="frame" x="20" y="33.5" width="33" height="33"/>
+                    <state key="normal" image="phoneFilled"/>
                     <connections>
                         <action selector="callButtonDidPress:" destination="-1" eventType="touchUpInside" id="6f5-Vi-p7F"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPV-F3-hdp">
-                    <rect key="frame" x="189" y="39" width="16" height="22"/>
-                    <state key="normal" image="Message Filled"/>
+                    <rect key="frame" x="180.5" y="33.5" width="33" height="33"/>
+                    <state key="normal" image="messageFilled"/>
                     <connections>
                         <action selector="emailButtonDidPress:" destination="-1" eventType="touchUpInside" id="OsP-gk-HaC"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wR-vE-XGh">
-                    <rect key="frame" x="359" y="39" width="16" height="22"/>
-                    <state key="normal" image="Twitter Filled"/>
+                    <rect key="frame" x="342" y="33.5" width="33" height="33"/>
+                    <state key="normal" image="twitterFilled"/>
                     <connections>
                         <action selector="tweetButtonDidPress:" destination="-1" eventType="touchUpInside" id="Oqh-TB-Ymo"/>
                     </connections>
@@ -58,8 +58,8 @@
         </view>
     </objects>
     <resources>
-        <image name="Message Filled" width="16" height="16"/>
-        <image name="Phone Filled" width="16" height="16"/>
-        <image name="Twitter Filled" width="16" height="16"/>
+        <image name="messageFilled" width="33" height="33"/>
+        <image name="phoneFilled" width="33" height="33"/>
+        <image name="twitterFilled" width="33" height="33"/>
     </resources>
 </document>

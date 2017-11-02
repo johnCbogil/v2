@@ -10,6 +10,14 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Onboarding View Controller-->
         <scene sceneID="1HK-Yf-QtW">
@@ -23,7 +31,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="voicesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DT0-Pw-P0G">
                                 <rect key="frame" x="28" y="28" width="317" height="317"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -133,7 +141,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-c9-mcO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notiOnboarding" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-c9-mcO">
                                 <rect key="frame" x="53.5" y="178" width="269" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mhz-c9-mcO" secondAttribute="height" multiplier="269:311" id="9E3-Ig-vO7"/>
@@ -332,7 +340,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NotiOnboarding" width="566" height="691"/>
-        <image name="VoicesIcon" width="341" height="341"/>
+        <image name="notiOnboarding" width="566" height="691"/>
+        <image name="voicesIcon" width="341" height="341"/>
     </resources>
 </document>

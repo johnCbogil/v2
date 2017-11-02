@@ -48,7 +48,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 20, 20);
-    [button setImage:[UIImage imageNamed:@"InfoButton"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"infoButton"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(presentTopInfluencersInfoAlert) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *barButton=[[UIBarButtonItem alloc] init];
