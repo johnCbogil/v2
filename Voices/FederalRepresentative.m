@@ -22,28 +22,38 @@
     self = [super init];
     if(self != nil) {
         
-        NSDictionary *office = data[@"office"];
-        NSArray *roles = office[@"roles"];
-        if ([roles[0]isEqualToString:@"legislatorUpperBody"]) {
-            self.title = @"Senator";
-        }
-        else {
-            self.title = @"Representative";
-        }
-        self.fullName = data[@"name"];
-        self.phone = data[@"phones"][0];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
-        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
-        self.party = data[@"party"];
-        self.photoURL = [NSURL URLWithString:data[@"photoUrl"]];
-        NSArray *channels = data[@"channels"];
-        for (NSDictionary *channel in channels) {
-            if ([channel[@"type"]isEqualToString:@"Twitter"]) {
-                self.twitter = [NSString stringWithFormat:@"@%@",channel[@"id"]];
-            }
-        }
+        
+        self.firstName = data[@"firstName"];
+        self.lastName = data[@"lastName"];
+        self.fullName = [NSString stringWithFormat:@"%@ %@",self.firstName,self.lastName];
+        self.party = data[@"officeParties"];
+        self.stateCode = data[@"officeStateId"];
+        self.candidateId = data[@"candidateId"];
+        
+        
+        
+//        NSDictionary *office = data[@"office"];
+//        NSArray *roles = office[@"roles"];
+//        if ([roles[0]isEqualToString:@"legislatorUpperBody"]) {
+//            self.title = @"Senator";
+//        }
+//        else {
+//            self.title = @"Representative";
+//        }
+//        self.fullName = data[@"name"];
+//        self.phone = data[@"phones"][0];
+//        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
+//        self.phone = [self.phone stringByReplacingOccurrencesOfString:@")" withString:@""];
+//        self.phone = [self.phone stringByReplacingOccurrencesOfString:@" " withString:@""];
+//        self.phone = [self.phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+//        self.party = data[@"party"];
+//        self.photoURL = [NSURL URLWithString:data[@"photoUrl"]];
+//        NSArray *channels = data[@"channels"];
+//        for (NSDictionary *channel in channels) {
+//            if ([channel[@"type"]isEqualToString:@"Twitter"]) {
+//                self.twitter = [NSString stringWithFormat:@"@%@",channel[@"id"]];
+//            }
+//        }
         
         
         return self;

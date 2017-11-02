@@ -21,7 +21,8 @@
 - (void)getFederalContactFormURLSWithCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getTopContributorsForRep:(NSString *)repID withCompletion: (void(^)(NSData *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (void)getTopIndustriesForRep:(NSString *)repID withCompletion: (void(^)(NSData *results))successBlock onError:(void(^)(NSError *error))errorBlock;
-- (void)getFederalRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)getRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
+- (void)getRepFromCandidateId:(NSString *)candidateId withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock;
 @property (nonatomic, strong)AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong)UIImage *missingRepresentativePhoto;
 

@@ -51,13 +51,6 @@
     [self excludeGeoJSONFromCloudBackup];
     [self configureFirebase];
     
-
-    [[RepsManager sharedInstance]getCandidateIDFromNineDigitZip:@"110402003" WithCompletion:^{
-        
-    } onError:^(NSError *error) {
-        
-    }];
-    
     return YES;
 }
 

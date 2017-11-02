@@ -106,31 +106,37 @@
 - (void)createFederalRepresentativesFromLocation:(CLLocation*)location WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock {
     
-    [[RepsNetworkManager sharedInstance]getFederalRepsFromLocation:location WithCompletion:^(NSDictionary *results) {
-        
-        NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
-        NSArray *officials = results[@"officials"];
-        NSArray *offices = results[@"offices"];
-
-        for (NSDictionary *office in offices) {
-            
-            NSArray *officialIndices = office[@"officialIndices"];
-            
-            for (NSNumber *officialIndex in officialIndices) {
-                
-                NSMutableDictionary *official = [NSMutableDictionary dictionaryWithDictionary:officials[[officialIndex integerValue]]];
-                [official setObject:office forKey:@"office"];
-                
-                FederalRepresentative *federalRep = [[FederalRepresentative alloc]initWithData:official];
-                [listOfFederalRepresentatives addObject:federalRep];
-                self.fedReps = listOfFederalRepresentatives;
-                successBlock();
-            }
-        }
-        
+    [self createRepsFromNineDigitZip:@"110402003" WithCompletion:^{
+        successBlock();
     } onError:^(NSError *error) {
-        errorBlock(error);
+        
     }];
+    
+//    [[RepsNetworkManager sharedInstance]getFederalRepsFromLocation:location WithCompletion:^(NSDictionary *results) {
+//
+//        NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
+//        NSArray *officials = results[@"officials"];
+//        NSArray *offices = results[@"offices"];
+//
+//        for (NSDictionary *office in offices) {
+//
+//            NSArray *officialIndices = office[@"officialIndices"];
+//
+//            for (NSNumber *officialIndex in officialIndices) {
+//
+//                NSMutableDictionary *official = [NSMutableDictionary dictionaryWithDictionary:officials[[officialIndex integerValue]]];
+//                [official setObject:office forKey:@"office"];
+//
+//                FederalRepresentative *federalRep = [[FederalRepresentative alloc]initWithData:official];
+//                [listOfFederalRepresentatives addObject:federalRep];
+//                self.fedReps = listOfFederalRepresentatives;
+//                successBlock();
+//            }
+//        }
+//
+//    } onError:^(NSError *error) {
+//        errorBlock(error);
+//    }];
 }
 
 - (void)createFederalRepContactFormURLS {
@@ -146,24 +152,43 @@
     return [self.federalRepContactFormURLs valueForKey:bioguide];
 }
 
-- (void)getCandidateIDFromNineDigitZip:(NSString *)nineDigitZip WithCompletion:(void(^)(void))successBlock
+- (void)createRepsFromNineDigitZip:(NSString *)nineDigitZip WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock {
  
-    [[RepsNetworkManager sharedInstance]getFederalRepsFromNineDigitZip:nineDigitZip withCompletion:^(NSDictionary *results) {
+    [[RepsNetworkManager sharedInstance]getRepsFromNineDigitZip:nineDigitZip withCompletion:^(NSDictionary *results) {
         NSLog(@"%@", results);
         NSDictionary *candidateList = results[@"candidateList"];
-        NSArray *candidates = candidateList[@"candidates"];
+        NSArray *candidates = candidateList[@"candidate"];
         for (NSDictionary *candidate in candidates) {
-            if ([candidate[@"officeName"]isEqualToString:@"U.S. Senate"]) {
+            NSString *candidateId = candidate[@"candidateId"];
+            [[RepsNetworkManager sharedInstance]getRepFromCandidateId:candidateId withCompletion:^(NSDictionary *results) {
+                if ([self isFederalRepresentative:candidate]) {
+                    FederalRepresentative *federalRep = [[FederalRepresentative alloc]initWithData:candidate];
+                    [self.fedReps addObject:federalRep];
+                }
+            } onError:^(NSError *error) {
                 
-            }
+            }];
         }
     } onError:^(NSError *error) {
         [error localizedDescription];
-    }];
+    }
+     ];
 }
 
+- (BOOL)isFederalRepresentative:(NSDictionary *)repDict {
+    
+    if ([repDict[@"officeName"]isEqualToString:@"U.S. Senate"] || [repDict[@"officeName"]isEqualToString:@"U.S. House"]) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
 
+//- (void)createRepsFromCandidateId:(NSString *)candidateId WithCompletion:(void(^)(void))successBlock onError:(void(^)(NSError *error))errorBlock {
+//
+//}
 #pragma mark - Create State Representatives
 
 -(void)createStateRepresentativesFromLocation:(CLLocation *)location WithCompletion:(void (^)(void))successBlock onError:(void (^)(NSError *))errorBlock {

@@ -142,13 +142,36 @@
 
 #pragma mark - VoteSmart API
 
-- (void)getFederalRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSDictionary *results))successBlock
+- (void)getRepsFromNineDigitZip:(NSString *)nineDigitZip withCompletion:(void(^)(NSDictionary *results))successBlock
                                onError:(void(^)(NSError *error))errorBlock {
     
     NSString *postalCode = [nineDigitZip substringToIndex:5];
     NSString *postalCodeSuffix = [nineDigitZip substringFromIndex: [nineDigitZip length] - 4];
     
     NSString *formattedString = [NSString stringWithFormat:@"http://api.votesmart.org/Officials.getByZip?key=%@&o=JSON&zip5=%@&zip4=%@", kVoteSmart, postalCode, postalCodeSuffix];
+    NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    NSURL *url = [NSURL URLWithString:encodedURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Server Error" message:@"Please try again" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+    }];
+    [operation start];
+}
+
+- (void)getRepFromCandidateId:(NSString *)candidateId withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
+    
+    NSString *formattedString = [NSString stringWithFormat:@"http:api.votesmart.org/Address.getOffice?key=%@&o=JSON&candidateId=%@", kVoteSmart, candidateId];
     NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:encodedURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
