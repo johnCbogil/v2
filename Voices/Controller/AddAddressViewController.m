@@ -47,7 +47,7 @@
 - (void)configureNavController {
     
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
-    UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
+    UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"infoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
     self.navigationItem.rightBarButtonItem = privacyButton;
     
 }

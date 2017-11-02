@@ -132,7 +132,7 @@
         cell.itemTitle.delegate = self;
         if (self.indexPathRowToExpand == indexPath.row) {
             
-            cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"Minus"];
+            cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"minus"];
             if (indexPath.row == 1) {
                 cell.itemTitle.text = self.action.body;
             }
@@ -145,7 +145,7 @@
                 cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"shareIcon"];
             }
             else {
-                cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"AddGroup"];
+                cell.openCloseMenuItemImageView.image = [UIImage imageNamed:@"addGroup"];
             }
             cell.itemTitle.text = self.listOfMenuItems[indexPath.row-1];
         }

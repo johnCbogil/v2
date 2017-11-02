@@ -41,12 +41,12 @@
     
     UITabBarItem *repsTab = [self.tabBar.items objectAtIndex:0];
     repsTab.title = @"My Reps";
-    repsTab.image = [UIImage imageNamed:@"Triangle"];
+    repsTab.image = [UIImage imageNamed:@"triangle"];
     
     if (self.tabBar.items.count > 1) {
         UITabBarItem *groupsTab = [self.tabBar.items objectAtIndex:1];
         groupsTab.title = @"My Actions";
-        groupsTab.image = [UIImage imageNamed:@"GroupIcon"];
+        groupsTab.image = [UIImage imageNamed:@"groupIcon"];
     }
 }
 

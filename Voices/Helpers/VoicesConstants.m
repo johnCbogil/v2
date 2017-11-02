@@ -52,9 +52,9 @@ NSString *const kRepContactFormsJSON = @"repContactForms";
 
 CGFloat const kButtonCornerRadius = 4.f;
 
-NSString *const kGroupDefaultImage = @"VoicesIcon";
-NSString *const kRepDefaultImageMale = @"MissingRepMale";
-NSString *const kRepDefaultImageFemale = @"MissingRepFemale";
+NSString *const kGroupDefaultImage = @"voicesIcon";
+NSString *const kRepDefaultImageMale = @"missingRepMale";
+NSString *const kRepDefaultImageFemale = @"missingRepFemale";
 
 #pragma mark - Empty State Labels
 NSString *const kActionEmptyStateTopLabel = @"You haven't received any actions yet.";
