@@ -154,7 +154,9 @@
 
 - (void)createRepsFromNineDigitZip:(NSString *)nineDigitZip WithCompletion:(void(^)(void))successBlock
                                          onError:(void(^)(NSError *error))errorBlock {
- 
+    
+    NSMutableArray *listOfFederalRepresentatives = [[NSMutableArray alloc]init];
+
     [[RepsNetworkManager sharedInstance]getRepsFromNineDigitZip:nineDigitZip withCompletion:^(NSDictionary *results) {
         NSLog(@"%@", results);
         NSDictionary *candidateList = results[@"candidateList"];
@@ -164,7 +166,8 @@
             [[RepsNetworkManager sharedInstance]getRepFromCandidateId:candidateId withCompletion:^(NSDictionary *results) {
                 if ([self isFederalRepresentative:candidate]) {
                     FederalRepresentative *federalRep = [[FederalRepresentative alloc]initWithData:candidate];
-                    [self.fedReps addObject:federalRep];
+                    [listOfFederalRepresentatives addObject:federalRep];
+                    self.fedReps = listOfFederalRepresentatives;
                 }
             } onError:^(NSError *error) {
                 

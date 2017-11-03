@@ -22,7 +22,7 @@
 - (void)createRepsFromCandidateId:(NSString *)candidateId WithCompletion:(void(^)(void))successBlock onError:(void(^)(NSError *error))errorBlock;
 - (NSString *)getContactFormForBioGuide:(NSString *)bioguide;
 @property (strong, nonatomic) NSArray *localDistricts;
-@property (strong, nonatomic) NSMutableArray *fedReps;
+@property (strong, nonatomic) NSArray *fedReps;
 @property (strong, nonatomic) NSArray *stateReps;
 @property (strong, nonatomic) NSMutableArray *localReps;
 @property BOOL isLocalRepsAvailable;
