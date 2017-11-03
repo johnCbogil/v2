@@ -51,6 +51,12 @@
     [self excludeGeoJSONFromCloudBackup];
     [self configureFirebase];
     
+    [[RepsNetworkManager sharedInstance]getRepsFromNineDigitZip:@"110402003" withCompletion:^(NSDictionary *results) {
+        NSLog(@"%@", results);
+    } onError:^(NSError *error) {
+        
+    }];
+    
     return YES;
 }
 
