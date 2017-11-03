@@ -169,7 +169,7 @@
     [operation start];
 }
 
-- (void)getRepFromCandidateId:(NSString *)candidateId withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
+- (void)getCandidateBioForCandidateId:(NSString *)candidateId withCompletion:(void(^)(NSDictionary *results))successBlock onError:(void(^)(NSError *error))errorBlock {
     
     NSString *formattedString = [NSString stringWithFormat:@"http://api.votesmart.org/CandidateBio.getBio?key=%@&o=JSON&candidateId=%@", kVoteSmart, candidateId];
     NSString *encodedURL = [formattedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
