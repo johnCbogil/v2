@@ -37,6 +37,8 @@
     self.submitButton.clipsToBounds = YES;
     
     self.datePicker.minimumDate = [NSDate date];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (IBAction)submitButtonDidPress:(id)sender {

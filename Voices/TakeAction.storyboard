@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k0W-gi-hf3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k0W-gi-hf3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -239,16 +239,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="QJt-Am-nQ4">
-                                <rect key="frame" x="0.0" y="214" width="375" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="PNh-La-ctl"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="57" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="530154000.88043398">
                                     <!--2017-10-20 01:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47i-b1-bJg">
-                                <rect key="frame" x="16" y="155" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47i-b1-bJg">
+                                <rect key="frame" x="16" y="28" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -263,15 +260,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Twe-lw-zBN" secondAttribute="bottom" constant="20" symbolic="YES" id="6Ei-AY-i1X"/>
-                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="leading" secondItem="jGv-tN-OoN" secondAttribute="leading" id="6Il-TF-nCm"/>
-                            <constraint firstItem="Twe-lw-zBN" firstAttribute="leading" secondItem="47i-b1-bJg" secondAttribute="leading" id="Hg2-jg-usa"/>
-                            <constraint firstItem="Twe-lw-zBN" firstAttribute="trailing" secondItem="47i-b1-bJg" secondAttribute="trailing" id="Hnz-GN-tla"/>
-                            <constraint firstItem="47i-b1-bJg" firstAttribute="leading" secondItem="jGv-tN-OoN" secondAttribute="leading" constant="16" id="Kff-N8-Yes"/>
-                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="top" secondItem="47i-b1-bJg" secondAttribute="bottom" constant="38" id="Kja-5Y-AmZ"/>
-                            <constraint firstAttribute="trailing" secondItem="47i-b1-bJg" secondAttribute="trailing" constant="16" id="S2Z-fP-jz3"/>
-                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="centerY" secondItem="jGv-tN-OoN" secondAttribute="centerY" id="VED-KS-tmC"/>
-                            <constraint firstAttribute="trailing" secondItem="QJt-Am-nQ4" secondAttribute="trailing" id="dbc-FB-AFR"/>
+                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="leading" secondItem="jGv-tN-OoN" secondAttribute="leading" id="0lJ-yP-DCr"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="trailing" secondItem="jGv-tN-OoN" secondAttribute="trailingMargin" id="CQr-cq-GtX"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="top" secondItem="VTz-87-CZe" secondAttribute="bottom" constant="8" symbolic="YES" id="DJM-fk-PIZ"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="centerX" secondItem="QJt-Am-nQ4" secondAttribute="centerX" id="GHd-Xu-DK8"/>
+                            <constraint firstAttribute="bottom" secondItem="Twe-lw-zBN" secondAttribute="bottom" constant="20" symbolic="YES" id="NmE-t5-f1K"/>
+                            <constraint firstItem="QJt-Am-nQ4" firstAttribute="top" secondItem="47i-b1-bJg" secondAttribute="bottom" constant="8" symbolic="YES" id="QXt-gq-7RI"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="leading" secondItem="Twe-lw-zBN" secondAttribute="leading" id="Rap-7m-2xp"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="leading" secondItem="jGv-tN-OoN" secondAttribute="leadingMargin" id="TrB-xQ-bW3"/>
+                            <constraint firstItem="47i-b1-bJg" firstAttribute="trailing" secondItem="Twe-lw-zBN" secondAttribute="trailing" id="xe6-qT-Pxm"/>
                         </constraints>
                     </view>
                     <connections>
