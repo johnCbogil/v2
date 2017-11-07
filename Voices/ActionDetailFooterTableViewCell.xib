@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,9 +20,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZy-Xj-FzB">
-                        <rect key="frame" x="33" y="23" width="151" height="33"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZy-Xj-FzB">
+                        <rect key="frame" x="25" y="23" width="150" height="33"/>
                         <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Remind me...">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -29,10 +30,12 @@
                             <action selector="remindMeButtonDidPress:" destination="qvU-Jb-dox" eventType="touchUpInside" id="3im-O1-jOI"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSd-QM-zKz">
-                        <rect key="frame" x="192" y="23" width="150" height="33"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSd-QM-zKz">
+                        <rect key="frame" x="201" y="23" width="150" height="33"/>
                         <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="h7V-N9-GVa"/>
+                        </constraints>
                         <state key="normal" title="Mark completed">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -44,14 +47,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="2" id="LpR-hb-C8N"/>
+                            <constraint firstAttribute="height" constant="2" id="aJn-Rr-Iax"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="PEP-By-LcK" firstAttribute="leading" secondItem="MmD-Vy-BMx" secondAttribute="leading" id="B17-96-YEa"/>
-                    <constraint firstItem="PEP-By-LcK" firstAttribute="top" secondItem="MmD-Vy-BMx" secondAttribute="top" id="gIW-Oa-BuN"/>
-                    <constraint firstAttribute="trailing" secondItem="PEP-By-LcK" secondAttribute="trailing" id="uNO-Ym-V56"/>
+                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="top" secondItem="PEP-By-LcK" secondAttribute="bottom" constant="21" id="602-Wb-P8J"/>
+                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="baseline" secondItem="XSd-QM-zKz" secondAttribute="firstBaseline" id="Fa0-x9-rJF"/>
+                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="top" secondItem="XSd-QM-zKz" secondAttribute="top" id="Oh5-hc-SWB"/>
+                    <constraint firstItem="PEP-By-LcK" firstAttribute="top" secondItem="MmD-Vy-BMx" secondAttribute="top" id="WFc-a3-tjt"/>
+                    <constraint firstItem="PEP-By-LcK" firstAttribute="leading" secondItem="MmD-Vy-BMx" secondAttribute="leading" id="aqo-eD-lej"/>
+                    <constraint firstItem="XSd-QM-zKz" firstAttribute="leading" secondItem="yZy-Xj-FzB" secondAttribute="trailing" constant="26" id="bXU-sM-2eD"/>
+                    <constraint firstItem="yZy-Xj-FzB" firstAttribute="leading" secondItem="MmD-Vy-BMx" secondAttribute="leading" constant="25" id="e5b-q8-ki0"/>
+                    <constraint firstAttribute="trailing" secondItem="XSd-QM-zKz" secondAttribute="trailing" constant="24" id="hRv-zY-zfB"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yZy-Xj-FzB" secondAttribute="bottom" constant="8" id="s9Q-vb-d1R"/>
+                    <constraint firstAttribute="trailing" secondItem="PEP-By-LcK" secondAttribute="trailing" id="tOw-3K-fIE"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
