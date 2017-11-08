@@ -220,6 +220,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
     ActionDetailFooterTableViewCell *cell = (ActionDetailFooterTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"ActionDetailFooterTableViewCell"];
+    cell.action = self.action;
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActionDetailFooterTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];

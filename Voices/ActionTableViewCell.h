@@ -19,8 +19,6 @@
 @interface ActionTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) id <PresentThankYouAlertDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIButton *takeActionButton;
 - (void)initWithGroup:(Group *)group andAction:(Action *)action;
-
 
 @end

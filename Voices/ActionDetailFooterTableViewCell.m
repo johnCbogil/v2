@@ -7,6 +7,7 @@
 //
 
 #import "ActionDetailFooterTableViewCell.h"
+#import "FirebaseManager.h"
 
 @interface ActionDetailFooterTableViewCell ()
 
@@ -46,8 +47,26 @@
 
 - (IBAction)actionCompletedButtonDidPress:(id)sender {
     
-    // SET ACTION COMPLETE
-    
+    [[FirebaseManager sharedInstance] actionCompleteButtonPressed:self.action];
+
+    if (self.action.isCompleted) {
+        self.action.isCompleted = NO;
+        self.actionCompletedButton.tintColor = [UIColor voicesLightGray];
+    }
+    else {
+        self.action.isCompleted = YES;
+        self.actionCompletedButton.tintColor = [UIColor voicesGreen];
+
+//        [self.delegate presentThankYouAlertForGroup:self.group andAction:self.action];
+
+        if ([VoicesUtilities isInDebugMode]) {
+            return;
+        }
+        else {
+//            [FIRAnalytics logEventWithName:@"userCompletedAction"
+//                                parameters:@{ @"actionKey": self.action.key}];
+        }
+    }
 }
 
 @end

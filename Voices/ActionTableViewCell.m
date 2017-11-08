@@ -31,7 +31,6 @@
     [super awakeFromNib];
     
     [self configureFont];
-    [self configureActionButton];
 
     self.actionTitleTextView.contentInset = UIEdgeInsetsMake(-7.0,0.0,0,0.0);
 }
@@ -56,13 +55,6 @@
     self.dateLabel.text = [dateFormatter stringFromDate:actionTimeStampDate];
 }
 
-- (void)configureActionButton {
-    
-    self.takeActionButton.tintColor = [UIColor whiteColor];
-    self.takeActionButton.backgroundColor = [UIColor voicesOrange];
-    self.takeActionButton.layer.cornerRadius = kButtonCornerRadius;
-}
-
 - (void)configureFont {
     
     self.dateLabel.font = [UIFont voicesFontWithSize:18];
@@ -73,9 +65,6 @@
     
     self.actionTitleTextView.textColor = [UIColor voicesGray];
     self.actionTitleTextView.font = [UIFont voicesFontWithSize:21];
-    
-    self.takeActionButton.tintColor = [UIColor voicesOrange];
-    self.takeActionButton.titleLabel.font = [UIFont voicesMediumFontWithSize:17];
 }
 
 - (void)viewDidLayoutSubviews {
