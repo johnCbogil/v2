@@ -203,7 +203,9 @@
                                               }];
     }
     
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (indexPath.row < 3) {
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -230,7 +232,7 @@
     UIView *view = [[UIView alloc] init];
     [view addSubview:cell];
     
-    return view;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
