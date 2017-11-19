@@ -39,14 +39,13 @@
     self.listOfMenuItems = @[@"Why it's important",@"What to say (Call Script)",@"Share action..."];
     
     self.navigationController.navigationBarHidden = NO;
-    
-    self.title = self.group.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self configureObservers];
+    self.title = self.group.name;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
