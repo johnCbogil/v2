@@ -77,20 +77,20 @@
 
 - (void)createUser {
     
-    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-        if (error) {
-            return;
-        }
-        
-        [self createUserReferences];
-        
-        // Add user to list of users
-        [self.usersRef updateChildValues:@{[CurrentUser sharedInstance].firebaseUserID : @{@"userID" : [CurrentUser sharedInstance].firebaseUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-            if (error) {
-                return;
-            }
-        }];
-    }];
+//    [[FIRAuth auth] signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+//        if (error) {
+//            return;
+//        }
+//        
+//        [self createUserReferences];
+//        
+//        // Add user to list of users
+//        [self.usersRef updateChildValues:@{[CurrentUser sharedInstance].firebaseUserID : @{@"userID" : [CurrentUser sharedInstance].firebaseUserID}} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+//            if (error) {
+//                return;
+//            }
+//        }];
+//    }];
 }
 
 

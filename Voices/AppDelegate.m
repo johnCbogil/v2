@@ -21,7 +21,7 @@
 
 @import Firebase;
 @import FirebaseInstanceID;
-@import FirebaseMessaging;
+//@import FirebaseMessaging;
 @import FirebaseDynamicLinks;
 @import UserNotifications;
 @import GooglePlaces;

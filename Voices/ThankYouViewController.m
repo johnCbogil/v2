@@ -7,7 +7,7 @@
 //
 
 #import "ThankYouViewController.h"
-#import <STPopup.h>
+#import "STPopup.h"
 
 @interface ThankYouViewController ()
 
