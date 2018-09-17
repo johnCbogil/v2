@@ -8,6 +8,7 @@
 
 #import "LocationManager.h"
 #import "RepsNetworkManager.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation LocationManager
 
@@ -68,23 +69,50 @@
 
 - (void)getCoordinatesFromSearchText:(NSString*)searchText withCompletion:(void(^)(CLLocation *results))successBlock
                              onError:(void(^)(NSError *error))errorBlock {
-    [[RepsNetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
-        if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
-            
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
-        }
-        else {
-            CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
-            CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
-            CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
-            self.requestedLocation = location;
-            successBlock(location);
-        }
-    } onError:^(NSError *error) {
-        [error localizedDescription];
-    }];
+
+
+    NSString *address = searchText;
+    CLGeocoder *geocoder = [[CLGeocoder alloc]init];
+    
+
+//    let address = "1 Infinite Loop, Cupertino, CA 95014"
+//
+//    let geoCoder = CLGeocoder()
+//    geoCoder.geocodeAddressString(address) { (placemarks, error) in
+//        guard
+//        let placemarks = placemarks,
+//        let location = placemarks.first?.location
+//        else {
+//            // handle no location found
+//            return
+//        }
+//
+//        // Use your location
+//    }
+
+
+
+
+//    [[RepsNetworkManager sharedInstance]getStreetAddressFromSearchText:searchText withCompletion:^(NSArray *results) {
+//        if ([[results valueForKey:@"status"]isEqualToString:@"ZERO_RESULTS"]) {
+//
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"We couldn't find your location. Try being more specific." preferredStyle:UIAlertControllerStyleAlert];
+//            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+//            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertController animated:YES completion:nil];
+//        }
+//        else {
+//            CLLocationDegrees latitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lat"][0]doubleValue];
+//            CLLocationDegrees longitude = [[[[[results valueForKey:@"results"]valueForKey:@"geometry"]valueForKey:@"location"]valueForKey:@"lng"][0]doubleValue];
+//            CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+//            self.requestedLocation = location;
+//            successBlock(location);
+//        }
+//    } onError:^(NSError *error) {
+//        [error localizedDescription];
+//    }];
+
+
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
