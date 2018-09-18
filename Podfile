@@ -6,7 +6,7 @@
 project 'Voices.xcodeproj'
 
 target 'Voices' do
-    
+
     pod "AFNetworking", "~> 2.0"
     pod 'STPopup'
     pod 'SSZipArchive'
@@ -19,6 +19,8 @@ target 'Voices' do
     pod 'GooglePlaces'
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
+   
+
 
 end
 

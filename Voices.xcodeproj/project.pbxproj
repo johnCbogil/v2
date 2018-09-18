@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00CBD02B1F8577C0009D00AD /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CBD0291F8577BF009D00AD /* AddAddressViewController.m */; };
 		5202418F1D70A16000B4A9FB /* nycExtraReps.json in Resources */ = {isa = PBXBuildFile; fileRef = 5202418E1D70A16000B4A9FB /* nycExtraReps.json */; };
+		520F5C882150773800FC98C5 /* RepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F5C872150773800FC98C5 /* RepTableViewCell.swift */; };
 		52122ED71DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json in Resources */ = {isa = PBXBuildFile; fileRef = 52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */; };
 		5235B07E1BA732EA00CF43F9 /* RepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */; };
 		5235B0811BA735A500CF43F9 /* RepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5235B0801BA735A500CF43F9 /* RepTableViewCell.m */; };
@@ -74,7 +75,7 @@
 		611861611EDCCCEC007C317C /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611861601EDCCCEC007C317C /* ActionView.m */; };
 		61B86CEF1F929B5900B1D3B4 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B86CEE1F929B5900B1D3B4 /* UIViewController+Alert.m */; };
 		61DC8EA31D0660590086C070 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8EA21D0660590086C070 /* Action.m */; };
-		669AA7A4BCE33D38C80394E7 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9AA89126EC3E3DBE3BC4D0 /* libPods-VoicesTests.a */; };
+		72CE19E4B14CF7E811E4DAE0 /* libPods-VoicesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC775C87124B4E0C0F5E29C3 /* libPods-VoicesTests.a */; };
 		7E0448291F644E10001CE76C /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0448281F644E10001CE76C /* TTTAttributedLabel.m */; };
 		7E133DB71D53A50900F128CC /* EmptyRepTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E133DB61D53A50900F128CC /* EmptyRepTableViewCell.m */; };
 		7E160FF11D53E37300B8AED6 /* EmptyRepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E160FF01D53E37300B8AED6 /* EmptyRepTableViewCell.xib */; };
@@ -105,8 +106,8 @@
 		A7C833EF1E296504006C86E1 /* PolicyPositionsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C833ED1E296504006C86E1 /* PolicyPositionsDetailCell.xib */; };
 		A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */; };
 		AA2C2E4F1D6F385A009989C9 /* RepDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */; };
+		ADCB2A5CC9C01BB09D646D3B /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227F453E0DF60A032F9D757 /* libPods-Voices.a */; };
 		B89EB1E91D8EE37300C130A8 /* Representative.m in Sources */ = {isa = PBXBuildFile; fileRef = B89EB1E81D8EE37300C130A8 /* Representative.m */; };
-		C9480662D1F3A7BA78DCD7CA /* libPods-Voices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BBBAA8265B8A7AA5B393CF /* libPods-Voices.a */; };
 		E860E04E1E79DC7A00055D39 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E860E04D1E79DC7A00055D39 /* More.storyboard */; };
 		E860E0511E79DD3000055D39 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0501E79DD3000055D39 /* MoreViewController.m */; };
 		E860E0551E8AB7C300055D39 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E0531E8AB7C300055D39 /* AboutViewController.m */; };
@@ -127,8 +128,10 @@
 		00CBD0281F8577BF009D00AD /* AddAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
 		00CBD0291F8577BF009D00AD /* AddAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		158C0BA4129B1DD8E1DCD6C0 /* Pods-Voices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voices/Pods-Voices.debug.xcconfig"; sourceTree = "<group>"; };
-		3A9AA89126EC3E3DBE3BC4D0 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4227F453E0DF60A032F9D757 /* libPods-Voices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5202418E1D70A16000B4A9FB /* nycExtraReps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nycExtraReps.json; sourceTree = "<group>"; };
+		520F5C862150773800FC98C5 /* Voices-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Voices-Bridging-Header.h"; sourceTree = "<group>"; };
+		520F5C872150773800FC98C5 /* RepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepTableViewCell.swift; sourceTree = "<group>"; };
 		52122ED61DF989EE00A259D5 /* voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "voices-430ae-firebase-crashreporting-7icx7-8fe490a20c.json"; sourceTree = "<group>"; };
 		52194F531E3C519400EBF461 /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		5235B07D1BA732EA00CF43F9 /* RepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepTableViewCell.xib; sourceTree = "<group>"; };
@@ -263,7 +266,6 @@
 		7EE956C71F1597CE0093075A /* ActionDetailMenuItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDetailMenuItemTableViewCell.m; sourceTree = "<group>"; };
 		7EEDF30C1CF8DAB8006E0696 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		7EEDF30D1CF8DAB8006E0696 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
-		89BBBAA8265B8A7AA5B393CF /* libPods-Voices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voices.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B34EE31F7AE75E0071300F /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF29F41F804A57002ED9F8 /* MoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreTableViewCell.xib; sourceTree = "<group>"; };
 		94DF29F61F804A94002ED9F8 /* MoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreTableViewCell.h; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		E860E0531E8AB7C300055D39 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		E860E0541E8AB7C300055D39 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		E86FA7711E9FD46E00FF9C89 /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
+		FC775C87124B4E0C0F5E29C3 /* libPods-VoicesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VoicesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,7 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7DFB9C11DDD385C00B0A6DD /* CoreTelephony.framework in Frameworks */,
-				C9480662D1F3A7BA78DCD7CA /* libPods-Voices.a in Frameworks */,
+				ADCB2A5CC9C01BB09D646D3B /* libPods-Voices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +323,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				669AA7A4BCE33D38C80394E7 /* libPods-VoicesTests.a in Frameworks */,
+				72CE19E4B14CF7E811E4DAE0 /* libPods-VoicesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,8 +335,8 @@
 			children = (
 				94B34EE31F7AE75E0071300F /* libGoogleToolboxForMac.a */,
 				A7DFB9BF1DDD37CD00B0A6DD /* CoreTelephony.framework */,
-				89BBBAA8265B8A7AA5B393CF /* libPods-Voices.a */,
-				3A9AA89126EC3E3DBE3BC4D0 /* libPods-VoicesTests.a */,
+				4227F453E0DF60A032F9D757 /* libPods-Voices.a */,
+				FC775C87124B4E0C0F5E29C3 /* libPods-VoicesTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -450,6 +453,8 @@
 				52D892901CC45CC1004FBEA3 /* RepsTab */,
 				52D8929D1CC471AA004FBEA3 /* TakeActionTab */,
 				52BB342E1B6160C900BB9FFD /* Supporting Files */,
+				520F5C872150773800FC98C5 /* RepTableViewCell.swift */,
+				520F5C862150773800FC98C5 /* Voices-Bridging-Header.h */,
 			);
 			path = Voices;
 			sourceTree = "<group>";
@@ -743,6 +748,7 @@
 					52BB342A1B6160C900BB9FFD = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4Y3GGL46D2;
+						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -926,6 +932,7 @@
 				52BB34341B6160CA00BB9FFD /* AppDelegate.m in Sources */,
 				7E3D77921DF9D430007F2423 /* NotiOnboardingViewController.m in Sources */,
 				52C653301B75120900EA6FFD /* RootViewController.m in Sources */,
+				520F5C882150773800FC98C5 /* RepTableViewCell.swift in Sources */,
 				94DF29F81F804A94002ED9F8 /* MoreTableViewCell.m in Sources */,
 				525306621CC8571800982CC8 /* ListOfGroupsViewController.m in Sources */,
 				52B51B0A1B61B789006DF423 /* LocationService.m in Sources */,
@@ -1124,6 +1131,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1137,6 +1145,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Voices/Voices-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1147,6 +1158,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Voices/Voices.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1161,6 +1173,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnbogil.voices;
 				PRODUCT_NAME = Voices;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Voices/Voices-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1169,6 +1183,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DED23F55EEF97C97C906394B /* Pods-VoicesTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -1188,6 +1203,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E03E106B4017E31EDA824EDF /* Pods-VoicesTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4Y3GGL46D2;
 				FRAMEWORK_SEARCH_PATHS = "";

@@ -1,4 +1,4 @@
-framework module Pods_Voices {
+module Pods_Voices {
   umbrella header "Pods-Voices-umbrella.h"
 
   export *
