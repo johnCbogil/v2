@@ -219,8 +219,6 @@
 		52D892A21CC47D07004FBEA3 /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
 		52E925761C3DE1D500C809C0 /* OnboardingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingNavigationController.h; sourceTree = "<group>"; };
 		52E925771C3DE1D500C809C0 /* OnboardingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingNavigationController.m; sourceTree = "<group>"; };
-		52EE4EBD1E69024700A22513 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		52EE4EBE1E69024700A22513 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		52EEC2751E55376D00CE12AF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		52EEC2761E55376D00CE12AF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		52F31ED81E5FA5AE008BCC2A /* ResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsTableViewCell.xib; sourceTree = "<group>"; };
@@ -535,8 +533,6 @@
 				AA2C2E4E1D6F385A009989C9 /* RepDetailViewController.m */,
 				7E6CB2DD1DD658B20027D11B /* RepsViewController.h */,
 				7E6CB2DE1DD658B20027D11B /* RepsViewController.m */,
-				52EE4EBD1E69024700A22513 /* SearchViewController.h */,
-				52EE4EBE1E69024700A22513 /* SearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

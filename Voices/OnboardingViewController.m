@@ -9,7 +9,8 @@
 #import "OnboardingViewController.h"
 #import "NotiOnboardingViewController.h"
 #import "AppDelegate.h"
-#import "TabBarViewController.h"
+#import "RootViewController.h"
+
 @interface OnboardingViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *voicesIcon;
@@ -51,9 +52,9 @@
     backButtonItem.tintColor = [UIColor voicesOrange];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-    [self.navigationController pushViewController:tabVC animated:YES];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+    RootViewController *rootVC = (RootViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"RootViewController"];
+    [self.navigationController pushViewController:rootVC animated:YES];
 }
 
 @end

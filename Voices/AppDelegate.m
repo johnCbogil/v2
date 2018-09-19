@@ -12,12 +12,12 @@
 #import "OnboardingNavigationController.h"
 #import "SSZipArchive.h"
 #import "TakeActionViewController.h"
-#import "TabBarViewController.h"
 #import "CurrentUser.h"
 #import "RepsManager.h"
 #import "ActionDetailViewController.h"
 #import "Action.h"
 #import "FirebaseManager.h"
+#import "RootViewController.h"
 
 @import Firebase;
 @import FirebaseInstanceID;
@@ -80,43 +80,6 @@
                     }];
     
     return handled;
-}
-
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *, id> *)options {
-    
-    FIRDynamicLink *dynamicLink = [[FIRDynamicLinks dynamicLinks] dynamicLinkFromCustomSchemeURL:url];
-    
-    if (dynamicLink.url) {
-        // Handle the deep link. For example, show the deep-linked content or
-        // apply a promotional offer to the user's account.
-        // ...
-        
-        self.isBeingInstalledFromDeeplink = YES;
-        [self handleDynamicLink:dynamicLink];
-        
-        return YES;
-    }
-    return YES;
-}
-
-- (void)handleDynamicLink:(FIRDynamicLink *)dynamicLink {
-    
-    if (!dynamicLink.url) {
-        return;
-    }
-    
-    NSArray *splitURLString = [dynamicLink.url.absoluteString componentsSeparatedByString: @"/"];
-    NSString *groupKey = splitURLString.lastObject;
-    if (groupKey.length) {
-        
-        [[FirebaseManager sharedInstance] followGroup:groupKey.uppercaseString withCompletion:^(BOOL result) {
-            
-        } onError:^(NSError *error) {
-            [error localizedDescription];
-        }];
-    }
 }
 
 #pragma mark - Notifications
@@ -193,49 +156,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     [self connectToFcm];
     
-    if (self.actionKey.length) {
-        
-        UIStoryboard *takeActionSB = [UIStoryboard storyboardWithName:@"TakeAction" bundle: nil];
-        
-        ActionDetailViewController *actionDetailViewController = (ActionDetailViewController *)[takeActionSB instantiateViewControllerWithIdentifier: @"ActionDetailViewController"];
-        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-        FIRDatabaseReference *actionsRef = [rootRef child:@"actions"];
-        FIRDatabaseReference *actionRef = [actionsRef child:self.actionKey];
-        
-        [actionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            if (snapshot.value == [NSNull null]) {
-                return ;
-            }
-            
-            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-            self.window.rootViewController = tabVC;
-            
-            //TODO: Maybe switch for loop with navCtrl = self.window.rootViewController.navController
-            for (UINavigationController *navCtrl in self.window.rootViewController.childViewControllers) {
-                
-                Action *newAction = [[Action alloc] initWithKey:self.actionKey actionDictionary:snapshot.value];
-                
-                [[[rootRef child:@"groups"]child:newAction.groupKey] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                    
-                    if (snapshot.value != [NSNull null]) {
-                        Group *group = [[Group alloc]initWithKey:newAction.groupKey groupDictionary:snapshot.value];
-                        actionDetailViewController.group = group;
-                    }
-                    
-                    actionDetailViewController.action = newAction;
-                    
-                    [tabVC.navigationController pushViewController:actionDetailViewController animated:YES];
-                    tabVC.selectedIndex = 1;
-                    
-                    [navCtrl pushViewController:actionDetailViewController animated:YES];
-                    
-                    [self.window makeKeyAndVisible];
-                    
-                }];
-            }
-        }];
-    }
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -251,14 +172,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         self.window.rootViewController = onboardingPageViewController;
         [self.window makeKeyAndVisible];
     }
-    else if ([UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
-        
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-        self.window.rootViewController = tabVC;
+    else {
+        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"RootViewController" bundle: nil];
+        RootViewController *rootVC = (RootViewController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"RootViewController"];
+        self.window.rootViewController = rootVC;
         [self.window makeKeyAndVisible];
-        tabVC.selectedIndex = 1;
     }
 }
 
