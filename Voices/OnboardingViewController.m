@@ -53,8 +53,7 @@
 
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     TabBarViewController *tabVC = (TabBarViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"TabBarViewController"];
-    [self.navigationController pushViewController:tabVC animated:YES]; 
-
+    [self.navigationController pushViewController:tabVC animated:YES];
 }
 
 @end
