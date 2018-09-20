@@ -173,8 +173,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         [self.window makeKeyAndVisible];
     }
     else {
-        UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"RootViewController" bundle: nil];
-        RootViewController *rootVC = (RootViewController*)[onboardingStoryboard instantiateViewControllerWithIdentifier: @"RootViewController"];
+        UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
+        RootViewController *rootVC = (RootViewController*)[repsSB instantiateViewControllerWithIdentifier: @"RootViewController"];
         self.window.rootViewController = rootVC;
         [self.window makeKeyAndVisible];
     }
