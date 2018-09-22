@@ -174,8 +174,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     }
     else {
         UIStoryboard *repsSB = [UIStoryboard storyboardWithName:@"Reps" bundle: nil];
-        RootViewController *rootVC = (RootViewController*)[repsSB instantiateViewControllerWithIdentifier: @"RootViewController"];
-        self.window.rootViewController = rootVC;
+        UINavigationController *navctrl = (UINavigationController*)[repsSB instantiateViewControllerWithIdentifier: @"RepsNavCtrl"];
+        self.window.rootViewController = navctrl;
         [self.window makeKeyAndVisible];
     }
 }
