@@ -30,37 +30,30 @@
     [self configureNavController];
     [self configureSearchBar];
     [self configureTableView];
-    
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
 
 - (void)configureNavController {
-    
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
     self.navigationController.navigationBar.tintColor = [UIColor voicesOrange];
     UIBarButtonItem *privacyButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"InfoButton"] style:UIBarButtonItemStylePlain target:self action:@selector(presentPrivacyAlert)];
     self.navigationItem.rightBarButtonItem = privacyButton;
-    
 }
 
 - (void)configureSearchBar {
-    
     self.searchBar.placeholder = @"Enter full address";
     self.searchBar.delegate  = self;
     [self.searchBar setReturnKeyType:UIReturnKeyDone];
 }
 
 - (void)configureTableView {
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"cell" bundle:nil]forCellReuseIdentifier:@"cell"];
@@ -71,7 +64,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     [self.searchBar becomeFirstResponder];
 }
 
@@ -94,7 +86,6 @@
 }
 
 - (void)saveHomeAddress {
-    
     [[NSUserDefaults standardUserDefaults]setObject:self.searchBar.text forKey:kHomeAddress];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
@@ -115,9 +106,7 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
     [self saveHomeAddress];
-    
     [[RepsManager sharedInstance] fetchRepsForAddress:searchBar.text];
     [self.navigationController popViewControllerAnimated:YES];
 }
