@@ -22,7 +22,6 @@
 @import Firebase;
 @import FirebaseInstanceID;
 //@import FirebaseMessaging;
-@import FirebaseDynamicLinks;
 @import UserNotifications;
 @import GooglePlaces;
 
@@ -64,22 +63,6 @@
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
-}
-
-#pragma mark - Deeplinking
-
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *))restorationHandler {
-    
-    BOOL handled = [[FIRDynamicLinks dynamicLinks]
-                    handleUniversalLink:userActivity.webpageURL
-                    completion:^(FIRDynamicLink * _Nullable dynamicLink,
-                                 NSError * _Nullable error) {
-                        if (error) {
-                            NSLog(@"%@", [error localizedDescription]);
-                        }
-                    }];
-    
-    return handled;
 }
 
 #pragma mark - Notifications

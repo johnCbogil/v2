@@ -860,10 +860,6 @@ Copyright 2018 Google
    limitations under the License.
 
 
-## FirebaseDynamicLinks
-
-Copyright 2018 Google
-
 ## FirebaseInstanceID
 
 Copyright 2018 Google
@@ -1285,10 +1281,6 @@ Copyright 2018 Google
 Copyright 2018 Google
 
 ## GoogleMaps
-
-Copyright 2018 Google
-
-## GooglePlacePicker
 
 Copyright 2018 Google
 
